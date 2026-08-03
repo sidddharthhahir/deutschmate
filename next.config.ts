@@ -14,9 +14,9 @@ import type { NextConfig } from "next";
 const DEV_ORIGINS = [
   "localhost",
   "127.0.0.1",
-  "100.126.169.69", // this machine on the tailnet
-  "100.64.0.0/10", // Tailscale / CGNAT
+  "100.64.0.0/10", // Tailscale / CGNAT — covers any tailnet address
   "192.168.0.0/16", // home LAN
+  "172.16.0.0/12",
   "10.0.0.0/8",
 ];
 
