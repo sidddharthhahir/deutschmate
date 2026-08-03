@@ -1,5 +1,4 @@
-import Link from "next/link";
-import AppHeader from "@/components/AppHeader";
+import Page from "@/components/Page";
 import { all } from "@/lib/db";
 import { activeUser } from "@/lib/user";
 import WalkMode from "./WalkMode";
@@ -35,29 +34,13 @@ export default async function WalkPage() {
   );
 
   return (
-    <main className="flex min-h-screen flex-col">
-      <AppHeader />
-
-      <div className="mx-auto w-full max-w-[620px] flex-1 px-6 py-10 md:px-10">
-        <Link
-          href="/ueben"
-          className="font-mono text-muted hover:text-secondary text-[12px] transition-colors"
-        >
-          ← Üben
-        </Link>
-
-        <h1 className="font-serif mt-4 text-[32px] font-semibold tracking-[-0.015em]">
-          Unterwegs
-        </h1>
-        <p className="text-secondary mt-3 max-w-[58ch] text-[15px] leading-relaxed">
-          Hands-free listening while you walk. It counts as contact with the words, not
-          as review — your schedule is left untouched.
-        </p>
-
-        <div className="mt-8">
-          <WalkMode cards={cards} />
-        </div>
-      </div>
-    </main>
+    <Page
+      back="/ueben"
+      backLabel="Üben"
+      title="Unterwegs"
+      lead="Hands-free listening while you walk. It counts as contact with the words, not as review — your schedule is left untouched."
+    >
+      <WalkMode cards={cards} />
+    </Page>
   );
 }

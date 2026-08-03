@@ -1,5 +1,4 @@
-import Link from "next/link";
-import AppHeader from "@/components/AppHeader";
+import Page from "@/components/Page";
 import { activeUser } from "@/lib/user";
 import { examHistory, type SectionScore } from "@/lib/exam";
 import ExamRunner from "./ExamRunner";
@@ -23,29 +22,14 @@ export default async function ExamPage() {
   const history = examHistory(user.id, 8);
 
   return (
-    <main className="flex min-h-screen flex-col">
-      <AppHeader />
-
-      <div className="mx-auto w-full max-w-[760px] flex-1 px-6 py-10 md:px-10">
-        <Link
-          href="/ueben"
-          className="font-mono text-muted hover:text-secondary text-[12px] transition-colors"
-        >
-          ← Üben
-        </Link>
-
-        <h1 className="font-serif mt-4 text-[32px] font-semibold tracking-[-0.015em]">
-          Übungstest
-        </h1>
-        <p className="text-secondary mt-3 max-w-[62ch] text-[15px] leading-relaxed">
-          Four sections, half an hour, no feedback until the end. Built from this app&apos;s own
-          content — it shows you which of the four skills lags behind, but it predicts
-          nothing about the real exam.
-        </p>
-
-        <div className="mt-8">
-          <ExamRunner level={user.level} />
-        </div>
+    <Page
+      back="/ueben"
+      backLabel="Üben"
+      title="Übungstest"
+      lead="Four sections, half an hour, no feedback until the end. Built from this app's own content — it shows you which of the four skills lags behind, but it predicts nothing about the real exam."
+    >
+      <>
+        <ExamRunner level={user.level} />
 
         {history.length > 0 && (
           <section className="border-line-sub mt-12 border-t pt-6">
@@ -89,9 +73,9 @@ export default async function ExamPage() {
             Die echten Modellsätze
           </h2>
           <p className="text-secondary max-w-[62ch] text-[14px] leading-relaxed">
-            Das Goethe-Institut veröffentlicht zu jeder Stufe einen vollständigen Modellsatz
-            als kostenloses PDF, mit Audio und Lösungsschlüssel. Wenn du wissen willst, ob du
-            die Prüfung bestehst, ist das der Test — nicht dieser hier.
+            The Goethe-Institut publishes a complete Modellsatz for every level as a free
+            PDF, with audio and an answer key. If you want to know whether you would pass,
+            that is the test — not this one.
           </p>
           <a
             href="https://www.goethe.de/de/spr/kup/prf.html"
@@ -102,7 +86,7 @@ export default async function ExamPage() {
             goethe.de → Prüfungen ↗
           </a>
         </section>
-      </div>
-    </main>
+      </>
+    </Page>
   );
 }

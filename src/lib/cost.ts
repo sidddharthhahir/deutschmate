@@ -93,7 +93,6 @@ function totals(userId: string, since: string): Spend {
 }
 
 export const spendThisMonth = (userId: string) => totals(userId, "-30 days");
-export const spendToday = (userId: string) => totals(userId, "-1 day");
 
 /**
  * Projected monthly spend from the last 30 days.

@@ -6,7 +6,7 @@ import { leechCount } from "@/lib/leech";
 import { clozeDueCount, clozeTotal } from "@/lib/cloze";
 import { grammarDueCount, grammarStats } from "@/lib/grammar-srs";
 import { lastExam } from "@/lib/exam";
-import AppHeader from "@/components/AppHeader";
+import Page, { Section, Tile } from "@/components/Page";
 
 export const dynamic = "force-dynamic";
 
@@ -50,16 +50,13 @@ export default async function PracticePage() {
   const levels = [...new Set(units.map((u) => u.level))];
 
   return (
-    <main className="flex min-h-screen flex-col">
-      <AppHeader />
-
-      <div className="mx-auto w-full max-w-[880px] flex-1 px-6 py-10 md:px-10">
-        <h1 className="font-serif text-[32px] font-semibold tracking-[-0.015em]">Üben</h1>
-        <p className="text-muted mt-2 max-w-[58ch] text-[15px] leading-relaxed">
-          Die tägliche Sitzung entscheidet für dich — hier entscheidest du.
-        </p>
-
-        <div className="mt-8 grid gap-3 sm:grid-cols-2">
+    <Page
+      width="wide"
+      title="Üben"
+      lead="The daily session decides for you — here you decide."
+    >
+      <>
+        <div className="grid gap-3 sm:grid-cols-2">
           <Tile
             href="/session"
             title="Wiederholen"
@@ -205,44 +202,8 @@ export default async function PracticePage() {
             ))}
           </div>
         </Section>
-      </div>
-    </main>
+      </>
+    </Page>
   );
 }
 
-function Tile({
-  href,
-  title,
-  sub,
-  flag,
-}: {
-  href: string;
-  title: string;
-  sub: string;
-  /** Marks a tile that has something waiting. A dot, never a red badge count. */
-  flag?: boolean;
-}) {
-  return (
-    <Link
-      href={href}
-      className="border-line hover:border-line-strong hover:bg-raised rounded-[14px] border p-5 transition-colors"
-    >
-      <p className="font-serif flex items-center gap-2 text-[20px] font-medium">
-        {title}
-        {flag && <span className="bg-accent h-[6px] w-[6px] rounded-full" />}
-      </p>
-      <p className="font-mono text-muted mt-1 text-[12.5px]">{sub}</p>
-    </Link>
-  );
-}
-
-function Section({ title, children }: { title: string; children: React.ReactNode }) {
-  return (
-    <section className="border-line-sub mt-10 border-t pt-6">
-      <h2 className="font-mono text-muted mb-4 text-[11.5px] tracking-[0.14em] uppercase">
-        {title}
-      </h2>
-      {children}
-    </section>
-  );
-}

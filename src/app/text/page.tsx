@@ -1,5 +1,4 @@
-import Link from "next/link";
-import AppHeader from "@/components/AppHeader";
+import Page from "@/components/Page";
 import TextTool from "./TextTool";
 
 export const dynamic = "force-dynamic";
@@ -18,29 +17,13 @@ export const dynamic = "force-dynamic";
  */
 export default function TextPage() {
   return (
-    <main className="flex min-h-screen flex-col">
-      <AppHeader />
-
-      <div className="mx-auto w-full max-w-[760px] flex-1 px-6 py-10 md:px-10">
-        <Link
-          href="/ueben"
-          className="font-mono text-muted hover:text-secondary text-[12px] transition-colors"
-        >
-          ← Üben
-        </Link>
-
-        <h1 className="font-serif mt-4 text-[32px] font-semibold tracking-[-0.015em]">
-          Dein Text
-        </h1>
-        <p className="text-secondary mt-3 max-w-[62ch] text-[15px] leading-relaxed">
-          Paste any German text. The app tells you how much of it you already know, which
-          words it can teach you next, and turns the sentences into cards.
-        </p>
-
-        <div className="mt-8">
-          <TextTool />
-        </div>
-      </div>
-    </main>
+    <Page
+      back="/ueben"
+      backLabel="Üben"
+      title="Dein Text"
+      lead="Paste any German text. The app tells you how much of it you already know, which words it can teach you next, and turns the sentences into cards."
+    >
+      <TextTool />
+    </Page>
   );
 }

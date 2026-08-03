@@ -1,5 +1,4 @@
-﻿import Link from "next/link";
-import AppHeader from "@/components/AppHeader";
+﻿import Page from "@/components/Page";
 import { activeUser } from "@/lib/user";
 import { LEECH_THRESHOLD, leeches } from "@/lib/leech";
 import LeechList from "./LeechList";
@@ -23,35 +22,24 @@ export default async function LeechPage() {
   const active = rows.filter((r) => r.suspended === 0).length;
 
   return (
-    <main className="flex min-h-screen flex-col">
-      <AppHeader />
-
-      <div className="mx-auto w-full max-w-[760px] flex-1 px-6 py-10 md:px-10">
-        <Link
-          href="/ueben"
-          className="font-mono text-muted hover:text-secondary text-[12px] transition-colors"
-        >
-          ← Üben
-        </Link>
-
-        <h1 className="font-serif mt-4 text-[32px] font-semibold tracking-[-0.015em]">
-          Problemwörter
-        </h1>
-        <p className="text-secondary mt-3 max-w-[62ch] text-[15px] leading-relaxed">
-          {active > 0 ? (
-            <>
-              {active} {active === 1 ? "word is" : "words are"} fighting you — you have
-              forgotten each of them at least {LEECH_THRESHOLD} times. Reviewing them more
-              often will not help: that is exactly what you are already doing.
-            </>
-          ) : (
-            <>Words you have forgotten at least {LEECH_THRESHOLD} times.</>
-          )}
-        </p>
-
-        <div className="mt-8">
-          <LeechList initial={rows} threshold={LEECH_THRESHOLD} />
-        </div>
+    <Page
+      back="/ueben"
+      backLabel="Üben"
+      title="Problemwörter"
+      lead={
+        active > 0 ? (
+          <>
+            {active} {active === 1 ? "word is" : "words are"} fighting you — you have
+            forgotten each of them at least {LEECH_THRESHOLD} times. Reviewing them more
+            often will not help: that is exactly what you are already doing.
+          </>
+        ) : (
+          <>Words you have forgotten at least {LEECH_THRESHOLD} times.</>
+        )
+      }
+    >
+      <>
+        <LeechList initial={rows} threshold={LEECH_THRESHOLD} />
 
         {rows.length > 0 && (
           <div className="border-line-sub text-muted mt-10 space-y-2 border-t pt-6 text-[13px] leading-relaxed">
@@ -71,7 +59,7 @@ export default async function LeechPage() {
             </p>
           </div>
         )}
-      </div>
-    </main>
+      </>
+    </Page>
   );
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import { forwardRef, useCallback, useImperativeHandle, useRef, useState } from "react";
+import { forwardRef, useCallback, useImperativeHandle, useRef } from "react";
 
 /**
  * German text entry on a keyboard that has no German on it.
@@ -65,7 +65,7 @@ function insertAtCaret(el: Field, ch: string, onChange: (v: string) => void) {
  * Only fires with Alt held and no Ctrl/Meta, so it cannot collide with browser
  * or OS shortcuts, and never intercepts a plain keystroke.
  */
-export function useUmlautKeys(onChange: (v: string) => void) {
+function useUmlautKeys(onChange: (v: string) => void) {
   return useCallback(
     (e: React.KeyboardEvent<Field>) => {
       if (!e.altKey || e.ctrlKey || e.metaKey) return;
@@ -205,16 +205,3 @@ export const GermanTextarea = forwardRef<GermanFieldHandle, Common & { rows?: nu
   },
 );
 
-/** Shown once next to a field the first time someone meets it. */
-export function UmlautHint() {
-  const [gone, setGone] = useState(false);
-  if (gone) return null;
-  return (
-    <button
-      onClick={() => setGone(true)}
-      className="font-mono text-muted/70 hover:text-secondary mt-1.5 block w-full text-center text-[10.5px] transition-colors"
-    >
-      Alt + a o u s für ä ö ü ß · tippen zum Ausblenden
-    </button>
-  );
-}

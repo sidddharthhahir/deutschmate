@@ -1,5 +1,5 @@
 import Link from "next/link";
-import AppHeader from "@/components/AppHeader";
+import Page, { Empty } from "@/components/Page";
 import { survivalScenarios } from "@/lib/survival";
 
 export const dynamic = "force-dynamic";
@@ -15,31 +15,19 @@ export default function SurvivalPage() {
   const items = survivalScenarios();
 
   return (
-    <main className="flex min-h-screen flex-col">
-      <AppHeader />
-
-      <div className="mx-auto w-full max-w-[760px] flex-1 px-6 py-10 md:px-10">
-        <Link
-          href="/ueben"
-          className="font-mono text-muted hover:text-secondary text-[12px] transition-colors"
-        >
-          ← Üben
-        </Link>
-
-        <h1 className="font-serif mt-4 text-[32px] font-semibold tracking-[-0.015em]">
-          Alltag in Deutschland
-        </h1>
-        <p className="text-secondary mt-3 max-w-[62ch] text-[15px] leading-relaxed">
-          Six conversations you will actually have. Each with the phrases that matter and
-          the list of documents to bring.
-        </p>
-
+    <Page
+      back="/ueben"
+      backLabel="Üben"
+      title="Alltag in Deutschland"
+      lead="Six conversations you will actually have. Each with the phrases that matter and the list of documents to bring."
+    >
+      <>
         {items.length === 0 ? (
-          <p className="text-muted mt-8 text-[14px]">
-            Keine Szenarien geladen — data/scenarios-survival.json fehlt.
-          </p>
+          <Empty title="No scenarios loaded">
+            data/scenarios-survival.json is missing. Run <code>npm run setup</code>.
+          </Empty>
         ) : (
-          <div className="mt-8 space-y-3">
+          <div className="space-y-3">
             {items.map((s) => (
               <div key={s.id} className="border-line rounded-[14px] border p-6">
                 <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
@@ -93,10 +81,11 @@ export default function SurvivalPage() {
         )}
 
         <p className="text-muted mt-10 max-w-[62ch] text-[12.5px] leading-relaxed">
-          Das Gespräch benutzt dieselbe Regel wie überall: der Gegenüber verwendet nur
-          Wörter, die du schon kennst. Ein Amt tut das nicht — dafür sind die Sätze oben da.
+          The roleplay follows the same rule as everywhere else: the other person only
+          uses words you already know. A real Amt does not — which is what the phrase
+          lists above are for.
         </p>
-      </div>
-    </main>
+      </>
+    </Page>
   );
 }

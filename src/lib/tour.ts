@@ -27,10 +27,3 @@ export function markTourSeen() {
   }
 }
 
-export function resetTour() {
-  try {
-    localStorage.removeItem(KEY);
-  } catch {
-    /* ignore */
-  }
-}

@@ -8,7 +8,7 @@ import { examHistory, type SectionScore } from "@/lib/exam";
 import { grammarStats } from "@/lib/grammar-srs";
 import { spendThisMonth, projectedMonthly } from "@/lib/cost";
 import Noun from "@/components/Article";
-import AppHeader from "@/components/AppHeader";
+import Page, { Section } from "@/components/Page";
 
 export const dynamic = "force-dynamic";
 
@@ -76,32 +76,29 @@ export default async function ProgressPage() {
   const projected = projectedMonthly(user.id);
 
   return (
-    <main className="flex min-h-screen flex-col">
-      <AppHeader />
-
-      <div className="mx-auto w-full max-w-[880px] flex-1 px-6 py-10 md:px-10">
-        <div className="mb-8 flex items-baseline justify-between gap-4">
-          <h1 className="font-serif text-[32px] font-semibold tracking-[-0.015em]">
-            Fortschritt
-          </h1>
-          <div className="flex flex-none items-baseline gap-4">
-            {/* Whose numbers these are. On a shared laptop that is not obvious,
-                and it used to be impossible to tell or change. */}
-            <Link
-              href="/wer"
-              className="font-mono text-muted hover:text-secondary text-[12.5px] transition-colors"
-            >
-              {user.name}
-            </Link>
-            <Link href="/woche" className="text-accent text-[12.5px] hover:underline">
-              Diese Woche →
-            </Link>
-            {streak > 0 && (
-              <span className="font-mono text-muted text-[12.5px]">Tag {streak}</span>
-            )}
-          </div>
+    <Page
+      width="wide"
+      title="Fortschritt"
+      aside={
+        <div className="flex items-baseline gap-4">
+          {/* Whose numbers these are. On a shared laptop that is not obvious,
+              and it used to be impossible to tell or change. */}
+          <Link
+            href="/wer"
+            className="font-mono text-muted hover:text-secondary text-[12.5px] transition-colors"
+          >
+            {user.name}
+          </Link>
+          <Link href="/woche" className="text-accent text-[12.5px] hover:underline">
+            Diese Woche →
+          </Link>
+          {streak > 0 && (
+            <span className="font-mono text-muted text-[12.5px]">Tag {streak}</span>
+          )}
         </div>
-
+      }
+    >
+      <>
         {/* Headline counts — the four that matter, in serif at size. */}
         <div className="grid grid-cols-2 gap-6 md:grid-cols-4">
           <Stat n={seen} label="gesehen" hint="im Wortschatz gelesen" />
@@ -374,8 +371,8 @@ export default async function ProgressPage() {
             </div>
           )}
         </Section>
-      </div>
-    </main>
+      </>
+    </Page>
   );
 }
 
@@ -450,17 +447,6 @@ function Stat({ n, label, hint }: { n: number; label: string; hint: string }) {
       </span>
       <span className="text-muted/70 text-[11px] leading-tight">{hint}</span>
     </div>
-  );
-}
-
-function Section({ title, children }: { title: string; children: React.ReactNode }) {
-  return (
-    <section className="border-line-sub mt-10 border-t pt-6">
-      <h2 className="font-mono text-muted mb-4 text-[11.5px] tracking-[0.14em] uppercase">
-        {title}
-      </h2>
-      {children}
-    </section>
   );
 }
 
