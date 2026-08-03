@@ -10,5 +10,69 @@
   {
     "id": "unterstuetzung",
     "lemma": "Unterstützung"
+  },
+  {
+    "id": "dad",
+    "lemma": "Dad"
+  },
+  {
+    "id": "mom",
+    "lemma": "mom"
+  },
+  {
+    "id": "super",
+    "lemma": "super"
+  },
+  {
+    "id": "aehm",
+    "lemma": "ähm"
+  },
+  {
+    "id": "colonel",
+    "lemma": "Colonel"
+  },
+  {
+    "id": "reinkommen",
+    "lemma": "reinkommen"
+  },
+  {
+    "id": "beeilung",
+    "lemma": "Beeilung"
+  },
+  {
+    "id": "mum",
+    "lemma": "Mum"
+  },
+  {
+    "id": "jo",
+    "lemma": "jo"
+  },
+  {
+    "id": "rauskommen",
+    "lemma": "rauskommen"
+  },
+  {
+    "id": "wayne",
+    "lemma": "wayne"
+  },
+  {
+    "id": "aussen",
+    "lemma": "außen"
+  },
+  {
+    "id": "reingehen",
+    "lemma": "reingehen"
+  },
+  {
+    "id": "doctor",
+    "lemma": "Doctor"
+  },
+  {
+    "id": "grant",
+    "lemma": "Grant"
+  },
+  {
+    "id": "be",
+    "lemma": "Be"
   }
 ]

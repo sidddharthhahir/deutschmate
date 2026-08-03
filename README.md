@@ -83,7 +83,7 @@ mistakes, new material, listening, speaking, a quiz — then stops.
 | | |
 |---|---|
 | **Sitzung** | The daily hour. Fixed rhythm, content chosen for you. |
-| **Wortschatz** | All 2,400 words, 1,222 of them with native audio. |
+| **Wortschatz** | All 2,400 words, 2,373 of them with native audio. |
 | **Üben** | Where *you* choose: scenarios, grammar, tests, pronunciation. |
 | **Fortschritt** | Every number is a count of something you did. |
 
@@ -174,7 +174,7 @@ data/          content, committed — words, units, grammar, readings, sentences
 src/lib/       the engine — FSRS scheduling, session builder, error tagging
 src/app/       pages and API routes
 scripts/       content generation and maintenance
-public/audio/  1,222 native recordings from Wikimedia Commons
+public/audio/  2,381 native recordings from Wikimedia Commons (37 MB)
 ```
 
 **Content and progress are separate.** Everything in `data/` is shared and

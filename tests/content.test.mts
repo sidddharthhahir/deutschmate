@@ -94,8 +94,12 @@ if (existsSync(AUDIO_DIR)) {
   ).all() as { id: string; audio_url: string }[];
   const linkedIds = new Set(linked.map((w) => w.id));
 
+  /* Recordings for words the deck no longer teaches are kept deliberately.
+     Commons rate-limits hard — the last full fetch was throttled 114 times —
+     so a file already on disk is worth more than the few kilobytes it costs if
+     the word ever comes back. They are ignored here rather than flagged. */
   const unlinked = [...onDisk].filter((id) => wordIds.has(id) && !linkedIds.has(id));
-  ok(unlinked.length === 0, "every committed recording is linked to its word",
+  ok(unlinked.length === 0, "every recording whose word is still taught is linked",
     unlinked.slice(0, 5).join(", "));
 
   const missingFile = linked.filter((w) => !onDisk.has(w.id));

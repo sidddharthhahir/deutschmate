@@ -38,7 +38,7 @@ months. Two users right now: me and my flatmate. Not a commercial product.
 
 | | |
 |---|---|
-| Vocabulary | 2,400 words, 1,222 with native audio |
+| Vocabulary | 2,400 words, 2,373 with native audio |
 | Units | 120, across 6 levels (20 each) |
 | Grammar points | 36 |
 | Readings | 38 |
