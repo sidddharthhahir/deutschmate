@@ -19,6 +19,7 @@
     "audio": "node scripts/fetch-audio.mts",
     "import-words": "node scripts/import-words.mts",
     "import-sentences": "node scripts/import-sentences.mts",
+    "attach-examples": "node scripts/attach-examples.mts",
     "backup": "node scripts/backup.mts",
     "restore": "node scripts/restore.mts",
     "export-deck": "node scripts/export-deck.mts"

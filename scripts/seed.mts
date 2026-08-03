@@ -216,6 +216,31 @@ for (const r of readings) {
 db.exec("COMMIT");
 console.log(`OK${readings.length} readings`);
 
+// ---------------------------------------------------------------- examples
+/* One sentence per word, chosen once by scripts/attach-examples.mts.
+   Applied AFTER the word rows exist and only where a word has no curated
+   example, so hand-written ones always win over corpus picks. */
+type RawExample = { id: string; de: string; en: string; source: string };
+const EXAMPLE_FILE = path.join(ROOT, "data/examples.json");
+if (existsSync(EXAMPLE_FILE)) {
+  const examples = JSON.parse(readFileSync(EXAMPLE_FILE, "utf8")) as RawExample[];
+  const upE = db.prepare(
+    `UPDATE word SET example_de = ?, example_en = ?
+      WHERE id = ? AND (example_de IS NULL OR example_de = '')`,
+  );
+  db.exec("BEGIN");
+  let applied = 0;
+  for (const e of examples) applied += Number(upE.run(e.de, e.en, e.id).changes);
+  db.exec("COMMIT");
+  const covered = (
+    db.prepare("SELECT COUNT(*) n FROM word WHERE example_de IS NOT NULL").get() as { n: number }
+  ).n;
+  const total = (db.prepare("SELECT COUNT(*) n FROM word").get() as { n: number }).n;
+  console.log(`OK${applied} examples applied  (${covered}/${total} words have one)`);
+} else {
+  console.log("--  no data/examples.json — run `node scripts/attach-examples.mts`");
+}
+
 // --------------------------------------------------------------- sentences
 /* Levelled Tatoeba sentences, chosen once by scripts/import-sentences.mts and
    committed. Seeding reads the committed file, so a fresh clone needs no
