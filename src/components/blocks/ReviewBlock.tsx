@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { playAudio } from "@/lib/speech";
 import { shouldIgnoreKey } from "@/lib/keys";
+import { send } from "@/lib/outbox";
 import Noun, { ArticleWord } from "@/components/Article";
 import type { BlockProps } from "./shared";
 
@@ -98,11 +99,8 @@ export default function ReviewBlock({ payload, onDone }: BlockProps<Payload>) {
       if (undoTimer.current) clearTimeout(undoTimer.current);
       undoTimer.current = setTimeout(() => setUndo(null), UNDO_MS);
 
-      void fetch("/api/review", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ cardId: card.cardId, grade: g }),
-      });
+      // Through the outbox: a grade given on a train is queued, not lost.
+      void send("/api/review", { cardId: card.cardId, grade: g });
     },
     [card],
   );

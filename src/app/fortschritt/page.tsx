@@ -6,6 +6,7 @@ import { currentStreak, paceProjection } from "@/lib/session";
 import { LEECH_THRESHOLD, leeches } from "@/lib/leech";
 import { examHistory, type SectionScore } from "@/lib/exam";
 import { grammarStats } from "@/lib/grammar-srs";
+import { spendThisMonth, projectedMonthly } from "@/lib/cost";
 import Noun from "@/components/Article";
 import AppHeader from "@/components/AppHeader";
 
@@ -71,6 +72,8 @@ export default async function ProgressPage() {
   const exams = examHistory(user.id, 5);
   const gram = grammarStats(user.id);
   const pace = paceProjection(user.id);
+  const spend = spendThisMonth(user.id);
+  const projected = projectedMonthly(user.id);
 
   return (
     <main className="flex min-h-screen flex-col">
@@ -292,6 +295,61 @@ export default async function ProgressPage() {
           </Section>
         )}
 
+        {/* The €10 ceiling, checkable. These are the API's own token counts,
+            priced at standard published rates — the figure errs high rather
+            than reassuring you with an optimistic one. */}
+        <Section title="Kosten · 30 Tage">
+          {spend.calls === 0 ? (
+            <p className="text-muted text-[14px] leading-relaxed">
+              Noch kein einziger Modellaufruf. Alles, was du bisher gemacht hast, lief
+              lokal — Wiederholungen, Lücken, Tests und Wortschatz kosten nichts.
+            </p>
+          ) : (
+            <>
+              <div className="grid grid-cols-2 gap-6 md:grid-cols-4">
+                <Stat
+                  n={Math.round(spend.dollars * 100)}
+                  label="Cent"
+                  hint={`in ${spend.calls} Aufrufen`}
+                />
+                <Stat
+                  n={projected === null ? 0 : Math.round(projected * 100)}
+                  label="Cent / Monat"
+                  hint={projected === null ? "noch zu wenig Daten" : "bei diesem Tempo"}
+                />
+                <Stat n={spend.cacheShare} label="% aus Cache" hint="kostet 10% des Preises" />
+                <Stat
+                  n={Math.round((spend.input + spend.output + spend.cacheRead) / 1000)}
+                  label="k Tokens"
+                  hint="tatsächlich gezählt"
+                />
+              </div>
+
+              {spend.byKind.length > 0 && (
+                <div className="mt-6 space-y-2">
+                  {spend.byKind.map((k) => (
+                    <div key={k.kind} className="flex justify-between text-[13.5px]">
+                      <span className="text-secondary">{COST_LABEL[k.kind] ?? k.kind}</span>
+                      <span className="font-mono text-muted tabular-nums">
+                        {(k.micros / 10_000).toFixed(2)} ¢
+                        <span className="opacity-50"> ({k.calls})</span>
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              <p className="text-muted mt-4 max-w-[62ch] text-[12.5px] leading-relaxed">
+                Gezählte Tokens, gerechnet mit den Standardpreisen — Aktionspreise können
+                es günstiger machen, nie teurer. Das Budget waren 10 $ im Monat.
+                {projected !== null && projected > 8 && (
+                  <span className="text-das"> Das wird knapp.</span>
+                )}
+              </p>
+            </>
+          )}
+        </Section>
+
         <Section title={`Zeit — ${Math.round(totalMinutes / 60)} h in 30 Tagen`}>
           {days.length === 0 ? (
             <p className="text-muted text-[14px]">Noch keine Sitzung abgeschlossen.</p>
@@ -330,6 +388,14 @@ const LABELS: Record<string, string> = {
   "exam-hoeren": "Test · Hören",
   "exam-wortschatz": "Test · Wortschatz",
   "exam-grammatik": "Test · Grammatik",
+};
+
+const COST_LABEL: Record<string, string> = {
+  chat: "Gespräch",
+  review: "Korrektur danach",
+  writing: "Schreiben",
+  explain: "Satz erklärt",
+  mistake: "Fehler erklärt",
 };
 
 /** Derived from real recognition results — never a phoneme score. */

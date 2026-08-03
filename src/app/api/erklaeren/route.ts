@@ -3,6 +3,7 @@ import { get, run } from "@/lib/db";
 import { currentUser } from "@/lib/user";
 import { readJson, badRequest, str } from "@/lib/http";
 import { explainSentence, aiAvailable } from "@/lib/ai";
+import { recordUsage } from "@/lib/cost";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -55,7 +56,8 @@ export async function POST(req: Request) {
   }
 
   try {
-    const md = await explainSentence(sentence, user.level);
+    const { result: md, model, usage } = await explainSentence(sentence, user.level);
+    recordUsage(user.id, "explain", model, usage);
     run(
       `INSERT INTO explanation (signature, sentence, level, body_md)
        VALUES (?, ?, ?, ?)

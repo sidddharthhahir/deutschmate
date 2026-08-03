@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import { isTypingTarget, useModalFlag } from "@/lib/keys";
 
@@ -83,6 +84,17 @@ export default function ShortcutHelp() {
             Esc
           </button>
         </div>
+
+        {/* The keys are only half the question. Someone pressing ? because they
+            are lost wants the tour, not a shortcut list. */}
+        <Link
+          href="/willkommen"
+          onClick={() => setOpen(false)}
+          className="border-line-sub hover:border-line text-secondary hover:text-fg mb-6 flex items-center justify-between rounded-xl border px-4 py-3 text-[13.5px] transition-colors"
+        >
+          <span>Neu hier? Wie die App funktioniert</span>
+          <span className="font-mono text-muted text-[11px]">→</span>
+        </Link>
 
         <div className="space-y-5">
           {GROUPS.map((g) => (

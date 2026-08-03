@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { currentUser } from "@/lib/user";
 import { readJson, badRequest, str, bool } from "@/lib/http";
+import { recordUsage } from "@/lib/cost";
 import { correctWriting, aiAvailable } from "@/lib/ai";
 import { logAttempt, type Tag } from "@/lib/errors";
 import { all, get, run } from "@/lib/db";
@@ -44,11 +45,13 @@ export async function POST(req: Request) {
   }
 
   try {
-    const result = await correctWriting({
+    const call = await correctWriting({
       level: user.level,
       prompt,
       body: text,
     });
+    recordUsage(user.id, "writing", call.model, call.usage);
+    const result = call.result;
 
     for (const c of result.corrections) {
       logAttempt({
@@ -92,11 +95,13 @@ export async function GET(req: Request) {
   const resolved = [];
   for (const p of pending.slice(0, 5)) {
     try {
-      const result = await correctWriting({
+      const call = await correctWriting({
         level: user.level,
         prompt: p.prompt,
         body: p.body,
       });
+      recordUsage(user.id, "writing", call.model, call.usage);
+      const result = call.result;
       for (const c of result.corrections) {
         logAttempt({
           userId: user.id,

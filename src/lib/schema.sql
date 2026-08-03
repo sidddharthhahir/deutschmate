@@ -234,6 +234,25 @@ CREATE TABLE IF NOT EXISTS exam_run (
 );
 CREATE INDEX IF NOT EXISTS idx_exam_user ON exam_run(user_id, created_at);
 
+/* Every model call, with the token counts the API actually reported.
+   The €10/month ceiling was a hope until this table existed: the usage numbers
+   were already coming back on every response and were being thrown away, so
+   there was no way to answer "what did this cost". Cost is stored in
+   millionths of a dollar because the per-call amounts are far below a cent. */
+CREATE TABLE IF NOT EXISTS usage (
+  id           INTEGER PRIMARY KEY AUTOINCREMENT,
+  user_id      TEXT NOT NULL REFERENCES user(id) ON DELETE CASCADE,
+  kind         TEXT NOT NULL,        -- chat | review | writing | explain | mistake
+  model        TEXT NOT NULL,
+  input        INTEGER NOT NULL DEFAULT 0,
+  output       INTEGER NOT NULL DEFAULT 0,
+  cache_read   INTEGER NOT NULL DEFAULT 0,
+  cache_write  INTEGER NOT NULL DEFAULT 0,
+  micros       INTEGER NOT NULL DEFAULT 0,
+  created_at   TEXT NOT NULL DEFAULT (datetime('now'))
+);
+CREATE INDEX IF NOT EXISTS idx_usage_user_time ON usage(user_id, created_at);
+
 -- Offline writing queue (spec §17): submitted offline, corrected on reconnect.
 CREATE TABLE IF NOT EXISTS pending_correction (
   id         INTEGER PRIMARY KEY AUTOINCREMENT,

@@ -177,6 +177,49 @@ export function clozeDueCount(userId: string): number {
   );
 }
 
+/**
+ * Throw a gap away.
+ *
+ * Mining is automatic, so some of what it produces is junk — a typo you will
+ * never repeat, a proper noun, a sentence that made sense only in the moment.
+ * Without a way out, that junk stays in rotation forever in the one block the
+ * learner never chose the contents of.
+ *
+ * The card goes with it. A card pointing at a deleted cloze would surface as
+ * an empty gap with no way to answer it.
+ */
+export function deleteCloze(userId: string, clozeId: number): boolean {
+  return tx(() => {
+    const res = run("DELETE FROM cloze WHERE id = ? AND user_id = ?", clozeId, userId);
+    if (!res.changes) return false;
+    run(
+      "DELETE FROM card WHERE user_id = ? AND ref_type = 'cloze' AND ref_id = ?",
+      userId,
+      String(clozeId),
+    );
+    return true;
+  });
+}
+
+/** Every gap this learner has, newest first — for the management list. */
+export function allCloze(userId: string, limit = 200) {
+  return all<
+    Cloze & { reps: number; lapses: number; due: string | null }
+  >(
+    `SELECT cl.id, cl.sentence, cl.answer, cl.full, cl.en, cl.source, cl.tag,
+            COALESCE(c.reps,0) AS reps, COALESCE(c.lapses,0) AS lapses, c.due
+       FROM cloze cl
+       LEFT JOIN card c
+         ON c.user_id = cl.user_id AND c.ref_type = 'cloze'
+        AND c.ref_id = CAST(cl.id AS TEXT)
+      WHERE cl.user_id = ?
+      ORDER BY cl.id DESC
+      LIMIT ?`,
+    userId,
+    limit,
+  );
+}
+
 export function clozeTotal(userId: string): number {
   return (
     get<{ n: number }>("SELECT COUNT(*) AS n FROM cloze WHERE user_id = ?", userId)?.n ?? 0

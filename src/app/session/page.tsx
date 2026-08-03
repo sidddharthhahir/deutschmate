@@ -19,6 +19,7 @@ import ClozeBlock from "@/components/blocks/ClozeBlock";
 import GrammarReviewBlock from "@/components/blocks/GrammarReviewBlock";
 import SessionRecap, { type Recap } from "@/components/SessionRecap";
 import { useOnline } from "@/lib/hooks";
+import { cachePlan, cachedPlan, flush, onOutboxChange, pendingCount, send } from "@/lib/outbox";
 
 type Block = {
   kind: string;
@@ -126,6 +127,10 @@ function SessionRunner() {
   /** A resumable save found on load. Null once the choice has been made. */
   const [offer, setOffer] = useState<{ saved: Saved; at: number } | null>(null);
   const [failed, setFailed] = useState(false);
+  /** Running from the cached plan because the server was unreachable. */
+  const [offline, setOffline] = useState(false);
+  /** Answers waiting to sync. Shown, never hidden. */
+  const [pending, setPending] = useState(0);
   /** Words still unintroduced in today's unit — it continues tomorrow. */
   const [carryOver, setCarryOver] = useState(0);
 
@@ -141,26 +146,54 @@ function SessionRunner() {
   useEffect(() => {
     let stale = false;
     (async () => {
+      /* Try the server, fall back to today's cached plan. This is what makes
+         principle 2 true rather than aspirational: the blocks always ran
+         offline, but the PLAN came from the server, so a dead network meant no
+         session at all. Grades go to the outbox and sync later. */
+      let data: Plan | null = null;
+      let fromCache = false;
+
       try {
         const res = await fetch(`/api/session?shape=${shape}`);
-        const data: Plan = await res.json();
-        if (stale) return;
-        setPlan(data);
-        // Only offer a resume with real work still left in today's plan.
-        const saved = readSaved(shape);
-        const at = saved ? resumeIndex(data.blocks, saved.completed) : 0;
-        if (saved && at > 0 && at < data.blocks.length) setOffer({ saved, at });
-        else clearSaved();
+        if (!res.ok) throw new Error(String(res.status));
+        data = (await res.json()) as Plan;
+        cachePlan(shape, data);
       } catch {
-        // The plan lives on the server. Say so and offer a way out — leaving
-        // "Lade…" on screen forever is the dead end the offline rule forbids.
-        if (!stale) setFailed(true);
+        data = cachedPlan<Plan>(shape);
+        fromCache = true;
       }
+
+      if (stale) return;
+      if (!data) {
+        setFailed(true);
+        return;
+      }
+
+      setPlan(data);
+      setOffline(fromCache);
+      const saved = readSaved(shape);
+      const at = saved ? resumeIndex(data.blocks, saved.completed) : 0;
+      if (saved && at > 0 && at < data.blocks.length) setOffer({ saved, at });
+      else clearSaved();
     })();
     return () => {
       stale = true;
     };
   }, [shape]);
+
+  /* Anything answered offline is replayed the moment the network is back.
+     Nothing is set synchronously here — the first count arrives from flush()
+     or from the outbox announcing a change, both of which are async. */
+  useEffect(() => {
+    const unsub = onOutboxChange(setPending);
+    const sync = () => void flush().then(({ left }) => setPending(left));
+    sync();
+    window.addEventListener("online", sync);
+    return () => {
+      unsub();
+      window.removeEventListener("online", sync);
+    };
+  }, []);
 
   const blocks = useMemo(() => plan?.blocks ?? [], [plan]);
   const block = blocks[i];
@@ -173,27 +206,28 @@ function SessionRunner() {
     setMinutes(elapsed);
     setDone(true);
     clearSaved();
-    try {
-      const res = await fetch("/api/session", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          minutes: elapsed,
-          blocks: completed.current,
-          // A short session is not a finished unit — it deliberately skips the
-          // new material, so marking the unit complete would be a lie.
-          completeUnit: shape === "short" ? undefined : plan?.unit?.id,
-        }),
-      });
-      const data = await res.json();
+
+    // Queued when offline, so the session still counts once you reconnect.
+    const data = await send<{
+      recap: Recap;
+      streak: number;
+      wordsLeft: number;
+    }>("/api/session", {
+      minutes: elapsed,
+      blocks: completed.current,
+      // A short session is not a finished unit — it deliberately skips the
+      // new material, so marking the unit complete would be a lie.
+      completeUnit: shape === "short" ? undefined : plan?.unit?.id,
+    });
+
+    if (data) {
       setRecap(data.recap);
       setStreak(data.streak);
       // A big unit carries over. "Morgen: Unit 6" would be a straightforward
       // lie on the day Unit 5 still has four words left in it.
       if (data.wordsLeft > 0) setCarryOver(data.wordsLeft);
-    } catch {
-      /* offline: the session still counts locally, recap just stays empty */
     }
+    setPending(pendingCount());
   }, [plan, shape]);
 
   const advance = useCallback(() => {
@@ -225,8 +259,9 @@ function SessionRunner() {
         <div className="border-line bg-surface w-full max-w-[420px] rounded-[14px] border p-7 text-center">
           <p className="font-serif text-[22px]">Tagesplan nicht erreichbar</p>
           <p className="text-secondary mt-3 text-[14.5px] leading-relaxed">
-            Der Plan wird auf dem Server gebaut und du bist gerade offline. Deine
-            Karten liegen dort ebenfalls — ohne Verbindung geht heute keine Sitzung.
+            Der heutige Plan wurde noch nie geladen, deshalb liegt hier auch keine Kopie.
+            Einmal mit Verbindung öffnen — danach läuft die Sitzung auch offline, und
+            deine Antworten werden nachgereicht.
           </p>
           <div className="mt-6 flex flex-col gap-2.5">
             <button
@@ -372,6 +407,8 @@ function SessionRunner() {
         </div>
         <div className="font-mono text-muted text-center text-[12.5px]">
           {block.title} · Block {i + 1} von {blocks.length}
+          {offline && " · offline"}
+          {pending > 0 && ` · ${pending} wartet auf Sync`}
         </div>
       </div>
 

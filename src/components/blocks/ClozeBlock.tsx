@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { speak } from "@/lib/speech";
 import { modalIsOpen } from "@/lib/keys";
+import { send } from "@/lib/outbox";
 import { GermanInput, type GermanFieldHandle } from "@/components/GermanInput";
 import ExplainSentence from "@/components/ExplainSentence";
 import { Card, Eyebrow, Progress, SkipLink, type BlockProps } from "./shared";
@@ -61,6 +62,7 @@ export default function ClozeBlock({ payload, onDone, onSkip }: BlockProps<Paylo
   const [i, setI] = useState(0);
   const [value, setValue] = useState("");
   const [result, setResult] = useState<"right" | "close" | "wrong" | null>(null);
+  const [dropped, setDropped] = useState(false);
   const input = useRef<GermanFieldHandle>(null);
 
   const card = cards[i];
@@ -78,15 +80,11 @@ export default function ClozeBlock({ payload, onDone, onSkip }: BlockProps<Paylo
   const grade = useCallback(
     (g: number, typed: string) => {
       if (!card) return;
-      void fetch("/api/review", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          cardId: card.cardId,
-          grade: g,
-          answer: typed || "—",
-          expected: card.answer,
-        }),
+      void send("/api/review", {
+        cardId: card.cardId,
+        grade: g,
+        answer: typed || "—",
+        expected: card.answer,
       });
     },
     [card],
@@ -123,9 +121,26 @@ export default function ClozeBlock({ payload, onDone, onSkip }: BlockProps<Paylo
   const next = useCallback(() => {
     setValue("");
     setResult(null);
+    setDropped(false);
     if (i + 1 >= cards.length) onDone();
     else setI((n) => n + 1);
   }, [i, cards.length, onDone]);
+
+  /** Delete, then move on. Deleting the card you're looking at ends its turn. */
+  const drop = useCallback(async () => {
+    if (!card) return;
+    setDropped(true);
+    try {
+      await fetch("/api/cloze", {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id: card.id }),
+      });
+    } catch {
+      /* it will still be there next time; nothing was claimed otherwise */
+    }
+    setTimeout(next, 700);
+  }, [card, next]);
 
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
@@ -227,6 +242,22 @@ export default function ClozeBlock({ payload, onDone, onSkip }: BlockProps<Paylo
           )}
         </Card>
       </div>
+
+      {/* These cards are generated from your own mistakes, so some of them are
+          junk. Without a way out they stay in rotation for ever. */}
+      {!dropped && (
+        <button
+          onClick={() => void drop()}
+          className="font-mono text-muted/60 hover:text-das mt-3 w-full text-center text-[11px] transition-colors"
+        >
+          Diese Lücke löschen
+        </button>
+      )}
+      {dropped && (
+        <p className="font-mono text-muted dm-fade mt-3 text-center text-[11px]">
+          Gelöscht — kommt nicht wieder.
+        </p>
+      )}
 
       <div className="mt-4 flex gap-2.5">
         {result ? (

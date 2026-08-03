@@ -134,10 +134,17 @@ decks.
 `deutschmate.db` is **gitignored**. It is your learning history and lives on your
 machine only. Back it up.
 
-### Two people
+### Two people — partly built
 
-Each learner is a name — `?user=sid`, `?user=alex`. Same content, separate
-progress, no auth. Real accounts arrive at user #5.
+The database is fully ready for it: every progress table is keyed by user, and
+the API routes honour `?user=alex`. **The pages do not.** All nine
+server-rendered pages currently hardcode `sid`, so a second person on the same
+install would see the first person's progress everywhere.
+
+Two people on **separate machines** works perfectly today — each clone has its
+own database, which is the setup this was built for. Two people sharing one
+install needs a user switcher (a cookie and `activeUser()` in place of the
+hardcoded name) that isn't written yet.
 
 ---
 

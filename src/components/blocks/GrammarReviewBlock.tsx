@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { send } from "@/lib/outbox";
 import { Card, Eyebrow, Progress, Option, Verdict, SkipLink, type BlockProps } from "./shared";
 
 type Drill = { q: string; options: string[]; a: number; why: string };
@@ -52,11 +53,7 @@ export default function GrammarReviewBlock({ payload, onDone, onSkip }: BlockPro
     // 2/2 → Good, 1/2 → Hard, 0/2 → Again. Easy is deliberately unreachable:
     // getting two multiple-choice drills right is not evidence of "sofort".
     const grade = correctCount === drills.length ? 3 : correctCount > 0 ? 2 : 1;
-    void fetch("/api/review", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ cardId: card.cardId, grade }),
-    });
+    void send("/api/review", { cardId: card.cardId, grade });
 
     if (i + 1 >= cards.length) onDone();
     else {
@@ -75,16 +72,12 @@ export default function GrammarReviewBlock({ payload, onDone, onSkip }: BlockPro
     setRight(total);
 
     // Log it like any other attempt so grammar mistakes reach the Fix block.
-    void fetch("/api/attempt", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        kind: "grammar-review",
-        refId: card.grammarId,
-        correct: ok,
-        answer: drill.options[n],
-        expected: drill.options[drill.a],
-      }),
+    void send("/api/attempt", {
+      kind: "grammar-review",
+      refId: card.grammarId,
+      correct: ok,
+      answer: drill.options[n],
+      expected: drill.options[drill.a],
     });
 
     setTimeout(

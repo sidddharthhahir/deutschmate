@@ -32,6 +32,7 @@ const JUMPS: Hit[] = [
   { kind: "unit", label: "Übungstest", sub: "30 Fragen, 30 Minuten", href: "/pruefung" },
   { kind: "unit", label: "Diese Woche", sub: "Wochenrückblick", href: "/woche" },
   { kind: "unit", label: "Fortschritt", sub: "alle Zahlen", href: "/fortschritt" },
+  { kind: "unit", label: "Wie funktioniert das?", sub: "die Tour, nochmal", href: "/willkommen" },
 ];
 
 /**

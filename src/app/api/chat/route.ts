@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { currentUser } from "@/lib/user";
 import { readJson, str, arr } from "@/lib/http";
+import { recordUsage } from "@/lib/cost";
 import { knownVocabulary } from "@/lib/session";
 import { converse, reviewConversation, aiAvailable, type Turn, type Scenario } from "@/lib/ai";
 import { logAttempt, type Tag } from "@/lib/errors";
@@ -43,7 +44,9 @@ export async function POST(req: Request) {
 
   try {
     if (action === "review") {
-      const corrections = await reviewConversation({ level: user.level, history });
+      const rev = await reviewConversation({ level: user.level, history });
+      recordUsage(user.id, "review", rev.model, rev.usage);
+      const corrections = rev.result;
       for (const c of corrections) {
         logAttempt({
           userId: user.id,
@@ -84,12 +87,13 @@ export async function POST(req: Request) {
     // The whitelist. Everything the learner has actually met, nothing else.
     const vocabulary = knownVocabulary(user.id);
 
-    const { reply, usage } = await converse({
+    const { reply, model, usage } = await converse({
       level: user.level,
       vocabulary,
       scenario,
       history,
     });
+    recordUsage(user.id, "chat", model, usage);
 
     return NextResponse.json({
       reply,

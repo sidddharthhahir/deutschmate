@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import AppHeader from "@/components/AppHeader";
 import { useOnline } from "@/lib/hooks";
 import { shouldIgnoreKey } from "@/lib/keys";
+import { tourSeen } from "@/lib/tour";
 
 type Plan = {
   user: { id: string; name: string; level: string };
@@ -41,6 +42,14 @@ export default function Home() {
    * `nonce` is bumped by the retry button to re-run the fetch.
    */
   const [nonce, setNonce] = useState(0);
+
+  /* First visit on this browser goes to the tour. Home is a greeting and one
+     button — perfectly clear once you know what it does, and completely
+     opaque before. Runs before the plan fetch so there's no flash of a screen
+     you're about to be redirected away from. */
+  useEffect(() => {
+    if (!tourSeen()) router.replace("/willkommen?neu=1");
+  }, [router]);
 
   useEffect(() => {
     let stale = false;
@@ -114,7 +123,26 @@ export default function Home() {
       <div className="flex flex-1 items-center px-6 py-12 md:px-10">
         <div className="mx-auto flex w-full max-w-[880px] flex-col gap-12 md:flex-row md:items-start md:gap-20">
           {state === "loading" ? (
-            <p className="text-muted font-mono text-sm">Lade…</p>
+            /* The shape of what's coming, not a spinner. The page doesn't jump
+               when the plan lands, because the boxes are already the right size. */
+            <>
+              <div className="flex flex-1 flex-col gap-7">
+                <div className="flex flex-col gap-3">
+                  <div className="dm-skeleton h-4 w-40" />
+                  <div className="dm-skeleton h-11 w-72 max-w-full" />
+                </div>
+                <div className="flex flex-col gap-3">
+                  <div className="dm-skeleton h-3 w-28" />
+                  <div className="dm-skeleton h-5 w-full max-w-[380px]" />
+                  <div className="dm-skeleton h-5 w-full max-w-[330px]" />
+                  <div className="dm-skeleton h-5 w-full max-w-[300px]" />
+                </div>
+              </div>
+              <div className="flex w-full flex-none flex-col gap-4 md:w-[400px]">
+                <div className="dm-skeleton h-[98px] w-full" />
+                <div className="dm-skeleton h-[52px] w-full" />
+              </div>
+            </>
           ) : (
             <>
               {/* ---------------------------------------------- left column */}

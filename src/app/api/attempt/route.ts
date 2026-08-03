@@ -10,6 +10,7 @@ import {
 } from "@/lib/errors";
 import { explainMistake, aiAvailable } from "@/lib/ai";
 import { readJson, badRequest, str, bool } from "@/lib/http";
+import { recordUsage } from "@/lib/cost";
 import { introduceWord } from "@/lib/srs";
 import { introduceGrammar } from "@/lib/grammar-srs";
 
@@ -71,7 +72,9 @@ export async function POST(req: Request) {
   if (!explanation) {
     if (aiAvailable()) {
       try {
-        explanation = await explainMistake(expected, answer, tags);
+        const m = await explainMistake(expected, answer, tags);
+        recordUsage(user.id, "mistake", m.model, m.usage);
+        explanation = m.result;
         storeExplanation(tags[0] ?? "vocabulary", sig, explanation, "generated");
         source = "model";
       } catch {

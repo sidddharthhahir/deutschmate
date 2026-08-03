@@ -18,12 +18,22 @@ import Anthropic from "@anthropic-ai/sdk";
  *      reason a session can't be finished.
  */
 
-const MODELS = {
+export const MODELS = {
   /** Conversation + writing correction — quality matters, cost is controlled by caching. */
   quality: "claude-sonnet-5",
   /** Mechanical explanations on a cache miss. */
   cheap: "claude-haiku-4-5",
 } as const;
+
+/**
+ * Every call returns its usage alongside its result.
+ *
+ * These counts arrive on every response and used to be discarded everywhere
+ * except the chat route, which meant the one hard constraint on this project —
+ * a €10 monthly ceiling — could not be checked. Callers pass them to
+ * recordUsage(); see lib/cost.ts.
+ */
+export type Metered<T> = { result: T; model: string; usage: Anthropic.Usage };
 
 let _client: Anthropic | null = null;
 
@@ -107,16 +117,18 @@ export async function converse(opts: {
       ? opts.history
       : [{ role: "user", content: "(the learner has just arrived — greet them)" }],
   });
-  return { reply: text(msg), usage: msg.usage };
+  return { reply: text(msg), model: MODELS.quality, usage: msg.usage };
 }
 
 /** Post-conversation correction pass — never shown mid-flow. */
 export async function reviewConversation(opts: {
   level: string;
   history: Turn[];
-}) {
+}): Promise<Metered<Correction[]>> {
   const learner = opts.history.filter((t) => t.role === "user");
-  if (!learner.length) return [];
+  if (!learner.length) {
+    return { result: [], model: MODELS.quality, usage: {} as Anthropic.Usage };
+  }
 
   const msg = await client().messages.create({
     model: MODELS.quality,
@@ -160,10 +172,16 @@ Explain in plain English, one sentence, no jargon unless you define it.`,
     },
   });
 
+  const meta = { model: MODELS.quality, usage: msg.usage };
   try {
-    return (JSON.parse(text(msg)) as { corrections: Correction[] }).corrections;
+    return {
+      result: (JSON.parse(text(msg)) as { corrections: Correction[] }).corrections,
+      ...meta,
+    };
   } catch {
-    return [];
+    // The call still cost money even though the JSON came back unusable, so
+    // the usage is reported either way.
+    return { result: [], ...meta };
   }
 }
 
@@ -227,10 +245,14 @@ Be encouraging but accurate. Rules:
     },
   });
 
-  return JSON.parse(text(msg)) as {
-    corrections: Correction[];
-    natural: string;
-    encouragement: string;
+  return {
+    result: JSON.parse(text(msg)) as {
+      corrections: Correction[];
+      natural: string;
+      encouragement: string;
+    },
+    model: MODELS.quality,
+    usage: msg.usage,
   };
 }
 
@@ -262,7 +284,7 @@ Rules:
 - Plain English. If you use a grammar term, define it in three words.`,
     messages: [{ role: "user", content: sentence }],
   });
-  return text(msg);
+  return { result: text(msg), model: MODELS.cheap, usage: msg.usage };
 }
 
 /** Cache-miss path only — the result is stored by the caller (spec §12). */
@@ -280,5 +302,5 @@ No preamble, no "Great question!", no markdown headings.`,
       },
     ],
   });
-  return text(msg);
+  return { result: text(msg), model: MODELS.cheap, usage: msg.usage };
 }

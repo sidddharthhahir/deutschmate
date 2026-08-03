@@ -162,6 +162,19 @@ li {
   }
 }
 
+/* Loading placeholders. A slow, low-contrast breath — "this is coming" without
+   the strobing that a fast shimmer produces on a screen you stare at daily. */
+@keyframes dm-pulse {
+  0%, 100% { opacity: 0.5; }
+  50%      { opacity: 0.8; }
+}
+
+.dm-skeleton {
+  background: var(--dm-raised);
+  border-radius: 8px;
+  animation: dm-pulse 1.8s ease-in-out infinite;
+}
+
 /* Wrong answers get a short horizontal nudge — the one place a bit of physical
    feedback is worth it, because it registers before you've read the text. */
 @keyframes dm-nudge {

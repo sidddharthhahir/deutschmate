@@ -1,6 +1,7 @@
 "use client";
 
 import type { ReactNode } from "react";
+import { send } from "@/lib/outbox";
 
 export type BlockProps<P = unknown> = {
   payload: P;
@@ -146,7 +147,13 @@ export function SkipLink({ onSkip }: { onSkip?: () => void }) {
   );
 }
 
-/** Post an attempt. Errors are tagged server-side — that's the Fix block's fuel. */
+/**
+ * Post an attempt. Errors are tagged server-side — that's the Fix block's fuel.
+ *
+ * Goes through the outbox, so an answer given offline is queued and replayed
+ * rather than dropped. When it queues there is no explanation to show, which
+ * the caller sees as an empty tag list.
+ */
 export async function record(opts: {
   kind: string;
   refId?: string;
@@ -155,14 +162,6 @@ export async function record(opts: {
   expected?: string;
   explain?: boolean;
 }): Promise<{ tags: string[]; explanation?: string }> {
-  try {
-    const res = await fetch("/api/attempt", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(opts),
-    });
-    return await res.json();
-  } catch {
-    return { tags: [] };
-  }
+  const res = await send<{ tags: string[]; explanation?: string }>("/api/attempt", opts);
+  return res ?? { tags: [] };
 }
