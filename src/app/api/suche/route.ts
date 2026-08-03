@@ -7,7 +7,7 @@ export const dynamic = "force-dynamic";
 /**
  * One search across everything the app contains.
  *
- * 1,225 words, 120 units, 36 grammar points, 38 readings and 120 scenarios sit
+ * 2,400 words, 120 units, 36 grammar points, 38 readings and 120 scenarios sit
  * behind four nav links and one search box on one page. This is the query
  * behind Cmd+K, which makes the whole corpus reachable without adding a fifth
  * navigation target and turning Home into a menu.

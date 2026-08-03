@@ -4,8 +4,12 @@
 
 Not a chatbot. Not a flashcard app. Not a grammar reference.
 
-A1.1 → B1.2 in six months of self-study, one hour a day. Built for two people,
-runs on a laptop, costs nothing but an API key.
+A1.1 → B1.2 in about seven months of self-study, one hour a day. Built for two
+people, runs on a laptop, costs nothing but an API key.
+
+Seven, not six: the deck is 2,400 words and a session introduces at most twelve
+a day, so the vocabulary alone is 200 days. `/fortschritt` shows your own
+projection from your own pace rather than that average.
 
 ---
 
@@ -22,7 +26,7 @@ npm run setup
 ```
 
 `setup` checks your Node version, creates `.env.local`, and builds the whole
-database from the files in `data/` — 1,225 words, 120 units, 36 grammar points,
+database from the files in `data/` — 2,400 words, 120 units, 36 grammar points,
 38 readings, 1,827 levelled sentences. No network, no downloads.
 
 Then put your key in `.env.local`:
@@ -79,7 +83,7 @@ mistakes, new material, listening, speaking, a quiz — then stops.
 | | |
 |---|---|
 | **Sitzung** | The daily hour. Fixed rhythm, content chosen for you. |
-| **Wortschatz** | All 1,225 words with native audio. |
+| **Wortschatz** | All 2,400 words, 1,222 of them with native audio. |
 | **Üben** | Where *you* choose: scenarios, grammar, tests, pronunciation. |
 | **Fortschritt** | Every number is a count of something you did. |
 
@@ -111,7 +115,22 @@ Content tools, only needed if you change the source data:
 npm run audio             # fetch pronunciations from Wikimedia Commons
 npm run import-words      # rebuild words from data/wordlist-*.txt
 npm run import-sentences  # re-pick Tatoeba sentences (downloads 11 MB)
+npm run import-vocab      # top the deck up to 2,400 words (downloads ~1 GB)
+npm run attach-examples   # give every word an example sentence
 ```
+
+`import-vocab` reads the current deck, works out how many words each level is
+short of the A1 650 / A2 1300 / B1 2400 targets, and fills the gap from a
+subtitle frequency list crossed with the Wiktionary extract. It writes
+`data/words-extra.json` and `data/unit-additions.json`, both committed — so you
+only need it if you want to change the target. Run it as:
+
+```bash
+npm run seed && npm run import-vocab && npm run seed && npm run attach-examples && npm run seed
+```
+
+The seed before it matters: the importer measures the deficit against the
+database, so a stale deck makes it ask for the wrong number.
 
 ---
 
@@ -152,6 +171,14 @@ hardcoded name) that isn't written yet.
 
 - **Sentences** — [Tatoeba](https://tatoeba.org), CC-BY 2.0 FR. Contributor IDs
   are stored on every row and shown wherever the sentences appear.
+- **Vocabulary** — the hand-written half is original. The 1,175 words in
+  `data/words-extra.json` come from English
+  [Wiktionary](https://en.wiktionary.org) via the
+  [kaikki.org](https://kaikki.org/dictionary/German/) extract, **CC BY-SA 4.0**;
+  that file, and any deck exported from it, carry the same licence. Word choice
+  and ordering come from
+  [hermitdave/FrequencyWords](https://github.com/hermitdave/FrequencyWords),
+  CC BY-SA 4.0, built from OpenSubtitles.
 - **Audio** — [Wikimedia Commons](https://commons.wikimedia.org), free licences;
   see `public/audio/ATTRIBUTION.md`.
 - **News** — Deutsche Welle, streamed from their public feed. Nothing copied or

@@ -4,11 +4,11 @@
  *   node scripts/attach-examples.mts
  *   node scripts/attach-examples.mts --stats
  *
- * WHY THIS MATTERS MORE THAN MORE VOCABULARY. Only 137 of 1,225 words had an
- * example sentence, and every level above A1.1 had none at all. Three things
- * were quietly degraded by that:
+ * WHY THIS MATTERS MORE THAN MORE VOCABULARY. Only 137 of the 1,225 words in
+ * the deck at the time had an example sentence, and every level above A1.1 had
+ * none at all. Three things were quietly degraded by that:
  *
- *   "Im Satz üben" on Problemwörter refused for 1,088 of 1,225 words, because
+ *   "Im Satz üben" on Problemwörter refused for 1,088 of those 1,225, because
  *   clozeLeech needs an example to make a gap from — so the main remedy for a
  *   stuck word was unavailable for almost every stuck word.
  *

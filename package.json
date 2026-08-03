@@ -18,6 +18,7 @@
     "seed": "node scripts/seed.mts",
     "audio": "node scripts/fetch-audio.mts",
     "import-words": "node scripts/import-words.mts",
+    "import-vocab": "node scripts/import-vocab.mts",
     "import-sentences": "node scripts/import-sentences.mts",
     "attach-examples": "node scripts/attach-examples.mts",
     "backup": "node scripts/backup.mts",

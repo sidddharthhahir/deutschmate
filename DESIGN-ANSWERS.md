@@ -128,7 +128,7 @@ Home is the screen where "can't start" is fatal, so it's the one worth proving.
 
 | File | |
 |---|---|
-| `vocabulary.csv` | all 1,225 words: article, plural, POS, gloss, level, example |
+| `vocabulary.csv` | all 2,400 words: article, plural, POS, gloss, level, example |
 | `units.csv` | all 120 units with can-do statements |
 | `samples.json` | real review cards, real Wortschatz rows, real error labels, real offline messages, **and the longest string in every field** |
 | `routes.md` | all 19 routes and the 11 block types |

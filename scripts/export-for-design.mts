@@ -142,7 +142,7 @@ const routes = `# DeutschMate routes
 ## Pages
 /                       Home — the one button
 /session                Session runner (renders 11 block types)
-/wortschatz             Browse all 1,225 words
+/wortschatz             Browse all 2,400 words
 /fortschritt            Progress
 /ueben                  Free practice + scenario list
 /wort/[id]              Word detail

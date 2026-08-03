@@ -53,5 +53,10 @@ next-env.d.ts
 # in data/sentences.json and are committed, so setup needs no download.
 /data/tatoeba/
 
+# Wiktionary extract (~1 GB) and the frequency list, both re-fetchable by
+# `npm run import-vocab`. The words it CHOSE live in data/words-extra.json and
+# are committed, so setup needs no download.
+/data/vocab/
+
 # Deck exports are generated on demand from your own progress.
 /exports/

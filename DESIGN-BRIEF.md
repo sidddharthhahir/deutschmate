@@ -38,7 +38,7 @@ months. Two users right now: me and my flatmate. Not a commercial product.
 
 | | |
 |---|---|
-| Vocabulary | 1,225 words, 1,222 with native audio |
+| Vocabulary | 2,400 words, 1,222 with native audio |
 | Units | 120, across 6 levels (20 each) |
 | Grammar points | 36 |
 | Readings | 38 |
@@ -76,7 +76,7 @@ screen that makes someone come back — design it like it matters.
 
 ### Priority 2 — design the pattern, not every instance
 
-**6. Wortschatz** — browsable list of all 1,225 words. Filters, 50–100 a day,
+**6. Wortschatz** — browsable list of all 2,400 words. Filters, 50–100 a day,
 "+ Deck" per row. Dense list design; must stay scannable at 100 rows.
 
 **7. Progress** — counts, per-skill accuracy bars, 120-unit list, error tags,

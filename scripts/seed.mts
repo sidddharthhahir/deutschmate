@@ -68,6 +68,23 @@ for (const [file, lvl] of WORD_FILES) {
     words.push({ ...w, level: lvl });
   }
 }
+/* Words from import-vocab.mts carry their own level, so they are loaded after
+   the hand-curated files and skipped where they duplicate one. The curated
+   entry always wins — it has a checked gloss and often a written example. */
+const EXTRA_WORDS = path.join(ROOT, "data/words-extra.json");
+let extraCount = 0;
+if (existsSync(EXTRA_WORDS)) {
+  for (const w of JSON.parse(readFileSync(EXTRA_WORDS, "utf8")) as (Raw & { level: string })[]) {
+    if (seenIds.has(w.id)) {
+      dupes++;
+      continue;
+    }
+    seenIds.add(w.id);
+    words.push(w);
+    extraCount++;
+  }
+}
+
 if (!words.length) {
   console.error("No word files found. Expected at least data/words-a1-1.json");
   process.exit(1);
@@ -99,13 +116,46 @@ words.forEach((w, i) => {
   );
 });
 db.exec("COMMIT");
+
+/* Seeding upserts, so a word dropped from the content files would otherwise sit
+   in the deck forever — that is how a stale run of import-vocab left 94 words
+   behind that no unit taught. Words nobody has studied are removed; a word with
+   review history is kept, because deleting it would throw away real progress
+   for the sake of tidiness. Those are reported rather than hidden. */
+const stale = (
+  db.prepare("SELECT id FROM word").all() as { id: string }[]
+).filter((w) => !seenIds.has(w.id));
+let dropped = 0;
+let keptInUse = 0;
+if (stale.length) {
+  const studied = db.prepare(
+    "SELECT 1 FROM card WHERE ref_type = 'word' AND ref_id = ? AND reps > 0 LIMIT 1",
+  );
+  const delCard = db.prepare("DELETE FROM card WHERE ref_type = 'word' AND ref_id = ?");
+  const delWord = db.prepare("DELETE FROM word WHERE id = ?");
+  db.exec("BEGIN");
+  for (const w of stale) {
+    if (studied.get(w.id)) {
+      keptInUse++;
+      continue;
+    }
+    delCard.run(w.id);
+    delWord.run(w.id);
+    dropped++;
+  }
+  db.exec("COMMIT");
+}
+
 const byLevel = words.reduce<Record<string, number>>((acc, w) => {
   acc[w.level] = (acc[w.level] ?? 0) + 1;
   return acc;
 }, {});
 console.log(
   `OK ${words.length} words  (${Object.entries(byLevel).map(([l, n]) => `${l}:${n}`).join("  ")})` +
-    (dupes ? `  [${dupes} duplicates kept at their lowest level]` : ""),
+    (dupes ? `  [${dupes} duplicates kept at their lowest level]` : "") +
+    (extraCount ? `\n   ${extraCount} of them from Wiktionary (CC BY-SA)` : "") +
+    (dropped ? `\n   ${dropped} words no longer in the content files were removed` : "") +
+    (keptInUse ? `\n   ${keptInUse} kept despite that: they already have review history` : ""),
 );
 
 // ---------------------------------------------------------------- examples
@@ -176,6 +226,25 @@ const upU = db.prepare(`
     grammar_id=excluded.grammar_id, scenario_json=excluded.scenario_json,
     dialogue_json=excluded.dialogue_json, prereq_json=excluded.prereq_json
 `);
+/* Extra vocabulary is spread across the EXISTING units of its level rather
+   than given new ones. A unit holding more words than a day introduces already
+   carries over to the next day, and this way every unit keeps the reading,
+   scenario and grammar point attached to it — which brand-new units would not
+   have. Only ids that really exist are added, so a stale file cannot point a
+   unit at a missing word. */
+const UNIT_ADDITIONS = path.join(ROOT, "data/unit-additions.json");
+let added = 0;
+if (existsSync(UNIT_ADDITIONS)) {
+  const extra = JSON.parse(readFileSync(UNIT_ADDITIONS, "utf8")) as Record<string, string[]>;
+  for (const u of units) {
+    const more = (extra[u.id] ?? []).filter((id) => seenIds.has(id) && !u.words.includes(id));
+    if (more.length) {
+      u.words = [...u.words, ...more];
+      added += more.length;
+    }
+  }
+}
+
 db.exec("BEGIN");
 for (const u of units) {
   upU.run(u.id, u.level, u.ord, u.title, JSON.stringify(u.can_do),
@@ -183,7 +252,7 @@ for (const u of units) {
     JSON.stringify(u.dialogue), JSON.stringify(u.prereq));
 }
 db.exec("COMMIT");
-console.log(`OK${units.length} units`);
+console.log(`OK${units.length} units${added ? `  (+${added} words spread into them)` : ""}`);
 
 // ---------------------------------------------------------------- readings
 type RawReading = {

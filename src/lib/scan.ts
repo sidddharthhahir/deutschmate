@@ -12,7 +12,7 @@ import { all } from "./db";
  *   known    you have met it — a card with at least one real rep
  *   queued   you added it, it is waiting, you have not studied it yet
  *   course   the course teaches it, you just haven't reached it yet
- *   unknown  not in the 1,225 words at all
+ *   unknown  not in the 2,400 words at all
  *
  * `queued` exists because adding words must visibly do something without
  * inflating anything. Coverage counts only `known`, so it does not move when

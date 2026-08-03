@@ -23,7 +23,7 @@ type Row = {
 };
 
 /**
- * Wortschatz — all 1,225 words.
+ * Wortschatz — all 2,400 words.
  *
  * Dense by design: this has to stay scannable at 100 rows, so the row is one
  * line of substance plus two quiet subordinate lines. `seen` and `learned` are
