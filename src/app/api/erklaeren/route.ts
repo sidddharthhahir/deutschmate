@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { get, run } from "@/lib/db";
-import { currentUser } from "@/lib/user";
+import { activeUser } from "@/lib/user";
 import { readJson, badRequest, str } from "@/lib/http";
 import { explainSentence, aiAvailable } from "@/lib/ai";
 import { recordUsage } from "@/lib/cost";
@@ -25,7 +25,7 @@ const signature = (s: string, level: string) =>
 
 export async function POST(req: Request) {
   const raw = await readJson(req);
-  const user = currentUser(str(raw.user) || "sid");
+  const user = await activeUser(str(raw.user) || undefined);
 
   // Read the raw length before truncating, so an over-long sentence is
   // refused rather than silently cut in half and explained wrongly.

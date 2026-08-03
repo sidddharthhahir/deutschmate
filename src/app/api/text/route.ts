@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { createEmptyCard } from "ts-fsrs";
 import { run, tx } from "@/lib/db";
-import { currentUser } from "@/lib/user";
+import { activeUser } from "@/lib/user";
 import { readJson, badRequest, str, arr } from "@/lib/http";
 import { scanText } from "@/lib/scan";
 import { toSqlDate } from "@/lib/srs";
@@ -20,7 +20,7 @@ const MAX_CHARS = 20_000;
  */
 export async function POST(req: Request) {
   const raw = await readJson(req);
-  const user = currentUser(str(raw.user) || "sid");
+  const user = await activeUser(str(raw.user) || undefined);
   const action = str(raw.action, 20) || "scan";
 
   if (action === "add") {

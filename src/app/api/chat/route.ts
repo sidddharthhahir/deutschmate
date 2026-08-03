@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { currentUser } from "@/lib/user";
+import { activeUser } from "@/lib/user";
 import { readJson, str, arr } from "@/lib/http";
 import { recordUsage } from "@/lib/cost";
 import { knownVocabulary } from "@/lib/session";
@@ -21,7 +21,7 @@ export const dynamic = "force-dynamic";
  */
 export async function POST(req: Request) {
   const raw = await readJson(req);
-  const user = currentUser(str(raw.user) || "sid");
+  const user = await activeUser(str(raw.user) || undefined);
   const action = str(raw.action, 20);
 
   /* Turns go straight to the model as `messages`, so anything malformed here

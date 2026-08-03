@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { get } from "@/lib/db";
-import { currentUser } from "@/lib/user";
+import { activeUser } from "@/lib/user";
 import { readJson, badRequest, notFound, str, int } from "@/lib/http";
 import { dueCards, dueCount, gradeCard } from "@/lib/srs";
 import type { Grade } from "ts-fsrs";
@@ -13,8 +13,7 @@ const ownsCard = (userId: string, cardId: number) =>
   undefined;
 
 export async function GET(req: Request) {
-  const name = new URL(req.url).searchParams.get("user") ?? "sid";
-  const user = currentUser(name);
+  const user = await activeUser(new URL(req.url).searchParams.get("user") ?? undefined);
 
   // Deck size = words actually met. There is no top-up: a card appears when a
   // word is introduced, so this number is a count of learning, not of seeding.
@@ -56,7 +55,7 @@ export async function GET(req: Request) {
 
 export async function POST(req: Request) {
   const raw = await readJson(req);
-  const user = currentUser(str(raw.user) || "sid");
+  const user = await activeUser(str(raw.user) || undefined);
 
   const cardId = int(raw.cardId, 1);
   const grade = int(raw.grade, 1, 4);

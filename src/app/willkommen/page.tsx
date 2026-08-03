@@ -32,13 +32,13 @@ export default async function WelcomePage({
             href="/"
             className="font-mono text-muted hover:text-secondary mb-6 inline-block text-[12px] transition-colors"
           >
-            ← Startseite
+            ← Home
           </Link>
         )}
 
         {firstRun && (
           <p className="font-mono text-accent mb-2 text-[11.5px] tracking-[0.14em] uppercase">
-            Willkommen
+            Willkommen · Welcome
           </p>
         )}
 

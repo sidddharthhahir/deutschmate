@@ -20,7 +20,7 @@ type Word = {
  * last pass isn't eight identical multiple-choice items.
  */
 export async function GET(req: Request) {
-  const user = userFromRequest(req);
+  const user = await userFromRequest(req);
   const unitId = new URL(req.url).searchParams.get("unit");
 
   const touched = all<Word>(

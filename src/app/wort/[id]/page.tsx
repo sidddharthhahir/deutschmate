@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { all, get } from "@/lib/db";
-import { currentUser } from "@/lib/user";
+import { activeUser } from "@/lib/user";
 import AppHeader from "@/components/AppHeader";
 import Noun, { ArticleWord } from "@/components/Article";
 import WordAudio from "./WordAudio";
@@ -32,7 +32,7 @@ type Word = {
  */
 export default async function WordPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
-  const user = currentUser("sid");
+  const user = await activeUser();
 
   const w = get<Word>("SELECT * FROM word WHERE id = ?", id);
   if (!w) notFound();

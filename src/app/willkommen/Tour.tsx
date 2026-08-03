@@ -7,13 +7,19 @@ import { markTourSeen } from "@/lib/tour";
 /**
  * What this app is, for someone who has never seen it.
  *
- * Six screens, each answering one question a newcomer actually has, in the
- * order they'd ask it: what is this, what happens when I press the button,
- * what do I do on a bad day, where's the German that isn't a course, can I
- * trust the numbers, how do I not lose it all.
+ * IN ENGLISH, deliberately. This was written in German first, which was
+ * backwards: the person who most needs the instructions is the one on day one
+ * of A1.1, and they cannot read German. Explaining the app in the language
+ * being taught is a joke at the beginner's expense.
  *
- * Not a coach-mark overlay. Those interrupt work to describe work; this is a
- * page you read once before starting and can come back to any time.
+ * The split the whole app should follow:
+ *   German   the material, and short interface labels you will learn anyway
+ *            (Wiederholen, Aufwärmen, Lücken) — that is free exposure
+ *   English  anything explaining how something works, or why a number means
+ *            what it means
+ *
+ * German words that ARE the interface are kept and glossed inline the first
+ * time, because you will meet them every day and might as well learn them.
  */
 
 type Step = {
@@ -23,65 +29,84 @@ type Step = {
   aside?: React.ReactNode;
 };
 
+/** A German UI word with its meaning — teach it rather than translate it away. */
+function De({ de, en }: { de: string; en: string }) {
+  return (
+    <span className="whitespace-nowrap">
+      <span className="font-serif text-fg">{de}</span>
+      <span className="text-muted"> ({en})</span>
+    </span>
+  );
+}
+
 const STEPS: Step[] = [
   {
-    eyebrow: "Was ist das",
-    title: "Ein Deutschlehrer, kein Karteikartenprogramm.",
+    eyebrow: "What this is",
+    title: "A German teacher, not a flashcard app.",
     body: (
       <>
         <p>
-          DeutschMate bringt dich von A1.1 auf B1.2 — 120 Units, 1.225 Wörter, 36
-          Grammatikregeln. Gedacht für eine Stunde am Tag, etwa sechs Monate.
+          DeutschMate takes you from A1.1 to B1.2 — 120 units, 1,225 words, 36 grammar
+          points. Built for about an hour a day, roughly six months.
         </p>
         <p>
-          Der Unterschied zu einer Vokabel-App: die App entscheidet, was du heute machst.
-          Du wählst keine Lektion, keine Schwierigkeit, kein Thema.
+          The difference from a vocabulary app: <strong className="text-fg">it decides
+          what you do today</strong>. You never pick a lesson, a difficulty or a topic.
+          That choice is the thing that stops people, so it was removed.
+        </p>
+        <p className="text-muted text-[14px]">
+          The interface is in German on purpose — the words you see every day are words
+          you learn for free. Anything <em>explaining</em> how the app works, like this,
+          is in English.
         </p>
       </>
     ),
     aside: (
       <div className="border-line-sub bg-raised rounded-xl border p-4">
         <p className="font-mono text-muted text-[11px] tracking-[0.14em] uppercase">
-          Der ganze Bedienungsablauf
+          The entire interface
         </p>
-        <p className="font-serif mt-2 text-[26px]">Enter drücken.</p>
+        <p className="font-serif mt-2 text-[26px]">Press Enter.</p>
+        <p className="text-muted mt-2 text-[13px]">That is the whole daily decision.</p>
       </div>
     ),
   },
   {
-    eyebrow: "Der Tag",
-    title: "Eine Taste, dann sechs bis neun Blöcke.",
+    eyebrow: "Your day",
+    title: "One button, then six to nine blocks.",
     body: (
       <>
         <p>
-          Auf der Startseite steht eine Taste. Dahinter läuft die heutige Sitzung ab —
-          immer derselbe Rhythmus, jeden Tag anderer Inhalt.
+          The home screen has one button. Behind it is today&apos;s session — the same
+          rhythm every day, different content each time.
         </p>
-        <p className="text-muted text-[14px]">
-          Wichtig: bis zum Schluss durchgehen. Erst der Rückblick am Ende schreibt die
-          Sitzung mit. Wer vorher abbricht, hat nichts gezählt.
+        <p>
+          <strong className="text-fg">Go all the way to the end.</strong> The recap screen
+          is what saves the session. Quit before it and nothing is recorded: no streak, no
+          cards scheduled.
         </p>
       </>
     ),
     aside: (
       <div className="border-line-sub bg-raised rounded-xl border p-4">
         <p className="font-mono text-muted mb-3 text-[11px] tracking-[0.14em] uppercase">
-          Ein typischer Tag
+          A typical day
         </p>
-        <div className="space-y-1.5 text-[13.5px]">
+        <div className="space-y-2 text-[13px]">
           {[
-            ["Aufwärmen", "was heute fällig ist"],
-            ["Fix", "deine drei häufigsten Fehler"],
-            ["Lücken", "Sätze aus deinen eigenen Fehlern"],
-            ["Neue Wörter", "höchstens zwölf"],
-            ["Lesen / Hören", "wechselt täglich"],
-            ["Sätze bauen", "selbst produzieren"],
-            ["Gespräch", "Rollenspiel"],
-            ["Abschluss", "kurzes Quiz, dann Rückblick"],
-          ].map(([k, v]) => (
-            <div key={k} className="flex justify-between gap-3">
-              <span className="text-fg">{k}</span>
-              <span className="text-muted text-right text-[12px]">{v}</span>
+            ["Aufwärmen", "warm-up", "cards due today"],
+            ["Fix", "fix", "your three commonest mistakes"],
+            ["Lücken", "gaps", "sentences from your own errors"],
+            ["Neue Wörter", "new words", "twelve at most"],
+            ["Lesen / Hören", "reading / listening", "alternates daily"],
+            ["Sätze bauen", "build sentences", "produce it yourself"],
+            ["Gespräch", "conversation", "roleplay"],
+            ["Abschluss", "wrap-up", "short quiz, then the recap"],
+          ].map(([de, en, what]) => (
+            <div key={de}>
+              <span className="font-serif text-fg">{de}</span>
+              <span className="text-muted text-[11.5px]"> · {en}</span>
+              <p className="text-secondary text-[12px]">{what}</p>
             </div>
           ))}
         </div>
@@ -89,31 +114,35 @@ const STEPS: Step[] = [
     ),
   },
   {
-    eyebrow: "Beim Wiederholen",
-    title: "Die Hand bleibt auf den Zahlen.",
+    eyebrow: "Reviewing",
+    title: "Your hand never leaves the number row.",
     body: (
       <>
         <p>
-          Karte ansehen, <span className="kbd">Leertaste</span> zum Aufdecken, dann{" "}
-          <span className="kbd">1</span>–<span className="kbd">4</span>. Auf jeder Taste
-          steht, was sie kostet: „Gut → 10 min“, „Einfach → 8 d“.
+          You see a word. <span className="kbd">Space</span> reveals the meaning, then{" "}
+          <span className="kbd">1</span>–<span className="kbd">4</span> says how well you
+          knew it. Each button shows what it costs you: “Gut → 10 min”, “Einfach → 8 d”.
+        </p>
+        <p>
+          Be honest with the grades. The schedule is only as good as what you tell it, and
+          nobody is watching.
         </p>
         <p className="text-muted text-[14px]">
-          Vertippt? <span className="kbd">Z</span> nimmt die letzte Bewertung fünf Sekunden
-          lang zurück.
+          Mis-hit a key? <span className="kbd">Z</span> undoes the last grade for five
+          seconds.
         </p>
       </>
     ),
     aside: (
       <div className="border-line-sub bg-raised space-y-2 rounded-xl border p-4">
         {[
-          ["Leertaste", "aufdecken"],
-          ["1 2 3 4", "Nochmal · Schwer · Gut · Einfach"],
-          ["R", "noch einmal hören"],
-          ["Z", "Bewertung zurücknehmen"],
-          ["Alt + a o u s", "ä ö ü ß"],
-          ["Cmd / Ctrl + K", "alles durchsuchen"],
-          ["?", "diese Liste, jederzeit"],
+          ["Space", "reveal the answer"],
+          ["1 2 3 4", "again · hard · good · easy"],
+          ["R", "hear it again"],
+          ["Z", "undo that grade"],
+          ["Alt + a o u s", "type ä ö ü ß"],
+          ["Cmd / Ctrl + K", "search everything"],
+          ["?", "this list, any time"],
         ].map(([k, v]) => (
           <div key={k} className="flex items-baseline justify-between gap-3">
             <span className="kbd flex-none">{k}</span>
@@ -124,69 +153,71 @@ const STEPS: Step[] = [
     ),
   },
   {
-    eyebrow: "Wenn der Tag nicht mitspielt",
-    title: "Zwanzig Minuten sind besser als null.",
+    eyebrow: "Bad days",
+    title: "Twenty minutes beats zero.",
     body: (
       <>
         <p>
-          Unter der großen Taste steht <span className="text-fg">„Nur 20 Minuten“</span>.
-          Das läuft nur die Teile, die sonst verfallen — Wiederholungen, Fix, Lücken — und
-          hört dann auf.
+          Under the big button there is <De de="Nur 20 Minuten" en="only 20 minutes" />. It
+          runs only the parts that decay if skipped — reviews, Fix, gaps — and then stops.
+          Use it on the day you would otherwise skip entirely.
         </p>
         <p>
-          Und für den Weg zur Uni gibt es <span className="text-fg">Unterwegs</span>:
-          Kopfhörer rein, Handy in die Tasche. Es bewertet nichts, weil niemand beim Laufen
-          ehrlich einschätzen kann, ob er ein Wort konnte.
+          For the walk to uni there is <De de="Unterwegs" en="on the move" />: headphones
+          in, phone in your pocket. It never grades anything, because nobody can honestly
+          judge their own recall while crossing a road.
         </p>
       </>
     ),
   },
   {
-    eyebrow: "Echtes Deutsch",
-    title: "Der Kurs ist nicht alles.",
+    eyebrow: "Real German",
+    title: "The course is not the whole app.",
     body: (
       <p>
-        Vier Sachen, die nichts mit dem Lehrplan zu tun haben und dir am Dienstag wirklich
-        helfen:
+        Four things with nothing to do with the syllabus, which are the ones that help on
+        an actual Tuesday in Germany:
       </p>
     ),
     aside: (
       <div className="space-y-2.5">
         {[
-          ["Dein Text", "Beliebiges Deutsch einfügen — WG-Anzeige, Brief vom Amt, E-Mail. Sagt dir, was du schon kennst, und macht Karten daraus."],
-          ["Nachrichten", "Echte Nachrichten, langsam gesprochen, jeden Tag neu."],
-          ["Alltag", "Bürgeramt, WG-Besichtigung, Arzt, Bank — mit den Sätzen und der Liste, was du mitbringst."],
-          ["Minimalpaare", "schon / schön. Übt genau den Laut, den die Erkennung bei dir verfehlt."],
-        ].map(([k, v]) => (
-          <div key={k} className="border-line-sub rounded-xl border p-3.5">
-            <p className="font-serif text-[17px]">{k}</p>
-            <p className="text-muted mt-1 text-[12.5px] leading-relaxed">{v}</p>
+          ["Dein Text", "your text", "Paste any German — a flat advert, a letter from the Amt, an email. It tells you what you already know and turns the sentences into cards."],
+          ["Nachrichten", "news", "Real news read slowly, new every day, from Deutsche Welle."],
+          ["Alltag", "everyday life", "Bürgeramt, flat viewing, doctor, bank — with the phrases that matter and the documents to bring."],
+          ["Minimalpaare", "minimal pairs", "schon / schön. Drills the exact sound the recogniser keeps mishearing from you."],
+        ].map(([de, en, what]) => (
+          <div key={de} className="border-line-sub rounded-xl border p-3.5">
+            <p className="font-serif text-[17px]">
+              {de} <span className="text-muted text-[13px]">· {en}</span>
+            </p>
+            <p className="text-muted mt-1 text-[12.5px] leading-relaxed">{what}</p>
           </div>
         ))}
       </div>
     ),
   },
   {
-    eyebrow: "Die Zahlen",
-    title: "Nichts hier ist geschätzt.",
+    eyebrow: "The numbers",
+    title: "Nothing here is estimated.",
     body: (
       <>
         <p>
-          Jede Zahl in dieser App zählt etwas, das du getan hast. Kein geratenes
-          Sprachniveau, keine Bestehenswahrscheinlichkeit, kein Aussprache-Score. Wenn die
-          App etwas nicht weiß, schreibt sie das hin.
+          Every number in this app counts something you actually did. No guessed CEFR
+          level, no probability of passing an exam, no pronunciation score. When the app
+          does not know something, it says so instead of inventing a figure.
         </p>
         <p className="text-muted text-[14px]">
-          Deshalb sind „gesehen“ und „gelernt“ getrennt: Lesen ist Wiedererkennen, nicht
-          Können.
+          That is why <De de="gesehen" en="seen" /> and <De de="gelernt" en="learned" /> are
+          counted separately: reading a word is recognition, not knowledge.
         </p>
         <p className="border-line-sub mt-4 border-t pt-4 text-[14px]">
-          <span className="text-fg">Und eine Warnung:</span> dein Fortschritt liegt nur auf
-          diesem Rechner und geht nie zu GitHub. Einmal pro Woche{" "}
+          <strong className="text-fg">One warning.</strong> Your progress lives only on this
+          computer and never goes to GitHub. Once a week, run{" "}
           <code className="bg-raised text-der rounded px-1.5 py-0.5 font-mono text-[12.5px]">
             npm run backup
-          </code>{" "}
-          — das ist die ganze Versicherung.
+          </code>
+          . That is the entire insurance policy.
         </p>
       </>
     ),
@@ -222,7 +253,7 @@ export default function Tour({ firstRun }: { firstRun: boolean }) {
           <button
             key={n}
             onClick={() => setI(n)}
-            aria-label={`Schritt ${n + 1}`}
+            aria-label={`Step ${n + 1}`}
             className={`h-1 flex-1 rounded-[2px] transition-colors ${
               n <= i ? "bg-fg" : "bg-line"
             }`}
@@ -252,7 +283,7 @@ export default function Tour({ firstRun }: { firstRun: boolean }) {
           disabled={i === 0}
           className="border-line text-secondary hover:border-line-strong hover:text-fg rounded-xl border px-5 py-3 text-[14px] transition-colors disabled:opacity-30"
         >
-          Zurück
+          Back
         </button>
 
         <span className="font-mono text-muted text-[11.5px]">
@@ -264,14 +295,14 @@ export default function Tour({ firstRun }: { firstRun: boolean }) {
             href="/"
             className="bg-fg rounded-xl px-7 py-3.5 font-medium text-[#16211E] transition-colors hover:bg-white"
           >
-            {firstRun ? "Los geht's" : "Fertig"}
+            {firstRun ? "Let&apos;s go" : "Done"}
           </Link>
         ) : (
           <button
             onClick={() => setI((n) => n + 1)}
             className="bg-fg rounded-xl px-7 py-3.5 font-medium text-[#16211E] transition-colors hover:bg-white"
           >
-            Weiter
+            Next
           </button>
         )}
       </div>
@@ -282,7 +313,7 @@ export default function Tour({ firstRun }: { firstRun: boolean }) {
             href="/"
             className="font-mono text-muted hover:text-secondary text-[11.5px] transition-colors"
           >
-            Überspringen — ich fange einfach an
+            Skip — I&apos;ll just start
           </Link>
         </div>
       )}

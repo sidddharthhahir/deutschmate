@@ -1,6 +1,6 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 import AppHeader from "@/components/AppHeader";
-import { currentUser } from "@/lib/user";
+import { activeUser } from "@/lib/user";
 import { LEECH_THRESHOLD, leeches } from "@/lib/leech";
 import LeechList from "./LeechList";
 
@@ -18,7 +18,7 @@ export const dynamic = "force-dynamic";
  * from Fortschritt, which are the two places you'd go looking for it.
  */
 export default async function LeechPage() {
-  const user = currentUser("sid");
+  const user = await activeUser();
   const rows = leeches(user.id);
   const active = rows.filter((r) => r.suspended === 0).length;
 
@@ -40,12 +40,12 @@ export default async function LeechPage() {
         <p className="text-secondary mt-3 max-w-[62ch] text-[15px] leading-relaxed">
           {active > 0 ? (
             <>
-              {active} {active === 1 ? "Wort kämpft" : "Wörter kämpfen"} gegen dich — jedes
-              davon hast du mindestens {LEECH_THRESHOLD}-mal wieder vergessen. Öfter
-              wiederholen hilft hier nicht mehr; das ist genau das, was du schon tust.
+              {active} {active === 1 ? "word is" : "words are"} fighting you — you have
+              forgotten each of them at least {LEECH_THRESHOLD} times. Reviewing them more
+              often will not help: that is exactly what you are already doing.
             </>
           ) : (
-            <>Wörter, die du mindestens {LEECH_THRESHOLD}-mal wieder vergessen hast.</>
+            <>Words you have forgotten at least {LEECH_THRESHOLD} times.</>
           )}
         </p>
 
@@ -56,18 +56,18 @@ export default async function LeechPage() {
         {rows.length > 0 && (
           <div className="border-line-sub text-muted mt-10 space-y-2 border-t pt-6 text-[13px] leading-relaxed">
             <p>
-              <span className="text-secondary">Im Satz üben</span> — macht aus dem
-              Beispielsatz eine Lücke. Ein Wort ohne Kontext ist der häufigste Grund, warum
-              es nicht hängen bleibt.
+              <span className="text-secondary">Im Satz üben</span> — turns the example
+              sentence into a gap-fill. A word with no context is the commonest reason it
+              won&apos;t stick.
             </p>
             <p>
-              <span className="text-secondary">Neu anfangen</span> — setzt die Karte zurück,
-              als hättest du das Wort nie gesehen. Der Fehlerzähler bleibt stehen: er ist
-              die Geschichte des Wortes, nicht sein Punktestand.
+              <span className="text-secondary">Neu anfangen</span> — resets the card as if
+              you had never seen the word. The forgotten-count deliberately stays: it is the
+              word&apos;s history, not its score.
             </p>
             <p>
-              <span className="text-secondary">Pausieren</span> — nimmt es aus dem Deck. Kein
-              Fortschritt geht verloren, es kommt nur nicht mehr, bis du es zurückholst.
+              <span className="text-secondary">Pausieren</span> — takes it out of rotation.
+              Nothing is lost; it simply stops coming back until you bring it in again.
             </p>
           </div>
         )}

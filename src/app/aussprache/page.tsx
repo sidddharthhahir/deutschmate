@@ -1,7 +1,7 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 import AppHeader from "@/components/AppHeader";
 import { all } from "@/lib/db";
-import { currentUser } from "@/lib/user";
+import { activeUser } from "@/lib/user";
 import { pairsFor, SOUNDS } from "@/lib/pairs";
 import PairDrill from "./PairDrill";
 
@@ -60,7 +60,7 @@ export default async function PronunciationPage({
   searchParams: Promise<{ laut?: string }>;
 }) {
   const { laut } = await searchParams;
-  const user = currentUser("sid");
+  const user = await activeUser();
   const weak = weakestSound(user.id);
 
   // Explicit choice wins; otherwise open on whatever the data says is worst.

@@ -30,8 +30,8 @@ export default function SurvivalPage() {
           Alltag in Deutschland
         </h1>
         <p className="text-secondary mt-3 max-w-[62ch] text-[15px] leading-relaxed">
-          Sechs Gespräche, die du wirklich führen wirst. Jedes mit den Sätzen, die dort
-          zählen, und der Liste, was du mitbringen musst.
+          Six conversations you will actually have. Each with the phrases that matter and
+          the list of documents to bring.
         </p>
 
         {items.length === 0 ? (

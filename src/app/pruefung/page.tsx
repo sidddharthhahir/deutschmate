@@ -1,6 +1,6 @@
 import Link from "next/link";
 import AppHeader from "@/components/AppHeader";
-import { currentUser } from "@/lib/user";
+import { activeUser } from "@/lib/user";
 import { examHistory, type SectionScore } from "@/lib/exam";
 import ExamRunner from "./ExamRunner";
 
@@ -19,7 +19,7 @@ export const dynamic = "force-dynamic";
  * screen, where a number would otherwise be mistaken for a verdict.
  */
 export default async function ExamPage() {
-  const user = currentUser("sid");
+  const user = await activeUser();
   const history = examHistory(user.id, 8);
 
   return (
@@ -38,9 +38,9 @@ export default async function ExamPage() {
           Übungstest
         </h1>
         <p className="text-secondary mt-3 max-w-[62ch] text-[15px] leading-relaxed">
-          Vier Teile, eine halbe Stunde, keine Rückmeldung bis zum Schluss. Der Test ist aus
-          dem Inhalt dieser App gebaut — er zeigt dir, welcher Teil hinterherhinkt, aber er
-          ist keine Prognose für die echte Prüfung.
+          Four sections, half an hour, no feedback until the end. Built from this app&apos;s own
+          content — it shows you which of the four skills lags behind, but it predicts
+          nothing about the real exam.
         </p>
 
         <div className="mt-8">

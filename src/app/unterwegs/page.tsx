@@ -1,7 +1,7 @@
 import Link from "next/link";
 import AppHeader from "@/components/AppHeader";
 import { all } from "@/lib/db";
-import { currentUser } from "@/lib/user";
+import { activeUser } from "@/lib/user";
 import WalkMode from "./WalkMode";
 
 export const dynamic = "force-dynamic";
@@ -15,7 +15,7 @@ export const dynamic = "force-dynamic";
  * would waste the retrieval.
  */
 export default async function WalkPage() {
-  const user = currentUser("sid");
+  const user = await activeUser();
 
   const cards = all<{
     cardId: number;
@@ -50,8 +50,8 @@ export default async function WalkPage() {
           Unterwegs
         </h1>
         <p className="text-secondary mt-3 max-w-[58ch] text-[15px] leading-relaxed">
-          Freihändig hören, während du läufst. Zählt als Kontakt mit den Wörtern, nicht
-          als Wiederholung — dein Plan bleibt unberührt.
+          Hands-free listening while you walk. It counts as contact with the words, not
+          as review — your schedule is left untouched.
         </p>
 
         <div className="mt-8">

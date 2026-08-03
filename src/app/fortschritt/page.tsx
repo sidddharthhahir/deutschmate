@@ -1,6 +1,6 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 import { all, get } from "@/lib/db";
-import { currentUser } from "@/lib/user";
+import { activeUser } from "@/lib/user";
 import { topErrorTags } from "@/lib/errors";
 import { currentStreak, paceProjection } from "@/lib/session";
 import { LEECH_THRESHOLD, leeches } from "@/lib/leech";
@@ -21,7 +21,7 @@ export const dynamic = "force-dynamic";
  * than presenting six equal sections.
  */
 export default async function ProgressPage() {
-  const user = currentUser("sid");
+  const user = await activeUser();
   const n = (sql: string, ...p: unknown[]) => get<{ n: number }>(sql, ...p)?.n ?? 0;
 
   const totalWords = n("SELECT COUNT(*) AS n FROM word");
@@ -85,6 +85,14 @@ export default async function ProgressPage() {
             Fortschritt
           </h1>
           <div className="flex flex-none items-baseline gap-4">
+            {/* Whose numbers these are. On a shared laptop that is not obvious,
+                and it used to be impossible to tell or change. */}
+            <Link
+              href="/wer"
+              className="font-mono text-muted hover:text-secondary text-[12.5px] transition-colors"
+            >
+              {user.name}
+            </Link>
             <Link href="/woche" className="text-accent text-[12.5px] hover:underline">
               Diese Woche →
             </Link>

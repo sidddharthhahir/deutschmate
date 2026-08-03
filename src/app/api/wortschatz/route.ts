@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { currentUser, userFromRequest } from "@/lib/user";
+import { activeUser, userFromRequest } from "@/lib/user";
 import { all, get, run } from "@/lib/db";
 import { toSqlDate } from "@/lib/srs";
 import { createEmptyCard } from "ts-fsrs";
@@ -16,7 +16,7 @@ export const dynamic = "force-dynamic";
  */
 export async function GET(req: Request) {
   const url = new URL(req.url);
-  const user = userFromRequest(req);
+  const user = await userFromRequest(req);
   const level = url.searchParams.get("level");
   const topic = url.searchParams.get("topic");
   const q = url.searchParams.get("q")?.trim();
@@ -85,7 +85,7 @@ export async function POST(req: Request) {
     lastWordId?: string;
     count?: number;
   };
-  const user = currentUser(body.user ?? "sid");
+  const user = await activeUser(body.user ?? undefined);
 
   if (body.action === "seen") {
     run(

@@ -28,8 +28,8 @@ export default function NewsPage() {
           Nachrichten
         </h1>
         <p className="text-secondary mt-3 max-w-[62ch] text-[15px] leading-relaxed">
-          Echte Nachrichten, langsam gesprochen. Kein Kursmaterial — das hier ist heute
-          passiert, und es ist jeden Tag neu.
+          Real news, slowly spoken. Not course material — this happened today, and it is
+          new every day.
         </p>
 
         <div className="mt-8">

@@ -1,6 +1,6 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 import { all, get } from "@/lib/db";
-import { currentUser } from "@/lib/user";
+import { activeUser } from "@/lib/user";
 import { dueCount } from "@/lib/srs";
 import { leechCount } from "@/lib/leech";
 import { clozeDueCount, clozeTotal } from "@/lib/cloze";
@@ -18,7 +18,7 @@ export const dynamic = "force-dynamic";
  * the home screen keeps its single button.
  */
 export default async function PracticePage() {
-  const user = currentUser("sid");
+  const user = await activeUser();
 
   const units = all<{
     id: string;

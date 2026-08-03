@@ -1,7 +1,7 @@
 import Link from "next/link";
 import AppHeader from "@/components/AppHeader";
 import { all, get } from "@/lib/db";
-import { currentUser } from "@/lib/user";
+import { activeUser } from "@/lib/user";
 import { TAGS, type Tag } from "@/lib/errors";
 
 export const dynamic = "force-dynamic";
@@ -24,7 +24,7 @@ const DAYS = ["So", "Mo", "Di", "Mi", "Do", "Fr", "Sa"];
 type Row = { tag: string; now: number; before: number };
 
 export default async function WeekPage() {
-  const user = currentUser("sid");
+  const user = await activeUser();
   const n = (sql: string, ...p: unknown[]) => get<{ n: number }>(sql, ...p)?.n ?? 0;
 
   // ---------------------------------------------------------------- the week
@@ -104,7 +104,7 @@ export default async function WeekPage() {
         <h1 className="font-serif text-[32px] font-semibold tracking-[-0.015em]">
           Diese Woche
         </h1>
-        <p className="text-muted mt-2 text-[13px]">Die letzten 7 Tage, gezählt.</p>
+        <p className="text-muted mt-2 text-[13px]">The last 7 days, counted.</p>
 
         {empty ? (
           <p className="text-secondary mt-10 max-w-[52ch] text-[15px] leading-relaxed">

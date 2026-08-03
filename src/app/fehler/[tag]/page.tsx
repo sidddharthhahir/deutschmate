@@ -2,7 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import AppHeader from "@/components/AppHeader";
 import { all, get } from "@/lib/db";
-import { currentUser } from "@/lib/user";
+import { activeUser } from "@/lib/user";
 import { TAGS, type Tag } from "@/lib/errors";
 
 export const dynamic = "force-dynamic";
@@ -52,7 +52,7 @@ export default async function TagPage({ params }: { params: Promise<{ tag: strin
   const label = TAGS[tag as Tag];
   if (!label) notFound();
 
-  const user = currentUser("sid");
+  const user = await activeUser();
 
   const rows = all<{
     id: number;

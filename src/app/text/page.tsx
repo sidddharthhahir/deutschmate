@@ -33,8 +33,8 @@ export default function TextPage() {
           Dein Text
         </h1>
         <p className="text-secondary mt-3 max-w-[62ch] text-[15px] leading-relaxed">
-          Füg irgendeinen deutschen Text ein. Die App sagt dir, wie viel davon du schon
-          kennst, welche Wörter sie dir beibringen kann, und macht aus den Sätzen Karten.
+          Paste any German text. The app tells you how much of it you already know, which
+          words it can teach you next, and turns the sentences into cards.
         </p>
 
         <div className="mt-8">

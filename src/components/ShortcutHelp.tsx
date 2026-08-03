@@ -11,34 +11,41 @@ import { isTypingTarget, useModalFlag } from "@/lib/keys";
  * but until now nothing listed the keys anywhere, so you had to discover them
  * from hints printed under the block you happened to be in.
  */
+/**
+ * Keys in German, what they do in English.
+ *
+ * The label on screen stays German because that is what the screen says; the
+ * explanation is English because this panel exists for the moment you don't
+ * understand something, and answering that in German helps nobody.
+ */
 const GROUPS: { title: string; keys: [string, string][] }[] = [
   {
-    title: "Überall",
+    title: "Everywhere",
     keys: [
-      ["Cmd / Ctrl + K", "Suche — Wort, Regel, Unit, Gespräch"],
-      ["?", "Diese Liste"],
-      ["Esc", "Schließen · Sitzung beenden"],
+      ["Cmd / Ctrl + K", "Search — words, rules, units, conversations"],
+      ["?", "This list"],
+      ["Esc", "Close · leave the session"],
     ],
   },
   {
-    title: "Startseite",
-    keys: [["Enter", "Sitzung starten"]],
+    title: "Home",
+    keys: [["Enter", "Start today's session"]],
   },
   {
-    title: "Wiederholen",
+    title: "Reviewing · Wiederholen",
     keys: [
-      ["Leertaste", "Aufdecken"],
-      ["1 – 4", "Bewerten: Nochmal · Schwer · Gut · Einfach"],
-      ["R", "Audio noch einmal"],
-      ["Z", "Letzte Bewertung zurücknehmen (5 s)"],
+      ["Leertaste / Space", "Reveal the answer"],
+      ["1 – 4", "Grade: again · hard · good · easy"],
+      ["R", "Hear it again"],
+      ["Z", "Undo that grade (5 s)"],
     ],
   },
   {
-    title: "Tippen",
+    title: "Typing German",
     keys: [
       ["Alt + a o u s", "ä ö ü ß"],
       ["Alt + Shift + a", "Ä Ö Ü"],
-      ["Enter", "Prüfen, dann weiter"],
+      ["Enter", "Check, then continue"],
     ],
   },
 ];
@@ -76,7 +83,9 @@ export default function ShortcutHelp() {
         onClick={(e) => e.stopPropagation()}
       >
         <div className="mb-6 flex items-baseline justify-between">
-          <h2 className="font-serif text-[24px] font-semibold">Tastatur</h2>
+          <h2 className="font-serif text-[24px] font-semibold">
+            Tastatur <span className="text-muted text-[15px]">· Keyboard</span>
+          </h2>
           <button
             onClick={() => setOpen(false)}
             className="text-muted hover:text-fg font-mono text-[11.5px]"
@@ -92,7 +101,7 @@ export default function ShortcutHelp() {
           onClick={() => setOpen(false)}
           className="border-line-sub hover:border-line text-secondary hover:text-fg mb-6 flex items-center justify-between rounded-xl border px-4 py-3 text-[13.5px] transition-colors"
         >
-          <span>Neu hier? Wie die App funktioniert</span>
+          <span>New here? How the app works</span>
           <span className="font-mono text-muted text-[11px]">→</span>
         </Link>
 

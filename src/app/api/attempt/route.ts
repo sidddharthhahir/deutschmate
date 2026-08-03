@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { currentUser } from "@/lib/user";
+import { activeUser } from "@/lib/user";
 import {
   logAttempt,
   cachedExplanation,
@@ -28,7 +28,7 @@ export const dynamic = "force-dynamic";
  */
 export async function POST(req: Request) {
   const raw = await readJson(req);
-  const user = currentUser(str(raw.user) || "sid");
+  const user = await activeUser(str(raw.user) || undefined);
 
   // `kind` is NOT NULL in the schema — without this check a body missing it
   // reached SQLite and came back as a 500 with an empty response.

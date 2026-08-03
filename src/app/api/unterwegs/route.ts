@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { run } from "@/lib/db";
-import { currentUser } from "@/lib/user";
+import { activeUser } from "@/lib/user";
 import { readJson, badRequest, str, int } from "@/lib/http";
 
 export const runtime = "nodejs";
@@ -19,7 +19,7 @@ export const dynamic = "force-dynamic";
  */
 export async function POST(req: Request) {
   const raw = await readJson(req);
-  const user = currentUser(str(raw.user) || "sid");
+  const user = await activeUser(str(raw.user) || undefined);
 
   const heard = int(raw.heard, 1, 500);
   if (heard === null) return badRequest("heard (1-500) required");
