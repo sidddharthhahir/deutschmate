@@ -1,0 +1,39 @@
+{
+  "name": "DeutschMate",
+  "short_name": "DeutschMate",
+  "description": "A1.1 → B1.2 German, one hour a day.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0e1715",
+  "theme_color": "#0e1715",
+  "lang": "de",
+  "categories": ["education"],
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-maskable.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Heutige Sitzung",
+      "short_name": "Sitzung",
+      "url": "/session"
+    },
+    {
+      "name": "Nur 20 Minuten",
+      "short_name": "Kurz",
+      "url": "/session?kurz=1"
+    }
+  ]
+}

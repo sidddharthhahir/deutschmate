@@ -1,0 +1,304 @@
+[
+  {
+    "id": "a1-1-u01",
+    "level": "A1.1",
+    "ord": 1,
+    "title": "Hallo!",
+    "can_do": ["greet someone at any time of day", "say thank you and please", "say yes and no"],
+    "words": ["hallo", "tschuess", "guten-morgen", "guten-tag", "guten-abend", "gute-nacht", "danke", "bitte", "ja", "nein", "entschuldigung", "vielleicht"],
+    "grammar_id": null,
+    "scenario": {
+      "role": "a neighbour you pass in the stairwell",
+      "goal": "exchange a greeting and say goodbye",
+      "opener": "Guten Morgen!"
+    },
+    "dialogue": [
+      { "them": "Guten Morgen!", "options": [
+        { "say": "Guten Morgen!", "ok": true, "next": 1 },
+        { "say": "Gute Nacht!", "ok": false, "why": "That's for going to bed — it's morning.", "next": 1 }
+      ]},
+      { "them": "Wie geht es Ihnen?", "options": [
+        { "say": "Gut, danke!", "ok": true, "next": 2 },
+        { "say": "Bitte.", "ok": false, "why": "bitte = please/you're welcome, not an answer here.", "next": 2 }
+      ]},
+      { "them": "Schönen Tag noch!", "options": [
+        { "say": "Danke, tschüss!", "ok": true, "next": -1 },
+        { "say": "Nein.", "ok": false, "why": "A friendly sign-off wants a friendly answer.", "next": -1 }
+      ]}
+    ],
+    "prereq": []
+  },
+  {
+    "id": "a1-1-u02",
+    "level": "A1.1",
+    "ord": 2,
+    "title": "Ich heiße …",
+    "can_do": ["say your name", "ask someone their name", "use ich, du and Sie correctly"],
+    "words": ["ich", "du", "er", "sie-she", "es", "wir", "ihr", "sie-formal", "heissen", "name"],
+    "grammar_id": "g-pronouns",
+    "scenario": {
+      "role": "another student on your first day at language school",
+      "goal": "introduce yourself and learn their name",
+      "opener": "Hallo! Wie heißt du?"
+    },
+    "dialogue": [
+      { "them": "Hallo! Wie heißt du?", "options": [
+        { "say": "Ich heiße Siddharth.", "ok": true, "next": 1 },
+        { "say": "Du heißt Siddharth.", "ok": false, "why": "du = you. For yourself use ich heiße.", "next": 1 }
+      ]},
+      { "them": "Freut mich! Ich heiße Anna.", "options": [
+        { "say": "Freut mich auch, Anna!", "ok": true, "next": -1 }
+      ]}
+    ],
+    "prereq": ["a1-1-u01"]
+  },
+  {
+    "id": "a1-1-u03",
+    "level": "A1.1",
+    "ord": 3,
+    "title": "Ich bin, du bist",
+    "can_do": ["say what you are", "describe someone with sein", "use all six forms of sein"],
+    "words": ["sein", "gut", "schlecht", "muede", "gross", "klein", "neu", "alt"],
+    "grammar_id": "g-sein",
+    "scenario": {
+      "role": "a friend asking how you are",
+      "goal": "describe how you feel today",
+      "opener": "Na, wie bist du heute drauf?"
+    },
+    "dialogue": [
+      { "them": "Bist du müde?", "options": [
+        { "say": "Ja, ich bin müde.", "ok": true, "next": 1 },
+        { "say": "Ja, ich bist müde.", "ok": false, "why": "bist is the du form. For ich it's bin.", "next": 1 }
+      ]},
+      { "them": "Das ist schlecht. Ist die Arbeit gut?", "options": [
+        { "say": "Nein, die Arbeit ist nicht gut.", "ok": true, "next": -1 }
+      ]}
+    ],
+    "prereq": ["a1-1-u02"]
+  },
+  {
+    "id": "a1-1-u04",
+    "level": "A1.1",
+    "ord": 4,
+    "title": "Woher kommst du?",
+    "can_do": ["say where you're from", "say where you live", "ask both questions"],
+    "words": ["kommen", "wohnen", "woher", "wo", "wohin", "stadt", "land", "deutschland", "strasse"],
+    "grammar_id": "g-praesens",
+    "scenario": {
+      "role": "someone you just met at a party",
+      "goal": "exchange where you're from and where you live now",
+      "opener": "Woher kommst du?"
+    },
+    "dialogue": [
+      { "them": "Woher kommst du?", "options": [
+        { "say": "Ich komme aus Indien.", "ok": true, "next": 1 },
+        { "say": "Ich komme in Indien.", "ok": false, "why": "aus = from (origin). in = inside.", "next": 1 }
+      ]},
+      { "them": "Und wo wohnst du jetzt?", "options": [
+        { "say": "Ich wohne in Berlin.", "ok": true, "next": -1 },
+        { "say": "Ich wohnen in Berlin.", "ok": false, "why": "ich takes -e: wohne.", "next": -1 }
+      ]}
+    ],
+    "prereq": ["a1-1-u03"]
+  },
+  {
+    "id": "a1-1-u05",
+    "level": "A1.1",
+    "ord": 5,
+    "title": "Zahlen",
+    "can_do": ["count to twenty", "give your phone number", "ask what something costs"],
+    "words": ["null", "eins", "zwei", "drei", "vier", "fuenf", "sechs", "sieben", "acht", "neun", "zehn", "zwanzig", "hundert", "wie-viel", "kosten", "geld"],
+    "grammar_id": null,
+    "scenario": {
+      "role": "a market stall holder",
+      "goal": "ask the price of two things and understand the answer",
+      "opener": "Guten Tag! Was möchten Sie?"
+    },
+    "dialogue": [
+      { "them": "Guten Tag! Was möchten Sie?", "options": [
+        { "say": "Wie viel kostet das Brot?", "ok": true, "next": 1 }
+      ]},
+      { "them": "Das Brot kostet drei Euro.", "options": [
+        { "say": "Gut, danke!", "ok": true, "next": -1 }
+      ]}
+    ],
+    "prereq": ["a1-1-u04"]
+  },
+  {
+    "id": "a1-1-u06",
+    "level": "A1.1",
+    "ord": 6,
+    "title": "Der, die, das",
+    "can_do": ["use the right article for common nouns", "recognise -ung and -chen patterns"],
+    "words": ["haus", "wohnung", "zimmer", "tisch", "stuhl", "tuer", "fenster", "bett", "kueche", "buch", "auto"],
+    "grammar_id": "g-articles-nom",
+    "scenario": {
+      "role": "a landlord showing you a flat",
+      "goal": "comment on the rooms and furniture",
+      "opener": "Das ist die Wohnung. Wie finden Sie sie?"
+    },
+    "dialogue": [
+      { "them": "Das ist die Küche. Ist sie groß genug?", "options": [
+        { "say": "Ja, die Küche ist groß.", "ok": true, "next": 1 },
+        { "say": "Ja, der Küche ist groß.", "ok": false, "why": "Küche is feminine → die.", "next": 1 }
+      ]},
+      { "them": "Und hier ist das Zimmer.", "options": [
+        { "say": "Das Zimmer ist sehr schön.", "ok": true, "next": -1 }
+      ]}
+    ],
+    "prereq": ["a1-1-u05"]
+  },
+  {
+    "id": "a1-1-u07",
+    "level": "A1.1",
+    "ord": 7,
+    "title": "Meine Familie",
+    "can_do": ["name your family members", "say how many siblings you have", "use haben"],
+    "words": ["haben", "familie", "mutter", "vater", "eltern", "bruder", "schwester", "kind", "mann", "frau", "freund"],
+    "grammar_id": "g-haben",
+    "scenario": {
+      "role": "a colleague getting to know you over lunch",
+      "goal": "describe your family",
+      "opener": "Hast du Geschwister?"
+    },
+    "dialogue": [
+      { "them": "Hast du Geschwister?", "options": [
+        { "say": "Ja, ich habe zwei Brüder.", "ok": true, "next": 1 },
+        { "say": "Ja, ich hast zwei Brüder.", "ok": false, "why": "hast is the du form; ich takes habe.", "next": 1 }
+      ]},
+      { "them": "Schön! Und wo wohnen deine Eltern?", "options": [
+        { "say": "Meine Eltern wohnen in Indien.", "ok": true, "next": -1 }
+      ]}
+    ],
+    "prereq": ["a1-1-u06"]
+  },
+  {
+    "id": "a1-1-u08",
+    "level": "A1.1",
+    "ord": 8,
+    "title": "Verb an zweiter Stelle",
+    "can_do": ["put the verb in position 2", "start a sentence with a time word", "flip the subject correctly"],
+    "words": ["heute", "morgen", "gestern", "jetzt", "immer", "oft", "nie", "gehen", "machen"],
+    "grammar_id": "g-wordorder",
+    "scenario": {
+      "role": "a friend making weekend plans",
+      "goal": "say what you're doing today and tomorrow",
+      "opener": "Was machst du heute?"
+    },
+    "dialogue": [
+      { "them": "Was machst du heute?", "options": [
+        { "say": "Heute arbeite ich.", "ok": true, "next": 1 },
+        { "say": "Heute ich arbeite.", "ok": false, "why": "Verb must be second — Heute arbeite ich.", "next": 1 }
+      ]},
+      { "them": "Und morgen?", "options": [
+        { "say": "Morgen gehe ich nach Hause.", "ok": true, "next": -1 }
+      ]}
+    ],
+    "prereq": ["a1-1-u07"]
+  },
+  {
+    "id": "a1-1-u09",
+    "level": "A1.1",
+    "ord": 9,
+    "title": "Essen und Trinken",
+    "can_do": ["name everyday food and drink", "say what you eat and drink", "order in a café"],
+    "words": ["essen", "trinken", "wasser", "brot", "apfel", "kaffee", "tee", "milch", "bier", "kaese", "ei", "fleisch", "obst", "gemuese"],
+    "grammar_id": null,
+    "scenario": {
+      "role": "a waiter in a Berlin café",
+      "goal": "order a drink and something to eat",
+      "opener": "Guten Tag! Was darf es sein?"
+    },
+    "dialogue": [
+      { "them": "Guten Tag! Was darf es sein?", "options": [
+        { "say": "Einen Kaffee, bitte.", "ok": true, "next": 1 },
+        { "say": "Ein Kaffee, bitte.", "ok": false, "why": "Kaffee is masculine and it's the object → einen.", "next": 1 }
+      ]},
+      { "them": "Gern. Und zum Essen?", "options": [
+        { "say": "Ein Brot, bitte.", "ok": true, "next": 2 }
+      ]},
+      { "them": "Kommt sofort!", "options": [
+        { "say": "Danke!", "ok": true, "next": -1 }
+      ]}
+    ],
+    "prereq": ["a1-1-u08"]
+  },
+  {
+    "id": "a1-1-u10",
+    "level": "A1.1",
+    "ord": 10,
+    "title": "Fragen stellen",
+    "can_do": ["ask a W-question", "ask a yes/no question", "ask why and when"],
+    "words": ["wer", "was", "wann", "wie", "warum", "sprechen", "verstehen", "lernen"],
+    "grammar_id": "g-questions",
+    "scenario": {
+      "role": "someone at a bus stop you need directions from",
+      "goal": "ask three questions and understand the answers",
+      "opener": "Kann ich Ihnen helfen?"
+    },
+    "dialogue": [
+      { "them": "Kann ich Ihnen helfen?", "options": [
+        { "say": "Wo ist der Bahnhof?", "ok": true, "next": 1 }
+      ]},
+      { "them": "Der Bahnhof ist dort, rechts.", "options": [
+        { "say": "Wann kommt der Bus?", "ok": true, "next": 2 },
+        { "say": "Wo kommt der Bus?", "ok": false, "why": "You want a time → wann, not wo.", "next": 2 }
+      ]},
+      { "them": "In zehn Minuten.", "options": [
+        { "say": "Danke schön!", "ok": true, "next": -1 }
+      ]}
+    ],
+    "prereq": ["a1-1-u09"]
+  },
+  {
+    "id": "a1-1-u11",
+    "level": "A1.1",
+    "ord": 11,
+    "title": "Nein sagen",
+    "can_do": ["negate a verb with nicht", "negate a noun with kein", "choose between them"],
+    "words": ["nicht", "aber", "oder", "und", "weil", "auch", "sehr", "richtig", "falsch"],
+    "grammar_id": "g-negation",
+    "scenario": {
+      "role": "a shop assistant offering you things you don't want",
+      "goal": "politely decline three times, correctly",
+      "opener": "Möchten Sie eine Tüte?"
+    },
+    "dialogue": [
+      { "them": "Möchten Sie eine Tüte?", "options": [
+        { "say": "Nein danke, ich brauche keine Tüte.", "ok": true, "next": 1 },
+        { "say": "Nein danke, ich brauche nicht Tüte.", "ok": false, "why": "A bare noun takes kein, not nicht.", "next": 1 }
+      ]},
+      { "them": "Haben Sie Zeit für eine Umfrage?", "options": [
+        { "say": "Nein, ich habe keine Zeit.", "ok": true, "next": -1 }
+      ]}
+    ],
+    "prereq": ["a1-1-u10"]
+  },
+  {
+    "id": "a1-1-u12",
+    "level": "A1.1",
+    "ord": 12,
+    "title": "Die Woche",
+    "can_do": ["name the days of the week", "say when something happens", "make an appointment"],
+    "words": ["montag", "dienstag", "mittwoch", "donnerstag", "freitag", "samstag", "sonntag", "tag", "woche", "monat", "jahr", "stunde", "arbeit", "arbeiten", "schule", "bahnhof"],
+    "grammar_id": null,
+    "scenario": {
+      "role": "a doctor's receptionist",
+      "goal": "book an appointment on a specific day",
+      "opener": "Praxis Dr. Weber, guten Tag!"
+    },
+    "dialogue": [
+      { "them": "Praxis Dr. Weber, guten Tag!", "options": [
+        { "say": "Guten Tag, ich brauche einen Termin.", "ok": true, "next": 1 }
+      ]},
+      { "them": "Geht Montag um zehn Uhr?", "options": [
+        { "say": "Ja, Montag ist gut.", "ok": true, "next": 2 },
+        { "say": "Nein, Montag ist keine gut.", "ok": false, "why": "gut is an adjective → nicht gut, not kein.", "next": 2 }
+      ]},
+      { "them": "Sehr gut. Bis Montag!", "options": [
+        { "say": "Danke, bis Montag!", "ok": true, "next": -1 }
+      ]}
+    ],
+    "prereq": ["a1-1-u11"]
+  }
+]

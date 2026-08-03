@@ -1,0 +1,6410 @@
+[
+  {
+    "id": "a1-1-u13",
+    "level": "A1.1",
+    "ord": 13,
+    "title": "Zahlen und Preise",
+    "can_do": [
+      "count above twenty",
+      "ask and understand a price",
+      "pay at a counter"
+    ],
+    "words": [
+      "kaufen",
+      "schoen",
+      "teuer",
+      "billig",
+      "in",
+      "auf",
+      "mit",
+      "aus",
+      "zu",
+      "fuer"
+    ],
+    "grammar_id": "g-pronouns",
+    "scenario": {
+      "role": "a cashier at a bakery",
+      "goal": "buy two things and pay",
+      "opener": "Guten Tag, was darf's sein?"
+    },
+    "dialogue": [
+      {
+        "them": "Guten Tag, was darf's sein?",
+        "options": [
+          {
+            "say": "Ein Brot, bitte.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Ich bin ein Brot.",
+            "ok": false,
+            "why": "You are not a bread. Just name the item: Ein Brot, bitte.",
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Das macht drei Euro fünfzig.",
+        "options": [
+          {
+            "say": "Hier, bitte.",
+            "ok": true,
+            "next": -1
+          }
+        ]
+      }
+    ],
+    "prereq": [
+      "a1-1-u12"
+    ]
+  },
+  {
+    "id": "a1-1-u14",
+    "level": "A1.1",
+    "ord": 14,
+    "title": "Farben und Sachen",
+    "can_do": [
+      "name everyday objects",
+      "describe something with an adjective",
+      "say what belongs to you"
+    ],
+    "words": [
+      "ohne",
+      "bei",
+      "person",
+      "leute",
+      "herr",
+      "junge",
+      "maedchen",
+      "sohn",
+      "tochter",
+      "oma"
+    ],
+    "grammar_id": "g-sein",
+    "scenario": {
+      "role": "someone who found your bag",
+      "goal": "describe your bag so you get it back",
+      "opener": "Ist das Ihre Tasche?"
+    },
+    "dialogue": [
+      {
+        "them": "Ist das Ihre Tasche?",
+        "options": [
+          {
+            "say": "Ja, gern.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Entschuldigung, ich verstehe nicht.",
+            "ok": true,
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Alles klar. Danke!",
+        "options": [
+          {
+            "say": "Danke, tschüss!",
+            "ok": true,
+            "next": -1
+          }
+        ]
+      }
+    ],
+    "prereq": [
+      "a1-1-u13"
+    ]
+  },
+  {
+    "id": "a1-1-u15",
+    "level": "A1.1",
+    "ord": 15,
+    "title": "Wo ist das?",
+    "can_do": [
+      "ask where something is",
+      "understand simple directions",
+      "say left, right and straight on"
+    ],
+    "words": [
+      "opa",
+      "tante",
+      "onkel",
+      "krankenhaus",
+      "nachbar",
+      "leben",
+      "kollege",
+      "chef",
+      "lehrer",
+      "student"
+    ],
+    "grammar_id": "g-haben",
+    "scenario": {
+      "role": "a passer-by on the street",
+      "goal": "ask the way to the station",
+      "opener": "Kann ich Ihnen helfen?"
+    },
+    "dialogue": [
+      {
+        "them": "Kann ich Ihnen helfen?",
+        "options": [
+          {
+            "say": "Ja, gern.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Entschuldigung, ich verstehe nicht.",
+            "ok": true,
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Alles klar. Danke!",
+        "options": [
+          {
+            "say": "Danke, tschüss!",
+            "ok": true,
+            "next": -1
+          }
+        ]
+      }
+    ],
+    "prereq": [
+      "a1-1-u14"
+    ]
+  },
+  {
+    "id": "a1-1-u16",
+    "level": "A1.1",
+    "ord": 16,
+    "title": "Mein Tag",
+    "can_do": [
+      "say what you do each day",
+      "tell the time roughly",
+      "say when something happens"
+    ],
+    "words": [
+      "schueler",
+      "kellner",
+      "reise",
+      "verkaeufer",
+      "termin",
+      "jung",
+      "wetter",
+      "freundlich",
+      "nett",
+      "lustig"
+    ],
+    "grammar_id": "g-praesens",
+    "scenario": {
+      "role": "a curious classmate",
+      "goal": "describe your normal day",
+      "opener": "Was machst du morgens?"
+    },
+    "dialogue": [
+      {
+        "them": "Was machst du morgens?",
+        "options": [
+          {
+            "say": "Ja, gern.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Entschuldigung, ich verstehe nicht.",
+            "ok": true,
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Alles klar. Danke!",
+        "options": [
+          {
+            "say": "Danke, tschüss!",
+            "ok": true,
+            "next": -1
+          }
+        ]
+      }
+    ],
+    "prereq": [
+      "a1-1-u15"
+    ]
+  },
+  {
+    "id": "a1-1-u17",
+    "level": "A1.1",
+    "ord": 17,
+    "title": "Einkaufen",
+    "can_do": [
+      "ask for something in a shop",
+      "say how much you want",
+      "say it's too expensive"
+    ],
+    "words": [
+      "traurig",
+      "antworten",
+      "gluecklich",
+      "beginnen",
+      "krank",
+      "gesund",
+      "ledig",
+      "besuchen",
+      "verheiratet",
+      "bezahlen"
+    ],
+    "grammar_id": "g-articles-nom",
+    "scenario": {
+      "role": "a market stall holder",
+      "goal": "buy fruit and ask the price",
+      "opener": "Was möchten Sie?"
+    },
+    "dialogue": [
+      {
+        "them": "Was möchten Sie?",
+        "options": [
+          {
+            "say": "Ja, gern.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Entschuldigung, ich verstehe nicht.",
+            "ok": true,
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Alles klar. Danke!",
+        "options": [
+          {
+            "say": "Danke, tschüss!",
+            "ok": true,
+            "next": -1
+          }
+        ]
+      }
+    ],
+    "prereq": [
+      "a1-1-u16"
+    ]
+  },
+  {
+    "id": "a1-1-u18",
+    "level": "A1.1",
+    "ord": 18,
+    "title": "Kleine Gespräche",
+    "can_do": [
+      "make small talk",
+      "say you don't understand",
+      "ask someone to repeat"
+    ],
+    "words": [
+      "kopf",
+      "bleiben",
+      "auge",
+      "brauchen",
+      "ohr",
+      "bringen",
+      "nase",
+      "denken",
+      "mund",
+      "erklaeren"
+    ],
+    "grammar_id": "g-wordorder",
+    "scenario": {
+      "role": "a neighbour in the lift",
+      "goal": "have a 30-second friendly chat",
+      "opener": "Na, alles gut bei Ihnen?"
+    },
+    "dialogue": [
+      {
+        "them": "Na, alles gut bei Ihnen?",
+        "options": [
+          {
+            "say": "Ja, danke. Und bei Ihnen?",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Ja, danke. Und bei dich?",
+            "ok": false,
+            "why": "After bei you need dative: bei Ihnen / bei dir.",
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Auch gut. Schönen Tag noch!",
+        "options": [
+          {
+            "say": "Danke, gleichfalls!",
+            "ok": true,
+            "next": -1
+          }
+        ]
+      }
+    ],
+    "prereq": [
+      "a1-1-u17"
+    ]
+  },
+  {
+    "id": "a1-1-u19",
+    "level": "A1.1",
+    "ord": 19,
+    "title": "Verabredungen",
+    "can_do": [
+      "suggest meeting up",
+      "agree or say no politely",
+      "name a day and a time"
+    ],
+    "words": [
+      "hand",
+      "fahren",
+      "arm",
+      "finden",
+      "bein",
+      "geben",
+      "fuss",
+      "glauben",
+      "bauch",
+      "helfen"
+    ],
+    "grammar_id": "g-questions",
+    "scenario": {
+      "role": "a friend making plans",
+      "goal": "agree on a day to meet",
+      "opener": "Hast du am Samstag Zeit?"
+    },
+    "dialogue": [
+      {
+        "them": "Hast du am Samstag Zeit?",
+        "options": [
+          {
+            "say": "Ja, gern.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Entschuldigung, ich verstehe nicht.",
+            "ok": true,
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Alles klar. Danke!",
+        "options": [
+          {
+            "say": "Danke, tschüss!",
+            "ok": true,
+            "next": -1
+          }
+        ]
+      }
+    ],
+    "prereq": [
+      "a1-1-u18"
+    ]
+  },
+  {
+    "id": "a1-1-u20",
+    "level": "A1.1",
+    "ord": 20,
+    "title": "A1.1 zusammen",
+    "can_do": [
+      "introduce yourself fully",
+      "order something",
+      "ask three useful questions"
+    ],
+    "words": [
+      "ruecken",
+      "hoeren",
+      "zahn",
+      "haar",
+      "lesen",
+      "schmerz",
+      "liegen",
+      "fieber",
+      "nehmen",
+      "apotheke"
+    ],
+    "grammar_id": "g-negation",
+    "scenario": {
+      "role": "a new colleague on your first day",
+      "goal": "introduce yourself and ask about them",
+      "opener": "Hallo! Du bist neu hier, oder?"
+    },
+    "dialogue": [
+      {
+        "them": "Hallo! Du bist neu hier, oder?",
+        "options": [
+          {
+            "say": "Ja, gern.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Entschuldigung, ich verstehe nicht.",
+            "ok": true,
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Alles klar. Danke!",
+        "options": [
+          {
+            "say": "Danke, tschüss!",
+            "ok": true,
+            "next": -1
+          }
+        ]
+      }
+    ],
+    "prereq": [
+      "a1-1-u19"
+    ]
+  },
+  {
+    "id": "a1-2-u01",
+    "level": "A1.2",
+    "ord": 1,
+    "title": "Menschen um mich",
+    "can_do": [
+      "name people around you",
+      "say who someone is",
+      "describe a person briefly"
+    ],
+    "words": [
+      "schreiben",
+      "medikament",
+      "sehen",
+      "weh",
+      "suchen",
+      "wohnzimmer",
+      "treffen",
+      "schlafzimmer",
+      "warten",
+      "badezimmer"
+    ],
+    "grammar_id": "g-akkusativ",
+    "scenario": {
+      "role": "a friend looking at your photos",
+      "goal": "say who the people are",
+      "opener": "Wer ist das auf dem Foto?"
+    },
+    "dialogue": [
+      {
+        "them": "Wer ist das auf dem Foto?",
+        "options": [
+          {
+            "say": "Das ist meine Schwester.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Das ist mein Schwester.",
+            "ok": false,
+            "why": "Schwester is feminine → meine.",
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Und der Mann daneben?",
+        "options": [
+          {
+            "say": "Das ist mein Vater.",
+            "ok": true,
+            "next": -1
+          }
+        ]
+      }
+    ],
+    "prereq": [
+      "a1-1-u20"
+    ]
+  },
+  {
+    "id": "a1-2-u02",
+    "level": "A1.2",
+    "ord": 2,
+    "title": "Wie ist er?",
+    "can_do": [
+      "describe someone's character",
+      "say how someone looks",
+      "say what you like about them"
+    ],
+    "words": [
+      "wissen",
+      "balkon",
+      "garten",
+      "keller",
+      "treppe",
+      "schrank",
+      "sofa",
+      "lampe",
+      "teppich",
+      "spiegel"
+    ],
+    "grammar_id": null,
+    "scenario": {
+      "role": "a friend asking about your new flatmate",
+      "goal": "describe them in a few sentences",
+      "opener": "Und wie ist dein neuer Mitbewohner?"
+    },
+    "dialogue": [
+      {
+        "them": "Und wie ist dein neuer Mitbewohner?",
+        "options": [
+          {
+            "say": "Ja, gern.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Entschuldigung, ich verstehe nicht.",
+            "ok": true,
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Alles klar. Danke!",
+        "options": [
+          {
+            "say": "Danke, tschüss!",
+            "ok": true,
+            "next": -1
+          }
+        ]
+      }
+    ],
+    "prereq": [
+      "a1-2-u01"
+    ]
+  },
+  {
+    "id": "a1-2-u03",
+    "level": "A1.2",
+    "ord": 3,
+    "title": "Berufe",
+    "can_do": [
+      "say what you do for a living",
+      "ask what someone does",
+      "name common jobs"
+    ],
+    "words": [
+      "kuehlschrank",
+      "herd",
+      "waschmaschine",
+      "handy",
+      "computer",
+      "fernseher",
+      "uhr",
+      "schluessel",
+      "tasche",
+      "brille"
+    ],
+    "grammar_id": null,
+    "scenario": {
+      "role": "someone at a party",
+      "goal": "exchange what you both do",
+      "opener": "Und was machst du beruflich?"
+    },
+    "dialogue": [
+      {
+        "them": "Und was machst du beruflich?",
+        "options": [
+          {
+            "say": "Ja, gern.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Entschuldigung, ich verstehe nicht.",
+            "ok": true,
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Alles klar. Danke!",
+        "options": [
+          {
+            "say": "Danke, tschüss!",
+            "ok": true,
+            "next": -1
+          }
+        ]
+      }
+    ],
+    "prereq": [
+      "a1-2-u02"
+    ]
+  },
+  {
+    "id": "a1-2-u04",
+    "level": "A1.2",
+    "ord": 4,
+    "title": "Der Körper",
+    "can_do": [
+      "name parts of the body",
+      "say where it hurts",
+      "understand a doctor's question"
+    ],
+    "words": [
+      "foto",
+      "papier",
+      "stift",
+      "zettel",
+      "fruehstueck",
+      "mittagessen",
+      "abendessen",
+      "suppe",
+      "salat",
+      "reis"
+    ],
+    "grammar_id": null,
+    "scenario": {
+      "role": "a doctor",
+      "goal": "explain what hurts",
+      "opener": "Guten Tag. Was fehlt Ihnen denn?"
+    },
+    "dialogue": [
+      {
+        "them": "Was fehlt Ihnen denn?",
+        "options": [
+          {
+            "say": "Mein Kopf tut weh.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Ich habe Kopf.",
+            "ok": false,
+            "why": "Say what hurts: Mein Kopf tut weh, or Ich habe Kopfschmerzen.",
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Seit wann denn?",
+        "options": [
+          {
+            "say": "Seit zwei Tagen.",
+            "ok": true,
+            "next": -1
+          }
+        ]
+      }
+    ],
+    "prereq": [
+      "a1-2-u03"
+    ]
+  },
+  {
+    "id": "a1-2-u05",
+    "level": "A1.2",
+    "ord": 5,
+    "title": "Beim Arzt",
+    "can_do": [
+      "make a doctor's appointment",
+      "say you feel ill",
+      "understand simple instructions"
+    ],
+    "words": [
+      "kartoffel",
+      "tomate",
+      "zwiebel",
+      "butter",
+      "zucker",
+      "salz",
+      "pfeffer",
+      "oel",
+      "kuchen",
+      "schokolade"
+    ],
+    "grammar_id": null,
+    "scenario": {
+      "role": "a doctor's receptionist",
+      "goal": "get an appointment this week",
+      "opener": "Praxis Dr. Klein, guten Tag."
+    },
+    "dialogue": [
+      {
+        "them": "Praxis Dr. Klein, guten Tag.",
+        "options": [
+          {
+            "say": "Ja, gern.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Entschuldigung, ich verstehe nicht.",
+            "ok": true,
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Alles klar. Danke!",
+        "options": [
+          {
+            "say": "Danke, tschüss!",
+            "ok": true,
+            "next": -1
+          }
+        ]
+      }
+    ],
+    "prereq": [
+      "a1-2-u04"
+    ]
+  },
+  {
+    "id": "a1-2-u06",
+    "level": "A1.2",
+    "ord": 6,
+    "title": "Meine Wohnung",
+    "can_do": [
+      "describe your home",
+      "name the rooms",
+      "say what's in a room"
+    ],
+    "words": [
+      "eis",
+      "saft",
+      "wein",
+      "flasche",
+      "glas",
+      "teller",
+      "messer",
+      "gabel",
+      "loeffel",
+      "tasse"
+    ],
+    "grammar_id": "g-modalverben",
+    "scenario": {
+      "role": "a friend who's never visited",
+      "goal": "describe your flat",
+      "opener": "Erzähl mal, wie wohnst du?"
+    },
+    "dialogue": [
+      {
+        "them": "Erzähl mal, wie wohnst du?",
+        "options": [
+          {
+            "say": "Ja, gern.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Entschuldigung, ich verstehe nicht.",
+            "ok": true,
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Alles klar. Danke!",
+        "options": [
+          {
+            "say": "Danke, tschüss!",
+            "ok": true,
+            "next": -1
+          }
+        ]
+      }
+    ],
+    "prereq": [
+      "a1-2-u05"
+    ]
+  },
+  {
+    "id": "a1-2-u07",
+    "level": "A1.2",
+    "ord": 7,
+    "title": "Möbel und Dinge",
+    "can_do": [
+      "name furniture and household things",
+      "say where something is",
+      "say something is broken"
+    ],
+    "words": [
+      "hungrig",
+      "durstig",
+      "lecker",
+      "suess",
+      "sauer",
+      "kleidung",
+      "hose",
+      "hemd",
+      "kleid",
+      "rock"
+    ],
+    "grammar_id": null,
+    "scenario": {
+      "role": "your landlord",
+      "goal": "report that something in the flat is broken",
+      "opener": "Sie wollten mich sprechen?"
+    },
+    "dialogue": [
+      {
+        "them": "Sie wollten mich sprechen?",
+        "options": [
+          {
+            "say": "Ja, gern.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Entschuldigung, ich verstehe nicht.",
+            "ok": true,
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Alles klar. Danke!",
+        "options": [
+          {
+            "say": "Danke, tschüss!",
+            "ok": true,
+            "next": -1
+          }
+        ]
+      }
+    ],
+    "prereq": [
+      "a1-2-u06"
+    ]
+  },
+  {
+    "id": "a1-2-u08",
+    "level": "A1.2",
+    "ord": 8,
+    "title": "Essen kaufen",
+    "can_do": [
+      "shop for food",
+      "say how much you need",
+      "ask where something is in a shop"
+    ],
+    "words": [
+      "jacke",
+      "mantel",
+      "pullover",
+      "schuh",
+      "socke",
+      "hut",
+      "tragen",
+      "anziehen",
+      "dorf",
+      "platz"
+    ],
+    "grammar_id": null,
+    "scenario": {
+      "role": "a supermarket employee",
+      "goal": "find three items",
+      "opener": "Suchen Sie etwas Bestimmtes?"
+    },
+    "dialogue": [
+      {
+        "them": "Suchen Sie etwas Bestimmtes?",
+        "options": [
+          {
+            "say": "Ja, gern.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Entschuldigung, ich verstehe nicht.",
+            "ok": true,
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Alles klar. Danke!",
+        "options": [
+          {
+            "say": "Danke, tschüss!",
+            "ok": true,
+            "next": -1
+          }
+        ]
+      }
+    ],
+    "prereq": [
+      "a1-2-u07"
+    ]
+  },
+  {
+    "id": "a1-2-u09",
+    "level": "A1.2",
+    "ord": 9,
+    "title": "Kochen und Essen",
+    "can_do": [
+      "say what you're cooking",
+      "say what you like and don't like",
+      "say you're hungry or full"
+    ],
+    "words": [
+      "park",
+      "markt",
+      "geschaeft",
+      "supermarkt",
+      "baeckerei",
+      "restaurant",
+      "hotel",
+      "kino",
+      "museum",
+      "kirche"
+    ],
+    "grammar_id": null,
+    "scenario": {
+      "role": "a friend cooking dinner for you",
+      "goal": "say what you like and thank them",
+      "opener": "Ich koche heute. Isst du alles?"
+    },
+    "dialogue": [
+      {
+        "them": "Ich koche heute. Isst du alles?",
+        "options": [
+          {
+            "say": "Ja, gern.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Entschuldigung, ich verstehe nicht.",
+            "ok": true,
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Alles klar. Danke!",
+        "options": [
+          {
+            "say": "Danke, tschüss!",
+            "ok": true,
+            "next": -1
+          }
+        ]
+      }
+    ],
+    "prereq": [
+      "a1-2-u08"
+    ]
+  },
+  {
+    "id": "a1-2-u10",
+    "level": "A1.2",
+    "ord": 10,
+    "title": "Kleidung",
+    "can_do": [
+      "name clothes",
+      "say what you're wearing",
+      "ask for a different size"
+    ],
+    "words": [
+      "post",
+      "bank",
+      "polizei",
+      "flughafen",
+      "haltestelle",
+      "bus",
+      "zug",
+      "fahrrad",
+      "taxi",
+      "ticket"
+    ],
+    "grammar_id": null,
+    "scenario": {
+      "role": "a shop assistant in a clothes shop",
+      "goal": "try something on and ask for another size",
+      "opener": "Kann ich Ihnen helfen?"
+    },
+    "dialogue": [
+      {
+        "them": "Kann ich Ihnen helfen?",
+        "options": [
+          {
+            "say": "Ja, ich suche eine Jacke.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Ja, ich suche einen Jacke.",
+            "ok": false,
+            "why": "Jacke is feminine → eine Jacke.",
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Welche Größe brauchen Sie?",
+        "options": [
+          {
+            "say": "Größe achtunddreißig, bitte.",
+            "ok": true,
+            "next": -1
+          }
+        ]
+      }
+    ],
+    "prereq": [
+      "a1-2-u09"
+    ]
+  },
+  {
+    "id": "a1-2-u11",
+    "level": "A1.2",
+    "ord": 11,
+    "title": "In der Stadt",
+    "can_do": [
+      "name places in a town",
+      "say where you're going",
+      "ask if something is nearby"
+    ],
+    "words": [
+      "koffer",
+      "urlaub",
+      "fliegen",
+      "laufen",
+      "ankommen",
+      "abfahren",
+      "minute",
+      "sekunde",
+      "uhrzeit",
+      "mittag"
+    ],
+    "grammar_id": "g-possessiv",
+    "scenario": {
+      "role": "a hotel receptionist",
+      "goal": "ask what's worth seeing nearby",
+      "opener": "Kann ich Ihnen etwas empfehlen?"
+    },
+    "dialogue": [
+      {
+        "them": "Kann ich Ihnen etwas empfehlen?",
+        "options": [
+          {
+            "say": "Ja, gern.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Entschuldigung, ich verstehe nicht.",
+            "ok": true,
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Alles klar. Danke!",
+        "options": [
+          {
+            "say": "Danke, tschüss!",
+            "ok": true,
+            "next": -1
+          }
+        ]
+      }
+    ],
+    "prereq": [
+      "a1-2-u10"
+    ]
+  },
+  {
+    "id": "a1-2-u12",
+    "level": "A1.2",
+    "ord": 12,
+    "title": "Verkehrsmittel",
+    "can_do": [
+      "say how you travel",
+      "buy a ticket",
+      "ask which platform"
+    ],
+    "words": [
+      "nachmittag",
+      "abend",
+      "nacht",
+      "wochenende",
+      "geburtstag",
+      "datum",
+      "fruehling",
+      "sommer",
+      "herbst",
+      "winter"
+    ],
+    "grammar_id": null,
+    "scenario": {
+      "role": "a ticket clerk at the station",
+      "goal": "buy a ticket to Hamburg",
+      "opener": "Wohin möchten Sie?"
+    },
+    "dialogue": [
+      {
+        "them": "Wohin möchten Sie?",
+        "options": [
+          {
+            "say": "Nach Hamburg, bitte.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Zu Hamburg, bitte.",
+            "ok": false,
+            "why": "Cities take nach, not zu.",
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Einfach oder hin und zurück?",
+        "options": [
+          {
+            "say": "Hin und zurück, bitte.",
+            "ok": true,
+            "next": -1
+          }
+        ]
+      }
+    ],
+    "prereq": [
+      "a1-2-u11"
+    ]
+  },
+  {
+    "id": "a1-2-u13",
+    "level": "A1.2",
+    "ord": 13,
+    "title": "Reisen",
+    "can_do": [
+      "talk about a trip",
+      "say where you've been",
+      "pack and describe your luggage"
+    ],
+    "words": [
+      "frueh",
+      "spaet",
+      "lange",
+      "kurz",
+      "vorgestern",
+      "uebermorgen",
+      "sonne",
+      "regen",
+      "schnee",
+      "wind"
+    ],
+    "grammar_id": null,
+    "scenario": {
+      "role": "a friend back from holiday",
+      "goal": "ask about their trip and tell them about yours",
+      "opener": "Ich war letzte Woche in Wien!"
+    },
+    "dialogue": [
+      {
+        "them": "Ich war letzte Woche in Wien!",
+        "options": [
+          {
+            "say": "Ja, gern.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Entschuldigung, ich verstehe nicht.",
+            "ok": true,
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Alles klar. Danke!",
+        "options": [
+          {
+            "say": "Danke, tschüss!",
+            "ok": true,
+            "next": -1
+          }
+        ]
+      }
+    ],
+    "prereq": [
+      "a1-2-u12"
+    ]
+  },
+  {
+    "id": "a1-2-u14",
+    "level": "A1.2",
+    "ord": 14,
+    "title": "Die Uhrzeit",
+    "can_do": [
+      "tell the time",
+      "say when something starts",
+      "arrange a precise time"
+    ],
+    "words": [
+      "wolke",
+      "himmel",
+      "baum",
+      "blume",
+      "meer",
+      "berg",
+      "tier",
+      "hund",
+      "katze",
+      "vogel"
+    ],
+    "grammar_id": null,
+    "scenario": {
+      "role": "a friend arranging the cinema",
+      "goal": "agree on a film and a time",
+      "opener": "Wann fängt der Film an?"
+    },
+    "dialogue": [
+      {
+        "them": "Wann fängt der Film an?",
+        "options": [
+          {
+            "say": "Ja, gern.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Entschuldigung, ich verstehe nicht.",
+            "ok": true,
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Alles klar. Danke!",
+        "options": [
+          {
+            "say": "Danke, tschüss!",
+            "ok": true,
+            "next": -1
+          }
+        ]
+      }
+    ],
+    "prereq": [
+      "a1-2-u13"
+    ]
+  },
+  {
+    "id": "a1-2-u15",
+    "level": "A1.2",
+    "ord": 15,
+    "title": "Jahreszeiten",
+    "can_do": [
+      "name the seasons and months",
+      "say when your birthday is",
+      "say what you do in each season"
+    ],
+    "words": [
+      "warm",
+      "kalt",
+      "heiss",
+      "nass",
+      "trocken",
+      "sagen",
+      "fragen",
+      "schauen",
+      "ueben",
+      "spielen"
+    ],
+    "grammar_id": null,
+    "scenario": {
+      "role": "a colleague making small talk",
+      "goal": "talk about your favourite season",
+      "opener": "Was ist deine Lieblingsjahreszeit?"
+    },
+    "dialogue": [
+      {
+        "them": "Was ist deine Lieblingsjahreszeit?",
+        "options": [
+          {
+            "say": "Ja, gern.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Entschuldigung, ich verstehe nicht.",
+            "ok": true,
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Alles klar. Danke!",
+        "options": [
+          {
+            "say": "Danke, tschüss!",
+            "ok": true,
+            "next": -1
+          }
+        ]
+      }
+    ],
+    "prereq": [
+      "a1-2-u14"
+    ]
+  },
+  {
+    "id": "a1-2-u16",
+    "level": "A1.2",
+    "ord": 16,
+    "title": "Wetter",
+    "can_do": [
+      "describe the weather",
+      "understand a forecast",
+      "say what you'll do if it rains"
+    ],
+    "words": [
+      "singen",
+      "tanzen",
+      "kochen",
+      "backen",
+      "putzen",
+      "waschen",
+      "verkaufen",
+      "holen",
+      "oeffnen",
+      "schliessen"
+    ],
+    "grammar_id": "g-plural",
+    "scenario": {
+      "role": "a neighbour outside",
+      "goal": "talk about today's weather",
+      "opener": "Schönes Wetter heute, oder?"
+    },
+    "dialogue": [
+      {
+        "them": "Schönes Wetter heute, oder?",
+        "options": [
+          {
+            "say": "Ja, gern.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Entschuldigung, ich verstehe nicht.",
+            "ok": true,
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Alles klar. Danke!",
+        "options": [
+          {
+            "say": "Danke, tschüss!",
+            "ok": true,
+            "next": -1
+          }
+        ]
+      }
+    ],
+    "prereq": [
+      "a1-2-u15"
+    ]
+  },
+  {
+    "id": "a1-2-u17",
+    "level": "A1.2",
+    "ord": 17,
+    "title": "Natur und Tiere",
+    "can_do": [
+      "name common animals",
+      "talk about nature",
+      "say whether you have a pet"
+    ],
+    "words": [
+      "anfangen",
+      "aufhoeren",
+      "danken",
+      "lieben",
+      "moegen",
+      "wollen",
+      "koennen",
+      "muessen",
+      "duerfen",
+      "sollen"
+    ],
+    "grammar_id": null,
+    "scenario": {
+      "role": "a child at the park",
+      "goal": "talk about animals",
+      "opener": "Hast du ein Haustier?"
+    },
+    "dialogue": [
+      {
+        "them": "Hast du ein Haustier?",
+        "options": [
+          {
+            "say": "Ja, gern.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Entschuldigung, ich verstehe nicht.",
+            "ok": true,
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Alles klar. Danke!",
+        "options": [
+          {
+            "say": "Danke, tschüss!",
+            "ok": true,
+            "next": -1
+          }
+        ]
+      }
+    ],
+    "prereq": [
+      "a1-2-u16"
+    ]
+  },
+  {
+    "id": "a1-2-u18",
+    "level": "A1.2",
+    "ord": 18,
+    "title": "Freizeit",
+    "can_do": [
+      "say what you do in your free time",
+      "suggest an activity",
+      "say what you can and can't do"
+    ],
+    "words": [
+      "schlafen",
+      "aufstehen",
+      "sitzen",
+      "stehen",
+      "telefonieren",
+      "schicken",
+      "vergessen",
+      "erinnern",
+      "zeigen",
+      "enden"
+    ],
+    "grammar_id": null,
+    "scenario": {
+      "role": "a friend planning the weekend",
+      "goal": "agree on something to do",
+      "opener": "Was machen wir am Wochenende?"
+    },
+    "dialogue": [
+      {
+        "them": "Was machen wir am Wochenende?",
+        "options": [
+          {
+            "say": "Ja, gern.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Entschuldigung, ich verstehe nicht.",
+            "ok": true,
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Alles klar. Danke!",
+        "options": [
+          {
+            "say": "Danke, tschüss!",
+            "ok": true,
+            "next": -1
+          }
+        ]
+      }
+    ],
+    "prereq": [
+      "a1-2-u17"
+    ]
+  },
+  {
+    "id": "a1-2-u19",
+    "level": "A1.2",
+    "ord": 19,
+    "title": "Wo und wohin",
+    "can_do": [
+      "say where things are",
+      "say where you're going",
+      "use left, right, above, below"
+    ],
+    "words": [
+      "hier",
+      "dort",
+      "oben",
+      "unten",
+      "links",
+      "rechts",
+      "vorne",
+      "hinten",
+      "neben",
+      "zwischen"
+    ],
+    "grammar_id": null,
+    "scenario": {
+      "role": "someone helping you move furniture",
+      "goal": "tell them where to put things",
+      "opener": "Wo soll der Tisch hin?"
+    },
+    "dialogue": [
+      {
+        "them": "Wo soll der Tisch hin?",
+        "options": [
+          {
+            "say": "Ja, gern.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Entschuldigung, ich verstehe nicht.",
+            "ok": true,
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Alles klar. Danke!",
+        "options": [
+          {
+            "say": "Danke, tschüss!",
+            "ok": true,
+            "next": -1
+          }
+        ]
+      }
+    ],
+    "prereq": [
+      "a1-2-u18"
+    ]
+  },
+  {
+    "id": "a1-2-u20",
+    "level": "A1.2",
+    "ord": 20,
+    "title": "A1 zusammen",
+    "can_do": [
+      "hold a simple conversation about yourself",
+      "handle a shop or a doctor",
+      "ask for help when stuck"
+    ],
+    "words": [
+      "ueber",
+      "unter",
+      "vor",
+      "hinter",
+      "nach",
+      "seit",
+      "bis",
+      "von",
+      "gegen",
+      "schon"
+    ],
+    "grammar_id": null,
+    "scenario": {
+      "role": "a friendly stranger on a long train ride",
+      "goal": "hold a five-minute conversation",
+      "opener": "Ist der Platz noch frei?"
+    },
+    "dialogue": [
+      {
+        "them": "Ist der Platz noch frei?",
+        "options": [
+          {
+            "say": "Ja, gern.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Entschuldigung, ich verstehe nicht.",
+            "ok": true,
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Alles klar. Danke!",
+        "options": [
+          {
+            "say": "Danke, tschüss!",
+            "ok": true,
+            "next": -1
+          }
+        ]
+      }
+    ],
+    "prereq": [
+      "a1-2-u19"
+    ]
+  },
+  {
+    "id": "a2-1-u01",
+    "level": "A2.1",
+    "ord": 1,
+    "title": "Gestern",
+    "can_do": [
+      "say what you did yesterday",
+      "form the Perfekt with haben",
+      "ask what someone did"
+    ],
+    "words": [
+      "noch",
+      "erst",
+      "wieder",
+      "sicher",
+      "natuerlich",
+      "leider",
+      "gern",
+      "zusammen",
+      "allein",
+      "alle"
+    ],
+    "grammar_id": "g-perfekt",
+    "scenario": {
+      "role": "a colleague on Monday morning",
+      "goal": "tell them about your weekend",
+      "opener": "Und, was hast du am Wochenende gemacht?"
+    },
+    "dialogue": [
+      {
+        "them": "Was hast du am Wochenende gemacht?",
+        "options": [
+          {
+            "say": "Ich habe viel gearbeitet.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Ich habe viel arbeiten.",
+            "ok": false,
+            "why": "Perfekt needs the participle: gearbeitet.",
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Oh, das klingt anstrengend.",
+        "options": [
+          {
+            "say": "Ja, aber jetzt geht es.",
+            "ok": true,
+            "next": -1
+          }
+        ]
+      }
+    ],
+    "prereq": [
+      "a1-2-u20"
+    ]
+  },
+  {
+    "id": "a2-1-u02",
+    "level": "A2.1",
+    "ord": 2,
+    "title": "Unterwegs gewesen",
+    "can_do": [
+      "use sein in the Perfekt",
+      "say where you went",
+      "tell a short travel story"
+    ],
+    "words": [
+      "viel",
+      "wenig",
+      "mehr",
+      "genug",
+      "etwas",
+      "nichts",
+      "jemand",
+      "niemand",
+      "antwort",
+      "arzt"
+    ],
+    "grammar_id": null,
+    "scenario": {
+      "role": "a friend who missed you",
+      "goal": "explain where you were last week",
+      "opener": "Wo warst du denn letzte Woche?"
+    },
+    "dialogue": [
+      {
+        "them": "Wo warst du denn letzte Woche?",
+        "options": [
+          {
+            "say": "Ja, gern.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Entschuldigung, ich verstehe nicht.",
+            "ok": true,
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Alles klar. Danke!",
+        "options": [
+          {
+            "say": "Danke, tschüss!",
+            "ok": true,
+            "next": -1
+          }
+        ]
+      }
+    ],
+    "prereq": [
+      "a2-1-u01"
+    ]
+  },
+  {
+    "id": "a2-1-u03",
+    "level": "A2.1",
+    "ord": 3,
+    "title": "Geben und bekommen",
+    "can_do": [
+      "say who you gave something to",
+      "use the dative",
+      "ask for help"
+    ],
+    "words": [
+      "bahn",
+      "bild",
+      "brief",
+      "ende",
+      "frage",
+      "geschichte",
+      "gespraech",
+      "gesundheit",
+      "meinung",
+      "mensch"
+    ],
+    "grammar_id": null,
+    "scenario": {
+      "role": "a colleague you owe a favour",
+      "goal": "ask them for help with something",
+      "opener": "Du siehst gestresst aus — brauchst du was?"
+    },
+    "dialogue": [
+      {
+        "them": "Du siehst gestresst aus — brauchst du was?",
+        "options": [
+          {
+            "say": "Ja, gern.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Entschuldigung, ich verstehe nicht.",
+            "ok": true,
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Alles klar. Danke!",
+        "options": [
+          {
+            "say": "Danke, tschüss!",
+            "ok": true,
+            "next": -1
+          }
+        ]
+      }
+    ],
+    "prereq": [
+      "a2-1-u02"
+    ]
+  },
+  {
+    "id": "a2-1-u04",
+    "level": "A2.1",
+    "ord": 4,
+    "title": "Termine machen",
+    "can_do": [
+      "arrange an appointment on the phone",
+      "suggest and change a time",
+      "confirm details"
+    ],
+    "words": [
+      "moeglichkeit",
+      "nachricht",
+      "problem",
+      "zeitung",
+      "zukunft",
+      "bekommen",
+      "bestellen",
+      "kennen",
+      "ausflug",
+      "beispiel"
+    ],
+    "grammar_id": "g-dativ",
+    "scenario": {
+      "role": "a receptionist at an office",
+      "goal": "book an appointment and confirm it",
+      "opener": "Guten Tag, was kann ich für Sie tun?"
+    },
+    "dialogue": [
+      {
+        "them": "Guten Tag, was kann ich für Sie tun?",
+        "options": [
+          {
+            "say": "Ja, gern.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Entschuldigung, ich verstehe nicht.",
+            "ok": true,
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Alles klar. Danke!",
+        "options": [
+          {
+            "say": "Danke, tschüss!",
+            "ok": true,
+            "next": -1
+          }
+        ]
+      }
+    ],
+    "prereq": [
+      "a2-1-u03"
+    ]
+  },
+  {
+    "id": "a2-1-u05",
+    "level": "A2.1",
+    "ord": 5,
+    "title": "Zu Hause und unterwegs",
+    "can_do": [
+      "say whether you're going somewhere or already there",
+      "use two-way prepositions",
+      "describe a route"
+    ],
+    "words": [
+      "bereich",
+      "beruf",
+      "besuch",
+      "betrieb",
+      "bewegung",
+      "beziehung",
+      "bibliothek",
+      "buehne",
+      "ecke",
+      "eingang"
+    ],
+    "grammar_id": null,
+    "scenario": {
+      "role": "a friend you're meeting in town",
+      "goal": "explain on the phone where you are and where you're going",
+      "opener": "Wo bist du gerade?"
+    },
+    "dialogue": [
+      {
+        "them": "Wo bist du gerade?",
+        "options": [
+          {
+            "say": "Ja, gern.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Entschuldigung, ich verstehe nicht.",
+            "ok": true,
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Alles klar. Danke!",
+        "options": [
+          {
+            "say": "Danke, tschüss!",
+            "ok": true,
+            "next": -1
+          }
+        ]
+      }
+    ],
+    "prereq": [
+      "a2-1-u04"
+    ]
+  },
+  {
+    "id": "a2-1-u06",
+    "level": "A2.1",
+    "ord": 6,
+    "title": "Vergleichen",
+    "can_do": [
+      "compare two things",
+      "say which you prefer",
+      "use als and wie correctly"
+    ],
+    "words": [
+      "ausgang",
+      "einladung",
+      "eintritt",
+      "entscheidung",
+      "erfahrung",
+      "erfolg",
+      "erlebnis",
+      "fahrt",
+      "feier",
+      "ferien"
+    ],
+    "grammar_id": null,
+    "scenario": {
+      "role": "a friend choosing between two flats",
+      "goal": "compare them and give advice",
+      "opener": "Welche Wohnung findest du besser?"
+    },
+    "dialogue": [
+      {
+        "them": "Welche Wohnung findest du besser?",
+        "options": [
+          {
+            "say": "Die erste ist größer als die zweite.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Die erste ist größer wie die zweite.",
+            "ok": false,
+            "why": "Difference takes als, not wie.",
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Stimmt. Aber sie ist auch teurer.",
+        "options": [
+          {
+            "say": "Ja, das ist ein Nachteil.",
+            "ok": true,
+            "next": -1
+          }
+        ]
+      }
+    ],
+    "prereq": [
+      "a2-1-u05"
+    ]
+  },
+  {
+    "id": "a2-1-u07",
+    "level": "A2.1",
+    "ord": 7,
+    "title": "Anweisungen geben",
+    "can_do": [
+      "give an instruction politely",
+      "use the imperative",
+      "understand a recipe or sign"
+    ],
+    "words": [
+      "freizeit",
+      "gebaeude",
+      "gefahr",
+      "gegend",
+      "gruppe",
+      "hilfe",
+      "hobby",
+      "kenntnis",
+      "kleinigkeit",
+      "kunde"
+    ],
+    "grammar_id": "g-wechselpraep",
+    "scenario": {
+      "role": "someone lost in your building",
+      "goal": "direct them to the right floor",
+      "opener": "Entschuldigung, wo ist Büro 204?"
+    },
+    "dialogue": [
+      {
+        "them": "Entschuldigung, wo ist Büro 204?",
+        "options": [
+          {
+            "say": "Ja, gern.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Entschuldigung, ich verstehe nicht.",
+            "ok": true,
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Alles klar. Danke!",
+        "options": [
+          {
+            "say": "Danke, tschüss!",
+            "ok": true,
+            "next": -1
+          }
+        ]
+      }
+    ],
+    "prereq": [
+      "a2-1-u06"
+    ]
+  },
+  {
+    "id": "a2-1-u08",
+    "level": "A2.1",
+    "ord": 8,
+    "title": "Trennbare Verben",
+    "can_do": [
+      "use separable verbs correctly",
+      "describe your morning routine",
+      "say when things start and end"
+    ],
+    "words": [
+      "laerm",
+      "leistung",
+      "liebe",
+      "lust",
+      "mannschaft",
+      "mitte",
+      "muehe",
+      "naehe",
+      "not",
+      "ordnung"
+    ],
+    "grammar_id": null,
+    "scenario": {
+      "role": "a flatmate",
+      "goal": "explain your daily schedule so you don't clash",
+      "opener": "Wann stehst du normalerweise auf?"
+    },
+    "dialogue": [
+      {
+        "them": "Wann stehst du normalerweise auf?",
+        "options": [
+          {
+            "say": "Ja, gern.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Entschuldigung, ich verstehe nicht.",
+            "ok": true,
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Alles klar. Danke!",
+        "options": [
+          {
+            "say": "Danke, tschüss!",
+            "ok": true,
+            "next": -1
+          }
+        ]
+      }
+    ],
+    "prereq": [
+      "a2-1-u07"
+    ]
+  },
+  {
+    "id": "a2-1-u09",
+    "level": "A2.1",
+    "ord": 9,
+    "title": "Im Restaurant",
+    "can_do": [
+      "order a full meal",
+      "ask about a dish",
+      "ask for the bill and tip"
+    ],
+    "words": [
+      "ort",
+      "pause",
+      "plan",
+      "punkt",
+      "rat",
+      "raum",
+      "rede",
+      "regel",
+      "ruhe",
+      "sache"
+    ],
+    "grammar_id": null,
+    "scenario": {
+      "role": "a waiter in a busy restaurant",
+      "goal": "order, ask a question, and pay",
+      "opener": "Haben Sie schon gewählt?"
+    },
+    "dialogue": [
+      {
+        "them": "Haben Sie schon gewählt?",
+        "options": [
+          {
+            "say": "Ja, ich nehme die Suppe.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Ja, ich nehme der Suppe.",
+            "ok": false,
+            "why": "Object → accusative. Suppe is feminine, so die stays die.",
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Und zu trinken?",
+        "options": [
+          {
+            "say": "Ein Wasser, bitte.",
+            "ok": true,
+            "next": 2
+          }
+        ]
+      },
+      {
+        "them": "Kommt sofort.",
+        "options": [
+          {
+            "say": "Danke. Die Rechnung später, bitte.",
+            "ok": true,
+            "next": -1
+          }
+        ]
+      }
+    ],
+    "prereq": [
+      "a2-1-u08"
+    ]
+  },
+  {
+    "id": "a2-1-u10",
+    "level": "A2.1",
+    "ord": 10,
+    "title": "Einkaufen und Geld",
+    "can_do": [
+      "compare prices",
+      "ask for a discount",
+      "return something"
+    ],
+    "words": [
+      "schluss",
+      "schritt",
+      "seite",
+      "sinn",
+      "sorge",
+      "spiel",
+      "sprache",
+      "stelle",
+      "stimme",
+      "stueck"
+    ],
+    "grammar_id": "g-komparativ",
+    "scenario": {
+      "role": "a shop assistant",
+      "goal": "return an item and explain why",
+      "opener": "Was kann ich für Sie tun?"
+    },
+    "dialogue": [
+      {
+        "them": "Was kann ich für Sie tun?",
+        "options": [
+          {
+            "say": "Ja, gern.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Entschuldigung, ich verstehe nicht.",
+            "ok": true,
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Alles klar. Danke!",
+        "options": [
+          {
+            "say": "Danke, tschüss!",
+            "ok": true,
+            "next": -1
+          }
+        ]
+      }
+    ],
+    "prereq": [
+      "a2-1-u09"
+    ]
+  },
+  {
+    "id": "a2-1-u11",
+    "level": "A2.1",
+    "ord": 11,
+    "title": "Wohnung suchen",
+    "can_do": [
+      "describe what you're looking for",
+      "ask about rent and rooms",
+      "arrange a viewing"
+    ],
+    "words": [
+      "teil",
+      "tipp",
+      "traum",
+      "uebung",
+      "umgebung",
+      "ursache",
+      "verkehr",
+      "versuch",
+      "vorschlag",
+      "wahl"
+    ],
+    "grammar_id": null,
+    "scenario": {
+      "role": "a landlord on the phone",
+      "goal": "ask about the flat and arrange a viewing",
+      "opener": "Sie haben wegen der Wohnung angerufen?"
+    },
+    "dialogue": [
+      {
+        "them": "Sie haben wegen der Wohnung angerufen?",
+        "options": [
+          {
+            "say": "Ja, gern.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Entschuldigung, ich verstehe nicht.",
+            "ok": true,
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Alles klar. Danke!",
+        "options": [
+          {
+            "say": "Danke, tschüss!",
+            "ok": true,
+            "next": -1
+          }
+        ]
+      }
+    ],
+    "prereq": [
+      "a2-1-u10"
+    ]
+  },
+  {
+    "id": "a2-1-u12",
+    "level": "A2.1",
+    "ord": 12,
+    "title": "Arbeit und Studium",
+    "can_do": [
+      "talk about your work or studies",
+      "say what you did before",
+      "explain why you're here"
+    ],
+    "words": [
+      "wechsel",
+      "weise",
+      "welt",
+      "werkstatt",
+      "wert",
+      "wille",
+      "wunsch",
+      "zahl",
+      "zeichen",
+      "ziel"
+    ],
+    "grammar_id": null,
+    "scenario": {
+      "role": "someone at a language-school welcome evening",
+      "goal": "explain your background",
+      "opener": "Und was führt dich nach Deutschland?"
+    },
+    "dialogue": [
+      {
+        "them": "Und was führt dich nach Deutschland?",
+        "options": [
+          {
+            "say": "Ja, gern.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Entschuldigung, ich verstehe nicht.",
+            "ok": true,
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Alles klar. Danke!",
+        "options": [
+          {
+            "say": "Danke, tschüss!",
+            "ok": true,
+            "next": -1
+          }
+        ]
+      }
+    ],
+    "prereq": [
+      "a2-1-u11"
+    ]
+  },
+  {
+    "id": "a2-1-u13",
+    "level": "A2.1",
+    "ord": 13,
+    "title": "Telefonieren",
+    "can_do": [
+      "make a phone call",
+      "ask for someone",
+      "leave a message"
+    ],
+    "words": [
+      "zustand",
+      "zweck",
+      "achten",
+      "aendern",
+      "anbieten",
+      "aufmachen",
+      "aufpassen",
+      "ausmachen",
+      "aussehen",
+      "bedeuten"
+    ],
+    "grammar_id": "g-imperativ",
+    "scenario": {
+      "role": "an office receptionist on the phone",
+      "goal": "reach a colleague or leave a message",
+      "opener": "Firma Meyer, guten Tag."
+    },
+    "dialogue": [
+      {
+        "them": "Firma Meyer, guten Tag.",
+        "options": [
+          {
+            "say": "Ja, gern.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Entschuldigung, ich verstehe nicht.",
+            "ok": true,
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Alles klar. Danke!",
+        "options": [
+          {
+            "say": "Danke, tschüss!",
+            "ok": true,
+            "next": -1
+          }
+        ]
+      }
+    ],
+    "prereq": [
+      "a2-1-u12"
+    ]
+  },
+  {
+    "id": "a2-1-u14",
+    "level": "A2.1",
+    "ord": 14,
+    "title": "Post und Behörden",
+    "can_do": [
+      "send a parcel",
+      "fill in a simple form",
+      "ask what documents you need"
+    ],
+    "words": [
+      "beeilen",
+      "behalten",
+      "bemerken",
+      "benutzen",
+      "beschreiben",
+      "besitzen",
+      "bestimmen",
+      "beweisen",
+      "bewegen",
+      "bieten"
+    ],
+    "grammar_id": null,
+    "scenario": {
+      "role": "a clerk at the post office",
+      "goal": "send a parcel abroad",
+      "opener": "Der Nächste, bitte!"
+    },
+    "dialogue": [
+      {
+        "them": "Der Nächste, bitte!",
+        "options": [
+          {
+            "say": "Ja, gern.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Entschuldigung, ich verstehe nicht.",
+            "ok": true,
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Alles klar. Danke!",
+        "options": [
+          {
+            "say": "Danke, tschüss!",
+            "ok": true,
+            "next": -1
+          }
+        ]
+      }
+    ],
+    "prereq": [
+      "a2-1-u13"
+    ]
+  },
+  {
+    "id": "a2-1-u15",
+    "level": "A2.1",
+    "ord": 15,
+    "title": "Gesundheit",
+    "can_do": [
+      "describe symptoms in detail",
+      "understand advice",
+      "collect a prescription"
+    ],
+    "words": [
+      "bitten",
+      "dauern",
+      "druecken",
+      "eignen",
+      "einladen",
+      "entdecken",
+      "entwickeln",
+      "erfahren",
+      "erhalten",
+      "erkennen"
+    ],
+    "grammar_id": null,
+    "scenario": {
+      "role": "a pharmacist",
+      "goal": "describe a problem and get something for it",
+      "opener": "Guten Tag, womit kann ich helfen?"
+    },
+    "dialogue": [
+      {
+        "them": "Guten Tag, womit kann ich helfen?",
+        "options": [
+          {
+            "say": "Ja, gern.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Entschuldigung, ich verstehe nicht.",
+            "ok": true,
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Alles klar. Danke!",
+        "options": [
+          {
+            "say": "Danke, tschüss!",
+            "ok": true,
+            "next": -1
+          }
+        ]
+      }
+    ],
+    "prereq": [
+      "a2-1-u14"
+    ]
+  },
+  {
+    "id": "a2-1-u16",
+    "level": "A2.1",
+    "ord": 16,
+    "title": "Feste und Feiern",
+    "can_do": [
+      "invite someone",
+      "accept or decline",
+      "congratulate someone"
+    ],
+    "words": [
+      "erlauben",
+      "erreichen",
+      "erwarten",
+      "fallen",
+      "fehlen",
+      "feiern",
+      "folgen",
+      "freuen",
+      "fuehlen",
+      "fuehren"
+    ],
+    "grammar_id": "g-trennbare",
+    "scenario": {
+      "role": "a friend inviting you to a birthday",
+      "goal": "accept and ask the details",
+      "opener": "Ich feiere am Samstag — kommst du?"
+    },
+    "dialogue": [
+      {
+        "them": "Ich feiere am Samstag — kommst du?",
+        "options": [
+          {
+            "say": "Ja, gern.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Entschuldigung, ich verstehe nicht.",
+            "ok": true,
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Alles klar. Danke!",
+        "options": [
+          {
+            "say": "Danke, tschüss!",
+            "ok": true,
+            "next": -1
+          }
+        ]
+      }
+    ],
+    "prereq": [
+      "a2-1-u15"
+    ]
+  },
+  {
+    "id": "a2-1-u17",
+    "level": "A2.1",
+    "ord": 17,
+    "title": "Sport und Hobbys",
+    "can_do": [
+      "talk about a hobby",
+      "say how often you do it",
+      "invite someone to join"
+    ],
+    "words": [
+      "gefallen",
+      "gehoeren",
+      "gelingen",
+      "geniessen",
+      "geschehen",
+      "gewinnen",
+      "halten",
+      "haengen",
+      "heben",
+      "hoffen"
+    ],
+    "grammar_id": null,
+    "scenario": {
+      "role": "someone at a sports club",
+      "goal": "ask about joining",
+      "opener": "Warst du schon mal hier?"
+    },
+    "dialogue": [
+      {
+        "them": "Warst du schon mal hier?",
+        "options": [
+          {
+            "say": "Ja, gern.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Entschuldigung, ich verstehe nicht.",
+            "ok": true,
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Alles klar. Danke!",
+        "options": [
+          {
+            "say": "Danke, tschüss!",
+            "ok": true,
+            "next": -1
+          }
+        ]
+      }
+    ],
+    "prereq": [
+      "a2-1-u16"
+    ]
+  },
+  {
+    "id": "a2-1-u18",
+    "level": "A2.1",
+    "ord": 18,
+    "title": "Medien",
+    "can_do": [
+      "say what you read and watch",
+      "recommend something",
+      "give a short opinion"
+    ],
+    "words": [
+      "interessieren",
+      "klingen",
+      "lachen",
+      "lassen",
+      "legen",
+      "merken",
+      "messen",
+      "mitbringen",
+      "nutzen",
+      "passen"
+    ],
+    "grammar_id": null,
+    "scenario": {
+      "role": "a friend looking for something to watch",
+      "goal": "recommend a film and say why",
+      "opener": "Kennst du einen guten Film?"
+    },
+    "dialogue": [
+      {
+        "them": "Kennst du einen guten Film?",
+        "options": [
+          {
+            "say": "Ja, gern.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Entschuldigung, ich verstehe nicht.",
+            "ok": true,
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Alles klar. Danke!",
+        "options": [
+          {
+            "say": "Danke, tschüss!",
+            "ok": true,
+            "next": -1
+          }
+        ]
+      }
+    ],
+    "prereq": [
+      "a2-1-u17"
+    ]
+  },
+  {
+    "id": "a2-1-u19",
+    "level": "A2.1",
+    "ord": 19,
+    "title": "Probleme lösen",
+    "can_do": [
+      "explain that something went wrong",
+      "ask for a solution",
+      "complain politely"
+    ],
+    "words": [
+      "passieren",
+      "pruefen",
+      "raten",
+      "rechnen",
+      "reden",
+      "retten",
+      "riechen",
+      "rufen",
+      "scheinen",
+      "schenken"
+    ],
+    "grammar_id": null,
+    "scenario": {
+      "role": "a hotel receptionist",
+      "goal": "report a problem with your room",
+      "opener": "Ist alles in Ordnung mit dem Zimmer?"
+    },
+    "dialogue": [
+      {
+        "them": "Ist alles in Ordnung mit dem Zimmer?",
+        "options": [
+          {
+            "say": "Ja, gern.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Entschuldigung, ich verstehe nicht.",
+            "ok": true,
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Alles klar. Danke!",
+        "options": [
+          {
+            "say": "Danke, tschüss!",
+            "ok": true,
+            "next": -1
+          }
+        ]
+      }
+    ],
+    "prereq": [
+      "a2-1-u18"
+    ]
+  },
+  {
+    "id": "a2-1-u20",
+    "level": "A2.1",
+    "ord": 20,
+    "title": "A2.1 zusammen",
+    "can_do": [
+      "talk about the past",
+      "handle an everyday problem",
+      "compare and choose"
+    ],
+    "words": [
+      "schneiden",
+      "setzen",
+      "sorgen",
+      "sparen",
+      "spueren",
+      "stellen",
+      "sterben",
+      "stoeren",
+      "traeumen",
+      "trennen"
+    ],
+    "grammar_id": null,
+    "scenario": {
+      "role": "an old friend you haven't seen in a year",
+      "goal": "catch up on what's happened",
+      "opener": "Erzähl mal, was ist alles passiert?"
+    },
+    "dialogue": [
+      {
+        "them": "Erzähl mal, was ist alles passiert?",
+        "options": [
+          {
+            "say": "Ja, gern.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Entschuldigung, ich verstehe nicht.",
+            "ok": true,
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Alles klar. Danke!",
+        "options": [
+          {
+            "say": "Danke, tschüss!",
+            "ok": true,
+            "next": -1
+          }
+        ]
+      }
+    ],
+    "prereq": [
+      "a2-1-u19"
+    ]
+  },
+  {
+    "id": "a2-2-u01",
+    "level": "A2.2",
+    "ord": 1,
+    "title": "Warum? Weil…",
+    "can_do": [
+      "give a reason with weil",
+      "put the verb at the end",
+      "explain a decision"
+    ],
+    "words": [
+      "ueberlegen",
+      "unterscheiden",
+      "verbinden",
+      "verbringen",
+      "vergleichen",
+      "verlassen",
+      "verlieren",
+      "vermeiden",
+      "verpassen",
+      "versprechen"
+    ],
+    "grammar_id": "g-nebensatz",
+    "scenario": {
+      "role": "a friend who's surprised by your choice",
+      "goal": "explain why you decided something",
+      "opener": "Warum machst du das eigentlich?"
+    },
+    "dialogue": [
+      {
+        "them": "Warum lernst du Deutsch?",
+        "options": [
+          {
+            "say": "Weil ich in Deutschland arbeiten will.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Weil ich will in Deutschland arbeiten.",
+            "ok": false,
+            "why": "After weil the verb goes to the very end.",
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Ah, verstehe. Viel Erfolg!",
+        "options": [
+          {
+            "say": "Danke!",
+            "ok": true,
+            "next": -1
+          }
+        ]
+      }
+    ],
+    "prereq": [
+      "a2-1-u20"
+    ]
+  },
+  {
+    "id": "a2-2-u02",
+    "level": "A2.2",
+    "ord": 2,
+    "title": "Ich freue mich",
+    "can_do": [
+      "use reflexive verbs",
+      "say how you feel about something",
+      "look forward to something"
+    ],
+    "words": [
+      "versuchen",
+      "verwenden",
+      "vorbereiten",
+      "vorschlagen",
+      "wachsen",
+      "waehlen",
+      "wechseln",
+      "weinen",
+      "werfen",
+      "wiederholen"
+    ],
+    "grammar_id": null,
+    "scenario": {
+      "role": "a friend before a big trip",
+      "goal": "say what you're looking forward to",
+      "opener": "Freust du dich schon?"
+    },
+    "dialogue": [
+      {
+        "them": "Freust du dich schon?",
+        "options": [
+          {
+            "say": "Ja, gern.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Entschuldigung, ich verstehe nicht.",
+            "ok": true,
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Alles klar. Danke!",
+        "options": [
+          {
+            "say": "Danke, tschüss!",
+            "ok": true,
+            "next": -1
+          }
+        ]
+      }
+    ],
+    "prereq": [
+      "a2-2-u01"
+    ]
+  },
+  {
+    "id": "a2-2-u03",
+    "level": "A2.2",
+    "ord": 3,
+    "title": "Gefühle",
+    "can_do": [
+      "name feelings",
+      "say why you feel that way",
+      "react to someone else's news"
+    ],
+    "words": [
+      "wundern",
+      "zahlen",
+      "ziehen",
+      "zuhoeren",
+      "angenehm",
+      "bequem",
+      "beruehmt",
+      "bereit",
+      "bekannt",
+      "deutlich"
+    ],
+    "grammar_id": null,
+    "scenario": {
+      "role": "a friend having a hard week",
+      "goal": "listen and respond kindly",
+      "opener": "Ehrlich gesagt geht's mir gerade nicht so gut."
+    },
+    "dialogue": [
+      {
+        "them": "Ehrlich gesagt geht's mir gerade nicht so gut.",
+        "options": [
+          {
+            "say": "Ja, gern.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Entschuldigung, ich verstehe nicht.",
+            "ok": true,
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Alles klar. Danke!",
+        "options": [
+          {
+            "say": "Danke, tschüss!",
+            "ok": true,
+            "next": -1
+          }
+        ]
+      }
+    ],
+    "prereq": [
+      "a2-2-u02"
+    ]
+  },
+  {
+    "id": "a2-2-u04",
+    "level": "A2.2",
+    "ord": 4,
+    "title": "Beschreiben",
+    "can_do": [
+      "use adjective endings before nouns",
+      "describe an object precisely",
+      "identify something in a group"
+    ],
+    "words": [
+      "dick",
+      "duenn",
+      "dumm",
+      "eng",
+      "ernst",
+      "fertig",
+      "frei",
+      "fremd",
+      "frisch",
+      "froh"
+    ],
+    "grammar_id": "g-reflexiv",
+    "scenario": {
+      "role": "someone at a lost-property desk",
+      "goal": "describe your lost item well enough to get it back",
+      "opener": "Was haben Sie denn verloren?"
+    },
+    "dialogue": [
+      {
+        "them": "Was haben Sie denn verloren?",
+        "options": [
+          {
+            "say": "Ja, gern.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Entschuldigung, ich verstehe nicht.",
+            "ok": true,
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Alles klar. Danke!",
+        "options": [
+          {
+            "say": "Danke, tschüss!",
+            "ok": true,
+            "next": -1
+          }
+        ]
+      }
+    ],
+    "prereq": [
+      "a2-2-u03"
+    ]
+  },
+  {
+    "id": "a2-2-u05",
+    "level": "A2.2",
+    "ord": 5,
+    "title": "Früher war das anders",
+    "can_do": [
+      "use war and hatte",
+      "talk about your childhood",
+      "compare then and now"
+    ],
+    "words": [
+      "gefaehrlich",
+      "gemeinsam",
+      "genau",
+      "gleich",
+      "hell",
+      "dunkel",
+      "hoch",
+      "niedrig",
+      "klar",
+      "klug"
+    ],
+    "grammar_id": null,
+    "scenario": {
+      "role": "an older neighbour",
+      "goal": "talk about how things used to be",
+      "opener": "Früher war hier alles ganz anders, wissen Sie."
+    },
+    "dialogue": [
+      {
+        "them": "Früher war hier alles ganz anders, wissen Sie.",
+        "options": [
+          {
+            "say": "Ja, gern.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Entschuldigung, ich verstehe nicht.",
+            "ok": true,
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Alles klar. Danke!",
+        "options": [
+          {
+            "say": "Danke, tschüss!",
+            "ok": true,
+            "next": -1
+          }
+        ]
+      }
+    ],
+    "prereq": [
+      "a2-2-u04"
+    ]
+  },
+  {
+    "id": "a2-2-u06",
+    "level": "A2.2",
+    "ord": 6,
+    "title": "Pläne",
+    "can_do": [
+      "talk about the future",
+      "say what you're going to do",
+      "make a prediction"
+    ],
+    "words": [
+      "lang",
+      "langsam",
+      "schnell",
+      "laut",
+      "leise",
+      "leicht",
+      "schwer",
+      "lieb",
+      "moeglich",
+      "nah"
+    ],
+    "grammar_id": null,
+    "scenario": {
+      "role": "a careers adviser",
+      "goal": "explain your plans for the next year",
+      "opener": "Was sind Ihre Pläne für das nächste Jahr?"
+    },
+    "dialogue": [
+      {
+        "them": "Was sind Ihre Pläne für das nächste Jahr?",
+        "options": [
+          {
+            "say": "Ja, gern.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Entschuldigung, ich verstehe nicht.",
+            "ok": true,
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Alles klar. Danke!",
+        "options": [
+          {
+            "say": "Danke, tschüss!",
+            "ok": true,
+            "next": -1
+          }
+        ]
+      }
+    ],
+    "prereq": [
+      "a2-2-u05"
+    ]
+  },
+  {
+    "id": "a2-2-u07",
+    "level": "A2.2",
+    "ord": 7,
+    "title": "Besitz",
+    "can_do": [
+      "use the genitive",
+      "say what belongs to whom",
+      "use von + dative instead"
+    ],
+    "words": [
+      "weit",
+      "noetig",
+      "offen",
+      "privat",
+      "reich",
+      "ruhig",
+      "sauber",
+      "schmutzig",
+      "schwach",
+      "stark"
+    ],
+    "grammar_id": "g-adjektivendung",
+    "scenario": {
+      "role": "a friend helping you tidy",
+      "goal": "sort out whose things are whose",
+      "opener": "Wem gehört das alles?"
+    },
+    "dialogue": [
+      {
+        "them": "Wem gehört das alles?",
+        "options": [
+          {
+            "say": "Ja, gern.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Entschuldigung, ich verstehe nicht.",
+            "ok": true,
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Alles klar. Danke!",
+        "options": [
+          {
+            "say": "Danke, tschüss!",
+            "ok": true,
+            "next": -1
+          }
+        ]
+      }
+    ],
+    "prereq": [
+      "a2-2-u06"
+    ]
+  },
+  {
+    "id": "a2-2-u08",
+    "level": "A2.2",
+    "ord": 8,
+    "title": "Meinung sagen",
+    "can_do": [
+      "give an opinion",
+      "agree and disagree politely",
+      "give a reason"
+    ],
+    "words": [
+      "still",
+      "typisch",
+      "voll",
+      "leer",
+      "wahr",
+      "wichtig",
+      "zufrieden",
+      "arbeitsplatz",
+      "firma",
+      "buero"
+    ],
+    "grammar_id": null,
+    "scenario": {
+      "role": "a colleague discussing a decision",
+      "goal": "state your opinion and back it up",
+      "opener": "Was hältst du davon?"
+    },
+    "dialogue": [
+      {
+        "them": "Was hältst du davon?",
+        "options": [
+          {
+            "say": "Ja, gern.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Entschuldigung, ich verstehe nicht.",
+            "ok": true,
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Alles klar. Danke!",
+        "options": [
+          {
+            "say": "Danke, tschüss!",
+            "ok": true,
+            "next": -1
+          }
+        ]
+      }
+    ],
+    "prereq": [
+      "a2-2-u07"
+    ]
+  },
+  {
+    "id": "a2-2-u09",
+    "level": "A2.2",
+    "ord": 9,
+    "title": "Vorschläge machen",
+    "can_do": [
+      "suggest something",
+      "respond to a suggestion",
+      "reach a compromise"
+    ],
+    "words": [
+      "abteilung",
+      "praktikum",
+      "bewerbung",
+      "lebenslauf",
+      "vorstellungsgespraech",
+      "gehalt",
+      "vertrag",
+      "kollegin",
+      "ausbildung",
+      "studium"
+    ],
+    "grammar_id": null,
+    "scenario": {
+      "role": "a friend planning a trip with you",
+      "goal": "agree on where to go",
+      "opener": "Wohin sollen wir fahren?"
+    },
+    "dialogue": [
+      {
+        "them": "Wohin sollen wir fahren?",
+        "options": [
+          {
+            "say": "Ja, gern.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Entschuldigung, ich verstehe nicht.",
+            "ok": true,
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Alles klar. Danke!",
+        "options": [
+          {
+            "say": "Danke, tschüss!",
+            "ok": true,
+            "next": -1
+          }
+        ]
+      }
+    ],
+    "prereq": [
+      "a2-2-u08"
+    ]
+  },
+  {
+    "id": "a2-2-u10",
+    "level": "A2.2",
+    "ord": 10,
+    "title": "Im Büro",
+    "can_do": [
+      "talk about your work day",
+      "ask a colleague for something",
+      "explain a delay"
+    ],
+    "words": [
+      "universitaet",
+      "pruefung",
+      "note",
+      "zeugnis",
+      "kurs",
+      "unterricht",
+      "hausaufgabe",
+      "fehler",
+      "loesung",
+      "ergebnis"
+    ],
+    "grammar_id": "g-praeteritum",
+    "scenario": {
+      "role": "your manager",
+      "goal": "explain that a task will be late and why",
+      "opener": "Wie sieht es mit dem Bericht aus?"
+    },
+    "dialogue": [
+      {
+        "them": "Wie sieht es mit dem Bericht aus?",
+        "options": [
+          {
+            "say": "Ja, gern.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Entschuldigung, ich verstehe nicht.",
+            "ok": true,
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Alles klar. Danke!",
+        "options": [
+          {
+            "say": "Danke, tschüss!",
+            "ok": true,
+            "next": -1
+          }
+        ]
+      }
+    ],
+    "prereq": [
+      "a2-2-u09"
+    ]
+  },
+  {
+    "id": "a2-2-u11",
+    "level": "A2.2",
+    "ord": 11,
+    "title": "Bewerbung",
+    "can_do": [
+      "talk about your experience",
+      "say what you're good at",
+      "answer a simple interview question"
+    ],
+    "words": [
+      "bewerben",
+      "verdienen",
+      "kuendigen",
+      "studieren",
+      "bestehen",
+      "korrigieren",
+      "gefuehl",
+      "idee",
+      "grund",
+      "angst"
+    ],
+    "grammar_id": null,
+    "scenario": {
+      "role": "an interviewer",
+      "goal": "answer three questions about yourself",
+      "opener": "Erzählen Sie mir ein bisschen über sich."
+    },
+    "dialogue": [
+      {
+        "them": "Erzählen Sie mir ein bisschen über sich.",
+        "options": [
+          {
+            "say": "Ja, gern.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Entschuldigung, ich verstehe nicht.",
+            "ok": true,
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Alles klar. Danke!",
+        "options": [
+          {
+            "say": "Danke, tschüss!",
+            "ok": true,
+            "next": -1
+          }
+        ]
+      }
+    ],
+    "prereq": [
+      "a2-2-u10"
+    ]
+  },
+  {
+    "id": "a2-2-u12",
+    "level": "A2.2",
+    "ord": 12,
+    "title": "Geld und Konten",
+    "can_do": [
+      "open a bank account",
+      "understand costs and fees",
+      "ask about a payment"
+    ],
+    "words": [
+      "freude",
+      "aerger",
+      "hoffnung",
+      "interesse",
+      "spass",
+      "glueck",
+      "pech",
+      "unzufrieden",
+      "stolz",
+      "nervoes"
+    ],
+    "grammar_id": null,
+    "scenario": {
+      "role": "a bank employee",
+      "goal": "ask about opening an account",
+      "opener": "Wie kann ich Ihnen helfen?"
+    },
+    "dialogue": [
+      {
+        "them": "Wie kann ich Ihnen helfen?",
+        "options": [
+          {
+            "say": "Ja, gern.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Entschuldigung, ich verstehe nicht.",
+            "ok": true,
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Alles klar. Danke!",
+        "options": [
+          {
+            "say": "Danke, tschüss!",
+            "ok": true,
+            "next": -1
+          }
+        ]
+      }
+    ],
+    "prereq": [
+      "a2-2-u11"
+    ]
+  },
+  {
+    "id": "a2-2-u13",
+    "level": "A2.2",
+    "ord": 13,
+    "title": "Umzug",
+    "can_do": [
+      "describe moving house",
+      "arrange help",
+      "register your new address"
+    ],
+    "words": [
+      "aufgeregt",
+      "enttaeuscht",
+      "ueberrascht",
+      "wach",
+      "langweilig",
+      "interessant",
+      "unwichtig",
+      "unmoeglich",
+      "einfach",
+      "schwierig"
+    ],
+    "grammar_id": "g-futur",
+    "scenario": {
+      "role": "a clerk at the registration office",
+      "goal": "register your new address",
+      "opener": "Sie möchten sich anmelden?"
+    },
+    "dialogue": [
+      {
+        "them": "Sie möchten sich anmelden?",
+        "options": [
+          {
+            "say": "Ja, gern.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Entschuldigung, ich verstehe nicht.",
+            "ok": true,
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Alles klar. Danke!",
+        "options": [
+          {
+            "say": "Danke, tschüss!",
+            "ok": true,
+            "next": -1
+          }
+        ]
+      }
+    ],
+    "prereq": [
+      "a2-2-u12"
+    ]
+  },
+  {
+    "id": "a2-2-u14",
+    "level": "A2.2",
+    "ord": 14,
+    "title": "Reparaturen",
+    "can_do": [
+      "report something broken",
+      "ask for a repair",
+      "understand a cost estimate"
+    ],
+    "words": [
+      "meinen",
+      "wuenschen",
+      "aergern",
+      "entscheiden",
+      "diskutieren",
+      "streiten",
+      "anruf",
+      "telefon",
+      "e-mail",
+      "adresse"
+    ],
+    "grammar_id": null,
+    "scenario": {
+      "role": "a repair shop assistant",
+      "goal": "explain what's broken and ask the price",
+      "opener": "Was ist denn kaputt?"
+    },
+    "dialogue": [
+      {
+        "them": "Was ist denn kaputt?",
+        "options": [
+          {
+            "say": "Ja, gern.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Entschuldigung, ich verstehe nicht.",
+            "ok": true,
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Alles klar. Danke!",
+        "options": [
+          {
+            "say": "Danke, tschüss!",
+            "ok": true,
+            "next": -1
+          }
+        ]
+      }
+    ],
+    "prereq": [
+      "a2-2-u13"
+    ]
+  },
+  {
+    "id": "a2-2-u15",
+    "level": "A2.2",
+    "ord": 15,
+    "title": "Regeln",
+    "can_do": [
+      "understand rules and signs",
+      "say what's allowed and forbidden",
+      "ask permission"
+    ],
+    "words": [
+      "internet",
+      "zeitschrift",
+      "roman",
+      "artikel",
+      "bericht",
+      "werbung",
+      "information",
+      "erklaerung",
+      "anrufen",
+      "zurueckrufen"
+    ],
+    "grammar_id": null,
+    "scenario": {
+      "role": "a caretaker in your building",
+      "goal": "ask what's allowed in the shared areas",
+      "opener": "Darf ich Ihnen kurz die Hausordnung erklären?"
+    },
+    "dialogue": [
+      {
+        "them": "Darf ich Ihnen kurz die Hausordnung erklären?",
+        "options": [
+          {
+            "say": "Ja, gern.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Entschuldigung, ich verstehe nicht.",
+            "ok": true,
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Alles klar. Danke!",
+        "options": [
+          {
+            "say": "Danke, tschüss!",
+            "ok": true,
+            "next": -1
+          }
+        ]
+      }
+    ],
+    "prereq": [
+      "a2-2-u14"
+    ]
+  },
+  {
+    "id": "a2-2-u16",
+    "level": "A2.2",
+    "ord": 16,
+    "title": "Verabredungen ändern",
+    "can_do": [
+      "cancel or move an appointment",
+      "apologise",
+      "suggest an alternative"
+    ],
+    "words": [
+      "mitteilen",
+      "berichten",
+      "erzaehlen",
+      "buchstabieren",
+      "unterschreiben",
+      "preis",
+      "rechnung",
+      "quittung",
+      "kasse",
+      "angebot"
+    ],
+    "grammar_id": "g-genitiv",
+    "scenario": {
+      "role": "a friend you have to cancel on",
+      "goal": "cancel politely and rearrange",
+      "opener": "Wir sehen uns morgen, oder?"
+    },
+    "dialogue": [
+      {
+        "them": "Wir sehen uns morgen, oder?",
+        "options": [
+          {
+            "say": "Tut mir leid, ich kann leider nicht.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Nein.",
+            "ok": false,
+            "why": "Understandable but blunt — add an apology and a reason.",
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Schade! Wann passt es dir denn?",
+        "options": [
+          {
+            "say": "Geht Donnerstag bei dir?",
+            "ok": true,
+            "next": -1
+          }
+        ]
+      }
+    ],
+    "prereq": [
+      "a2-2-u15"
+    ]
+  },
+  {
+    "id": "a2-2-u17",
+    "level": "A2.2",
+    "ord": 17,
+    "title": "Erzählen",
+    "can_do": [
+      "tell a short story",
+      "put events in order",
+      "keep a listener interested"
+    ],
+    "words": [
+      "rabatt",
+      "kredit",
+      "konto",
+      "miete",
+      "steuer",
+      "versicherung",
+      "guenstig",
+      "kostenlos",
+      "ausgeben",
+      "leihen"
+    ],
+    "grammar_id": null,
+    "scenario": {
+      "role": "friends over dinner",
+      "goal": "tell the story of something that happened to you",
+      "opener": "Erzähl mal die Geschichte von neulich!"
+    },
+    "dialogue": [
+      {
+        "them": "Erzähl mal die Geschichte von neulich!",
+        "options": [
+          {
+            "say": "Ja, gern.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Entschuldigung, ich verstehe nicht.",
+            "ok": true,
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Alles klar. Danke!",
+        "options": [
+          {
+            "say": "Danke, tschüss!",
+            "ok": true,
+            "next": -1
+          }
+        ]
+      }
+    ],
+    "prereq": [
+      "a2-2-u16"
+    ]
+  },
+  {
+    "id": "a2-2-u18",
+    "level": "A2.2",
+    "ord": 18,
+    "title": "Beschwerden",
+    "can_do": [
+      "complain effectively",
+      "insist politely",
+      "ask for compensation"
+    ],
+    "words": [
+      "tauschen",
+      "zurueckgeben",
+      "umtauschen",
+      "fahrkarte",
+      "fahrplan",
+      "gleis",
+      "verspaetung",
+      "abfahrt",
+      "ankunft",
+      "reisefuehrer"
+    ],
+    "grammar_id": null,
+    "scenario": {
+      "role": "customer service on the phone",
+      "goal": "complain about a late delivery",
+      "opener": "Kundenservice, was kann ich für Sie tun?"
+    },
+    "dialogue": [
+      {
+        "them": "Kundenservice, was kann ich für Sie tun?",
+        "options": [
+          {
+            "say": "Ja, gern.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Entschuldigung, ich verstehe nicht.",
+            "ok": true,
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Alles klar. Danke!",
+        "options": [
+          {
+            "say": "Danke, tschüss!",
+            "ok": true,
+            "next": -1
+          }
+        ]
+      }
+    ],
+    "prereq": [
+      "a2-2-u17"
+    ]
+  },
+  {
+    "id": "a2-2-u19",
+    "level": "A2.2",
+    "ord": 19,
+    "title": "Gesellschaft",
+    "can_do": [
+      "talk about where you live",
+      "describe a custom",
+      "compare two countries"
+    ],
+    "words": [
+      "unterkunft",
+      "rezeption",
+      "grenze",
+      "ausland",
+      "ausweis",
+      "reisepass",
+      "gepaeck",
+      "richtung",
+      "weg",
+      "karte"
+    ],
+    "grammar_id": null,
+    "scenario": {
+      "role": "a curious German friend",
+      "goal": "explain a custom from your home country",
+      "opener": "Wie macht ihr das eigentlich bei euch?"
+    },
+    "dialogue": [
+      {
+        "them": "Wie macht ihr das eigentlich bei euch?",
+        "options": [
+          {
+            "say": "Ja, gern.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Entschuldigung, ich verstehe nicht.",
+            "ok": true,
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Alles klar. Danke!",
+        "options": [
+          {
+            "say": "Danke, tschüss!",
+            "ok": true,
+            "next": -1
+          }
+        ]
+      }
+    ],
+    "prereq": [
+      "a2-2-u18"
+    ]
+  },
+  {
+    "id": "a2-2-u20",
+    "level": "A2.2",
+    "ord": 20,
+    "title": "A2 zusammen",
+    "can_do": [
+      "give reasons and opinions",
+      "handle official situations",
+      "talk about past and future"
+    ],
+    "words": [
+      "stau",
+      "umsteigen",
+      "reservieren",
+      "buchen",
+      "packen",
+      "mitnehmen",
+      "haushalt",
+      "muell",
+      "waesche",
+      "reparatur"
+    ],
+    "grammar_id": null,
+    "scenario": {
+      "role": "an examiner in a friendly mock exam",
+      "goal": "talk for three minutes about yourself and your plans",
+      "opener": "Stellen Sie sich bitte kurz vor."
+    },
+    "dialogue": [
+      {
+        "them": "Stellen Sie sich bitte kurz vor.",
+        "options": [
+          {
+            "say": "Ja, gern.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Entschuldigung, ich verstehe nicht.",
+            "ok": true,
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Alles klar. Danke!",
+        "options": [
+          {
+            "say": "Danke, tschüss!",
+            "ok": true,
+            "next": -1
+          }
+        ]
+      }
+    ],
+    "prereq": [
+      "a2-2-u19"
+    ]
+  },
+  {
+    "id": "b1-1-u01",
+    "level": "B1.1",
+    "ord": 1,
+    "title": "Der Mann, der…",
+    "can_do": [
+      "use relative clauses",
+      "define a person or thing",
+      "add detail without a new sentence"
+    ],
+    "words": [
+      "werkzeug",
+      "nachbarschaft",
+      "umzug",
+      "mieten",
+      "umziehen",
+      "reparieren",
+      "aufraeumen",
+      "saubermachen",
+      "funktionieren",
+      "kaputt"
+    ],
+    "grammar_id": "g-relativsatz",
+    "scenario": {
+      "role": "a friend who can't remember someone",
+      "goal": "identify a person by describing them",
+      "opener": "Wie hieß nochmal der Typ von der Party?"
+    },
+    "dialogue": [
+      {
+        "them": "Wie hieß nochmal der Typ von der Party?",
+        "options": [
+          {
+            "say": "Der Mann, der neben dir saß?",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Der Mann, der saß neben dir?",
+            "ok": false,
+            "why": "In a relative clause the verb goes to the end.",
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Genau der! Wie hieß er?",
+        "options": [
+          {
+            "say": "Ich glaube, Tobias.",
+            "ok": true,
+            "next": -1
+          }
+        ]
+      }
+    ],
+    "prereq": [
+      "a2-2-u20"
+    ]
+  },
+  {
+    "id": "b1-1-u02",
+    "level": "B1.1",
+    "ord": 2,
+    "title": "Höflich bitten",
+    "can_do": [
+      "use Konjunktiv II to be polite",
+      "make a request that doesn't sound blunt",
+      "soften a refusal"
+    ],
+    "words": [
+      "ordentlich",
+      "vergangenheit",
+      "gegenwart",
+      "moment",
+      "weile",
+      "anfang",
+      "verabredung",
+      "gewohnheit",
+      "ploetzlich",
+      "sofort"
+    ],
+    "grammar_id": null,
+    "scenario": {
+      "role": "a stranger you need a favour from",
+      "goal": "ask politely and thank them",
+      "opener": "Ja bitte?"
+    },
+    "dialogue": [
+      {
+        "them": "Ja bitte?",
+        "options": [
+          {
+            "say": "Könnten Sie mir kurz helfen?",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Können Sie mir helfen!",
+            "ok": false,
+            "why": "Könnten is noticeably softer than können here.",
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Natürlich, gern.",
+        "options": [
+          {
+            "say": "Das wäre sehr nett, danke.",
+            "ok": true,
+            "next": -1
+          }
+        ]
+      }
+    ],
+    "prereq": [
+      "b1-1-u01"
+    ]
+  },
+  {
+    "id": "b1-1-u03",
+    "level": "B1.1",
+    "ord": 3,
+    "title": "Wenn ich könnte…",
+    "can_do": [
+      "form conditional sentences",
+      "talk about hypotheticals",
+      "express a wish"
+    ],
+    "words": [
+      "bald",
+      "endlich",
+      "zuerst",
+      "danach",
+      "schliesslich",
+      "manchmal",
+      "selten",
+      "meistens",
+      "regelmaessig",
+      "dauernd"
+    ],
+    "grammar_id": null,
+    "scenario": {
+      "role": "a friend playing 'what if'",
+      "goal": "say what you'd do with more time or money",
+      "opener": "Was würdest du machen, wenn du ein Jahr frei hättest?"
+    },
+    "dialogue": [
+      {
+        "them": "Was würdest du machen, wenn du ein Jahr frei hättest?",
+        "options": [
+          {
+            "say": "Ja, gern.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Entschuldigung, ich verstehe nicht.",
+            "ok": true,
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Alles klar. Danke!",
+        "options": [
+          {
+            "say": "Danke, tschüss!",
+            "ok": true,
+            "next": -1
+          }
+        ]
+      }
+    ],
+    "prereq": [
+      "b1-1-u02"
+    ]
+  },
+  {
+    "id": "b1-1-u04",
+    "level": "B1.1",
+    "ord": 4,
+    "title": "Es wird gemacht",
+    "can_do": [
+      "understand the passive",
+      "describe a process",
+      "read instructions and notices"
+    ],
+    "words": [
+      "gesellschaft",
+      "regierung",
+      "politik",
+      "gesetz",
+      "recht",
+      "pflicht",
+      "freiheit",
+      "kultur",
+      "religion",
+      "umwelt"
+    ],
+    "grammar_id": "g-konjunktiv2",
+    "scenario": {
+      "role": "a colleague explaining a workflow",
+      "goal": "understand and repeat back how something is done",
+      "opener": "Ich erkläre dir kurz, wie das hier läuft."
+    },
+    "dialogue": [
+      {
+        "them": "Ich erkläre dir kurz, wie das hier läuft.",
+        "options": [
+          {
+            "say": "Ja, gern.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Entschuldigung, ich verstehe nicht.",
+            "ok": true,
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Alles klar. Danke!",
+        "options": [
+          {
+            "say": "Danke, tschüss!",
+            "ok": true,
+            "next": -1
+          }
+        ]
+      }
+    ],
+    "prereq": [
+      "b1-1-u03"
+    ]
+  },
+  {
+    "id": "b1-1-u05",
+    "level": "B1.1",
+    "ord": 5,
+    "title": "Um … zu",
+    "can_do": [
+      "say why you're doing something",
+      "use zu + infinitive",
+      "express purpose"
+    ],
+    "words": [
+      "natur",
+      "energie",
+      "sicherheit",
+      "unterschied",
+      "situation",
+      "vorteil",
+      "nachteil",
+      "entwicklung",
+      "verbessern",
+      "stattfinden"
+    ],
+    "grammar_id": null,
+    "scenario": {
+      "role": "a course adviser",
+      "goal": "explain what you want to achieve and why",
+      "opener": "Und warum möchten Sie diesen Kurs machen?"
+    },
+    "dialogue": [
+      {
+        "them": "Und warum möchten Sie diesen Kurs machen?",
+        "options": [
+          {
+            "say": "Ja, gern.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Entschuldigung, ich verstehe nicht.",
+            "ok": true,
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Alles klar. Danke!",
+        "options": [
+          {
+            "say": "Danke, tschüss!",
+            "ok": true,
+            "next": -1
+          }
+        ]
+      }
+    ],
+    "prereq": [
+      "b1-1-u04"
+    ]
+  },
+  {
+    "id": "b1-1-u06",
+    "level": "B1.1",
+    "ord": 6,
+    "title": "Präpositionen sicher",
+    "can_do": [
+      "choose the right case after a preposition",
+      "use contractions naturally",
+      "describe a journey precisely"
+    ],
+    "words": [
+      "teilnehmen",
+      "gedanke",
+      "absicht",
+      "vorstellung",
+      "ansicht",
+      "standpunkt",
+      "argument",
+      "behauptung",
+      "beweis",
+      "zweifel"
+    ],
+    "grammar_id": null,
+    "scenario": {
+      "role": "someone asking for detailed directions",
+      "goal": "describe a route with several steps",
+      "opener": "Wie komme ich am besten zum Museum?"
+    },
+    "dialogue": [
+      {
+        "them": "Wie komme ich am besten zum Museum?",
+        "options": [
+          {
+            "say": "Ja, gern.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Entschuldigung, ich verstehe nicht.",
+            "ok": true,
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Alles klar. Danke!",
+        "options": [
+          {
+            "say": "Danke, tschüss!",
+            "ok": true,
+            "next": -1
+          }
+        ]
+      }
+    ],
+    "prereq": [
+      "b1-1-u05"
+    ]
+  },
+  {
+    "id": "b1-1-u07",
+    "level": "B1.1",
+    "ord": 7,
+    "title": "Indirekt fragen",
+    "can_do": [
+      "ask indirect questions",
+      "be polite with strangers",
+      "use ob correctly"
+    ],
+    "words": [
+      "vermutung",
+      "annahme",
+      "schlussfolgerung",
+      "zusammenhang",
+      "folge",
+      "wirkung",
+      "bedingung",
+      "ausnahme",
+      "vergleich",
+      "gegenteil"
+    ],
+    "grammar_id": "g-passiv",
+    "scenario": {
+      "role": "an information desk clerk",
+      "goal": "ask three things politely",
+      "opener": "Guten Tag, wie kann ich helfen?"
+    },
+    "dialogue": [
+      {
+        "them": "Guten Tag, wie kann ich helfen?",
+        "options": [
+          {
+            "say": "Ja, gern.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Entschuldigung, ich verstehe nicht.",
+            "ok": true,
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Alles klar. Danke!",
+        "options": [
+          {
+            "say": "Danke, tschüss!",
+            "ok": true,
+            "next": -1
+          }
+        ]
+      }
+    ],
+    "prereq": [
+      "b1-1-u06"
+    ]
+  },
+  {
+    "id": "b1-1-u08",
+    "level": "B1.1",
+    "ord": 8,
+    "title": "Arbeit und Karriere",
+    "can_do": [
+      "describe your responsibilities",
+      "talk about strengths and weaknesses",
+      "discuss career plans"
+    ],
+    "words": [
+      "behaupten",
+      "bezweifeln",
+      "vermuten",
+      "annehmen",
+      "begruenden",
+      "zugeben",
+      "bestreiten",
+      "betonen",
+      "erwaehnen",
+      "hinweisen"
+    ],
+    "grammar_id": null,
+    "scenario": {
+      "role": "an interviewer for a job you want",
+      "goal": "describe your experience convincingly",
+      "opener": "Was sind Ihre Stärken?"
+    },
+    "dialogue": [
+      {
+        "them": "Was sind Ihre Stärken?",
+        "options": [
+          {
+            "say": "Ja, gern.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Entschuldigung, ich verstehe nicht.",
+            "ok": true,
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Alles klar. Danke!",
+        "options": [
+          {
+            "say": "Danke, tschüss!",
+            "ok": true,
+            "next": -1
+          }
+        ]
+      }
+    ],
+    "prereq": [
+      "b1-1-u07"
+    ]
+  },
+  {
+    "id": "b1-1-u09",
+    "level": "B1.1",
+    "ord": 9,
+    "title": "Diskutieren",
+    "can_do": [
+      "state and defend an opinion",
+      "concede a point",
+      "disagree without being rude"
+    ],
+    "words": [
+      "zustimmen",
+      "ablehnen",
+      "kritisieren",
+      "loben",
+      "empfehlen",
+      "warnen",
+      "arbeitgeber",
+      "arbeitnehmer",
+      "arbeitslosigkeit",
+      "gewerkschaft"
+    ],
+    "grammar_id": null,
+    "scenario": {
+      "role": "a friend who disagrees with you",
+      "goal": "argue your side and find common ground",
+      "opener": "Ich sehe das ganz anders, ehrlich gesagt."
+    },
+    "dialogue": [
+      {
+        "them": "Ich sehe das ganz anders, ehrlich gesagt.",
+        "options": [
+          {
+            "say": "Ja, gern.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Entschuldigung, ich verstehe nicht.",
+            "ok": true,
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Alles klar. Danke!",
+        "options": [
+          {
+            "say": "Danke, tschüss!",
+            "ok": true,
+            "next": -1
+          }
+        ]
+      }
+    ],
+    "prereq": [
+      "b1-1-u08"
+    ]
+  },
+  {
+    "id": "b1-1-u10",
+    "level": "B1.1",
+    "ord": 10,
+    "title": "Medien und Technik",
+    "can_do": [
+      "talk about technology you use",
+      "describe a problem with a device",
+      "explain how something works"
+    ],
+    "words": [
+      "bewerber",
+      "faehigkeit",
+      "verantwortung",
+      "aufgabe",
+      "misserfolg",
+      "karriere",
+      "teilzeit",
+      "vollzeit",
+      "schicht",
+      "ueberstunde"
+    ],
+    "grammar_id": "g-infinitiv-zu",
+    "scenario": {
+      "role": "tech support on the phone",
+      "goal": "describe a problem and follow instructions",
+      "opener": "Beschreiben Sie mir bitte das Problem."
+    },
+    "dialogue": [
+      {
+        "them": "Beschreiben Sie mir bitte das Problem.",
+        "options": [
+          {
+            "say": "Ja, gern.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Entschuldigung, ich verstehe nicht.",
+            "ok": true,
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Alles klar. Danke!",
+        "options": [
+          {
+            "say": "Danke, tschüss!",
+            "ok": true,
+            "next": -1
+          }
+        ]
+      }
+    ],
+    "prereq": [
+      "b1-1-u09"
+    ]
+  },
+  {
+    "id": "b1-1-u11",
+    "level": "B1.1",
+    "ord": 11,
+    "title": "Gesundheit und Ernährung",
+    "can_do": [
+      "talk about a healthy lifestyle",
+      "describe symptoms in detail",
+      "give and take advice"
+    ],
+    "words": [
+      "krankenschein",
+      "branche",
+      "konkurrenz",
+      "auftrag",
+      "projekt",
+      "sitzung",
+      "protokoll",
+      "leiten",
+      "organisieren",
+      "verwalten"
+    ],
+    "grammar_id": null,
+    "scenario": {
+      "role": "a doctor discussing lifestyle",
+      "goal": "describe your habits and understand the advice",
+      "opener": "Erzählen Sie mir mal von Ihrem Alltag."
+    },
+    "dialogue": [
+      {
+        "them": "Erzählen Sie mir mal von Ihrem Alltag.",
+        "options": [
+          {
+            "say": "Ja, gern.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Entschuldigung, ich verstehe nicht.",
+            "ok": true,
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Alles klar. Danke!",
+        "options": [
+          {
+            "say": "Danke, tschüss!",
+            "ok": true,
+            "next": -1
+          }
+        ]
+      }
+    ],
+    "prereq": [
+      "b1-1-u10"
+    ]
+  },
+  {
+    "id": "b1-1-u12",
+    "level": "B1.1",
+    "ord": 12,
+    "title": "Umwelt",
+    "can_do": [
+      "talk about environmental issues",
+      "describe what you do personally",
+      "state a problem and a solution"
+    ],
+    "words": [
+      "planen",
+      "durchfuehren",
+      "erledigen",
+      "verhandeln",
+      "einstellen",
+      "entlassen",
+      "medien",
+      "fernsehen",
+      "rundfunk",
+      "sendung"
+    ],
+    "grammar_id": null,
+    "scenario": {
+      "role": "someone doing a street survey",
+      "goal": "answer questions about your habits",
+      "opener": "Hätten Sie zwei Minuten für eine Umfrage?"
+    },
+    "dialogue": [
+      {
+        "them": "Hätten Sie zwei Minuten für eine Umfrage?",
+        "options": [
+          {
+            "say": "Ja, gern.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Entschuldigung, ich verstehe nicht.",
+            "ok": true,
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Alles klar. Danke!",
+        "options": [
+          {
+            "say": "Danke, tschüss!",
+            "ok": true,
+            "next": -1
+          }
+        ]
+      }
+    ],
+    "prereq": [
+      "b1-1-u11"
+    ]
+  },
+  {
+    "id": "b1-1-u13",
+    "level": "B1.1",
+    "ord": 13,
+    "title": "Beziehungen",
+    "can_do": [
+      "describe a relationship",
+      "talk about a disagreement",
+      "say what you value in people"
+    ],
+    "words": [
+      "beitrag",
+      "interview",
+      "schlagzeile",
+      "quelle",
+      "datei",
+      "programm",
+      "anwendung",
+      "bildschirm",
+      "tastatur",
+      "drucker"
+    ],
+    "grammar_id": "g-praeposition-kasus",
+    "scenario": {
+      "role": "a close friend",
+      "goal": "talk through a disagreement you had with someone",
+      "opener": "Und, habt ihr euch wieder vertragen?"
+    },
+    "dialogue": [
+      {
+        "them": "Und, habt ihr euch wieder vertragen?",
+        "options": [
+          {
+            "say": "Ja, gern.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Entschuldigung, ich verstehe nicht.",
+            "ok": true,
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Alles klar. Danke!",
+        "options": [
+          {
+            "say": "Danke, tschüss!",
+            "ok": true,
+            "next": -1
+          }
+        ]
+      }
+    ],
+    "prereq": [
+      "b1-1-u12"
+    ]
+  },
+  {
+    "id": "b1-1-u14",
+    "level": "B1.1",
+    "ord": 14,
+    "title": "Wohnen in Deutschland",
+    "can_do": [
+      "understand a rental contract",
+      "deal with a landlord",
+      "describe housing problems"
+    ],
+    "words": [
+      "netzwerk",
+      "passwort",
+      "benutzer",
+      "datenschutz",
+      "herunterladen",
+      "hochladen",
+      "speichern",
+      "loeschen",
+      "installieren",
+      "klicken"
+    ],
+    "grammar_id": null,
+    "scenario": {
+      "role": "a landlord discussing the contract",
+      "goal": "ask about the terms before signing",
+      "opener": "Haben Sie noch Fragen zum Vertrag?"
+    },
+    "dialogue": [
+      {
+        "them": "Haben Sie noch Fragen zum Vertrag?",
+        "options": [
+          {
+            "say": "Ja, gern.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Entschuldigung, ich verstehe nicht.",
+            "ok": true,
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Alles klar. Danke!",
+        "options": [
+          {
+            "say": "Danke, tschüss!",
+            "ok": true,
+            "next": -1
+          }
+        ]
+      }
+    ],
+    "prereq": [
+      "b1-1-u13"
+    ]
+  },
+  {
+    "id": "b1-1-u15",
+    "level": "B1.1",
+    "ord": 15,
+    "title": "Reisen planen",
+    "can_do": [
+      "plan a trip in detail",
+      "handle a booking problem",
+      "describe an itinerary"
+    ],
+    "words": [
+      "tippen",
+      "krankheit",
+      "behandlung",
+      "untersuchung",
+      "diagnose",
+      "rezept",
+      "operation",
+      "verletzung",
+      "erkaeltung",
+      "grippe"
+    ],
+    "grammar_id": null,
+    "scenario": {
+      "role": "a travel agent",
+      "goal": "plan a trip and handle a complication",
+      "opener": "Wohin soll es denn gehen?"
+    },
+    "dialogue": [
+      {
+        "them": "Wohin soll es denn gehen?",
+        "options": [
+          {
+            "say": "Ja, gern.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Entschuldigung, ich verstehe nicht.",
+            "ok": true,
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Alles klar. Danke!",
+        "options": [
+          {
+            "say": "Danke, tschüss!",
+            "ok": true,
+            "next": -1
+          }
+        ]
+      }
+    ],
+    "prereq": [
+      "b1-1-u14"
+    ]
+  },
+  {
+    "id": "b1-1-u16",
+    "level": "B1.1",
+    "ord": 16,
+    "title": "Erfahrungen",
+    "can_do": [
+      "describe a past experience in detail",
+      "say what you learned",
+      "structure a longer answer"
+    ],
+    "words": [
+      "allergie",
+      "ernaehrung",
+      "sport",
+      "stress",
+      "erholung",
+      "schlaf",
+      "gewicht",
+      "behandeln",
+      "untersuchen",
+      "verschreiben"
+    ],
+    "grammar_id": "g-indirekte-frage",
+    "scenario": {
+      "role": "someone genuinely curious about your life",
+      "goal": "tell a longer story with a point",
+      "opener": "Was war die größte Veränderung in deinem Leben?"
+    },
+    "dialogue": [
+      {
+        "them": "Was war die größte Veränderung in deinem Leben?",
+        "options": [
+          {
+            "say": "Ja, gern.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Entschuldigung, ich verstehe nicht.",
+            "ok": true,
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Alles klar. Danke!",
+        "options": [
+          {
+            "say": "Danke, tschüss!",
+            "ok": true,
+            "next": -1
+          }
+        ]
+      }
+    ],
+    "prereq": [
+      "b1-1-u15"
+    ]
+  },
+  {
+    "id": "b1-1-u17",
+    "level": "B1.1",
+    "ord": 17,
+    "title": "Bildung",
+    "can_do": [
+      "describe your education",
+      "compare school systems",
+      "talk about learning strategies"
+    ],
+    "words": [
+      "heilen",
+      "verletzen",
+      "erholen",
+      "abnehmen",
+      "zunehmen",
+      "leiden",
+      "klima",
+      "klimawandel",
+      "verschmutzung",
+      "abfall"
+    ],
+    "grammar_id": null,
+    "scenario": {
+      "role": "a German student curious about your country",
+      "goal": "compare the two education systems",
+      "opener": "Wie läuft die Schule bei euch eigentlich ab?"
+    },
+    "dialogue": [
+      {
+        "them": "Wie läuft die Schule bei euch eigentlich ab?",
+        "options": [
+          {
+            "say": "Ja, gern.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Entschuldigung, ich verstehe nicht.",
+            "ok": true,
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Alles klar. Danke!",
+        "options": [
+          {
+            "say": "Danke, tschüss!",
+            "ok": true,
+            "next": -1
+          }
+        ]
+      }
+    ],
+    "prereq": [
+      "b1-1-u16"
+    ]
+  },
+  {
+    "id": "b1-1-u18",
+    "level": "B1.1",
+    "ord": 18,
+    "title": "Geld und Wirtschaft",
+    "can_do": [
+      "talk about costs of living",
+      "describe a financial decision",
+      "understand a bill or contract"
+    ],
+    "words": [
+      "recycling",
+      "strom",
+      "heizung",
+      "rohstoff",
+      "landwirtschaft",
+      "industrie",
+      "wirtschaft",
+      "handel",
+      "bevoelkerung",
+      "stadtteil"
+    ],
+    "grammar_id": null,
+    "scenario": {
+      "role": "a bank adviser",
+      "goal": "discuss a financial decision and ask the right questions",
+      "opener": "Was kann ich für Sie tun?"
+    },
+    "dialogue": [
+      {
+        "them": "Was kann ich für Sie tun?",
+        "options": [
+          {
+            "say": "Ja, gern.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Entschuldigung, ich verstehe nicht.",
+            "ok": true,
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Alles klar. Danke!",
+        "options": [
+          {
+            "say": "Danke, tschüss!",
+            "ok": true,
+            "next": -1
+          }
+        ]
+      }
+    ],
+    "prereq": [
+      "b1-1-u17"
+    ]
+  },
+  {
+    "id": "b1-1-u19",
+    "level": "B1.1",
+    "ord": 19,
+    "title": "Zukunftspläne",
+    "can_do": [
+      "talk about long-term plans",
+      "express hopes and doubts",
+      "describe conditions"
+    ],
+    "words": [
+      "landschaft",
+      "kueste",
+      "fluss",
+      "wald",
+      "wueste",
+      "schuetzen",
+      "verschmutzen",
+      "verbrauchen",
+      "sinken",
+      "steigen"
+    ],
+    "grammar_id": null,
+    "scenario": {
+      "role": "a mentor",
+      "goal": "describe where you want to be in five years",
+      "opener": "Wo sehen Sie sich in fünf Jahren?"
+    },
+    "dialogue": [
+      {
+        "them": "Wo sehen Sie sich in fünf Jahren?",
+        "options": [
+          {
+            "say": "Ja, gern.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Entschuldigung, ich verstehe nicht.",
+            "ok": true,
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Alles klar. Danke!",
+        "options": [
+          {
+            "say": "Danke, tschüss!",
+            "ok": true,
+            "next": -1
+          }
+        ]
+      }
+    ],
+    "prereq": [
+      "b1-1-u18"
+    ]
+  },
+  {
+    "id": "b1-1-u20",
+    "level": "B1.1",
+    "ord": 20,
+    "title": "B1.1 zusammen",
+    "can_do": [
+      "hold a real conversation on a familiar topic",
+      "give reasons and examples",
+      "handle an unexpected question"
+    ],
+    "words": [
+      "freundschaft",
+      "partnerschaft",
+      "ehe",
+      "trennung",
+      "scheidung",
+      "vertrauen",
+      "respekt",
+      "konflikt",
+      "kompromiss",
+      "verstaendnis"
+    ],
+    "grammar_id": null,
+    "scenario": {
+      "role": "a friendly examiner",
+      "goal": "speak for five minutes on a topic you're given",
+      "opener": "Erzählen Sie mir von einem wichtigen Tag in Ihrem Leben."
+    },
+    "dialogue": [
+      {
+        "them": "Erzählen Sie mir von einem wichtigen Tag in Ihrem Leben.",
+        "options": [
+          {
+            "say": "Ja, gern.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Entschuldigung, ich verstehe nicht.",
+            "ok": true,
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Alles klar. Danke!",
+        "options": [
+          {
+            "say": "Danke, tschüss!",
+            "ok": true,
+            "next": -1
+          }
+        ]
+      }
+    ],
+    "prereq": [
+      "b1-1-u19"
+    ]
+  },
+  {
+    "id": "b1-2-u01",
+    "level": "B1.2",
+    "ord": 1,
+    "title": "Feste Präpositionen",
+    "can_do": [
+      "use verbs with their fixed prepositions",
+      "ask worauf / worüber questions",
+      "avoid English interference"
+    ],
+    "words": [
+      "ruecksicht",
+      "unterstuetzung",
+      "respektieren",
+      "unterstuetzen",
+      "heiraten",
+      "verzichten",
+      "ungefaehr",
+      "ausreichend",
+      "zusaetzlich",
+      "persoenlich"
+    ],
+    "grammar_id": "g-verben-praeposition",
+    "scenario": {
+      "role": "a friend waiting with you",
+      "goal": "talk about what you're both waiting for and looking forward to",
+      "opener": "Worauf wartest du eigentlich?"
+    },
+    "dialogue": [
+      {
+        "them": "Worauf wartest du eigentlich?",
+        "options": [
+          {
+            "say": "Ich warte auf den Bus.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Ich warte für den Bus.",
+            "ok": false,
+            "why": "warten takes auf, not für.",
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Der kommt gleich. Freust du dich auf das Wochenende?",
+        "options": [
+          {
+            "say": "Ja, sehr!",
+            "ok": true,
+            "next": -1
+          }
+        ]
+      }
+    ],
+    "prereq": [
+      "b1-1-u20"
+    ]
+  },
+  {
+    "id": "b1-2-u02",
+    "level": "B1.2",
+    "ord": 2,
+    "title": "Verbinden und begründen",
+    "can_do": [
+      "use deshalb, trotzdem and obwohl",
+      "keep word order right after each",
+      "build a longer argument"
+    ],
+    "words": [
+      "oeffentlich",
+      "allgemein",
+      "besonders",
+      "ueblich",
+      "selbstverstaendlich",
+      "notwendig",
+      "nuetzlich",
+      "schaedlich",
+      "harmlos",
+      "zuverlaessig"
+    ],
+    "grammar_id": null,
+    "scenario": {
+      "role": "a colleague you're persuading",
+      "goal": "argue for a change and handle objections",
+      "opener": "Ich bin da noch nicht überzeugt."
+    },
+    "dialogue": [
+      {
+        "them": "Ich bin da noch nicht überzeugt.",
+        "options": [
+          {
+            "say": "Ja, gern.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Entschuldigung, ich verstehe nicht.",
+            "ok": true,
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Alles klar. Danke!",
+        "options": [
+          {
+            "say": "Danke, tschüss!",
+            "ok": true,
+            "next": -1
+          }
+        ]
+      }
+    ],
+    "prereq": [
+      "b1-2-u01"
+    ]
+  },
+  {
+    "id": "b1-2-u03",
+    "level": "B1.2",
+    "ord": 3,
+    "title": "Der Mensch, den…",
+    "can_do": [
+      "use N-declension nouns",
+      "talk about people precisely",
+      "avoid a common B1 error"
+    ],
+    "words": [
+      "verantwortlich",
+      "erfolgreich",
+      "begabt",
+      "neugierig",
+      "vorsichtig",
+      "geduldig",
+      "ehrlich",
+      "hoeflich",
+      "eindruck",
+      "wahrnehmung"
+    ],
+    "grammar_id": null,
+    "scenario": {
+      "role": "a colleague discussing a new hire",
+      "goal": "describe the new colleague",
+      "opener": "Und wie ist der Neue so?"
+    },
+    "dialogue": [
+      {
+        "them": "Und wie ist der Neue so?",
+        "options": [
+          {
+            "say": "Ja, gern.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Entschuldigung, ich verstehe nicht.",
+            "ok": true,
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Alles klar. Danke!",
+        "options": [
+          {
+            "say": "Danke, tschüss!",
+            "ok": true,
+            "next": -1
+          }
+        ]
+      }
+    ],
+    "prereq": [
+      "b1-2-u02"
+    ]
+  },
+  {
+    "id": "b1-2-u04",
+    "level": "B1.2",
+    "ord": 4,
+    "title": "Beschreiben mit Partizipien",
+    "can_do": [
+      "understand participles used as adjectives",
+      "read a news sentence",
+      "describe a state versus an action"
+    ],
+    "words": [
+      "bewusstsein",
+      "erinnerung",
+      "fantasie",
+      "kreativitaet",
+      "begabung",
+      "charakter",
+      "eigenschaft",
+      "verhalten",
+      "einstellung",
+      "haltung"
+    ],
+    "grammar_id": "g-konnektoren",
+    "scenario": {
+      "role": "a friend reading the news with you",
+      "goal": "explain a headline in simpler words",
+      "opener": "Was steht denn da? Ich versteh's nicht ganz."
+    },
+    "dialogue": [
+      {
+        "them": "Was steht denn da? Ich versteh's nicht ganz.",
+        "options": [
+          {
+            "say": "Ja, gern.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Entschuldigung, ich verstehe nicht.",
+            "ok": true,
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Alles klar. Danke!",
+        "options": [
+          {
+            "say": "Danke, tschüss!",
+            "ok": true,
+            "next": -1
+          }
+        ]
+      }
+    ],
+    "prereq": [
+      "b1-2-u03"
+    ]
+  },
+  {
+    "id": "b1-2-u05",
+    "level": "B1.2",
+    "ord": 5,
+    "title": "Was gesagt wurde",
+    "can_do": [
+      "recognise reported speech",
+      "read a news report critically",
+      "repeat what someone said"
+    ],
+    "words": [
+      "vorurteil",
+      "missverstaendnis",
+      "verwirrung",
+      "klarheit",
+      "bedeutung",
+      "wirklichkeit",
+      "wahrheit",
+      "luege",
+      "geheimnis",
+      "ueberraschung"
+    ],
+    "grammar_id": null,
+    "scenario": {
+      "role": "a friend who missed a meeting",
+      "goal": "report what was said without claiming it yourself",
+      "opener": "Was wurde denn besprochen?"
+    },
+    "dialogue": [
+      {
+        "them": "Was wurde denn besprochen?",
+        "options": [
+          {
+            "say": "Ja, gern.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Entschuldigung, ich verstehe nicht.",
+            "ok": true,
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Alles klar. Danke!",
+        "options": [
+          {
+            "say": "Danke, tschüss!",
+            "ok": true,
+            "next": -1
+          }
+        ]
+      }
+    ],
+    "prereq": [
+      "b1-2-u04"
+    ]
+  },
+  {
+    "id": "b1-2-u06",
+    "level": "B1.2",
+    "ord": 6,
+    "title": "Wörter bauen",
+    "can_do": [
+      "decode long compound words",
+      "guess gender from an ending",
+      "expand vocabulary without memorising"
+    ],
+    "words": [
+      "zufall",
+      "schicksal",
+      "wahrnehmen",
+      "begreifen",
+      "verwechseln",
+      "verwirren",
+      "klaeren",
+      "beurteilen",
+      "einschaetzen",
+      "beruecksichtigen"
+    ],
+    "grammar_id": null,
+    "scenario": {
+      "role": "a teacher testing your word sense",
+      "goal": "work out unknown words from their parts",
+      "opener": "Was könnte 'Arbeitslosigkeit' bedeuten?"
+    },
+    "dialogue": [
+      {
+        "them": "Was könnte 'Arbeitslosigkeit' bedeuten?",
+        "options": [
+          {
+            "say": "Ja, gern.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Entschuldigung, ich verstehe nicht.",
+            "ok": true,
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Alles klar. Danke!",
+        "options": [
+          {
+            "say": "Danke, tschüss!",
+            "ok": true,
+            "next": -1
+          }
+        ]
+      }
+    ],
+    "prereq": [
+      "b1-2-u05"
+    ]
+  },
+  {
+    "id": "b1-2-u07",
+    "level": "B1.2",
+    "ord": 7,
+    "title": "Behörden und Formulare",
+    "can_do": [
+      "deal with an official office",
+      "fill in a complex form",
+      "ask what happens next"
+    ],
+    "words": [
+      "zusammenfassen",
+      "behoerde",
+      "amt",
+      "antrag",
+      "formular",
+      "genehmigung",
+      "bescheinigung",
+      "anmeldung",
+      "frist",
+      "gebuehr"
+    ],
+    "grammar_id": "g-nomen-verb",
+    "scenario": {
+      "role": "an official at the Ausländerbehörde",
+      "goal": "submit an application and understand the next steps",
+      "opener": "Ihre Unterlagen bitte."
+    },
+    "dialogue": [
+      {
+        "them": "Ihre Unterlagen bitte.",
+        "options": [
+          {
+            "say": "Ja, gern.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Entschuldigung, ich verstehe nicht.",
+            "ok": true,
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Alles klar. Danke!",
+        "options": [
+          {
+            "say": "Danke, tschüss!",
+            "ok": true,
+            "next": -1
+          }
+        ]
+      }
+    ],
+    "prereq": [
+      "b1-2-u06"
+    ]
+  },
+  {
+    "id": "b1-2-u08",
+    "level": "B1.2",
+    "ord": 8,
+    "title": "Verträge und Rechte",
+    "can_do": [
+      "understand contract basics",
+      "ask about obligations",
+      "cancel something formally"
+    ],
+    "words": [
+      "beschwerde",
+      "stempel",
+      "beamter",
+      "buerger",
+      "staat",
+      "verwaltung",
+      "gericht",
+      "anwalt",
+      "urteil",
+      "strafe"
+    ],
+    "grammar_id": null,
+    "scenario": {
+      "role": "a customer-service agent",
+      "goal": "cancel a contract and confirm it in writing",
+      "opener": "Sie möchten kündigen?"
+    },
+    "dialogue": [
+      {
+        "them": "Sie möchten kündigen?",
+        "options": [
+          {
+            "say": "Ja, gern.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Entschuldigung, ich verstehe nicht.",
+            "ok": true,
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Alles klar. Danke!",
+        "options": [
+          {
+            "say": "Danke, tschüss!",
+            "ok": true,
+            "next": -1
+          }
+        ]
+      }
+    ],
+    "prereq": [
+      "b1-2-u07"
+    ]
+  },
+  {
+    "id": "b1-2-u09",
+    "level": "B1.2",
+    "ord": 9,
+    "title": "Arbeitswelt",
+    "can_do": [
+      "discuss working conditions",
+      "negotiate",
+      "describe a workplace conflict"
+    ],
+    "words": [
+      "vorschrift",
+      "verbot",
+      "erlaubnis",
+      "beantragen",
+      "genehmigen",
+      "bestaetigen",
+      "verlaengern",
+      "anmelden",
+      "abmelden",
+      "beschweren"
+    ],
+    "grammar_id": null,
+    "scenario": {
+      "role": "your manager in a review meeting",
+      "goal": "discuss your role and ask for a change",
+      "opener": "Wie zufrieden sind Sie mit Ihrer aktuellen Rolle?"
+    },
+    "dialogue": [
+      {
+        "them": "Wie zufrieden sind Sie mit Ihrer aktuellen Rolle?",
+        "options": [
+          {
+            "say": "Ja, gern.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Entschuldigung, ich verstehe nicht.",
+            "ok": true,
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Alles klar. Danke!",
+        "options": [
+          {
+            "say": "Danke, tschüss!",
+            "ok": true,
+            "next": -1
+          }
+        ]
+      }
+    ],
+    "prereq": [
+      "b1-2-u08"
+    ]
+  },
+  {
+    "id": "b1-2-u10",
+    "level": "B1.2",
+    "ord": 10,
+    "title": "Statistik und Zahlen",
+    "can_do": [
+      "describe a trend",
+      "read a chart out loud",
+      "compare figures"
+    ],
+    "words": [
+      "verpflichten",
+      "verbieten",
+      "einkommen",
+      "ausgabe",
+      "gewinn",
+      "verlust",
+      "investition",
+      "schulden",
+      "ersparnis",
+      "rente"
+    ],
+    "grammar_id": "g-partizip-adjektiv",
+    "scenario": {
+      "role": "a colleague reviewing a report with you",
+      "goal": "describe what the numbers show",
+      "opener": "Was sagen die Zahlen denn?"
+    },
+    "dialogue": [
+      {
+        "them": "Was sagen die Zahlen denn?",
+        "options": [
+          {
+            "say": "Ja, gern.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Entschuldigung, ich verstehe nicht.",
+            "ok": true,
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Alles klar. Danke!",
+        "options": [
+          {
+            "say": "Danke, tschüss!",
+            "ok": true,
+            "next": -1
+          }
+        ]
+      }
+    ],
+    "prereq": [
+      "b1-2-u09"
+    ]
+  },
+  {
+    "id": "b1-2-u11",
+    "level": "B1.2",
+    "ord": 11,
+    "title": "Kultur",
+    "can_do": [
+      "talk about art, music or literature",
+      "give a considered opinion",
+      "describe an event you attended"
+    ],
+    "words": [
+      "sozialleistung",
+      "arbeitsmarkt",
+      "nachfrage",
+      "inflation",
+      "qualitaet",
+      "menge",
+      "anteil",
+      "durchschnitt",
+      "statistik",
+      "umfrage"
+    ],
+    "grammar_id": null,
+    "scenario": {
+      "role": "someone at an exhibition",
+      "goal": "discuss what you've both seen",
+      "opener": "Und, wie finden Sie die Ausstellung?"
+    },
+    "dialogue": [
+      {
+        "them": "Und, wie finden Sie die Ausstellung?",
+        "options": [
+          {
+            "say": "Ja, gern.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Entschuldigung, ich verstehe nicht.",
+            "ok": true,
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Alles klar. Danke!",
+        "options": [
+          {
+            "say": "Danke, tschüss!",
+            "ok": true,
+            "next": -1
+          }
+        ]
+      }
+    ],
+    "prereq": [
+      "b1-2-u10"
+    ]
+  },
+  {
+    "id": "b1-2-u12",
+    "level": "B1.2",
+    "ord": 12,
+    "title": "Migration und Integration",
+    "can_do": [
+      "talk about living in another country",
+      "describe culture shock",
+      "discuss belonging"
+    ],
+    "words": [
+      "tendenz",
+      "wachstum",
+      "rueckgang",
+      "finanzieren",
+      "investieren",
+      "konsumieren",
+      "produzieren",
+      "liefern",
+      "reklamieren",
+      "bildung"
+    ],
+    "grammar_id": null,
+    "scenario": {
+      "role": "someone who also moved to Germany",
+      "goal": "compare your experiences of settling in",
+      "opener": "Wie lange hat es bei dir gedauert, bis du dich wohlgefühlt hast?"
+    },
+    "dialogue": [
+      {
+        "them": "Wie lange hat es bei dir gedauert, bis du dich wohlgefühlt hast?",
+        "options": [
+          {
+            "say": "Ja, gern.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Entschuldigung, ich verstehe nicht.",
+            "ok": true,
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Alles klar. Danke!",
+        "options": [
+          {
+            "say": "Danke, tschüss!",
+            "ok": true,
+            "next": -1
+          }
+        ]
+      }
+    ],
+    "prereq": [
+      "b1-2-u11"
+    ]
+  },
+  {
+    "id": "b1-2-u13",
+    "level": "B1.2",
+    "ord": 13,
+    "title": "Wissenschaft",
+    "can_do": [
+      "follow a popular-science explanation",
+      "ask clarifying questions",
+      "summarise what you understood"
+    ],
+    "words": [
+      "wissenschaft",
+      "forschung",
+      "erkenntnis",
+      "theorie",
+      "methode",
+      "fachbereich",
+      "vortrag",
+      "diskussion",
+      "debatte",
+      "literatur"
+    ],
+    "grammar_id": "g-konjunktiv1",
+    "scenario": {
+      "role": "a friend who works in research",
+      "goal": "understand their work and ask good questions",
+      "opener": "Willst du wissen, woran ich gerade arbeite?"
+    },
+    "dialogue": [
+      {
+        "them": "Willst du wissen, woran ich gerade arbeite?",
+        "options": [
+          {
+            "say": "Ja, gern.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Entschuldigung, ich verstehe nicht.",
+            "ok": true,
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Alles klar. Danke!",
+        "options": [
+          {
+            "say": "Danke, tschüss!",
+            "ok": true,
+            "next": -1
+          }
+        ]
+      }
+    ],
+    "prereq": [
+      "b1-2-u12"
+    ]
+  },
+  {
+    "id": "b1-2-u14",
+    "level": "B1.2",
+    "ord": 14,
+    "title": "Nachrichten verstehen",
+    "can_do": [
+      "follow a slow news report",
+      "identify the main point",
+      "distinguish fact from opinion"
+    ],
+    "words": [
+      "dichter",
+      "kunst",
+      "musik",
+      "konzert",
+      "ausstellung",
+      "theater",
+      "publikum",
+      "tradition",
+      "brauch",
+      "feiertag"
+    ],
+    "grammar_id": null,
+    "scenario": {
+      "role": "a colleague discussing the news",
+      "goal": "summarise a story and give your view",
+      "opener": "Hast du das heute Morgen gehört?"
+    },
+    "dialogue": [
+      {
+        "them": "Hast du das heute Morgen gehört?",
+        "options": [
+          {
+            "say": "Ja, gern.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Entschuldigung, ich verstehe nicht.",
+            "ok": true,
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Alles klar. Danke!",
+        "options": [
+          {
+            "say": "Danke, tschüss!",
+            "ok": true,
+            "next": -1
+          }
+        ]
+      }
+    ],
+    "prereq": [
+      "b1-2-u13"
+    ]
+  },
+  {
+    "id": "b1-2-u15",
+    "level": "B1.2",
+    "ord": 15,
+    "title": "Konflikte lösen",
+    "can_do": [
+      "raise a difficult subject",
+      "stay polite under pressure",
+      "propose a compromise"
+    ],
+    "words": [
+      "herkunft",
+      "heimat",
+      "integration",
+      "migration",
+      "dialekt",
+      "uebersetzung",
+      "forschen",
+      "veroeffentlichen",
+      "uebersetzen",
+      "verlauf"
+    ],
+    "grammar_id": null,
+    "scenario": {
+      "role": "a flatmate you have a problem with",
+      "goal": "raise the issue calmly and agree a solution",
+      "opener": "Du wolltest mit mir reden?"
+    },
+    "dialogue": [
+      {
+        "them": "Du wolltest mit mir reden?",
+        "options": [
+          {
+            "say": "Ja, gern.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Entschuldigung, ich verstehe nicht.",
+            "ok": true,
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Alles klar. Danke!",
+        "options": [
+          {
+            "say": "Danke, tschüss!",
+            "ok": true,
+            "next": -1
+          }
+        ]
+      }
+    ],
+    "prereq": [
+      "b1-2-u14"
+    ]
+  },
+  {
+    "id": "b1-2-u16",
+    "level": "B1.2",
+    "ord": 16,
+    "title": "Ratschläge geben",
+    "can_do": [
+      "give advice without being bossy",
+      "use Konjunktiv II for suggestions",
+      "weigh up options"
+    ],
+    "words": [
+      "fortschritt",
+      "veraenderung",
+      "wandel",
+      "phase",
+      "zeitraum",
+      "verzoegerung",
+      "beschleunigung",
+      "wiederholung",
+      "unterbrechung",
+      "abschluss"
+    ],
+    "grammar_id": "g-wortbildung",
+    "scenario": {
+      "role": "a friend facing a big decision",
+      "goal": "help them think it through",
+      "opener": "Ich weiß echt nicht, was ich machen soll."
+    },
+    "dialogue": [
+      {
+        "them": "Ich weiß echt nicht, was ich machen soll.",
+        "options": [
+          {
+            "say": "Ja, gern.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Entschuldigung, ich verstehe nicht.",
+            "ok": true,
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Alles klar. Danke!",
+        "options": [
+          {
+            "say": "Danke, tschüss!",
+            "ok": true,
+            "next": -1
+          }
+        ]
+      }
+    ],
+    "prereq": [
+      "b1-2-u15"
+    ]
+  },
+  {
+    "id": "b1-2-u17",
+    "level": "B1.2",
+    "ord": 17,
+    "title": "Präsentieren",
+    "can_do": [
+      "structure a short talk",
+      "signal what comes next",
+      "answer a question afterwards"
+    ],
+    "words": [
+      "allmaehlich",
+      "zunehmend",
+      "voruebergehend",
+      "dauerhaft",
+      "gleichzeitig",
+      "inzwischen",
+      "mittlerweile",
+      "letztlich",
+      "vorher",
+      "nachher"
+    ],
+    "grammar_id": null,
+    "scenario": {
+      "role": "an audience at a small meeting",
+      "goal": "present something for two minutes and take a question",
+      "opener": "Sie haben das Wort."
+    },
+    "dialogue": [
+      {
+        "them": "Sie haben das Wort.",
+        "options": [
+          {
+            "say": "Ja, gern.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Entschuldigung, ich verstehe nicht.",
+            "ok": true,
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Alles klar. Danke!",
+        "options": [
+          {
+            "say": "Danke, tschüss!",
+            "ok": true,
+            "next": -1
+          }
+        ]
+      }
+    ],
+    "prereq": [
+      "b1-2-u16"
+    ]
+  },
+  {
+    "id": "b1-2-u18",
+    "level": "B1.2",
+    "ord": 18,
+    "title": "Schreiben, das ankommt",
+    "can_do": [
+      "write a formal email",
+      "use the right greeting and sign-off",
+      "make a clear request in writing"
+    ],
+    "words": [
+      "seitdem",
+      "solange",
+      "sobald",
+      "waehrend",
+      "bevor",
+      "nachdem",
+      "obwohl",
+      "trotzdem",
+      "dennoch",
+      "ausserdem"
+    ],
+    "grammar_id": null,
+    "scenario": {
+      "role": "someone you must write to formally",
+      "goal": "draft the message out loud before writing it",
+      "opener": "An wen schreiben Sie denn?"
+    },
+    "dialogue": [
+      {
+        "them": "An wen schreiben Sie denn?",
+        "options": [
+          {
+            "say": "Ja, gern.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Entschuldigung, ich verstehe nicht.",
+            "ok": true,
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Alles klar. Danke!",
+        "options": [
+          {
+            "say": "Danke, tschüss!",
+            "ok": true,
+            "next": -1
+          }
+        ]
+      }
+    ],
+    "prereq": [
+      "b1-2-u17"
+    ]
+  },
+  {
+    "id": "b1-2-u19",
+    "level": "B1.2",
+    "ord": 19,
+    "title": "Prüfungstraining",
+    "can_do": [
+      "handle a typical exam task",
+      "keep talking when you don't know a word",
+      "correct yourself naturally"
+    ],
+    "words": [
+      "jedoch",
+      "allerdings",
+      "deshalb",
+      "deswegen",
+      "folglich",
+      "beziehungsweise",
+      "einerseits",
+      "andererseits",
+      "angemessen",
+      "ausgezeichnet"
+    ],
+    "grammar_id": null,
+    "scenario": {
+      "role": "an exam partner in a paired task",
+      "goal": "plan something together and reach a decision",
+      "opener": "Also, wir sollen zusammen etwas organisieren."
+    },
+    "dialogue": [
+      {
+        "them": "Also, wir sollen zusammen etwas organisieren.",
+        "options": [
+          {
+            "say": "Ja, gern.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Entschuldigung, ich verstehe nicht.",
+            "ok": true,
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Alles klar. Danke!",
+        "options": [
+          {
+            "say": "Danke, tschüss!",
+            "ok": true,
+            "next": -1
+          }
+        ]
+      }
+    ],
+    "prereq": [
+      "b1-2-u18"
+    ]
+  },
+  {
+    "id": "b1-2-u20",
+    "level": "B1.2",
+    "ord": 20,
+    "title": "B1.2 — angekommen",
+    "can_do": [
+      "talk fluently about familiar topics",
+      "handle unexpected turns",
+      "express nuance and doubt"
+    ],
+    "words": [
+      "hervorragend",
+      "mangelhaft",
+      "umfangreich",
+      "begrenzt",
+      "erheblich",
+      "gering",
+      "enorm",
+      "wesentlich",
+      "ueberfluessig",
+      "verfuegbar",
+      "zugaenglich",
+      "wahrscheinlich",
+      "unwahrscheinlich",
+      "offensichtlich",
+      "umstritten",
+      "komplex",
+      "kompliziert",
+      "eindeutig",
+      "mehrdeutig",
+      "vorlaeufig",
+      "endgueltig",
+      "freiwillig"
+    ],
+    "grammar_id": null,
+    "scenario": {
+      "role": "a German friend on a long walk",
+      "goal": "hold a real, unstructured conversation",
+      "opener": "Erzähl mal — wie war dein Weg hierher, von ganz am Anfang?"
+    },
+    "dialogue": [
+      {
+        "them": "Erzähl mal — wie war dein Weg hierher, von ganz am Anfang?",
+        "options": [
+          {
+            "say": "Ja, gern.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Entschuldigung, ich verstehe nicht.",
+            "ok": true,
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Alles klar. Danke!",
+        "options": [
+          {
+            "say": "Danke, tschüss!",
+            "ok": true,
+            "next": -1
+          }
+        ]
+      }
+    ],
+    "prereq": [
+      "b1-2-u19"
+    ]
+  }
+]

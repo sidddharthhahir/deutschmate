@@ -1,0 +1,128 @@
+[
+  {
+    "id": "surv-anmeldung",
+    "level": "A1.2",
+    "ord": 1,
+    "title": "Anmeldung beim Bürgeramt",
+    "why": "Within two weeks of moving in. Without the Meldebescheinigung there is no bank account, no tax ID, no contract.",
+    "bring": ["Personalausweis oder Reisepass", "Wohnungsgeberbestätigung vom Vermieter", "Anmeldeformular"],
+    "scenario": {
+      "role": "a Sachbearbeiterin at the Bürgeramt, polite but brisk and in a hurry",
+      "goal": "Register your new address and leave with the Meldebescheinigung",
+      "opener": "Guten Tag. Sie haben einen Termin? Wie ist Ihr Name?"
+    },
+    "phrases": [
+      { "de": "Ich möchte mich anmelden.", "en": "I'd like to register." },
+      { "de": "Hier ist meine Wohnungsgeberbestätigung.", "en": "Here is my landlord's confirmation." },
+      { "de": "Ich bin am ersten März eingezogen.", "en": "I moved in on the first of March." },
+      { "de": "Brauche ich noch etwas?", "en": "Do I need anything else?" },
+      { "de": "Können Sie das bitte wiederholen?", "en": "Could you repeat that, please?" },
+      { "de": "Wann bekomme ich die Steuer-ID?", "en": "When do I get the tax ID?" }
+    ]
+  },
+  {
+    "id": "surv-wg",
+    "level": "A2.1",
+    "ord": 2,
+    "title": "WG-Besichtigung",
+    "why": "You are competing with twenty other people for one room. What you say in ten minutes decides it.",
+    "bring": ["Kurze Selbstvorstellung", "Fragen zur Miete und Nebenkosten", "Gehaltsnachweis oder Immatrikulation"],
+    "scenario": {
+      "role": "a current flatmate showing the room, friendly but quietly assessing you",
+      "goal": "Make a good impression and find out what the room actually costs",
+      "opener": "Hi! Komm rein. Das wäre das Zimmer — wie findest du es?"
+    },
+    "phrases": [
+      { "de": "Wie hoch sind die Nebenkosten?", "en": "How much are the utilities?" },
+      { "de": "Ist die Miete warm oder kalt?", "en": "Is the rent including utilities or not?" },
+      { "de": "Gibt es eine Kaution?", "en": "Is there a deposit?" },
+      { "de": "Ich studiere Informatik im zweiten Semester.", "en": "I'm studying computer science, second semester." },
+      { "de": "Wie ist das mit dem Putzplan?", "en": "How do you handle the cleaning rota?" },
+      { "de": "Wann würdet ihr Bescheid geben?", "en": "When would you let me know?" }
+    ]
+  },
+  {
+    "id": "surv-arzt",
+    "level": "A2.1",
+    "ord": 3,
+    "title": "Beim Arzt",
+    "why": "Describing symptoms is the one conversation where guessing a word is genuinely risky.",
+    "bring": ["Versichertenkarte", "Liste der Beschwerden", "Namen von Medikamenten"],
+    "scenario": {
+      "role": "a Hausärztin, calm and thorough, asking follow-up questions",
+      "goal": "Explain what hurts, since when, and understand what you should do",
+      "opener": "Guten Tag, setzen Sie sich. Was führt Sie zu mir?"
+    },
+    "phrases": [
+      { "de": "Ich habe seit drei Tagen Halsschmerzen.", "en": "I've had a sore throat for three days." },
+      { "de": "Mir ist schlecht.", "en": "I feel sick." },
+      { "de": "Ich habe Fieber, achtunddreißig Grad.", "en": "I have a fever, thirty-eight degrees." },
+      { "de": "Ich bin gegen Penizillin allergisch.", "en": "I'm allergic to penicillin." },
+      { "de": "Brauche ich eine Krankschreibung?", "en": "Do I need a sick note?" },
+      { "de": "Wie oft soll ich das nehmen?", "en": "How often should I take this?" }
+    ]
+  },
+  {
+    "id": "surv-bank",
+    "level": "A2.2",
+    "ord": 4,
+    "title": "Konto eröffnen",
+    "why": "Rent, insurance and your semester fee all need a German account with a real IBAN.",
+    "bring": ["Ausweis", "Meldebescheinigung", "Immatrikulationsbescheinigung", "Steuer-ID"],
+    "scenario": {
+      "role": "a bank advisor going through the paperwork, using a lot of compound nouns",
+      "goal": "Open a free student account and understand the fees",
+      "opener": "Schönen guten Tag. Sie möchten ein Konto eröffnen — sind Sie Student?"
+    },
+    "phrases": [
+      { "de": "Ich möchte ein Girokonto eröffnen.", "en": "I'd like to open a current account." },
+      { "de": "Ist das Konto für Studenten kostenlos?", "en": "Is the account free for students?" },
+      { "de": "Fallen Gebühren an?", "en": "Are there any fees?" },
+      { "de": "Bekomme ich eine EC-Karte?", "en": "Do I get a debit card?" },
+      { "de": "Kann ich einen Dauerauftrag einrichten?", "en": "Can I set up a standing order?" },
+      { "de": "Das habe ich nicht ganz verstanden.", "en": "I didn't quite understand that." }
+    ]
+  },
+  {
+    "id": "surv-vertrag",
+    "level": "B1.1",
+    "ord": 5,
+    "title": "Vertrag kündigen",
+    "why": "Gym, phone, insurance — German contracts renew themselves unless you cancel in writing and on time.",
+    "bring": ["Kundennummer", "Kündigungsfrist", "Schriftform"],
+    "scenario": {
+      "role": "a call-centre agent who would much rather you stayed and keeps offering alternatives",
+      "goal": "Cancel, get it confirmed in writing, and not be talked into an upgrade",
+      "opener": "Kundenservice, mein Name ist Weber. Was kann ich für Sie tun?"
+    },
+    "phrases": [
+      { "de": "Ich möchte meinen Vertrag kündigen.", "en": "I'd like to cancel my contract." },
+      { "de": "Zum nächstmöglichen Zeitpunkt, bitte.", "en": "At the earliest possible date, please." },
+      { "de": "Wie lange ist die Kündigungsfrist?", "en": "How long is the notice period?" },
+      { "de": "Bitte schicken Sie mir eine schriftliche Bestätigung.", "en": "Please send me written confirmation." },
+      { "de": "Nein danke, ich möchte kein neues Angebot.", "en": "No thank you, I don't want a new offer." },
+      { "de": "Ich bestehe auf der Kündigung.", "en": "I insist on the cancellation." }
+    ]
+  },
+  {
+    "id": "surv-uni",
+    "level": "B1.1",
+    "ord": 6,
+    "title": "Im Prüfungsamt",
+    "why": "Deadlines, registrations and Attests are all handled by one office that assumes you know the rules.",
+    "bring": ["Matrikelnummer", "Modulnummer", "Attest bei Krankheit"],
+    "scenario": {
+      "role": "a Prüfungsamt clerk, precise about deadlines and forms",
+      "goal": "Sort out an exam registration problem and get a clear answer about the deadline",
+      "opener": "Ja bitte? Haben Sie Ihre Matrikelnummer dabei?"
+    },
+    "phrases": [
+      { "de": "Ich konnte mich nicht rechtzeitig anmelden.", "en": "I wasn't able to register in time." },
+      { "de": "Ich war krank, hier ist mein Attest.", "en": "I was ill, here is my medical certificate." },
+      { "de": "Kann ich die Prüfung nachholen?", "en": "Can I take the exam at a later date?" },
+      { "de": "Bis wann muss ich mich abmelden?", "en": "By when do I have to deregister?" },
+      { "de": "An wen kann ich mich sonst wenden?", "en": "Who else could I turn to?" },
+      { "de": "Könnten Sie mir das schriftlich geben?", "en": "Could you give me that in writing?" }
+    ]
+  }
+]

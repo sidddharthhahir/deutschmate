@@ -6,6 +6,10 @@
     "skipLibCheck": true,
     "strict": true,
     "noEmit": true,
+    // The scripts/ tools run straight through Node 24's type stripping, which
+    // requires the real ".ts" extension on relative imports. Safe here because
+    // nothing is emitted — Next compiles the app through its own pipeline.
+    "allowImportingTsExtensions": true,
     "esModuleInterop": true,
     "module": "esnext",
     "moduleResolution": "bundler",

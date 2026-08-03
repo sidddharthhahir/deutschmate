@@ -1,0 +1,1946 @@
+[
+  {
+    "id": "beruf",
+    "lemma": "Beruf",
+    "article": "der",
+    "plural": "Berufe",
+    "pos": "noun",
+    "en": "profession"
+  },
+  {
+    "id": "arbeitsplatz",
+    "lemma": "Arbeitsplatz",
+    "article": "der",
+    "plural": "Arbeitsplätze",
+    "pos": "noun",
+    "en": "workplace"
+  },
+  {
+    "id": "firma",
+    "lemma": "Firma",
+    "article": "die",
+    "plural": "Firmen",
+    "pos": "noun",
+    "en": "firm"
+  },
+  {
+    "id": "buero",
+    "lemma": "Büro",
+    "article": "das",
+    "plural": "Büros",
+    "pos": "noun",
+    "en": "office"
+  },
+  {
+    "id": "abteilung",
+    "lemma": "Abteilung",
+    "article": "die",
+    "plural": "Abteilungen",
+    "pos": "noun",
+    "en": "department"
+  },
+  {
+    "id": "praktikum",
+    "lemma": "Praktikum",
+    "article": "das",
+    "plural": "Praktika",
+    "pos": "noun",
+    "en": "work experience"
+  },
+  {
+    "id": "bewerbung",
+    "lemma": "Bewerbung",
+    "article": "die",
+    "plural": "Bewerbungen",
+    "pos": "noun",
+    "en": "application"
+  },
+  {
+    "id": "lebenslauf",
+    "lemma": "Lebenslauf",
+    "article": "der",
+    "plural": "Lebensläufe",
+    "pos": "noun",
+    "en": "curriculum vitae"
+  },
+  {
+    "id": "vorstellungsgespraech",
+    "lemma": "Vorstellungsgespräch",
+    "article": "das",
+    "plural": "Vorstellungsgespräche",
+    "pos": "noun",
+    "en": "interview"
+  },
+  {
+    "id": "gehalt",
+    "lemma": "Gehalt",
+    "article": "der",
+    "plural": "Gehalte",
+    "pos": "noun",
+    "en": "content"
+  },
+  {
+    "id": "vertrag",
+    "lemma": "Vertrag",
+    "article": "der",
+    "plural": "Verträge",
+    "pos": "noun",
+    "en": "agreement"
+  },
+  {
+    "id": "kollegin",
+    "lemma": "Kollegin",
+    "article": "die",
+    "plural": "Kolleginnen",
+    "pos": "noun",
+    "en": "colleague"
+  },
+  {
+    "id": "ausbildung",
+    "lemma": "Ausbildung",
+    "article": "die",
+    "plural": "Ausbildungen",
+    "pos": "noun",
+    "en": "education"
+  },
+  {
+    "id": "studium",
+    "lemma": "Studium",
+    "article": "das",
+    "plural": "Studien",
+    "pos": "noun",
+    "en": "studies"
+  },
+  {
+    "id": "universitaet",
+    "lemma": "Universität",
+    "article": "die",
+    "plural": "Universitäten",
+    "pos": "noun",
+    "en": "university"
+  },
+  {
+    "id": "pruefung",
+    "lemma": "Prüfung",
+    "article": "die",
+    "plural": "Prüfungen",
+    "pos": "noun",
+    "en": "check"
+  },
+  {
+    "id": "note",
+    "lemma": "Note",
+    "article": "die",
+    "plural": "Noten",
+    "pos": "noun",
+    "en": "note"
+  },
+  {
+    "id": "zeugnis",
+    "lemma": "Zeugnis",
+    "article": "das",
+    "plural": "Zeugnisse",
+    "pos": "noun",
+    "en": "testimony"
+  },
+  {
+    "id": "kurs",
+    "lemma": "Kurs",
+    "article": "der",
+    "plural": "Kurse",
+    "pos": "noun",
+    "en": "course"
+  },
+  {
+    "id": "unterricht",
+    "lemma": "Unterricht",
+    "article": "der",
+    "plural": "Unterrichte",
+    "pos": "noun",
+    "en": "instruction"
+  },
+  {
+    "id": "hausaufgabe",
+    "lemma": "Hausaufgabe",
+    "article": "die",
+    "plural": "Hausaufgaben",
+    "pos": "noun",
+    "en": "homework"
+  },
+  {
+    "id": "uebung",
+    "lemma": "Übung",
+    "article": "die",
+    "plural": "Übungen",
+    "pos": "noun",
+    "en": "training"
+  },
+  {
+    "id": "fehler",
+    "lemma": "Fehler",
+    "article": "der",
+    "plural": "Fehler",
+    "pos": "noun",
+    "en": "error"
+  },
+  {
+    "id": "loesung",
+    "lemma": "Lösung",
+    "article": "die",
+    "plural": "Lösungen",
+    "pos": "noun",
+    "en": "answer"
+  },
+  {
+    "id": "ergebnis",
+    "lemma": "Ergebnis",
+    "article": "das",
+    "plural": "Ergebnisse",
+    "pos": "noun",
+    "en": "result"
+  },
+  {
+    "id": "bewerben",
+    "lemma": "bewerben",
+    "pos": "verb",
+    "en": "apply",
+    "forms": {
+      "ich": "bewerbe",
+      "du": "bewirbst",
+      "er": "bewirbt"
+    }
+  },
+  {
+    "id": "verdienen",
+    "lemma": "verdienen",
+    "pos": "verb",
+    "en": "earn",
+    "forms": {
+      "ich": "verdiene",
+      "du": "verdienst",
+      "er": "verdient"
+    }
+  },
+  {
+    "id": "kuendigen",
+    "lemma": "kündigen",
+    "pos": "verb",
+    "en": "give notice",
+    "forms": {
+      "ich": "kündige",
+      "du": "kündigst",
+      "er": "kündigt"
+    }
+  },
+  {
+    "id": "studieren",
+    "lemma": "studieren",
+    "pos": "verb",
+    "en": "study",
+    "forms": {
+      "ich": "studiere",
+      "du": "studierst",
+      "er": "studiert"
+    }
+  },
+  {
+    "id": "bestehen",
+    "lemma": "bestehen",
+    "pos": "verb",
+    "en": "succeed",
+    "forms": {
+      "ich": "bestehe",
+      "du": "bestehst",
+      "er": "besteht"
+    }
+  },
+  {
+    "id": "wiederholen",
+    "lemma": "wiederholen",
+    "pos": "verb",
+    "en": "iterate",
+    "forms": {
+      "ich": "wiederhole",
+      "du": "wiederholst",
+      "er": "wiederholt"
+    }
+  },
+  {
+    "id": "korrigieren",
+    "lemma": "korrigieren",
+    "pos": "verb",
+    "en": "correct",
+    "forms": {
+      "ich": "korrigiere",
+      "du": "korrigierst",
+      "er": "korrigiert"
+    }
+  },
+  {
+    "id": "vorbereiten",
+    "lemma": "vorbereiten",
+    "pos": "verb",
+    "en": "prepare",
+    "forms": {
+      "ich": "bereite vor",
+      "du": "bereitest vor",
+      "er": "bereitet vor"
+    }
+  },
+  {
+    "id": "gefuehl",
+    "lemma": "Gefühl",
+    "article": "das",
+    "plural": "Gefühle",
+    "pos": "noun",
+    "en": "affection"
+  },
+  {
+    "id": "meinung",
+    "lemma": "Meinung",
+    "article": "die",
+    "plural": "Meinungen",
+    "pos": "noun",
+    "en": "opinion"
+  },
+  {
+    "id": "idee",
+    "lemma": "Idee",
+    "article": "die",
+    "plural": "Ideen",
+    "pos": "noun",
+    "en": "idea"
+  },
+  {
+    "id": "grund",
+    "lemma": "Grund",
+    "article": "der",
+    "plural": "Gründe",
+    "pos": "noun",
+    "en": "reason"
+  },
+  {
+    "id": "wunsch",
+    "lemma": "Wunsch",
+    "article": "der",
+    "plural": "Wünsche",
+    "pos": "noun",
+    "en": "request"
+  },
+  {
+    "id": "angst",
+    "lemma": "Angst",
+    "article": "die",
+    "plural": "Ängste",
+    "pos": "noun",
+    "en": "anxiety"
+  },
+  {
+    "id": "freude",
+    "lemma": "Freude",
+    "article": "die",
+    "plural": "Freuden",
+    "pos": "noun",
+    "en": "joy"
+  },
+  {
+    "id": "aerger",
+    "lemma": "Ärger",
+    "article": "der",
+    "pos": "noun",
+    "en": "aggro"
+  },
+  {
+    "id": "sorge",
+    "lemma": "Sorge",
+    "article": "die",
+    "plural": "Sorgen",
+    "pos": "noun",
+    "en": "worry"
+  },
+  {
+    "id": "hoffnung",
+    "lemma": "Hoffnung",
+    "article": "die",
+    "plural": "Hoffnungen",
+    "pos": "noun",
+    "en": "hope"
+  },
+  {
+    "id": "interesse",
+    "lemma": "Interesse",
+    "article": "das",
+    "plural": "Interessen",
+    "pos": "noun",
+    "en": "interest"
+  },
+  {
+    "id": "spass",
+    "lemma": "Spaß",
+    "article": "der",
+    "plural": "Späße",
+    "pos": "noun",
+    "en": "humour"
+  },
+  {
+    "id": "glueck",
+    "lemma": "Glück",
+    "article": "das",
+    "pos": "noun",
+    "en": "luck"
+  },
+  {
+    "id": "pech",
+    "lemma": "Pech",
+    "article": "das",
+    "plural": "Peche",
+    "pos": "noun",
+    "en": "pitch"
+  },
+  {
+    "id": "zufrieden",
+    "lemma": "zufrieden",
+    "pos": "adj",
+    "en": "satisfied"
+  },
+  {
+    "id": "unzufrieden",
+    "lemma": "unzufrieden",
+    "pos": "adj",
+    "en": "dissatisfied"
+  },
+  {
+    "id": "stolz",
+    "lemma": "stolz",
+    "pos": "adj",
+    "en": "proud"
+  },
+  {
+    "id": "nervoes",
+    "lemma": "nervös",
+    "pos": "adj",
+    "en": "jumpy"
+  },
+  {
+    "id": "ruhig",
+    "lemma": "ruhig",
+    "pos": "adj",
+    "en": "quiet"
+  },
+  {
+    "id": "aufgeregt",
+    "lemma": "aufgeregt",
+    "pos": "adj",
+    "en": "excited"
+  },
+  {
+    "id": "enttaeuscht",
+    "lemma": "enttäuscht",
+    "pos": "adj",
+    "en": "crestfallen"
+  },
+  {
+    "id": "ueberrascht",
+    "lemma": "überrascht",
+    "pos": "adj",
+    "en": "surprised"
+  },
+  {
+    "id": "muede",
+    "lemma": "müde",
+    "pos": "adj",
+    "en": "sleepy"
+  },
+  {
+    "id": "wach",
+    "lemma": "wach",
+    "pos": "adj",
+    "en": "awake"
+  },
+  {
+    "id": "langweilig",
+    "lemma": "langweilig",
+    "pos": "adj",
+    "en": "boring"
+  },
+  {
+    "id": "interessant",
+    "lemma": "interessant",
+    "pos": "adj",
+    "en": "interesting"
+  },
+  {
+    "id": "wichtig",
+    "lemma": "wichtig",
+    "pos": "adj",
+    "en": "important"
+  },
+  {
+    "id": "unwichtig",
+    "lemma": "unwichtig",
+    "pos": "adj",
+    "en": "unimportant"
+  },
+  {
+    "id": "moeglich",
+    "lemma": "möglich",
+    "pos": "adj",
+    "en": "possible"
+  },
+  {
+    "id": "unmoeglich",
+    "lemma": "unmöglich",
+    "pos": "adj",
+    "en": "impossible"
+  },
+  {
+    "id": "einfach",
+    "lemma": "einfach",
+    "pos": "adj",
+    "en": "simple"
+  },
+  {
+    "id": "schwierig",
+    "lemma": "schwierig",
+    "pos": "adj",
+    "en": "difficult"
+  },
+  {
+    "id": "denken",
+    "lemma": "denken",
+    "pos": "verb",
+    "en": "think",
+    "forms": {
+      "ich": "denke",
+      "du": "denkst",
+      "er": "denkt"
+    }
+  },
+  {
+    "id": "meinen",
+    "lemma": "meinen",
+    "pos": "verb",
+    "en": "think",
+    "forms": {
+      "ich": "meine",
+      "du": "meinst",
+      "er": "meint"
+    }
+  },
+  {
+    "id": "finden",
+    "lemma": "finden",
+    "pos": "verb",
+    "en": "find",
+    "forms": {
+      "ich": "finde",
+      "du": "findest",
+      "er": "findet"
+    }
+  },
+  {
+    "id": "hoffen",
+    "lemma": "hoffen",
+    "pos": "verb",
+    "en": "hope",
+    "forms": {
+      "ich": "hoffe",
+      "du": "hoffst",
+      "er": "hofft"
+    }
+  },
+  {
+    "id": "wuenschen",
+    "lemma": "wünschen",
+    "pos": "verb",
+    "en": "wish",
+    "forms": {
+      "ich": "wünsche",
+      "du": "wünschst",
+      "er": "wünscht"
+    }
+  },
+  {
+    "id": "fuehlen",
+    "lemma": "fühlen",
+    "pos": "verb",
+    "en": "feel",
+    "forms": {
+      "ich": "fühle",
+      "du": "fühlst",
+      "er": "fühlt"
+    }
+  },
+  {
+    "id": "aergern",
+    "lemma": "ärgern",
+    "pos": "verb",
+    "en": "annoy",
+    "forms": {
+      "ich": "ärgere",
+      "du": "ärgerst",
+      "er": "ärgert"
+    }
+  },
+  {
+    "id": "freuen",
+    "lemma": "freuen",
+    "pos": "verb",
+    "en": "be happy",
+    "forms": {
+      "ich": "freue",
+      "du": "freust",
+      "er": "freut"
+    }
+  },
+  {
+    "id": "entscheiden",
+    "lemma": "entscheiden",
+    "pos": "verb",
+    "en": "decide",
+    "forms": {
+      "ich": "entscheide",
+      "du": "entscheidest",
+      "er": "entscheidet"
+    }
+  },
+  {
+    "id": "ueberlegen",
+    "lemma": "überlegen",
+    "pos": "verb",
+    "en": "superior",
+    "forms": {
+      "ich": "lege über",
+      "du": "legst über",
+      "er": "legt über"
+    }
+  },
+  {
+    "id": "vorschlagen",
+    "lemma": "vorschlagen",
+    "pos": "verb",
+    "en": "propose",
+    "forms": {
+      "ich": "schlage vor",
+      "du": "schlägst vor",
+      "er": "schlägt vor"
+    }
+  },
+  {
+    "id": "diskutieren",
+    "lemma": "diskutieren",
+    "pos": "verb",
+    "en": "discuss",
+    "forms": {
+      "ich": "diskutiere",
+      "du": "diskutierst",
+      "er": "diskutiert"
+    }
+  },
+  {
+    "id": "streiten",
+    "lemma": "streiten",
+    "pos": "verb",
+    "en": "argue",
+    "forms": {
+      "ich": "streite",
+      "du": "streitest",
+      "er": "streitet"
+    }
+  },
+  {
+    "id": "gespraech",
+    "lemma": "Gespräch",
+    "article": "das",
+    "plural": "Gespräche",
+    "pos": "noun",
+    "en": "conversation"
+  },
+  {
+    "id": "nachricht",
+    "lemma": "Nachricht",
+    "article": "die",
+    "plural": "Nachrichten",
+    "pos": "noun",
+    "en": "news"
+  },
+  {
+    "id": "anruf",
+    "lemma": "Anruf",
+    "article": "der",
+    "plural": "Anrufe",
+    "pos": "noun",
+    "en": "phone call"
+  },
+  {
+    "id": "telefon",
+    "lemma": "Telefon",
+    "article": "das",
+    "plural": "Telefone",
+    "pos": "noun",
+    "en": "telephone"
+  },
+  {
+    "id": "e-mail",
+    "lemma": "E-Mail",
+    "article": "die",
+    "plural": "E-Mails",
+    "pos": "noun",
+    "en": "e-mail"
+  },
+  {
+    "id": "adresse",
+    "lemma": "Adresse",
+    "article": "die",
+    "plural": "Adressen",
+    "pos": "noun",
+    "en": "address"
+  },
+  {
+    "id": "internet",
+    "lemma": "Internet",
+    "article": "das",
+    "pos": "noun",
+    "en": "Internet"
+  },
+  {
+    "id": "seite",
+    "lemma": "Seite",
+    "article": "die",
+    "plural": "Seiten",
+    "pos": "noun",
+    "en": "side"
+  },
+  {
+    "id": "zeitung",
+    "lemma": "Zeitung",
+    "article": "die",
+    "plural": "Zeitungen",
+    "pos": "noun",
+    "en": "paper"
+  },
+  {
+    "id": "zeitschrift",
+    "lemma": "Zeitschrift",
+    "article": "die",
+    "plural": "Zeitschriften",
+    "pos": "noun",
+    "en": "magazine"
+  },
+  {
+    "id": "buch",
+    "lemma": "Buch",
+    "article": "das",
+    "plural": "Bücher",
+    "pos": "noun",
+    "en": "book"
+  },
+  {
+    "id": "roman",
+    "lemma": "Roman",
+    "article": "der",
+    "plural": "Romane",
+    "pos": "noun",
+    "en": "novel"
+  },
+  {
+    "id": "artikel",
+    "lemma": "Artikel",
+    "article": "der",
+    "plural": "Artikel",
+    "pos": "noun",
+    "en": "commodity"
+  },
+  {
+    "id": "bericht",
+    "lemma": "Bericht",
+    "article": "der",
+    "plural": "Berichte",
+    "pos": "noun",
+    "en": "report"
+  },
+  {
+    "id": "werbung",
+    "lemma": "Werbung",
+    "article": "die",
+    "plural": "Werbungen",
+    "pos": "noun",
+    "en": "advertising"
+  },
+  {
+    "id": "information",
+    "lemma": "Information",
+    "article": "die",
+    "plural": "Informationen",
+    "pos": "noun",
+    "en": "information"
+  },
+  {
+    "id": "frage",
+    "lemma": "Frage",
+    "article": "die",
+    "plural": "Fragen",
+    "pos": "noun",
+    "en": "question"
+  },
+  {
+    "id": "antwort",
+    "lemma": "Antwort",
+    "article": "die",
+    "plural": "Antworten",
+    "pos": "noun",
+    "en": "answer"
+  },
+  {
+    "id": "erklaerung",
+    "lemma": "Erklärung",
+    "article": "die",
+    "plural": "Erklärungen",
+    "pos": "noun",
+    "en": "explanation"
+  },
+  {
+    "id": "anrufen",
+    "lemma": "anrufen",
+    "pos": "verb",
+    "en": "call",
+    "forms": {
+      "ich": "rufe an",
+      "du": "rufst an",
+      "er": "ruft an"
+    }
+  },
+  {
+    "id": "zurueckrufen",
+    "lemma": "zurückrufen",
+    "pos": "verb",
+    "en": "call back",
+    "forms": {
+      "ich": "rufe zurück",
+      "du": "rufst zurück",
+      "er": "ruft zurück"
+    }
+  },
+  {
+    "id": "mitteilen",
+    "lemma": "mitteilen",
+    "pos": "verb",
+    "en": "inform",
+    "forms": {
+      "ich": "teile mit",
+      "du": "teilst mit",
+      "er": "teilt mit"
+    }
+  },
+  {
+    "id": "berichten",
+    "lemma": "berichten",
+    "pos": "verb",
+    "en": "report",
+    "forms": {
+      "ich": "berichte",
+      "du": "berichtest",
+      "er": "berichtet"
+    }
+  },
+  {
+    "id": "beschreiben",
+    "lemma": "beschreiben",
+    "pos": "verb",
+    "en": "describe",
+    "forms": {
+      "ich": "beschreibe",
+      "du": "beschreibst",
+      "er": "beschreibt"
+    }
+  },
+  {
+    "id": "erzaehlen",
+    "lemma": "erzählen",
+    "pos": "verb",
+    "en": "narrate",
+    "forms": {
+      "ich": "erzähle",
+      "du": "erzählst",
+      "er": "erzählt"
+    }
+  },
+  {
+    "id": "wiederholen",
+    "lemma": "wiederholen",
+    "pos": "verb",
+    "en": "iterate",
+    "forms": {
+      "ich": "wiederhole",
+      "du": "wiederholst",
+      "er": "wiederholt"
+    }
+  },
+  {
+    "id": "buchstabieren",
+    "lemma": "buchstabieren",
+    "pos": "verb",
+    "en": "spell",
+    "forms": {
+      "ich": "buchstabiere",
+      "du": "buchstabierst",
+      "er": "buchstabiert"
+    }
+  },
+  {
+    "id": "unterschreiben",
+    "lemma": "unterschreiben",
+    "pos": "verb",
+    "en": "sign",
+    "forms": {
+      "ich": "unterschreibe",
+      "du": "unterschreibst",
+      "er": "unterschreibt"
+    }
+  },
+  {
+    "id": "preis",
+    "lemma": "Preis",
+    "article": "der",
+    "plural": "Preise",
+    "pos": "noun",
+    "en": "price"
+  },
+  {
+    "id": "kosten",
+    "lemma": "Kosten",
+    "plural": "Kosten",
+    "pos": "noun",
+    "en": "costs"
+  },
+  {
+    "id": "rechnung",
+    "lemma": "Rechnung",
+    "article": "die",
+    "plural": "Rechnungen",
+    "pos": "noun",
+    "en": "bill"
+  },
+  {
+    "id": "quittung",
+    "lemma": "Quittung",
+    "article": "die",
+    "plural": "Quittungen",
+    "pos": "noun",
+    "en": "receipt"
+  },
+  {
+    "id": "kasse",
+    "lemma": "Kasse",
+    "article": "die",
+    "plural": "Kassen",
+    "pos": "noun",
+    "en": "cash"
+  },
+  {
+    "id": "angebot",
+    "lemma": "Angebot",
+    "article": "das",
+    "plural": "Angebote",
+    "pos": "noun",
+    "en": "offer"
+  },
+  {
+    "id": "rabatt",
+    "lemma": "Rabatt",
+    "article": "der",
+    "plural": "Rabatte",
+    "pos": "noun",
+    "en": "discount"
+  },
+  {
+    "id": "kredit",
+    "lemma": "Kredit",
+    "article": "der",
+    "plural": "Kredite",
+    "pos": "noun",
+    "en": "loan"
+  },
+  {
+    "id": "konto",
+    "lemma": "Konto",
+    "article": "das",
+    "plural": "Konten",
+    "pos": "noun",
+    "en": "account"
+  },
+  {
+    "id": "miete",
+    "lemma": "Miete",
+    "article": "die",
+    "plural": "Mieten",
+    "pos": "noun",
+    "en": "meed"
+  },
+  {
+    "id": "steuer",
+    "lemma": "Steuer",
+    "article": "das",
+    "plural": "Steuer",
+    "pos": "noun",
+    "en": "steering wheel"
+  },
+  {
+    "id": "versicherung",
+    "lemma": "Versicherung",
+    "article": "die",
+    "plural": "Versicherungen",
+    "pos": "noun",
+    "en": "insurance"
+  },
+  {
+    "id": "teuer",
+    "lemma": "teuer",
+    "pos": "adj",
+    "en": "expensive"
+  },
+  {
+    "id": "billig",
+    "lemma": "billig",
+    "pos": "adj",
+    "en": "fitting"
+  },
+  {
+    "id": "guenstig",
+    "lemma": "günstig",
+    "pos": "adj",
+    "en": "cheap"
+  },
+  {
+    "id": "kostenlos",
+    "lemma": "kostenlos",
+    "pos": "adj",
+    "en": "free"
+  },
+  {
+    "id": "sparen",
+    "lemma": "sparen",
+    "pos": "verb",
+    "en": "spare",
+    "forms": {
+      "ich": "spare",
+      "du": "sparst",
+      "er": "spart"
+    }
+  },
+  {
+    "id": "ausgeben",
+    "lemma": "ausgeben",
+    "pos": "verb",
+    "en": "spend",
+    "forms": {
+      "ich": "gebe aus",
+      "du": "gibst aus",
+      "er": "gibt aus"
+    }
+  },
+  {
+    "id": "leihen",
+    "lemma": "leihen",
+    "pos": "verb",
+    "en": "lend",
+    "forms": {
+      "ich": "leihe",
+      "du": "leihst",
+      "er": "leiht"
+    }
+  },
+  {
+    "id": "schenken",
+    "lemma": "schenken",
+    "pos": "verb",
+    "en": "give",
+    "forms": {
+      "ich": "schenke",
+      "du": "schenkst",
+      "er": "schenkt"
+    }
+  },
+  {
+    "id": "tauschen",
+    "lemma": "tauschen",
+    "pos": "verb",
+    "en": "exchange",
+    "forms": {
+      "ich": "tausche",
+      "du": "tauschst",
+      "er": "tauscht"
+    }
+  },
+  {
+    "id": "zurueckgeben",
+    "lemma": "zurückgeben",
+    "pos": "verb",
+    "en": "return",
+    "forms": {
+      "ich": "gebe zurück",
+      "du": "gibst zurück",
+      "er": "gibt zurück"
+    }
+  },
+  {
+    "id": "umtauschen",
+    "lemma": "umtauschen",
+    "pos": "verb",
+    "en": "exchange",
+    "forms": {
+      "ich": "tausche um",
+      "du": "tauschst um",
+      "er": "tauscht um"
+    }
+  },
+  {
+    "id": "fahrkarte",
+    "lemma": "Fahrkarte",
+    "article": "die",
+    "plural": "Fahrkarten",
+    "pos": "noun",
+    "en": "ticket"
+  },
+  {
+    "id": "fahrplan",
+    "lemma": "Fahrplan",
+    "article": "der",
+    "plural": "Fahrpläne",
+    "pos": "noun",
+    "en": "time table"
+  },
+  {
+    "id": "gleis",
+    "lemma": "Gleis",
+    "article": "das",
+    "plural": "Gleise",
+    "pos": "noun",
+    "en": "rail track"
+  },
+  {
+    "id": "verspaetung",
+    "lemma": "Verspätung",
+    "article": "die",
+    "plural": "Verspätungen",
+    "pos": "noun",
+    "en": "delay"
+  },
+  {
+    "id": "abfahrt",
+    "lemma": "Abfahrt",
+    "article": "die",
+    "plural": "Abfahrten",
+    "pos": "noun",
+    "en": "departure"
+  },
+  {
+    "id": "ankunft",
+    "lemma": "Ankunft",
+    "article": "die",
+    "plural": "Ankünfte",
+    "pos": "noun",
+    "en": "arrival"
+  },
+  {
+    "id": "ausflug",
+    "lemma": "Ausflug",
+    "article": "der",
+    "plural": "Ausflüge",
+    "pos": "noun",
+    "en": "excursion"
+  },
+  {
+    "id": "reisefuehrer",
+    "lemma": "Reiseführer",
+    "article": "der",
+    "plural": "Reiseführer",
+    "pos": "noun",
+    "en": "guide"
+  },
+  {
+    "id": "unterkunft",
+    "lemma": "Unterkunft",
+    "article": "die",
+    "plural": "Unterkünfte",
+    "pos": "noun",
+    "en": "accommodation"
+  },
+  {
+    "id": "zimmer",
+    "lemma": "Zimmer",
+    "article": "das",
+    "plural": "Zimmer",
+    "pos": "noun",
+    "en": "room"
+  },
+  {
+    "id": "rezeption",
+    "lemma": "Rezeption",
+    "article": "die",
+    "plural": "Rezeptionen",
+    "pos": "noun",
+    "en": "reception"
+  },
+  {
+    "id": "grenze",
+    "lemma": "Grenze",
+    "article": "die",
+    "plural": "Grenzen",
+    "pos": "noun",
+    "en": "border"
+  },
+  {
+    "id": "ausland",
+    "lemma": "Ausland",
+    "article": "das",
+    "pos": "noun",
+    "en": "foreign country"
+  },
+  {
+    "id": "ausweis",
+    "lemma": "Ausweis",
+    "article": "der",
+    "plural": "Ausweise",
+    "pos": "noun",
+    "en": "identity card"
+  },
+  {
+    "id": "reisepass",
+    "lemma": "Reisepass",
+    "article": "der",
+    "plural": "Reisepässe",
+    "pos": "noun",
+    "en": "passport"
+  },
+  {
+    "id": "gepaeck",
+    "lemma": "Gepäck",
+    "article": "das",
+    "plural": "Gepäcke",
+    "pos": "noun",
+    "en": "luggage"
+  },
+  {
+    "id": "richtung",
+    "lemma": "Richtung",
+    "article": "die",
+    "plural": "Richtungen",
+    "pos": "noun",
+    "en": "direction"
+  },
+  {
+    "id": "weg",
+    "lemma": "Weg",
+    "article": "der",
+    "plural": "Wege",
+    "pos": "noun",
+    "en": "track"
+  },
+  {
+    "id": "karte",
+    "lemma": "Karte",
+    "article": "die",
+    "plural": "Karten",
+    "pos": "noun",
+    "en": "card"
+  },
+  {
+    "id": "stau",
+    "lemma": "Stau",
+    "article": "der",
+    "plural": "Staus",
+    "pos": "noun",
+    "en": "congestion"
+  },
+  {
+    "id": "umsteigen",
+    "lemma": "umsteigen",
+    "pos": "verb",
+    "en": "change",
+    "forms": {
+      "ich": "steige um",
+      "du": "steigst um",
+      "er": "steigt um"
+    }
+  },
+  {
+    "id": "reservieren",
+    "lemma": "reservieren",
+    "pos": "verb",
+    "en": "reserve",
+    "forms": {
+      "ich": "reserviere",
+      "du": "reservierst",
+      "er": "reserviert"
+    }
+  },
+  {
+    "id": "buchen",
+    "lemma": "buchen",
+    "pos": "verb",
+    "en": "beechen",
+    "forms": {
+      "ich": "buche",
+      "du": "buchst",
+      "er": "bucht"
+    }
+  },
+  {
+    "id": "packen",
+    "lemma": "packen",
+    "pos": "verb",
+    "en": "pack",
+    "forms": {
+      "ich": "packe",
+      "du": "packst",
+      "er": "packt"
+    }
+  },
+  {
+    "id": "mitnehmen",
+    "lemma": "mitnehmen",
+    "pos": "verb",
+    "en": "take with",
+    "forms": {
+      "ich": "nehme mit",
+      "du": "nimmst mit",
+      "er": "nimmt mit"
+    }
+  },
+  {
+    "id": "verpassen",
+    "lemma": "verpassen",
+    "pos": "verb",
+    "en": "miss",
+    "forms": {
+      "ich": "verpasse",
+      "du": "verpasst",
+      "er": "verpasst"
+    }
+  },
+  {
+    "id": "haushalt",
+    "lemma": "Haushalt",
+    "article": "der",
+    "plural": "Haushalte",
+    "pos": "noun",
+    "en": "budget"
+  },
+  {
+    "id": "ordnung",
+    "lemma": "Ordnung",
+    "article": "die",
+    "plural": "Ordnungen",
+    "pos": "noun",
+    "en": "order"
+  },
+  {
+    "id": "muell",
+    "lemma": "Müll",
+    "article": "der",
+    "pos": "noun",
+    "en": "garbage"
+  },
+  {
+    "id": "waesche",
+    "lemma": "Wäsche",
+    "article": "die",
+    "plural": "Wäschen",
+    "pos": "noun",
+    "en": "laundry"
+  },
+  {
+    "id": "rechnung",
+    "lemma": "Rechnung",
+    "article": "die",
+    "plural": "Rechnungen",
+    "pos": "noun",
+    "en": "bill"
+  },
+  {
+    "id": "vertrag",
+    "lemma": "Vertrag",
+    "article": "der",
+    "plural": "Verträge",
+    "pos": "noun",
+    "en": "agreement"
+  },
+  {
+    "id": "reparatur",
+    "lemma": "Reparatur",
+    "article": "die",
+    "plural": "Reparaturen",
+    "pos": "noun",
+    "en": "repair"
+  },
+  {
+    "id": "werkzeug",
+    "lemma": "Werkzeug",
+    "article": "das",
+    "plural": "Werkzeuge",
+    "pos": "noun",
+    "en": "tool"
+  },
+  {
+    "id": "nachbarschaft",
+    "lemma": "Nachbarschaft",
+    "article": "die",
+    "plural": "Nachbarschaften",
+    "pos": "noun",
+    "en": "neighbourhood"
+  },
+  {
+    "id": "umzug",
+    "lemma": "Umzug",
+    "article": "der",
+    "plural": "Umzüge",
+    "pos": "noun",
+    "en": "move"
+  },
+  {
+    "id": "mieten",
+    "lemma": "mieten",
+    "pos": "verb",
+    "en": "rent",
+    "forms": {
+      "ich": "miete",
+      "du": "mietest",
+      "er": "mietet"
+    }
+  },
+  {
+    "id": "umziehen",
+    "lemma": "umziehen",
+    "pos": "verb",
+    "en": "move",
+    "forms": {
+      "ich": "ziehe um",
+      "du": "ziehst um",
+      "er": "zieht um"
+    }
+  },
+  {
+    "id": "reparieren",
+    "lemma": "reparieren",
+    "pos": "verb",
+    "en": "repair",
+    "forms": {
+      "ich": "repariere",
+      "du": "reparierst",
+      "er": "repariert"
+    }
+  },
+  {
+    "id": "aufraeumen",
+    "lemma": "aufräumen",
+    "pos": "verb",
+    "en": "tidy up",
+    "forms": {
+      "ich": "räume auf",
+      "du": "räumst auf",
+      "er": "räumt auf"
+    }
+  },
+  {
+    "id": "saubermachen",
+    "lemma": "saubermachen",
+    "pos": "verb",
+    "en": "clean",
+    "forms": {
+      "ich": "mache sauber",
+      "du": "machst sauber",
+      "er": "macht sauber"
+    }
+  },
+  {
+    "id": "benutzen",
+    "lemma": "benutzen",
+    "pos": "verb",
+    "en": "use",
+    "forms": {
+      "ich": "benutze",
+      "du": "benutzt",
+      "er": "benutzt"
+    }
+  },
+  {
+    "id": "funktionieren",
+    "lemma": "funktionieren",
+    "pos": "verb",
+    "en": "function",
+    "forms": {
+      "ich": "funktioniere",
+      "du": "funktionierst",
+      "er": "funktioniert"
+    }
+  },
+  {
+    "id": "kaputt",
+    "lemma": "kaputt",
+    "pos": "adj",
+    "en": "broken"
+  },
+  {
+    "id": "sauber",
+    "lemma": "sauber",
+    "pos": "adj",
+    "en": "clean"
+  },
+  {
+    "id": "schmutzig",
+    "lemma": "schmutzig",
+    "pos": "adj",
+    "en": "dirty"
+  },
+  {
+    "id": "ordentlich",
+    "lemma": "ordentlich",
+    "pos": "adj",
+    "en": "tidy"
+  },
+  {
+    "id": "vergangenheit",
+    "lemma": "Vergangenheit",
+    "article": "die",
+    "plural": "Vergangenheiten",
+    "pos": "noun",
+    "en": "past"
+  },
+  {
+    "id": "gegenwart",
+    "lemma": "Gegenwart",
+    "article": "die",
+    "pos": "noun",
+    "en": "present"
+  },
+  {
+    "id": "zukunft",
+    "lemma": "Zukunft",
+    "article": "die",
+    "plural": "Zukünfte",
+    "pos": "noun",
+    "en": "future"
+  },
+  {
+    "id": "moment",
+    "lemma": "Moment",
+    "article": "der",
+    "plural": "Momente",
+    "pos": "noun",
+    "en": "moment"
+  },
+  {
+    "id": "weile",
+    "lemma": "Weile",
+    "article": "die",
+    "pos": "noun",
+    "en": "while"
+  },
+  {
+    "id": "anfang",
+    "lemma": "Anfang",
+    "article": "der",
+    "plural": "Anfänge",
+    "pos": "noun",
+    "en": "beginning"
+  },
+  {
+    "id": "ende",
+    "lemma": "Ende",
+    "article": "das",
+    "plural": "Enden",
+    "pos": "noun",
+    "en": "end"
+  },
+  {
+    "id": "pause",
+    "lemma": "Pause",
+    "article": "die",
+    "plural": "Pausen",
+    "pos": "noun",
+    "en": "break"
+  },
+  {
+    "id": "termin",
+    "lemma": "Termin",
+    "article": "der",
+    "plural": "Termine",
+    "pos": "noun",
+    "en": "date"
+  },
+  {
+    "id": "verabredung",
+    "lemma": "Verabredung",
+    "article": "die",
+    "plural": "Verabredungen",
+    "pos": "noun",
+    "en": "appointment"
+  },
+  {
+    "id": "gewohnheit",
+    "lemma": "Gewohnheit",
+    "article": "die",
+    "plural": "Gewohnheiten",
+    "pos": "noun",
+    "en": "habit"
+  },
+  {
+    "id": "ploetzlich",
+    "lemma": "plötzlich",
+    "pos": "adj",
+    "en": "suddenly"
+  },
+  {
+    "id": "sofort",
+    "lemma": "sofort",
+    "pos": "other",
+    "en": "immediately"
+  },
+  {
+    "id": "gleich",
+    "lemma": "gleich",
+    "pos": "adj",
+    "en": "equal"
+  },
+  {
+    "id": "bald",
+    "lemma": "bald",
+    "pos": "other",
+    "en": "soon"
+  },
+  {
+    "id": "endlich",
+    "lemma": "endlich",
+    "pos": "adj",
+    "en": "limited"
+  },
+  {
+    "id": "zuerst",
+    "lemma": "zuerst",
+    "pos": "other",
+    "en": "first"
+  },
+  {
+    "id": "danach",
+    "lemma": "danach",
+    "pos": "other",
+    "en": "accordingly"
+  },
+  {
+    "id": "schliesslich",
+    "lemma": "schließlich",
+    "pos": "other",
+    "en": "finally"
+  },
+  {
+    "id": "manchmal",
+    "lemma": "manchmal",
+    "pos": "other",
+    "en": "sometimes"
+  },
+  {
+    "id": "selten",
+    "lemma": "selten",
+    "pos": "adj",
+    "en": "rare"
+  },
+  {
+    "id": "meistens",
+    "lemma": "meistens",
+    "pos": "other",
+    "en": "mostly"
+  },
+  {
+    "id": "regelmaessig",
+    "lemma": "regelmäßig",
+    "pos": "adj",
+    "en": "at regular intervals"
+  },
+  {
+    "id": "dauernd",
+    "lemma": "dauernd",
+    "pos": "adj",
+    "en": "continuous"
+  },
+  {
+    "id": "gesellschaft",
+    "lemma": "Gesellschaft",
+    "article": "die",
+    "plural": "Gesellschaften",
+    "pos": "noun",
+    "en": "society"
+  },
+  {
+    "id": "regierung",
+    "lemma": "Regierung",
+    "article": "die",
+    "plural": "Regierungen",
+    "pos": "noun",
+    "en": "government"
+  },
+  {
+    "id": "politik",
+    "lemma": "Politik",
+    "article": "die",
+    "plural": "Politiken",
+    "pos": "noun",
+    "en": "politics"
+  },
+  {
+    "id": "gesetz",
+    "lemma": "Gesetz",
+    "article": "das",
+    "plural": "Gesetze",
+    "pos": "noun",
+    "en": "law"
+  },
+  {
+    "id": "recht",
+    "lemma": "Recht",
+    "article": "das",
+    "plural": "Rechte",
+    "pos": "noun",
+    "en": "law"
+  },
+  {
+    "id": "pflicht",
+    "lemma": "Pflicht",
+    "article": "die",
+    "plural": "Pflichten",
+    "pos": "noun",
+    "en": "duty"
+  },
+  {
+    "id": "freiheit",
+    "lemma": "Freiheit",
+    "article": "die",
+    "plural": "Freiheiten",
+    "pos": "noun",
+    "en": "liberty"
+  },
+  {
+    "id": "kultur",
+    "lemma": "Kultur",
+    "article": "die",
+    "plural": "Kulturen",
+    "pos": "noun",
+    "en": "culture"
+  },
+  {
+    "id": "religion",
+    "lemma": "Religion",
+    "article": "die",
+    "plural": "Religionen",
+    "pos": "noun",
+    "en": "religion"
+  },
+  {
+    "id": "umwelt",
+    "lemma": "Umwelt",
+    "article": "die",
+    "plural": "Umwelten",
+    "pos": "noun",
+    "en": "environment"
+  },
+  {
+    "id": "natur",
+    "lemma": "Natur",
+    "article": "die",
+    "plural": "Naturen",
+    "pos": "noun",
+    "en": "nature"
+  },
+  {
+    "id": "energie",
+    "lemma": "Energie",
+    "article": "die",
+    "plural": "Energien",
+    "pos": "noun",
+    "en": "energy"
+  },
+  {
+    "id": "verkehr",
+    "lemma": "Verkehr",
+    "article": "der",
+    "plural": "Verkehre",
+    "pos": "noun",
+    "en": "traffic"
+  },
+  {
+    "id": "sicherheit",
+    "lemma": "Sicherheit",
+    "article": "die",
+    "plural": "Sicherheiten",
+    "pos": "noun",
+    "en": "security"
+  },
+  {
+    "id": "hilfe",
+    "lemma": "Hilfe",
+    "article": "die",
+    "plural": "Hilfen",
+    "pos": "noun",
+    "en": "help"
+  },
+  {
+    "id": "unterschied",
+    "lemma": "Unterschied",
+    "article": "der",
+    "plural": "Unterschiede",
+    "pos": "noun",
+    "en": "difference"
+  },
+  {
+    "id": "beispiel",
+    "lemma": "Beispiel",
+    "article": "das",
+    "plural": "Beispiele",
+    "pos": "noun",
+    "en": "example"
+  },
+  {
+    "id": "situation",
+    "lemma": "Situation",
+    "article": "die",
+    "plural": "Situationen",
+    "pos": "noun",
+    "en": "situation"
+  },
+  {
+    "id": "problem",
+    "lemma": "Problem",
+    "article": "das",
+    "plural": "Probleme",
+    "pos": "noun",
+    "en": "problem"
+  },
+  {
+    "id": "vorteil",
+    "lemma": "Vorteil",
+    "article": "der",
+    "plural": "Vorteile",
+    "pos": "noun",
+    "en": "advantage"
+  },
+  {
+    "id": "nachteil",
+    "lemma": "Nachteil",
+    "article": "der",
+    "plural": "Nachteile",
+    "pos": "noun",
+    "en": "disadvantage"
+  },
+  {
+    "id": "moeglichkeit",
+    "lemma": "Möglichkeit",
+    "article": "die",
+    "plural": "Möglichkeiten",
+    "pos": "noun",
+    "en": "option"
+  },
+  {
+    "id": "erfahrung",
+    "lemma": "Erfahrung",
+    "article": "die",
+    "plural": "Erfahrungen",
+    "pos": "noun",
+    "en": "experience"
+  },
+  {
+    "id": "entwicklung",
+    "lemma": "Entwicklung",
+    "article": "die",
+    "plural": "Entwicklungen",
+    "pos": "noun",
+    "en": "development"
+  },
+  {
+    "id": "aendern",
+    "lemma": "ändern",
+    "pos": "verb",
+    "en": "change",
+    "forms": {
+      "ich": "ändere",
+      "du": "änderst",
+      "er": "ändert"
+    }
+  },
+  {
+    "id": "verbessern",
+    "lemma": "verbessern",
+    "pos": "verb",
+    "en": "correct",
+    "forms": {
+      "ich": "verbessere",
+      "du": "verbesserst",
+      "er": "verbessert"
+    }
+  },
+  {
+    "id": "vergleichen",
+    "lemma": "vergleichen",
+    "pos": "verb",
+    "en": "compare",
+    "forms": {
+      "ich": "vergleiche",
+      "du": "vergleichst",
+      "er": "vergleicht"
+    }
+  },
+  {
+    "id": "bedeuten",
+    "lemma": "bedeuten",
+    "pos": "verb",
+    "en": "mean",
+    "forms": {
+      "ich": "bedeute",
+      "du": "bedeutest",
+      "er": "bedeutet"
+    }
+  },
+  {
+    "id": "gehoeren",
+    "lemma": "gehören",
+    "pos": "verb",
+    "en": "belong",
+    "forms": {
+      "ich": "gehöre",
+      "du": "gehörst",
+      "er": "gehört"
+    }
+  },
+  {
+    "id": "passieren",
+    "lemma": "passieren",
+    "pos": "verb",
+    "en": "pass",
+    "forms": {
+      "ich": "passiere",
+      "du": "passierst",
+      "er": "passiert"
+    }
+  },
+  {
+    "id": "stattfinden",
+    "lemma": "stattfinden",
+    "pos": "verb",
+    "en": "take place",
+    "forms": {
+      "ich": "finde statt",
+      "du": "findest statt",
+      "er": "findet statt"
+    }
+  },
+  {
+    "id": "teilnehmen",
+    "lemma": "teilnehmen",
+    "pos": "verb",
+    "en": "attend",
+    "forms": {
+      "ich": "nehme teil",
+      "du": "nimmst teil",
+      "er": "nimmt teil"
+    }
+  }
+]

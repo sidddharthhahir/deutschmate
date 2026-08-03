@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="DeutschMate">
+  <!-- Maskable: Android crops to a circle, so everything that matters stays
+       inside the safe zone (the middle 80%). Full-bleed background, smaller
+       glyph than the plain icon. -->
+  <rect width="512" height="512" fill="#0e1715"/>
+  <text x="256" y="346" text-anchor="middle"
+        font-family="Source Serif 4, Georgia, 'Times New Roman', serif"
+        font-size="230" font-weight="600" fill="#f0c15c">ß</text>
+</svg>

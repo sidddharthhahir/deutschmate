@@ -1,0 +1,265 @@
+"use client";
+
+import Link from "next/link";
+import { useEffect, useState } from "react";
+import { playAudio } from "@/lib/speech";
+import AppHeader from "@/components/AppHeader";
+import { ArticleWord } from "@/components/Article";
+
+type Row = {
+  id: string;
+  lemma: string;
+  article: string | null;
+  plural: string | null;
+  pos: string;
+  en: string;
+  level: string;
+  topic: string | null;
+  audio_url: string | null;
+  example_de: string | null;
+  unit_ord: number | null;
+  unit_title: string | null;
+  in_deck: number;
+};
+
+/**
+ * Wortschatz — all 1,225 words.
+ *
+ * Dense by design: this has to stay scannable at 100 rows, so the row is one
+ * line of substance plus two quiet subordinate lines. `seen` and `learned` are
+ * separate counts and never merged — reading is recognition, not recall.
+ */
+export default function WortschatzPage() {
+  const [rows, setRows] = useState<Row[]>([]);
+  const [total, setTotal] = useState(0);
+  const [offset, setOffset] = useState(0);
+  const [size, setSize] = useState(50);
+  const [topics, setTopics] = useState<{ topic: string; n: number }[]>([]);
+  const [topic, setTopic] = useState<string | null>(null);
+  const [q, setQ] = useState("");
+  const [seen, setSeen] = useState(0);
+  const [loading, setLoading] = useState(true);
+
+  /**
+   * Every state write sits behind the `stale` guard.
+   *
+   * Typing in the search box fires a request per keystroke. Without the guard,
+   * a slow response for "Ent" can land after a fast one for "Entwicklung" and
+   * repaint the list with the wrong results — the classic out-of-order fetch.
+   *
+   * `loading` is switched ON by whatever changed the query (keystroke, filter,
+   * page turn) and OFF here, after the await, so nothing is set synchronously
+   * inside the effect body.
+   */
+  useEffect(() => {
+    let stale = false;
+
+    (async () => {
+      const p = new URLSearchParams({ size: String(size), offset: String(offset) });
+      if (topic) p.set("topic", topic);
+      if (q.trim()) p.set("q", q.trim());
+
+      try {
+        const data = await (await fetch(`/api/wortschatz?${p}`)).json();
+        if (stale) return;
+        setRows(data.words);
+        setTotal(data.total);
+        setTopics(data.topics);
+        setSeen(data.seen);
+      } catch {
+        if (!stale) setRows([]);
+      } finally {
+        if (!stale) setLoading(false);
+      }
+    })();
+
+    return () => {
+      stale = true;
+    };
+  }, [size, offset, topic, q]);
+
+  async function markSeen() {
+    await fetch("/api/wortschatz", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        action: "seen",
+        lastWordId: rows.at(-1)?.id,
+        count: rows.length,
+      }),
+    });
+    setOffset((o) => o + size);
+  }
+
+  async function addToDeck(id: string) {
+    setRows((rs) => rs.map((r) => (r.id === id ? { ...r, in_deck: 1 } : r)));
+    await fetch("/api/wortschatz", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ action: "add", wordId: id }),
+    });
+  }
+
+  const page = Math.floor(offset / size) + 1;
+  const pages = Math.max(1, Math.ceil(total / size));
+
+  return (
+    <main className="flex min-h-screen flex-col">
+      <AppHeader />
+
+      <div className="mx-auto w-full max-w-[880px] flex-1 px-6 py-10 md:px-10">
+        <div className="mb-7 flex items-baseline justify-between">
+          <h1 className="font-serif text-[32px] font-semibold tracking-[-0.015em]">
+            Wortschatz
+          </h1>
+          <span className="font-mono text-muted text-[12.5px]">
+            {seen} gesehen · {total} gesamt
+          </span>
+        </div>
+
+        <div className="mb-4 flex flex-wrap gap-2">
+          <input
+            value={q}
+            onChange={(e) => {
+              setLoading(true);
+              setQ(e.target.value);
+              setOffset(0);
+            }}
+            placeholder="Suchen…"
+            className="border-line bg-surface focus:border-line-strong placeholder:text-muted flex-1 rounded-xl border px-4 py-2.5 text-[14px] outline-none"
+          />
+          <select
+            value={size}
+            onChange={(e) => {
+              setSize(Number(e.target.value));
+              setOffset(0);
+            }}
+            className="border-line bg-surface font-mono rounded-xl border px-3 py-2.5 text-[12.5px]"
+          >
+            <option value={25}>25 / Tag</option>
+            <option value={50}>50 / Tag</option>
+            <option value={100}>100 / Tag</option>
+          </select>
+        </div>
+
+        <div className="mb-6 flex flex-wrap gap-1.5">
+          <Chip active={topic === null} onClick={() => { setTopic(null); setOffset(0); }}>
+            alle
+          </Chip>
+          {topics.map((t) => (
+            <Chip
+              key={t.topic}
+              active={topic === t.topic}
+              onClick={() => {
+                setTopic(t.topic);
+                setOffset(0);
+              }}
+            >
+              {t.topic} <span className="opacity-50">{t.n}</span>
+            </Chip>
+          ))}
+        </div>
+
+        {loading ? (
+          <p className="font-mono text-muted py-20 text-center text-sm">Lade…</p>
+        ) : rows.length === 0 ? (
+          <p className="font-serif text-muted py-20 text-center text-[19px]">
+            Keine Wörter gefunden.
+          </p>
+        ) : (
+          <div className="border-line divide-line-sub divide-y rounded-[14px] border">
+            {rows.map((w) => (
+              <div key={w.id} className="flex items-start gap-3 px-4 py-3.5">
+                <button
+                  onClick={() => playAudio(w.audio_url, w.lemma)}
+                  className="text-muted hover:text-fg mt-0.5 text-[13px] transition-colors"
+                  aria-label={`${w.lemma} anhören`}
+                >
+                  ▶
+                </button>
+
+                <div className="min-w-0 flex-1">
+                  <div className="font-serif flex flex-wrap items-baseline gap-x-2 text-[18px]">
+                    {w.article && <ArticleWord article={w.article} />}
+                    <Link href={`/wort/${w.id}`} className="hover:underline">
+                      {w.lemma}
+                    </Link>
+                    {w.plural && (
+                      <span className="font-mono text-muted text-[12px]">, {w.plural}</span>
+                    )}
+                    <span className="text-secondary">— {w.en}</span>
+                  </div>
+
+                  {w.example_de && (
+                    <p className="font-serif text-muted mt-0.5 text-[15px]">{w.example_de}</p>
+                  )}
+                  {w.unit_ord && (
+                    <p className="font-mono text-muted/60 mt-1 text-[11px]">
+                      Unit {w.unit_ord} · {w.unit_title}
+                    </p>
+                  )}
+                </div>
+
+                {w.in_deck ? (
+                  <span className="font-mono text-accent/70 mt-1 flex-none text-[11px]">
+                    ✓ im Deck
+                  </span>
+                ) : (
+                  <button
+                    onClick={() => void addToDeck(w.id)}
+                    className="border-line text-muted hover:border-line-strong hover:text-fg font-mono mt-0.5 flex-none rounded-lg border px-2.5 py-1 text-[11px] transition-colors"
+                  >
+                    + Deck
+                  </button>
+                )}
+              </div>
+            ))}
+          </div>
+        )}
+
+        <div className="mt-6 flex items-center justify-between">
+          <button
+            onClick={() => setOffset((o) => Math.max(0, o - size))}
+            disabled={offset === 0}
+            className="border-line text-secondary hover:border-line-strong font-mono rounded-xl border px-4 py-2.5 text-[12.5px] transition-colors disabled:opacity-30"
+          >
+            ← zurück
+          </button>
+          <span className="font-mono text-muted text-[12px]">
+            Seite {page} / {pages}
+          </span>
+          <button
+            onClick={() => void markSeen()}
+            disabled={offset + size >= total}
+            className="bg-fg rounded-xl px-5 py-2.5 text-[14px] font-medium text-[#16211E] transition-colors hover:bg-white disabled:bg-[#243330] disabled:text-[#5C6B65]"
+          >
+            Gelesen — weiter →
+          </button>
+        </div>
+      </div>
+    </main>
+  );
+}
+
+function Chip({
+  children,
+  active,
+  onClick,
+}: {
+  children: React.ReactNode;
+  active: boolean;
+  onClick: () => void;
+}) {
+  return (
+    <button
+      onClick={onClick}
+      className={`font-mono rounded-full px-3 py-1 text-[11.5px] transition-colors ${
+        active
+          ? "bg-fg text-[#16211E]"
+          : "border-line text-muted hover:border-line-strong hover:text-secondary border"
+      }`}
+    >
+      {children}
+    </button>
+  );
+}

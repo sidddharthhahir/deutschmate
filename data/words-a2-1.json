@@ -1,0 +1,2701 @@
+[
+  {
+    "id": "antwort",
+    "lemma": "Antwort",
+    "article": "die",
+    "plural": "Antworten",
+    "pos": "noun",
+    "en": "answer"
+  },
+  {
+    "id": "arzt",
+    "lemma": "Arzt",
+    "article": "der",
+    "plural": "Ärzte",
+    "pos": "noun",
+    "en": "doctor"
+  },
+  {
+    "id": "bahn",
+    "lemma": "Bahn",
+    "article": "die",
+    "plural": "Bahnen",
+    "pos": "noun",
+    "en": "path"
+  },
+  {
+    "id": "bild",
+    "lemma": "Bild",
+    "article": "das",
+    "plural": "Bilder",
+    "pos": "noun",
+    "en": "picture"
+  },
+  {
+    "id": "brief",
+    "lemma": "Brief",
+    "article": "der",
+    "plural": "Briefe",
+    "pos": "noun",
+    "en": "letter"
+  },
+  {
+    "id": "ende",
+    "lemma": "Ende",
+    "article": "das",
+    "plural": "Enden",
+    "pos": "noun",
+    "en": "end"
+  },
+  {
+    "id": "frage",
+    "lemma": "Frage",
+    "article": "die",
+    "plural": "Fragen",
+    "pos": "noun",
+    "en": "question"
+  },
+  {
+    "id": "geschichte",
+    "lemma": "Geschichte",
+    "article": "die",
+    "plural": "Geschichten",
+    "pos": "noun",
+    "en": "history"
+  },
+  {
+    "id": "gespraech",
+    "lemma": "Gespräch",
+    "article": "das",
+    "plural": "Gespräche",
+    "pos": "noun",
+    "en": "conversation"
+  },
+  {
+    "id": "gesundheit",
+    "lemma": "Gesundheit",
+    "article": "die",
+    "pos": "noun",
+    "en": "health"
+  },
+  {
+    "id": "krankenhaus",
+    "lemma": "Krankenhaus",
+    "article": "das",
+    "plural": "Krankenhäuser",
+    "pos": "noun",
+    "en": "hospital"
+  },
+  {
+    "id": "leben",
+    "lemma": "Leben",
+    "article": "das",
+    "plural": "Leben",
+    "pos": "noun",
+    "en": "life"
+  },
+  {
+    "id": "meinung",
+    "lemma": "Meinung",
+    "article": "die",
+    "plural": "Meinungen",
+    "pos": "noun",
+    "en": "opinion"
+  },
+  {
+    "id": "mensch",
+    "lemma": "Mensch",
+    "article": "der",
+    "plural": "Menschen",
+    "pos": "noun",
+    "en": "human being"
+  },
+  {
+    "id": "moeglichkeit",
+    "lemma": "Möglichkeit",
+    "article": "die",
+    "plural": "Möglichkeiten",
+    "pos": "noun",
+    "en": "option"
+  },
+  {
+    "id": "nachricht",
+    "lemma": "Nachricht",
+    "article": "die",
+    "plural": "Nachrichten",
+    "pos": "noun",
+    "en": "news"
+  },
+  {
+    "id": "problem",
+    "lemma": "Problem",
+    "article": "das",
+    "plural": "Probleme",
+    "pos": "noun",
+    "en": "problem"
+  },
+  {
+    "id": "reise",
+    "lemma": "Reise",
+    "article": "die",
+    "plural": "Reisen",
+    "pos": "noun",
+    "en": "travel"
+  },
+  {
+    "id": "termin",
+    "lemma": "Termin",
+    "article": "der",
+    "plural": "Termine",
+    "pos": "noun",
+    "en": "date"
+  },
+  {
+    "id": "wetter",
+    "lemma": "Wetter",
+    "article": "das",
+    "plural": "Wetter",
+    "pos": "noun",
+    "en": "weather"
+  },
+  {
+    "id": "zeitung",
+    "lemma": "Zeitung",
+    "article": "die",
+    "plural": "Zeitungen",
+    "pos": "noun",
+    "en": "paper"
+  },
+  {
+    "id": "zukunft",
+    "lemma": "Zukunft",
+    "article": "die",
+    "plural": "Zukünfte",
+    "pos": "noun",
+    "en": "future"
+  },
+  {
+    "id": "antworten",
+    "lemma": "antworten",
+    "pos": "verb",
+    "en": "answer",
+    "forms": {
+      "ich": "antworte",
+      "du": "antwortest",
+      "er": "antwortet"
+    }
+  },
+  {
+    "id": "beginnen",
+    "lemma": "beginnen",
+    "pos": "verb",
+    "en": "begin",
+    "forms": {
+      "ich": "beginne",
+      "du": "beginnst",
+      "er": "beginnt"
+    }
+  },
+  {
+    "id": "bekommen",
+    "lemma": "bekommen",
+    "pos": "verb",
+    "en": "get",
+    "forms": {
+      "ich": "bekomme",
+      "du": "bekommst",
+      "er": "bekommt"
+    }
+  },
+  {
+    "id": "bestellen",
+    "lemma": "bestellen",
+    "pos": "verb",
+    "en": "order",
+    "forms": {
+      "ich": "bestelle",
+      "du": "bestellst",
+      "er": "bestellt"
+    }
+  },
+  {
+    "id": "besuchen",
+    "lemma": "besuchen",
+    "pos": "verb",
+    "en": "visit",
+    "forms": {
+      "ich": "besuche",
+      "du": "besuchst",
+      "er": "besucht"
+    }
+  },
+  {
+    "id": "bezahlen",
+    "lemma": "bezahlen",
+    "pos": "verb",
+    "en": "pay",
+    "forms": {
+      "ich": "bezahle",
+      "du": "bezahlst",
+      "er": "bezahlt"
+    }
+  },
+  {
+    "id": "bleiben",
+    "lemma": "bleiben",
+    "pos": "verb",
+    "en": "stay",
+    "forms": {
+      "ich": "bleibe",
+      "du": "bleibst",
+      "er": "bleibt"
+    }
+  },
+  {
+    "id": "brauchen",
+    "lemma": "brauchen",
+    "pos": "verb",
+    "en": "need",
+    "forms": {
+      "ich": "brauche",
+      "du": "brauchst",
+      "er": "braucht"
+    }
+  },
+  {
+    "id": "bringen",
+    "lemma": "bringen",
+    "pos": "verb",
+    "en": "bring",
+    "forms": {
+      "ich": "bringe",
+      "du": "bringst",
+      "er": "bringt"
+    }
+  },
+  {
+    "id": "denken",
+    "lemma": "denken",
+    "pos": "verb",
+    "en": "think",
+    "forms": {
+      "ich": "denke",
+      "du": "denkst",
+      "er": "denkt"
+    }
+  },
+  {
+    "id": "erklaeren",
+    "lemma": "erklären",
+    "pos": "verb",
+    "en": "explain",
+    "forms": {
+      "ich": "erkläre",
+      "du": "erklärst",
+      "er": "erklärt"
+    }
+  },
+  {
+    "id": "fahren",
+    "lemma": "fahren",
+    "pos": "verb",
+    "en": "cart",
+    "forms": {
+      "ich": "fahre",
+      "du": "fährst",
+      "er": "fährt"
+    }
+  },
+  {
+    "id": "finden",
+    "lemma": "finden",
+    "pos": "verb",
+    "en": "find",
+    "forms": {
+      "ich": "finde",
+      "du": "findest",
+      "er": "findet"
+    }
+  },
+  {
+    "id": "geben",
+    "lemma": "geben",
+    "pos": "verb",
+    "en": "give",
+    "forms": {
+      "ich": "gebe",
+      "du": "gibst",
+      "er": "gibt"
+    }
+  },
+  {
+    "id": "glauben",
+    "lemma": "glauben",
+    "pos": "verb",
+    "en": "believe in",
+    "forms": {
+      "ich": "glaube",
+      "du": "glaubst",
+      "er": "glaubt"
+    }
+  },
+  {
+    "id": "helfen",
+    "lemma": "helfen",
+    "pos": "verb",
+    "en": "help",
+    "forms": {
+      "ich": "helfe",
+      "du": "hilfst",
+      "er": "hilft"
+    }
+  },
+  {
+    "id": "kennen",
+    "lemma": "kennen",
+    "pos": "verb",
+    "en": "know",
+    "forms": {
+      "ich": "kenne",
+      "du": "kennst",
+      "er": "kennt"
+    }
+  },
+  {
+    "id": "lesen",
+    "lemma": "lesen",
+    "pos": "verb",
+    "en": "read",
+    "forms": {
+      "ich": "lese",
+      "du": "liest",
+      "er": "liest"
+    }
+  },
+  {
+    "id": "liegen",
+    "lemma": "liegen",
+    "pos": "verb",
+    "en": "lie",
+    "forms": {
+      "ich": "liege",
+      "du": "liegst",
+      "er": "liegt"
+    }
+  },
+  {
+    "id": "nehmen",
+    "lemma": "nehmen",
+    "pos": "verb",
+    "en": "seize",
+    "forms": {
+      "ich": "nehme",
+      "du": "nimmst",
+      "er": "nimmt"
+    }
+  },
+  {
+    "id": "schreiben",
+    "lemma": "schreiben",
+    "pos": "verb",
+    "en": "write",
+    "forms": {
+      "ich": "schreibe",
+      "du": "schreibst",
+      "er": "schreibt"
+    }
+  },
+  {
+    "id": "sehen",
+    "lemma": "sehen",
+    "pos": "verb",
+    "en": "say",
+    "forms": {
+      "ich": "sehe",
+      "du": "siehst",
+      "er": "sieht"
+    }
+  },
+  {
+    "id": "suchen",
+    "lemma": "suchen",
+    "pos": "verb",
+    "en": "search",
+    "forms": {
+      "ich": "suche",
+      "du": "suchst",
+      "er": "sucht"
+    }
+  },
+  {
+    "id": "treffen",
+    "lemma": "treffen",
+    "pos": "verb",
+    "en": "meet",
+    "forms": {
+      "ich": "treffe",
+      "du": "triffst",
+      "er": "trifft"
+    }
+  },
+  {
+    "id": "warten",
+    "lemma": "warten",
+    "pos": "verb",
+    "en": "wait",
+    "forms": {
+      "ich": "warte",
+      "du": "wartest",
+      "er": "wartet"
+    }
+  },
+  {
+    "id": "wissen",
+    "lemma": "wissen",
+    "pos": "verb",
+    "en": "know",
+    "forms": {
+      "ich": "weiß",
+      "du": "weißt",
+      "er": "weiß"
+    }
+  },
+  {
+    "id": "ausflug",
+    "lemma": "Ausflug",
+    "article": "der",
+    "plural": "Ausflüge",
+    "pos": "noun",
+    "en": "excursion"
+  },
+  {
+    "id": "bahnhof",
+    "lemma": "Bahnhof",
+    "article": "der",
+    "plural": "Bahnhöfe",
+    "pos": "noun",
+    "en": "train station"
+  },
+  {
+    "id": "beispiel",
+    "lemma": "Beispiel",
+    "article": "das",
+    "plural": "Beispiele",
+    "pos": "noun",
+    "en": "example"
+  },
+  {
+    "id": "bereich",
+    "lemma": "Bereich",
+    "article": "der",
+    "plural": "Bereiche",
+    "pos": "noun",
+    "en": "area"
+  },
+  {
+    "id": "beruf",
+    "lemma": "Beruf",
+    "article": "der",
+    "plural": "Berufe",
+    "pos": "noun",
+    "en": "profession"
+  },
+  {
+    "id": "besuch",
+    "lemma": "Besuch",
+    "article": "der",
+    "plural": "Besuche",
+    "pos": "noun",
+    "en": "visit"
+  },
+  {
+    "id": "betrieb",
+    "lemma": "Betrieb",
+    "article": "der",
+    "plural": "Betriebe",
+    "pos": "noun",
+    "en": "business"
+  },
+  {
+    "id": "bewegung",
+    "lemma": "Bewegung",
+    "article": "die",
+    "plural": "Bewegungen",
+    "pos": "noun",
+    "en": "movement"
+  },
+  {
+    "id": "beziehung",
+    "lemma": "Beziehung",
+    "article": "die",
+    "plural": "Beziehungen",
+    "pos": "noun",
+    "en": "relation"
+  },
+  {
+    "id": "bibliothek",
+    "lemma": "Bibliothek",
+    "article": "die",
+    "plural": "Bibliotheken",
+    "pos": "noun",
+    "en": "library"
+  },
+  {
+    "id": "buehne",
+    "lemma": "Bühne",
+    "article": "die",
+    "plural": "Bühnen",
+    "pos": "noun",
+    "en": "stage"
+  },
+  {
+    "id": "ecke",
+    "lemma": "Ecke",
+    "article": "die",
+    "plural": "Ecken",
+    "pos": "noun",
+    "en": "corner"
+  },
+  {
+    "id": "eingang",
+    "lemma": "Eingang",
+    "article": "der",
+    "plural": "Eingänge",
+    "pos": "noun",
+    "en": "entrance"
+  },
+  {
+    "id": "ausgang",
+    "lemma": "Ausgang",
+    "article": "der",
+    "plural": "Ausgänge",
+    "pos": "noun",
+    "en": "exit"
+  },
+  {
+    "id": "einladung",
+    "lemma": "Einladung",
+    "article": "die",
+    "plural": "Einladungen",
+    "pos": "noun",
+    "en": "invitation"
+  },
+  {
+    "id": "eintritt",
+    "lemma": "Eintritt",
+    "article": "der",
+    "plural": "Eintritte",
+    "pos": "noun",
+    "en": "joining"
+  },
+  {
+    "id": "entscheidung",
+    "lemma": "Entscheidung",
+    "article": "die",
+    "plural": "Entscheidungen",
+    "pos": "noun",
+    "en": "decision"
+  },
+  {
+    "id": "erfahrung",
+    "lemma": "Erfahrung",
+    "article": "die",
+    "plural": "Erfahrungen",
+    "pos": "noun",
+    "en": "experience"
+  },
+  {
+    "id": "erfolg",
+    "lemma": "Erfolg",
+    "article": "der",
+    "plural": "Erfolge",
+    "pos": "noun",
+    "en": "success"
+  },
+  {
+    "id": "erlebnis",
+    "lemma": "Erlebnis",
+    "article": "das",
+    "plural": "Erlebnisse",
+    "pos": "noun",
+    "en": "adventure"
+  },
+  {
+    "id": "fahrt",
+    "lemma": "Fahrt",
+    "article": "die",
+    "plural": "Fahrten",
+    "pos": "noun",
+    "en": "trip"
+  },
+  {
+    "id": "feier",
+    "lemma": "Feier",
+    "article": "die",
+    "plural": "Feiern",
+    "pos": "noun",
+    "en": "party"
+  },
+  {
+    "id": "ferien",
+    "lemma": "Ferien",
+    "plural": "Ferien",
+    "pos": "noun",
+    "en": "holidays"
+  },
+  {
+    "id": "freizeit",
+    "lemma": "Freizeit",
+    "article": "die",
+    "plural": "Freizeiten",
+    "pos": "noun",
+    "en": "free time"
+  },
+  {
+    "id": "gebaeude",
+    "lemma": "Gebäude",
+    "article": "das",
+    "plural": "Gebäude",
+    "pos": "noun",
+    "en": "building"
+  },
+  {
+    "id": "gefahr",
+    "lemma": "Gefahr",
+    "article": "die",
+    "plural": "Gefahren",
+    "pos": "noun",
+    "en": "fear"
+  },
+  {
+    "id": "gegend",
+    "lemma": "Gegend",
+    "article": "die",
+    "plural": "Gegenden",
+    "pos": "noun",
+    "en": "region"
+  },
+  {
+    "id": "gruppe",
+    "lemma": "Gruppe",
+    "article": "die",
+    "plural": "Gruppen",
+    "pos": "noun",
+    "en": "group"
+  },
+  {
+    "id": "hilfe",
+    "lemma": "Hilfe",
+    "article": "die",
+    "plural": "Hilfen",
+    "pos": "noun",
+    "en": "help"
+  },
+  {
+    "id": "hobby",
+    "lemma": "Hobby",
+    "article": "das",
+    "plural": "Hobbys",
+    "pos": "noun",
+    "en": "hobby"
+  },
+  {
+    "id": "kenntnis",
+    "lemma": "Kenntnis",
+    "article": "die",
+    "plural": "Kenntnisse",
+    "pos": "noun",
+    "en": "acquaintance"
+  },
+  {
+    "id": "kleinigkeit",
+    "lemma": "Kleinigkeit",
+    "article": "die",
+    "plural": "Kleinigkeiten",
+    "pos": "noun",
+    "en": "bagatelle"
+  },
+  {
+    "id": "kunde",
+    "lemma": "Kunde",
+    "article": "der",
+    "plural": "Kunden",
+    "pos": "noun",
+    "en": "customer"
+  },
+  {
+    "id": "land",
+    "lemma": "Land",
+    "article": "das",
+    "plural": "Länder",
+    "pos": "noun",
+    "en": "land"
+  },
+  {
+    "id": "laerm",
+    "lemma": "Lärm",
+    "article": "der",
+    "pos": "noun",
+    "en": "noise"
+  },
+  {
+    "id": "leistung",
+    "lemma": "Leistung",
+    "article": "die",
+    "plural": "Leistungen",
+    "pos": "noun",
+    "en": "performance"
+  },
+  {
+    "id": "liebe",
+    "lemma": "Liebe",
+    "article": "die",
+    "plural": "Lieben",
+    "pos": "noun",
+    "en": "love"
+  },
+  {
+    "id": "lust",
+    "lemma": "Lust",
+    "article": "die",
+    "plural": "Lüste",
+    "pos": "noun",
+    "en": "inclination"
+  },
+  {
+    "id": "mannschaft",
+    "lemma": "Mannschaft",
+    "article": "die",
+    "plural": "Mannschaften",
+    "pos": "noun",
+    "en": "team"
+  },
+  {
+    "id": "mitte",
+    "lemma": "Mitte",
+    "article": "die",
+    "plural": "Mitten",
+    "pos": "noun",
+    "en": "centre"
+  },
+  {
+    "id": "muehe",
+    "lemma": "Mühe",
+    "article": "die",
+    "plural": "Mühen",
+    "pos": "noun",
+    "en": "trouble"
+  },
+  {
+    "id": "naehe",
+    "lemma": "Nähe",
+    "article": "die",
+    "pos": "noun",
+    "en": "proximity"
+  },
+  {
+    "id": "not",
+    "lemma": "Not",
+    "article": "die",
+    "plural": "Nöte",
+    "pos": "noun",
+    "en": "need"
+  },
+  {
+    "id": "ordnung",
+    "lemma": "Ordnung",
+    "article": "die",
+    "plural": "Ordnungen",
+    "pos": "noun",
+    "en": "order"
+  },
+  {
+    "id": "ort",
+    "lemma": "Ort",
+    "article": "der",
+    "plural": "Orte",
+    "pos": "noun",
+    "en": "location"
+  },
+  {
+    "id": "pause",
+    "lemma": "Pause",
+    "article": "die",
+    "plural": "Pausen",
+    "pos": "noun",
+    "en": "break"
+  },
+  {
+    "id": "plan",
+    "lemma": "Plan",
+    "article": "der",
+    "plural": "Pläne",
+    "pos": "noun",
+    "en": "plan"
+  },
+  {
+    "id": "punkt",
+    "lemma": "Punkt",
+    "article": "der",
+    "plural": "Punkte",
+    "pos": "noun",
+    "en": "point"
+  },
+  {
+    "id": "rat",
+    "lemma": "Rat",
+    "article": "der",
+    "plural": "Räte",
+    "pos": "noun",
+    "en": "advice"
+  },
+  {
+    "id": "raum",
+    "lemma": "Raum",
+    "article": "der",
+    "plural": "Räume",
+    "pos": "noun",
+    "en": "space"
+  },
+  {
+    "id": "rede",
+    "lemma": "Rede",
+    "article": "die",
+    "plural": "Reden",
+    "pos": "noun",
+    "en": "speech"
+  },
+  {
+    "id": "regel",
+    "lemma": "Regel",
+    "article": "die",
+    "plural": "Regeln",
+    "pos": "noun",
+    "en": "rule"
+  },
+  {
+    "id": "ruhe",
+    "lemma": "Ruhe",
+    "article": "die",
+    "pos": "noun",
+    "en": "quiet"
+  },
+  {
+    "id": "sache",
+    "lemma": "Sache",
+    "article": "die",
+    "plural": "Sachen",
+    "pos": "noun",
+    "en": "thing"
+  },
+  {
+    "id": "schluss",
+    "lemma": "Schluss",
+    "article": "der",
+    "plural": "Schlüsse",
+    "pos": "noun",
+    "en": "close"
+  },
+  {
+    "id": "schritt",
+    "lemma": "Schritt",
+    "article": "der",
+    "plural": "Schritte",
+    "pos": "noun",
+    "en": "step"
+  },
+  {
+    "id": "seite",
+    "lemma": "Seite",
+    "article": "die",
+    "plural": "Seiten",
+    "pos": "noun",
+    "en": "side"
+  },
+  {
+    "id": "sinn",
+    "lemma": "Sinn",
+    "article": "der",
+    "plural": "Sinne",
+    "pos": "noun",
+    "en": "sense"
+  },
+  {
+    "id": "sorge",
+    "lemma": "Sorge",
+    "article": "die",
+    "plural": "Sorgen",
+    "pos": "noun",
+    "en": "worry"
+  },
+  {
+    "id": "spiel",
+    "lemma": "Spiel",
+    "article": "das",
+    "plural": "Spiele",
+    "pos": "noun",
+    "en": "game"
+  },
+  {
+    "id": "sprache",
+    "lemma": "Sprache",
+    "article": "die",
+    "plural": "Sprachen",
+    "pos": "noun",
+    "en": "speech"
+  },
+  {
+    "id": "stelle",
+    "lemma": "Stelle",
+    "article": "die",
+    "plural": "Stellen",
+    "pos": "noun",
+    "en": "job"
+  },
+  {
+    "id": "stimme",
+    "lemma": "Stimme",
+    "article": "die",
+    "plural": "Stimmen",
+    "pos": "noun",
+    "en": "voice"
+  },
+  {
+    "id": "stueck",
+    "lemma": "Stück",
+    "article": "das",
+    "plural": "Stücke",
+    "pos": "noun",
+    "en": "part"
+  },
+  {
+    "id": "teil",
+    "lemma": "Teil",
+    "article": "das",
+    "plural": "Teile",
+    "pos": "noun",
+    "en": "deal"
+  },
+  {
+    "id": "tipp",
+    "lemma": "Tipp",
+    "article": "der",
+    "plural": "Tipps",
+    "pos": "noun",
+    "en": "tip"
+  },
+  {
+    "id": "traum",
+    "lemma": "Traum",
+    "article": "der",
+    "plural": "Träume",
+    "pos": "noun",
+    "en": "dream"
+  },
+  {
+    "id": "uebung",
+    "lemma": "Übung",
+    "article": "die",
+    "plural": "Übungen",
+    "pos": "noun",
+    "en": "training"
+  },
+  {
+    "id": "umgebung",
+    "lemma": "Umgebung",
+    "article": "die",
+    "plural": "Umgebungen",
+    "pos": "noun",
+    "en": "surrounding"
+  },
+  {
+    "id": "ursache",
+    "lemma": "Ursache",
+    "article": "die",
+    "plural": "Ursachen",
+    "pos": "noun",
+    "en": "cause"
+  },
+  {
+    "id": "verkehr",
+    "lemma": "Verkehr",
+    "article": "der",
+    "plural": "Verkehre",
+    "pos": "noun",
+    "en": "traffic"
+  },
+  {
+    "id": "versuch",
+    "lemma": "Versuch",
+    "article": "der",
+    "plural": "Versuche",
+    "pos": "noun",
+    "en": "attempt"
+  },
+  {
+    "id": "vorschlag",
+    "lemma": "Vorschlag",
+    "article": "der",
+    "plural": "Vorschläge",
+    "pos": "noun",
+    "en": "offer"
+  },
+  {
+    "id": "wahl",
+    "lemma": "Wahl",
+    "article": "die",
+    "plural": "Wahlen",
+    "pos": "noun",
+    "en": "choice"
+  },
+  {
+    "id": "wechsel",
+    "lemma": "Wechsel",
+    "article": "der",
+    "plural": "Wechsel",
+    "pos": "noun",
+    "en": "exchange"
+  },
+  {
+    "id": "weise",
+    "lemma": "Weise",
+    "article": "die",
+    "plural": "Weisen",
+    "pos": "noun",
+    "en": "mode"
+  },
+  {
+    "id": "welt",
+    "lemma": "Welt",
+    "article": "die",
+    "plural": "Welten",
+    "pos": "noun",
+    "en": "Earth"
+  },
+  {
+    "id": "werkstatt",
+    "lemma": "Werkstatt",
+    "article": "die",
+    "plural": "Werkstätten",
+    "pos": "noun",
+    "en": "workshop"
+  },
+  {
+    "id": "wert",
+    "lemma": "Wert",
+    "article": "der",
+    "plural": "Werte",
+    "pos": "noun",
+    "en": "value"
+  },
+  {
+    "id": "wille",
+    "lemma": "Wille",
+    "article": "der",
+    "plural": "Willen",
+    "pos": "noun",
+    "en": "will"
+  },
+  {
+    "id": "wunsch",
+    "lemma": "Wunsch",
+    "article": "der",
+    "plural": "Wünsche",
+    "pos": "noun",
+    "en": "request"
+  },
+  {
+    "id": "zahl",
+    "lemma": "Zahl",
+    "article": "die",
+    "plural": "Zahlen",
+    "pos": "noun",
+    "en": "number"
+  },
+  {
+    "id": "zeichen",
+    "lemma": "Zeichen",
+    "article": "das",
+    "plural": "Zeichen",
+    "pos": "noun",
+    "en": "sign"
+  },
+  {
+    "id": "ziel",
+    "lemma": "Ziel",
+    "article": "das",
+    "plural": "Ziele",
+    "pos": "noun",
+    "en": "aim"
+  },
+  {
+    "id": "zustand",
+    "lemma": "Zustand",
+    "article": "der",
+    "plural": "Zustände",
+    "pos": "noun",
+    "en": "condition"
+  },
+  {
+    "id": "zweck",
+    "lemma": "Zweck",
+    "article": "der",
+    "plural": "Zwecke",
+    "pos": "noun",
+    "en": "point"
+  },
+  {
+    "id": "achten",
+    "lemma": "achten",
+    "pos": "verb",
+    "en": "respect",
+    "forms": {
+      "ich": "achte",
+      "du": "achtest",
+      "er": "achtet"
+    }
+  },
+  {
+    "id": "aendern",
+    "lemma": "ändern",
+    "pos": "verb",
+    "en": "change",
+    "forms": {
+      "ich": "ändere",
+      "du": "änderst",
+      "er": "ändert"
+    }
+  },
+  {
+    "id": "anbieten",
+    "lemma": "anbieten",
+    "pos": "verb",
+    "en": "offer",
+    "forms": {
+      "ich": "biete an",
+      "du": "bietest an",
+      "er": "bietet an"
+    }
+  },
+  {
+    "id": "ankommen",
+    "lemma": "ankommen",
+    "pos": "verb",
+    "en": "arrive",
+    "forms": {
+      "ich": "komme an",
+      "du": "kommst an",
+      "er": "kommt an"
+    }
+  },
+  {
+    "id": "aufhoeren",
+    "lemma": "aufhören",
+    "pos": "verb",
+    "en": "cease",
+    "forms": {
+      "ich": "höre auf",
+      "du": "hörst auf",
+      "er": "hört auf"
+    }
+  },
+  {
+    "id": "aufmachen",
+    "lemma": "aufmachen",
+    "pos": "verb",
+    "en": "open",
+    "forms": {
+      "ich": "mache auf",
+      "du": "machst auf",
+      "er": "macht auf"
+    }
+  },
+  {
+    "id": "aufpassen",
+    "lemma": "aufpassen",
+    "pos": "verb",
+    "en": "pay attention",
+    "forms": {
+      "ich": "passe auf",
+      "du": "passt auf",
+      "er": "passt auf"
+    }
+  },
+  {
+    "id": "ausmachen",
+    "lemma": "ausmachen",
+    "pos": "verb",
+    "en": "put out",
+    "forms": {
+      "ich": "mache aus",
+      "du": "machst aus",
+      "er": "macht aus"
+    }
+  },
+  {
+    "id": "aussehen",
+    "lemma": "aussehen",
+    "pos": "verb",
+    "en": "look",
+    "forms": {
+      "ich": "sehe aus",
+      "du": "siehst aus",
+      "er": "sieht aus"
+    }
+  },
+  {
+    "id": "bedeuten",
+    "lemma": "bedeuten",
+    "pos": "verb",
+    "en": "mean",
+    "forms": {
+      "ich": "bedeute",
+      "du": "bedeutest",
+      "er": "bedeutet"
+    }
+  },
+  {
+    "id": "beeilen",
+    "lemma": "beeilen",
+    "pos": "verb",
+    "en": "hurry",
+    "forms": {
+      "ich": "beeile",
+      "du": "beeilst",
+      "er": "beeilt"
+    }
+  },
+  {
+    "id": "behalten",
+    "lemma": "behalten",
+    "pos": "verb",
+    "en": "keep",
+    "forms": {
+      "ich": "behalte",
+      "du": "behältst",
+      "er": "behält"
+    }
+  },
+  {
+    "id": "bemerken",
+    "lemma": "bemerken",
+    "pos": "verb",
+    "en": "notice",
+    "forms": {
+      "ich": "bemerke",
+      "du": "bemerkst",
+      "er": "bemerkt"
+    }
+  },
+  {
+    "id": "benutzen",
+    "lemma": "benutzen",
+    "pos": "verb",
+    "en": "use",
+    "forms": {
+      "ich": "benutze",
+      "du": "benutzt",
+      "er": "benutzt"
+    }
+  },
+  {
+    "id": "beschreiben",
+    "lemma": "beschreiben",
+    "pos": "verb",
+    "en": "describe",
+    "forms": {
+      "ich": "beschreibe",
+      "du": "beschreibst",
+      "er": "beschreibt"
+    }
+  },
+  {
+    "id": "besitzen",
+    "lemma": "besitzen",
+    "pos": "verb",
+    "en": "own",
+    "forms": {
+      "ich": "besitze",
+      "du": "besitzt",
+      "er": "besitzt"
+    }
+  },
+  {
+    "id": "bestimmen",
+    "lemma": "bestimmen",
+    "pos": "verb",
+    "en": "determine",
+    "forms": {
+      "ich": "bestimme",
+      "du": "bestimmst",
+      "er": "bestimmt"
+    }
+  },
+  {
+    "id": "beweisen",
+    "lemma": "beweisen",
+    "pos": "verb",
+    "en": "prove",
+    "forms": {
+      "ich": "beweise",
+      "du": "beweist",
+      "er": "beweist"
+    }
+  },
+  {
+    "id": "bewegen",
+    "lemma": "bewegen",
+    "pos": "verb",
+    "en": "move",
+    "forms": {
+      "ich": "bewege",
+      "du": "bewegst",
+      "er": "bewegt"
+    }
+  },
+  {
+    "id": "bieten",
+    "lemma": "bieten",
+    "pos": "verb",
+    "en": "bid",
+    "forms": {
+      "ich": "biete",
+      "du": "bietest",
+      "er": "bietet"
+    }
+  },
+  {
+    "id": "bitten",
+    "lemma": "bitten",
+    "pos": "verb",
+    "en": "ask",
+    "forms": {
+      "ich": "bitte",
+      "du": "bittest",
+      "er": "bittet"
+    }
+  },
+  {
+    "id": "danken",
+    "lemma": "danken",
+    "pos": "verb",
+    "en": "thank",
+    "forms": {
+      "ich": "danke",
+      "du": "dankst",
+      "er": "dankt"
+    }
+  },
+  {
+    "id": "dauern",
+    "lemma": "dauern",
+    "pos": "verb",
+    "en": "last",
+    "forms": {
+      "ich": "dauere",
+      "du": "dauerst",
+      "er": "dauert"
+    }
+  },
+  {
+    "id": "druecken",
+    "lemma": "drücken",
+    "pos": "verb",
+    "en": "push",
+    "forms": {
+      "ich": "drücke",
+      "du": "drückst",
+      "er": "drückt"
+    }
+  },
+  {
+    "id": "eignen",
+    "lemma": "eignen",
+    "pos": "verb",
+    "en": "suit",
+    "forms": {
+      "ich": "eigne",
+      "du": "eignest",
+      "er": "eignet"
+    }
+  },
+  {
+    "id": "einladen",
+    "lemma": "einladen",
+    "pos": "verb",
+    "en": "invite",
+    "forms": {
+      "ich": "lade ein",
+      "du": "lädst ein",
+      "er": "lädt ein"
+    }
+  },
+  {
+    "id": "entdecken",
+    "lemma": "entdecken",
+    "pos": "verb",
+    "en": "discover",
+    "forms": {
+      "ich": "entdecke",
+      "du": "entdeckst",
+      "er": "entdeckt"
+    }
+  },
+  {
+    "id": "entwickeln",
+    "lemma": "entwickeln",
+    "pos": "verb",
+    "en": "develop",
+    "forms": {
+      "ich": "entwickle",
+      "du": "entwickelst",
+      "er": "entwickelt"
+    }
+  },
+  {
+    "id": "erfahren",
+    "lemma": "erfahren",
+    "pos": "verb",
+    "en": "experience",
+    "forms": {
+      "ich": "erfahre",
+      "du": "erfährst",
+      "er": "erfährt"
+    }
+  },
+  {
+    "id": "erhalten",
+    "lemma": "erhalten",
+    "pos": "verb",
+    "en": "get",
+    "forms": {
+      "ich": "erhalte",
+      "du": "erhältst",
+      "er": "erhält"
+    }
+  },
+  {
+    "id": "erkennen",
+    "lemma": "erkennen",
+    "pos": "verb",
+    "en": "recognize",
+    "forms": {
+      "ich": "erkenne",
+      "du": "erkennst",
+      "er": "erkennt"
+    }
+  },
+  {
+    "id": "erlauben",
+    "lemma": "erlauben",
+    "pos": "verb",
+    "en": "allow",
+    "forms": {
+      "ich": "erlaube",
+      "du": "erlaubst",
+      "er": "erlaubt"
+    }
+  },
+  {
+    "id": "erreichen",
+    "lemma": "erreichen",
+    "pos": "verb",
+    "en": "reach",
+    "forms": {
+      "ich": "erreiche",
+      "du": "erreichst",
+      "er": "erreicht"
+    }
+  },
+  {
+    "id": "erwarten",
+    "lemma": "erwarten",
+    "pos": "verb",
+    "en": "await",
+    "forms": {
+      "ich": "erwarte",
+      "du": "erwartest",
+      "er": "erwartet"
+    }
+  },
+  {
+    "id": "fallen",
+    "lemma": "fallen",
+    "pos": "verb",
+    "en": "fall",
+    "forms": {
+      "ich": "falle",
+      "du": "fällst",
+      "er": "fällt"
+    }
+  },
+  {
+    "id": "fehlen",
+    "lemma": "fehlen",
+    "pos": "verb",
+    "en": "miss",
+    "forms": {
+      "ich": "fehle",
+      "du": "fehlst",
+      "er": "fehlt"
+    }
+  },
+  {
+    "id": "feiern",
+    "lemma": "feiern",
+    "pos": "verb",
+    "en": "celebrate",
+    "forms": {
+      "ich": "feiere",
+      "du": "feierst",
+      "er": "feiert"
+    }
+  },
+  {
+    "id": "folgen",
+    "lemma": "folgen",
+    "pos": "verb",
+    "en": "follow",
+    "forms": {
+      "ich": "folge",
+      "du": "folgst",
+      "er": "folgt"
+    }
+  },
+  {
+    "id": "freuen",
+    "lemma": "freuen",
+    "pos": "verb",
+    "en": "be happy",
+    "forms": {
+      "ich": "freue",
+      "du": "freust",
+      "er": "freut"
+    }
+  },
+  {
+    "id": "fuehlen",
+    "lemma": "fühlen",
+    "pos": "verb",
+    "en": "feel",
+    "forms": {
+      "ich": "fühle",
+      "du": "fühlst",
+      "er": "fühlt"
+    }
+  },
+  {
+    "id": "fuehren",
+    "lemma": "führen",
+    "pos": "verb",
+    "en": "lead",
+    "forms": {
+      "ich": "führe",
+      "du": "führst",
+      "er": "führt"
+    }
+  },
+  {
+    "id": "gefallen",
+    "lemma": "gefallen",
+    "pos": "verb",
+    "en": "fallen",
+    "forms": {
+      "ich": "gefalle",
+      "du": "gefällst",
+      "er": "gefällt"
+    }
+  },
+  {
+    "id": "gehoeren",
+    "lemma": "gehören",
+    "pos": "verb",
+    "en": "belong",
+    "forms": {
+      "ich": "gehöre",
+      "du": "gehörst",
+      "er": "gehört"
+    }
+  },
+  {
+    "id": "gelingen",
+    "lemma": "gelingen",
+    "pos": "verb",
+    "en": "work",
+    "forms": {
+      "ich": "gelinge",
+      "du": "gelingst",
+      "er": "gelingt"
+    }
+  },
+  {
+    "id": "geniessen",
+    "lemma": "genießen",
+    "pos": "verb",
+    "en": "enjoy",
+    "forms": {
+      "ich": "genieße",
+      "du": "genießt",
+      "er": "genießt"
+    }
+  },
+  {
+    "id": "geschehen",
+    "lemma": "geschehen",
+    "pos": "verb",
+    "en": "happen",
+    "forms": {
+      "er": "geschieht"
+    }
+  },
+  {
+    "id": "gewinnen",
+    "lemma": "gewinnen",
+    "pos": "verb",
+    "en": "win",
+    "forms": {
+      "ich": "gewinne",
+      "du": "gewinnst",
+      "er": "gewinnt"
+    }
+  },
+  {
+    "id": "halten",
+    "lemma": "halten",
+    "pos": "verb",
+    "en": "hold",
+    "forms": {
+      "ich": "halte",
+      "du": "hältst",
+      "er": "hält"
+    }
+  },
+  {
+    "id": "haengen",
+    "lemma": "hängen",
+    "pos": "verb",
+    "en": "hang",
+    "forms": {
+      "ich": "hänge",
+      "du": "hängst",
+      "er": "hängt"
+    }
+  },
+  {
+    "id": "heben",
+    "lemma": "heben",
+    "pos": "verb",
+    "en": "lift",
+    "forms": {
+      "ich": "hebe",
+      "du": "hebst",
+      "er": "hebt"
+    }
+  },
+  {
+    "id": "hoffen",
+    "lemma": "hoffen",
+    "pos": "verb",
+    "en": "hope",
+    "forms": {
+      "ich": "hoffe",
+      "du": "hoffst",
+      "er": "hofft"
+    }
+  },
+  {
+    "id": "holen",
+    "lemma": "holen",
+    "pos": "verb",
+    "en": "get",
+    "forms": {
+      "ich": "hole",
+      "du": "holst",
+      "er": "holt"
+    }
+  },
+  {
+    "id": "interessieren",
+    "lemma": "interessieren",
+    "pos": "verb",
+    "en": "interest",
+    "forms": {
+      "ich": "interessiere",
+      "du": "interessierst",
+      "er": "interessiert"
+    }
+  },
+  {
+    "id": "klingen",
+    "lemma": "klingen",
+    "pos": "verb",
+    "en": "clink",
+    "forms": {
+      "ich": "klinge",
+      "du": "klingst",
+      "er": "klingt"
+    }
+  },
+  {
+    "id": "lachen",
+    "lemma": "lachen",
+    "pos": "verb",
+    "en": "laugh",
+    "forms": {
+      "ich": "lache",
+      "du": "lachst",
+      "er": "lacht"
+    }
+  },
+  {
+    "id": "lassen",
+    "lemma": "lassen",
+    "pos": "verb",
+    "en": "leave",
+    "forms": {
+      "ich": "lasse",
+      "du": "lässt",
+      "er": "lässt"
+    }
+  },
+  {
+    "id": "legen",
+    "lemma": "legen",
+    "pos": "verb",
+    "en": "lay",
+    "forms": {
+      "ich": "lege",
+      "du": "legst",
+      "er": "legt"
+    }
+  },
+  {
+    "id": "merken",
+    "lemma": "merken",
+    "pos": "verb",
+    "en": "notice",
+    "forms": {
+      "ich": "merke",
+      "du": "merkst",
+      "er": "merkt"
+    }
+  },
+  {
+    "id": "messen",
+    "lemma": "messen",
+    "pos": "verb",
+    "en": "measure",
+    "forms": {
+      "ich": "messe",
+      "du": "misst",
+      "er": "misst"
+    }
+  },
+  {
+    "id": "mitbringen",
+    "lemma": "mitbringen",
+    "pos": "verb",
+    "en": "bring along",
+    "forms": {
+      "ich": "bringe mit",
+      "du": "bringst mit",
+      "er": "bringt mit"
+    }
+  },
+  {
+    "id": "nutzen",
+    "lemma": "nutzen",
+    "pos": "verb",
+    "en": "use",
+    "forms": {
+      "ich": "nutze",
+      "du": "nutzt",
+      "er": "nutzt"
+    }
+  },
+  {
+    "id": "passen",
+    "lemma": "passen",
+    "pos": "verb",
+    "en": "fit",
+    "forms": {
+      "ich": "passe",
+      "du": "passt",
+      "er": "passt"
+    }
+  },
+  {
+    "id": "passieren",
+    "lemma": "passieren",
+    "pos": "verb",
+    "en": "pass",
+    "forms": {
+      "ich": "passiere",
+      "du": "passierst",
+      "er": "passiert"
+    }
+  },
+  {
+    "id": "pruefen",
+    "lemma": "prüfen",
+    "pos": "verb",
+    "en": "check",
+    "forms": {
+      "ich": "prüfe",
+      "du": "prüfst",
+      "er": "prüft"
+    }
+  },
+  {
+    "id": "raten",
+    "lemma": "raten",
+    "pos": "verb",
+    "en": "advise",
+    "forms": {
+      "ich": "rate",
+      "du": "rätst",
+      "er": "rät"
+    }
+  },
+  {
+    "id": "rechnen",
+    "lemma": "rechnen",
+    "pos": "verb",
+    "en": "calculate",
+    "forms": {
+      "ich": "rechne",
+      "du": "rechnest",
+      "er": "rechnet"
+    }
+  },
+  {
+    "id": "reden",
+    "lemma": "reden",
+    "pos": "verb",
+    "en": "speak",
+    "forms": {
+      "ich": "rede",
+      "du": "redest",
+      "er": "redet"
+    }
+  },
+  {
+    "id": "retten",
+    "lemma": "retten",
+    "pos": "verb",
+    "en": "save",
+    "forms": {
+      "ich": "rette",
+      "du": "rettest",
+      "er": "rettet"
+    }
+  },
+  {
+    "id": "riechen",
+    "lemma": "riechen",
+    "pos": "verb",
+    "en": "reek",
+    "forms": {
+      "ich": "rieche",
+      "du": "riechst",
+      "er": "riecht"
+    }
+  },
+  {
+    "id": "rufen",
+    "lemma": "rufen",
+    "pos": "verb",
+    "en": "call",
+    "forms": {
+      "ich": "rufe",
+      "du": "rufst",
+      "er": "ruft"
+    }
+  },
+  {
+    "id": "scheinen",
+    "lemma": "scheinen",
+    "pos": "verb",
+    "en": "shine",
+    "forms": {
+      "ich": "scheine",
+      "du": "scheinst",
+      "er": "scheint"
+    }
+  },
+  {
+    "id": "schenken",
+    "lemma": "schenken",
+    "pos": "verb",
+    "en": "give",
+    "forms": {
+      "ich": "schenke",
+      "du": "schenkst",
+      "er": "schenkt"
+    }
+  },
+  {
+    "id": "schicken",
+    "lemma": "schicken",
+    "pos": "verb",
+    "en": "send",
+    "forms": {
+      "ich": "schicke",
+      "du": "schickst",
+      "er": "schickt"
+    }
+  },
+  {
+    "id": "schneiden",
+    "lemma": "schneiden",
+    "pos": "verb",
+    "en": "cut",
+    "forms": {
+      "ich": "schneide",
+      "du": "schneidest",
+      "er": "schneidet"
+    }
+  },
+  {
+    "id": "setzen",
+    "lemma": "setzen",
+    "pos": "verb",
+    "en": "sit",
+    "forms": {
+      "ich": "setze",
+      "du": "setzt",
+      "er": "setzt"
+    }
+  },
+  {
+    "id": "sorgen",
+    "lemma": "sorgen",
+    "pos": "verb",
+    "en": "care",
+    "forms": {
+      "ich": "sorge",
+      "du": "sorgst",
+      "er": "sorgt"
+    }
+  },
+  {
+    "id": "sparen",
+    "lemma": "sparen",
+    "pos": "verb",
+    "en": "spare",
+    "forms": {
+      "ich": "spare",
+      "du": "sparst",
+      "er": "spart"
+    }
+  },
+  {
+    "id": "spueren",
+    "lemma": "spüren",
+    "pos": "verb",
+    "en": "feel",
+    "forms": {
+      "ich": "spüre",
+      "du": "spürst",
+      "er": "spürt"
+    }
+  },
+  {
+    "id": "stellen",
+    "lemma": "stellen",
+    "pos": "verb",
+    "en": "place",
+    "forms": {
+      "ich": "stelle",
+      "du": "stellst",
+      "er": "stellt"
+    }
+  },
+  {
+    "id": "sterben",
+    "lemma": "sterben",
+    "pos": "verb",
+    "en": "die",
+    "forms": {
+      "ich": "sterbe",
+      "du": "stirbst",
+      "er": "stirbt"
+    }
+  },
+  {
+    "id": "stoeren",
+    "lemma": "stören",
+    "pos": "verb",
+    "en": "disturb",
+    "forms": {
+      "ich": "störe",
+      "du": "störst",
+      "er": "stört"
+    }
+  },
+  {
+    "id": "tragen",
+    "lemma": "tragen",
+    "pos": "verb",
+    "en": "draw",
+    "forms": {
+      "ich": "trage",
+      "du": "trägst",
+      "er": "trägt"
+    }
+  },
+  {
+    "id": "traeumen",
+    "lemma": "träumen",
+    "pos": "verb",
+    "en": "dream",
+    "forms": {
+      "ich": "träume",
+      "du": "träumst",
+      "er": "träumt"
+    }
+  },
+  {
+    "id": "trennen",
+    "lemma": "trennen",
+    "pos": "verb",
+    "en": "separate",
+    "forms": {
+      "ich": "trenne",
+      "du": "trennst",
+      "er": "trennt"
+    }
+  },
+  {
+    "id": "ueben",
+    "lemma": "üben",
+    "pos": "verb",
+    "en": "exercise",
+    "forms": {
+      "ich": "übe",
+      "du": "übst",
+      "er": "übt"
+    }
+  },
+  {
+    "id": "ueberlegen",
+    "lemma": "überlegen",
+    "pos": "verb",
+    "en": "superior",
+    "forms": {
+      "ich": "lege über",
+      "du": "legst über",
+      "er": "legt über"
+    }
+  },
+  {
+    "id": "unterscheiden",
+    "lemma": "unterscheiden",
+    "pos": "verb",
+    "en": "distinguish",
+    "forms": {
+      "ich": "unterscheide",
+      "du": "unterscheidest",
+      "er": "unterscheidet"
+    }
+  },
+  {
+    "id": "verbinden",
+    "lemma": "verbinden",
+    "pos": "verb",
+    "en": "bandage",
+    "forms": {
+      "ich": "verbinde",
+      "du": "verbindest",
+      "er": "verbindet"
+    }
+  },
+  {
+    "id": "verbringen",
+    "lemma": "verbringen",
+    "pos": "verb",
+    "en": "acquire",
+    "forms": {
+      "ich": "verbringe",
+      "du": "verbringst",
+      "er": "verbringt"
+    }
+  },
+  {
+    "id": "vergessen",
+    "lemma": "vergessen",
+    "pos": "verb",
+    "en": "forgotten",
+    "forms": {
+      "ich": "vergesse",
+      "du": "vergisst",
+      "er": "vergisst"
+    }
+  },
+  {
+    "id": "vergleichen",
+    "lemma": "vergleichen",
+    "pos": "verb",
+    "en": "compare",
+    "forms": {
+      "ich": "vergleiche",
+      "du": "vergleichst",
+      "er": "vergleicht"
+    }
+  },
+  {
+    "id": "verkaufen",
+    "lemma": "verkaufen",
+    "pos": "verb",
+    "en": "sell",
+    "forms": {
+      "ich": "verkaufe",
+      "du": "verkaufst",
+      "er": "verkauft"
+    }
+  },
+  {
+    "id": "verlassen",
+    "lemma": "verlassen",
+    "pos": "verb",
+    "en": "abandon",
+    "forms": {
+      "ich": "verlasse",
+      "du": "verlässt",
+      "er": "verlässt"
+    }
+  },
+  {
+    "id": "verlieren",
+    "lemma": "verlieren",
+    "pos": "verb",
+    "en": "lose",
+    "forms": {
+      "ich": "verliere",
+      "du": "verlierst",
+      "er": "verliert"
+    }
+  },
+  {
+    "id": "vermeiden",
+    "lemma": "vermeiden",
+    "pos": "verb",
+    "en": "avoid",
+    "forms": {
+      "ich": "vermeide",
+      "du": "vermeidest",
+      "er": "vermeidet"
+    }
+  },
+  {
+    "id": "verpassen",
+    "lemma": "verpassen",
+    "pos": "verb",
+    "en": "miss",
+    "forms": {
+      "ich": "verpasse",
+      "du": "verpasst",
+      "er": "verpasst"
+    }
+  },
+  {
+    "id": "versprechen",
+    "lemma": "versprechen",
+    "pos": "verb",
+    "en": "promise",
+    "forms": {
+      "ich": "verspreche",
+      "du": "versprichst",
+      "er": "verspricht"
+    }
+  },
+  {
+    "id": "versuchen",
+    "lemma": "versuchen",
+    "pos": "verb",
+    "en": "try",
+    "forms": {
+      "ich": "versuche",
+      "du": "versuchst",
+      "er": "versucht"
+    }
+  },
+  {
+    "id": "verwenden",
+    "lemma": "verwenden",
+    "pos": "verb",
+    "en": "use",
+    "forms": {
+      "ich": "verwende",
+      "du": "verwendest",
+      "er": "verwendet"
+    }
+  },
+  {
+    "id": "vorbereiten",
+    "lemma": "vorbereiten",
+    "pos": "verb",
+    "en": "prepare",
+    "forms": {
+      "ich": "bereite vor",
+      "du": "bereitest vor",
+      "er": "bereitet vor"
+    }
+  },
+  {
+    "id": "vorschlagen",
+    "lemma": "vorschlagen",
+    "pos": "verb",
+    "en": "propose",
+    "forms": {
+      "ich": "schlage vor",
+      "du": "schlägst vor",
+      "er": "schlägt vor"
+    }
+  },
+  {
+    "id": "wachsen",
+    "lemma": "wachsen",
+    "pos": "verb",
+    "en": "wax",
+    "forms": {
+      "ich": "wachse",
+      "du": "wächst",
+      "er": "wächst"
+    }
+  },
+  {
+    "id": "waehlen",
+    "lemma": "wählen",
+    "pos": "verb",
+    "en": "choose",
+    "forms": {
+      "ich": "wähle",
+      "du": "wählst",
+      "er": "wählt"
+    }
+  },
+  {
+    "id": "wechseln",
+    "lemma": "wechseln",
+    "pos": "verb",
+    "en": "change",
+    "forms": {
+      "ich": "wechsle",
+      "du": "wechselst",
+      "er": "wechselt"
+    }
+  },
+  {
+    "id": "weinen",
+    "lemma": "weinen",
+    "pos": "verb",
+    "en": "cry",
+    "forms": {
+      "ich": "weine",
+      "du": "weinst",
+      "er": "weint"
+    }
+  },
+  {
+    "id": "werfen",
+    "lemma": "werfen",
+    "pos": "verb",
+    "en": "throw",
+    "forms": {
+      "ich": "werfe",
+      "du": "wirfst",
+      "er": "wirft"
+    }
+  },
+  {
+    "id": "wiederholen",
+    "lemma": "wiederholen",
+    "pos": "verb",
+    "en": "iterate",
+    "forms": {
+      "ich": "wiederhole",
+      "du": "wiederholst",
+      "er": "wiederholt"
+    }
+  },
+  {
+    "id": "wundern",
+    "lemma": "wundern",
+    "pos": "verb",
+    "en": "surprise",
+    "forms": {
+      "ich": "wundere",
+      "du": "wunderst",
+      "er": "wundert"
+    }
+  },
+  {
+    "id": "zahlen",
+    "lemma": "zahlen",
+    "pos": "verb",
+    "en": "pay",
+    "forms": {
+      "ich": "zahle",
+      "du": "zahlst",
+      "er": "zahlt"
+    }
+  },
+  {
+    "id": "zeigen",
+    "lemma": "zeigen",
+    "pos": "verb",
+    "en": "show",
+    "forms": {
+      "ich": "zeige",
+      "du": "zeigst",
+      "er": "zeigt"
+    }
+  },
+  {
+    "id": "ziehen",
+    "lemma": "ziehen",
+    "pos": "verb",
+    "en": "pull",
+    "forms": {
+      "ich": "ziehe",
+      "du": "ziehst",
+      "er": "zieht"
+    }
+  },
+  {
+    "id": "zuhoeren",
+    "lemma": "zuhören",
+    "pos": "verb",
+    "en": "listen",
+    "forms": {
+      "ich": "höre zu",
+      "du": "hörst zu",
+      "er": "hört zu"
+    }
+  },
+  {
+    "id": "angenehm",
+    "lemma": "angenehm",
+    "pos": "adj",
+    "en": "agreeable"
+  },
+  {
+    "id": "arm",
+    "lemma": "arm",
+    "pos": "adj",
+    "en": "poor"
+  },
+  {
+    "id": "bequem",
+    "lemma": "bequem",
+    "pos": "adj",
+    "en": "comfortable"
+  },
+  {
+    "id": "beruehmt",
+    "lemma": "berühmt",
+    "pos": "adj",
+    "en": "famous"
+  },
+  {
+    "id": "bereit",
+    "lemma": "bereit",
+    "pos": "adj",
+    "en": "ready"
+  },
+  {
+    "id": "bekannt",
+    "lemma": "bekannt",
+    "pos": "adj",
+    "en": "known"
+  },
+  {
+    "id": "deutlich",
+    "lemma": "deutlich",
+    "pos": "adj",
+    "en": "clear"
+  },
+  {
+    "id": "dick",
+    "lemma": "dick",
+    "pos": "adj",
+    "en": "thick"
+  },
+  {
+    "id": "duenn",
+    "lemma": "dünn",
+    "pos": "adj",
+    "en": "thin"
+  },
+  {
+    "id": "dumm",
+    "lemma": "dumm",
+    "pos": "adj",
+    "en": "stupid"
+  },
+  {
+    "id": "eng",
+    "lemma": "eng",
+    "pos": "adj",
+    "en": "tight"
+  },
+  {
+    "id": "ernst",
+    "lemma": "ernst",
+    "pos": "adj",
+    "en": "serious"
+  },
+  {
+    "id": "fertig",
+    "lemma": "fertig",
+    "pos": "adj",
+    "en": "done"
+  },
+  {
+    "id": "frei",
+    "lemma": "frei",
+    "pos": "adj",
+    "en": "emancipated"
+  },
+  {
+    "id": "fremd",
+    "lemma": "fremd",
+    "pos": "adj",
+    "en": "strange"
+  },
+  {
+    "id": "frisch",
+    "lemma": "frisch",
+    "pos": "adj",
+    "en": "fresh"
+  },
+  {
+    "id": "froh",
+    "lemma": "froh",
+    "pos": "adj",
+    "en": "happy"
+  },
+  {
+    "id": "gefaehrlich",
+    "lemma": "gefährlich",
+    "pos": "adj",
+    "en": "dangerous"
+  },
+  {
+    "id": "gemeinsam",
+    "lemma": "gemeinsam",
+    "pos": "adj",
+    "en": "common"
+  },
+  {
+    "id": "genau",
+    "lemma": "genau",
+    "pos": "adj",
+    "en": "truly"
+  },
+  {
+    "id": "gleich",
+    "lemma": "gleich",
+    "pos": "adj",
+    "en": "equal"
+  },
+  {
+    "id": "hell",
+    "lemma": "hell",
+    "pos": "adj",
+    "en": "light"
+  },
+  {
+    "id": "dunkel",
+    "lemma": "dunkel",
+    "pos": "adj",
+    "en": "dark"
+  },
+  {
+    "id": "hoch",
+    "lemma": "hoch",
+    "pos": "adj",
+    "en": "high"
+  },
+  {
+    "id": "niedrig",
+    "lemma": "niedrig",
+    "pos": "adj",
+    "en": "low"
+  },
+  {
+    "id": "klar",
+    "lemma": "klar",
+    "pos": "adj",
+    "en": "clear"
+  },
+  {
+    "id": "klug",
+    "lemma": "klug",
+    "pos": "adj",
+    "en": "clever"
+  },
+  {
+    "id": "lang",
+    "lemma": "lang",
+    "pos": "adj",
+    "en": "long"
+  },
+  {
+    "id": "langsam",
+    "lemma": "langsam",
+    "pos": "adj",
+    "en": "slow"
+  },
+  {
+    "id": "schnell",
+    "lemma": "schnell",
+    "pos": "adj",
+    "en": "snell"
+  },
+  {
+    "id": "laut",
+    "lemma": "laut",
+    "pos": "adj",
+    "en": "loud"
+  },
+  {
+    "id": "leise",
+    "lemma": "leise",
+    "pos": "adj",
+    "en": "less"
+  },
+  {
+    "id": "leicht",
+    "lemma": "leicht",
+    "pos": "adj",
+    "en": "light"
+  },
+  {
+    "id": "schwer",
+    "lemma": "schwer",
+    "pos": "adj",
+    "en": "heavy"
+  },
+  {
+    "id": "lieb",
+    "lemma": "lieb",
+    "pos": "adj",
+    "en": "nice"
+  },
+  {
+    "id": "moeglich",
+    "lemma": "möglich",
+    "pos": "adj",
+    "en": "possible"
+  },
+  {
+    "id": "nah",
+    "lemma": "nah",
+    "pos": "adj",
+    "en": "near"
+  },
+  {
+    "id": "weit",
+    "lemma": "weit",
+    "pos": "adj",
+    "en": "vast"
+  },
+  {
+    "id": "noetig",
+    "lemma": "nötig",
+    "pos": "adj",
+    "en": "necessary"
+  },
+  {
+    "id": "offen",
+    "lemma": "offen",
+    "pos": "adj",
+    "en": "open"
+  },
+  {
+    "id": "privat",
+    "lemma": "privat",
+    "pos": "adj",
+    "en": "private"
+  },
+  {
+    "id": "reich",
+    "lemma": "reich",
+    "pos": "adj",
+    "en": "rich"
+  },
+  {
+    "id": "ruhig",
+    "lemma": "ruhig",
+    "pos": "adj",
+    "en": "quiet"
+  },
+  {
+    "id": "sauber",
+    "lemma": "sauber",
+    "pos": "adj",
+    "en": "clean"
+  },
+  {
+    "id": "schmutzig",
+    "lemma": "schmutzig",
+    "pos": "adj",
+    "en": "dirty"
+  },
+  {
+    "id": "schwach",
+    "lemma": "schwach",
+    "pos": "adj",
+    "en": "weak"
+  },
+  {
+    "id": "stark",
+    "lemma": "stark",
+    "pos": "adj",
+    "en": "powerful"
+  },
+  {
+    "id": "still",
+    "lemma": "still",
+    "pos": "adj",
+    "en": "still"
+  },
+  {
+    "id": "typisch",
+    "lemma": "typisch",
+    "pos": "adj",
+    "en": "typical"
+  },
+  {
+    "id": "voll",
+    "lemma": "voll",
+    "pos": "adj",
+    "en": "full"
+  },
+  {
+    "id": "leer",
+    "lemma": "leer",
+    "pos": "adj",
+    "en": "empty"
+  },
+  {
+    "id": "wahr",
+    "lemma": "wahr",
+    "pos": "adj",
+    "en": "true"
+  },
+  {
+    "id": "wichtig",
+    "lemma": "wichtig",
+    "pos": "adj",
+    "en": "important"
+  },
+  {
+    "id": "zufrieden",
+    "lemma": "zufrieden",
+    "pos": "adj",
+    "en": "satisfied"
+  }
+]

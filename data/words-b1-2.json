@@ -1,0 +1,1555 @@
+[
+  {
+    "id": "eindruck",
+    "lemma": "Eindruck",
+    "article": "der",
+    "plural": "Eindrücke",
+    "pos": "noun",
+    "en": "impression"
+  },
+  {
+    "id": "wahrnehmung",
+    "lemma": "Wahrnehmung",
+    "article": "die",
+    "plural": "Wahrnehmungen",
+    "pos": "noun",
+    "en": "perception"
+  },
+  {
+    "id": "bewusstsein",
+    "lemma": "Bewusstsein",
+    "article": "das",
+    "plural": "Bewusstseine",
+    "pos": "noun",
+    "en": "awareness"
+  },
+  {
+    "id": "erinnerung",
+    "lemma": "Erinnerung",
+    "article": "die",
+    "plural": "Erinnerungen",
+    "pos": "noun",
+    "en": "memory"
+  },
+  {
+    "id": "fantasie",
+    "lemma": "Fantasie",
+    "article": "die",
+    "plural": "Fantasien",
+    "pos": "noun",
+    "en": "imagination"
+  },
+  {
+    "id": "kreativitaet",
+    "lemma": "Kreativität",
+    "article": "die",
+    "pos": "noun",
+    "en": "creativity"
+  },
+  {
+    "id": "begabung",
+    "lemma": "Begabung",
+    "article": "die",
+    "plural": "Begabungen",
+    "pos": "noun",
+    "en": "gift"
+  },
+  {
+    "id": "charakter",
+    "lemma": "Charakter",
+    "article": "der",
+    "plural": "Charaktere",
+    "pos": "noun",
+    "en": "character"
+  },
+  {
+    "id": "eigenschaft",
+    "lemma": "Eigenschaft",
+    "article": "die",
+    "plural": "Eigenschaften",
+    "pos": "noun",
+    "en": "characteristic"
+  },
+  {
+    "id": "verhalten",
+    "lemma": "Verhalten",
+    "article": "das",
+    "plural": "Verhalten",
+    "pos": "noun",
+    "en": "behaviour"
+  },
+  {
+    "id": "gewohnheit",
+    "lemma": "Gewohnheit",
+    "article": "die",
+    "plural": "Gewohnheiten",
+    "pos": "noun",
+    "en": "habit"
+  },
+  {
+    "id": "einstellung",
+    "lemma": "Einstellung",
+    "article": "die",
+    "plural": "Einstellungen",
+    "pos": "noun",
+    "en": "attitude"
+  },
+  {
+    "id": "haltung",
+    "lemma": "Haltung",
+    "article": "die",
+    "plural": "Haltungen",
+    "pos": "noun",
+    "en": "posture"
+  },
+  {
+    "id": "vorurteil",
+    "lemma": "Vorurteil",
+    "article": "das",
+    "plural": "Vorurteile",
+    "pos": "noun",
+    "en": "prejudice"
+  },
+  {
+    "id": "missverstaendnis",
+    "lemma": "Missverständnis",
+    "article": "das",
+    "plural": "Missverständnisse",
+    "pos": "noun",
+    "en": "misunderstanding"
+  },
+  {
+    "id": "verwirrung",
+    "lemma": "Verwirrung",
+    "article": "die",
+    "plural": "Verwirrungen",
+    "pos": "noun",
+    "en": "confusion"
+  },
+  {
+    "id": "klarheit",
+    "lemma": "Klarheit",
+    "article": "die",
+    "plural": "Klarheiten",
+    "pos": "noun",
+    "en": "clearness"
+  },
+  {
+    "id": "bedeutung",
+    "lemma": "Bedeutung",
+    "article": "die",
+    "plural": "Bedeutungen",
+    "pos": "noun",
+    "en": "meaning"
+  },
+  {
+    "id": "wirklichkeit",
+    "lemma": "Wirklichkeit",
+    "article": "die",
+    "plural": "Wirklichkeiten",
+    "pos": "noun",
+    "en": "reality"
+  },
+  {
+    "id": "wahrheit",
+    "lemma": "Wahrheit",
+    "article": "die",
+    "plural": "Wahrheiten",
+    "pos": "noun",
+    "en": "truth"
+  },
+  {
+    "id": "luege",
+    "lemma": "Lüge",
+    "article": "die",
+    "plural": "Lügen",
+    "pos": "noun",
+    "en": "lie"
+  },
+  {
+    "id": "geheimnis",
+    "lemma": "Geheimnis",
+    "article": "das",
+    "plural": "Geheimnisse",
+    "pos": "noun",
+    "en": "secret"
+  },
+  {
+    "id": "ueberraschung",
+    "lemma": "Überraschung",
+    "article": "die",
+    "plural": "Überraschungen",
+    "pos": "noun",
+    "en": "surprise"
+  },
+  {
+    "id": "zufall",
+    "lemma": "Zufall",
+    "article": "der",
+    "plural": "Zufälle",
+    "pos": "noun",
+    "en": "chance"
+  },
+  {
+    "id": "schicksal",
+    "lemma": "Schicksal",
+    "article": "das",
+    "plural": "Schicksale",
+    "pos": "noun",
+    "en": "destiny"
+  },
+  {
+    "id": "wahrnehmen",
+    "lemma": "wahrnehmen",
+    "pos": "verb",
+    "en": "realise",
+    "forms": {
+      "ich": "nehme wahr",
+      "du": "nimmst wahr",
+      "er": "nimmt wahr"
+    }
+  },
+  {
+    "id": "erkennen",
+    "lemma": "erkennen",
+    "pos": "verb",
+    "en": "recognize",
+    "forms": {
+      "ich": "erkenne",
+      "du": "erkennst",
+      "er": "erkennt"
+    }
+  },
+  {
+    "id": "begreifen",
+    "lemma": "begreifen",
+    "pos": "verb",
+    "en": "understand",
+    "forms": {
+      "ich": "begreife",
+      "du": "begreifst",
+      "er": "begreift"
+    }
+  },
+  {
+    "id": "verwechseln",
+    "lemma": "verwechseln",
+    "pos": "verb",
+    "en": "confuse",
+    "forms": {
+      "ich": "verwechsle",
+      "du": "verwechselst",
+      "er": "verwechselt"
+    }
+  },
+  {
+    "id": "verwirren",
+    "lemma": "verwirren",
+    "pos": "verb",
+    "en": "confuse",
+    "forms": {
+      "ich": "verwirre",
+      "du": "verwirrst",
+      "er": "verwirrt"
+    }
+  },
+  {
+    "id": "klaeren",
+    "lemma": "klären",
+    "pos": "verb",
+    "en": "clear",
+    "forms": {
+      "ich": "kläre",
+      "du": "klärst",
+      "er": "klärt"
+    }
+  },
+  {
+    "id": "beurteilen",
+    "lemma": "beurteilen",
+    "pos": "verb",
+    "en": "judge",
+    "forms": {
+      "ich": "beurteile",
+      "du": "beurteilst",
+      "er": "beurteilt"
+    }
+  },
+  {
+    "id": "einschaetzen",
+    "lemma": "einschätzen",
+    "pos": "verb",
+    "en": "judge",
+    "forms": {
+      "ich": "schätze ein",
+      "du": "schätzt ein",
+      "er": "schätzt ein"
+    }
+  },
+  {
+    "id": "beruecksichtigen",
+    "lemma": "berücksichtigen",
+    "pos": "verb",
+    "en": "consider",
+    "forms": {
+      "ich": "berücksichtige",
+      "du": "berücksichtigst",
+      "er": "berücksichtigt"
+    }
+  },
+  {
+    "id": "unterscheiden",
+    "lemma": "unterscheiden",
+    "pos": "verb",
+    "en": "distinguish",
+    "forms": {
+      "ich": "unterscheide",
+      "du": "unterscheidest",
+      "er": "unterscheidet"
+    }
+  },
+  {
+    "id": "zusammenfassen",
+    "lemma": "zusammenfassen",
+    "pos": "verb",
+    "en": "summarize",
+    "forms": {
+      "ich": "fasse zusammen",
+      "du": "fasst zusammen",
+      "er": "fasst zusammen"
+    }
+  },
+  {
+    "id": "behoerde",
+    "lemma": "Behörde",
+    "article": "die",
+    "plural": "Behörden",
+    "pos": "noun",
+    "en": "authority"
+  },
+  {
+    "id": "amt",
+    "lemma": "Amt",
+    "article": "das",
+    "plural": "Ämter",
+    "pos": "noun",
+    "en": "office"
+  },
+  {
+    "id": "antrag",
+    "lemma": "Antrag",
+    "article": "der",
+    "plural": "Anträge",
+    "pos": "noun",
+    "en": "application"
+  },
+  {
+    "id": "formular",
+    "lemma": "Formular",
+    "article": "das",
+    "plural": "Formulare",
+    "pos": "noun",
+    "en": "form"
+  },
+  {
+    "id": "genehmigung",
+    "lemma": "Genehmigung",
+    "article": "die",
+    "plural": "Genehmigungen",
+    "pos": "noun",
+    "en": "approval"
+  },
+  {
+    "id": "bescheinigung",
+    "lemma": "Bescheinigung",
+    "article": "die",
+    "plural": "Bescheinigungen",
+    "pos": "noun",
+    "en": "certificate"
+  },
+  {
+    "id": "anmeldung",
+    "lemma": "Anmeldung",
+    "article": "die",
+    "plural": "Anmeldungen",
+    "pos": "noun",
+    "en": "registration"
+  },
+  {
+    "id": "frist",
+    "lemma": "Frist",
+    "article": "die",
+    "plural": "Fristen",
+    "pos": "noun",
+    "en": "period"
+  },
+  {
+    "id": "gebuehr",
+    "lemma": "Gebühr",
+    "article": "die",
+    "plural": "Gebühren",
+    "pos": "noun",
+    "en": "fee"
+  },
+  {
+    "id": "beschwerde",
+    "lemma": "Beschwerde",
+    "article": "die",
+    "plural": "Beschwerden",
+    "pos": "noun",
+    "en": "complaint"
+  },
+  {
+    "id": "stempel",
+    "lemma": "Stempel",
+    "article": "der",
+    "plural": "Stempel",
+    "pos": "noun",
+    "en": "rubber stamp"
+  },
+  {
+    "id": "beamter",
+    "lemma": "Beamter",
+    "pos": "other",
+    "en": "civil servant"
+  },
+  {
+    "id": "buerger",
+    "lemma": "Bürger",
+    "article": "der",
+    "plural": "Bürger",
+    "pos": "noun",
+    "en": "inhabitant"
+  },
+  {
+    "id": "staat",
+    "lemma": "Staat",
+    "article": "der",
+    "plural": "Staaten",
+    "pos": "noun",
+    "en": "state"
+  },
+  {
+    "id": "verwaltung",
+    "lemma": "Verwaltung",
+    "article": "die",
+    "plural": "Verwaltungen",
+    "pos": "noun",
+    "en": "administration"
+  },
+  {
+    "id": "gericht",
+    "lemma": "Gericht",
+    "article": "das",
+    "plural": "Gerichte",
+    "pos": "noun",
+    "en": "court"
+  },
+  {
+    "id": "anwalt",
+    "lemma": "Anwalt",
+    "article": "der",
+    "plural": "Anwälte",
+    "pos": "noun",
+    "en": "advocate"
+  },
+  {
+    "id": "urteil",
+    "lemma": "Urteil",
+    "article": "das",
+    "plural": "Urteile",
+    "pos": "noun",
+    "en": "verdict"
+  },
+  {
+    "id": "strafe",
+    "lemma": "Strafe",
+    "article": "die",
+    "plural": "Strafen",
+    "pos": "noun",
+    "en": "penalty"
+  },
+  {
+    "id": "vorschrift",
+    "lemma": "Vorschrift",
+    "article": "die",
+    "plural": "Vorschriften",
+    "pos": "noun",
+    "en": "rule"
+  },
+  {
+    "id": "verbot",
+    "lemma": "Verbot",
+    "article": "das",
+    "plural": "Verbote",
+    "pos": "noun",
+    "en": "prohibition"
+  },
+  {
+    "id": "erlaubnis",
+    "lemma": "Erlaubnis",
+    "article": "die",
+    "plural": "Erlaubnisse",
+    "pos": "noun",
+    "en": "allowance"
+  },
+  {
+    "id": "beantragen",
+    "lemma": "beantragen",
+    "pos": "verb",
+    "en": "apply for",
+    "forms": {
+      "ich": "beantrage",
+      "du": "beantragst",
+      "er": "beantragt"
+    }
+  },
+  {
+    "id": "genehmigen",
+    "lemma": "genehmigen",
+    "pos": "verb",
+    "en": "permit",
+    "forms": {
+      "ich": "genehmige",
+      "du": "genehmigst",
+      "er": "genehmigt"
+    }
+  },
+  {
+    "id": "ablehnen",
+    "lemma": "ablehnen",
+    "pos": "verb",
+    "en": "decline",
+    "forms": {
+      "ich": "lehne ab",
+      "du": "lehnst ab",
+      "er": "lehnt ab"
+    }
+  },
+  {
+    "id": "bestaetigen",
+    "lemma": "bestätigen",
+    "pos": "verb",
+    "en": "confirm",
+    "forms": {
+      "ich": "bestätige",
+      "du": "bestätigst",
+      "er": "bestätigt"
+    }
+  },
+  {
+    "id": "verlaengern",
+    "lemma": "verlängern",
+    "pos": "verb",
+    "en": "lengthen",
+    "forms": {
+      "ich": "verlängere",
+      "du": "verlängerst",
+      "er": "verlängert"
+    }
+  },
+  {
+    "id": "anmelden",
+    "lemma": "anmelden",
+    "pos": "verb",
+    "en": "announce",
+    "forms": {
+      "ich": "melde an",
+      "du": "meldest an",
+      "er": "meldet an"
+    }
+  },
+  {
+    "id": "abmelden",
+    "lemma": "abmelden",
+    "pos": "verb",
+    "en": "give notice of",
+    "forms": {
+      "ich": "melde ab",
+      "du": "meldest ab",
+      "er": "meldet ab"
+    }
+  },
+  {
+    "id": "beschweren",
+    "lemma": "beschweren",
+    "pos": "verb",
+    "en": "weight down",
+    "forms": {
+      "ich": "beschwere",
+      "du": "beschwerst",
+      "er": "beschwert"
+    }
+  },
+  {
+    "id": "verpflichten",
+    "lemma": "verpflichten",
+    "pos": "verb",
+    "en": "oblige",
+    "forms": {
+      "ich": "verpflichte",
+      "du": "verpflichtest",
+      "er": "verpflichtet"
+    }
+  },
+  {
+    "id": "erlauben",
+    "lemma": "erlauben",
+    "pos": "verb",
+    "en": "allow",
+    "forms": {
+      "ich": "erlaube",
+      "du": "erlaubst",
+      "er": "erlaubt"
+    }
+  },
+  {
+    "id": "verbieten",
+    "lemma": "verbieten",
+    "pos": "verb",
+    "en": "forbid",
+    "forms": {
+      "ich": "verbiete",
+      "du": "verbietest",
+      "er": "verbietet"
+    }
+  },
+  {
+    "id": "einkommen",
+    "lemma": "Einkommen",
+    "article": "das",
+    "plural": "Einkommen",
+    "pos": "noun",
+    "en": "income"
+  },
+  {
+    "id": "ausgabe",
+    "lemma": "Ausgabe",
+    "article": "die",
+    "plural": "Ausgaben",
+    "pos": "noun",
+    "en": "issue"
+  },
+  {
+    "id": "gewinn",
+    "lemma": "Gewinn",
+    "article": "der",
+    "plural": "Gewinne",
+    "pos": "noun",
+    "en": "profit"
+  },
+  {
+    "id": "verlust",
+    "lemma": "Verlust",
+    "article": "der",
+    "plural": "Verluste",
+    "pos": "noun",
+    "en": "loss"
+  },
+  {
+    "id": "investition",
+    "lemma": "Investition",
+    "article": "die",
+    "plural": "Investitionen",
+    "pos": "noun",
+    "en": "investment"
+  },
+  {
+    "id": "schulden",
+    "lemma": "Schulden",
+    "plural": "Schulden",
+    "pos": "noun",
+    "en": "debt"
+  },
+  {
+    "id": "ersparnis",
+    "lemma": "Ersparnis",
+    "article": "die",
+    "plural": "Ersparnisse",
+    "pos": "noun",
+    "en": "saving"
+  },
+  {
+    "id": "rente",
+    "lemma": "Rente",
+    "article": "die",
+    "plural": "Renten",
+    "pos": "noun",
+    "en": "pension"
+  },
+  {
+    "id": "sozialleistung",
+    "lemma": "Sozialleistung",
+    "article": "die",
+    "plural": "Sozialleistungen",
+    "pos": "noun",
+    "en": "social security"
+  },
+  {
+    "id": "arbeitsmarkt",
+    "lemma": "Arbeitsmarkt",
+    "article": "der",
+    "plural": "Arbeitsmärkte",
+    "pos": "noun",
+    "en": "job market"
+  },
+  {
+    "id": "angebot",
+    "lemma": "Angebot",
+    "article": "das",
+    "plural": "Angebote",
+    "pos": "noun",
+    "en": "offer"
+  },
+  {
+    "id": "nachfrage",
+    "lemma": "Nachfrage",
+    "article": "die",
+    "plural": "Nachfragen",
+    "pos": "noun",
+    "en": "demand"
+  },
+  {
+    "id": "inflation",
+    "lemma": "Inflation",
+    "article": "die",
+    "plural": "Inflationen",
+    "pos": "noun",
+    "en": "inflation"
+  },
+  {
+    "id": "qualitaet",
+    "lemma": "Qualität",
+    "article": "die",
+    "plural": "Qualitäten",
+    "pos": "noun",
+    "en": "quality"
+  },
+  {
+    "id": "menge",
+    "lemma": "Menge",
+    "article": "die",
+    "plural": "Mengen",
+    "pos": "noun",
+    "en": "quantity"
+  },
+  {
+    "id": "anteil",
+    "lemma": "Anteil",
+    "article": "der",
+    "plural": "Anteile",
+    "pos": "noun",
+    "en": "share"
+  },
+  {
+    "id": "durchschnitt",
+    "lemma": "Durchschnitt",
+    "article": "der",
+    "plural": "Durchschnitte",
+    "pos": "noun",
+    "en": "average"
+  },
+  {
+    "id": "statistik",
+    "lemma": "Statistik",
+    "article": "die",
+    "plural": "Statistiken",
+    "pos": "noun",
+    "en": "statistics"
+  },
+  {
+    "id": "umfrage",
+    "lemma": "Umfrage",
+    "article": "die",
+    "plural": "Umfragen",
+    "pos": "noun",
+    "en": "poll"
+  },
+  {
+    "id": "tendenz",
+    "lemma": "Tendenz",
+    "article": "die",
+    "plural": "Tendenzen",
+    "pos": "noun",
+    "en": "tendency"
+  },
+  {
+    "id": "wachstum",
+    "lemma": "Wachstum",
+    "article": "das",
+    "pos": "noun",
+    "en": "growth"
+  },
+  {
+    "id": "rueckgang",
+    "lemma": "Rückgang",
+    "article": "der",
+    "plural": "Rückgänge",
+    "pos": "noun",
+    "en": "fall"
+  },
+  {
+    "id": "finanzieren",
+    "lemma": "finanzieren",
+    "pos": "verb",
+    "en": "finance",
+    "forms": {
+      "ich": "finanziere",
+      "du": "finanzierst",
+      "er": "finanziert"
+    }
+  },
+  {
+    "id": "investieren",
+    "lemma": "investieren",
+    "pos": "verb",
+    "en": "invest",
+    "forms": {
+      "ich": "investiere",
+      "du": "investierst",
+      "er": "investiert"
+    }
+  },
+  {
+    "id": "konsumieren",
+    "lemma": "konsumieren",
+    "pos": "verb",
+    "en": "consume",
+    "forms": {
+      "ich": "konsumiere",
+      "du": "konsumierst",
+      "er": "konsumiert"
+    }
+  },
+  {
+    "id": "produzieren",
+    "lemma": "produzieren",
+    "pos": "verb",
+    "en": "produce",
+    "forms": {
+      "ich": "produziere",
+      "du": "produzierst",
+      "er": "produziert"
+    }
+  },
+  {
+    "id": "liefern",
+    "lemma": "liefern",
+    "pos": "verb",
+    "en": "deliver",
+    "forms": {
+      "ich": "liefere",
+      "du": "lieferst",
+      "er": "liefert"
+    }
+  },
+  {
+    "id": "bestellen",
+    "lemma": "bestellen",
+    "pos": "verb",
+    "en": "order",
+    "forms": {
+      "ich": "bestelle",
+      "du": "bestellst",
+      "er": "bestellt"
+    }
+  },
+  {
+    "id": "reklamieren",
+    "lemma": "reklamieren",
+    "pos": "verb",
+    "en": "complain",
+    "forms": {
+      "ich": "reklamiere",
+      "du": "reklamierst",
+      "er": "reklamiert"
+    }
+  },
+  {
+    "id": "bildung",
+    "lemma": "Bildung",
+    "article": "die",
+    "plural": "Bildungen",
+    "pos": "noun",
+    "en": "formation"
+  },
+  {
+    "id": "wissenschaft",
+    "lemma": "Wissenschaft",
+    "article": "die",
+    "plural": "Wissenschaften",
+    "pos": "noun",
+    "en": "academic discipline"
+  },
+  {
+    "id": "forschung",
+    "lemma": "Forschung",
+    "article": "die",
+    "plural": "Forschungen",
+    "pos": "noun",
+    "en": "research"
+  },
+  {
+    "id": "erkenntnis",
+    "lemma": "Erkenntnis",
+    "article": "die",
+    "plural": "Erkenntnisse",
+    "pos": "noun",
+    "en": "insight"
+  },
+  {
+    "id": "theorie",
+    "lemma": "Theorie",
+    "article": "die",
+    "plural": "Theorien",
+    "pos": "noun",
+    "en": "theory"
+  },
+  {
+    "id": "methode",
+    "lemma": "Methode",
+    "article": "die",
+    "plural": "Methoden",
+    "pos": "noun",
+    "en": "method"
+  },
+  {
+    "id": "fachbereich",
+    "lemma": "Fachbereich",
+    "article": "der",
+    "plural": "Fachbereiche",
+    "pos": "noun",
+    "en": "special field"
+  },
+  {
+    "id": "vortrag",
+    "lemma": "Vortrag",
+    "article": "der",
+    "plural": "Vorträge",
+    "pos": "noun",
+    "en": "talk"
+  },
+  {
+    "id": "diskussion",
+    "lemma": "Diskussion",
+    "article": "die",
+    "plural": "Diskussionen",
+    "pos": "noun",
+    "en": "discussion"
+  },
+  {
+    "id": "debatte",
+    "lemma": "Debatte",
+    "article": "die",
+    "plural": "Debatten",
+    "pos": "noun",
+    "en": "debate"
+  },
+  {
+    "id": "literatur",
+    "lemma": "Literatur",
+    "article": "die",
+    "plural": "Literaturen",
+    "pos": "noun",
+    "en": "literature"
+  },
+  {
+    "id": "dichter",
+    "lemma": "Dichter",
+    "article": "der",
+    "plural": "Dichter",
+    "pos": "noun",
+    "en": "poet"
+  },
+  {
+    "id": "kunst",
+    "lemma": "Kunst",
+    "article": "die",
+    "plural": "Künste",
+    "pos": "noun",
+    "en": "art"
+  },
+  {
+    "id": "musik",
+    "lemma": "Musik",
+    "article": "die",
+    "plural": "Musiken",
+    "pos": "noun",
+    "en": "music"
+  },
+  {
+    "id": "konzert",
+    "lemma": "Konzert",
+    "article": "das",
+    "plural": "Konzerte",
+    "pos": "noun",
+    "en": "concert"
+  },
+  {
+    "id": "ausstellung",
+    "lemma": "Ausstellung",
+    "article": "die",
+    "plural": "Ausstellungen",
+    "pos": "noun",
+    "en": "exhibition"
+  },
+  {
+    "id": "theater",
+    "lemma": "Theater",
+    "article": "das",
+    "plural": "Theater",
+    "pos": "noun",
+    "en": "theatre"
+  },
+  {
+    "id": "vorstellung",
+    "lemma": "Vorstellung",
+    "article": "die",
+    "plural": "Vorstellungen",
+    "pos": "noun",
+    "en": "idea"
+  },
+  {
+    "id": "publikum",
+    "lemma": "Publikum",
+    "article": "das",
+    "plural": "Publika",
+    "pos": "noun",
+    "en": "public"
+  },
+  {
+    "id": "tradition",
+    "lemma": "Tradition",
+    "article": "die",
+    "plural": "Traditionen",
+    "pos": "noun",
+    "en": "tradition"
+  },
+  {
+    "id": "brauch",
+    "lemma": "Brauch",
+    "article": "der",
+    "plural": "Bräuche",
+    "pos": "noun",
+    "en": "custom"
+  },
+  {
+    "id": "feiertag",
+    "lemma": "Feiertag",
+    "article": "der",
+    "plural": "Feiertage",
+    "pos": "noun",
+    "en": "holiday"
+  },
+  {
+    "id": "herkunft",
+    "lemma": "Herkunft",
+    "article": "die",
+    "plural": "Herkünfte",
+    "pos": "noun",
+    "en": "origin"
+  },
+  {
+    "id": "heimat",
+    "lemma": "Heimat",
+    "article": "die",
+    "plural": "Heimaten",
+    "pos": "noun",
+    "en": "home"
+  },
+  {
+    "id": "integration",
+    "lemma": "Integration",
+    "article": "die",
+    "plural": "Integrationen",
+    "pos": "noun",
+    "en": "integration"
+  },
+  {
+    "id": "migration",
+    "lemma": "Migration",
+    "article": "die",
+    "plural": "Migrationen",
+    "pos": "noun",
+    "en": "migration"
+  },
+  {
+    "id": "sprache",
+    "lemma": "Sprache",
+    "article": "die",
+    "plural": "Sprachen",
+    "pos": "noun",
+    "en": "speech"
+  },
+  {
+    "id": "dialekt",
+    "lemma": "Dialekt",
+    "article": "der",
+    "plural": "Dialekte",
+    "pos": "noun",
+    "en": "dialect"
+  },
+  {
+    "id": "uebersetzung",
+    "lemma": "Übersetzung",
+    "article": "die",
+    "plural": "Übersetzungen",
+    "pos": "noun",
+    "en": "translation"
+  },
+  {
+    "id": "forschen",
+    "lemma": "forschen",
+    "pos": "verb",
+    "en": "research",
+    "forms": {
+      "ich": "forsche",
+      "du": "forschst",
+      "er": "forscht"
+    }
+  },
+  {
+    "id": "veroeffentlichen",
+    "lemma": "veröffentlichen",
+    "pos": "verb",
+    "en": "publish",
+    "forms": {
+      "ich": "veröffentliche",
+      "du": "veröffentlichst",
+      "er": "veröffentlicht"
+    }
+  },
+  {
+    "id": "uebersetzen",
+    "lemma": "übersetzen",
+    "pos": "verb",
+    "en": "translate",
+    "forms": {
+      "ich": "übersetze",
+      "du": "übersetzt",
+      "er": "übersetzt"
+    }
+  },
+  {
+    "id": "verlauf",
+    "lemma": "Verlauf",
+    "article": "der",
+    "plural": "Verläufe",
+    "pos": "noun",
+    "en": "course"
+  },
+  {
+    "id": "fortschritt",
+    "lemma": "Fortschritt",
+    "article": "der",
+    "plural": "Fortschritte",
+    "pos": "noun",
+    "en": "progress"
+  },
+  {
+    "id": "veraenderung",
+    "lemma": "Veränderung",
+    "article": "die",
+    "plural": "Veränderungen",
+    "pos": "noun",
+    "en": "changing"
+  },
+  {
+    "id": "wandel",
+    "lemma": "Wandel",
+    "article": "der",
+    "plural": "Wandel",
+    "pos": "noun",
+    "en": "change"
+  },
+  {
+    "id": "schritt",
+    "lemma": "Schritt",
+    "article": "der",
+    "plural": "Schritte",
+    "pos": "noun",
+    "en": "step"
+  },
+  {
+    "id": "phase",
+    "lemma": "Phase",
+    "article": "die",
+    "plural": "Phasen",
+    "pos": "noun",
+    "en": "phase"
+  },
+  {
+    "id": "zeitraum",
+    "lemma": "Zeitraum",
+    "article": "der",
+    "plural": "Zeiträume",
+    "pos": "noun",
+    "en": "period"
+  },
+  {
+    "id": "frist",
+    "lemma": "Frist",
+    "article": "die",
+    "plural": "Fristen",
+    "pos": "noun",
+    "en": "period"
+  },
+  {
+    "id": "verzoegerung",
+    "lemma": "Verzögerung",
+    "article": "die",
+    "plural": "Verzögerungen",
+    "pos": "noun",
+    "en": "delay"
+  },
+  {
+    "id": "beschleunigung",
+    "lemma": "Beschleunigung",
+    "article": "die",
+    "plural": "Beschleunigungen",
+    "pos": "noun",
+    "en": "acceleration"
+  },
+  {
+    "id": "wiederholung",
+    "lemma": "Wiederholung",
+    "article": "die",
+    "plural": "Wiederholungen",
+    "pos": "noun",
+    "en": "iteration"
+  },
+  {
+    "id": "unterbrechung",
+    "lemma": "Unterbrechung",
+    "article": "die",
+    "plural": "Unterbrechungen",
+    "pos": "noun",
+    "en": "interruption"
+  },
+  {
+    "id": "abschluss",
+    "lemma": "Abschluss",
+    "article": "der",
+    "plural": "Abschlüsse",
+    "pos": "noun",
+    "en": "shutting up"
+  },
+  {
+    "id": "allmaehlich",
+    "lemma": "allmählich",
+    "pos": "adj",
+    "en": "gradual"
+  },
+  {
+    "id": "zunehmend",
+    "lemma": "zunehmend",
+    "pos": "adj",
+    "en": "increasing"
+  },
+  {
+    "id": "voruebergehend",
+    "lemma": "vorübergehend",
+    "pos": "adj",
+    "en": "temporary"
+  },
+  {
+    "id": "dauerhaft",
+    "lemma": "dauerhaft",
+    "pos": "adj",
+    "en": "lasting"
+  },
+  {
+    "id": "gleichzeitig",
+    "lemma": "gleichzeitig",
+    "pos": "adj",
+    "en": "at the same time"
+  },
+  {
+    "id": "inzwischen",
+    "lemma": "inzwischen",
+    "pos": "other",
+    "en": "meantime"
+  },
+  {
+    "id": "mittlerweile",
+    "lemma": "mittlerweile",
+    "pos": "other",
+    "en": "meanwhile"
+  },
+  {
+    "id": "schliesslich",
+    "lemma": "schließlich",
+    "pos": "other",
+    "en": "finally"
+  },
+  {
+    "id": "letztlich",
+    "lemma": "letztlich",
+    "pos": "other",
+    "en": "in the end"
+  },
+  {
+    "id": "vorher",
+    "lemma": "vorher",
+    "pos": "other",
+    "en": "before"
+  },
+  {
+    "id": "nachher",
+    "lemma": "nachher",
+    "pos": "other",
+    "en": "later"
+  },
+  {
+    "id": "seitdem",
+    "lemma": "seitdem",
+    "pos": "other",
+    "en": "since"
+  },
+  {
+    "id": "solange",
+    "lemma": "solange",
+    "pos": "other",
+    "en": "as long as"
+  },
+  {
+    "id": "sobald",
+    "lemma": "sobald",
+    "pos": "other",
+    "en": "as soon as"
+  },
+  {
+    "id": "waehrend",
+    "lemma": "während",
+    "pos": "prep",
+    "en": "during"
+  },
+  {
+    "id": "bevor",
+    "lemma": "bevor",
+    "pos": "other",
+    "en": "before"
+  },
+  {
+    "id": "nachdem",
+    "lemma": "nachdem",
+    "pos": "other",
+    "en": "after"
+  },
+  {
+    "id": "obwohl",
+    "lemma": "obwohl",
+    "pos": "other",
+    "en": "albeit"
+  },
+  {
+    "id": "trotzdem",
+    "lemma": "trotzdem",
+    "pos": "other",
+    "en": "all the same"
+  },
+  {
+    "id": "dennoch",
+    "lemma": "dennoch",
+    "pos": "other",
+    "en": "anyhow"
+  },
+  {
+    "id": "ausserdem",
+    "lemma": "außerdem",
+    "pos": "other",
+    "en": "also"
+  },
+  {
+    "id": "jedoch",
+    "lemma": "jedoch",
+    "pos": "other",
+    "en": "however"
+  },
+  {
+    "id": "allerdings",
+    "lemma": "allerdings",
+    "pos": "other",
+    "en": "however"
+  },
+  {
+    "id": "deshalb",
+    "lemma": "deshalb",
+    "pos": "other",
+    "en": "hence"
+  },
+  {
+    "id": "deswegen",
+    "lemma": "deswegen",
+    "pos": "other",
+    "en": "hence"
+  },
+  {
+    "id": "folglich",
+    "lemma": "folglich",
+    "pos": "other",
+    "en": "consequently"
+  },
+  {
+    "id": "beziehungsweise",
+    "lemma": "beziehungsweise",
+    "pos": "conj",
+    "en": "rather"
+  },
+  {
+    "id": "einerseits",
+    "lemma": "einerseits",
+    "pos": "other",
+    "en": "on the one hand"
+  },
+  {
+    "id": "andererseits",
+    "lemma": "andererseits",
+    "pos": "other",
+    "en": "on the other hand"
+  },
+  {
+    "id": "angemessen",
+    "lemma": "angemessen",
+    "pos": "adj",
+    "en": "adequate"
+  },
+  {
+    "id": "ausgezeichnet",
+    "lemma": "ausgezeichnet",
+    "pos": "adj",
+    "en": "decorated"
+  },
+  {
+    "id": "hervorragend",
+    "lemma": "hervorragend",
+    "pos": "adj",
+    "en": "outstanding"
+  },
+  {
+    "id": "mangelhaft",
+    "lemma": "mangelhaft",
+    "pos": "adj",
+    "en": "insufficient"
+  },
+  {
+    "id": "umfangreich",
+    "lemma": "umfangreich",
+    "pos": "adj",
+    "en": "extensive"
+  },
+  {
+    "id": "begrenzt",
+    "lemma": "begrenzt",
+    "pos": "adj",
+    "en": "limited"
+  },
+  {
+    "id": "erheblich",
+    "lemma": "erheblich",
+    "pos": "adj",
+    "en": "considerable"
+  },
+  {
+    "id": "gering",
+    "lemma": "gering",
+    "pos": "adj",
+    "en": "low"
+  },
+  {
+    "id": "enorm",
+    "lemma": "enorm",
+    "pos": "adj",
+    "en": "enormous"
+  },
+  {
+    "id": "wesentlich",
+    "lemma": "wesentlich",
+    "pos": "adj",
+    "en": "essential"
+  },
+  {
+    "id": "ueberfluessig",
+    "lemma": "überflüssig",
+    "pos": "adj",
+    "en": "superfluous"
+  },
+  {
+    "id": "verfuegbar",
+    "lemma": "verfügbar",
+    "pos": "adj",
+    "en": "available"
+  },
+  {
+    "id": "zugaenglich",
+    "lemma": "zugänglich",
+    "pos": "adj",
+    "en": "accessible"
+  },
+  {
+    "id": "wahrscheinlich",
+    "lemma": "wahrscheinlich",
+    "pos": "adj",
+    "en": "likely"
+  },
+  {
+    "id": "unwahrscheinlich",
+    "lemma": "unwahrscheinlich",
+    "pos": "adj",
+    "en": "unlikely"
+  },
+  {
+    "id": "offensichtlich",
+    "lemma": "offensichtlich",
+    "pos": "adj",
+    "en": "apparent"
+  },
+  {
+    "id": "umstritten",
+    "lemma": "umstritten",
+    "pos": "adj",
+    "en": "controversial"
+  },
+  {
+    "id": "komplex",
+    "lemma": "komplex",
+    "pos": "adj",
+    "en": "complex"
+  },
+  {
+    "id": "kompliziert",
+    "lemma": "kompliziert",
+    "pos": "adj",
+    "en": "complicated"
+  },
+  {
+    "id": "eindeutig",
+    "lemma": "eindeutig",
+    "pos": "adj",
+    "en": "unequivocal"
+  },
+  {
+    "id": "mehrdeutig",
+    "lemma": "mehrdeutig",
+    "pos": "adj",
+    "en": "ambiguous"
+  },
+  {
+    "id": "vorlaeufig",
+    "lemma": "vorläufig",
+    "pos": "adj",
+    "en": "preliminary"
+  },
+  {
+    "id": "endgueltig",
+    "lemma": "endgültig",
+    "pos": "adj",
+    "en": "final"
+  },
+  {
+    "id": "freiwillig",
+    "lemma": "freiwillig",
+    "pos": "adj",
+    "en": "unsolicited"
+  }
+]

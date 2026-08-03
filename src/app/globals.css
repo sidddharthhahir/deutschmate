@@ -1,26 +1,203 @@
 @import "tailwindcss";
 
+/* =========================================================================
+   DeutschMate design system — "Seminar"
+   Ported from the Claude Design project (v3 Desktop).
+
+   Lecture hall after hours: blackboard green, coursebook serif, chalk white.
+   Dark is the default because this gets used at night for an hour at a time.
+   ========================================================================= */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* surfaces, dark → light */
+  --dm-bg: #0e1715; /* page */
+  --dm-surface: #16211e; /* cards, panels */
+  --dm-raised: #1e2c28; /* banners, hover, secondary buttons */
+
+  /* borders, subtle → strong */
+  --dm-line-sub: #243330;
+  --dm-line: #2f413b;
+  --dm-line-strong: #43574f;
+
+  /* text, quiet → loud */
+  --dm-muted: #95a69e;
+  --dm-secondary: #b4c1b9;
+  --dm-fg: #eceae0; /* chalk white — also the primary button fill */
+
+  --dm-accent: #f0c15c; /* amber: checkmarks, offline dot, link hover */
+
+  /* Article colours. A mnemonic, never a status.
+     Colour NEVER carries meaning alone — the article word is always written
+     out beside it, so this stays legible under any form of colour blindness. */
+  --dm-der: #8fbef5;
+  --dm-die: #f0c15c;
+  --dm-das: #f2a0c6;
+
+  /* Recap only. The single warm screen in the app — it marks the end of a
+     session and is the one moment that should feel like a reward. */
+  --dm-warm-bg: #23201a;
+  --dm-warm-line: #3c352a;
+  --dm-warm-muted: #9c907a;
+  --dm-warm-fg: #f6f0e4;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-bg: var(--dm-bg);
+  --color-surface: var(--dm-surface);
+  --color-raised: var(--dm-raised);
+  --color-line-sub: var(--dm-line-sub);
+  --color-line: var(--dm-line);
+  --color-line-strong: var(--dm-line-strong);
+  --color-muted: var(--dm-muted);
+  --color-secondary: var(--dm-secondary);
+  --color-fg: var(--dm-fg);
+  --color-accent: var(--dm-accent);
+  --color-der: var(--dm-der);
+  --color-die: var(--dm-die);
+  --color-das: var(--dm-das);
+  --color-warm-bg: var(--dm-warm-bg);
+  --color-warm-line: var(--dm-warm-line);
+  --color-warm-muted: var(--dm-warm-muted);
+  --color-warm-fg: var(--dm-warm-fg);
+
+  --font-serif: var(--font-source-serif), Georgia, serif;
+  --font-sans: var(--font-plex-sans), system-ui, sans-serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, monospace;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html,
+body {
+  background: var(--dm-bg);
+  color: var(--dm-fg);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-plex-sans), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* German runs long. Let the browser avoid orphans in prose. */
+p,
+li {
+  text-wrap: pretty;
+}
+
+/* =========================================================================
+   Phone
+
+   The session is designed around a keyboard, but the reason to have this on a
+   phone is dead time — a tram, a queue — where there is no keyboard at all.
+   ========================================================================= */
+
+/* iOS zooms the page when a font-size under 16px receives focus, and never
+   zooms back. Every German input is therefore at least 16px on touch. */
+@media (pointer: coarse) {
+  input,
+  textarea,
+  select {
+    font-size: max(16px, 1em);
+  }
+}
+
+/* The grade row and the session footer sit at the very bottom of the screen,
+   which on a notched phone is where the home indicator lives. */
+.safe-bottom {
+  padding-bottom: max(env(safe-area-inset-bottom), 0.5rem);
+}
+
+/* Stop a long compound noun forcing the whole page sideways on a 375px screen.
+   Only applied to display type — body prose wraps on spaces already. */
+.break-de {
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
+/* Keyboard hints — `Leertaste`, `1`, `R`, `Esc`. */
+.kbd {
+  font-family: var(--font-plex-mono), ui-monospace, monospace;
+  font-size: 11.5px;
+  border: 1px solid var(--dm-line-strong);
+  border-radius: 4px;
+  padding: 2px 8px;
+  color: var(--dm-secondary);
+  white-space: nowrap;
+}
+
+/* Focus visible everywhere — this app is driven from the keyboard. */
+*:focus-visible {
+  outline: 2px solid var(--dm-accent);
+  outline-offset: 2px;
+}
+
+::selection {
+  background: var(--dm-accent);
+  color: var(--dm-surface);
+}
+
+/* =========================================================================
+   Motion
+
+   Rule from the design: nothing should tire you on the 400th card of the week.
+   So — entrances only, all under 300ms, nothing that loops, nothing that
+   bounces, and no motion at all on anything you see more than once per card.
+   ========================================================================= */
+
+@keyframes dm-rise {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes dm-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Wrong answers get a short horizontal nudge — the one place a bit of physical
+   feedback is worth it, because it registers before you've read the text. */
+@keyframes dm-nudge {
+  0%, 100% { transform: translateX(0); }
+  25%      { transform: translateX(-4px); }
+  75%      { transform: translateX(4px); }
+}
+
+.dm-rise {
+  animation: dm-rise 220ms cubic-bezier(0.22, 0.61, 0.36, 1) both;
+}
+
+.dm-fade {
+  animation: dm-fade 180ms ease-out both;
+}
+
+.dm-nudge {
+  animation: dm-nudge 240ms ease-in-out;
+}
+
+/* Stagger for lists that appear together (can-do statements, recap ticks). */
+.dm-stagger > * {
+  animation: dm-rise 260ms cubic-bezier(0.22, 0.61, 0.36, 1) both;
+}
+.dm-stagger > *:nth-child(1) { animation-delay: 0ms; }
+.dm-stagger > *:nth-child(2) { animation-delay: 60ms; }
+.dm-stagger > *:nth-child(3) { animation-delay: 120ms; }
+.dm-stagger > *:nth-child(4) { animation-delay: 180ms; }
+.dm-stagger > *:nth-child(5) { animation-delay: 240ms; }
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-delay: 0ms !important;
+    transition-duration: 0.01ms !important;
+  }
 }

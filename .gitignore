@@ -30,8 +30,10 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
-# env files (can opt-in for committing if needed)
+# env files — secrets stay local, but the template must ship or a fresh clone
+# has nothing to copy and no way to know what keys exist.
 .env*
+!.env.example
 
 # vercel
 .vercel
@@ -39,3 +41,17 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# The database and its backups hold the PROGRESS half — per user, never shared,
+# never committed (spec §10). Content is regenerated from data/ by `npm run seed`.
+/deutschmate.db
+/deutschmate.db-shm
+/deutschmate.db-wal
+/backups/
+
+# Tatoeba download cache — large, and re-fetchable. The CHOSEN sentences live
+# in data/sentences.json and are committed, so setup needs no download.
+/data/tatoeba/
+
+# Deck exports are generated on demand from your own progress.
+/exports/

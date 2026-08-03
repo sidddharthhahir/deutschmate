@@ -1,0 +1,240 @@
+{
+  "scale": {
+    "words": 1225,
+    "wordsWithAudio": 1222,
+    "units": 120,
+    "grammar": 36,
+    "readings": 38
+  },
+  "reviewCards": [
+    {
+      "lemma": "hallo",
+      "article": null,
+      "plural": null,
+      "pos": "phrase",
+      "en": "hello",
+      "example_de": "Hallo, wie geht es dir?",
+      "forms_json": null
+    },
+    {
+      "lemma": "tschüss",
+      "article": null,
+      "plural": null,
+      "pos": "phrase",
+      "en": "bye",
+      "example_de": "Tschüss, bis morgen!",
+      "forms_json": null
+    },
+    {
+      "lemma": "guten Morgen",
+      "article": null,
+      "plural": null,
+      "pos": "phrase",
+      "en": "good morning",
+      "example_de": "Guten Morgen, Frau Müller.",
+      "forms_json": null
+    },
+    {
+      "lemma": "guten Tag",
+      "article": null,
+      "plural": null,
+      "pos": "phrase",
+      "en": "good day / hello",
+      "example_de": "Guten Tag, ich heiße Anna.",
+      "forms_json": null
+    },
+    {
+      "lemma": "guten Abend",
+      "article": null,
+      "plural": null,
+      "pos": "phrase",
+      "en": "good evening",
+      "example_de": "Guten Abend, kommen Sie herein.",
+      "forms_json": null
+    },
+    {
+      "lemma": "gute Nacht",
+      "article": null,
+      "plural": null,
+      "pos": "phrase",
+      "en": "good night",
+      "example_de": "Gute Nacht, schlaf gut.",
+      "forms_json": null
+    }
+  ],
+  "wortschatzRows": [
+    {
+      "article": "der",
+      "lemma": "Gedanke",
+      "plural": "Gedanken",
+      "en": "thinking",
+      "example_de": null,
+      "unit_ord": 6,
+      "unit_title": "Präpositionen sicher"
+    },
+    {
+      "article": "die",
+      "lemma": "Absicht",
+      "plural": "Absichten",
+      "en": "intention",
+      "example_de": null,
+      "unit_ord": 6,
+      "unit_title": "Präpositionen sicher"
+    },
+    {
+      "article": "die",
+      "lemma": "Vorstellung",
+      "plural": "Vorstellungen",
+      "en": "idea",
+      "example_de": null,
+      "unit_ord": 6,
+      "unit_title": "Präpositionen sicher"
+    },
+    {
+      "article": "die",
+      "lemma": "Ansicht",
+      "plural": "Ansichten",
+      "en": "view",
+      "example_de": null,
+      "unit_ord": 6,
+      "unit_title": "Präpositionen sicher"
+    },
+    {
+      "article": "der",
+      "lemma": "Standpunkt",
+      "plural": "Standpunkte",
+      "en": "standpoint",
+      "example_de": null,
+      "unit_ord": 6,
+      "unit_title": "Präpositionen sicher"
+    },
+    {
+      "article": "das",
+      "lemma": "Argument",
+      "plural": "Argumente",
+      "en": "argument",
+      "example_de": null,
+      "unit_ord": 6,
+      "unit_title": "Präpositionen sicher"
+    },
+    {
+      "article": "die",
+      "lemma": "Behauptung",
+      "plural": "Behauptungen",
+      "en": "claim",
+      "example_de": null,
+      "unit_ord": 6,
+      "unit_title": "Präpositionen sicher"
+    },
+    {
+      "article": "der",
+      "lemma": "Beweis",
+      "plural": "Beweise",
+      "en": "evidence",
+      "example_de": null,
+      "unit_ord": 6,
+      "unit_title": "Präpositionen sicher"
+    }
+  ],
+  "errorTagLabels": [
+    "Wrong article (der/die/das)",
+    "Nominative article where accusative is needed",
+    "Wrong verb ending for the subject",
+    "Verb not in second position",
+    "Infinitive not at the end after a modal",
+    "nicht vs kein"
+  ],
+  "gradeButtons": [
+    {
+      "key": "1",
+      "label": "Nochmal",
+      "hint": "no idea"
+    },
+    {
+      "key": "2",
+      "label": "Schwer",
+      "hint": "slowly"
+    },
+    {
+      "key": "3",
+      "label": "Gut",
+      "hint": "knew it"
+    },
+    {
+      "key": "4",
+      "label": "Einfach",
+      "hint": "instant"
+    }
+  ],
+  "offlineMessages": [
+    "Offline — Ersatzübung statt Video",
+    "Offline-Variante — vorbereiteter Dialog",
+    "Du bist offline. Die Korrektur kommt automatisch, sobald du wieder online bist.",
+    "144 fällig — heute 60. Der Rest kommt morgen."
+  ],
+  "longestStrings": {
+    "words": [
+      "Vorstellungsgespräch (20)",
+      "selbstverständlich (18)",
+      "Schlussfolgerung (16)",
+      "Arbeitslosigkeit (16)",
+      "unwahrscheinlich (16)",
+      "Missverständnis (15)",
+      "berücksichtigen (15)",
+      "veröffentlichen (15)",
+      "beziehungsweise (15)",
+      "Entschuldigung (14)",
+      "unterschreiben (14)",
+      "Landwirtschaft (14)",
+      "verantwortlich (14)",
+      "zusammenfassen (14)",
+      "Sozialleistung (14)"
+    ],
+    "englishGlosses": [
+      "the day before yesterday (24)",
+      "please / you're welcome (23)",
+      "handheld two-way radio (22)",
+      "you (plural informal) (21)",
+      "at regular intervals (20)",
+      "sickness certificate (20)",
+      "excuse me / apology (19)",
+      "academic discipline (19)",
+      "day after tomorrow (18)",
+      "on the other hand (17)"
+    ],
+    "unitTitles": [
+      "Beschreiben mit Partizipien (27)",
+      "Migration und Integration (25)",
+      "Gesundheit und Ernährung (24)",
+      "Verbinden und begründen (23)",
+      "Verb an zweiter Stelle (22)",
+      "Zu Hause und unterwegs (22)",
+      "Behörden und Formulare (22)",
+      "Schreiben, das ankommt (22)",
+      "Früher war das anders (21)",
+      "Wohnen in Deutschland (21)"
+    ],
+    "canDoStatements": [
+      "say whether you're going somewhere or already there (51)",
+      "hold a real conversation on a familiar topic (44)",
+      "hold a simple conversation about yourself (41)",
+      "choose the right case after a preposition (41)",
+      "understand participles used as adjectives (41)",
+      "make a request that doesn't sound blunt (39)",
+      "use verbs with their fixed prepositions (39)",
+      "keep talking when you don't know a word (39)",
+      "use the right article for common nouns (38)",
+      "describe something with an adjective (36)"
+    ],
+    "exampleSentences": [
+      "Entschuldigung, wo ist der Bahnhof? (35)",
+      "Guten Abend, kommen Sie herein. (31)",
+      "Am Freitag gehe ich nach Hause. (31)",
+      "Ich lerne, weil es wichtig ist. (31)",
+      "Der Käse kommt aus Frankreich. (30)",
+      "Der Bus kommt in zehn Minuten. (30)",
+      "Am Mittwoch lerne ich Deutsch. (30)",
+      "Das Buch kostet hundert Euro. (29)"
+    ]
+  }
+}

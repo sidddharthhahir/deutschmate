@@ -1,0 +1,139 @@
+[
+  {
+    "id": "r-b11-u01", "unit_id": "b1-1-u01", "level": "B1.1", "title": "Der Nachbar, der alles weiß", "words": 218,
+    "text": "In jedem Haus gibt es einen Nachbarn, der alles weiß. In unserem heißt er Herr Kilian.\n\nHerr Kilian ist der Mann, der immer schon im Treppenhaus steht, wenn man nach Hause kommt. Er ist der Nachbar, dem nichts entgeht: Er weiß, wer die Mülltonnen falsch gestellt hat, welche Wohnung leer steht und wann der Handwerker kommt, den die Hausverwaltung geschickt hat.\n\nAm Anfang fand ich das anstrengend. Ich wollte nach der Arbeit einfach in meine Wohnung, ohne zehn Minuten über die Heizung zu sprechen.\n\nDann wurde ich krank. Drei Tage lang habe ich das Haus nicht verlassen. Am vierten Tag klingelte es. Vor der Tür stand Herr Kilian mit einer Tüte.\n\n„Ich habe Sie nicht gesehen\", sagte er. „Da habe ich gedacht, ich bringe mal Brot mit.\"\n\nSeitdem denke ich anders über ihn. Der Nachbar, der alles weiß, ist auch der Nachbar, dem auffällt, wenn jemand fehlt.",
+    "questions": [
+      { "q": "Was fällt Herrn Kilian alles auf?", "options": ["nichts", "praktisch alles im Haus", "nur die Heizung"], "a": 1 },
+      { "q": "Wie fand die Erzählerin ihn am Anfang?", "options": ["anstrengend", "sympathisch", "unhöflich"], "a": 0 },
+      { "q": "Was passierte am vierten Tag?", "options": ["Sie ging zur Arbeit", "Herr Kilian brachte Brot", "Sie zog aus"], "a": 1 },
+      { "q": "Wie denkt sie am Ende über ihn?", "options": ["genauso wie vorher", "positiver", "schlechter"], "a": 1 }
+    ],
+    "glossary": { "entgehen": "to escape (someone's notice)", "die Mülltonne": "rubbish bin", "die Hausverwaltung": "property management", "verlassen": "to leave", "klingelte": "rang", "auffallen": "to notice, to stand out", "fehlen": "to be missing" }
+  },
+  {
+    "id": "r-b11-u05", "unit_id": "b1-1-u05", "level": "B1.1", "title": "Warum ich diesen Kurs mache", "words": 232,
+    "text": "Bei der Anmeldung fragte mich die Beraterin, warum ich den Kurs machen möchte. Ich habe zuerst das Übliche gesagt: um meine Chancen auf dem Arbeitsmarkt zu verbessern, um besser zu kommunizieren.\n\nSie hat genickt und dann gefragt: „Und der eigentliche Grund?\"\n\nDas hat mich überrascht. Ich habe kurz überlegt.\n\n„Um dazuzugehören\", habe ich gesagt.\n\nDenn das ist es eigentlich. Ich kann meine Arbeit auf Englisch machen, ohne ein Wort Deutsch. Aber ich kann nicht mit den Nachbarn reden, ohne dass jemand die Sprache wechseln muss. Ich verstehe die Hälfte von dem, was im Bus gesagt wird. Und wenn Kollegen in der Pause lachen, lache ich zwei Sekunden zu spät mit.\n\nMan lernt eine Sprache nicht nur, um Informationen auszutauschen. Man lernt sie, um nicht mehr der Mensch zu sein, für den alle langsamer sprechen müssen.\n\nDie Beraterin hat das aufgeschrieben und gesagt: „Das ist der bessere Grund. Der hält länger.\"",
+    "questions": [
+      { "q": "Was hat der Erzähler zuerst geantwortet?", "options": ["die ehrliche Antwort", "das Übliche über Arbeit", "gar nichts"], "a": 1 },
+      { "q": "Was ist der eigentliche Grund?", "options": ["mehr Geld", "dazuzugehören", "eine Prüfung"], "a": 1 },
+      { "q": "Was ist im Bus schwierig?", "options": ["Er versteht nur die Hälfte", "Er findet keinen Platz", "Er verpasst die Haltestelle"], "a": 0 },
+      { "q": "Was sagt die Beraterin über diesen Grund?", "options": ["Er ist zu emotional", "Er hält länger", "Er ist unrealistisch"], "a": 1 }
+    ],
+    "glossary": { "die Beraterin": "adviser (f.)", "das Übliche": "the usual thing", "dazugehören": "to belong", "die Hälfte": "half", "austauschen": "to exchange", "aufgeschrieben": "wrote down", "halten": "to last" }
+  },
+  {
+    "id": "r-b11-u09", "unit_id": "b1-1-u09", "level": "B1.1", "title": "Ein Streit im Büro", "words": 245,
+    "text": "„Ich sehe das ganz anders, ehrlich gesagt.\"\n\nSo fing es an. Wir sollten entscheiden, ob das Team weiter zwei Tage pro Woche im Büro arbeitet oder komplett von zu Hause.\n\nTobias war klar dagegen. „Wenn niemand mehr kommt, verlieren wir den Kontakt. Die guten Ideen entstehen nicht in Videokonferenzen, sondern in der Küche beim Kaffee.\"\n\nSarah widersprach. „Das mag für dich stimmen. Du wohnst zehn Minuten entfernt. Ich fahre jeden Morgen eine Stunde und eine Stunde zurück. Das sind zehn Stunden pro Woche, die ich nicht mit meinen Kindern verbringe.\"\n\nEs wurde still.\n\n„Das ist ein Argument\", sagte Tobias schließlich. „Daran hatte ich nicht gedacht.\"\n\nAm Ende haben wir uns geeinigt: ein fester Bürotag pro Woche, immer derselbe, damit sich alle sehen. Der Rest ist frei.\n\nNiemand hat komplett bekommen, was er wollte. Aber alle konnten damit leben — und das ist bei so einer Diskussion wahrscheinlich das beste Ergebnis, das man erwarten kann.",
+    "questions": [
+      { "q": "Worum ging es in der Diskussion?", "options": ["um Gehälter", "um Homeoffice und Bürotage", "um ein neues Projekt"], "a": 1 },
+      { "q": "Was ist Tobias' Argument?", "options": ["Es ist billiger", "Gute Ideen entstehen im persönlichen Kontakt", "Der Chef will es"], "a": 1 },
+      { "q": "Warum ist Homeoffice für Sarah wichtig?", "options": ["Sie mag das Büro nicht", "Sie verliert zehn Stunden pro Woche im Verkehr", "Sie ist krank"], "a": 1 },
+      { "q": "Wie endete die Diskussion?", "options": ["Tobias hat gewonnen", "mit einem Kompromiss", "ohne Ergebnis"], "a": 1 },
+      { "q": "Wie bewertet der Erzähler das Ergebnis?", "options": ["als Niederlage", "als das beste realistische Ergebnis", "als Fehler"], "a": 1 }
+    ],
+    "glossary": { "dagegen sein": "to be against it", "entstehen": "to arise, come about", "widersprechen": "to contradict", "entfernt": "away, distant", "sich einigen": "to reach agreement", "das Ergebnis": "result", "erwarten": "to expect" }
+  },
+  {
+    "id": "r-b11-u13", "unit_id": "b1-1-u13", "level": "B1.1", "title": "Der Anruf, den ich nicht machen wollte", "words": 238,
+    "text": "Ich hatte mich mit meinem besten Freund gestritten. Es ging um etwas Kleines — wer wem was versprochen hatte. Am Ende haben wir beide Dinge gesagt, die wir nicht so gemeint haben.\n\nDanach: zwei Wochen Funkstille.\n\nJeden Tag habe ich gedacht, ich müsste anrufen. Und jeden Tag habe ich es nicht getan. Nicht weil ich noch wütend war, sondern weil ich nicht wusste, wie ich anfangen sollte. Je länger man wartet, desto größer wird die Sache.\n\nAm fünfzehnten Tag habe ich einfach die Nummer gewählt, ohne vorher zu überlegen. Er ging sofort ran.\n\n„Endlich\", sagte er.\n\n„Endlich?\"\n\n„Ich wollte auch anrufen. Seit ungefähr zwölf Tagen.\"\n\nWir haben beide gelacht, und danach war es leicht. Wir haben nicht lange über den Streit geredet. Wir haben uns entschuldigt, kurz, und dann über etwas anderes gesprochen.\n\nDas Merkwürdige ist: Die zwei Wochen waren schlimmer als der Streit selbst. Nicht der Konflikt hat wehgetan, sondern das Schweigen danach.",
+    "questions": [
+      { "q": "Worum ging der Streit?", "options": ["um Geld", "um etwas Kleines", "um die Arbeit"], "a": 1 },
+      { "q": "Warum hat der Erzähler nicht angerufen?", "options": ["Er war noch wütend", "Er wusste nicht, wie er anfangen sollte", "Er hatte die Nummer verloren"], "a": 1 },
+      { "q": "Was sagt der Freund am Telefon?", "options": ["Endlich", "Lass mich in Ruhe", "Wer ist da?"], "a": 0 },
+      { "q": "Was war laut dem Erzähler am schlimmsten?", "options": ["der Streit", "das Schweigen danach", "die Entschuldigung"], "a": 1 }
+    ],
+    "glossary": { "sich streiten": "to argue", "die Funkstille": "radio silence", "wütend": "angry", "je … desto": "the … the", "ran gehen": "to pick up (the phone)", "sich entschuldigen": "to apologise", "merkwürdig": "strange", "das Schweigen": "silence" }
+  },
+  {
+    "id": "r-b11-u17", "unit_id": "b1-1-u17", "level": "B1.1", "title": "Zwei Schulsysteme", "words": 252,
+    "text": "„Wie läuft die Schule bei euch eigentlich ab?\", fragte mich Lukas.\n\nIch habe erklärt: Bei uns gehen fast alle Kinder bis achtzehn auf dieselbe Schule. Am Ende gibt es eine große Prüfung, und die Note entscheidet, was man studieren kann.\n\n„Alles hängt von einer Prüfung ab?\"\n\n„Praktisch ja. Deshalb ist der Druck enorm. Viele Schüler nehmen zusätzlich Nachhilfe, oft jahrelang.\"\n\nLukas hat erzählt, dass in Deutschland schon mit zehn oder elf entschieden wird, auf welche Schulform ein Kind geht.\n\n„Mit zehn?\", habe ich gefragt. „Das finde ich früh.\"\n\n„Ist es auch. Es wird viel darüber diskutiert. Der Vorteil ist angeblich, dass jedes Kind das bekommt, was zu ihm passt. Der Nachteil ist, dass diese Entscheidung stark davon abhängt, aus welcher Familie man kommt.\"\n\nWir waren uns am Ende einig: Beide Systeme haben ein ähnliches Problem. Sie behaupten, fair zu sein, und sind es nur teilweise. Nur die Stelle, an der es unfair wird, ist eine andere.",
+    "questions": [
+      { "q": "Was entscheidet im System des Erzählers?", "options": ["die Lehrer", "eine große Prüfung am Ende", "die Eltern"], "a": 1 },
+      { "q": "Wann wird in Deutschland über die Schulform entschieden?", "options": ["mit sechs", "mit zehn oder elf", "mit sechzehn"], "a": 1 },
+      { "q": "Was ist laut Lukas der Nachteil?", "options": ["Es ist zu teuer", "Die Entscheidung hängt von der Familie ab", "Es dauert zu lange"], "a": 1 },
+      { "q": "Worauf einigen sich die beiden?", "options": ["Das deutsche System ist besser", "Beide Systeme sind nur teilweise fair", "Beide Systeme sind perfekt"], "a": 1 }
+    ],
+    "glossary": { "ablaufen": "to work, to proceed", "die Note": "grade", "der Druck": "pressure", "die Nachhilfe": "private tutoring", "angeblich": "supposedly", "abhängen von": "to depend on", "behaupten": "to claim", "teilweise": "partly" }
+  },
+  {
+    "id": "r-b11-u20", "unit_id": "b1-1-u20", "level": "B1.1", "title": "Der Tag, an dem ich gekündigt habe", "words": 262,
+    "text": "Es war ein Mittwoch. Nichts Besonderes war passiert — kein Streit, keine schlechte Bewertung. Vielleicht war genau das der Grund.\n\nSeit drei Jahren machte ich jeden Tag ungefähr dasselbe. Ich war nicht unglücklich. Aber ich merkte, dass ich mich seit langem nicht mehr auf etwas gefreut hatte.\n\nAn diesem Mittwoch saß ich in einer Besprechung, in der über ein Projekt gesprochen wurde, das ich schon dreimal gemacht hatte. Und ich dachte: Wenn ich hier in fünf Jahren noch sitze, wird sich nichts geändert haben — außer meinem Alter.\n\nAm Nachmittag habe ich mit meiner Chefin gesprochen. Sie hat mich gefragt, ob es an ihr liege oder am Gehalt.\n\n„Weder noch\", habe ich gesagt. „Ich brauche einfach etwas, das mir wieder schwerfällt.\"\n\nSie hat lange geschwiegen und dann genickt. „Das verstehe ich sogar.\"\n\nDie Wochen danach waren unangenehm. Ich hatte keinen neuen Job, und alle fragten, was ich jetzt vorhabe. Ich hatte keine gute Antwort.\n\nHeute, ein Jahr später, weiß ich nicht, ob es die richtige Entscheidung war. Ich weiß nur: Ich freue mich morgens wieder darauf, anzufangen.",
+    "questions": [
+      { "q": "Was war an diesem Mittwoch passiert?", "options": ["ein Streit", "nichts Besonderes", "eine Kündigung"], "a": 1 },
+      { "q": "Was hat der Erzähler in der Besprechung gedacht?", "options": ["dass sich nichts ändern wird", "dass er befördert wird", "dass das Projekt gut ist"], "a": 0 },
+      { "q": "Was war der Grund für die Kündigung?", "options": ["das Gehalt", "die Chefin", "er wollte wieder eine Herausforderung"], "a": 2 },
+      { "q": "Wie reagierte die Chefin?", "options": ["wütend", "sie verstand es", "sie kündigte auch"], "a": 1 },
+      { "q": "Wie bewertet er die Entscheidung heute?", "options": ["sicher richtig", "sicher falsch", "unsicher, aber er freut sich morgens"], "a": 2 }
+    ],
+    "glossary": { "kündigen": "to resign, to quit", "die Bewertung": "review, appraisal", "die Besprechung": "meeting", "weder noch": "neither", "schwerfallen": "to be difficult", "schweigen": "to be silent", "unangenehm": "unpleasant", "vorhaben": "to plan" }
+  },
+  {
+    "id": "r-b12-u02", "unit_id": "b1-2-u02", "level": "B1.2", "title": "Trotzdem geblieben", "words": 268,
+    "text": "Als ich nach Deutschland kam, hatte ich einen Plan: zwei Jahre bleiben, Erfahrung sammeln, zurückgehen. Das war vor sieben Jahren.\n\nDer erste Winter war hart. Es wurde um halb vier dunkel, und ich hatte das Gefühl, die Sonne würde nie wiederkommen. Außerdem verstand ich die Menschen nicht — nicht die Sprache, sondern die Art. Niemand fragte, wie es mir ging. Ich dachte, das sei Desinteresse.\n\nHeute weiß ich, dass es das nicht war. Man fragt hier weniger, aber wenn man fragt, will man eine echte Antwort. Das habe ich lange gebraucht, um es zu verstehen.\n\nTrotzdem wollte ich im dritten Jahr zurück. Ich hatte sogar schon Flüge angesehen. Dann bekam ich ein Projekt, das mich interessierte, und schob es auf. Danach kam etwas anderes, und dann noch etwas.\n\nManchmal denke ich, ich bin nicht geblieben, weil ich mich entschieden habe. Ich bin geblieben, weil ich mich nie endgültig entschieden habe, zu gehen.\n\nOb das dasselbe ist, weiß ich bis heute nicht.",
+    "questions": [
+      { "q": "Was war der ursprüngliche Plan?", "options": ["für immer bleiben", "zwei Jahre bleiben", "studieren"], "a": 1 },
+      { "q": "Was fand der Erzähler im ersten Winter schwer?", "options": ["die Arbeit", "die Dunkelheit und die Art der Menschen", "das Essen"], "a": 1 },
+      { "q": "Wie versteht er das Verhalten heute?", "options": ["als Desinteresse", "man fragt weniger, meint es aber ernst", "als Unhöflichkeit"], "a": 1 },
+      { "q": "Warum ist er im dritten Jahr nicht gegangen?", "options": ["kein Geld", "ein interessantes Projekt kam", "die Flüge waren ausgebucht"], "a": 1 },
+      { "q": "Wie beschreibt er seine Entscheidung zu bleiben?", "options": ["als bewusste Wahl", "er hat sich nie endgültig zum Gehen entschieden", "als Fehler"], "a": 1 }
+    ],
+    "glossary": { "Erfahrung sammeln": "to gain experience", "die Art": "the way, manner", "das Desinteresse": "lack of interest", "aufschieben": "to postpone", "endgültig": "final, definitive", "dasselbe": "the same thing" }
+  },
+  {
+    "id": "r-b12-u06", "unit_id": "b1-2-u06", "level": "B1.2", "title": "Lange Wörter", "words": 255,
+    "text": "Über die deutsche Sprache gibt es einen alten Witz: Wenn ein Deutscher ein Wort nicht findet, baut er sich eins.\n\nDaran ist etwas Wahres. „Arbeitslosigkeit\" besteht aus drei Teilen: Arbeit, los (ohne) und -igkeit (der Zustand). Wer die Teile kennt, versteht das Wort, auch wenn er es nie gelesen hat.\n\nGenau das ist der Vorteil. Im Englischen muss man „unemployment\" separat lernen. Im Deutschen kann man es sich erschließen.\n\nEs gibt allerdings eine Regel, die man kennen muss: Das letzte Wort bestimmt alles. Bei „Handschuh\" geht es nicht um eine Hand, sondern um einen Schuh — genauer gesagt um einen Schuh für die Hand. Deshalb heißt es *der* Handschuh, wie *der* Schuh.\n\nBerühmt sind die extrem langen Wörter der Behörden. „Grundstücksverkehrsgenehmigungszuständigkeitsübertragungsverordnung\" ist tatsächlich einmal in einem Gesetz vorgekommen. Solche Wörter benutzt niemand im Alltag, und selbst Deutsche lachen darüber.\n\nAber das Prinzip dahinter ist nützlich. Wer es einmal verstanden hat, kann seinen Wortschatz vergrößern, ohne einzelne Wörter zu lernen — er muss nur die Bausteine kennen.",
+    "questions": [
+      { "q": "Aus welchen Teilen besteht 'Arbeitslosigkeit'?", "options": ["zwei", "drei", "vier"], "a": 1 },
+      { "q": "Was ist der Vorteil gegenüber dem Englischen?", "options": ["Die Wörter sind kürzer", "Man kann sich Wörter erschließen", "Es gibt weniger Wörter"], "a": 1 },
+      { "q": "Was bestimmt das Genus eines Kompositums?", "options": ["das erste Wort", "das letzte Wort", "die Länge"], "a": 1 },
+      { "q": "Wie stehen Deutsche zu extrem langen Behördenwörtern?", "options": ["sie benutzen sie täglich", "sie lachen darüber", "sie verstehen sie alle"], "a": 1 }
+    ],
+    "glossary": { "der Witz": "joke", "der Zustand": "state, condition", "sich erschließen": "to work out, deduce", "bestimmen": "to determine", "genauer gesagt": "more precisely", "die Behörde": "public authority", "vorkommen": "to occur", "der Baustein": "building block" }
+  },
+  {
+    "id": "r-b12-u10", "unit_id": "b1-2-u10", "level": "B1.2", "title": "Was die Zahlen zeigen", "words": 272,
+    "text": "„Was sagen die Zahlen denn?\", fragte mein Kollege und legte den Bericht auf den Tisch.\n\nAuf den ersten Blick sah es gut aus. Der Umsatz war im Vergleich zum Vorjahr um zwölf Prozent gestiegen. Genau diese Zahl stand groß auf der ersten Seite.\n\nAuf Seite vier stand etwas anderes. Die Zahl der Kunden war gleich geblieben. Der Umsatz war also nicht gestiegen, weil wir mehr Kunden hatten, sondern weil jeder einzelne mehr bezahlt hatte — wir hatten die Preise erhöht.\n\n„Ist das schlecht?\", fragte er.\n\n„Nicht unbedingt. Aber es bedeutet etwas anderes. Wachstum durch neue Kunden ist stabiler. Wachstum durch höhere Preise funktioniert nur so lange, wie die Kunden bleiben.\"\n\nEr sah noch einmal auf die Tabelle. „Und hier — die Kündigungen sind um drei Prozent gestiegen.\"\n\n„Genau. Das ist die Zahl, über die wir eigentlich sprechen müssten.\"\n\nStatistiken lügen selten. Aber sie zeigen einem gern zuerst das, was am besten aussieht. Man muss weiterblättern.",
+    "questions": [
+      { "q": "Um wie viel ist der Umsatz gestiegen?", "options": ["drei Prozent", "zwölf Prozent", "zwanzig Prozent"], "a": 1 },
+      { "q": "Warum ist der Umsatz gestiegen?", "options": ["mehr Kunden", "höhere Preise", "weniger Kosten"], "a": 1 },
+      { "q": "Welche Zahl ist laut dem Erzähler die wichtigste?", "options": ["der Umsatz", "die Kündigungen", "die Preise"], "a": 1 },
+      { "q": "Was ist die Schlussfolgerung über Statistiken?", "options": ["Sie lügen immer", "Sie zeigen zuerst das Beste", "Man soll sie ignorieren"], "a": 1 }
+    ],
+    "glossary": { "der Umsatz": "revenue, turnover", "im Vergleich zu": "compared with", "das Vorjahr": "previous year", "erhöhen": "to raise", "unbedingt": "necessarily", "das Wachstum": "growth", "die Kündigung": "cancellation", "weiterblättern": "to keep turning the pages" }
+  },
+  {
+    "id": "r-b12-u14", "unit_id": "b1-2-u14", "level": "B1.2", "title": "Zwischen Meldung und Meinung", "words": 265,
+    "text": "„Hast du das heute Morgen gehört?\", fragte Jonas.\n\nEr hatte im Radio einen Bericht über eine geplante Änderung im Nahverkehr gehört. Ich hatte denselben Bericht gelesen — allerdings in einer anderen Zeitung.\n\nInteressant war, wie unterschiedlich dieselbe Information wirken kann.\n\nIn dem Text, den ich gelesen hatte, hieß es, die Stadt investiere in den Ausbau. Es wurden Zahlen genannt und ein Sprecher zitiert, der sagte, das Projekt werde in vier Jahren abgeschlossen sein.\n\nIn Jonas' Bericht ging es vor allem darum, dass während der Bauarbeiten drei Linien wegfallen. Die Zahlen kamen auch vor, aber erst am Ende.\n\nBeide Berichte waren korrekt. Keiner hat etwas erfunden. Trotzdem hatte Jonas den Eindruck, es handle sich um ein Problem, und ich den Eindruck, es handle sich um einen Fortschritt.\n\nSeitdem achte ich auf etwas Bestimmtes: nicht nur darauf, was gesagt wird, sondern worauf zuerst hingewiesen wird. Die Reihenfolge ist selten zufällig.",
+    "questions": [
+      { "q": "Worum ging es in dem Bericht?", "options": ["um Schulen", "um eine Änderung im Nahverkehr", "um Steuern"], "a": 1 },
+      { "q": "Worauf lag der Fokus in Jonas' Bericht?", "options": ["auf den Investitionen", "auf den wegfallenden Linien", "auf den Kosten"], "a": 1 },
+      { "q": "Waren die Berichte falsch?", "options": ["ja, beide", "nein, beide waren korrekt", "nur einer war falsch"], "a": 1 },
+      { "q": "Worauf achtet der Erzähler seitdem?", "options": ["auf die Quelle", "auf die Reihenfolge der Informationen", "auf die Länge"], "a": 1 }
+    ],
+    "glossary": { "die Meldung": "news report", "der Nahverkehr": "local transport", "der Ausbau": "expansion", "zitieren": "to quote", "abgeschlossen": "completed", "wegfallen": "to be dropped", "der Eindruck": "impression", "die Reihenfolge": "order, sequence", "zufällig": "accidental" }
+  },
+  {
+    "id": "r-b12-u17", "unit_id": "b1-2-u17", "level": "B1.2", "title": "Zwei Minuten", "words": 258,
+    "text": "„Sie haben das Wort.\"\n\nIch hatte zwei Minuten, um ein Projekt vorzustellen, an dem ich vier Monate gearbeitet hatte. Vorher hatte ich einen Text geschrieben, der ungefähr sechs Minuten lang war. Den musste ich also dreimal kürzen.\n\nBeim ersten Kürzen habe ich Details gestrichen. Beim zweiten Mal ganze Abschnitte. Beim dritten Mal habe ich gemerkt, dass ich immer noch mit der Vorgeschichte anfing — mit allem, was ich gemacht hatte, statt mit dem, was dabei herausgekommen war.\n\nAlso habe ich es umgedreht. Ich habe mit dem Ergebnis angefangen, dann kurz gesagt, wie wir dahin gekommen sind, und am Ende, was wir als Nächstes brauchen.\n\nDie Präsentation dauerte eine Minute und fünfzig Sekunden.\n\nDanach kam eine Frage, auf die ich keine Antwort hatte. Früher hätte ich versucht, trotzdem etwas zu sagen. Diesmal habe ich gesagt: „Das weiß ich nicht. Ich schaue nach und melde mich morgen.\"\n\nHinterher meinte ein Kollege, das sei der beste Moment gewesen. Nicht die Präsentation — der Satz danach.",
+    "questions": [
+      { "q": "Wie lang war der ursprüngliche Text?", "options": ["zwei Minuten", "etwa sechs Minuten", "zehn Minuten"], "a": 1 },
+      { "q": "Was war der entscheidende Fehler in den ersten Versionen?", "options": ["zu viele Zahlen", "er fing mit der Vorgeschichte an", "er sprach zu schnell"], "a": 1 },
+      { "q": "Wie hat er die Präsentation umgebaut?", "options": ["Ergebnis zuerst", "Vorgeschichte zuerst", "Fragen zuerst"], "a": 0 },
+      { "q": "Was hat er auf die unbekannte Frage geantwortet?", "options": ["er hat etwas erfunden", "er hat gesagt, dass er es nachschaut", "er hat nicht geantwortet"], "a": 1 },
+      { "q": "Was fand der Kollege am besten?", "options": ["die Präsentation", "den ehrlichen Satz danach", "die Zahlen"], "a": 1 }
+    ],
+    "glossary": { "vorstellen": "to present", "kürzen": "to shorten", "streichen": "to cut, delete", "der Abschnitt": "section", "die Vorgeschichte": "background", "herauskommen": "to come out of it", "umdrehen": "to reverse", "sich melden": "to get back to someone", "hinterher": "afterwards" }
+  },
+  {
+    "id": "r-b12-u20", "unit_id": "b1-2-u20", "level": "B1.2", "title": "Der Weg hierher", "words": 285,
+    "text": "„Erzähl mal — wie war dein Weg hierher, von ganz am Anfang?\"\n\nDas ist eine Frage, auf die man erst nach ein paar Jahren antworten kann.\n\nAm Anfang war Deutsch für mich eine Wand. Ich konnte einzelne Wörter erkennen, aber sie ergaben keinen Satz. Ich erinnere mich an einen Moment im Supermarkt, als mich jemand etwas gefragt hat und ich nur „Entschuldigung, ich verstehe nicht\" sagen konnte. Ich habe mich geschämt, obwohl es dafür keinen Grund gab.\n\nDann kam eine lange Phase, in der ich alles verstand, aber nichts sagen konnte. Das war frustrierender als die erste Phase. Man sitzt dabei und hat Gedanken, für die man keine Wörter hat.\n\nIrgendwann verschwand das. Nicht an einem bestimmten Tag — es gab kein Ereignis, keinen Test. Mir ist einfach eines Abends aufgefallen, dass ich seit zwei Stunden auf Deutsch diskutierte und nicht darüber nachgedacht hatte.\n\nHeute mache ich immer noch Fehler. Ziemlich viele. Der Unterschied ist, dass sie mich nicht mehr aufhalten.\n\nWenn mich jemand fragt, was am meisten geholfen hat, sage ich: nicht der beste Kurs und nicht die beste App. Sondern die Bereitschaft, jeden Tag ein bisschen schlecht zu sprechen, statt zu warten, bis man es gut kann.",
+    "questions": [
+      { "q": "Wie beschreibt der Erzähler den Anfang?", "options": ["als leicht", "als eine Wand", "als Spaß"], "a": 1 },
+      { "q": "Welche Phase war frustrierender?", "options": ["die erste", "die Phase, in der er verstand, aber nicht sprechen konnte", "die letzte"], "a": 1 },
+      { "q": "Wie hat der Fortschritt sich gezeigt?", "options": ["durch einen Test", "er hat es eines Abends einfach bemerkt", "durch ein Zertifikat"], "a": 1 },
+      { "q": "Macht er heute noch Fehler?", "options": ["nein, keine mehr", "ja, aber sie halten ihn nicht auf", "nur beim Schreiben"], "a": 1 },
+      { "q": "Was hat laut ihm am meisten geholfen?", "options": ["der beste Kurs", "die beste App", "jeden Tag ein bisschen schlecht zu sprechen"], "a": 2 }
+    ],
+    "glossary": { "ergeben": "to make, to add up to", "sich schämen": "to be ashamed", "die Phase": "phase", "das Ereignis": "event", "auffallen": "to strike, to notice", "aufhalten": "to hold up, stop", "die Bereitschaft": "willingness" }
+  }
+]
