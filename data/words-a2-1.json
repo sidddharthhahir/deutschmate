@@ -639,6 +639,7 @@
   {
     "id": "ferien",
     "lemma": "Ferien",
+    "article": "die",
     "plural": "Ferien",
     "pos": "noun",
     "en": "holidays"

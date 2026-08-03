@@ -107,7 +107,34 @@ npm run dev:lan          # start (reachable from your phone)
 npm run backup           # snapshot + JSON export of your progress
 npm run restore <file>   # put a backup back
 npm run export-deck      # Anki-ready TSV + full JSON
+npm test                 # the checks below
 ```
+
+### Tests
+
+```bash
+npm test                 # all of them
+npm test text outbox     # only files matching these names
+```
+
+Six suites, no framework. Three run anywhere; three need `npm run dev`
+listening and are **skipped with a message** if it isn't — never quietly
+passed. They use throwaway user ids in the real database, which is how the app
+separates two flatmates, and clean up after themselves.
+
+| | |
+|---|---|
+| `content` | every word belongs to a unit, every reference resolves, every noun has an article |
+| `text` | cloze gaps and exam scoring |
+| `outbox` | the offline queue: what is retried, what is dropped, what survives a corrupt store |
+| `progression` | walks a new learner through all 120 units and checks every word gets taught |
+| `unit-carryover` | an oversized unit comes back tomorrow instead of losing its remainder |
+| `grammar` | a taught rule returns when due, with a different drill |
+
+`progression` is the one that matters. Nothing in the app reports "the learner
+cannot get past A1.1" — it just keeps offering unit 1, which is exactly what
+happened when nothing set `user.level`. The only way to know the course is
+finishable is to finish it.
 
 Content tools, only needed if you change the source data:
 

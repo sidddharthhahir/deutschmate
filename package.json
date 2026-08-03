@@ -15,6 +15,7 @@
     "start:lan": "next start -H 0.0.0.0",
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
+    "test": "node tests/run.mts",
     "seed": "node scripts/seed.mts",
     "audio": "node scripts/fetch-audio.mts",
     "import-words": "node scripts/import-words.mts",

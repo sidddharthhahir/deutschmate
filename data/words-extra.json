@@ -950,17 +950,6 @@
   "freq_rank": 503
  },
  {
-  "id": "schau",
-  "lemma": "Schau",
-  "article": "die",
-  "plural": "Schauen",
-  "pos": "noun",
-  "en": "show",
-  "level": "A1.2",
-  "source": "wiktionary",
-  "freq_rank": 505
- },
- {
   "id": "wagen",
   "lemma": "Wagen",
   "article": "der",
@@ -979,17 +968,6 @@
   "level": "A1.2",
   "source": "wiktionary",
   "freq_rank": 513
- },
- {
-  "id": "schuld",
-  "lemma": "Schuld",
-  "article": "die",
-  "plural": "Schulden",
-  "pos": "noun",
-  "en": "debt",
-  "level": "A1.2",
-  "source": "wiktionary",
-  "freq_rank": 514
  },
  {
   "id": "eben",
@@ -1263,17 +1241,6 @@
   "level": "A1.2",
   "source": "wiktionary",
   "freq_rank": 649
- },
- {
-  "id": "ruf",
-  "lemma": "Ruf",
-  "article": "der",
-  "plural": "Rufe",
-  "pos": "noun",
-  "en": "call, shout, cry",
-  "level": "A1.2",
-  "source": "wiktionary",
-  "freq_rank": 658
  },
  {
   "id": "schaffen",
@@ -2209,7 +2176,7 @@
   "lemma": "jedenfalls",
   "pos": "adv",
   "en": "in any case",
-  "level": "A2.1",
+  "level": "A1.2",
   "source": "wiktionary",
   "freq_rank": 1047
  },
@@ -2220,7 +2187,7 @@
   "plural": "Tollen",
   "pos": "noun",
   "en": "tuft (of hair)",
-  "level": "A2.1",
+  "level": "A1.2",
   "source": "wiktionary",
   "freq_rank": 1049
  },
@@ -2229,7 +2196,7 @@
   "lemma": "rüber",
   "pos": "adv",
   "en": "over here",
-  "level": "A2.1",
+  "level": "A1.2",
   "source": "wiktionary",
   "freq_rank": 1050
  },
@@ -2884,7 +2851,7 @@
   "lemma": "namens",
   "pos": "adv",
   "en": "by the name of, named",
-  "level": "A2.2",
+  "level": "A2.1",
   "source": "wiktionary",
   "freq_rank": 1260
  },
@@ -2895,7 +2862,7 @@
   "plural": "Blicke",
   "pos": "noun",
   "en": "glance, look",
-  "level": "A2.2",
+  "level": "A2.1",
   "source": "wiktionary",
   "freq_rank": 1266
  },
@@ -2906,7 +2873,7 @@
   "plural": "Stecken",
   "pos": "noun",
   "en": "stick",
-  "level": "A2.2",
+  "level": "A2.1",
   "source": "wiktionary",
   "freq_rank": 1275
  },
@@ -4089,17 +4056,6 @@
   "freq_rank": 1645
  },
  {
-  "id": "druck",
-  "lemma": "Druck",
-  "article": "der",
-  "plural": "Drücke",
-  "pos": "noun",
-  "en": "pressure",
-  "level": "A2.2",
-  "source": "wiktionary",
-  "freq_rank": 1646
- },
- {
   "id": "date",
   "lemma": "Date",
   "article": "das",
@@ -4353,17 +4309,6 @@
   "freq_rank": 1723
  },
  {
-  "id": "steig",
-  "lemma": "Steig",
-  "article": "der",
-  "plural": "Steige",
-  "pos": "noun",
-  "en": "climb",
-  "level": "A2.2",
-  "source": "wiktionary",
-  "freq_rank": 1725
- },
- {
   "id": "vorwaerts",
   "lemma": "vorwärts",
   "pos": "adv",
@@ -4577,7 +4522,7 @@
   "plural": "Steine",
   "pos": "noun",
   "en": "stone, rock",
-  "level": "B1.1",
+  "level": "A2.2",
   "source": "wiktionary",
   "freq_rank": 1784
  },
@@ -4586,7 +4531,7 @@
   "lemma": "atmen",
   "pos": "verb",
   "en": "to breathe",
-  "level": "B1.1",
+  "level": "A2.2",
   "forms": {
    "ich": "atme",
    "du": "atmest",
@@ -4601,7 +4546,7 @@
   "article": "die",
   "pos": "noun",
   "en": "whiteness",
-  "level": "B1.1",
+  "level": "A2.2",
   "source": "wiktionary",
   "freq_rank": 1787
  },
@@ -4612,7 +4557,7 @@
   "plural": "Citys",
   "pos": "noun",
   "en": "city center, downtown, central business district",
-  "level": "B1.1",
+  "level": "A2.2",
   "source": "wiktionary",
   "freq_rank": 1791
  },
@@ -4623,7 +4568,7 @@
   "plural": "Prinzen",
   "pos": "noun",
   "en": "prince",
-  "level": "B1.1",
+  "level": "A2.2",
   "source": "wiktionary",
   "freq_rank": 1792
  },
@@ -4637,17 +4582,6 @@
   "level": "B1.1",
   "source": "wiktionary",
   "freq_rank": 1804
- },
- {
-  "id": "streit",
-  "lemma": "Streit",
-  "article": "der",
-  "plural": "Streite",
-  "pos": "noun",
-  "en": "quarrel, dispute, fight, argument",
-  "level": "B1.1",
-  "source": "wiktionary",
-  "freq_rank": 1807
  },
  {
   "id": "kuessen",
@@ -8496,17 +8430,6 @@
   "freq_rank": 2784
  },
  {
-  "id": "besitz",
-  "lemma": "Besitz",
-  "article": "der",
-  "plural": "Besitze",
-  "pos": "noun",
-  "en": "ownership",
-  "level": "B1.1",
-  "source": "wiktionary",
-  "freq_rank": 2791
- },
- {
   "id": "irren",
   "lemma": "irren",
   "pos": "verb",
@@ -8745,7 +8668,7 @@
   "lemma": "nieder",
   "pos": "adj",
   "en": "low",
-  "level": "B1.2",
+  "level": "B1.1",
   "source": "wiktionary",
   "freq_rank": 2877
  },
@@ -8754,7 +8677,7 @@
   "lemma": "momentan",
   "pos": "adj",
   "en": "current",
-  "level": "B1.2",
+  "level": "B1.1",
   "source": "wiktionary",
   "freq_rank": 2884
  },
@@ -8763,7 +8686,7 @@
   "lemma": "soviel",
   "pos": "conj",
   "en": "as far as, so far as",
-  "level": "B1.2",
+  "level": "B1.1",
   "source": "wiktionary",
   "freq_rank": 2890
  },
@@ -8772,7 +8695,7 @@
   "lemma": "stattdessen",
   "pos": "adv",
   "en": "instead, in lieu",
-  "level": "B1.2",
+  "level": "B1.1",
   "source": "wiktionary",
   "freq_rank": 2892
  },
@@ -8783,7 +8706,7 @@
   "plural": "Stimmungen",
   "pos": "noun",
   "en": "mood",
-  "level": "B1.2",
+  "level": "B1.1",
   "source": "wiktionary",
   "freq_rank": 2895
  },
@@ -8794,7 +8717,7 @@
   "plural": "Bullen",
   "pos": "noun",
   "en": "bull",
-  "level": "B1.2",
+  "level": "B1.1",
   "source": "wiktionary",
   "freq_rank": 2896
  },
@@ -8805,7 +8728,7 @@
   "plural": "Geräusche",
   "pos": "noun",
   "en": "noise, sound",
-  "level": "B1.2",
+  "level": "B1.1",
   "source": "wiktionary",
   "freq_rank": 2899
  },
@@ -9838,17 +9761,6 @@
   },
   "source": "wiktionary",
   "freq_rank": 3150
- },
- {
-  "id": "sitz",
-  "lemma": "Sitz",
-  "article": "der",
-  "plural": "Sitze",
-  "pos": "noun",
-  "en": "seat",
-  "level": "B1.2",
-  "source": "wiktionary",
-  "freq_rank": 3151
  },
  {
   "id": "rosa",
@@ -12815,5 +12727,95 @@
   "level": "B1.2",
   "source": "wiktionary",
   "freq_rank": 3869
+ },
+ {
+  "id": "lieferung",
+  "lemma": "Lieferung",
+  "article": "die",
+  "plural": "Lieferungen",
+  "pos": "noun",
+  "en": "delivery, shipment",
+  "level": "B1.2",
+  "source": "wiktionary",
+  "freq_rank": 3872
+ },
+ {
+  "id": "duschen",
+  "lemma": "duschen",
+  "pos": "verb",
+  "en": "to shower",
+  "level": "B1.2",
+  "forms": {
+   "ich": "dusche",
+   "du": "duschst",
+   "er/sie/es": "duscht"
+  },
+  "source": "wiktionary",
+  "freq_rank": 3876
+ },
+ {
+  "id": "knarre",
+  "lemma": "Knarre",
+  "article": "die",
+  "plural": "Knarren",
+  "pos": "noun",
+  "en": "ratchet, gragger, noisemaker",
+  "level": "B1.2",
+  "source": "wiktionary",
+  "freq_rank": 3879
+ },
+ {
+  "id": "sekretaerin",
+  "lemma": "Sekretärin",
+  "article": "die",
+  "plural": "Sekretärinnen",
+  "pos": "noun",
+  "en": "female secretary",
+  "level": "B1.2",
+  "source": "wiktionary",
+  "freq_rank": 3880
+ },
+ {
+  "id": "versehen",
+  "lemma": "versehen",
+  "pos": "verb",
+  "en": "to perform",
+  "level": "B1.2",
+  "forms": {
+   "ich": "versehe",
+   "du": "versiehst",
+   "er/sie/es": "versieht"
+  },
+  "source": "wiktionary",
+  "freq_rank": 3884
+ },
+ {
+  "id": "bande",
+  "lemma": "Bande",
+  "article": "die",
+  "plural": "Banden",
+  "pos": "noun",
+  "en": "elevated boundary of a playing field",
+  "level": "B1.2",
+  "source": "wiktionary",
+  "freq_rank": 3885
+ },
+ {
+  "id": "treu",
+  "lemma": "treu",
+  "pos": "adj",
+  "en": "loyal",
+  "level": "B1.2",
+  "source": "wiktionary",
+  "freq_rank": 3886
+ },
+ {
+  "id": "positiv",
+  "lemma": "positiv",
+  "pos": "adj",
+  "en": "positive",
+  "level": "B1.2",
+  "source": "wiktionary",
+  "freq_rank": 3887
  }
 ]

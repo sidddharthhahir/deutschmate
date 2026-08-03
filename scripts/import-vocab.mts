@@ -418,6 +418,11 @@ for (const w of freq) {
 
   const id = slug(hit.lemma);
   if (!id || usedIds.has(id) || existing.has(lower(hit.lemma))) continue;
+  /* The deck teaches some plural-only nouns as their own lemma (Schulden,
+     Ferien, Leute), so a candidate whose plural is one of them is the same
+     word — "die Schuld / debt" next to "die Schulden / debt" is two cards with
+     one meaning and no way to tell them apart. */
+  if (hit.plural && existing.has(lower(hit.plural))) continue;
   usedIds.add(id);
 
   budget[level]--;

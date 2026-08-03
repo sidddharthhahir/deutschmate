@@ -657,9 +657,10 @@
   {
     "id": "schulden",
     "lemma": "Schulden",
+    "article": "die",
     "plural": "Schulden",
     "pos": "noun",
-    "en": "debt"
+    "en": "debts (money owed)"
   },
   {
     "id": "ersparnis",
