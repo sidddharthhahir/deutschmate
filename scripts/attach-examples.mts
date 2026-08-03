@@ -181,16 +181,34 @@ if (stillMissing.length && existsSync(ZIP)) {
 }
 
 // ------------------------------------------------------------------ output
-const payload = [...chosen.entries()].map(([id, v]) => ({
-  id,
-  de: v.de,
-  en: v.en,
-  source: v.source,
-}));
+/* Only words that had no example are searched for one, so `chosen` is this
+   run's finds, not the whole set. Writing it straight out threw away every
+   example found by an earlier run: the database still had them, so nothing
+   looked wrong here — but a fresh clone seeded from this file got 145 examples
+   instead of 2,347. The file has to carry the union. */
+type Example = { id: string; de: string; en: string; source: string };
+const merged = new Map<string, Example>();
+/* The database is the fuller record while an already-truncated file is being
+   repaired, so it goes in first and the file overwrites it where they agree. */
+for (const r of db
+  .prepare("SELECT id, example_de, example_en FROM word WHERE example_de IS NOT NULL AND example_de <> ''")
+  .all() as { id: string; example_de: string; example_en: string | null }[]) {
+  merged.set(r.id, { id: r.id, de: r.example_de, en: r.example_en ?? "", source: "tatoeba" });
+}
+if (existsSync(OUT)) {
+  for (const e of JSON.parse(readFileSync(OUT, "utf8")) as Example[]) merged.set(e.id, e);
+}
+for (const [id, v] of chosen) merged.set(id, { id, de: v.de, en: v.en, source: v.source });
+
+// A word that has left the deck should not keep a row here forever.
+const live = new Set(words.map((w) => w.id));
+for (const id of [...merged.keys()]) if (!live.has(id)) merged.delete(id);
+
+const payload = [...merged.values()];
 writeFileSync(OUT, JSON.stringify(payload, null, 1), "utf8");
 
 const covered = words.filter((w) => w.example_de || chosen.has(w.id)).length;
-console.log(`\nwrote ${payload.length} examples to ${path.relative(ROOT, OUT)}`);
+console.log(`\nwrote ${payload.length} examples to ${path.relative(ROOT, OUT)}  (+${chosen.size} this run)`);
 console.log(`coverage now ${covered} of ${words.length} (${Math.round((covered / words.length) * 100)}%)`);
 
 const left = words.filter((w) => !w.example_de && !chosen.has(w.id));

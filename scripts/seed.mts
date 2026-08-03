@@ -8,7 +8,7 @@
  * No build step: Node 24 strips the types itself.
  */
 import { DatabaseSync } from "node:sqlite";
-import { readFileSync, existsSync } from "node:fs";
+import { readFileSync, readdirSync, existsSync } from "node:fs";
 import path from "node:path";
 import { applySchema, DB_PATH } from "../src/lib/db.ts";
 
@@ -117,6 +117,29 @@ words.forEach((w, i) => {
 });
 db.exec("COMMIT");
 
+/* Point every word at its recording if the file is already committed.
+   `npm run audio` sets audio_url as it downloads, but a fresh clone never runs
+   it — the .ogg files arrive with the repo and the column stays NULL, so the
+   app would show no audio at all while the recordings sat right there in
+   public/. The filename is the word id, so the link needs no network and no
+   manifest. */
+const AUDIO_DIR = path.join(ROOT, "public/audio/words");
+let linked = 0;
+if (existsSync(AUDIO_DIR)) {
+  const onDisk = new Set(
+    readdirSync(AUDIO_DIR).filter((f) => f.endsWith(".ogg")).map((f) => f.slice(0, -4)),
+  );
+  const setAudio = db.prepare("UPDATE word SET audio_url = ?, audio_source = 'commons' WHERE id = ?");
+  db.exec("BEGIN");
+  for (const w of words) {
+    if (onDisk.has(w.id)) {
+      setAudio.run(`/audio/words/${w.id}.ogg`, w.id);
+      linked++;
+    }
+  }
+  db.exec("COMMIT");
+}
+
 /* Seeding upserts, so a word dropped from the content files would otherwise sit
    in the deck forever — that is how a stale run of import-vocab left 94 words
    behind that no unit taught. Words nobody has studied are removed; a word with
@@ -154,6 +177,7 @@ console.log(
   `OK ${words.length} words  (${Object.entries(byLevel).map(([l, n]) => `${l}:${n}`).join("  ")})` +
     (dupes ? `  [${dupes} duplicates kept at their lowest level]` : "") +
     (extraCount ? `\n   ${extraCount} of them from Wiktionary (CC BY-SA)` : "") +
+    (linked ? `\n   ${linked} linked to a committed recording` : "") +
     (dropped ? `\n   ${dropped} words no longer in the content files were removed` : "") +
     (keptInUse ? `\n   ${keptInUse} kept despite that: they already have review history` : ""),
 );

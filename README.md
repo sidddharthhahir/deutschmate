@@ -117,7 +117,7 @@ npm test                 # all of them
 npm test text outbox     # only files matching these names
 ```
 
-Six suites, no framework. Three run anywhere; three need `npm run dev`
+Seven suites, no framework. Four run anywhere; three need `npm run dev`
 listening and are **skipped with a message** if it isn't — never quietly
 passed. They use throwaway user ids in the real database, which is how the app
 separates two flatmates, and clean up after themselves.
@@ -125,6 +125,7 @@ separates two flatmates, and clean up after themselves.
 | | |
 |---|---|
 | `content` | every word belongs to a unit, every reference resolves, every noun has an article |
+| `fresh-clone` | seeds a throwaway database from `data/` alone and checks nothing is missing |
 | `text` | cloze gaps and exam scoring |
 | `outbox` | the offline queue: what is retried, what is dropped, what survives a corrupt store |
 | `progression` | walks a new learner through all 120 units and checks every word gets taught |
@@ -135,6 +136,11 @@ separates two flatmates, and clean up after themselves.
 cannot get past A1.1" — it just keeps offering unit 1, which is exactly what
 happened when nothing set `user.level`. The only way to know the course is
 finishable is to finish it.
+
+`fresh-clone` is the second one. A working copy accumulates everything every
+script has ever written, so content can vanish from the committed files while
+the running app still looks complete — which is exactly how `data/examples.json`
+came to hold 145 of 2,347 examples without anything appearing to be wrong.
 
 Content tools, only needed if you change the source data:
 

@@ -7,6 +7,8 @@
  *
  * needs: seeded database
  */
+import { readdirSync, existsSync } from "node:fs";
+import path from "node:path";
 import { open, ok, section, done } from "./harness.mts";
 
 const db = open();
@@ -77,6 +79,34 @@ const withExample = (
 const pct = Math.round((withExample / words.length) * 100);
 ok(pct >= 95, "at least 95% of words have an example sentence",
   `${withExample}/${words.length} (${pct}%)`);
+
+section("audio");
+/* The .ogg files ship with the repo but `audio_url` is set by seeding, not by
+   the download. When seeding did not link them, a fresh clone had every
+   recording on disk and no way to play any of them. */
+const AUDIO_DIR = path.join(process.cwd(), "public/audio/words");
+if (existsSync(AUDIO_DIR)) {
+  const onDisk = new Set(
+    readdirSync(AUDIO_DIR).filter((f) => f.endsWith(".ogg")).map((f) => f.slice(0, -4)),
+  );
+  const linked = db.prepare(
+    "SELECT id, audio_url FROM word WHERE audio_url IS NOT NULL AND audio_url <> ''",
+  ).all() as { id: string; audio_url: string }[];
+  const linkedIds = new Set(linked.map((w) => w.id));
+
+  const unlinked = [...onDisk].filter((id) => wordIds.has(id) && !linkedIds.has(id));
+  ok(unlinked.length === 0, "every committed recording is linked to its word",
+    unlinked.slice(0, 5).join(", "));
+
+  const missingFile = linked.filter((w) => !onDisk.has(w.id));
+  ok(missingFile.length === 0, "no word points at a recording that is not there",
+    missingFile.slice(0, 5).map((w) => w.id).join(", "));
+
+  ok(linked.every((w) => w.audio_url === `/audio/words/${w.id}.ogg`),
+    "and every link uses the served path", `${linked.length} recordings`);
+} else {
+  console.log("SKIP  public/audio/words is absent");
+}
 
 section("progression is possible");
 /* The learner is promoted at the end of a level, so a level with no units is a
