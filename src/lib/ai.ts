@@ -149,6 +149,15 @@ export type Turn = { role: "user" | "assistant"; content: string };
  * The write costs 2x instead of 1.25x, so it pays for itself after three turns
  * and every turn after that is a 0.1x read.
  *
+ * It does not cache on day one, and that is fine. Sonnet 5's minimum cacheable
+ * prefix is 1024 tokens; the instructions above are roughly 400, so the marker
+ * starts doing anything once the whitelist is a few hundred words — somewhere
+ * in the first month. A prefix under the minimum is not an error, it simply
+ * does not cache, so this reads as working when it is not yet. Check
+ * usage.cache_read_input_tokens on /fortschritt rather than assuming: the
+ * "% aus Cache" figure there is measured, not predicted. Nothing is lost in the
+ * meantime — an uncached 400-token prompt costs about a tenth of a cent.
+ *
  * Two things keep the prefix stable, and both matter more than the marker:
  * the word list is ordered by frequency rank (never by a set or a map), and the
  * scenario — which changes per unit — sits AFTER the breakpoint.
