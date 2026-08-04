@@ -1,5 +1,10 @@
 import { all, get, run } from "./db";
-import { priceOf as price, ceiling as budgetCeiling, type Usage as U } from "./pricing";
+import {
+  priceOf as price,
+  ceiling as budgetCeiling,
+  type Usage as U,
+  type CacheTtl,
+} from "./pricing";
 
 /**
  * What the AI actually costs.
@@ -15,13 +20,28 @@ import { priceOf as price, ceiling as budgetCeiling, type Usage as U } from "./p
  * than reassuring you with a number that turns out to be optimistic.
  */
 
-export { priceOf, PRICES, ceiling, type Usage } from "./pricing";
+export { priceOf, isPriced, ceiling, type Usage } from "./pricing";
+/* The rates themselves come from data/models.json now — lib/models.ts explains
+   why a price table typed into a source file is a number principle 4 forbids. */
+export { priceList, modelFor } from "./models.ts";
 
 /**
  * Record a call. Never throws — a failed bookkeeping write must not take down
  * the feature it was measuring.
+ *
+ * `ttl` is the cache lifetime the call ASKED for, because the write multiplier
+ * depends on it: 1.25x at five minutes, 2x at an hour. Every cached call in
+ * this app uses the hour, which is why that is the default — and pricing them
+ * all at the five-minute rate is exactly the understatement this parameter
+ * exists to end.
  */
-export function recordUsage(userId: string, kind: string, model: string, u: U) {
+export function recordUsage(
+  userId: string,
+  kind: string,
+  model: string,
+  u: U,
+  ttl: CacheTtl = "1h",
+) {
   try {
     run(
       `INSERT INTO usage (user_id, kind, model, input, output, cache_read, cache_write, micros)
@@ -33,7 +53,7 @@ export function recordUsage(userId: string, kind: string, model: string, u: U) {
       u.output_tokens ?? 0,
       u.cache_read_input_tokens ?? 0,
       u.cache_creation_input_tokens ?? 0,
-      price(model, u),
+      price(model, u, ttl),
     );
   } catch {
     /* bookkeeping is never worth an error page */

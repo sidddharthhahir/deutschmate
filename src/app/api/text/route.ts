@@ -5,12 +5,12 @@ import { activeUser } from "@/lib/user";
 import { readJson, badRequest, str, arr, unauthorized } from "@/lib/http";
 import { scanText } from "@/lib/scan";
 import { toSqlDate } from "@/lib/srs";
+import { TEXT_MAX_CHARS as MAX_CHARS } from "@/lib/config";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 /** Long enough for a letter or an article, short enough not to be abused. */
-const MAX_CHARS = 20_000;
 
 /**
  * POST — read a pasted text against this learner's deck.

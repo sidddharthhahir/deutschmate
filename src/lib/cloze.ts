@@ -2,6 +2,7 @@ import { createEmptyCard } from "ts-fsrs";
 import { all, get, run, tx } from "./db";
 import { toSqlDate } from "./srs";
 import { blankForError } from "./cloze-text";
+import { CLOZE_BACKLOG_CAP as BACKLOG_CAP } from "@/lib/config";
 
 export { blankAt, blankWord, blankForError } from "./cloze-text";
 
@@ -34,7 +35,6 @@ export type Cloze = {
 };
 
 /** Cap on how many unanswered cloze cards may pile up. */
-const BACKLOG_CAP = 40;
 
 // ---------------------------------------------------------------- persistence
 

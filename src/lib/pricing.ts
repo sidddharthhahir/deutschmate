@@ -1,31 +1,22 @@
+import { catalogue, modelById } from "./models.ts";
+
 /**
- * What a call costs. Pure arithmetic, no database.
+ * What a call costs. Arithmetic only — the numbers come from data/models.json.
  *
- * Separated from cost.ts so it can be checked on its own: this is the one
- * place where being wrong produces a number that looks authoritative and
- * isn't, and a budget you can't trust is worse than no budget at all.
+ * Separated from cost.ts so it can be checked on its own: this is the one place
+ * where being wrong produces a figure that looks authoritative and isn't, and a
+ * budget you cannot trust is worse than no budget at all.
+ *
+ * The rates used to be a literal in this file. They are data now because they
+ * change underneath the app, and a stale price is a number principle 4 forbids —
+ * see lib/models.ts.
  */
 
-/** USD per million tokens, at standard (non-promotional) rates. */
-export const PRICES: Record<string, { in: number; out: number }> = {
-  "claude-sonnet-5": { in: 3.0, out: 15.0 },
-  "claude-haiku-4-5": { in: 1.0, out: 5.0 },
-};
+/** Which cache TTL a call used. The write multiplier differs; the read does not. */
+export type CacheTtl = "5m" | "1h";
 
 /**
- * Anthropic's cache multipliers: reads are cheap, writes cost a little extra.
- *
- * CACHE_WRITE is the 5-minute rate. The tutor prompt is written with a 1-hour
- * TTL, which is 2x rather than 1.25x — so this figure understates that one
- * write and overstates nothing. A whole session writes the prompt once and
- * reads it every turn after, so the difference is a fraction of a cent a day;
- * splitting the constant to chase it would cost more clarity than money.
- */
-export const CACHE_READ = 0.1;
-export const CACHE_WRITE = 1.25;
-
-/**
- * The monthly ceiling, in dollars per user.
+ * The monthly ceiling, in dollars per learner.
  *
  * Lives here rather than beside the spend queries because it is pure config and
  * because the guard that enforces it (lib/ai.ts) must not be able to disagree
@@ -50,28 +41,38 @@ export type Usage = {
   cache_creation_input_tokens?: number | null;
 };
 
+/** True when this model has a price and a bill for it can be trusted. */
+export function isPriced(model: string): boolean {
+  return Boolean(modelById(model));
+}
+
 /**
  * Cost of one call in millionths of a dollar.
  *
- * Millionths because a cached explanation costs a few hundredths of a cent,
- * and rounding those to cents would report a month of real usage as zero.
+ * Millionths because a cached explanation costs a few hundredths of a cent, and
+ * rounding those to cents would report a month of real usage as zero.
+ *
+ * An unknown model still returns 0 — a guessed price is worse than a missing
+ * one when the point is to trust the total — but `isPriced()` now exists so the
+ * cost page can SAY that a call went unpriced instead of quietly folding a real
+ * charge into a total that reads as complete.
  */
-export function priceOf(model: string, u: Usage): number {
-  const p = PRICES[model];
-  // An unknown model is recorded at zero rather than guessed. A wrong price is
-  // worse than a missing one when the point is to trust the total.
+export function priceOf(model: string, u: Usage, ttl: CacheTtl = "1h"): number {
+  const p = modelById(model);
   if (!p) return 0;
 
+  const { cache } = catalogue();
   const input = u.input_tokens ?? 0;
   const output = u.output_tokens ?? 0;
   const cacheRead = u.cache_read_input_tokens ?? 0;
   const cacheWrite = u.cache_creation_input_tokens ?? 0;
+  const writeMultiplier = ttl === "1h" ? cache.write_1h : cache.write_5m;
 
   const dollars =
     (input * p.in +
       output * p.out +
-      cacheRead * p.in * CACHE_READ +
-      cacheWrite * p.in * CACHE_WRITE) /
+      cacheRead * p.in * cache.read +
+      cacheWrite * p.in * writeMultiplier) /
     1_000_000;
 
   return Math.round(dollars * 1_000_000);

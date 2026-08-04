@@ -1,5 +1,6 @@
 import Anthropic from "@anthropic-ai/sdk";
 import { budgetLeft } from "./cost";
+import { modelFor } from "./models.ts";
 import { coachingBrief, type Memory } from "./coaching";
 
 export type { Memory };
@@ -22,12 +23,26 @@ export type { Memory };
  *      reason a session can't be finished.
  */
 
+/**
+ * Which model does which kind of work.
+ *
+ * The ids come from data/models.json, so adding a model or moving a role to a
+ * different one is a data edit — no code change, no rebuild of anyone's mental
+ * model of this file. The two roles themselves are a design decision and stay
+ * here:
+ *
+ *   quality  conversation and writing correction, where a missed error is one
+ *            the learner keeps making
+ *   cheap    mechanical explanations on a cache miss
+ */
 export const MODELS = {
-  /** Conversation + writing correction — quality matters, cost is controlled by caching. */
-  quality: "claude-sonnet-5",
-  /** Mechanical explanations on a cache miss. */
-  cheap: "claude-haiku-4-5",
-} as const;
+  get quality() {
+    return modelFor("quality");
+  },
+  get cheap() {
+    return modelFor("cheap");
+  },
+};
 
 /**
  * Per-task model settings, in one place so the cost of the whole app can be
@@ -51,12 +66,21 @@ export const MODELS = {
  * which is what these calls want anyway.
  */
 const TASK = {
-  chat: { model: MODELS.quality, maxTokens: 300, effort: "low" },
-  review: { model: MODELS.quality, maxTokens: 900, effort: "low" },
-  writing: { model: MODELS.quality, maxTokens: 1500, effort: "medium" },
-  explain: { model: MODELS.cheap, maxTokens: 500 },
-  mistake: { model: MODELS.cheap, maxTokens: 250 },
+  chat: { get model() { return MODELS.quality; }, maxTokens: 300, effort: "low" },
+  review: { get model() { return MODELS.quality; }, maxTokens: 900, effort: "low" },
+  writing: { get model() { return MODELS.quality; }, maxTokens: 1500, effort: "medium" },
+  explain: { get model() { return MODELS.cheap; }, maxTokens: 500 },
+  mistake: { get model() { return MODELS.cheap; }, maxTokens: 250 },
 } as const;
+
+/**
+ * The TTL the tutor prompt is cached with, named once.
+ *
+ * It is stated here AND passed to priceOf, because those two used to disagree:
+ * the call asked for an hour and the price table charged the five-minute rate.
+ * A constant that two places have to remember is a constant that will drift.
+ */
+export const TUTOR_CACHE_TTL = "1h" as const;
 
 /** Sonnet-5 calls: state the thinking choice, never inherit the default. */
 const NO_THINKING = { type: "disabled" } as const;

@@ -220,6 +220,48 @@ a spent budget, *"Nominative article where accusative is needed"* is still true.
 
 ---
 
+## Configuration, and the four kinds of it
+
+Conflating these is how a setting ends up in the wrong place and stays there.
+
+| Kind | Lives in | Examples | Changes when |
+|---|---|---|---|
+| **Deployment** | env, read via `src/lib/env.ts` | URL, budget, admin switch, DB path | you move machines |
+| **Provider catalogue** | `data/models.json` | model ids, prices, cache multipliers | Anthropic changes something |
+| **Product constants** | `src/lib/config.ts` | new words per day, review cap, leech threshold | you change the course |
+| **Per learner** | the `user` table | their API key, their cap | any learner, any time |
+
+```bash
+npm run config     # every setting's effective value, the price list, and what looks wrong
+```
+
+Two of these were not config until recently and should have been.
+
+**Prices were a literal in `pricing.ts`.** The day Anthropic changes a rate,
+`/fortschritt` reports the wrong spend — confidently, with no error. Principle 4
+says never show a number you cannot point at the row that produced it, and a
+price nobody has checked since it was typed is exactly that number. It is
+`data/models.json` now, with an *as-of* date the cost page prints, and a model
+the catalogue does not know is reported as unpriced rather than folded into a
+total that reads as complete. It also fixed a live understatement: the tutor
+prompt is cached for an hour (2× on the write) and was being billed at the
+five-minute rate (1.25×), which the old comment admitted and kept doing.
+
+**Product constants were in twelve files.** Each was named and commented where
+it sat, and nobody could still answer "what does this app decide for you"
+without reading all twelve. They are in one module now — **deliberately code,
+not settings**. Principle 1 is that the app decides; a "new words per day"
+slider would undo the thing that makes it work, and every knob is a combination
+somebody has to support.
+
+**Every `process.env` read had its own fallback and failed silently.**
+`DEUTSCHMATE_BUDGT=5` is not an error, it is a budget of $5 because the typo'd
+name was never read. `env.ts` names each variable once and `npm run config`
+prints what the server actually thinks — including that a wrong
+`DEUTSCHMATE_URL` sends every sign-in link somewhere nobody can follow.
+
+---
+
 ## Commands
 
 ```bash

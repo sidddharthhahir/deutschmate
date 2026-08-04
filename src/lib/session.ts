@@ -4,6 +4,7 @@ import { topErrorTags } from "./errors";
 import { dueCloze, mineFromErrors } from "./cloze";
 import { rhythmFor, today } from "./rhythm";
 import { dueGrammar } from "./grammar-srs";
+import { NEW_WORDS_PER_DAY, NEW_WORDS_REDUCED, REVIEW_CAP } from "@/lib/config";
 
 /**
  * The session runner (spec §3).
@@ -78,10 +79,7 @@ export type Word = {
   mnemonic: string | null;
 };
 
-const NEW_WORDS_PER_DAY = 12;
 /** What we drop to when the existing load is clearly not sticking. */
-const NEW_WORDS_REDUCED = 6;
-const REVIEW_CAP = 60;
 
 /**
  * How many new words to introduce today.

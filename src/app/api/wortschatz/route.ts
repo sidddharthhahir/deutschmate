@@ -4,6 +4,7 @@ import { unauthorized } from "@/lib/http";
 import { all, get, run, tx } from "@/lib/db";
 import { toSqlDate } from "@/lib/srs";
 import { createEmptyCard } from "ts-fsrs";
+import { BROWSE_BATCH as BATCH } from "@/lib/config";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -11,7 +12,6 @@ export const dynamic = "force-dynamic";
 /* Words per page. Was `user.browse_batch_size`, a column with a default of 50,
    no screen that could change it, and a client that hardcoded 50 anyway — the
    two happened to agree, which is the only reason nothing looked wrong. */
-const BATCH = 50;
 
 /**
  * Wortschatz — browse the whole vocabulary (spec §5).

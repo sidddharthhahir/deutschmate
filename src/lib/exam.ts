@@ -1,5 +1,6 @@
 import { all, get, run } from "./db";
 import type { Exam, ExamQuestion, ExamSection, SectionKey, SectionScore } from "./exam-score";
+import { EXAM_MINUTES as MINUTES } from "@/lib/config";
 
 export type { Exam, ExamQuestion, ExamSection, SectionKey, SectionScore };
 export { scoreExam } from "./exam-score";
@@ -37,8 +38,6 @@ const PLAN: Record<SectionKey, number> = {
   wortschatz: 10,
   grammatik: 10,
 };
-
-const MINUTES = 30;
 
 // ---------------------------------------------------------------- helpers
 

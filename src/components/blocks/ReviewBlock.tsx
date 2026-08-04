@@ -6,6 +6,7 @@ import { shouldIgnoreKey } from "@/lib/keys";
 import { send } from "@/lib/outbox";
 import Noun, { ArticleWord } from "@/components/Article";
 import type { BlockProps } from "./shared";
+import { UNDO_MS } from "@/lib/config";
 
 type DueCard = {
   cardId: number;
@@ -54,8 +55,6 @@ const GRADES = [
   { g: 3, label: "Gut", hint: "gewusst", grow: "1.16fr", primary: true },
   { g: 4, label: "Einfach", hint: "sofort", grow: "1.04fr" },
 ];
-
-const UNDO_MS = 5000;
 
 export default function ReviewBlock({ payload, onDone }: BlockProps<Payload>) {
   const [queue, setQueue] = useState<DueCard[]>(payload.cards);

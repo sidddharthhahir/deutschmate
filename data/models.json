@@ -1,0 +1,62 @@
+{
+  "_": "The model catalogue. Prices in USD per million tokens, at standard (non-promotional) rates. This is DATA because it changes underneath the app: Anthropic adjusts pricing and ships models, and a stale table here makes /fortschritt report the wrong spend — which, now that each learner brings their own key, is wrong about their money. Principle 4 says never show a number you cannot point at a row for; a hardcoded price list is exactly that number.",
+
+  "as_of": "2026-06-24",
+  "source": "https://www.anthropic.com/pricing",
+
+  "_roles": "Two roles the app assigns work to. `quality` handles conversation and writing correction, where a missed error is one the learner keeps making. `cheap` handles mechanical explanations on a cache miss. Changing which model fills a role is a change to this file, not to the code.",
+  "roles": {
+    "quality": "claude-sonnet-5",
+    "cheap": "claude-haiku-4-5"
+  },
+
+  "_cache": "Anthropic's cache multipliers, applied to the INPUT rate. A read is a tenth. A write costs extra, and how much depends on the TTL — 1.25x for the 5-minute default, 2x for one hour. The tutor prompt is written with a 1-hour TTL (see ai.ts), so charging it at the 5-minute rate under-reported every conversation; the old constant admitted this in a comment and kept doing it. Both are here now and the caller says which it used.",
+  "cache": {
+    "read": 0.1,
+    "write_5m": 1.25,
+    "write_1h": 2.0
+  },
+
+  "models": [
+    {
+      "id": "claude-sonnet-5",
+      "label": "Sonnet 5",
+      "in": 3.0,
+      "out": 15.0,
+      "context": 1000000,
+      "note": "Introductory pricing of $2/$10 ran to 2026-08-31; these are the standard rates, so a bill computed here is never an understatement."
+    },
+    {
+      "id": "claude-haiku-4-5",
+      "label": "Haiku 4.5",
+      "in": 1.0,
+      "out": 5.0,
+      "context": 200000,
+      "note": "Cheapest model that still writes a usable grammar explanation."
+    },
+    {
+      "id": "claude-opus-5",
+      "label": "Opus 5",
+      "in": 5.0,
+      "out": 25.0,
+      "context": 1000000,
+      "note": "Not used by any task. Priced so that a learner who points their own key at it still sees a true number rather than zero."
+    },
+    {
+      "id": "claude-sonnet-4-6",
+      "label": "Sonnet 4.6",
+      "in": 3.0,
+      "out": 15.0,
+      "context": 1000000,
+      "note": "Previous generation. Here for the same reason as Opus: an old usage row must still price correctly."
+    },
+    {
+      "id": "claude-opus-4-6",
+      "label": "Opus 4.6",
+      "in": 5.0,
+      "out": 25.0,
+      "context": 1000000,
+      "note": "Previous generation."
+    }
+  ]
+}

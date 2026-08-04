@@ -5,6 +5,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { playAudio, speak } from "@/lib/speech";
 import { send } from "@/lib/outbox";
 import { plural } from "@/lib/plural";
+import { WALK_THINK_SECONDS as THINK } from "@/lib/config";
 
 type Card = {
   cardId: number;
@@ -18,7 +19,6 @@ type Card = {
 type Phase = "idle" | "playing" | "paused" | "done" | "empty";
 
 /** Seconds of silence after the German, before the English. */
-const THINK = 3;
 
 /**
  * Unterwegs — the session you do with the screen in your pocket.

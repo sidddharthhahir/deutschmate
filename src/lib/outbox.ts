@@ -19,9 +19,9 @@
 /* Explicit ".ts" so tests/outbox.test.mts can load this straight through Node's
    type stripping, which does not do extension resolution. Next resolves it too. */
 import { myKey, scoped, whoami } from "./who.ts";
+import { OUTBOX_MAX as MAX } from "./config.ts";
 
 const BASE = "dm.outbox.v1";
-const MAX = 500;
 
 export type Pending = { url: string; body: unknown; at: number };
 

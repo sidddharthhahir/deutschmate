@@ -1,0 +1,154 @@
+/**
+ * Deployment configuration: everything that differs between one machine and
+ * another, and nothing that differs between one learner and another.
+ *
+ * WHY THIS EXISTS
+ *
+ * `process.env.X` was read in five places with a different fallback each time,
+ * and every one of them failed silently. `DEUTSCHMATE_BUDGT=5` is not an error;
+ * it is a budget of $5 because the typo'd name was never read. Nothing tells
+ * you. The same is true of the two variables added with sign-in, and one of
+ * those is worse than silent: get DEUTSCHMATE_URL wrong and every sign-in link
+ * points at a host nobody can reach, which looks like the mail not arriving.
+ *
+ * So: one module, every variable named once, each with a default that is
+ * stated rather than implied, and `describe()` so an operator can ask the
+ * server what it thinks it is doing.
+ *
+ * Deliberately NOT a schema library. Nine variables do not need a dependency,
+ * and a hand-written check can say something useful about each one.
+ */
+
+export type Issue = { name: string; level: "error" | "warn"; message: string };
+
+const str = (name: string): string => (process.env[name] ?? "").trim();
+
+/** Where sign-in links point. Wrong here means links nobody can follow. */
+export function baseUrl(): string {
+  return str("DEUTSCHMATE_URL").replace(/\/$/, "") || "http://localhost:3000";
+}
+
+/** Dollars per learner per rolling 30 days. 0 is a real setting: no AI spend. */
+export function budgetCeiling(): number {
+  const raw = str("DEUTSCHMATE_BUDGET");
+  if (!raw) return 5;
+  const n = Number(raw);
+  return Number.isFinite(n) && n >= 0 ? n : 5;
+}
+
+/** Whether the operator tools may write to shared content. */
+export function adminEnabled(): boolean {
+  return process.env.DEUTSCHMATE_ADMIN === "1";
+}
+
+/** A credential for the app's own Anthropic account, if there is one. */
+export function serverApiKey(): string {
+  return str("ANTHROPIC_API_KEY") || str("ANTHROPIC_AUTH_TOKEN");
+}
+
+/**
+ * Everything wrong or worth knowing about the current environment.
+ *
+ * Reported, never thrown: a misconfigured budget must not stop somebody
+ * revising. The one thing that would be worth refusing to start over does not
+ * exist yet — encrypted per-learner keys with no master key to read them —
+ * and that check belongs with the feature (step 4), not ahead of it.
+ */
+export function check(): Issue[] {
+  const issues: Issue[] = [];
+
+  const url = str("DEUTSCHMATE_URL");
+  if (!url) {
+    issues.push({
+      name: "DEUTSCHMATE_URL",
+      level: "warn",
+      message: "unset — sign-in links will point at http://localhost:3000",
+    });
+  } else if (!/^https?:\/\//.test(url)) {
+    issues.push({
+      name: "DEUTSCHMATE_URL",
+      level: "error",
+      message: `"${url}" has no scheme — links built from it will not work`,
+    });
+  } else if (url.startsWith("http://") && !/localhost|127\.0\.0\.1|\.local/.test(url)) {
+    issues.push({
+      name: "DEUTSCHMATE_URL",
+      level: "warn",
+      message: "plain http on a non-local host — the session cookie will not be marked secure",
+    });
+  }
+
+  const budget = str("DEUTSCHMATE_BUDGET");
+  if (budget && !(Number.isFinite(Number(budget)) && Number(budget) >= 0)) {
+    issues.push({
+      name: "DEUTSCHMATE_BUDGET",
+      level: "error",
+      message: `"${budget}" is not a number — falling back to $5 per learner`,
+    });
+  }
+
+  const testAuth = str("DEUTSCHMATE_TEST_AUTH");
+  if (testAuth && testAuth.length < 24) {
+    issues.push({
+      name: "DEUTSCHMATE_TEST_AUTH",
+      level: "error",
+      message: "shorter than 24 characters, so it is ignored and the tests cannot run",
+    });
+  }
+  if (testAuth && url.startsWith("https://")) {
+    issues.push({
+      name: "DEUTSCHMATE_TEST_AUTH",
+      level: "warn",
+      message: "set on what looks like a real deployment — it allows acting as any learner",
+    });
+  }
+
+  if (adminEnabled()) {
+    issues.push({
+      name: "DEUTSCHMATE_ADMIN",
+      level: "warn",
+      message: "on — /api/video can write to the shared curriculum",
+    });
+  }
+
+  return issues;
+}
+
+/** One line per setting, for `npm run config` and the startup banner. */
+export function describe(): { name: string; value: string; note: string }[] {
+  const key = serverApiKey();
+  return [
+    {
+      name: "DEUTSCHMATE_URL",
+      value: baseUrl(),
+      note: "where sign-in links point",
+    },
+    {
+      name: "DEUTSCHMATE_BUDGET",
+      value: `$${budgetCeiling().toFixed(2)}`,
+      note: "per learner per rolling 30 days, enforced",
+    },
+    {
+      name: "DEUTSCHMATE_ADMIN",
+      value: adminEnabled() ? "on" : "off",
+      note: "writes to shared content",
+    },
+    {
+      name: "DEUTSCHMATE_TEST_AUTH",
+      value: str("DEUTSCHMATE_TEST_AUTH") ? "set" : "unset",
+      note: "lets a request act as any learner; needed by the test suite",
+    },
+    {
+      name: "ANTHROPIC_API_KEY",
+      /* Never the value. This prints in a terminal that may be shared, and the
+         only question worth answering is whether one is present. */
+      value: key ? `set (…${key.slice(-4)})` : "unset",
+      note: "the app's own key; learners bring their own from step 4",
+    },
+    {
+      name: "DEUTSCHMATE_DB",
+      value: str("DEUTSCHMATE_DB") || "deutschmate.db",
+      note: "database file",
+    },
+  ];
+}

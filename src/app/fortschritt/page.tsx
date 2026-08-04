@@ -9,7 +9,7 @@ import { grammarStats } from "@/lib/grammar-srs";
 import { SOUND_SPELLING } from "@/lib/pairs";
 import { plural, is } from "@/lib/plural";
 import { de } from "@/lib/tags";
-import { spendThisMonth, projectedMonthly, budgetLeft } from "@/lib/cost";
+import { spendThisMonth, projectedMonthly, budgetLeft, priceList, isPriced } from "@/lib/cost";
 import Noun from "@/components/Article";
 import Page, { Section } from "@/components/Page";
 
@@ -86,6 +86,16 @@ export default async function ProgressPage() {
   const spend = spendThisMonth(user.id);
   const projected = projectedMonthly(user.id);
   const budget = budgetLeft(user.id);
+  const prices = priceList();
+  /* Calls this app billed for but could not price, because the model is not in
+     data/models.json. Zero of them normally; not zero if somebody points their
+     own key at a model the catalogue has not caught up with yet. */
+  const unpriced = all<{ model: string; calls: number }>(
+    `SELECT model, COUNT(*) AS calls FROM usage
+      WHERE user_id = ? AND created_at > datetime('now','-30 days')
+      GROUP BY model`,
+    user.id,
+  ).filter((m) => !isPriced(m.model));
 
   return (
     <Page
@@ -381,9 +391,27 @@ export default async function ProgressPage() {
                 </div>
               </div>
 
+              {/* Which price list produced these figures, and whether it could
+                  price everything. A total that silently omits a real charge
+                  reads exactly like a complete one — and the rates are data
+                  now (data/models.json), so the date is a fact worth showing
+                  rather than an implementation detail. */}
               <p className="text-muted mt-4 max-w-[62ch] text-[12.5px] leading-relaxed">
-                Gezählte Tokens, gerechnet mit den Standardpreisen — Aktionspreise können
-                es günstiger machen, nie teurer.
+                Gezählte Tokens, gerechnet mit den Standardpreisen vom{" "}
+                {new Date(prices.asOf).toLocaleDateString("de-DE", {
+                  day: "numeric",
+                  month: "long",
+                  year: "numeric",
+                })}{" "}
+                — Aktionspreise können es günstiger machen, nie teurer.
+                {unpriced.length > 0 && (
+                  <span className="text-das">
+                    {" "}
+                    {plural(unpriced.reduce((n, m) => n + m.calls, 0), "Aufruf", "Aufrufe")} mit{" "}
+                    {unpriced.map((m) => m.model).join(", ")} {unpriced.length === 1 ? "ist" : "sind"}{" "}
+                    hier nicht eingerechnet — dieses Modell steht nicht in der Preisliste.
+                  </span>
+                )}
                 {budget.remaining <= 0 ? (
                   <span className="text-das">
                     {" "}
