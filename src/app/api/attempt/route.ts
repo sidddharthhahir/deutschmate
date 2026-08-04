@@ -2,7 +2,7 @@
 import { activeUser } from "@/lib/user";
 import { logAttempt, type Tag } from "@/lib/errors";
 import { whyWrong } from "@/lib/why";
-import { readJson, badRequest, str, bool } from "@/lib/http";
+import { readJson, badRequest, str, bool, unauthorized } from "@/lib/http";
 import { introduceWord } from "@/lib/srs";
 import { introduceGrammar } from "@/lib/grammar-srs";
 
@@ -21,6 +21,7 @@ export const dynamic = "force-dynamic";
 export async function POST(req: Request) {
   const raw = await readJson(req);
   const user = await activeUser(req, raw);
+  if (!user) return unauthorized();
 
   // `kind` is NOT NULL in the schema — without this check a body missing it
   // reached SQLite and came back as a 500 with an empty response.

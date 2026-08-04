@@ -1,7 +1,7 @@
 ﻿import Link from "next/link";
 import AppHeader from "@/components/AppHeader";
 import { all, get } from "@/lib/db";
-import { activeUser } from "@/lib/user";
+import { requireUser } from "@/lib/user";
 import { de } from "@/lib/tags";
 import { plural, word } from "@/lib/plural";
 
@@ -25,7 +25,7 @@ const DAYS = ["So", "Mo", "Di", "Mi", "Do", "Fr", "Sa"];
 type Row = { tag: string; now: number; before: number };
 
 export default async function WeekPage() {
-  const user = await activeUser();
+  const user = await requireUser();
   const n = (sql: string, ...p: unknown[]) => get<{ n: number }>(sql, ...p)?.n ?? 0;
 
   // ---------------------------------------------------------------- the week

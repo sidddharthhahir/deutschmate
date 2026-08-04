@@ -64,6 +64,14 @@ export default function Home() {
     (async () => {
       try {
         const res = await fetch("/api/session");
+        /* A 401 is not a network problem, and showing "Tagesplan nicht geladen"
+           for it told a signed-out visitor the server was broken. The cookie
+           can expire between the middleware check and this fetch, so the page
+           has to handle it too rather than assuming the gate caught it. */
+        if (res.status === 401) {
+          router.replace("/anmelden");
+          return;
+        }
         if (!res.ok) throw new Error(String(res.status));
         const data: Plan = await res.json();
         if (stale) return;
@@ -81,7 +89,7 @@ export default function Home() {
     return () => {
       stale = true;
     };
-  }, [nonce]);
+  }, [nonce, router]);
 
   // Enter starts the session — the whole product is one button, so it gets
   // the most obvious key on the keyboard.

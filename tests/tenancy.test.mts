@@ -66,15 +66,19 @@ await raw("/api/wortschatz", {
 });
 eq(countFor(VICTIM, "card"), before.card, "no card was added to their deck");
 
-section("an unauthenticated GET cannot read another learner");
-/* It must not error either — a stale link should quietly show you your own
-   data. Telling an attacker their attempt was noticed buys nothing. */
-const stolen = await (await raw(`/api/session?user=${VICTIM}`)).json();
-ok(stolen?.user?.id !== VICTIM, "the plan came back for someone else", stolen?.user?.id);
-ok(Boolean(stolen?.blocks), "and it still came back rather than erroring");
+section("an unauthenticated GET gets nothing at all");
+/* Before accounts existed this fell back to the default learner, which meant
+   an unauthenticated call still did something — and in an earlier run of this
+   very file, wrote six rows onto the developer's own account. Now there is no
+   default to fall back to. */
+const stolenRes = await raw(`/api/session?user=${VICTIM}`);
+eq(stolenRes.status, 401, "401, not somebody else's plan");
+const stolen = await stolenRes.json();
+ok(!stolen?.blocks, "no session plan in the body", JSON.stringify(stolen).slice(0, 60));
+eq(stolen?.signIn, "/anmelden", "and it says where to sign in");
 
-const leech = await (await raw(`/api/leech?user=${VICTIM}`)).json();
-ok(typeof leech?.count === "number", "same for /api/leech — answers, does not leak");
+eq((await raw(`/api/leech?user=${VICTIM}`)).status, 401, "same for /api/leech");
+eq((await raw(`/api/wortschatz?user=${VICTIM}`)).status, 401, "and /api/wortschatz");
 
 section("a made-up name does not mint an account");
 /* currentUser() used to INSERT for any string it was handed, so every POST was
@@ -113,6 +117,21 @@ eq(
   0,
   "no video row was created",
 );
+
+section("nothing was written to whoever the default used to be");
+/* The sharpest version of the bug: with no session and no credential, every
+   one of the calls above landed on the default account — so running this file
+   used to add six attempt rows and a 297-minute session to a real deck. There
+   is no default now, and this is the check that says so. */
+const orphans = (
+  db
+    .prepare(
+      `SELECT COUNT(*) AS n FROM attempt
+        WHERE created_at > datetime('now','-2 minutes') AND user_id NOT IN (?, ?)`,
+    )
+    .get(VICTIM, "test-ghost-9z") as { n: number }
+).n;
+eq(orphans, 0, "no attempt row landed on any other account");
 
 section("the door still opens for the harness");
 /* Proving the negative above is only worth something if the positive also

@@ -1,6 +1,6 @@
 ﻿import Link from "next/link";
 import { all, get } from "@/lib/db";
-import { activeUser } from "@/lib/user";
+import { requireUser } from "@/lib/user";
 import { topErrorTags } from "@/lib/errors";
 import { currentStreak, paceProjection } from "@/lib/session";
 import { LEECH_THRESHOLD, leeches } from "@/lib/leech";
@@ -24,7 +24,7 @@ export const dynamic = "force-dynamic";
  * than presenting six equal sections.
  */
 export default async function ProgressPage() {
-  const user = await activeUser();
+  const user = await requireUser();
   const n = (sql: string, ...p: unknown[]) => get<{ n: number }>(sql, ...p)?.n ?? 0;
 
   const totalWords = n("SELECT COUNT(*) AS n FROM word");

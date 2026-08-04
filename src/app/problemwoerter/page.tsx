@@ -1,5 +1,5 @@
 ﻿import Page from "@/components/Page";
-import { activeUser } from "@/lib/user";
+import { requireUser } from "@/lib/user";
 import { LEECH_THRESHOLD, leeches } from "@/lib/leech";
 import LeechList from "./LeechList";
 
@@ -17,7 +17,7 @@ export const dynamic = "force-dynamic";
  * from Fortschritt, which are the two places you'd go looking for it.
  */
 export default async function LeechPage() {
-  const user = await activeUser();
+  const user = await requireUser();
   const rows = leeches(user.id);
   const active = rows.filter((r) => r.suspended === 0).length;
 

@@ -1,5 +1,6 @@
 ﻿import { NextResponse } from "next/server";
 import { activeUser } from "@/lib/user";
+import { unauthorized } from "@/lib/http";
 import { all, get, run, tx } from "@/lib/db";
 import { toSqlDate } from "@/lib/srs";
 import { createEmptyCard } from "ts-fsrs";
@@ -22,6 +23,7 @@ const BATCH = 50;
 export async function GET(req: Request) {
   const url = new URL(req.url);
   const user = await activeUser(req);
+  if (!user) return unauthorized();
   const level = url.searchParams.get("level");
   const topic = url.searchParams.get("topic");
   const q = url.searchParams.get("q")?.trim();
@@ -96,6 +98,7 @@ export async function POST(req: Request) {
     wordIds?: unknown;
   };
   const user = await activeUser(req, body);
+  if (!user) return unauthorized();
 
   if (body.action === "seen") {
     /* One row per word, ignored on repeat. The previous version added the

@@ -39,6 +39,9 @@ let _db: DatabaseSync | null = null;
 const MIGRATIONS: [table: string, column: string, decl: string][] = [
   ["video", "unit_id", "TEXT"],
   ["card", "suspended", "INTEGER NOT NULL DEFAULT 0"],
+  // Sign-in. NULL for accounts that predate it; claimed on first sign-in.
+  // The UNIQUE lives in idx_user_email because ALTER TABLE cannot add one.
+  ["user", "email", "TEXT"],
 ];
 
 export function migrate(db: DatabaseSync) {

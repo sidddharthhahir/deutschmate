@@ -1,5 +1,6 @@
 ﻿import { NextResponse } from "next/server";
 import { activeUser } from "@/lib/user";
+import { unauthorized } from "@/lib/http";
 import { all, get } from "@/lib/db";
 
 export const runtime = "nodejs";
@@ -21,6 +22,7 @@ type Word = {
  */
 export async function GET(req: Request) {
   const user = await activeUser(req);
+  if (!user) return unauthorized();
   const unitId = new URL(req.url).searchParams.get("unit");
 
   const touched = all<Word>(

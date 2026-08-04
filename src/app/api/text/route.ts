@@ -2,7 +2,7 @@
 import { createEmptyCard } from "ts-fsrs";
 import { run, tx } from "@/lib/db";
 import { activeUser } from "@/lib/user";
-import { readJson, badRequest, str, arr } from "@/lib/http";
+import { readJson, badRequest, str, arr, unauthorized } from "@/lib/http";
 import { scanText } from "@/lib/scan";
 import { toSqlDate } from "@/lib/srs";
 
@@ -21,6 +21,7 @@ const MAX_CHARS = 20_000;
 export async function POST(req: Request) {
   const raw = await readJson(req);
   const user = await activeUser(req, raw);
+  if (!user) return unauthorized();
   const action = str(raw.action, 20) || "scan";
 
   if (action === "add") {

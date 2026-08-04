@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Walk a brand-new learner through all 120 units.
  *
  * This is the test that matters most. Nothing in the app reports "the learner
@@ -8,7 +8,7 @@
  *
  * needs: server, seeded database
  */
-import { get, post, ok, section, done, scratchUser, nextDay, open, BASE } from "./harness.mts";
+import { get, post, ok, section, done, scratchUser, nextDay, open, pageRes } from "./harness.mts";
 
 const U = scratchUser("test-progression");
 
@@ -104,7 +104,7 @@ section("Der Weg reflects the walk");
    directly rather than through an API, so this is the only place it can be
    checked against a learner who genuinely finished the course. Fetched with a
    cookie because the page identifies the learner the way a browser does. */
-const weg = await fetch(`${BASE}/weg`, { headers: { Cookie: `dm_user=${U}` } });
+const weg = await pageRes('/weg', U);
 ok(weg.ok, "the page renders", weg.status);
 const html = await weg.text();
 ok(html.includes("120 von 120"), "it counts every unit as done");

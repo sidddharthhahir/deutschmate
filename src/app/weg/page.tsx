@@ -1,5 +1,5 @@
-import Link from "next/link";
-import { activeUser } from "@/lib/user";
+﻿import Link from "next/link";
+import { requireUser } from "@/lib/user";
 import { currentUnit, paceProjection, LEVELS } from "@/lib/session";
 import { roadmap, skillsEarned, milestones, dayIndex } from "@/lib/journey";
 import { get } from "@/lib/db";
@@ -36,7 +36,7 @@ function niceDate(iso: string) {
 }
 
 export default async function WegPage() {
-  const user = await activeUser();
+  const user = await requireUser();
   const here = currentUnit(user.id, user.level);
   const levels = roadmap(user.id, here?.id ?? null);
   const skills = skillsEarned(user.id);

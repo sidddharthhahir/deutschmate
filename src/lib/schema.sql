@@ -138,12 +138,50 @@ CREATE TABLE IF NOT EXISTS explanation (
 CREATE TABLE IF NOT EXISTS user (
   id                TEXT PRIMARY KEY,
   name              TEXT NOT NULL UNIQUE,
+  -- The identity. NULL only for accounts made before sign-in existed; those
+  -- claim an address the first time somebody signs in to them.
+  email             TEXT,
   level             TEXT NOT NULL DEFAULT 'A1.1',
   -- No `daily_goal_min`, no `browse_batch_size`. Both defaulted, neither had a
   -- screen that could change it, and nothing obeyed them — the plan decides how
   -- long a session is and /api/wortschatz owns its page size.
   created_at        TEXT NOT NULL DEFAULT (datetime('now'))
 );
+-- Partial, because several legacy rows may have no address and NULL is not a
+-- duplicate of NULL for a plain UNIQUE anyway — stating it is clearer than
+-- relying on that. ALTER TABLE cannot add UNIQUE, so this is also how the
+-- constraint reaches a database that predates the column.
+CREATE UNIQUE INDEX IF NOT EXISTS idx_user_email ON user(email) WHERE email IS NOT NULL;
+
+/*
+ * Sign-in tokens and sessions.
+ *
+ * BOTH ARE STORED HASHED. The row is a verifier, not a credential: a copy of
+ * this database — a backup on a laptop, a file pulled off a box — must not let
+ * anybody sign in as anybody. sha256 is right here because the secret is 32
+ * random bytes, not a password; there is nothing to brute-force.
+ *
+ * No passwords anywhere, deliberately. A password needs storage, a reset flow,
+ * and a policy, and every one of those is a way to leak. A short-lived
+ * single-use link needs none of them.
+ */
+CREATE TABLE IF NOT EXISTS auth_token (
+  hash        TEXT PRIMARY KEY,          -- sha256 of the token, never the token
+  user_id     TEXT NOT NULL REFERENCES user(id) ON DELETE CASCADE,
+  expires_at  TEXT NOT NULL,
+  used_at     TEXT,                      -- single use: set on redemption
+  created_at  TEXT NOT NULL DEFAULT (datetime('now'))
+);
+CREATE INDEX IF NOT EXISTS idx_token_user ON auth_token(user_id, expires_at);
+
+CREATE TABLE IF NOT EXISTS session (
+  hash        TEXT PRIMARY KEY,          -- sha256 of the cookie value
+  user_id     TEXT NOT NULL REFERENCES user(id) ON DELETE CASCADE,
+  expires_at  TEXT NOT NULL,
+  seen_at     TEXT NOT NULL DEFAULT (datetime('now')),
+  created_at  TEXT NOT NULL DEFAULT (datetime('now'))
+);
+CREATE INDEX IF NOT EXISTS idx_session_user ON session(user_id, expires_at);
 
 -- One FSRS card per (user, thing-to-remember). ref_type: word | grammar | cloze
 CREATE TABLE IF NOT EXISTS card (

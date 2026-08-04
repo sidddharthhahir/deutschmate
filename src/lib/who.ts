@@ -29,6 +29,24 @@ export const DEFAULT_USER = "sid";
 
 export const USER_COOKIE = "dm_user";
 
+/**
+ * The session token. httpOnly — the browser cannot read it, and neither can
+ * this module; it is named here only so the middleware can check the cookie
+ * EXISTS without importing lib/auth.ts, which pulls in node:sqlite and cannot
+ * run in the edge runtime.
+ */
+export const SESSION_COOKIE = "dm_session";
+
+/**
+ * The learner id, readable by the browser on purpose.
+ *
+ * Not a credential — it proves nothing and grants nothing. The session cookie
+ * is httpOnly, so the client cannot see who it is, and every localStorage key
+ * below is namespaced per learner. This is how the browser knows which bucket
+ * is its own without being told a secret.
+ */
+export const UID_COOKIE = "dm_uid";
+
 /** Same normalisation as the server, so a key never disagrees with a row. */
 export function normalise(name: string): string {
   return name.trim().toLowerCase().replace(/[^a-z0-9_-]/g, "").slice(0, 32) || DEFAULT_USER;

@@ -1,6 +1,6 @@
 ﻿import { NextResponse } from "next/server";
 import { activeUser } from "@/lib/user";
-import { readJson, badRequest, str, int, bool, arr } from "@/lib/http";
+import { readJson, badRequest, str, int, bool, arr, unauthorized } from "@/lib/http";
 import { buildExam, saveExamRun, type SectionScore } from "@/lib/exam";
 import { logAttempt } from "@/lib/errors";
 
@@ -18,6 +18,7 @@ export const dynamic = "force-dynamic";
 export async function GET(req: Request) {
   const url = new URL(req.url);
   const user = await activeUser(req);
+  if (!user) return unauthorized();
   const level = url.searchParams.get("level") ?? user.level;
   return NextResponse.json(buildExam(level));
 }
@@ -26,6 +27,7 @@ export async function GET(req: Request) {
 export async function POST(req: Request) {
   const raw = await readJson(req);
   const user = await activeUser(req, raw);
+  if (!user) return unauthorized();
 
   /* arr() rather than `?? []`: a `sections` of "nope" is truthy, has a
      .length, and then blew up on .reduce inside saveExamRun. */

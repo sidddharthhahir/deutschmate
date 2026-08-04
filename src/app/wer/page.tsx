@@ -2,40 +2,64 @@ import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
 import Link from "next/link";
 import AppHeader from "@/components/AppHeader";
-import { activeUser, allUsers, normaliseName, currentUser, USER_COOKIE } from "@/lib/user";
+import { requireUser, allUsers, createUserByEmail, userByEmail } from "@/lib/user";
+import {
+  SESSION_COOKIE,
+  UID_COOKIE,
+  createSignInToken,
+  deliver,
+  destroySession,
+  normaliseEmail,
+} from "@/lib/auth";
 
 export const dynamic = "force-dynamic";
 
 /**
  * Who is using this install.
  *
- * Two people sharing one laptop each need their own deck. The database was
- * always ready for it — every progress table is keyed by user — but the pages
- * hardcoded one name, so the second person silently saw the first person's
- * numbers.
+ * IT USED TO BE A LIST OF BUTTONS THAT MADE YOU ANY OF THEM. One click, no
+ * credential — the documented design for two flatmates and one kitchen table
+ * (spec §10), and a list of your colleagues' accounts the moment a third person
+ * can reach the server.
  *
- * A cookie, not auth. Anyone with the laptop can switch to anyone; that is the
- * correct threat model for two flatmates and a shared kitchen table.
+ * Switching means signing in now. The list stays, because on a shared install
+ * it is genuinely useful to see who has a deck here and it is no secret from
+ * the people in the room — but the only thing you can do to another account is
+ * send it a sign-in link, and that goes to its own address, not to you.
  */
-export default async function WhoPage() {
-  const me = await activeUser();
+export default async function WhoPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ sent?: string; error?: string }>;
+}) {
+  const { sent, error } = await searchParams;
+  const me = await requireUser();
   const users = allUsers();
 
-  async function switchTo(formData: FormData) {
+  /** Invite somebody, or send yourself a link for another device. */
+  async function sendLink(formData: FormData) {
     "use server";
-    const raw = String(formData.get("name") ?? "");
-    const name = normaliseName(raw);
-    // Create the row now, so the switcher lists them next time even before
-    // they have done anything.
-    currentUser(name);
+    const email = normaliseEmail(String(formData.get("email") ?? ""));
+    if (!email) redirect("/wer?error=1");
+
+    /* An address with no account gets one. This is the invite path and it sits
+       behind a signed-in session, so it is not open sign-up. */
+    const user = userByEmail(email) ?? createUserByEmail(email);
+    if (user) {
+      const base = process.env.DEUTSCHMATE_URL || "http://localhost:3000";
+      const t = createSignInToken(user.id, base);
+      deliver(email, t.url, t.expiresAt);
+    }
+    redirect("/wer?sent=1");
+  }
+
+  async function signOut() {
+    "use server";
     const jar = await cookies();
-    jar.set(USER_COOKIE, name, {
-      httpOnly: false,
-      sameSite: "lax",
-      maxAge: 60 * 60 * 24 * 365 * 5,
-      path: "/",
-    });
-    redirect("/");
+    destroySession(jar.get(SESSION_COOKIE)?.value);
+    jar.delete(SESSION_COOKIE);
+    jar.delete(UID_COOKIE);
+    redirect("/anmelden");
   }
 
   return (
@@ -54,48 +78,66 @@ export default async function WhoPage() {
           Wer lernt hier?
         </h1>
         <p className="text-secondary mt-3 text-[15px] leading-relaxed">
-          Who is learning? Each name has its own deck, its own streak and its own
-          progress. The course content is shared.
+          Who is learning? Each account has its own deck, streak and progress. The course
+          content is shared.
         </p>
 
-        {users.length > 0 && (
-          <div className="mt-8 space-y-2">
-            {users.map((u) => (
-              <form key={u.id} action={switchTo}>
-                <input type="hidden" name="name" value={u.id} />
-                <button
-                  type="submit"
-                  disabled={u.id === me.id}
-                  className={`flex w-full items-baseline justify-between rounded-xl border px-5 py-4 text-left transition-colors ${
-                    u.id === me.id
-                      ? "border-fg bg-raised"
-                      : "border-line hover:border-line-strong hover:bg-raised"
-                  }`}
-                >
-                  <span className="font-serif text-[19px]">{u.name}</span>
-                  <span className="font-mono text-muted text-[11.5px]">
-                    {u.id === me.id ? "das bist du · that's you" : u.level}
-                  </span>
-                </button>
-              </form>
-            ))}
+        <div className="border-line bg-raised mt-8 rounded-xl border p-5">
+          <p className="font-mono text-muted text-[11px] tracking-[0.14em] uppercase">
+            Angemeldet als
+          </p>
+          <p className="font-serif mt-1.5 text-[21px]">{me.name}</p>
+          {me.email && <p className="text-muted font-mono mt-0.5 text-[12px]">{me.email}</p>}
+          <form action={signOut}>
+            <button
+              type="submit"
+              className="border-line text-secondary hover:border-line-strong hover:text-fg mt-4 rounded-full border px-4 py-1.5 text-[13px] transition-colors"
+            >
+              Abmelden
+            </button>
+          </form>
+        </div>
+
+        {users.length > 1 && (
+          <div className="mt-8">
+            <p className="font-mono text-muted mb-3 text-[11px] tracking-[0.14em] uppercase">
+              Andere Decks hier · {users.length - 1}
+            </p>
+            <div className="space-y-2">
+              {users
+                .filter((u) => u.id !== me.id)
+                .map((u) => (
+                  <div
+                    key={u.id}
+                    className="border-line-sub flex items-baseline justify-between rounded-xl border px-5 py-3.5"
+                  >
+                    <span className="font-serif text-[17px]">{u.name}</span>
+                    <span className="font-mono text-muted text-[11.5px]">{u.level}</span>
+                  </div>
+                ))}
+            </div>
+            <p className="text-muted mt-3 text-[12.5px] leading-relaxed">
+              You cannot switch into one of these. Signing in as somebody means having
+              their email — send a link below and it goes to them, not to you.
+            </p>
           </div>
         )}
 
-        <form action={switchTo} className="border-line-sub mt-8 border-t pt-6">
+        <form action={sendLink} className="border-line-sub mt-8 border-t pt-6">
           <label
-            htmlFor="newname"
+            htmlFor="email"
             className="font-mono text-muted mb-2 block text-[11.5px] tracking-[0.14em] uppercase"
           >
-            Neu · someone else
+            Einladen · or sign in on another device
           </label>
           <div className="flex gap-2">
             <input
-              id="newname"
-              name="name"
+              id="email"
+              name="email"
+              type="email"
               required
-              maxLength={32}
-              placeholder="Name"
+              maxLength={254}
+              placeholder="name@beispiel.de"
               autoComplete="off"
               className="border-line bg-bg text-fg focus:border-line-strong placeholder:text-muted font-serif flex-1 rounded-xl border px-4 py-3 text-[17px] outline-none"
             />
@@ -103,19 +145,30 @@ export default async function WhoPage() {
               type="submit"
               className="bg-fg rounded-xl px-6 font-medium text-[#16211E] transition-colors hover:bg-white"
             >
-              Start
+              Link
             </button>
           </div>
+          {sent && (
+            <p className="text-accent mt-3 text-[13px]">
+              Link erstellt — er steht im Terminal.
+            </p>
+          )}
+          {error && (
+            <p className="text-das mt-3 text-[13px]">Das sieht nicht nach einer Adresse aus.</p>
+          )}
           <p className="text-muted mt-3 text-[12.5px] leading-relaxed">
-            Letters, numbers, hyphens. A new name starts with an empty deck — nothing is
-            shared between learners except the course itself.
+            An address with no account gets one, with an empty deck. The link works once
+            and expires in 20 minutes.
           </p>
         </form>
 
         <p className="text-muted/70 mt-10 text-[12px] leading-relaxed">
-          This is a cookie on this browser, not a login. Anyone using this computer can
-          switch to any name — which is the right level of security for two flatmates and
-          one laptop, and none at all for anything else.
+          Email delivery is not configured yet, on purpose — so this still runs with no
+          network and no provider account. The link is printed in the terminal running{" "}
+          <code className="bg-raised text-der rounded px-1 py-0.5 font-mono text-[11.5px]">
+            npm run dev
+          </code>
+          ; paste it to whoever it is for.
         </p>
       </div>
     </main>

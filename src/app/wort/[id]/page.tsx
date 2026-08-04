@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { all, get } from "@/lib/db";
-import { activeUser } from "@/lib/user";
+import { requireUser } from "@/lib/user";
 import AppHeader from "@/components/AppHeader";
 import Noun, { ArticleWord } from "@/components/Article";
 import WordAudio from "./WordAudio";
@@ -47,7 +47,7 @@ const MET_LABEL: Record<string, string> = {
  */
 export default async function WordPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
-  const user = await activeUser();
+  const user = await requireUser();
 
   const w = get<Word>("SELECT * FROM word WHERE id = ?", id);
   if (!w) notFound();

@@ -1,6 +1,6 @@
 ﻿import Link from "next/link";
 import { all, get } from "@/lib/db";
-import { activeUser } from "@/lib/user";
+import { requireUser } from "@/lib/user";
 import { dueCount } from "@/lib/srs";
 import { leechCount } from "@/lib/leech";
 import { clozeDueCount, clozeTotal } from "@/lib/cloze";
@@ -21,7 +21,7 @@ export const dynamic = "force-dynamic";
  * the home screen keeps its single button.
  */
 export default async function PracticePage() {
-  const user = await activeUser();
+  const user = await requireUser();
   // SQLite stores `due` as "YYYY-MM-DD HH:MM:SS", so compare like for like.
   const nowIso = new Date().toISOString().slice(0, 19).replace("T", " ");
 

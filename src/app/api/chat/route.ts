@@ -1,6 +1,6 @@
 ﻿import { NextResponse } from "next/server";
 import { activeUser } from "@/lib/user";
-import { readJson, str, arr } from "@/lib/http";
+import { readJson, str, arr, unauthorized } from "@/lib/http";
 import { recordUsage } from "@/lib/cost";
 import { knownVocabulary } from "@/lib/session";
 import { converse, reviewConversation, aiAvailable, type Turn, type Scenario } from "@/lib/ai";
@@ -25,6 +25,7 @@ export const dynamic = "force-dynamic";
 export async function POST(req: Request) {
   const raw = await readJson(req);
   const user = await activeUser(req, raw);
+  if (!user) return unauthorized();
   const action = str(raw.action, 20);
 
   /* Turns go straight to the model as `messages`, so anything malformed here

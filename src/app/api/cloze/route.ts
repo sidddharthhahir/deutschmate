@@ -1,6 +1,6 @@
 ﻿import { NextResponse } from "next/server";
 import { activeUser } from "@/lib/user";
-import { readJson, badRequest, str, int } from "@/lib/http";
+import { readJson, badRequest, str, int, unauthorized } from "@/lib/http";
 import { addCloze, clozeTotal, dueCloze, clozeDueCount, deleteCloze } from "@/lib/cloze";
 import { blankWord } from "@/lib/cloze-text";
 
@@ -10,6 +10,7 @@ export const dynamic = "force-dynamic";
 /** GET — the gaps due right now. Grading goes through /api/review like any card. */
 export async function GET(req: Request) {
   const user = await activeUser(req);
+  if (!user) return unauthorized();
   return NextResponse.json({
     cards: dueCloze(user.id, 12),
     due: clozeDueCount(user.id),
@@ -27,6 +28,7 @@ export async function GET(req: Request) {
 export async function POST(req: Request) {
   const raw = await readJson(req);
   const user = await activeUser(req, raw);
+  if (!user) return unauthorized();
 
   // str() coerces rather than assuming: a numeric `word` used to reach
   // .trim() and throw, which the client saw as a bare 500.
@@ -61,6 +63,7 @@ export async function POST(req: Request) {
 export async function DELETE(req: Request) {
   const raw = await readJson(req);
   const user = await activeUser(req, raw);
+  if (!user) return unauthorized();
 
   const id = int(raw.id, 1);
   if (id === null) return badRequest("id (positive integer) required");

@@ -1,5 +1,5 @@
-import Page from "@/components/Page";
-import { activeUser } from "@/lib/user";
+﻿import Page from "@/components/Page";
+import { requireUser } from "@/lib/user";
 import { examHistory, type SectionScore } from "@/lib/exam";
 import ExamRunner from "./ExamRunner";
 
@@ -18,7 +18,7 @@ export const dynamic = "force-dynamic";
  * screen, where a number would otherwise be mistaken for a verdict.
  */
 export default async function ExamPage() {
-  const user = await activeUser();
+  const user = await requireUser();
   const history = examHistory(user.id, 8);
 
   return (

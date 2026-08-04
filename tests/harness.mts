@@ -11,6 +11,8 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { DB_PATH } from "../src/lib/db.ts";
 import { TEST_HEADER, TEST_ENV, MIN_TOKEN } from "../src/lib/trust.ts";
+import { SESSION_COOKIE, UID_COOKIE, createSession } from "../src/lib/auth.ts";
+import { createUser } from "../src/lib/accounts.ts";
 
 export const BASE = process.env.DM_TEST_URL ?? "http://127.0.0.1:3000";
 const HERE = path.dirname(fileURLToPath(import.meta.url));
@@ -147,6 +149,26 @@ export async function post(p: string, body: unknown): Promise<any> {
     body: JSON.stringify(body),
   });
   return res.json();
+}
+
+/**
+ * A real signed-in session for a throwaway learner, as a Cookie header.
+ *
+ * Page tests used to send `dm_user=<name>`, which was the identity — a name in
+ * a readable cookie. It is not any more, so they get a genuine session row
+ * instead, minted the same way the sign-in link mints one. The tests exercise
+ * the real mechanism rather than a way around it, which is the same reason the
+ * `?user=` door exists for the API tests.
+ */
+export function signedIn(name: string): string {
+  const user = createUser(name);
+  const { value } = createSession(user.id);
+  return `${SESSION_COOKIE}=${value}; ${UID_COOKIE}=${user.id}`;
+}
+
+/** Fetch a PAGE as a signed-in learner. */
+export async function pageRes(p: string, name: string): Promise<Response> {
+  return fetch(BASE + p, { headers: { Cookie: signedIn(name) } });
 }
 
 /**

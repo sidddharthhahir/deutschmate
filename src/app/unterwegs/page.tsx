@@ -1,6 +1,6 @@
-import Page from "@/components/Page";
+﻿import Page from "@/components/Page";
 import { all } from "@/lib/db";
-import { activeUser } from "@/lib/user";
+import { requireUser } from "@/lib/user";
 import WalkMode from "./WalkMode";
 
 export const dynamic = "force-dynamic";
@@ -14,7 +14,7 @@ export const dynamic = "force-dynamic";
  * would waste the retrieval.
  */
 export default async function WalkPage() {
-  const user = await activeUser();
+  const user = await requireUser();
 
   const cards = all<{
     cardId: number;

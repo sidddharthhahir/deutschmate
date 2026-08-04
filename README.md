@@ -239,7 +239,7 @@ npm test                 # all of them
 npm test text outbox     # only files matching these names
 ```
 
-Twenty suites, no framework. Twelve run anywhere; eight need `npm run dev`
+Twenty-one suites, no framework. Thirteen run anywhere; eight need `npm run dev`
 listening and are **skipped with a message** if it isn't — never quietly
 passed. They use throwaway user ids in the real database, which is how the app
 separates two flatmates, and clean up after themselves.
@@ -266,6 +266,7 @@ separates two flatmates, and clean up after themselves.
 | `strings` | no HTML entity survives into a string literal, where JSX will not decode it |
 | `undo` | one grade is one attempt row and one step of the curve — never two |
 | `tenancy` | you cannot act as another learner, mint an account, or write to shared content |
+| `auth` | tokens work once, sessions are stored hashed, deleting an account takes its credentials |
 
 `corpus` and `error-key` are worth a note on how they are written, because both
 guard the same kind of failure.
@@ -365,22 +366,36 @@ machine only. Back it up.
 
 ### Two people, one install
 
-Go to **`/wer`** and type a name. That name is the identity — there is no
-password, because this runs on your laptop and the thing being protected is a
-flashcard deck (spec §10). The choice is a cookie, so each browser or phone
-stays whoever it was.
+**You sign in.** Your email, a link, no password — nothing to choose, forget or
+leak. The first address to ask on a fresh install gets an account; after that,
+new accounts come from the invite field on `/wer` or from `npm run invite`.
 
-**The cookie is now the only way to say who you are.** It used to be one of
-three: `?user=alex` on eight GET routes and a `"user"` field in the body of
-twelve POST routes both overrode it, unconditionally and without a check. On one
-laptop that was the design; it stops being a design the moment somebody else can
-reach the server. Both are ignored now unless the request carries
-`DEUTSCHMATE_TEST_AUTH`, which exists so the test suite can keep driving
-throwaway learners through the real isolation mechanism — see `src/lib/trust.ts`.
-It fails closed: no variable, no trust.
+```bash
+npm run invite anna@example.de        # new account, or a link for an existing one
+npm run invite                        # list the accounts on this install
+```
 
-Naming an account that does not exist no longer creates it, either. Accounts are
-made in exactly two places: the form on `/wer`, and the test harness.
+**Email delivery is deliberately not configured.** A provider means an account,
+an API key, a domain with SPF and DKIM, and a network — and this repo has kept
+`npm run setup` working with none of those. So the link is printed in the
+terminal running the server, and you paste it to whoever it is for. `deliver()`
+in `src/lib/auth.ts` is the one seam a mail adapter drops into later; nothing
+above it changes.
+
+Identity used to be a name in a readable cookie, `dm_user=sid`, settable from
+the browser console — plus `?user=alex` on eight GET routes and a `"user"` field
+in twelve POST bodies, both of which overrode it without a check. On one laptop
+that was the design (spec §10). It stops being one the moment a third person can
+reach the server.
+
+Now it is a random 32-byte session token in an httpOnly cookie, and **both the
+session and the sign-in link are stored only as sha256** — a copy of the
+database must not let anybody sign in as anybody. Sessions last 14 days; links
+work once and expire in 20 minutes, and asking for a new one kills the old.
+
+`?user=` still works for the test suite, and only for it: it needs
+`DEUTSCHMATE_TEST_AUTH`, fails closed, and is what lets the tests drive
+throwaway learners through the real isolation mechanism. See `src/lib/trust.ts`.
 
 Every progress table is keyed by user and every page reads the same
 `activeUser()`, so the two halves cannot disagree: your streak, your due cards,

@@ -35,6 +35,18 @@ export function notFound(error: string) {
   return NextResponse.json({ error }, { status: 404 });
 }
 
+/**
+ * Nobody is signed in.
+ *
+ * A route says this; a page redirects to /anmelden instead. Both are "you are
+ * not signed in", and answering one the other's way is how you get a JSON blob
+ * rendered as a web page, or a fetch that follows a redirect and parses HTML as
+ * its result.
+ */
+export function unauthorized() {
+  return NextResponse.json({ error: "not signed in", signIn: "/anmelden" }, { status: 401 });
+}
+
 // ---------------------------------------------------------------- coercion
 
 /** A trimmed string, or "" for anything that isn't usable text. */

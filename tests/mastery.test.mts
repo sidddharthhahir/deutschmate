@@ -1,4 +1,4 @@
-/**
+﻿/**
  * The two spec §7 rules that were written down and never built.
  *
  * **Mastery** — "a unit is complete at ≥80% of its words learned". Built, but
@@ -15,7 +15,7 @@
  *
  * needs: server, seeded database
  */
-import { get, post, ok, section, done, scratchUser, open, BASE } from "./harness.mts";
+import { get, post, ok, section, done, scratchUser, open, pageRes } from "./harness.mts";
 
 /**
  * How many units Der Weg says are actually sticking, read off the page.
@@ -25,7 +25,7 @@ import { get, post, ok, section, done, scratchUser, open, BASE } from "./harness
  * does not otherwise need. The string checked is the one the learner reads.
  */
 async function sitzen(): Promise<number> {
-  const res = await fetch(`${BASE}/weg`, { headers: { Cookie: `dm_user=${U}` } });
+  const res = await pageRes('/weg', U);
   const html = await res.text();
   const m = html.match(/davon (\d+) wirklich sitzend/);
   return m ? Number(m[1]) : -1;
@@ -33,7 +33,7 @@ async function sitzen(): Promise<number> {
 
 /** The percentage Der Weg reports for one unit, from its tick's tooltip. */
 async function pctFor(unitId: string, ord: number): Promise<number> {
-  const res = await fetch(`${BASE}/weg`, { headers: { Cookie: `dm_user=${U}` } });
+  const res = await pageRes('/weg', U);
   const html = await res.text();
   const m = html.match(new RegExp(`Unit ${ord} · [^"]*?— (\\d+)% der Wörter sitzen`));
   return m ? Number(m[1]) : -1;
