@@ -239,7 +239,7 @@ npm test                 # all of them
 npm test text outbox     # only files matching these names
 ```
 
-Nineteen suites, no framework. Twelve run anywhere; seven need `npm run dev`
+Twenty suites, no framework. Twelve run anywhere; eight need `npm run dev`
 listening and are **skipped with a message** if it isn't — never quietly
 passed. They use throwaway user ids in the real database, which is how the app
 separates two flatmates, and clean up after themselves.
@@ -265,6 +265,7 @@ separates two flatmates, and clean up after themselves.
 | `error-key` | 41 mistakes a beginner really makes, each one reaching a specific prebuilt explanation |
 | `strings` | no HTML entity survives into a string literal, where JSX will not decode it |
 | `undo` | one grade is one attempt row and one step of the curve — never two |
+| `tenancy` | you cannot act as another learner, mint an account, or write to shared content |
 
 `corpus` and `error-key` are worth a note on how they are written, because both
 guard the same kind of failure.
@@ -368,6 +369,18 @@ Go to **`/wer`** and type a name. That name is the identity — there is no
 password, because this runs on your laptop and the thing being protected is a
 flashcard deck (spec §10). The choice is a cookie, so each browser or phone
 stays whoever it was.
+
+**The cookie is now the only way to say who you are.** It used to be one of
+three: `?user=alex` on eight GET routes and a `"user"` field in the body of
+twelve POST routes both overrode it, unconditionally and without a check. On one
+laptop that was the design; it stops being a design the moment somebody else can
+reach the server. Both are ignored now unless the request carries
+`DEUTSCHMATE_TEST_AUTH`, which exists so the test suite can keep driving
+throwaway learners through the real isolation mechanism — see `src/lib/trust.ts`.
+It fails closed: no variable, no trust.
+
+Naming an account that does not exist no longer creates it, either. Accounts are
+made in exactly two places: the form on `/wer`, and the test harness.
 
 Every progress table is keyed by user and every page reads the same
 `activeUser()`, so the two halves cannot disagree: your streak, your due cards,

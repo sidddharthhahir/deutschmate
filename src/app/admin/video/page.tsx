@@ -130,7 +130,15 @@ export default function VideoAdmin() {
       }),
     });
     const d = await res.json();
-    setSaved(`Gespeichert: ${d.segments} Sätze`);
+    /* The route is off unless DEUTSCHMATE_ADMIN=1 — it writes to the shared
+       curriculum, so it does not stay open by default. Say which it is, rather
+       than reporting a save that did not happen. */
+    if (!res.ok) {
+      setSaved(d.error ?? `Nicht gespeichert (${res.status})`);
+      setTimeout(() => setSaved(null), 8000);
+      return;
+    }
+    setSaved(`Gespeichert: ${d.segments} ${d.segments === 1 ? "Satz" : "Sätze"}`);
     const fresh = await (await fetch("/api/video")).json();
     setVideos(fresh.videos);
     setTimeout(() => setSaved(null), 3000);

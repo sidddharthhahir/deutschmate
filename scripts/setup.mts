@@ -13,6 +13,7 @@
  */
 import { spawnSync } from "node:child_process";
 import { existsSync, readFileSync, writeFileSync, statSync } from "node:fs";
+import { randomBytes } from "node:crypto";
 import path from "node:path";
 
 const ROOT = process.cwd();
@@ -58,6 +59,34 @@ if (!existsSync(envPath)) {
   const key = body.match(/^ANTHROPIC_API_KEY=(.*)$/m)?.[1]?.trim();
   if (key && key.length > 10) ok(".env.local has an API key");
   else warn(".env.local has no API key yet");
+}
+
+/*
+ * The test suite's credential.
+ *
+ * Six suites drive throwaway learners through `?user=`, which used to be
+ * honoured for anybody who typed it. It is gated now (src/lib/trust.ts), so the
+ * harness needs a shared secret — and generating it here means nobody has to
+ * invent one, and nobody is tempted to pick "test".
+ *
+ * Appended rather than templated, so an existing .env.local gets it too. Never
+ * regenerated: overwriting it would silently break a dev server that is already
+ * running with the old value.
+ */
+{
+  const body = readFileSync(envPath, "utf8");
+  const existing = body.match(/^DEUTSCHMATE_TEST_AUTH=(.*)$/m)?.[1]?.trim();
+  if (existing && existing.length >= 24) {
+    ok("test credential present");
+  } else {
+    const token = randomBytes(24).toString("hex");
+    const line = `DEUTSCHMATE_TEST_AUTH=${token}\n`;
+    const next = /^DEUTSCHMATE_TEST_AUTH=.*$/m.test(body)
+      ? body.replace(/^DEUTSCHMATE_TEST_AUTH=.*$/m, line.trimEnd())
+      : `${body.endsWith("\n") || body === "" ? body : body + "\n"}${line}`;
+    writeFileSync(envPath, next, "utf8");
+    ok("test credential generated — restart `npm run dev` before `npm test`");
+  }
 }
 
 // ------------------------------------------------------------------ seed

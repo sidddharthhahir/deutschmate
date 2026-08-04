@@ -7,9 +7,13 @@
  * node:sqlite rather than a runner with its own opinions about them.
  */
 import { DatabaseSync } from "node:sqlite";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
 import { DB_PATH } from "../src/lib/db.ts";
+import { TEST_HEADER, TEST_ENV, MIN_TOKEN } from "../src/lib/trust.ts";
 
 export const BASE = process.env.DM_TEST_URL ?? "http://127.0.0.1:3000";
+const HERE = path.dirname(fileURLToPath(import.meta.url));
 
 let failures = 0;
 let checks = 0;
@@ -90,16 +94,76 @@ export function nextDay(user: string) {
 }
 
 // ---------------------------------------------------------------------- http
-export async function get(path: string): Promise<any> {
-  const res = await fetch(BASE + path);
+/**
+ * The shared secret that lets a request name a learner other than the cookie's.
+ *
+ * `?user=` used to be honoured for anyone who typed it. It is gated now (see
+ * lib/trust.ts), and these tests are the reason the door exists at all:
+ * isolation by user id is exactly how the app separates two people, so driving
+ * a throwaway learner exercises the real mechanism instead of a mock of it.
+ *
+ * Read from .env.local — the same file Next loads for the dev server — so both
+ * halves see one value with nothing to keep in sync by hand.
+ */
+const AUTH = (() => {
+  try {
+    process.loadEnvFile(path.join(HERE, "..", ".env.local"));
+  } catch {
+    /* no .env.local, or already loaded — fall through to the ambient env */
+  }
+  return (process.env[TEST_ENV] ?? "").trim();
+})();
+
+/**
+ * Fail loudly rather than quietly writing to the wrong account.
+ *
+ * Without the header the server ignores the name and falls back to the default
+ * learner, so an unconfigured harness would not error — it would run every test
+ * against the developer's own deck and mostly pass. That is the worst failure
+ * mode a test suite can have, so it is made impossible here.
+ */
+function auth(named: boolean): Record<string, string> {
+  if (named && AUTH.length < MIN_TOKEN) {
+    throw new Error(
+      `this test drives a throwaway learner, which needs ${TEST_ENV} in .env.local — ` +
+        "run `npm run setup` to generate one, then restart `npm run dev` so the " +
+        "server picks it up too",
+    );
+  }
+  return AUTH ? { [TEST_HEADER]: AUTH } : {};
+}
+
+export async function get(p: string): Promise<any> {
+  const res = await fetch(BASE + p, { headers: auth(p.includes("user=")) });
   return res.json();
 }
 
-export async function post(path: string, body: unknown): Promise<any> {
-  const res = await fetch(BASE + path, {
+export async function post(p: string, body: unknown): Promise<any> {
+  // The name can arrive in the body as well as the query.
+  const named = p.includes("user=") || (!!body && typeof body === "object" && "user" in body);
+  const res = await fetch(BASE + p, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: { "Content-Type": "application/json", ...auth(named) },
     body: JSON.stringify(body),
   });
   return res.json();
+}
+
+/**
+ * A raw request, for the tests that care about the status code or that need to
+ * send NO credential — which is the only way to check the door is shut.
+ */
+export async function raw(
+  p: string,
+  init: RequestInit & { authenticate?: boolean } = {},
+): Promise<Response> {
+  const { authenticate = false, ...rest } = init;
+  return fetch(BASE + p, {
+    ...rest,
+    headers: {
+      ...(rest.body ? { "Content-Type": "application/json" } : {}),
+      ...(authenticate && AUTH ? { [TEST_HEADER]: AUTH } : {}),
+      ...(rest.headers as Record<string, string> | undefined),
+    },
+  });
 }

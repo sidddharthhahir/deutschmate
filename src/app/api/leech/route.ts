@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+﻿import { NextResponse } from "next/server";
 import { activeUser } from "@/lib/user";
 import { readJson, badRequest, notFound, str, int } from "@/lib/http";
 import { aiAvailable, mnemonicFor, BudgetExceeded } from "@/lib/ai";
@@ -18,7 +18,7 @@ export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 export async function GET(req: Request) {
-  const user = await activeUser(new URL(req.url).searchParams.get("user") ?? undefined);
+  const user = await activeUser(req);
   return NextResponse.json({
     threshold: LEECH_THRESHOLD,
     count: leechCount(user.id),
@@ -32,7 +32,7 @@ type Action = (typeof ACTIONS)[number];
 
 export async function POST(req: Request) {
   const raw = await readJson(req);
-  const user = await activeUser(str(raw.user) || undefined);
+  const user = await activeUser(req, raw);
 
   const cardId = int(raw.cardId, 1);
   const action = str(raw.action, 20) as Action;

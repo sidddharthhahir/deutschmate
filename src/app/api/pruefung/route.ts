@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+﻿import { NextResponse } from "next/server";
 import { activeUser } from "@/lib/user";
 import { readJson, badRequest, str, int, bool, arr } from "@/lib/http";
 import { buildExam, saveExamRun, type SectionScore } from "@/lib/exam";
@@ -17,7 +17,7 @@ export const dynamic = "force-dynamic";
  */
 export async function GET(req: Request) {
   const url = new URL(req.url);
-  const user = await activeUser(url.searchParams.get("user") ?? undefined);
+  const user = await activeUser(req);
   const level = url.searchParams.get("level") ?? user.level;
   return NextResponse.json(buildExam(level));
 }
@@ -25,7 +25,7 @@ export async function GET(req: Request) {
 /** POST — record a finished run, plus one attempt row per question. */
 export async function POST(req: Request) {
   const raw = await readJson(req);
-  const user = await activeUser(str(raw.user) || undefined);
+  const user = await activeUser(req, raw);
 
   /* arr() rather than `?? []`: a `sections` of "nope" is truthy, has a
      .length, and then blew up on .reduce inside saveExamRun. */

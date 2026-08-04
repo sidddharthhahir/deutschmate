@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { all, get, run } from "@/lib/db";
+import { adminEnabled } from "@/lib/trust";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -38,8 +39,30 @@ export async function GET(req: Request) {
   });
 }
 
-/** Save a video and its hand-marked segments. */
+/**
+ * Save a video and its hand-marked segments.
+ *
+ * OPERATOR ONLY, and it was not.
+ *
+ * This route had no user resolution and no check of any kind, and line 83 runs
+ * `UPDATE unit SET video_id = ? WHERE id = ?` — a write to the *shared content*
+ * every learner reads. Anyone who could reach the server could rewrite the
+ * curriculum, anonymously, with one curl.
+ *
+ * It is a tool for whoever has the repo checked out, so it gets an operator
+ * switch: `DEUTSCHMATE_ADMIN=1`, off unless deliberately set. That is a switch
+ * and not a password, and lib/trust.ts says so plainly rather than implying a
+ * safety it does not have — it stops the accidental and the drive-by, and is no
+ * defence against someone who can already set your environment.
+ */
 export async function POST(req: Request) {
+  if (!adminEnabled()) {
+    return NextResponse.json(
+      { error: "admin tools are off — set DEUTSCHMATE_ADMIN=1 to enable them" },
+      { status: 403 },
+    );
+  }
+
   const body = (await req.json()) as {
     id?: string;
     youtubeId: string;

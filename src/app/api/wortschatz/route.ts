@@ -1,5 +1,5 @@
-import { NextResponse } from "next/server";
-import { activeUser, userFromRequest } from "@/lib/user";
+﻿import { NextResponse } from "next/server";
+import { activeUser } from "@/lib/user";
 import { all, get, run, tx } from "@/lib/db";
 import { toSqlDate } from "@/lib/srs";
 import { createEmptyCard } from "ts-fsrs";
@@ -21,7 +21,7 @@ const BATCH = 50;
  */
 export async function GET(req: Request) {
   const url = new URL(req.url);
-  const user = await userFromRequest(req);
+  const user = await activeUser(req);
   const level = url.searchParams.get("level");
   const topic = url.searchParams.get("topic");
   const q = url.searchParams.get("q")?.trim();
@@ -95,7 +95,7 @@ export async function POST(req: Request) {
     /** The ids actually on screen. A count alone cannot be deduplicated. */
     wordIds?: unknown;
   };
-  const user = await activeUser(body.user ?? undefined);
+  const user = await activeUser(req, body);
 
   if (body.action === "seen") {
     /* One row per word, ignored on repeat. The previous version added the

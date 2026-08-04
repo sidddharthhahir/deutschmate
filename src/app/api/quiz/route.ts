@@ -1,5 +1,5 @@
-import { NextResponse } from "next/server";
-import { userFromRequest } from "@/lib/user";
+﻿import { NextResponse } from "next/server";
+import { activeUser } from "@/lib/user";
 import { all, get } from "@/lib/db";
 
 export const runtime = "nodejs";
@@ -20,7 +20,7 @@ type Word = {
  * last pass isn't eight identical multiple-choice items.
  */
 export async function GET(req: Request) {
-  const user = await userFromRequest(req);
+  const user = await activeUser(req);
   const unitId = new URL(req.url).searchParams.get("unit");
 
   const touched = all<Word>(

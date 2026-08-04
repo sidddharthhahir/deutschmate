@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+﻿import { NextResponse } from "next/server";
 import { activeUser } from "@/lib/user";
 import { readJson, badRequest, str, bool } from "@/lib/http";
 import { recordUsage } from "@/lib/cost";
@@ -18,7 +18,7 @@ export const dynamic = "force-dynamic";
  */
 export async function POST(req: Request) {
   const raw = await readJson(req);
-  const user = await activeUser(str(raw.user) || undefined);
+  const user = await activeUser(req, raw);
 
   const text = str(raw.body, 4000);
   // `prompt` is NOT NULL in pending_correction, so a missing one used to fail
@@ -90,7 +90,7 @@ export async function POST(req: Request) {
 
 /** GET — drain the offline queue once we're back online. */
 export async function GET(req: Request) {
-  const user = await activeUser(new URL(req.url).searchParams.get("user") ?? undefined);
+  const user = await activeUser(req);
   const pending = all<{ id: number; prompt: string; body: string; created_at: string }>(
     `SELECT id, prompt, body, created_at FROM pending_correction
       WHERE user_id = ? AND resolved_at IS NULL ORDER BY id`,

@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+﻿import { NextResponse } from "next/server";
 import { createEmptyCard } from "ts-fsrs";
 import { run, tx } from "@/lib/db";
 import { activeUser } from "@/lib/user";
@@ -20,7 +20,7 @@ const MAX_CHARS = 20_000;
  */
 export async function POST(req: Request) {
   const raw = await readJson(req);
-  const user = await activeUser(str(raw.user) || undefined);
+  const user = await activeUser(req, raw);
   const action = str(raw.action, 20) || "scan";
 
   if (action === "add") {

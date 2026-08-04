@@ -1,5 +1,5 @@
-import { NextResponse } from "next/server";
-import { activeUser, userFromRequest } from "@/lib/user";
+﻿import { NextResponse } from "next/server";
+import { activeUser } from "@/lib/user";
 import { readJson, str, int, arr } from "@/lib/http";
 import {
   buildSession,
@@ -16,7 +16,7 @@ export const dynamic = "force-dynamic";
 
 /** GET — today's session plan. This is what the one button opens. */
 export async function GET(req: Request) {
-  const user = await userFromRequest(req);
+  const user = await activeUser(req);
   const shape = new URL(req.url).searchParams.get("shape") === "short" ? "short" : "full";
   const plan = buildSession(user.id, user.level, shape);
 
@@ -37,7 +37,7 @@ export async function GET(req: Request) {
 export async function POST(req: Request) {
   const raw = await readJson(req);
   // Same precedence as everywhere else: explicit name, then the cookie.
-  const user = await activeUser(str(raw.user) || undefined);
+  const user = await activeUser(req, raw);
 
   // Clamped: a client that reports 10,000 minutes is wrong, and writing that
   // into session_log would poison every total on Fortschritt permanently.
