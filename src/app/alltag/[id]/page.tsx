@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import AppHeader from "@/components/AppHeader";
 import ScenarioRunner from "@/app/szenario/[id]/ScenarioRunner";
 import { survivalById } from "@/lib/survival";
+import Phrases from "../Phrases";
 
 export const dynamic = "force-dynamic";
 
@@ -51,22 +52,27 @@ export default async function SurvivalScenario({
           />
         </div>
 
+        {/* Both halves stay on screen beside the conversation. The point is
+            not to test you — it is to get you through the appointment. */}
         <section className="border-line-sub mt-10 border-t pt-6">
           <h2 className="font-mono text-muted mb-4 text-[11.5px] tracking-[0.14em] uppercase">
-            Sätze, die dort zählen
+            Das sagst du
           </h2>
-          <div className="space-y-2">
-            {s.phrases.map((p) => (
-              <div
-                key={p.de}
-                className="border-line-sub flex flex-wrap items-baseline gap-x-3 gap-y-0.5 rounded-lg border px-4 py-2.5"
-              >
-                <span className="font-serif text-fg text-[16.5px]">{p.de}</span>
-                <span className="text-muted text-[13px]">{p.en}</span>
-              </div>
-            ))}
-          </div>
+          <Phrases lines={s.phrases} />
         </section>
+
+        {s.hear && s.hear.length > 0 && (
+          <section className="border-line-sub mt-8 border-t pt-6">
+            <h2 className="font-mono text-muted mb-1 text-[11.5px] tracking-[0.14em] uppercase">
+              Das hörst du
+            </h2>
+            <p className="text-muted mb-4 max-w-[62ch] text-[12.5px] leading-relaxed">
+              Die Fragen, die zurückkommen. Langsamer vorgelesen als sie dort
+              gesprochen werden — im Gespräch oben kommen sie in Tempo.
+            </p>
+            <Phrases lines={s.hear} slow />
+          </section>
+        )}
 
         <section className="border-line-sub mt-8 border-t pt-6">
           <h2 className="font-mono text-muted mb-3 text-[11.5px] tracking-[0.14em] uppercase">

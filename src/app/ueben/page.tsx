@@ -6,6 +6,7 @@ import { leechCount } from "@/lib/leech";
 import { clozeDueCount, clozeTotal } from "@/lib/cloze";
 import { grammarDueCount, grammarStats } from "@/lib/grammar-srs";
 import { lastExam } from "@/lib/exam";
+import { LEVELS } from "@/lib/session";
 import Page, { Section, Tile } from "@/components/Page";
 
 export const dynamic = "force-dynamic";
@@ -19,6 +20,8 @@ export const dynamic = "force-dynamic";
  */
 export default async function PracticePage() {
   const user = await activeUser();
+  // SQLite stores `due` as "YYYY-MM-DD HH:MM:SS", so compare like for like.
+  const nowIso = new Date().toISOString().slice(0, 19).replace("T", " ");
 
   const units = all<{
     id: string;
@@ -48,6 +51,34 @@ export default async function PracticePage() {
     )?.n ?? 0;
 
   const levels = [...new Set(units.map((u) => u.level))];
+
+  /* Which conversations have actually happened. The chat route logs a
+     `conversation` attempt per correction, and the runner posts the unit id —
+     so this is a record of talking, not of clicking the link. */
+  const talked = new Set(
+    all<{ ref_id: string }>(
+      `SELECT DISTINCT ref_id FROM attempt
+        WHERE user_id = ? AND kind = 'conversation' AND ref_id IS NOT NULL`,
+      user.id,
+    ).map((r) => r.ref_id),
+  );
+  const talkedCount = units.filter((u) => talked.has(u.id)).length;
+
+  // Levels at or below the learner's own open by default; the rest fold away.
+  const here = LEVELS.indexOf(user.level as (typeof LEVELS)[number]);
+  const reached = new Set<string>(LEVELS.filter((_, i) => here < 0 || i <= here));
+
+  /* Per-rule state, from the same cards the session schedules. The summary
+     line already said "N eingeführt · M sitzen"; the pills themselves were 36
+     identical shapes, so the one place you would look up a rule could not tell
+     you which ones you were shaky on. */
+  const gramState = new Map(
+    all<{ ref_id: string; reps: number; state: number; due: string }>(
+      `SELECT ref_id, reps, state, due FROM card
+        WHERE user_id = ? AND ref_type = 'grammar'`,
+      user.id,
+    ).map((c) => [c.ref_id, c] as const),
+  );
 
   return (
     <Page
@@ -141,21 +172,36 @@ export default async function PracticePage() {
           </div>
         )}
 
+        {/* 120 rows, all of them looking identical, was the single biggest
+            wall in the app. Two changes: each says whether you have actually
+            had that conversation, and levels you have not reached start
+            folded. Folded, not hidden — this is the page where you decide, so
+            nothing is withheld, it just is not all shouting at once. */}
         <Section title={`Szenarien · ${units.length}`}>
           <p className="text-muted mb-4 text-[12.5px]">
             Jedes Gespräch aus allen Units — jederzeit wiederholbar.
+            {talkedCount > 0 && ` ${talkedCount} schon geführt.`}
           </p>
-          <div className="space-y-6">
-            {levels.map((lv) => (
-              <div key={lv}>
-                <p className="font-mono text-muted mb-2 text-[11px] tracking-[0.14em] uppercase">
-                  {lv}
-                </p>
-                <div className="border-line divide-line-sub divide-y rounded-[14px] border">
-                  {units
-                    .filter((u) => u.level === lv)
-                    .map((u) => {
+          <div className="space-y-2">
+            {levels.map((lv) => {
+              const mine = units.filter((u) => u.level === lv);
+              const talkedHere = mine.filter((u) => talked.has(u.id)).length;
+              return (
+                <details key={lv} open={reached.has(lv)} className="group">
+                  <summary className="border-line-sub hover:border-line flex cursor-pointer items-baseline justify-between rounded-lg border px-4 py-2.5 transition-colors">
+                    <span className="font-mono text-secondary text-[12px] tracking-[0.14em] uppercase">
+                      {lv}
+                      {lv === user.level && <span className="text-accent"> · hier</span>}
+                    </span>
+                    <span className="font-mono text-muted text-[11.5px] tabular-nums">
+                      {talkedHere} / {mine.length} geführt
+                    </span>
+                  </summary>
+
+                  <div className="border-line divide-line-sub mt-2 mb-4 divide-y rounded-[14px] border">
+                    {mine.map((u) => {
                       const s = JSON.parse(u.scenario_json!) as { role: string; goal: string };
+                      const doneIt = talked.has(u.id);
                       return (
                         <Link
                           key={u.id}
@@ -163,7 +209,10 @@ export default async function PracticePage() {
                           className="hover:bg-raised block px-4 py-3 transition-colors"
                         >
                           <div className="flex items-baseline justify-between gap-3">
-                            <span className="font-serif text-[18px]">{u.title}</span>
+                            <span className="font-serif text-[18px]">
+                              {doneIt && <span className="text-accent mr-2 text-[14px]">✓</span>}
+                              {u.title}
+                            </span>
                             <span className="font-mono text-muted flex-none text-[11px]">
                               Unit {u.ord}
                             </span>
@@ -173,9 +222,10 @@ export default async function PracticePage() {
                         </Link>
                       );
                     })}
-                </div>
-              </div>
-            ))}
+                  </div>
+                </details>
+              );
+            })}
           </div>
         </Section>
 
@@ -190,17 +240,47 @@ export default async function PracticePage() {
               : "Noch keine Regel eingeführt — sie kommen mit den Units."}
           </p>
           <div className="flex flex-wrap gap-1.5">
-            {grammar.map((g) => (
-              <Link
-                key={g.id}
-                href={`/grammatik/${g.slug}`}
-                className="border-line text-secondary hover:border-line-strong hover:text-fg rounded-full border px-3.5 py-1.5 text-[13px] transition-colors"
-              >
-                {g.title}
-                <span className="font-mono text-muted ml-2 text-[10px]">{g.level}</span>
-              </Link>
-            ))}
+            {grammar.map((g) => {
+              const c = gramState.get(g.id);
+              const solid = c ? c.reps >= 3 && c.state === 2 : false;
+              const due = c ? c.due <= nowIso : false;
+              return (
+                <Link
+                  key={g.id}
+                  href={`/grammatik/${g.slug}`}
+                  title={
+                    !c
+                      ? "noch nicht eingeführt"
+                      : due
+                        ? "heute fällig"
+                        : solid
+                          ? "sitzt"
+                          : "eingeführt, noch nicht fest"
+                  }
+                  /* Three states you can see at a glance, from the same cards
+                     the session schedules. A rule that is due back is the one
+                     worth reading now, and it used to look exactly like the
+                     thirty-five others. */
+                  className={`rounded-full border px-3.5 py-1.5 text-[13px] transition-colors ${
+                    due
+                      ? "border-accent/60 text-fg hover:border-accent"
+                      : solid
+                        ? "border-line text-fg hover:border-line-strong"
+                        : c
+                          ? "border-line-sub text-secondary hover:border-line hover:text-fg"
+                          : "border-line-sub text-muted hover:border-line hover:text-secondary"
+                  }`}
+                >
+                  {due && <span className="text-accent mr-1.5">•</span>}
+                  {g.title}
+                  <span className="font-mono text-muted ml-2 text-[10px]">{g.level}</span>
+                </Link>
+              );
+            })}
           </div>
+          <p className="text-muted mt-3 text-[11.5px]">
+            Punkt = heute fällig · kräftig = sitzt · blass = noch nicht eingeführt
+          </p>
         </Section>
       </>
     </Page>

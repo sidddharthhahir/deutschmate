@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Page, { Empty } from "@/components/Page";
 import { survivalScenarios } from "@/lib/survival";
+import Phrases from "./Phrases";
 
 export const dynamic = "force-dynamic";
 
@@ -57,15 +58,25 @@ export default function SurvivalPage() {
 
                 <details className="group mt-4">
                   <summary className="font-mono text-muted hover:text-secondary cursor-pointer text-[12px] transition-colors">
-                    {s.phrases.length} Sätze ansehen
+                    {s.phrases.length + (s.hear?.length ?? 0)} Sätze · antippen zum Hören
                   </summary>
-                  <div className="border-line-sub mt-3 space-y-2 border-t pt-3">
-                    {s.phrases.map((p) => (
-                      <div key={p.de} className="flex flex-wrap items-baseline gap-x-3">
-                        <span className="font-serif text-fg text-[16px]">{p.de}</span>
-                        <span className="text-muted text-[13px]">{p.en}</span>
-                      </div>
-                    ))}
+                  <div className="border-line-sub mt-3 border-t pt-3">
+                    <p className="font-mono text-muted mb-2 text-[10.5px] tracking-[0.14em] uppercase">
+                      Das sagst du
+                    </p>
+                    <Phrases lines={s.phrases} />
+
+                    {/* The half that was missing. You can rehearse your own
+                        lines all week; the appointment still stops dead the
+                        moment they ask you something back. */}
+                    {s.hear && s.hear.length > 0 && (
+                      <>
+                        <p className="font-mono text-muted mt-5 mb-2 text-[10.5px] tracking-[0.14em] uppercase">
+                          Das hörst du
+                        </p>
+                        <Phrases lines={s.hear} slow />
+                      </>
+                    )}
                   </div>
                 </details>
 

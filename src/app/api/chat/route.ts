@@ -6,6 +6,8 @@ import { knownVocabulary } from "@/lib/session";
 import { converse, reviewConversation, aiAvailable, type Turn, type Scenario } from "@/lib/ai";
 import { logAttempt, topErrorTags, type Tag } from "@/lib/errors";
 import { leeches, LEECH_THRESHOLD } from "@/lib/leech";
+import { survivalById } from "@/lib/survival";
+import { resolveScene } from "@/lib/scene";
 import { get } from "@/lib/db";
 
 export const runtime = "nodejs";
@@ -67,29 +69,20 @@ export async function POST(req: Request) {
       return NextResponse.json({ corrections });
     }
 
+    /* Two kinds of scene share this route: a course unit, and one of the six
+       Alltag survival scenarios. Only the first used to resolve — see
+       lib/scene.ts for what that cost. Both lookups happen here; the
+       precedence and the malformed-blob handling live in the pure function. */
     const unitId = str(raw.unitId, 40);
-    const unit = unitId
-      ? get<{ scenario_json: string | null }>(
-          "SELECT scenario_json FROM unit WHERE id = ?",
-          unitId,
-        )
-      : null;
-
-    const fallback: Scenario = {
-      role: "a friendly German speaker",
-      goal: "have a short chat",
-      opener: "Hallo!",
-    };
-    // A malformed scenario blob must not take the whole conversation down.
-    let scenario = fallback;
-    if (unit?.scenario_json) {
-      try {
-        const parsed = JSON.parse(unit.scenario_json) as Partial<Scenario>;
-        if (parsed?.role && parsed?.goal) scenario = { ...fallback, ...parsed };
-      } catch {
-        /* keep the fallback */
-      }
-    }
+    const scenario: Scenario = resolveScene(
+      unitId ? survivalById(unitId)?.scenario : undefined,
+      unitId
+        ? get<{ scenario_json: string | null }>(
+            "SELECT scenario_json FROM unit WHERE id = ?",
+            unitId,
+          )?.scenario_json
+        : null,
+    );
 
     // The whitelist. Everything the learner has actually met, nothing else.
     const vocabulary = knownVocabulary(user.id);

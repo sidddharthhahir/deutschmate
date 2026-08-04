@@ -25,7 +25,17 @@ export type Survival = {
   /** What to physically take with you. */
   bring: string[];
   scenario: Scenario;
+  /** What you say. */
   phrases: { de: string; en: string }[];
+  /**
+   * What THEY say — the half that was missing.
+   *
+   * Every one of these taught output only, and that is not how the
+   * appointments fail. You rehearse "Ich möchte mich anmelden", the clerk
+   * answers "Haben Sie die Wohnungsgeberbestätigung dabei?", and the
+   * conversation stops there. Optional so a scenario without it still renders.
+   */
+  hear?: { de: string; en: string }[];
 };
 
 let cache: Survival[] | null = null;

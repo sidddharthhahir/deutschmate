@@ -105,7 +105,9 @@ And the parts that aren't a course:
   can teach you next, and turns sentences into cards.
 - **Nachrichten** — today's news, slowly spoken, from Deutsche Welle.
 - **Alltag** — six conversations you will actually have: Bürgeramt,
-  WG-Besichtigung, Arzt, Bank, Vertrag kündigen, Prüfungsamt.
+  WG-Besichtigung, Arzt, Bank, Vertrag kündigen, Prüfungsamt. Each with what
+  to bring, what to say, and **what they will say back** — the half that
+  decides whether the appointment works.
 - **Unterwegs** — hands-free listening for the walk to uni.
 - **Minimalpaare** — pronunciation drills aimed at the sound you actually miss.
 
@@ -226,7 +228,7 @@ npm test                 # all of them
 npm test text outbox     # only files matching these names
 ```
 
-Thirteen suites, no framework. Seven run anywhere; six need `npm run dev`
+Fourteen suites, no framework. Eight run anywhere; six need `npm run dev`
 listening and are **skipped with a message** if it isn't — never quietly
 passed. They use throwaway user ids in the real database, which is how the app
 separates two flatmates, and clean up after themselves.
@@ -243,6 +245,7 @@ separates two flatmates, and clean up after themselves.
 | `progression` | walks a new learner through all 120 units and checks every word gets taught |
 | `unit-carryover` | an oversized unit comes back tomorrow instead of losing its remainder |
 | `mastery` | finishing ≠ retaining, retention never blocks progression, and bad prerequisite data can't strand anyone |
+| `scene` | the tutor gets the brief the page is showing — the Alltag six included |
 | `recycle` | old scenarios and readings come back, and say where they came from |
 | `grammar` | a taught rule returns when due, with a different drill |
 | `why` | every wrong answer comes back with a reason, on every path, with or without a key |
@@ -290,7 +293,7 @@ src/lib/       the engine — scheduling, session builder, error tagging, AI
 src/app/       22 pages and 17 API routes
 src/components/blocks/   the 14 block types a session is made of
 scripts/       content generation and maintenance
-tests/         13 suites, run with `npm test`
+tests/         14 suites, run with `npm test`
 public/audio/  2,381 native recordings from Wikimedia Commons (37 MB)
 ```
 
@@ -304,6 +307,7 @@ The engine, in the order a session touches it:
 | `cloze.ts` · `cloze-text.ts` | mines gap cards from your own mistakes |
 | `why.ts` | the three-tier answer to "warum?" |
 | `ai.ts` · `coaching.ts` | the five model calls, and what the tutor knows about you |
+| `scene.ts` · `survival.ts` | which brief the tutor is given — a course unit's, or an Alltag one |
 | `cost.ts` · `pricing.ts` | what it cost, and the ceiling that stops it |
 | `mastery.ts` | finished vs actually retained — two states, only one of them a gate |
 | `journey.ts` | the roadmap and milestones behind Der Weg |
