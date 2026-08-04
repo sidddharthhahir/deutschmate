@@ -30,7 +30,7 @@ export async function POST(req: Request) {
     return badRequest("empty");
   }
 
-  if (bool(raw.queueOnly) || !aiAvailable()) {
+  if (bool(raw.queueOnly) || !aiAvailable(user.id)) {
     run(
       "INSERT INTO pending_correction (user_id, prompt, body) VALUES (?, ?, ?)",
       user.id,
@@ -99,7 +99,7 @@ export async function GET(req: Request) {
     user.id,
   );
 
-  if (!aiAvailable() || !pending.length) {
+  if (!aiAvailable(user.id) || !pending.length) {
     return NextResponse.json({ pending: pending.length, resolved: [] });
   }
 

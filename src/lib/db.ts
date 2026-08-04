@@ -42,6 +42,11 @@ const MIGRATIONS: [table: string, column: string, decl: string][] = [
   // Sign-in. NULL for accounts that predate it; claimed on first sign-in.
   // The UNIQUE lives in idx_user_email because ALTER TABLE cannot add one.
   ["user", "email", "TEXT"],
+  // Each learner's own Anthropic key, encrypted, plus their own spend cap.
+  ["user", "api_key_enc", "TEXT"],
+  ["user", "api_key_hint", "TEXT"],
+  ["user", "api_key_at", "TEXT"],
+  ["user", "budget_cents", "INTEGER"],
 ];
 
 export function migrate(db: DatabaseSync) {

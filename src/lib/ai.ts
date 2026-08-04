@@ -1,6 +1,7 @@
-import Anthropic from "@anthropic-ai/sdk";
+﻿import Anthropic from "@anthropic-ai/sdk";
 import { budgetLeft } from "./cost";
 import { modelFor } from "./models.ts";
+import { keyFor } from "./apikey.ts";
 import { coachingBrief, type Memory } from "./coaching";
 
 export type { Memory };
@@ -95,16 +96,20 @@ const NO_THINKING = { type: "disabled" } as const;
  */
 export type Metered<T> = { result: T; model: string; usage: Anthropic.Usage };
 
-let _client: Anthropic | null = null;
-
 /**
- * Is there a credential to call with?
+ * Is there a credential to call with, FOR THIS LEARNER?
  *
- * The SDK also authenticates from ANTHROPIC_AUTH_TOKEN, so checking only the
- * API key reported "offline" on a machine where a call would have worked.
+ * It used to be one question about the process: is the server's env var set.
+ * Each learner brings their own key now, so it is a question about them — and
+ * the answer differs between two people using the same install at the same
+ * moment. One has added a key and gets a conversation; the other has not and
+ * gets the scripted dialogue, which is a complete feature and not a failure.
+ *
+ * `keyFor` still falls back to the server's own key when the operator set one,
+ * so a single-person install behaves exactly as it always did.
  */
-export function aiAvailable() {
-  return Boolean(process.env.ANTHROPIC_API_KEY || process.env.ANTHROPIC_AUTH_TOKEN);
+export function aiAvailable(userId: string) {
+  return keyFor(userId) !== null;
 }
 
 /** Thrown when the month's budget is used up. Routes turn this into `offline`. */
@@ -128,10 +133,19 @@ function guard(userId: string) {
   if (left.remaining <= 0) throw new BudgetExceeded(left.spent, left.ceiling);
 }
 
-function client() {
-  if (!aiAvailable()) throw new Error("ANTHROPIC_API_KEY is not set");
-  _client ??= new Anthropic();
-  return _client;
+/**
+ * A client holding one learner's key.
+ *
+ * NOT a module singleton any more, and it cannot be: the whole point is that
+ * two people using this install call with different credentials, and a cached
+ * client would hand the second person's request to the first person's key and
+ * bill them for it. Constructed per call, which is cheap — the SDK object is
+ * configuration around `fetch`, not a connection.
+ */
+function client(userId: string) {
+  const apiKey = keyFor(userId);
+  if (!apiKey) throw new Error("no API key for this learner");
+  return new Anthropic({ apiKey });
 }
 
 function text(msg: Anthropic.Message) {
@@ -268,7 +282,7 @@ export async function converse(opts: {
   const brief = opts.memory ? coachingBrief(opts.memory) : null;
   if (brief) system.push({ type: "text" as const, text: brief });
 
-  const msg = await client().messages.create({
+  const msg = await client(opts.userId).messages.create({
     model: TASK.chat.model,
     max_tokens: TASK.chat.maxTokens,
     thinking: NO_THINKING,
@@ -316,7 +330,7 @@ export async function reviewConversation(opts: {
   if (!learner.length) return null;
 
   guard(opts.userId);
-  const msg = await client().messages.create({
+  const msg = await client(opts.userId).messages.create({
     model: TASK.review.model,
     max_tokens: TASK.review.maxTokens,
     thinking: NO_THINKING,
@@ -374,7 +388,7 @@ export async function correctWriting(opts: {
   body: string;
 }): Promise<Metered<WritingFeedback>> {
   guard(opts.userId);
-  const msg = await client().messages.create({
+  const msg = await client(opts.userId).messages.create({
     model: TASK.writing.model,
     max_tokens: TASK.writing.maxTokens,
     /* The one place worth thinking tokens: this is a handful of calls a week,
@@ -440,7 +454,7 @@ Be encouraging but accurate. Rules:
  */
 export async function explainSentence(userId: string, sentence: string, level: string) {
   guard(userId);
-  const msg = await client().messages.create({
+  const msg = await client(userId).messages.create({
     model: TASK.explain.model,
     max_tokens: TASK.explain.maxTokens,
     system: `You explain one German sentence to a ${level} learner, in English.
@@ -480,7 +494,7 @@ export async function mnemonicFor(
   word: { lemma: string; article: string | null; en: string; pos: string },
 ) {
   guard(userId);
-  const msg = await client().messages.create({
+  const msg = await client(userId).messages.create({
     model: TASK.mistake.model,
     max_tokens: 120,
     system: `You write one memory hook for a German word a learner keeps forgetting.
@@ -518,7 +532,7 @@ export async function explainMistake(
   tags: string[],
 ) {
   guard(userId);
-  const msg = await client().messages.create({
+  const msg = await client(userId).messages.create({
     model: TASK.mistake.model,
     max_tokens: TASK.mistake.maxTokens,
     system: `Explain one German mistake to a beginner in 2-3 short sentences of

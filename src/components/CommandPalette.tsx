@@ -40,6 +40,7 @@ const JUMPS: Hit[] = [
   { kind: "seite", label: "Der Weg", sub: "alle 120 Units · Meilensteine", href: "/weg" },
   { kind: "seite", label: "How does this work?", sub: "the tour, again", href: "/willkommen" },
   { kind: "seite", label: "Wer lernt hier? · Switch learner", sub: "eigenes Deck pro Person", href: "/wer" },
+  { kind: "seite", label: "Einstellungen · Settings", sub: "dein API-Schlüssel und dein Limit", href: "/einstellungen" },
 ];
 
 /**

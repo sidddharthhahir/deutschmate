@@ -19,6 +19,9 @@
  * and a hand-written check can say something useful about each one.
  */
 
+import { secretsAvailable } from "./secrets.ts";
+import { anyStoredKeys } from "./apikey.ts";
+
 export type Issue = { name: string; level: "error" | "warn"; message: string };
 
 const str = (name: string): string => (process.env[name] ?? "").trim();
@@ -111,6 +114,37 @@ export function check(): Issue[] {
     });
   }
 
+  /*
+   * The one check that needs the database, and the one worth making loud.
+   *
+   * Learners' API keys are encrypted with DEUTSCHMATE_SECRET. Lose it or change
+   * it and every stored key becomes unreadable — nobody's progress is harmed,
+   * but every AI feature silently reverts to its offline path and the only
+   * symptom is "the conversation stopped working". Saying so here turns a
+   * mystery into a sentence.
+   *
+   * Guarded, because this also runs from `npm run config` on a machine that may
+   * have no database yet.
+   */
+  try {
+    if (!secretsAvailable() && anyStoredKeys()) {
+      issues.push({
+        name: "DEUTSCHMATE_SECRET",
+        level: "error",
+        message:
+          "missing or too short, and learners have stored keys — none of them can be read",
+      });
+    } else if (!secretsAvailable()) {
+      issues.push({
+        name: "DEUTSCHMATE_SECRET",
+        level: "warn",
+        message: "unset — this server will refuse to store anybody's API key",
+      });
+    }
+  } catch {
+    /* no database yet; nothing to be inconsistent with */
+  }
+
   return issues;
 }
 
@@ -144,6 +178,13 @@ export function describe(): { name: string; value: string; note: string }[] {
          only question worth answering is whether one is present. */
       value: key ? `set (…${key.slice(-4)})` : "unset",
       note: "the app's own key; learners bring their own from step 4",
+    },
+    {
+      name: "DEUTSCHMATE_SECRET",
+      /* Presence only. This is the key that decrypts every learner's API key;
+         printing it in a terminal would be the worst line in the codebase. */
+      value: secretsAvailable() ? "set" : "unset",
+      note: "encrypts each learner's stored API key",
     },
     {
       name: "DEUTSCHMATE_DB",

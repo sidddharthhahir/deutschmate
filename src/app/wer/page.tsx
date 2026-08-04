@@ -88,14 +88,25 @@ export default async function WhoPage({
           </p>
           <p className="font-serif mt-1.5 text-[21px]">{me.name}</p>
           {me.email && <p className="text-muted font-mono mt-0.5 text-[12px]">{me.email}</p>}
-          <form action={signOut}>
-            <button
-              type="submit"
-              className="border-line text-secondary hover:border-line-strong hover:text-fg mt-4 rounded-full border px-4 py-1.5 text-[13px] transition-colors"
+          <div className="mt-4 flex flex-wrap items-center gap-2">
+            {/* Settings live here rather than in the nav: the header is held at
+                four items on purpose, and a fifth starts turning Home into a
+                menu. This is the page about your account, so it belongs. */}
+            <Link
+              href="/einstellungen"
+              className="border-line text-secondary hover:border-line-strong hover:text-fg rounded-full border px-4 py-1.5 text-[13px] transition-colors"
             >
-              Abmelden
-            </button>
-          </form>
+              Einstellungen
+            </Link>
+            <form action={signOut}>
+              <button
+                type="submit"
+                className="border-line text-secondary hover:border-line-strong hover:text-fg rounded-full border px-4 py-1.5 text-[13px] transition-colors"
+              >
+                Abmelden
+              </button>
+            </form>
+          </div>
         </div>
 
         {users.length > 1 && (

@@ -42,7 +42,7 @@ export async function POST(req: Request) {
     .slice(-40)
     .map((t) => ({ role: t.role, content: t.content.slice(0, 2000) }));
 
-  if (!aiAvailable()) {
+  if (!aiAvailable(user.id)) {
     return NextResponse.json({ offline: true, reason: "no-api-key" });
   }
 

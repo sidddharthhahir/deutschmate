@@ -1,4 +1,4 @@
-import { aiAvailable, explainMistake } from "./ai";
+﻿import { aiAvailable, explainMistake } from "./ai";
 import { recordUsage } from "./cost";
 import {
   TAGS,
@@ -53,7 +53,7 @@ export async function whyWrong(
   const known = patternExplanation(expected, answer, tags);
   if (known) return { text: known, source: "prebuilt", tags };
 
-  if (aiAvailable()) {
+  if (aiAvailable(userId)) {
     try {
       const m = await explainMistake(userId, expected, answer, tags);
       recordUsage(userId, "mistake", m.model, m.usage);

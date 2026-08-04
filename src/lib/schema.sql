@@ -142,6 +142,31 @@ CREATE TABLE IF NOT EXISTS user (
   -- claim an address the first time somebody signs in to them.
   email             TEXT,
   level             TEXT NOT NULL DEFAULT 'A1.1',
+
+  /*
+   * The learner's own Anthropic key, encrypted (lib/secrets.ts).
+   *
+   * Each person brings their own, so the AI features cost this install nothing
+   * and nobody can spend anybody else's. The key is a live credential belonging
+   * to someone else, so what is stored is AES-256-GCM ciphertext and never the
+   * key — a backup that leaves the machine must not be a list of API keys.
+   *
+   * `api_key_hint` is the last four characters. Not a secret; it exists so the
+   * settings page can say which key is stored without printing it.
+   */
+  api_key_enc       TEXT,
+  api_key_hint      TEXT,
+  api_key_at        TEXT,
+
+  /*
+   * This learner's own monthly ceiling, in cents. NULL means "use the
+   * deployment default" (DEUTSCHMATE_BUDGET).
+   *
+   * It was a server-wide env var, which made sense when the operator paid. Now
+   * the money is theirs, so the cap is theirs — it stops being a limit imposed
+   * on them and becomes a brake they set on their own spending.
+   */
+  budget_cents      INTEGER,
   -- No `daily_goal_min`, no `browse_batch_size`. Both defaulted, neither had a
   -- screen that could change it, and nothing obeyed them — the plan decides how
   -- long a session is and /api/wortschatz owns its page size.

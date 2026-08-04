@@ -10,6 +10,7 @@ import { SOUND_SPELLING } from "@/lib/pairs";
 import { plural, is } from "@/lib/plural";
 import { de } from "@/lib/tags";
 import { spendThisMonth, projectedMonthly, budgetLeft, priceList, isPriced } from "@/lib/cost";
+import { keyState } from "@/lib/apikey";
 import Noun from "@/components/Article";
 import Page, { Section } from "@/components/Page";
 
@@ -87,6 +88,7 @@ export default async function ProgressPage() {
   const projected = projectedMonthly(user.id);
   const budget = budgetLeft(user.id);
   const prices = priceList();
+  const hasKey = keyState(user.id).state === "set";
   /* Calls this app billed for but could not price, because the model is not in
      data/models.json. Zero of them normally; not zero if somebody points their
      own key at a model the catalogue has not caught up with yet. */
@@ -325,9 +327,26 @@ export default async function ProgressPage() {
             than reassuring you with an optimistic one. */}
         <Section title="Kosten · 30 Tage">
           {spend.calls === 0 ? (
-            <p className="text-muted text-[14px] leading-relaxed">
+            <p className="text-muted max-w-[62ch] text-[14px] leading-relaxed">
               Noch kein einziger Modellaufruf. Alles, was du bisher gemacht hast, lief
               lokal — Wiederholungen, Lücken, Tests und Wortschatz kosten nichts.
+              {/* The four features that need one, and where to add it. Said here
+                  because this is the page somebody reads when wondering what
+                  the AI half would cost them: the answer is their own key and
+                  their own cap, both on one screen. */}
+              {hasKey ? (
+                " Gespräch, Schreibkorrektur und Erklärungen laufen über deinen Schlüssel, sobald du sie nutzt."
+              ) : (
+                <>
+                  {" "}
+                  Für Gespräch, Schreibkorrektur und neue Erklärungen brauchst du einen
+                  eigenen Anthropic-Schlüssel —{" "}
+                  <Link href="/einstellungen" className="text-accent hover:underline">
+                    in den Einstellungen
+                  </Link>
+                  .
+                </>
+              )}
             </p>
           ) : (
             <>

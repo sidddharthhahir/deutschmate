@@ -73,21 +73,40 @@ if (!existsSync(envPath)) {
  * regenerated: overwriting it would silently break a dev server that is already
  * running with the old value.
  */
-{
+/**
+ * Generate a secret into .env.local if it is missing or too weak.
+ *
+ * Appended rather than templated, so an existing .env.local gets it too. Never
+ * regenerated once valid: overwriting DEUTSCHMATE_SECRET would make every
+ * stored API key undecryptable, and overwriting the test token would break a
+ * dev server that is already running with the old one.
+ */
+function ensureSecret(name: string, bytes: number, minLength: number, note: string) {
   const body = readFileSync(envPath, "utf8");
-  const existing = body.match(/^DEUTSCHMATE_TEST_AUTH=(.*)$/m)?.[1]?.trim();
-  if (existing && existing.length >= 24) {
-    ok("test credential present");
-  } else {
-    const token = randomBytes(24).toString("hex");
-    const line = `DEUTSCHMATE_TEST_AUTH=${token}\n`;
-    const next = /^DEUTSCHMATE_TEST_AUTH=.*$/m.test(body)
-      ? body.replace(/^DEUTSCHMATE_TEST_AUTH=.*$/m, line.trimEnd())
-      : `${body.endsWith("\n") || body === "" ? body : body + "\n"}${line}`;
-    writeFileSync(envPath, next, "utf8");
-    ok("test credential generated — restart `npm run dev` before `npm test`");
+  const existing = body.match(new RegExp(`^${name}=(.*)$`, "m"))?.[1]?.trim();
+  if (existing && existing.length >= minLength) {
+    ok(`${name} present`);
+    return;
   }
+  const line = `${name}=${randomBytes(bytes).toString("hex")}\n`;
+  const next = new RegExp(`^${name}=.*$`, "m").test(body)
+    ? body.replace(new RegExp(`^${name}=.*$`, "m"), line.trimEnd())
+    : `${body.endsWith("\n") || body === "" ? body : body + "\n"}${line}`;
+  writeFileSync(envPath, next, "utf8");
+  ok(`${name} generated — ${note}`);
 }
+
+/* The test suite's credential. Six suites drive throwaway learners through
+   `?user=`, which is gated on this (src/lib/trust.ts). */
+ensureSecret("DEUTSCHMATE_TEST_AUTH", 24, 24, "restart `npm run dev` before `npm test`");
+
+/* The key that encrypts each learner's Anthropic key. Without it the app
+   refuses to store one at all, rather than writing a live credential belonging
+   to somebody else into the database in the clear.
+
+   Keep it. Changing it does not lose anyone's progress, but it does make every
+   stored API key unreadable, and everyone has to paste theirs again. */
+ensureSecret("DEUTSCHMATE_SECRET", 32, 32, "keep it: it decrypts everyone's stored API key");
 
 // ------------------------------------------------------------------ seed
 console.log("\n  Building the database from data/ …\n");

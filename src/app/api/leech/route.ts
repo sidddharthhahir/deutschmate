@@ -50,7 +50,7 @@ export async function POST(req: Request) {
     const w = leechWord(user.id, cardId);
     if (!w) return notFound(`card ${cardId} not found`);
     if (w.mnemonic) return NextResponse.json({ ok: true, mnemonic: w.mnemonic, source: "cache" });
-    if (!aiAvailable()) return NextResponse.json({ ok: false, reason: "offline" });
+    if (!aiAvailable(user.id)) return NextResponse.json({ ok: false, reason: "offline" });
     try {
       const m = await mnemonicFor(user.id, w);
       recordUsage(user.id, "mnemonic", m.model, m.usage);

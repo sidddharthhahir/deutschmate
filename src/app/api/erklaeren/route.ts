@@ -46,7 +46,7 @@ export async function POST(req: Request) {
     return NextResponse.json({ ok: true, explanation: hit.body_md, source: "cache" });
   }
 
-  if (!aiAvailable()) {
+  if (!aiAvailable(user.id)) {
     // Honest empty-handed answer rather than a fabricated one. Nothing in the
     // app is allowed to depend on this call succeeding (spec §17).
     return NextResponse.json({

@@ -4,8 +4,9 @@
 
 Not a chatbot. Not a flashcard app. Not a grammar reference.
 
-A1.1 → B1.2 in about seven months of self-study, one hour a day. Built for two
-people, runs on a laptop, costs nothing but an API key.
+A1.1 → B1.2 in about seven months of self-study, one hour a day. Runs on a
+laptop or a small box, and costs the person hosting it nothing: the course is
+free, and the four features that need a model run on each learner's own key.
 
 Seven, not six: the deck is 2,400 words and a session introduces at most twelve
 a day, so the vocabulary alone is 200 days. `/fortschritt` shows your own
@@ -25,39 +26,55 @@ npm install
 npm run setup
 ```
 
-`setup` checks your Node version, creates `.env.local`, and builds the whole
-database from the files in `data/` — 2,400 words, 120 units, 36 grammar points,
-38 readings, 1,827 levelled sentences. No network, no downloads.
-
-Then put your key in `.env.local`:
-
-```
-ANTHROPIC_API_KEY=sk-ant-…
-DEUTSCHMATE_BUDGET=5
-```
-
-`DEUTSCHMATE_BUDGET` is dollars per learner per rolling 30 days, and it is
-**enforced, not displayed** — every paid call checks the month's spend first and
-falls back to the offline path once it's gone, exactly as it does with no key at
-all. Default 5, so two flatmates share $10. Set it to 0 to run with no AI
-spending whatever.
-
-And start it:
+`setup` checks your Node version, builds the whole database from the files in
+`data/` — 2,400 words, 120 units, 36 grammar points, 38 readings, 1,827 levelled
+sentences — and generates the two secrets the app needs into `.env.local`. No
+network, no downloads, no API key required.
 
 ```bash
 npm run dev
+npm run invite you@example.com     # prints your sign-in link
 ```
 
-http://localhost:3000 — press Enter.
+Follow the link and press Enter. There is no password: sign-in is a single-use
+link, and email delivery is deliberately not configured, so the link is printed
+in the terminal for you to hand over. `npm run config` shows every setting the
+server is actually using.
 
-### Without an API key
+Add your own Anthropic key later, in **Einstellungen** — see below for exactly
+what it buys and what works without it.
 
-Everything works except three things, and each fails honestly rather than
-silently: **Gespräch** falls back to the unit's scripted dialogue, **Schreiben**
-queues your text and corrects it once a key appears, and **"Erklär mir das"**
-is served from the cache if anyone has asked before, or says it is unavailable.
-Wrong answers are still explained — the rule-based tier needs no key. No feature
-invents an answer.
+### Everyone brings their own key
+
+The course is free and runs on this machine. Four things need a model, and they
+run on **each learner's own Anthropic key**, added in **Einstellungen**:
+
+| Needs a key | Without one |
+|---|---|
+| Gespräch | the unit's scripted dialogue |
+| Schreibkorrektur | your text is queued and corrected when a key appears |
+| "Erklär mir das" | from the cache, if anyone has asked before |
+| Eselsbrücken | unavailable, and says so |
+
+Everything else costs nothing and needs nothing: 2,400 words with audio, 120
+units, 36 grammar points, 38 readings, the FSRS engine, cloze mining, practice
+exams, minimal pairs, walk mode — and **955 prebuilt explanations**, so a wrong
+answer still comes back with a reason. No feature invents an answer.
+
+So this install's bill does not grow with the number of people on it, and
+nobody can spend anybody else's money. About **$2.45 a month** for someone
+studying daily; each learner sets their own cap, and zero is a valid cap.
+
+**The key is stored encrypted** — AES-256-GCM, keyed by `DEUTSCHMATE_SECRET`,
+which `npm run setup` generates. What is in the database is ciphertext plus the
+last four characters for the settings page; the key is never returned to a
+browser, never logged, and never in an HTTP response. That protects a database
+that leaves the machine — a mislaid backup, a copied file — and not somebody who
+can already read the server's environment. That is the honest limit.
+
+`ANTHROPIC_API_KEY` still works as a server-wide fallback for accounts with no
+key of their own, which keeps a single-person install exactly as it was. Leave
+it empty on anything shared.
 
 ### On your phone
 
@@ -229,7 +246,7 @@ Conflating these is how a setting ends up in the wrong place and stays there.
 | **Deployment** | env, read via `src/lib/env.ts` | URL, budget, admin switch, DB path | you move machines |
 | **Provider catalogue** | `data/models.json` | model ids, prices, cache multipliers | Anthropic changes something |
 | **Product constants** | `src/lib/config.ts` | new words per day, review cap, leech threshold | you change the course |
-| **Per learner** | the `user` table | their API key, their cap | any learner, any time |
+| **Per learner** | the `user` table | their API key (encrypted), their spend cap | any learner, any time |
 
 ```bash
 npm run config     # every setting's effective value, the price list, and what looks wrong
@@ -281,7 +298,7 @@ npm test                 # all of them
 npm test text outbox     # only files matching these names
 ```
 
-Twenty-one suites, no framework. Thirteen run anywhere; eight need `npm run dev`
+Twenty-two suites, no framework. Fourteen run anywhere; eight need `npm run dev`
 listening and are **skipped with a message** if it isn't — never quietly
 passed. They use throwaway user ids in the real database, which is how the app
 separates two flatmates, and clean up after themselves.
@@ -309,6 +326,7 @@ separates two flatmates, and clean up after themselves.
 | `undo` | one grade is one attempt row and one step of the curve — never two |
 | `tenancy` | you cannot act as another learner, mint an account, or write to shared content |
 | `auth` | tokens work once, sessions are stored hashed, deleting an account takes its credentials |
+| `apikey` | a stored key is never in the row, never in the response, and never another learner's |
 
 `corpus` and `error-key` are worth a note on how they are written, because both
 guard the same kind of failure.

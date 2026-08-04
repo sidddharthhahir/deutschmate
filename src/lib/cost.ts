@@ -24,6 +24,7 @@ export { priceOf, isPriced, ceiling, type Usage } from "./pricing";
 /* The rates themselves come from data/models.json now — lib/models.ts explains
    why a price table typed into a source file is a number principle 4 forbids. */
 export { priceList, modelFor } from "./models.ts";
+import { budgetFor } from "./apikey.ts";
 
 /**
  * Record a call. Never throws — a failed bookkeeping write must not take down
@@ -117,13 +118,17 @@ export const spendThisMonth = (userId: string) => totals(userId, "-30 days");
 /**
  * How much of the ceiling is left.
  *
- * Per user, so one flatmate cannot spend the other out of a conversation. Two
- * users at the default therefore share a $10 bill, which is the number this app
- * was specified against.
+ * The ceiling is the learner's own if they have set one, and the deployment
+ * default otherwise. It stopped being a limit imposed by the operator the
+ * moment the money became theirs — it is a brake they set on their own
+ * spending, and one they are allowed to set to zero.
+ *
+ * Still per learner either way, so nobody can spend anybody else out of a
+ * conversation.
  */
 export function budgetLeft(userId: string) {
   const spent = spendThisMonth(userId).dollars;
-  const c = budgetCeiling();
+  const c = budgetFor(userId, budgetCeiling());
   return { spent, ceiling: c, remaining: Math.max(0, c - spent) };
 }
 
