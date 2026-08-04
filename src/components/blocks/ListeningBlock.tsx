@@ -35,6 +35,7 @@ export default function ListeningBlock({ payload, onDone, onSkip }: BlockProps<P
   const [checked, setChecked] = useState(false);
   const [speed, setSpeed] = useState(1);
   const [showText, setShowText] = useState(false);
+  const [why, setWhy] = useState<string | undefined>();
   const inputRef = useRef<GermanFieldHandle>(null);
 
   const items = payload.items ?? [];
@@ -67,7 +68,20 @@ export default function ListeningBlock({ payload, onDone, onSkip }: BlockProps<P
   async function check() {
     setChecked(true);
     setShowText(true);
-    await record({ kind: "listening", refId: it.wordId, correct, answer: value, expected: it.de });
+    /* Ask for the "why" on a miss. Mishearing a dictation is almost always a
+       grammar or ending problem — dem for den, a missing -st — and the sentence
+       alone does not say which; the learner has to spot the difference and
+       infer the rule. The explanation is cached server-side by (expected,
+       answer), so the same slip is explained once for everyone. */
+    const res = await record({
+      kind: "listening",
+      refId: it.wordId,
+      correct,
+      answer: value,
+      expected: it.de,
+      explain: !correct,
+    });
+    setWhy(res.explanation);
   }
 
   const target = it.de.replace(/[.,!?]/g, "").split(/\s+/);
@@ -164,7 +178,7 @@ export default function ListeningBlock({ payload, onDone, onSkip }: BlockProps<P
             </div>
             <p className="text-muted mt-3 text-center text-[14px]">{it.en}</p>
             <SentenceCredit credit={it.credit} />
-            <Verdict ok={correct} expected={correct ? undefined : it.de} />
+            <Verdict ok={correct} expected={correct ? undefined : it.de} why={why} />
             <button
               onClick={next}
               className="bg-fg mt-4 w-full rounded-xl py-3.5 font-medium text-[#16211E] transition-colors hover:bg-white"
@@ -183,6 +197,7 @@ export default function ListeningBlock({ payload, onDone, onSkip }: BlockProps<P
     setValue("");
     setChecked(false);
     setShowText(false);
+    setWhy(undefined);
     setI((n) => n + 1);
   }
 }

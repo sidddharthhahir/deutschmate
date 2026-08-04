@@ -125,7 +125,7 @@ npm test                 # all of them
 npm test text outbox     # only files matching these names
 ```
 
-Eight suites, no framework. Five run anywhere; three need `npm run dev`
+Nine suites, no framework. Five run anywhere; four need `npm run dev`
 listening and are **skipped with a message** if it isn't — never quietly
 passed. They use throwaway user ids in the real database, which is how the app
 separates two flatmates, and clean up after themselves.
@@ -140,6 +140,7 @@ separates two flatmates, and clean up after themselves.
 | `progression` | walks a new learner through all 120 units and checks every word gets taught |
 | `unit-carryover` | an oversized unit comes back tomorrow instead of losing its remainder |
 | `grammar` | a taught rule returns when due, with a different drill |
+| `why` | every wrong answer comes back with a reason, on every path, with or without a key |
 
 `progression` is the one that matters. Nothing in the app reports "the learner
 cannot get past A1.1" — it just keeps offering unit 1, which is exactly what

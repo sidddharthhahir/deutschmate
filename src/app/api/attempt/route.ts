@@ -1,16 +1,8 @@
 import { NextResponse } from "next/server";
 import { activeUser } from "@/lib/user";
-import {
-  logAttempt,
-  cachedExplanation,
-  storeExplanation,
-  signatureFor,
-  TAGS,
-  type Tag,
-} from "@/lib/errors";
-import { explainMistake, aiAvailable } from "@/lib/ai";
+import { logAttempt, type Tag } from "@/lib/errors";
+import { whyWrong } from "@/lib/why";
 import { readJson, badRequest, str, bool } from "@/lib/http";
-import { recordUsage } from "@/lib/cost";
 import { introduceWord } from "@/lib/srs";
 import { introduceGrammar } from "@/lib/grammar-srs";
 
@@ -65,30 +57,16 @@ export async function POST(req: Request) {
     return NextResponse.json({ ok: true, tags });
   }
 
-  const sig = signatureFor(expected, answer);
-  let explanation = cachedExplanation(sig);
-  let source: "cache" | "rule" | "model" = "cache";
-
-  if (!explanation) {
-    if (aiAvailable()) {
-      try {
-        const m = await explainMistake(user.id, expected, answer, tags);
-        recordUsage(user.id, "mistake", m.model, m.usage);
-        explanation = m.result;
-        storeExplanation(tags[0] ?? "vocabulary", sig, explanation, "generated");
-        source = "model";
-      } catch {
-        explanation = null;
-      }
-    }
-  }
-
-  // Offline / no key / model failed → the rule-based tag description still
-  // tells the learner something true. The session never dead-ends (spec §17).
-  if (!explanation) {
-    explanation = tags.map((t) => `**${TAGS[t as Tag] ?? t}**`).join("\n\n");
-    source = "rule";
-  }
+  /* Cache → cheap model → rule-based description. Shared with /api/review, so
+     a wrong dictation and a wrong gap are answered the same way and by the
+     same cache. Offline / no key / spent budget all land on the rule, which is
+     still true — the session never dead-ends (spec §17). */
+  const { text: explanation, source } = await whyWrong(
+    user.id,
+    expected,
+    answer,
+    tags as Tag[],
+  );
 
   return NextResponse.json({ ok: true, tags, explanation, source });
 }

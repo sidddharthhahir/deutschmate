@@ -1,8 +1,9 @@
 import { NextResponse } from "next/server";
 import { get } from "@/lib/db";
 import { activeUser } from "@/lib/user";
-import { readJson, badRequest, notFound, str, int } from "@/lib/http";
+import { readJson, badRequest, notFound, str, int, bool } from "@/lib/http";
 import { dueCards, dueCount, gradeCard } from "@/lib/srs";
+import { whyWrong } from "@/lib/why";
 import type { Grade } from "ts-fsrs";
 
 export const runtime = "nodejs";
@@ -68,11 +69,32 @@ export async function POST(req: Request) {
      for anything from a stale tab to a mistyped id. */
   if (!ownsCard(user.id, cardId)) return notFound(`card ${cardId} not found`);
 
+  const answer = str(raw.answer) || undefined;
+  const expected = str(raw.expected) || undefined;
+
   const { due: nextDue, ...rest } = gradeCard(user.id, cardId, grade as Grade, {
-    answer: str(raw.answer) || undefined,
-    expected: str(raw.expected) || undefined,
+    answer,
+    expected,
   });
+
+  /* "Why?" on a typed answer that was wrong.
+     It lives here rather than in a second call to /api/attempt because
+     gradeCard has already logged the attempt — a separate call would log it
+     twice and quietly skew every accuracy figure in the app. Same three tiers
+     as everywhere else: cache, then the cheap model, then the rule-based tag
+     description, so this never becomes a reason a card can't be graded. */
+  let explanation: string | null = null;
+  if (bool(raw.explain) && expected && answer && grade < 3) {
+    explanation = (await whyWrong(user.id, expected, answer)).text;
+  }
+
   // `due` means two different things here — the card's next date and the
   // queue length. Name them apart so the spread can't clobber one.
-  return NextResponse.json({ ok: true, nextDue, ...rest, remaining: dueCount(user.id) });
+  return NextResponse.json({
+    ok: true,
+    nextDue,
+    ...rest,
+    explanation,
+    remaining: dueCount(user.id),
+  });
 }

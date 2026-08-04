@@ -62,6 +62,7 @@ export default function ClozeBlock({ payload, onDone, onSkip }: BlockProps<Paylo
   const [i, setI] = useState(0);
   const [value, setValue] = useState("");
   const [result, setResult] = useState<"right" | "close" | "wrong" | null>(null);
+  const [why, setWhy] = useState<string | null>(null);
   const [dropped, setDropped] = useState(false);
   const input = useRef<GermanFieldHandle>(null);
 
@@ -80,11 +81,19 @@ export default function ClozeBlock({ payload, onDone, onSkip }: BlockProps<Paylo
   const grade = useCallback(
     (g: number, typed: string) => {
       if (!card) return;
-      void send("/api/review", {
+      /* On a miss, ask the same call for the reason. "dem is dative; nach
+         always takes dative, so it is dem here" is a lesson; the corrected
+         sentence on its own is a lookup the learner has to reverse-engineer.
+         The answer is cached server-side by (expected, answer), so the second
+         person to make this exact slip pays nothing for it. */
+      void send<{ explanation?: string | null }>("/api/review", {
         cardId: card.cardId,
         grade: g,
         answer: typed || "—",
         expected: card.answer,
+        explain: g < 3,
+      }).then((res) => {
+        if (res?.explanation) setWhy(res.explanation);
       });
     },
     [card],
@@ -121,6 +130,7 @@ export default function ClozeBlock({ payload, onDone, onSkip }: BlockProps<Paylo
   const next = useCallback(() => {
     setValue("");
     setResult(null);
+    setWhy(null);
     setDropped(false);
     if (i + 1 >= cards.length) onDone();
     else setI((n) => n + 1);
@@ -235,8 +245,15 @@ export default function ClozeBlock({ payload, onDone, onSkip }: BlockProps<Paylo
                   du: {value.trim()}
                 </p>
               )}
-              {/* Only offered when you got it wrong — that is the moment the
-                  rule is worth reading, and it keeps the right-answer path fast. */}
+              {/* The rule you just broke, fetched with the grade. Nothing to
+                  click: on a miss this is the whole point of the card. */}
+              {result !== "right" && why && (
+                <p className="dm-fade mt-3 text-left leading-relaxed opacity-90">{why}</p>
+              )}
+
+              {/* And the whole sentence, on demand, for when the gap was only
+                  half the confusion. Still a click — offering both unasked
+                  would bury the one-line rule above it. */}
               {result !== "right" && <ExplainSentence sentence={card.full} compact />}
             </div>
           )}
