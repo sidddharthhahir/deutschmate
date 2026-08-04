@@ -1,5 +1,6 @@
 import { all, get } from "./db";
 import { LEVELS } from "./session";
+import { masteryByUnit } from "./mastery";
 
 /**
  * The road behind and the road ahead.
@@ -24,6 +25,10 @@ export type UnitTick = {
   ord: number;
   title: string;
   done: boolean;
+  /** Finished AND retained — see lib/mastery.ts. Always implies `done`. */
+  mastered: boolean;
+  /** Share of the unit's words actually learned, 0–100. */
+  pct: number;
   current: boolean;
 };
 
@@ -31,6 +36,8 @@ export type LevelRow = {
   level: string;
   units: UnitTick[];
   done: number;
+  /** Of the finished ones, how many are actually sticking. */
+  mastered: number;
   total: number;
   /** When the last unit of this level was completed, if it is finished. */
   finishedAt: string | null;
@@ -63,20 +70,31 @@ export function roadmap(userId: string, currentUnitId: string | null): LevelRow[
     ).map((r) => [r.level, r.at] as const),
   );
 
+  const mastery = masteryByUnit(userId);
+
   return LEVELS.map((level) => {
     const mine = units.filter((u) => u.level === level);
-    const ticks = mine.map((u) => ({
-      id: u.id,
-      ord: u.ord,
-      title: u.title,
-      done: done.has(u.id),
-      current: u.id === currentUnitId,
-    }));
+    const ticks = mine.map((u) => {
+      const m = mastery.get(u.id);
+      const isDone = done.has(u.id);
+      return {
+        id: u.id,
+        ord: u.ord,
+        title: u.title,
+        done: isDone,
+        // Only a finished unit can be mastered — half a unit you retained is
+        // not a unit you have.
+        mastered: isDone && Boolean(m?.mastered),
+        pct: m?.pct ?? 0,
+        current: u.id === currentUnitId,
+      };
+    });
     const n = ticks.filter((t) => t.done).length;
     return {
       level,
       units: ticks,
       done: n,
+      mastered: ticks.filter((t) => t.mastered).length,
       total: ticks.length,
       /* Only a level with every unit behind it counts as finished. Sliced to a
          date because completed_at is a full datetime and the page formats

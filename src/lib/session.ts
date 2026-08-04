@@ -151,6 +151,44 @@ function wordsIn(ids: string[]): Word[] {
 /** The course, in order. A1.1 → B1.2, exactly the scope in the spec. */
 export const LEVELS = ["A1.1", "A1.2", "A2.1", "A2.2", "B1.1", "B1.2"] as const;
 
+/** Every unit this learner has finished. One query, for the walk below. */
+function completedUnits(userId: string): Set<string> {
+  return new Set(
+    all<{ unit_id: string }>(
+      "SELECT unit_id FROM unit_progress WHERE user_id = ? AND status = 'complete'",
+      userId,
+    ).map((r) => r.unit_id),
+  );
+}
+
+/**
+ * Spec §7: a unit is available once its prerequisites are complete.
+ *
+ * `prereq_json` has been on every unit row since the first migration and was
+ * read nowhere — 120 rows of correct data that nothing consulted, which is a
+ * trap rather than a feature. Either read it or drop the column; it is read
+ * now.
+ *
+ * Today it agrees with `ord` order exactly (each unit requires the one before,
+ * across level boundaries), so this changes no behaviour. It is a guarantee
+ * rather than a change: if the data and the ordering ever disagree, the data
+ * wins, which is the right way round when a curriculum gets reshuffled.
+ *
+ * A prerequisite naming a unit that does not exist is ignored rather than
+ * treated as unmet. A typo in the content files must not be able to strand a
+ * learner on a unit they can never unlock.
+ */
+function prereqsMet(unit: Unit, done: Set<string>, known: Set<string>): boolean {
+  let ids: unknown;
+  try {
+    ids = JSON.parse(unit.prereq_json);
+  } catch {
+    return true; // malformed content is not the learner's problem
+  }
+  if (!Array.isArray(ids)) return true;
+  return ids.every((id) => typeof id !== "string" || !known.has(id) || done.has(id));
+}
+
 /**
  * The current unit — searched across the WHOLE course, not just one level.
  *
@@ -165,17 +203,29 @@ export const LEVELS = ["A1.1", "A1.2", "A2.1", "A2.2", "B1.1", "B1.2"] as const;
  */
 export function currentUnit(userId: string, level: string): Unit | null {
   const start = Math.max(0, LEVELS.indexOf(level as (typeof LEVELS)[number]));
+  const done = completedUnits(userId);
+  const known = new Set(all<{ id: string }>("SELECT id FROM unit").map((r) => r.id));
 
-  for (let i = start; i < LEVELS.length; i++) {
-    const lv = LEVELS[i];
-    for (const u of unitsFor(lv)) {
-      if (unitStatus(userId, u.id) === "complete") continue;
-      if (lv !== level) run("UPDATE user SET level = ? WHERE id = ?", lv, userId);
-      return u;
+  /* Two passes. The first honours prerequisites; the second ignores them.
+     Prerequisites form a linear chain, so one unmet link strands every unit
+     after it — and without the second pass the walk fell through to "the
+     course is finished" and handed a beginner the last unit of B1.2. That is a
+     far worse failure than ignoring a prerequisite: bad content data must
+     never be able to end someone's course. The chain is correct today, so the
+     second pass does not run. */
+  for (const respectPrereqs of [true, false]) {
+    for (let i = start; i < LEVELS.length; i++) {
+      const lv = LEVELS[i];
+      for (const u of unitsFor(lv)) {
+        if (done.has(u.id)) continue;
+        if (respectPrereqs && !prereqsMet(u, done, known)) continue;
+        if (lv !== level) run("UPDATE user SET level = ? WHERE id = ?", lv, userId);
+        return u;
+      }
     }
   }
 
-  // Every unit of every level is done. Stay on the last one rather than
+  // Every unit of every level really is done. Stay on the last one rather than
   // inventing a level beyond B1.2.
   const last = unitsFor(LEVELS[LEVELS.length - 1]);
   return last[last.length - 1] ?? null;

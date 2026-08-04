@@ -44,6 +44,7 @@ export default async function WegPage() {
   const pace = paceProjection(user.id);
 
   const doneUnits = levels.reduce((a, l) => a + l.done, 0);
+  const masteredUnits = levels.reduce((a, l) => a + l.mastered, 0);
   const totalUnits = levels.reduce((a, l) => a + l.total, 0);
   const firstDay = marks[0]?.on ?? null;
 
@@ -78,7 +79,7 @@ export default async function WegPage() {
       lead={
         doneUnits === 0
           ? "Noch nichts abgeschlossen. Diese Seite füllt sich von selbst, sobald die erste Unit fertig ist — hier steht nur, was wirklich passiert ist."
-          : `${doneUnits} von ${totalUnits} Units hinter dir, ${known} von ${deck} Wörtern im Deck.`
+          : `${doneUnits} von ${totalUnits} Units hinter dir, davon ${masteredUnits} wirklich sitzend. ${known} von ${deck} Wörtern im Deck.`
       }
       aside={
         <span className="font-mono text-muted text-[12.5px]">
@@ -112,6 +113,10 @@ export default async function WegPage() {
                   </span>
                   <span className="font-mono text-muted text-[12px] tabular-nums">
                     {l.done} / {l.total}
+                    {/* Finished and retained are different claims, so they are
+                        two numbers. A level you walked through and a level you
+                        can still use are not the same thing. */}
+                    {l.done > 0 && <span className="text-der"> · {l.mastered} sitzen</span>}
                     {l.finishedAt && ` · fertig ${niceDate(l.finishedAt)}`}
                   </span>
                 </div>
@@ -122,13 +127,22 @@ export default async function WegPage() {
                   {l.units.map((u) => (
                     <span
                       key={u.id}
-                      title={`Unit ${u.ord} · ${u.title}`}
+                      title={
+                        `Unit ${u.ord} · ${u.title}` +
+                        (u.done ? ` — ${u.pct}% der Wörter sitzen` : "")
+                      }
+                      /* Three states, not two. A finished unit whose words
+                         have drained away is drawn faintly rather than as a
+                         win — the bar should not say "done" about something
+                         you can no longer do. */
                       className={`h-[10px] flex-1 rounded-[2px] ${
                         u.current
                           ? "bg-accent"
-                          : u.done
+                          : u.mastered
                             ? "bg-der"
-                            : "bg-line"
+                            : u.done
+                              ? "bg-der/35"
+                              : "bg-line"
                       }`}
                     />
                   ))}
@@ -139,9 +153,11 @@ export default async function WegPage() {
         </div>
 
         <p className="text-muted mt-5 max-w-[62ch] text-[12.5px] leading-relaxed">
-          Ein Strich ist eine Unit. Grün heißt abgeschlossen, orange ist die von
-          heute. Die Reihenfolge liegt fest — es gibt nichts auszuwählen, und
-          das ist Absicht.
+          Ein Strich ist eine Unit. Kräftig heißt: durch <em>und</em> mindestens
+          80&nbsp;% der Wörter sitzen wirklich. Blass heißt: durch, aber wieder
+          weggerutscht — die Wörter kommen von selbst zurück, du musst nichts
+          tun. Orange ist die von heute. Die Reihenfolge liegt fest, und das ist
+          Absicht.
         </p>
       </Section>
 

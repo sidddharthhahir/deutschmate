@@ -798,26 +798,57 @@ not in it: `reading`, `cloze`, `exam_run`, `explanation`, `pending_correction`,
 gained `drills_json`. **`src/lib/schema.sql` is the source of truth**, and it
 is commented.
 
-### §7 Mastery and unlocking — two rules were never built
+### §7 Mastery and unlocking — both rules built, one of them split in two
 
-Stated there, absent from the code, and worth knowing before anyone relies on
-them:
+Both were unbuilt for a long time. They are built now, and one of them had to
+change shape on the way in.
 
-**"A unit completes at ≥80% of its words learned AND grammar ≥70"** — no. A
-unit completes when every one of its words has been *introduced*
-(`unseenInUnit()` reaching zero). Nothing checks retention, and grammar
-mastery is never consulted. The looser rule is deliberate now: gating the
-course on retention means a bad fortnight stops you seeing new material, which
-is the point at which people quit. The forgetting curve already handles
-retention; the unit boundary only has to handle coverage.
+**"A unit completes at ≥80% of its words learned AND grammar ≥70"** — built,
+but as *two* states rather than one, because the rule as written breaks the
+course. `currentUnit()` returns the first unit that is not complete, so a
+retention threshold on completion parks the learner on unit 1 for the fortnight
+FSRS takes to reach `state = 2`: no new words, no new grammar, nothing but
+reviews. That is the exact week people quit in.
 
-**"A unit unlocks when its prerequisites are complete"** — no. `prereq_json`
-exists on every unit row and is read nowhere in `src/`. Progression walks
-`ord` order and takes the first unfinished unit. Correct for a linear course,
-wrong the moment one branches.
+So:
+
+| | |
+|---|---|
+| **complete** | every word introduced. Coverage. Drives progression, because showing up must never stall. |
+| **mastered** | ≥80% of those words learned *and* the grammar point solid — the spec's threshold, unchanged. Retention. Drives what the app **says** about you, never what it lets you do. |
+
+Retention is still enforced, just not by a gate: the forgetting curve brings
+words back whether or not the unit is behind you, and `newWordBudget()` already
+cuts the daily intake from twelve to six when the week is going badly.
+
+Mastery is **computed, never stored**, because it goes down — one lapse drops a
+card out of `state = 2`, and a stored status would be a claim about the past
+rendered as a claim about the present. Der Weg draws three tick states now:
+solid for mastered, faint for finished-but-drained, and a `N sitzen` count per
+level. `src/lib/mastery.ts`.
+
+**"A unit unlocks when its prerequisites are complete"** — built, and worth
+being exact about what it buys, because it is easy to oversell. Every unit
+requires exactly the one before it and units can only be completed in that
+order, so "first unit whose prerequisites are met" and "first unfinished unit"
+are provably the same unit. **The check changes no outcome today.** What it
+buys is that `prereq_json` is no longer 120 rows of correct data that nothing
+reads — a trap for whoever touches this next — and that if the data and `ord`
+ever disagree, the data wins.
+
+Two safety rules came out of building it, both from a test that caught the
+first version handing a beginner the last unit of B1.2:
+
+- an unmet prerequisite on a **linear** chain blocks everything downstream, so
+  when *nothing* is available the walk retries ignoring prerequisites. Bad
+  content data must never be able to end someone's course.
+- a prerequisite naming a unit that does not exist is **ignored**, not treated
+  as unmet. A one-character typo must not silently change the curriculum.
 
 Also in §7: **grammar mastery is not a rolling accuracy**. It is a card-state
-count — `reps >= 3 AND state = 2`, the same shape as vocabulary.
+count — `reps >= 3 AND state = 2`, the same definition vocabulary uses, and now
+the same one mastery uses. Three different meanings of "learned" would have
+been worse than one imperfect one.
 
 ### §11 · §14 counts
 

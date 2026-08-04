@@ -97,7 +97,7 @@ mistakes, new material, listening, speaking, a quiz — then stops.
 | **Wortschatz** | All 2,400 words, 2,373 of them with native audio. |
 | **Üben** | Where *you* choose: scenarios, grammar, tests, pronunciation. |
 | **Fortschritt** | Every number is a count of something you did. |
-| **Der Weg** | All 120 units at once, what you can now do, and dated milestones. |
+| **Der Weg** | All 120 units at once, which of them are still sticking, what you can now do, and dated milestones. |
 
 And the parts that aren't a course:
 
@@ -226,7 +226,7 @@ npm test                 # all of them
 npm test text outbox     # only files matching these names
 ```
 
-Twelve suites, no framework. Seven run anywhere; five need `npm run dev`
+Thirteen suites, no framework. Seven run anywhere; six need `npm run dev`
 listening and are **skipped with a message** if it isn't — never quietly
 passed. They use throwaway user ids in the real database, which is how the app
 separates two flatmates, and clean up after themselves.
@@ -242,6 +242,7 @@ separates two flatmates, and clean up after themselves.
 | `outbox` | the offline queue: what is retried, what is dropped, what survives a corrupt store |
 | `progression` | walks a new learner through all 120 units and checks every word gets taught |
 | `unit-carryover` | an oversized unit comes back tomorrow instead of losing its remainder |
+| `mastery` | finishing ≠ retaining, retention never blocks progression, and bad prerequisite data can't strand anyone |
 | `recycle` | old scenarios and readings come back, and say where they came from |
 | `grammar` | a taught rule returns when due, with a different drill |
 | `why` | every wrong answer comes back with a reason, on every path, with or without a key |
@@ -289,7 +290,7 @@ src/lib/       the engine — scheduling, session builder, error tagging, AI
 src/app/       22 pages and 17 API routes
 src/components/blocks/   the 14 block types a session is made of
 scripts/       content generation and maintenance
-tests/         12 suites, run with `npm test`
+tests/         13 suites, run with `npm test`
 public/audio/  2,381 native recordings from Wikimedia Commons (37 MB)
 ```
 
@@ -304,6 +305,7 @@ The engine, in the order a session touches it:
 | `why.ts` | the three-tier answer to "warum?" |
 | `ai.ts` · `coaching.ts` | the five model calls, and what the tutor knows about you |
 | `cost.ts` · `pricing.ts` | what it cost, and the ceiling that stops it |
+| `mastery.ts` | finished vs actually retained — two states, only one of them a gate |
 | `journey.ts` | the roadmap and milestones behind Der Weg |
 | `outbox.ts` | the offline queue — answers given on a train |
 
@@ -374,8 +376,5 @@ the [Goethe-Institut](https://www.goethe.de/de/spr/kup/prf.html).
 - **The Progress page is eleven sections in flat order.** Every number on it is
   real, but nothing says which to read first. `/weg` took the long-arc half
   away; the remainder still needs a hierarchy.
-- **Unit prerequisites are in the schema and never read.** `prereq_json` exists
-  on every unit; progression walks straight down `ord`. That is fine for a
-  linear course and would be wrong the moment one branched.
 - **Speech recognition is Chrome-only.** Speaking and voice mode degrade to
   listen-and-repeat elsewhere, and say so.
