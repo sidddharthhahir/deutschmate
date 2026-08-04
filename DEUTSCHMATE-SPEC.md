@@ -1009,11 +1009,26 @@ appears on:
 - **`Zeit — 0 h in 30 Tagen`** after a session you had just finished. True about
   hours; reads as "you have done nothing", on the page for showing that you have.
 
-One thing found and deliberately not fixed: **Z cannot undo the last card of a
-review block**, because the block unmounts the moment the queue empties and the
-grade commits. Holding it open for the five-second window would put a dead pause
-at the end of every review. Pre-existing and unchanged by the take-back fix —
-recorded here rather than quietly left.
+**Z on the last card.** Found in the same pass and initially left alone, then
+fixed: the footer advertises the undo on every card and it worked on all of them
+but the one people most often fumble — the last, when you are already reaching
+for what comes next.
+
+The obvious fix, delaying `onDone()` by five seconds, buys the promise at the
+price of a dead pause at the end of every review block. So the block ends **on a
+card instead of on nothing**: the word you just graded, still takeable back, with
+Weiter under it. Press Weiter or Enter and you leave at once; ignore it and the
+window closes by itself and the session moves on. The stall only exists for
+someone who was going to stop and look anyway.
+
+`closing` is derived — `queue.length === 0 && undo !== null` — rather than
+stored, so the timer clearing `undo` is the same event that advances the block,
+and there is no setState cascade in an effect.
+
+`tests/undo.test.mts` pins the fact underneath it, which is about rows and not
+about a render: one grade writes exactly one attempt row and takes exactly one
+step of the curve. It keeps the old bug in as a live demonstration — two sends
+really do write two rows — because that is what the take-back used to produce.
 
 ### Things that are empty but honest
 

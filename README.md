@@ -1,4 +1,4 @@
-# DeutschMate
+﻿# DeutschMate
 
 **DeutschMate is a German teacher.**
 
@@ -239,7 +239,7 @@ npm test                 # all of them
 npm test text outbox     # only files matching these names
 ```
 
-Eighteen suites, no framework. Twelve run anywhere; six need `npm run dev`
+Nineteen suites, no framework. Twelve run anywhere; seven need `npm run dev`
 listening and are **skipped with a message** if it isn't — never quietly
 passed. They use throwaway user ids in the real database, which is how the app
 separates two flatmates, and clean up after themselves.
@@ -264,6 +264,7 @@ separates two flatmates, and clean up after themselves.
 | `corpus` | the sentence rotation covers the corpus over a course, not just over a month |
 | `error-key` | 41 mistakes a beginner really makes, each one reaching a specific prebuilt explanation |
 | `strings` | no HTML entity survives into a string literal, where JSX will not decode it |
+| `undo` | one grade is one attempt row and one step of the curve — never two |
 
 `corpus` and `error-key` are worth a note on how they are written, because both
 guard the same kind of failure.
@@ -425,10 +426,6 @@ the [Goethe-Institut](https://www.goethe.de/de/spr/kup/prf.html).
 - **`/alltag` needs the network.** Those six scenarios are conversations by
   design and carry no scripted fallback, so offline they say so and offer the
   phrase list instead of a dialogue. Unit scenarios do have a script.
-
-- **Z cannot undo the last card of a review block.** The block ends the moment
-  the queue empties, and the grade commits with it. Holding it open for the
-  five-second window would put a dead pause at the end of every review.
 
 ### A note on how these were found
 

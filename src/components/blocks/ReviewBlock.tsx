@@ -106,9 +106,31 @@ export default function ReviewBlock({ payload, onDone }: BlockProps<Payload>) {
     play();
   }, [play]);
 
+  /**
+   * The last card had no undo window.
+   *
+   * Grading it emptied the queue, the effect below fired `onDone()` in the same
+   * tick, the block unmounted and the grade committed — so "Z zurücknehmen
+   * (5 s)", printed in the footer of every review, was true for every card
+   * except the one people most often fumble: the last one, when you are already
+   * reaching for whatever comes next.
+   *
+   * Delaying `onDone()` by five seconds would have fixed it by putting a dead
+   * pause at the end of every review block, which is a worse app. So the block
+   * ends on a card instead of on nothing: what you just graded, still takeable
+   * back, with Weiter under it. Press it and you leave immediately; ignore it
+   * and the window closes on its own and the session moves on.
+   *
+   * Derived, not stored. Setting it in an effect would be a setState cascade,
+   * and `undo` is already the exact state that means "a grade is still
+   * reversible" — when the timer clears it, this flips false and the effect
+   * advances.
+   */
+  const closing = queue.length === 0 && undo !== null;
+
   useEffect(() => {
-    if (!queue.length) onDone();
-  }, [queue.length, onDone]);
+    if (queue.length === 0 && !closing) onDone();
+  }, [queue.length, closing, onDone]);
 
   const grade = useCallback(
     (g: number) => {
@@ -141,16 +163,36 @@ export default function ReviewBlock({ payload, onDone }: BlockProps<Payload>) {
     if (undoTimer.current) clearTimeout(undoTimer.current);
   }, [undo]);
 
-  /* Leaving the block closes the window early rather than dropping the grade —
-     the last card of a review would otherwise be lost every single time. */
+  /** Weiter on the closing card: send it now and go, rather than waiting. */
+  const finishNow = useCallback(() => {
+    if (undoTimer.current) clearTimeout(undoTimer.current);
+    commit();
+    setUndo(null); // clears `closing`, and the effect above advances
+  }, [commit]);
+
+  /* Leaving the block closes the window early rather than dropping the grade.
+     Still needed even with the closing card: skipping the block, or the session
+     unmounting for any other reason, must not drop a held grade. */
   useEffect(() => commit, [commit]);
 
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
-      if (!card) return;
       // A window listener does not care what has focus. Without this, typing
       // in the command palette grades the card behind it.
       if (shouldIgnoreKey(e)) return;
+
+      // The closing card takes two keys and no others — the same Z it has been
+      // advertising all block, and the usual Enter/Space to move on.
+      if (closing) {
+        if (e.key === "z" || e.key === "Z") takeBack();
+        else if (e.key === " " || e.key === "Enter") {
+          e.preventDefault();
+          finishNow();
+        }
+        return;
+      }
+
+      if (!card) return;
       if (e.key === " " || e.key === "Enter") {
         e.preventDefault();
         setRevealed(true);
@@ -164,7 +206,63 @@ export default function ReviewBlock({ payload, onDone }: BlockProps<Payload>) {
     }
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [card, revealed, grade, play, undo, takeBack]);
+  }, [card, revealed, grade, play, undo, takeBack, closing, finishNow]);
+
+  if (closing && undo) {
+    const c = undo.card;
+    const noun = c.pos === "noun";
+    return (
+      <main className="bg-bg flex min-h-screen flex-col">
+        <div className="flex flex-none flex-col gap-3.5 px-6 pt-6 md:px-10">
+          <div className="flex items-center gap-4 md:gap-8">
+            <span className="font-mono text-muted hidden w-[160px] text-[12.5px] md:block">
+              Esc&nbsp;&nbsp;Beenden
+            </span>
+            <div className="flex flex-1 gap-1">
+              <span className="bg-line h-1 flex-1 overflow-hidden rounded-[2px]">
+                <span className="bg-fg block h-1" style={{ width: "100%" }} />
+              </span>
+            </div>
+            <span className="font-mono text-secondary w-[110px] text-right text-[12.5px] md:w-[160px]">
+              fertig
+            </span>
+          </div>
+          <div className="font-mono text-muted text-center text-[12.5px]">
+            {total} von {total} bewertet
+          </div>
+        </div>
+
+        <div className="dm-rise flex flex-1 flex-col items-center justify-center gap-5 px-6 text-center">
+          <p className="font-mono text-muted text-[11.5px] tracking-[0.14em] uppercase">
+            zuletzt bewertet
+          </p>
+          <p className="font-serif break-de text-[40px] leading-tight font-semibold md:text-[52px]">
+            <Noun article={noun ? c.article : null}>{c.lemma}</Noun>
+          </p>
+          <p className="text-secondary text-[19px]">{c.en}</p>
+
+          <div className="mt-6 flex w-full max-w-[420px] flex-col gap-2.5">
+            <button
+              onClick={finishNow}
+              className="bg-fg w-full rounded-xl py-3.5 font-medium text-[#16211E] transition-colors hover:bg-white"
+            >
+              Weiter
+            </button>
+            <button
+              onClick={takeBack}
+              className="border-line text-secondary hover:border-line-strong hover:text-fg w-full rounded-xl border py-3 text-[14px] transition-colors"
+            >
+              Z&nbsp;&nbsp;zurücknehmen
+            </button>
+          </div>
+
+          <p className="text-muted max-w-[44ch] text-[12.5px] leading-relaxed">
+            Die Bewertung ist noch nicht abgeschickt. Sie geht raus, sobald du weitergehst.
+          </p>
+        </div>
+      </main>
+    );
+  }
 
   if (!card) return null;
 

@@ -325,8 +325,14 @@ function SessionRunner() {
             Du warst bei Block {offer.at + 1} von {blocks.length}
           </h1>
           <p className="text-secondary mt-3 text-[14.5px] leading-relaxed">
-            {Math.round(offer.saved.spentMs / 60000)} Minuten sind schon gezählt. Weiter
-            mit „{blocks[offer.at]?.title}“?
+            {/* Rounding a part-minute to 0 said "0 Minuten sind schon gezählt"
+                on a resume offer whose entire job is telling you the time was
+                kept. Floor at one, and agree with it. */}
+            {(() => {
+              const m = Math.max(1, Math.round(offer.saved.spentMs / 60000));
+              return `${plural(m, "Minute", "Minuten")} ${m === 1 ? "ist" : "sind"} schon gezählt.`;
+            })()}{" "}
+            Weiter mit „{blocks[offer.at]?.title}“?
           </p>
 
           <div className="mt-7 flex flex-col gap-2.5">
