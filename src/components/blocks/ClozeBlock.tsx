@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import { speak } from "@/lib/speech";
@@ -7,6 +7,7 @@ import { send } from "@/lib/outbox";
 import { GermanInput, type GermanFieldHandle } from "@/components/GermanInput";
 import ExplainSentence from "@/components/ExplainSentence";
 import { Card, Eyebrow, Progress, SkipLink, type BlockProps } from "./shared";
+import { de } from "@/lib/tags";
 
 type ClozeCard = {
   cardId: number;
@@ -25,21 +26,6 @@ const SOURCE_LABEL: Record<string, string> = {
   error: "aus deinem Fehler",
   reading: "aus deinem Lesetext",
   manual: "aus deinen Problemwörtern",
-};
-
-const TAG_LABEL: Record<string, string> = {
-  "article-gender": "Artikel",
-  "article-akkusativ": "Akkusativ",
-  "verb-ending": "Verbendung",
-  "verb-position-2": "Verbstellung",
-  "verb-final": "Infinitiv am Ende",
-  plural: "Plural",
-  negation: "nicht / kein",
-  pronoun: "Pronomen",
-  capitalisation: "Großschreibung",
-  spelling: "Rechtschreibung",
-  "word-order": "Wortstellung",
-  vocabulary: "Wortwahl",
 };
 
 const norm = (s: string) =>
@@ -183,7 +169,7 @@ export default function ClozeBlock({ payload, onDone, onSkip }: BlockProps<Paylo
         <Card>
           <p className="font-mono text-muted mb-5 text-center text-[11.5px]">
             {SOURCE_LABEL[card.source] ?? card.source}
-            {card.tag && ` · ${TAG_LABEL[card.tag] ?? card.tag}`}
+            {card.tag && ` · ${de(card.tag)}`}
           </p>
 
           <p className="font-serif mx-auto max-w-[46ch] text-center text-[24px] leading-[1.55] md:text-[28px]">

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Card, Eyebrow, Progress, Option, Verdict, SkipLink, record, type BlockProps } from "./shared";
+import { de } from "@/lib/tags";
 
 type Drill = { q: string; options: string[]; a: number; why: string; from: string; slug: string };
 type Payload = {
@@ -54,7 +55,9 @@ export default function FixBlock({ payload, onDone, onSkip }: BlockProps<Payload
         <ul className="mt-2.5 space-y-1.5">
           {payload.tags.map((t) => (
             <li key={t.tag} className="text-secondary flex justify-between text-[14px]">
-              <span>{t.label}</span>
+              {/* de(), not t.label — the label is the English description that
+                  goes into a model prompt, and this is a German screen. */}
+              <span>{de(t.tag)}</span>
               <span className="font-mono text-muted">{t.n}×</span>
             </li>
           ))}

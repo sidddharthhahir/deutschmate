@@ -7,6 +7,8 @@ import { LEECH_THRESHOLD, leeches } from "@/lib/leech";
 import { examHistory, type SectionScore } from "@/lib/exam";
 import { grammarStats } from "@/lib/grammar-srs";
 import { SOUND_SPELLING } from "@/lib/pairs";
+import { plural, is } from "@/lib/plural";
+import { de } from "@/lib/tags";
 import { spendThisMonth, projectedMonthly, budgetLeft } from "@/lib/cost";
 import Noun from "@/components/Article";
 import Page, { Section } from "@/components/Page";
@@ -133,8 +135,8 @@ export default async function ProgressPage() {
         <Section title={`Grammatik — ${gram.solid} von ${gram.total}`}>
           <Bar value={gram.solid} max={gram.total} />
           <p className="text-muted mt-3 max-w-[62ch] text-[12.5px] leading-relaxed">
-            {gram.inDeck} Regeln sind eingeführt und werden wiederholt, {gram.solid} davon
-            sitzen (3+ Wiederholungen). Grammatik läuft auf derselben Vergessenskurve wie
+            {plural(gram.inDeck, "Regel", "Regeln")} {is(gram.inDeck)} eingeführt und {is(gram.inDeck) === "ist" ? "wird" : "werden"} wiederholt, {gram.solid} davon
+            {gram.solid === 1 ? " sitzt" : " sitzen"} (3+ Wiederholungen). Grammatik läuft auf derselben Vergessenskurve wie
             Wörter — eine Regel, die du einmal gesehen hast, ist keine Regel, die du kannst.
           </p>
         </Section>
@@ -142,9 +144,10 @@ export default async function ProgressPage() {
         {pace && (
           <Section title="Tempo">
             <p className="font-serif text-[19px] leading-relaxed">
-              {pace.done} Units in {pace.days} Tagen — das sind{" "}
+              {plural(pace.done, "Unit", "Units")} in {plural(pace.days, "Tag", "Tagen")} — das sind{" "}
               <span className="text-accent">{pace.perWeek} pro Woche</span>. Bei diesem Tempo
-              sind die restlichen {pace.remaining} in etwa {pace.weeksLeft} Wochen durch,
+              sind die restlichen {pace.remaining} in etwa {plural(pace.weeksLeft, "Woche", "Wochen")}{" "}
+              durch,
               also um den{" "}
               <span className="text-accent">
                 {new Date(pace.finish).toLocaleDateString("de-DE", {
@@ -211,7 +214,11 @@ export default async function ProgressPage() {
                   href={`/fehler/${t.tag}`}
                   className="hover:bg-raised -mx-3 flex items-baseline justify-between gap-4 rounded-lg px-3 py-1.5 text-[14px] transition-colors"
                 >
-                  <span className="text-secondary">{t.label}</span>
+                  {/* `t.label` is the English description — it exists for the
+                      AI brief and for the rule tier of an explanation, and it
+                      was being printed here under a German heading beside
+                      German bars. */}
+                  <span className="text-secondary">{de(t.tag)}</span>
                   <span className="font-mono text-muted flex-none">{t.n}× →</span>
                 </Link>
               ))}
@@ -395,7 +402,17 @@ export default async function ProgressPage() {
           )}
         </Section>
 
-        <Section title={`Zeit — ${Math.round(totalMinutes / 60)} h in 30 Tagen`}>
+        {/* Minutes below the first hour. `Math.round(m / 60)` printed "0 h in
+            30 Tagen" for a real session you had just finished — a true
+            statement about hours that reads as "you have done nothing", on the
+            page whose job is to show that you have. */}
+        <Section
+          title={
+            totalMinutes < 60
+              ? `Zeit — ${plural(totalMinutes, "Minute", "Minuten")} in 30 Tagen`
+              : `Zeit — ${Math.round(totalMinutes / 60)} h in 30 Tagen`
+          }
+        >
           {days.length === 0 ? (
             <p className="text-muted text-[14px]">Noch keine Sitzung abgeschlossen.</p>
           ) : (

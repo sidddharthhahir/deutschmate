@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Link from "next/link";
 import { Suspense, useCallback, useEffect, useMemo, useRef, useState } from "react";
@@ -22,6 +22,7 @@ import { useOnline } from "@/lib/hooks";
 import { cachePlan, cachedPlan, flush, onOutboxChange, pendingCount, send } from "@/lib/outbox";
 import { myKey } from "@/lib/who";
 import { shouldIgnoreKey } from "@/lib/keys";
+import { plural } from "@/lib/plural";
 
 type Block = {
   kind: string;
@@ -371,7 +372,9 @@ function SessionRunner() {
            does not. */
         nextUnit={
           carryOver > 0
-            ? `${plan.unit?.title} weiter · ${carryOver} Wörter`
+            ? // "1 Wörter" is what a machine writes. This line is read by
+              // someone learning the language it is written in.
+              `${plan.unit?.title} weiter · ${plural(carryOver, "Wort", "Wörter")}`
             : plan.next
               ? plan.next.title
               : null
@@ -434,7 +437,7 @@ function SessionRunner() {
         <div className="font-mono text-muted text-center text-[12.5px]">
           {block.title} · Block {i + 1} von {blocks.length}
           {offline && " · offline"}
-          {pending > 0 && ` · ${pending} wartet auf Sync`}
+          {pending > 0 && ` · ${plural(pending, "Antwort wartet", "Antworten warten")} auf Sync`}
         </div>
       </div>
 

@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { speak, listenOnce } from "@/lib/speech";
 import { useSpeechSupported } from "@/lib/hooks";
 import { GermanInput, UmlautBar } from "@/components/GermanInput";
-import { Card, Eyebrow, SkipLink, type BlockProps } from "./shared";
+import { Card, Eyebrow, SkipLink, record, type BlockProps } from "./shared";
 
 type Scenario = { role: string; goal: string; opener: string };
 type DialogueOption = { say: string; ok: boolean; why?: string; next: number };
@@ -33,6 +33,8 @@ export default function ConversationBlock({ payload, onDone, onSkip }: BlockProp
   const [input, setInput] = useState("");
   const [thinking, setThinking] = useState(false);
   const [step, setStep] = useState(0);
+  /** Whether every scripted choice so far was the right one. */
+  const scriptOk = useRef(true);
   const [scriptLog, setScriptLog] = useState<
     { who: "them" | "you"; text: string; why?: string }[]
   >([]);
@@ -199,9 +201,34 @@ export default function ConversationBlock({ payload, onDone, onSkip }: BlockProp
     }
   }
 
+  /**
+   * The scripted conversation logs too.
+   *
+   * Only the live path recorded anything, and the live path needs an API key —
+   * so with no key, which is the state this app ships in, every conversation
+   * anyone had left no trace at all. /ueben's "N geführt" stayed at 0 forever,
+   * the same feature and the same column that was fixed for the live path an
+   * hour earlier. Half a fix looks exactly like a whole one from the outside.
+   */
   function pick(o: DialogueOption) {
     setScriptLog((l) => [...l, { who: "you", text: o.say, why: o.ok ? undefined : o.why }]);
+    if (!o.ok) {
+      scriptOk.current = false;
+      const right = dialogue[step]?.options.find((x) => x.ok);
+      void record({
+        kind: "conversation",
+        refId: payload.unitId,
+        correct: false,
+        answer: o.say,
+        expected: right?.say,
+      });
+    }
     if (o.next === -1 || !dialogue[o.next]) {
+      // One row for a conversation with nothing wrong in it, so that talking
+      // well is recorded rather than only talking badly.
+      if (scriptOk.current) {
+        void record({ kind: "conversation", refId: payload.unitId, correct: true });
+      }
       setTimeout(onDone, 1200);
       return;
     }

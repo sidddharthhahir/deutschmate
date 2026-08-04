@@ -9,6 +9,7 @@ import { lastExam } from "@/lib/exam";
 import { LEVELS } from "@/lib/session";
 import Page, { Section, Tile } from "@/components/Page";
 import PendingTexts from "./PendingTexts";
+import { plural } from "@/lib/plural";
 
 export const dynamic = "force-dynamic";
 
@@ -92,7 +93,7 @@ export default async function PracticePage() {
           <Tile
             href="/session"
             title="Wiederholen"
-            sub={due ? `${due} Karten fällig` : "nichts fällig"}
+            sub={due ? `${plural(due, "Karte", "Karten")} fällig` : "nichts fällig"}
           />
           <Tile href="/wortschatz" title="Wortschatz lesen" sub="alle Wörter durchblättern" />
           <Tile

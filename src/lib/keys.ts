@@ -27,9 +27,14 @@ export function isTypingTarget(e: KeyboardEvent): boolean {
   if (!el) return false;
   return (
     ["INPUT", "TEXTAREA", "SELECT"].includes(el.tagName) ||
-    el.isContentEditable ||
-    // A native <dialog> or an element that has opted out explicitly.
-    el.closest?.("[contenteditable='true']") !== null
+    Boolean(el.isContentEditable) ||
+    /* `!== null` was wrong for a target with no closest() at all — window and
+       document both yield undefined through the optional chain, and undefined
+       !== null is true, so every global shortcut was silently swallowed. Real
+       key events target the focused element and always have closest(), so no
+       user ever hit it; a synthetic event dispatched on window does, which is
+       how it turned up. Boolean() is right for both. */
+    Boolean(el.closest?.("[contenteditable='true']"))
   );
 }
 

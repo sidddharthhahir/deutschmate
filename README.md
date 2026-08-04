@@ -426,12 +426,34 @@ the [Goethe-Institut](https://www.goethe.de/de/spr/kup/prf.html).
   design and carry no scripted fallback, so offline they say so and offer the
   phrase list instead of a dialogue. Unit scenarios do have a script.
 
+- **Z cannot undo the last card of a review block.** The block ends the moment
+  the queue empties, and the grade commits with it. Holding it open for the
+  five-second window would put a dead pause at the end of every review.
+
 ### A note on how these were found
 
-Spec §21 lists a sweep for one specific failure shape: a feature that renders
-correctly over a mechanism that is not connected. It found nine of them,
-including a conversation tracker that could never be true, an offline queue for
-written texts that stored nothing, and a sentence rotation reaching 6% of the
-corpus behind a comment claiming it covered all of it. None of them errored,
-none broke a test, and every one of them looked right on screen. If you are
-reading this repo to judge it, read §21 first.
+Spec §21 lists a sweep for one failure shape: a feature that renders correctly
+over a mechanism that is not connected. It found nine, including a conversation
+tracker that could never be true, an offline queue for written texts that stored
+nothing, and a sentence rotation reaching 6% of the corpus behind a comment
+claiming it covered all of it.
+
+Three passes, each finding what the one before it structurally could not:
+
+| | |
+|---|---|
+| reading the code | disconnected mechanisms, dead columns, drifted duplicates |
+| reading the rendered HTML | a button printing `&apos;` — the source looked like the working case |
+| **doing an hour of German** | a recap that reported the session had not happened |
+
+That last one is worth the detail. The recap counters animate up from zero with
+`requestAnimationFrame`, browsers do not run rAF in a background tab, and there
+was no fallback — so finishing a session and locking your phone left **0 Minuten
+· 0 neue Wörter · 0 %** on the screen the code itself calls "the screen that
+decides whether you come back tomorrow". The database had it all along.
+
+The same pass caught the conversation tracker still broken one commit after
+being fixed: the fix had gone into the live path, which needs an API key, while
+the scripted fallback — the only path that runs without one — was untouched.
+
+If you are reading this repo to judge it, read §21 and §22 first.

@@ -963,6 +963,58 @@ therefore the place a claim goes wrong most quietly:
 - *"One button, then six to nine blocks"*. Five always run once you are inside a
   unit; ten is the ceiling. §3 above said 4–10 and that was loose too.
 
+### A third pass, from using it
+
+Reading the code found disconnected mechanisms. Reading the rendered HTML found
+a raw entity. Neither of them can find what only appears when you sit down and
+do an hour of German, so that happened next: a throwaway learner on `/wer`, the
+tour, a full session — twelve new words, eight dictations, a sentence built, a
+conversation, an eight-question quiz — the recap, and then every page that now
+had numbers on it.
+
+**The recap reported that the session had not happened.** 0 Minuten · 0 neue
+Wörter · 0 Wiederholungen · 0 %, under a heading saying "Heute geschafft", with
+the database holding all of it correctly. The counters animate up from zero with
+`requestAnimationFrame`, and a browser does not run rAF in a background tab — so
+finish a session, lock your phone or switch tabs before the recap paints, and
+the numbers never leave zero. Permanently: the effect has already run.
+
+The code's own comment calls this "the screen that decides whether you come back
+tomorrow". A timer now lands the final value whether or not a frame is ever
+drawn; the animation is decoration over a number that arrives regardless.
+
+**The conversation tracker was still broken, one commit after being fixed.**
+§21 above records adding the unit id to the conversation review call. That is
+the *live* path, and the live path needs an API key — so with no key, which is
+the state the app ships in, every conversation still logged nothing and
+"N geführt" was still permanently 0. The scripted fallback, the only path that
+runs today, was never touched. Half a fix is indistinguishable from a whole one
+until someone uses the thing.
+
+Also found by using it, each small and each visible on the first screen it
+appears on:
+
+- **`dieEntschuldigung`.** The article's gap was a CSS margin and not a space,
+  so it looked right and copied wrong — and a screen reader said it as one word.
+- **`1 Wörter`, `1 Karten fällig`, `1 Regeln sind eingeführt`, `1 Sitzungen`.**
+  Correct for every value except one, on an app whose subject is the language it
+  is getting wrong. `lib/plural.ts`, including verb agreement, because fixing
+  only the noun leaves "1 Regel **sind**".
+- **`Wrong word chosen`** on Fortschritt, under a German heading, next to German
+  bars — while the recap called the same tag `Wortwahl` one click earlier. There
+  were **three** copies of the tag names: English in errors.ts, and a different
+  German map each in SessionRecap and ClozeBlock, neither aware of the four tags
+  added with the prebuilt explanations. Now `lib/tags.ts`, which imports nothing
+  so client components can use it, with DE for the interface and EN for prompts.
+- **`Zeit — 0 h in 30 Tagen`** after a session you had just finished. True about
+  hours; reads as "you have done nothing", on the page for showing that you have.
+
+One thing found and deliberately not fixed: **Z cannot undo the last card of a
+review block**, because the block unmounts the moment the queue empties and the
+grade commits. Holding it open for the five-second window would put a dead pause
+at the end of every review. Pre-existing and unchanged by the take-back fix —
+recorded here rather than quietly left.
+
 ### Things that are empty but honest
 
 `video` has no rows, and the session only offers a video once it has

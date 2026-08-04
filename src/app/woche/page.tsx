@@ -1,8 +1,9 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 import AppHeader from "@/components/AppHeader";
 import { all, get } from "@/lib/db";
 import { activeUser } from "@/lib/user";
-import { TAGS, type Tag } from "@/lib/errors";
+import { de } from "@/lib/tags";
+import { plural, word } from "@/lib/plural";
 
 export const dynamic = "force-dynamic";
 
@@ -121,14 +122,29 @@ export default async function WeekPage() {
         ) : (
           <>
             <div className="mt-8 grid grid-cols-2 gap-6 md:grid-cols-4">
-              <Stat n={minutes} label="Minuten" sub={delta(minutes, prevMinutes, "min")} />
-              <Stat n={sessions} label="Sitzungen" sub={`von 7 Tagen`} />
-              <Stat n={newWords} label="Neue Wörter" sub={`${reviews} Wiederholungen`} />
+              {/* The label sits under the number and still has to agree with
+                  it — "1 Sitzungen" is wrong German on a German-teaching app,
+                  layout notwithstanding. */}
+              <Stat
+                n={minutes}
+                label={word(minutes, "Minute", "Minuten")}
+                sub={delta(minutes, prevMinutes, "min")}
+              />
+              <Stat
+                n={sessions}
+                label={word(sessions, "Sitzung", "Sitzungen")}
+                sub="von 7 Tagen"
+              />
+              <Stat
+                n={newWords}
+                label={word(newWords, "Neues Wort", "Neue Wörter")}
+                sub={plural(reviews, "Wiederholung", "Wiederholungen")}
+              />
               <Stat
                 n={accuracy}
                 label="Richtig"
                 suffix="%"
-                sub={acc?.t ? `${acc.t} Antworten` : "—"}
+                sub={acc?.t ? plural(acc.t, "Antwort", "Antworten") : "—"}
               />
             </div>
 
@@ -238,7 +254,7 @@ function TagRows({ rows }: { rows: Row[] }) {
           className="hover:bg-raised -mx-3 flex items-baseline justify-between gap-4 rounded-lg px-3 py-1.5 transition-colors"
         >
           <span className="text-secondary text-[14px]">
-            {TAGS[r.tag as Tag] ?? r.tag}
+            {de(r.tag)}
           </span>
           <span className="font-mono text-muted flex-none text-[12.5px] tabular-nums">
             {r.before === 0 ? `neu · ${r.now}×` : `${r.before}× → ${r.now}×`}

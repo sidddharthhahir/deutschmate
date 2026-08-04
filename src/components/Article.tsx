@@ -23,7 +23,7 @@ export function ArticleWord({ article }: { article: string }) {
 export default function Noun({
   article,
   children,
-  gap = "mr-[0.3em]",
+  gap = "",
 }: {
   article?: string | null;
   children: ReactNode;
@@ -35,6 +35,11 @@ export default function Noun({
       <span className={`${COLOUR[article.toLowerCase()] ?? "text-muted"} ${gap}`}>
         {article}
       </span>
+      {/* A real space, not only a margin.
+          The gap used to be `mr-[0.3em]` and nothing else, so it looked right
+          and the text was one word: copying "die Entschuldigung" out of the app
+          to paste into a dictionary gave "dieEntschuldigung", and a screen
+          reader announced it as one. A space costs the same 0.25em. */}{" "}
       {children}
     </>
   );

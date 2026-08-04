@@ -1,5 +1,6 @@
 import { all, get, run } from "./db";
 import { patternFor } from "./error-key.ts";
+import { TAG_EN, type Tag } from "./tags.ts";
 
 /**
  * Error tagging — the entire personalisation engine (spec §9).
@@ -9,26 +10,10 @@ import { patternFor } from "./error-key.ts";
  * mistakes IS adaptive learning, and it stays debuggable.
  */
 
-export const TAGS = {
-  "article-gender": "Wrong article (der/die/das)",
-  "article-akkusativ": "Nominative article where accusative is needed",
-  "article-dativ": "Dative needed (mit, nach, bei, seit, von, zu, aus)",
-  "article-genitiv": "Genitive needed",
-  "verb-ending": "Wrong verb ending for the subject",
-  "verb-position-2": "Verb not in second position",
-  "verb-final": "Infinitive not at the end after a modal",
-  "perfekt-hilfsverb": "haben or sein in the perfect",
-  "praeposition": "Wrong preposition",
-  "plural": "Wrong plural form",
-  "negation": "nicht vs kein",
-  "pronoun": "Wrong pronoun (du / Sie / ihr)",
-  "capitalisation": "Nouns are capitalised in German",
-  "spelling": "Spelling — often umlaut or ß",
-  "word-order": "Word order",
-  "vocabulary": "Wrong word chosen",
-} as const;
-
-export type Tag = keyof typeof TAGS;
+/* The names live in lib/tags.ts, which imports nothing, so the client
+   components that show them can import it too — they each used to keep a
+   private German copy and all three had drifted. */
+export { TAG_EN as TAGS, TAG_DE, de, en, type Tag } from "./tags.ts";
 
 /* Article forms, grouped by the case they mark, so a swap can be classified
    rather than lumped under "wrong article". The dative set is what makes
@@ -185,7 +170,10 @@ export function topErrorTags(userId: string, days = 14, limit = 3) {
   return [...counts.entries()]
     .sort((a, b) => b[1] - a[1])
     .slice(0, limit)
-    .map(([tag, n]) => ({ tag, n, label: TAGS[tag as Tag] ?? tag }));
+    /* `label` is English because its consumers are the AI coaching brief and
+       the rule tier of an explanation. Screens use TAG_DE — see lib/tags.ts
+       for why there are two and which belongs where. */
+    .map(([tag, n]) => ({ tag, n, label: TAG_EN[tag as Tag] ?? tag }));
 }
 
 /**

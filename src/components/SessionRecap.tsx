@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { ArticleWord } from "@/components/Article";
+import { de } from "@/lib/tags";
 
 /**
  * Count a number up on mount.
@@ -11,6 +12,22 @@ import { ArticleWord } from "@/components/Article";
  * recap is the screen that decides whether you come back tomorrow. Kept short
  * (700ms), eased out so it settles rather than stops, and skipped entirely
  * under prefers-reduced-motion.
+ *
+ * THE ANIMATION WAS ALSO THE VALUE.
+ *
+ * `n` starts at 0 and only ever reaches the real number because a
+ * requestAnimationFrame callback walks it there. Browsers do not run rAF in a
+ * background tab — so finish a session, lock your phone or switch tabs before
+ * the recap paints, and it reads **0 Minuten · 0 neue Wörter · 0
+ * Wiederholungen · 0 %** for a session you actually did. Permanently: the
+ * effect has already run, and nothing sets the value again.
+ *
+ * The database was right the whole time; only the screen was wrong, and it was
+ * wrong on the one screen the comment above calls the reason people come back.
+ *
+ * So the frame loop is now decoration over a value that arrives regardless: a
+ * timer lands the final number whether or not a single frame was ever drawn.
+ * Timers are throttled in a background tab, not cancelled.
  */
 function useCountUp(target: number | null, ms = 700) {
   const [n, setN] = useState(0);
@@ -20,8 +37,8 @@ function useCountUp(target: number | null, ms = 700) {
     if (target === null || target === 0) return;
 
     // Reduced motion runs the same code path with a zero duration, so the
-    // first frame lands on the final value. Keeps every setState inside the
-    // rAF callback rather than firing one synchronously in the effect body.
+    // first frame lands on the final value. Keeps every setState inside a
+    // callback rather than firing one synchronously in the effect body.
     const duration = window.matchMedia("(prefers-reduced-motion: reduce)").matches ? 0 : ms;
     const start = performance.now();
 
@@ -31,9 +48,16 @@ function useCountUp(target: number | null, ms = 700) {
       if (t < 1) raf.current = requestAnimationFrame(tick);
     };
 
-    raf.current = requestAnimationFrame(tick);
+    // Only bother animating if there is a screen to animate on.
+    if (!document.hidden) raf.current = requestAnimationFrame(tick);
+
+    // The number, guaranteed. Fires after the animation would have finished,
+    // and is the only thing that runs at all in a backgrounded tab.
+    const settle = setTimeout(() => setN(target), duration + 250);
+
     return () => {
       if (raf.current) cancelAnimationFrame(raf.current);
+      clearTimeout(settle);
     };
   }, [target, ms]);
 
@@ -62,21 +86,6 @@ export type Recap = {
  *   Wiederholungen   attempts today where kind='review'
  *   Richtig %        SUM(correct) / COUNT(*) over all of today's attempts
  */
-const TAG_LABEL: Record<string, string> = {
-  "article-gender": "der / die / das",
-  "article-akkusativ": "der vs. den",
-  "verb-ending": "Verbendung",
-  "verb-position-2": "Verb an Position 2",
-  "verb-final": "Infinitiv am Ende",
-  plural: "Plural",
-  negation: "nicht vs. kein",
-  pronoun: "du / Sie / ihr",
-  capitalisation: "Großschreibung",
-  spelling: "Rechtschreibung",
-  "word-order": "Wortstellung",
-  vocabulary: "Wortwahl",
-};
-
 const WEEKDAY = ["Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag"];
 
 export default function SessionRecap({
@@ -138,7 +147,7 @@ export default function SessionRecap({
                     <ArticleWord article="der" /> vs. <ArticleWord article="der" />n
                   </>
                 ) : (
-                  (TAG_LABEL[mistake] ?? mistake)
+                  de(mistake)
                 )}
               </Field>
             )}

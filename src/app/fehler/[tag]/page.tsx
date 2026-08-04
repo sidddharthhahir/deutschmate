@@ -1,9 +1,9 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 import { notFound } from "next/navigation";
 import AppHeader from "@/components/AppHeader";
 import { all, get } from "@/lib/db";
 import { activeUser } from "@/lib/user";
-import { TAGS, type Tag } from "@/lib/errors";
+import { de } from "@/lib/tags";
 
 export const dynamic = "force-dynamic";
 
@@ -49,7 +49,7 @@ const KIND_LABEL: Record<string, string> = {
 
 export default async function TagPage({ params }: { params: Promise<{ tag: string }> }) {
   const { tag } = await params;
-  const label = TAGS[tag as Tag];
+  const label = de(tag);
   if (!label) notFound();
 
   const user = await activeUser();

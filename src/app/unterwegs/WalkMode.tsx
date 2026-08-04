@@ -1,9 +1,10 @@
-"use client";
+﻿"use client";
 
 import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { playAudio, speak } from "@/lib/speech";
 import { send } from "@/lib/outbox";
+import { plural } from "@/lib/plural";
 
 type Card = {
   cardId: number;
@@ -181,7 +182,10 @@ export default function WalkMode({ cards }: { cards: Card[] }) {
   if (phase === "idle") {
     return (
       <div className="border-line rounded-[14px] border p-6 md:p-8">
-        <p className="font-serif text-[21px]">{cards.length} Wörter, etwa {Math.round((cards.length * (THINK + 2.2)) / 60)} Minuten</p>
+        <p className="font-serif text-[21px]">
+          {plural(cards.length, "Wort", "Wörter")}, etwa{" "}
+          {plural(Math.max(1, Math.round((cards.length * (THINK + 2.2)) / 60)), "Minute", "Minuten")}
+        </p>
         <p className="text-secondary mt-3 max-w-[54ch] text-[14.5px] leading-relaxed">
           Kopfhörer rein, Handy in die Tasche. Deutsch, {THINK} Sekunden Pause, dann die
           Bedeutung. Du musst nichts drücken und nichts bewerten.
