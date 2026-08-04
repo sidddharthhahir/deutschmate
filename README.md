@@ -239,7 +239,7 @@ npm test                 # all of them
 npm test text outbox     # only files matching these names
 ```
 
-Seventeen suites, no framework. Eleven run anywhere; six need `npm run dev`
+Eighteen suites, no framework. Twelve run anywhere; six need `npm run dev`
 listening and are **skipped with a message** if it isn't — never quietly
 passed. They use throwaway user ids in the real database, which is how the app
 separates two flatmates, and clean up after themselves.
@@ -263,6 +263,7 @@ separates two flatmates, and clean up after themselves.
 | `who` | two flatmates on one browser get separate keys, and a queued answer replays to whoever gave it |
 | `corpus` | the sentence rotation covers the corpus over a course, not just over a month |
 | `error-key` | 41 mistakes a beginner really makes, each one reaching a specific prebuilt explanation |
+| `strings` | no HTML entity survives into a string literal, where JSX will not decode it |
 
 `corpus` and `error-key` are worth a note on how they are written, because both
 guard the same kind of failure.

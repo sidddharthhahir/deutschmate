@@ -73,7 +73,12 @@ const STEPS: Step[] = [
   },
   {
     eyebrow: "Your day",
-    title: "One button, then six to nine blocks.",
+    /* "six to nine" was a guess. Five always run once you are inside a unit —
+       input, Sätze bauen, an output block, the conversation and Abschluss —
+       and the other five appear only when there is something to do: reviews
+       due, mistakes to fix, gaps mined, grammar coming back, new material not
+       yet met today. */
+    title: "One button, then five to ten blocks.",
     body: (
       <>
         <p>
@@ -154,13 +159,20 @@ const STEPS: Step[] = [
   },
   {
     eyebrow: "Bad days",
-    title: "Twenty minutes beats zero.",
+    title: "A short session beats none.",
     body: (
       <>
+        {/* Said "Twenty minutes beats zero" and told you to look for a button
+            labelled "Nur 20 Minuten". Both were wrong and one of them had just
+            stopped existing: the short session is up to four blocks and nearer
+            28 minutes, so the button now names the rule instead of a number,
+            and this had to follow it. An instruction that points at a label
+            which is not there is the worst kind — it reads perfectly. */}
         <p>
-          Under the big button there is <De de="Nur 20 Minuten" en="only 20 minutes" />. It
-          runs only the parts that decay if skipped — reviews, Fix, gaps — and then stops.
-          Use it on the day you would otherwise skip entirely.
+          Under the big button there is{" "}
+          <De de="Kürzere Sitzung heute" en="a shorter session today" />. It runs only the
+          parts that decay if skipped — reviews, Fix, gaps, grammar — and nothing new. Use
+          it on the day you would otherwise skip entirely.
         </p>
         <p>
           For the walk to uni there is <De de="Unterwegs" en="on the move" />: headphones
@@ -295,7 +307,15 @@ export default function Tour({ firstRun }: { firstRun: boolean }) {
             href="/"
             className="bg-fg rounded-xl px-7 py-3.5 font-medium text-[#16211E] transition-colors hover:bg-white"
           >
-            {firstRun ? "Let&apos;s go" : "Done"}
+            {/* A real apostrophe, not the HTML entity for one.
+                JSX decodes entities in text and does not decode them inside a
+                string literal, so this button printed the entity itself — the
+                last thing anyone sees before starting, on the one screen
+                written for someone who has never opened the app. The lint rule
+                that asks for the entity applies only to JSX text, which is
+                exactly why the habit gets carried somewhere it is wrong.
+                tests/strings.test.mts scans for it now. */}
+            {firstRun ? "Let’s go" : "Done"}
           </Link>
         ) : (
           <button

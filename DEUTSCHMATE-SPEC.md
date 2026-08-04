@@ -13,7 +13,7 @@
 >
 > - the deck reached **2,400 words**, so the course is nearer **seven months**
 >   than six (§4 still says six)
-> - a session is **4–10 blocks**, not 6, and old scenarios and readings now come
+> - a session is **5–10 blocks**, not 6, and old scenarios and readings now come
 >   back on a rotation (§3)
 > - the $10 ceiling is **enforced before every paid call**, not just planned
 >   against (§13)
@@ -736,7 +736,7 @@ rest of the document still describes the app.
 
 | Change | Why |
 |---|---|
-| Blocks 2 and 5 each split into several | *Fix* became **Fix · Lücken · Grammatik-Wdh.**; *Output* became **Sprechen/Schreiben** and **Gespräch** as two slots, not one. A session is 4–10 blocks, not 6 — and block 1 is absent entirely when nothing is due, which is every day of the first week. |
+| Blocks 2 and 5 each split into several | *Fix* became **Fix · Lücken · Grammatik-Wdh.**; *Output* became **Sprechen/Schreiben** and **Gespräch** as two slots, not one. A session is 5–10 blocks, not 6 — five always run once you are inside a unit, and the other five appear only when there is something to do. Block 1 is absent entirely when nothing is due, which is every day of the first week. |
 | Speaking gets two output days in three | The spec listed speaking, writing and conversation as one rotating slot, which gave speaking a third of days. It is the skill self-study destroys, and the only one that costs nothing per use — Web Speech is in the browser, writing correction is a model call. The free skill was the rationed one. |
 | Old readings and scenarios come back | Words and grammar were on a forgetting curve; situations were one-and-done. A scenario is the slowest thing here to build and the fastest to lose. Every third conversation and every other reading is one from a unit finished over a week ago, labelled with its origin. |
 | A short session exists | `?kurz=1` runs blocks 1–2 only. Not in the spec; added because the alternative to a bad-day escape valve is a broken streak. It can legitimately be empty. |
@@ -930,6 +930,38 @@ and `browse_batch_size` — both defaulted, neither editable anywhere, neither
 obeyed. `word.mnemonic` was on this list too; instead of removing it, it is now
 generated on demand for leeches and stored on the shared row, so the second
 person to hit the same wall gets it free.
+
+### A second pass, from a screenshot
+
+The sweep above read code, data and wiring. It could not have found what a
+photograph of the screen found in a second: a button reading **Let&amp;apos;s
+go**, on the last step of the tour, the moment before a first-time user starts.
+
+JSX decodes HTML entities in text and does **not** decode them inside a string
+literal. `<span>Let&amp;apos;s go</span>` is right; `{cond ? "Let&amp;apos;s go"
+: "Done"}` prints the ampersand. Same six characters, same file, a few lines
+apart, opposite answers — and the lint rule that asks for the entity applies
+only to the first case, so the habit gets learned somewhere it is required and
+carried somewhere it is wrong.
+
+A scan of every string literal in `src`, `data` and `scripts` found exactly one.
+`tests/strings.test.mts` keeps it that way, and asserts its own detector can
+still tell the two cases apart, because a check that cannot go red is
+decoration.
+
+Then every route was fetched and its **rendered text** read — not its source —
+looking for stray entities, `undefined`, `NaN`, `[object Object]`, mojibake and
+empty pages, at desktop and at 375px. Nothing else came back. What did come back
+were two stale claims in the tour, which is the app's longest piece of prose and
+therefore the place a claim goes wrong most quietly:
+
+- *"Twenty minutes beats zero"*, telling you to look for a button labelled **Nur
+  20 Minuten** — a label that had stopped existing an hour earlier, when that
+  same button was corrected for saying twenty minutes about a session nearer
+  twenty-eight. An instruction pointing at a control that is not there is the
+  worst kind: it reads perfectly.
+- *"One button, then six to nine blocks"*. Five always run once you are inside a
+  unit; ten is the ceiling. §3 above said 4–10 and that was loose too.
 
 ### Things that are empty but honest
 
