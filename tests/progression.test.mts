@@ -8,7 +8,7 @@
  *
  * needs: server, seeded database
  */
-import { get, post, ok, section, done, scratchUser, nextDay, open } from "./harness.mts";
+import { get, post, ok, section, done, scratchUser, nextDay, open, BASE } from "./harness.mts";
 
 const U = scratchUser("test-progression");
 
@@ -98,5 +98,19 @@ section("exam scope follows the level");
 const exam = await get(`/api/pruefung?user=${U}`);
 ok(exam.level === "B1.2", "the exam is built at the learner's level", exam.level);
 ok(exam.total > 0, "and has questions", `total=${exam.total}`);
+
+section("Der Weg reflects the walk");
+/* The roadmap and milestone page reads unit_progress and the attempt log
+   directly rather than through an API, so this is the only place it can be
+   checked against a learner who genuinely finished the course. Fetched with a
+   cookie because the page identifies the learner the way a browser does. */
+const weg = await fetch(`${BASE}/weg`, { headers: { Cookie: `dm_user=${U}` } });
+ok(weg.ok, "the page renders", weg.status);
+const html = await weg.text();
+ok(html.includes("120 von 120"), "it counts every unit as done");
+ok(/A1\.1[\s\S]{0,400}fertig/.test(html), "and dates the levels that are finished");
+ok(html.includes("Das kannst du jetzt"), "the can-do list is present");
+ok(!html.includes("Noch keine abgeschlossene Unit"), "and is not showing its empty state");
+ok(html.includes("B1.2 abgeschlossen"), "the last level appears as a milestone");
 
 done();

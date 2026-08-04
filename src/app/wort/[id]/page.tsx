@@ -26,6 +26,22 @@ type Word = {
   example_en: string | null;
 };
 
+/** Attempt kinds, in the learner's language rather than the schema's. */
+const MET_LABEL: Record<string, string> = {
+  "new-vocab": "eingeführt",
+  review: "Wiederholung",
+  fix: "Fehlerrunde",
+  cloze: "Lücke",
+  listening: "Hören",
+  reading: "Lesen",
+  builder: "Satzbau",
+  speaking: "Sprechen",
+  writing: "Schreiben",
+  conversation: "Gespräch",
+  quiz: "Quiz",
+  video: "Video",
+};
+
 /**
  * Word detail — everything the app knows about one word.
  * Pure joins over data that already exists.
@@ -47,6 +63,23 @@ export default async function WordPage({ params }: { params: Promise<{ id: strin
     reps: number; lapses: number; stability: number; due: string; state: number;
   }>(
     "SELECT reps, lapses, stability, due, state FROM card WHERE user_id=? AND ref_type='word' AND ref_id=?",
+    user.id,
+    id,
+  );
+
+  /* Where this word has actually turned up for this learner, and how often.
+     A card's rep count says the flashcard came round; this says the word was
+     in a reading, a listening clip and a conversation — which is the thing
+     that makes a word feel known rather than merely revised. */
+  const met = all<{ kind: string; n: number }>(
+    `SELECT kind, COUNT(*) AS n FROM attempt
+      WHERE user_id = ? AND ref_id = ? GROUP BY kind ORDER BY n DESC`,
+    user.id,
+    id,
+  );
+  const metTotal = met.reduce((a, m) => a + m.n, 0);
+  const metSpan = get<{ first: string; last: string }>(
+    "SELECT MIN(created_at) AS first, MAX(created_at) AS last FROM attempt WHERE user_id = ? AND ref_id = ?",
     user.id,
     id,
   );
@@ -146,6 +179,29 @@ export default async function WordPage({ params }: { params: Promise<{ id: strin
                 {(JSON.parse(unit.can_do_json) as string[]).join(" · ")}
               </p>
             </div>
+          </Section>
+        )}
+
+        {metTotal > 0 && (
+          <Section title={`Getroffen · ${metTotal}×`}>
+            <div className="flex flex-wrap gap-1.5">
+              {met.map((m) => (
+                <span
+                  key={m.kind}
+                  className="border-line bg-surface font-mono rounded-full border px-3 py-1.5 text-[12.5px]"
+                >
+                  <span className="text-secondary">{MET_LABEL[m.kind] ?? m.kind}</span>
+                  <span className="text-muted"> {m.n}×</span>
+                </span>
+              ))}
+            </div>
+            {metSpan?.first && (
+              <p className="font-mono text-muted mt-3 text-[11.5px]">
+                zuerst {metSpan.first.slice(0, 10)}
+                {metSpan.last.slice(0, 10) !== metSpan.first.slice(0, 10) &&
+                  ` · zuletzt ${metSpan.last.slice(0, 10)}`}
+              </p>
+            )}
           </Section>
         )}
 

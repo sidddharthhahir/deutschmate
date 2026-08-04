@@ -33,7 +33,14 @@ Then put your key in `.env.local`:
 
 ```
 ANTHROPIC_API_KEY=sk-ant-…
+DEUTSCHMATE_BUDGET=5
 ```
+
+`DEUTSCHMATE_BUDGET` is dollars per learner per rolling 30 days, and it is
+**enforced, not displayed** — every paid call checks the month's spend first and
+falls back to the offline path once it's gone, exactly as it does with no key at
+all. Default 5, so two flatmates share $10. Set it to 0 to run with no AI
+spending whatever.
 
 And start it:
 
@@ -86,6 +93,7 @@ mistakes, new material, listening, speaking, a quiz — then stops.
 | **Wortschatz** | All 2,400 words, 2,373 of them with native audio. |
 | **Üben** | Where *you* choose: scenarios, grammar, tests, pronunciation. |
 | **Fortschritt** | Every number is a count of something you did. |
+| **Der Weg** | All 120 units at once, what you can now do, and dated milestones. |
 
 And the parts that aren't a course:
 
@@ -117,7 +125,7 @@ npm test                 # all of them
 npm test text outbox     # only files matching these names
 ```
 
-Seven suites, no framework. Four run anywhere; three need `npm run dev`
+Eight suites, no framework. Five run anywhere; three need `npm run dev`
 listening and are **skipped with a message** if it isn't — never quietly
 passed. They use throwaway user ids in the real database, which is how the app
 separates two flatmates, and clean up after themselves.
@@ -126,6 +134,7 @@ separates two flatmates, and clean up after themselves.
 |---|---|
 | `content` | every word belongs to a unit, every reference resolves, every noun has an article |
 | `fresh-clone` | seeds a throwaway database from `data/` alone and checks nothing is missing |
+| `cost` | token pricing, the cache saving, and the budget ceiling |
 | `text` | cloze gaps and exam scoring |
 | `outbox` | the offline queue: what is retried, what is dropped, what survives a corrupt store |
 | `progression` | walks a new learner through all 120 units and checks every word gets taught |

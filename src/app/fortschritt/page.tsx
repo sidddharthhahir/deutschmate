@@ -45,9 +45,6 @@ export default async function ProgressPage() {
     user.id,
   );
 
-  const levels = all<{ level: string; total: number }>(
-    "SELECT level, COUNT(*) AS total FROM unit GROUP BY level ORDER BY level",
-  );
   const completed = new Set(
     all<{ unit_id: string }>(
       "SELECT unit_id FROM unit_progress WHERE user_id=? AND status='complete'",
@@ -148,35 +145,23 @@ export default async function ProgressPage() {
           </Section>
         )}
 
+        {/* The 120-unit map used to be drawn here as well. Two copies of the
+            same picture is one too many, and this page is the 30-day window —
+            the course arc belongs on the page that is about the arc. */}
         <Section title={`Units — ${completed.size} von ${unitsByLevel.length}`}>
-          <div className="space-y-4">
-            {levels.map((lv) => {
-              const us = unitsByLevel.filter((u) => u.level === lv.level);
-              const doneN = us.filter((u) => completed.has(u.id)).length;
-              return (
-                <div key={lv.level}>
-                  <div className="mb-1.5 flex items-baseline justify-between">
-                    <span className="font-mono text-secondary text-[12.5px]">{lv.level}</span>
-                    <span className="font-mono text-muted text-[11.5px]">
-                      {doneN} / {us.length}
-                    </span>
-                  </div>
-                  {/* One cell per unit — 120 cells total, readable at a glance. */}
-                  <div className="flex gap-1">
-                    {us.map((u) => (
-                      <span
-                        key={u.id}
-                        title={`${u.ord}. ${u.title}`}
-                        className={`h-2 flex-1 rounded-[1px] ${
-                          completed.has(u.id) ? "bg-accent" : "bg-line"
-                        }`}
-                      />
-                    ))}
-                  </div>
-                </div>
-              );
-            })}
-          </div>
+          <Bar value={completed.size} max={unitsByLevel.length} />
+          <Link
+            href="/weg"
+            className="border-line hover:border-line-strong hover:bg-raised group mt-4 flex items-center justify-between rounded-[14px] border px-5 py-4 transition-all"
+          >
+            <span className="flex flex-col gap-0.5">
+              <span className="text-[15px] font-medium">Der Weg</span>
+              <span className="font-mono text-muted text-[12px]">
+                alle 120 Units · was du schon kannst · Meilensteine
+              </span>
+            </span>
+            <span className="text-muted group-hover:text-fg transition-colors">→</span>
+          </Link>
         </Section>
 
         {perSkill.length > 0 && (
