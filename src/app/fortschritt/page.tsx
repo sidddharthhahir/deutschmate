@@ -6,7 +6,7 @@ import { currentStreak, paceProjection } from "@/lib/session";
 import { LEECH_THRESHOLD, leeches } from "@/lib/leech";
 import { examHistory, type SectionScore } from "@/lib/exam";
 import { grammarStats } from "@/lib/grammar-srs";
-import { spendThisMonth, projectedMonthly } from "@/lib/cost";
+import { spendThisMonth, projectedMonthly, budgetLeft } from "@/lib/cost";
 import Noun from "@/components/Article";
 import Page, { Section } from "@/components/Page";
 
@@ -74,6 +74,7 @@ export default async function ProgressPage() {
   const pace = paceProjection(user.id);
   const spend = spendThisMonth(user.id);
   const projected = projectedMonthly(user.id);
+  const budget = budgetLeft(user.id);
 
   return (
     <Page
@@ -344,11 +345,48 @@ export default async function ProgressPage() {
                 </div>
               )}
 
+              {/* The ceiling is enforced, not just displayed: every paid call
+                  checks it first and falls back to the offline path when it is
+                  gone. Showing the same number the guard uses means the bar and
+                  the behaviour can never drift apart. */}
+              <div className="mt-6">
+                <div className="flex items-baseline justify-between text-[12.5px]">
+                  <span className="text-secondary">
+                    Budget · {budget.spent.toFixed(2)} $ von {budget.ceiling.toFixed(2)} $
+                  </span>
+                  <span className="text-muted font-mono tabular-nums">
+                    {budget.remaining <= 0
+                      ? "aufgebraucht"
+                      : `${budget.remaining.toFixed(2)} $ übrig`}
+                  </span>
+                </div>
+                <div className="bg-line mt-2 h-[3px] w-full overflow-hidden rounded-full">
+                  <div
+                    className={`h-full rounded-full ${
+                      budget.remaining <= 0 ? "bg-das" : "bg-der"
+                    }`}
+                    style={{
+                      width: `${Math.min(100, budget.ceiling ? (budget.spent / budget.ceiling) * 100 : 100)}%`,
+                    }}
+                  />
+                </div>
+              </div>
+
               <p className="text-muted mt-4 max-w-[62ch] text-[12.5px] leading-relaxed">
                 Gezählte Tokens, gerechnet mit den Standardpreisen — Aktionspreise können
-                es günstiger machen, nie teurer. Das Budget waren 10 $ im Monat.
-                {projected !== null && projected > 8 && (
-                  <span className="text-das"> Das wird knapp.</span>
+                es günstiger machen, nie teurer.
+                {budget.remaining <= 0 ? (
+                  <span className="text-das">
+                    {" "}
+                    Das Budget ist aufgebraucht: Gespräch, Schreibkorrektur und neue
+                    Erklärungen pausieren bis zum nächsten Fenster. Der Rest der App läuft
+                    weiter.
+                  </span>
+                ) : (
+                  projected !== null &&
+                  projected > budget.ceiling * 0.8 && (
+                    <span className="text-das"> Das wird knapp.</span>
+                  )
                 )}
               </p>
             </>

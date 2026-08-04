@@ -72,7 +72,7 @@ export async function POST(req: Request) {
   if (!explanation) {
     if (aiAvailable()) {
       try {
-        const m = await explainMistake(expected, answer, tags);
+        const m = await explainMistake(user.id, expected, answer, tags);
         recordUsage(user.id, "mistake", m.model, m.usage);
         explanation = m.result;
         storeExplanation(tags[0] ?? "vocabulary", sig, explanation, "generated");

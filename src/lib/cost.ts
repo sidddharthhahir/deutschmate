@@ -1,5 +1,5 @@
 import { all, get, run } from "./db";
-import { priceOf as price, type Usage as U } from "./pricing";
+import { priceOf as price, ceiling as budgetCeiling, type Usage as U } from "./pricing";
 
 /**
  * What the AI actually costs.
@@ -15,7 +15,7 @@ import { priceOf as price, type Usage as U } from "./pricing";
  * than reassuring you with a number that turns out to be optimistic.
  */
 
-export { priceOf, PRICES, type Usage } from "./pricing";
+export { priceOf, PRICES, ceiling, type Usage } from "./pricing";
 
 /**
  * Record a call. Never throws — a failed bookkeeping write must not take down
@@ -93,6 +93,19 @@ function totals(userId: string, since: string): Spend {
 }
 
 export const spendThisMonth = (userId: string) => totals(userId, "-30 days");
+
+/**
+ * How much of the ceiling is left.
+ *
+ * Per user, so one flatmate cannot spend the other out of a conversation. Two
+ * users at the default therefore share a $10 bill, which is the number this app
+ * was specified against.
+ */
+export function budgetLeft(userId: string) {
+  const spent = spendThisMonth(userId).dollars;
+  const c = budgetCeiling();
+  return { spent, ceiling: c, remaining: Math.max(0, c - spent) };
+}
 
 /**
  * Projected monthly spend from the last 30 days.

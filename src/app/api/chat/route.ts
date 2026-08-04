@@ -44,7 +44,13 @@ export async function POST(req: Request) {
 
   try {
     if (action === "review") {
-      const rev = await reviewConversation({ level: user.level, history });
+      const rev = await reviewConversation({
+        userId: user.id,
+        level: user.level,
+        history,
+      });
+      // null means there was nothing the learner said to review.
+      if (!rev) return NextResponse.json({ corrections: [] });
       recordUsage(user.id, "review", rev.model, rev.usage);
       const corrections = rev.result;
       for (const c of corrections) {
@@ -88,6 +94,7 @@ export async function POST(req: Request) {
     const vocabulary = knownVocabulary(user.id);
 
     const { reply, model, usage } = await converse({
+      userId: user.id,
       level: user.level,
       vocabulary,
       scenario,

@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { activeUser } from "@/lib/user";
 import { readJson, badRequest, str, bool } from "@/lib/http";
 import { recordUsage } from "@/lib/cost";
-import { correctWriting, aiAvailable } from "@/lib/ai";
+import { correctWriting, aiAvailable, BudgetExceeded } from "@/lib/ai";
 import { logAttempt, type Tag } from "@/lib/errors";
 import { all, get, run } from "@/lib/db";
 
@@ -46,6 +46,7 @@ export async function POST(req: Request) {
 
   try {
     const call = await correctWriting({
+      userId: user.id,
       level: user.level,
       prompt,
       body: text,
@@ -68,14 +69,22 @@ export async function POST(req: Request) {
     }
 
     return NextResponse.json(result);
-  } catch {
+  } catch (e) {
+    /* Queue rather than lose the text — including when the month's budget is
+       spent, where the queue drains by itself once the window rolls forward.
+       The reason is passed through so the page can say which it was; "we could
+       not reach the model" and "you have used this month's budget" call for
+       different things from the reader. */
     run(
       "INSERT INTO pending_correction (user_id, prompt, body) VALUES (?, ?, ?)",
       user.id,
       prompt,
       text,
     );
-    return NextResponse.json({ queued: true, reason: "call-failed" });
+    return NextResponse.json({
+      queued: true,
+      reason: e instanceof BudgetExceeded ? "budget" : "call-failed",
+    });
   }
 }
 
@@ -96,6 +105,7 @@ export async function GET(req: Request) {
   for (const p of pending.slice(0, 5)) {
     try {
       const call = await correctWriting({
+        userId: user.id,
         level: user.level,
         prompt: p.prompt,
         body: p.body,

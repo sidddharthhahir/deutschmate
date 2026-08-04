@@ -56,7 +56,11 @@ export async function POST(req: Request) {
   }
 
   try {
-    const { result: md, model, usage } = await explainSentence(sentence, user.level);
+    const { result: md, model, usage } = await explainSentence(
+      user.id,
+      sentence,
+      user.level,
+    );
     recordUsage(user.id, "explain", model, usage);
     run(
       `INSERT INTO explanation (signature, sentence, level, body_md)

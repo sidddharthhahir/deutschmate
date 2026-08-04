@@ -12,9 +12,36 @@ export const PRICES: Record<string, { in: number; out: number }> = {
   "claude-haiku-4-5": { in: 1.0, out: 5.0 },
 };
 
-/** Anthropic's cache multipliers: reads are cheap, writes cost a little extra. */
+/**
+ * Anthropic's cache multipliers: reads are cheap, writes cost a little extra.
+ *
+ * CACHE_WRITE is the 5-minute rate. The tutor prompt is written with a 1-hour
+ * TTL, which is 2x rather than 1.25x — so this figure understates that one
+ * write and overstates nothing. A whole session writes the prompt once and
+ * reads it every turn after, so the difference is a fraction of a cent a day;
+ * splitting the constant to chase it would cost more clarity than money.
+ */
 export const CACHE_READ = 0.1;
 export const CACHE_WRITE = 1.25;
+
+/**
+ * The monthly ceiling, in dollars per user.
+ *
+ * Lives here rather than beside the spend queries because it is pure config and
+ * because the guard that enforces it (lib/ai.ts) must not be able to disagree
+ * with the bar the progress page draws.
+ *
+ * Set DEUTSCHMATE_BUDGET to change it. 0 is a real setting — it disables AI
+ * spending entirely, which is a legitimate way to run this app: everything
+ * except conversation, writing correction and new explanations works with no
+ * key at all.
+ */
+export function ceiling(): number {
+  const raw = process.env.DEUTSCHMATE_BUDGET;
+  if (raw === undefined || raw.trim() === "") return 5;
+  const n = Number(raw);
+  return Number.isFinite(n) && n >= 0 ? n : 5;
+}
 
 export type Usage = {
   input_tokens?: number;
