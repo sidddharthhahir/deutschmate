@@ -3,8 +3,8 @@
 ---
 
 I need you to design the frontend for **DeutschMate**, a German learning app that
-already exists and works. The logic, data and all 19 routes are built in
-Next.js 15 + Tailwind + TypeScript. What it has is a *functional* interface, not
+already exists and works. The logic, data and all 22 pages are built in
+Next.js 16 + Tailwind + TypeScript. What it has is a *functional* interface, not
 a designed one. I want you to design it properly, then I'll build it.
 
 Produce **HTML/CSS artifacts I can look at**, not descriptions. Use real German
@@ -14,8 +14,9 @@ content from the examples below — never lorem ipsum, never placeholder English
 
 ## What the product is
 
-A complete A1.1 → B1.2 German course for self-study, ~1 hour a day for six
-months. Two users right now: me and my flatmate. Not a commercial product.
+A complete A1.1 → B1.2 German course for self-study, ~1 hour a day for about
+seven months. Two users right now: me and my flatmate — same install, a name at
+`/wer` picks which deck you're in. Not a commercial product.
 
 **The one sentence it's built around:**
 
@@ -42,8 +43,11 @@ months. Two users right now: me and my flatmate. Not a commercial product.
 | Units | 120, across 6 levels (20 each) |
 | Grammar points | 36 |
 | Readings | 38 |
+| Scenarios | 120 — and they now come back on a rotation, not once each |
 | Reviews due on a normal day | 40–90, hard-capped at 60 |
-| A session | 6–8 blocks, ~60–78 minutes |
+| A session | 4–10 blocks, up to ~92 minutes. A full day is 8–9. |
+| Block types | 14 |
+| Routes | 22 pages, 17 API |
 
 ---
 
@@ -62,7 +66,7 @@ the current block's title. It must show where you are without offering a choice
 about where to go next. Runs for an hour — low eye strain matters.
 
 **3. Review card (flashcard).** The block used most: ~60 cards a day, every
-day, for six months. Word, audio button, reveal, then four grade buttons
+day, for seven months. Word, audio button, reveal, then four grade buttons
 (Nochmal / Schwer / Gut / Einfach). Speed and rhythm matter more than beauty —
 a keyboard user should be able to hold a steady pace without moving their hand.
 
@@ -79,14 +83,29 @@ screen that makes someone come back — design it like it matters.
 **6. Wortschatz** — browsable list of all 2,400 words. Filters, 50–100 a day,
 "+ Deck" per row. Dense list design; must stay scannable at 100 rows.
 
-**7. Progress** — counts, per-skill accuracy bars, 120-unit list, error tags,
-a 30-day time chart.
+**7. Progress** — **eleven sections in flat order** and four ungrouped stats.
+Counts, per-skill accuracy, error tags, leeches, exam history, pronunciation, a
+30-day time chart, and the month's AI spend against an enforced ceiling. Mostly
+the last 30 days, but four sections are all-time (Wortschatz, Grammatik, Units,
+Tempo) and nothing on the page says which is which. This is the screen I most
+want restructured — see answer 12(e).
+
+**7b. Der Weg** — the *arc* page, and the newer of the two. All 120 units as
+ticks (done / here / ahead), every can-do statement earned so far grouped by
+level, and a dated milestone timeline. Deliberately not in the nav — it hangs
+off Progress. The design question: how do you show 120 units and **359** can-do
+statements without it becoming a wall? (A learner near the end has ~350 of
+them. My current answer is a two-column list per level, and I don't think it
+scales.)
 
 **8. Reading block** — a German text where every word is tappable for a gloss,
 followed by comprehension questions.
 
 **9. Conversation block** — chat with the AI tutor. Also needs a *scripted*
-offline variant that must not feel like a downgrade.
+offline variant that must not feel like a downgrade. And a third state: a scene
+you already did weeks ago, coming back on rotation. It carries a line saying
+where it's from (*"schon gemacht · Unit 10 · Fragen stellen"*) — that has to
+read as revision, not as the app having lost its place.
 
 **10. Word detail page** — everything about one word: forms, audio, examples,
 which unit teaches it, your review history, your mistakes with it.
@@ -105,8 +124,8 @@ typeface where they don't collide with the line above.
 
 **Article colour-coding is a real learning aid — keep it.** der = one colour,
 die = another, das = a third, applied consistently everywhere a noun appears.
-Currently sky / rose / emerald. Improve the palette but keep three distinct,
-memorable, colourblind-safe hues.
+Currently der = blue `#8FBEF5`, die = amber `#F0C15C`, das = pink `#F2A0C6`.
+Improve the palette but keep three distinct, memorable, colourblind-safe hues.
 
 **Dark by default** (people study at night), but it must work in light too.
 

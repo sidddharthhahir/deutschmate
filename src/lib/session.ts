@@ -349,6 +349,14 @@ export type SessionPlan = {
   unitsInLevel: number;
   /** Set when the new-word count was cut, with the accuracy that caused it. */
   pacing: { words: number; accuracy: number | null; reduced: boolean };
+  /**
+   * What comes after this unit, by name.
+   *
+   * The recap said "Morgen: Unit 15", which spec §4 forbids in as many words:
+   * never show a bare unit number, because a number is not a reason to come
+   * back and "Im Restaurant" is.
+   */
+  next: { ord: number; title: string } | null;
 };
 
 /**
@@ -384,6 +392,20 @@ export function buildSession(
   const unitsInLevel = unitCount(atLevel);
   const pacing = newWordBudget(userId);
 
+  /* The next unit by name. Looked up across levels rather than by ord+1, so
+     the last unit of a level points at the first of the next one instead of
+     nowhere. Null only at the very end of B1.2. */
+  const next = unit
+    ? (get<{ ord: number; title: string }>(
+        `SELECT ord, title FROM unit
+          WHERE (level = ? AND ord > ?) OR level > ?
+          ORDER BY level, ord LIMIT 1`,
+        unit.level,
+        unit.ord,
+        unit.level,
+      ) ?? null)
+    : null;
+
   if (gap >= 3 && total > 40) {
     return {
       unit,
@@ -392,6 +414,7 @@ export function buildSession(
       dueTotal: total,
       level: atLevel,
       unitsInLevel,
+      next,
       pacing,
       totalMinutes: 15,
       blocks: [
@@ -491,6 +514,7 @@ export function buildSession(
       dueTotal: total,
       level: atLevel,
       unitsInLevel,
+      next,
       pacing,
       totalMinutes: blocks.reduce((n, b) => n + b.minutes, 0),
     };
@@ -700,6 +724,7 @@ export function buildSession(
     dueTotal: total,
     level: atLevel,
     unitsInLevel,
+    next,
     pacing,
     totalMinutes: blocks.reduce((n, b) => n + b.minutes, 0),
   };

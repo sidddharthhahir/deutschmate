@@ -38,6 +38,8 @@ type Plan = {
   totalMinutes: number;
   mode: "normal" | "wiedereinstieg";
   dueTotal: number;
+  /** What comes after this unit, by name — the recap's "Morgen". */
+  next: { ord: number; title: string } | null;
 };
 
 /**
@@ -343,11 +345,15 @@ function SessionRunner() {
         streak={streak}
         canDo={plan.canDo}
         minutes={minutes}
+        /* Named, not numbered. Spec §4 forbids a bare unit number in as many
+           words, and this is the line whose whole job is to make tomorrow
+           sound worth turning up for — "Im Restaurant" does that, "Unit 15"
+           does not. */
         nextUnit={
           carryOver > 0
-            ? `Unit ${plan.unit?.ord} weiter · ${carryOver} Wörter`
-            : plan.unit
-              ? `Unit ${plan.unit.ord + 1}`
+            ? `${plan.unit?.title} weiter · ${carryOver} Wörter`
+            : plan.next
+              ? plan.next.title
               : null
         }
       />

@@ -55,7 +55,9 @@ http://localhost:3000 — press Enter.
 Everything works except three things, and each fails honestly rather than
 silently: **Gespräch** falls back to the unit's scripted dialogue, **Schreiben**
 queues your text and corrects it once a key appears, and **"Erklär mir das"**
-says it is unavailable. No feature invents an answer.
+is served from the cache if anyone has asked before, or says it is unavailable.
+Wrong answers are still explained — the rule-based tier needs no key. No feature
+invents an answer.
 
 ### On your phone
 
@@ -102,9 +104,106 @@ And the parts that aren't a course:
 - **Dein Text** — paste any German. It tells you what you already know, what it
   can teach you next, and turns sentences into cards.
 - **Nachrichten** — today's news, slowly spoken, from Deutsche Welle.
-- **Alltag** — Bürgeramt, WG-Besichtigung, Arzt, Bank, Vertrag kündigen.
+- **Alltag** — six conversations you will actually have: Bürgeramt,
+  WG-Besichtigung, Arzt, Bank, Vertrag kündigen, Prüfungsamt.
 - **Unterwegs** — hands-free listening for the walk to uni.
 - **Minimalpaare** — pronunciation drills aimed at the sound you actually miss.
+
+---
+
+## How a day is chosen
+
+Four to ten blocks, always in the same order, with the content rotating
+underneath. The rhythm is fixed so you stop thinking about it; the rotation
+stops the rhythm becoming a rut. It is deterministic per calendar day — never
+random — because reloading a session you are halfway through must not hand you
+a different one.
+
+| Slot | | |
+|---|---|---|
+| 1 | **Aufwärmen** *or* **Nur Hören** | due cards, capped at 60. Every third day the word is hidden until you answer. Absent if nothing is due — which is every day of your first week. |
+| 2 | **Fix** · **Lücken** | your own recent mistakes. Absent when you have none. |
+| 2b | **Grammatik-Wdh.** | rules that are due back. On the FSRS curve, so it appears whether or not you got anything wrong. |
+| 3 | **Neue Wörter** *or* **Grammatik** | never both in a day — two novel loads halve retention of each. |
+| 4 | **Hören** · **Lesen** · **Wiederlesen** · **Video** | rotates. Every other reading day it is an *old* text. |
+| 5 | **Sätze bauen** | |
+| 6 | **Sprechen** *or* **Schreiben** | speaking two days in three. |
+| 7 | **Gespräch** *or* **Nochmal sprechen** | every third one is a scene you did weeks ago. |
+| 8 | **Abschluss** | the closing quiz, then the recap. |
+
+A full day is eight or nine blocks and about ninety minutes; a quiet one is
+four. Nothing is padded to reach a number.
+
+Three things that follow from this and are easy to miss:
+
+**Old material comes back.** Words and grammar are on a forgetting curve;
+scenarios and readings used to be one-and-done. A conversation is the slowest
+thing in the course to build and the fastest to lose, so past ones return —
+labelled *"schon gemacht · Unit 10 · Fragen stellen"* (a reading says *"schon
+gelesen"*) so it reads as revision, not as the app losing its place. Only units
+finished over a week ago count: redoing yesterday is the same lesson, not a
+second pass.
+
+**Speaking gets two slots of three.** It is the skill self-study destroys and
+the only output skill that costs nothing per use — Web Speech runs in the
+browser, while writing correction is a model call.
+
+**A short day exists.** `/session?kurz=1` runs slots 1–2 only: the things that
+decay if you skip them. New material waits for tomorrow. On a day with nothing
+due and no recent mistakes it is empty, and says so rather than inventing
+filler.
+
+**A long absence collapses the session.** Three days away *and* more than forty
+cards waiting gives you **Wiedereinstieg**: twenty reviews, nothing else. A gap
+with a small backlog just gives you a normal day — the point is the backlog,
+not the guilt.
+
+`src/lib/rhythm.ts` holds every one of these decisions as a pure function, so
+the whole month can be walked in a test — a rotation that quietly stopped
+firing would otherwise look exactly like the old behaviour.
+
+---
+
+## The AI, and what it costs
+
+Five call sites, all in `src/lib/ai.ts`, each stating its model and settings in
+one table at the top of the file rather than inheriting a default:
+
+| | Model | Thinking | Why |
+|---|---|---|---|
+| Conversation | Sonnet 5 | off, effort `low` | short, formulaic, already constrained by the whitelist |
+| Post-chat review | Sonnet 5 | off, effort `low` | |
+| Writing correction | Sonnet 5 | adaptive, `medium` | a handful a week; a missed error is one you keep making |
+| Sentence explanation | Haiku 4.5 | — | cached in SQLite, so this converges toward free |
+| Mistake explanation | Haiku 4.5 | — | same, keyed by (expected, answer) |
+
+Sonnet 5 **thinks by default** when the parameter is omitted, which is why
+every call names its choice: a two-sentence café reply does not need a
+reasoning pass, and thinking is billed at output rates.
+
+**Caching.** The vocabulary whitelist is identical every turn and grows to a
+few thousand tokens, so it sits behind a cache breakpoint with a **1-hour TTL**
+— one write per sitting instead of one every few minutes. Twenty turns of a
+5k-token prompt: 30.0¢ uncached, 4.7¢ cached. It does not fire on day one:
+Sonnet's minimum cacheable prefix is 1024 tokens and a beginner's whitelist is
+tiny, so it starts paying somewhere in the first month. Watch the measured
+**"% aus Cache"** on Fortschritt rather than assuming.
+
+**The budget is enforced.** Not a warning label — every paid call checks the
+month's spend first and, once it is gone, takes the same offline path a missing
+key takes. Nothing dead-ends.
+
+**The tutor knows who it is talking to.** Three error tags and four lapsing
+words go into the prompt *after* the cache breakpoint, with instructions to
+steer toward them and never to mention them. A model told what you struggle
+with will try to help by explaining it, and a tutor that stops to teach
+mid-sentence is how beginners stop talking — corrections run afterwards, on
+purpose.
+
+**Every wrong answer gets a reason.** Cache → cheap model → the rule-based tag
+description. That third tier is why it can never come back empty: with no key,
+no network or a spent budget, *"Nominative article where accusative is needed"*
+is still true.
 
 ---
 
@@ -186,11 +285,34 @@ database, so a stale deck makes it ask for the wrong number.
 
 ```
 data/          content, committed — words, units, grammar, readings, sentences
-src/lib/       the engine — FSRS scheduling, session builder, error tagging
-src/app/       pages and API routes
+src/lib/       the engine — scheduling, session builder, error tagging, AI
+src/app/       22 pages and 17 API routes
+src/components/blocks/   the 14 block types a session is made of
 scripts/       content generation and maintenance
+tests/         12 suites, run with `npm test`
 public/audio/  2,381 native recordings from Wikimedia Commons (37 MB)
 ```
+
+The engine, in the order a session touches it:
+
+| | |
+|---|---|
+| `srs.ts` · `grammar-srs.ts` | FSRS scheduling for words and for rules |
+| `session.ts` | builds the day; `rhythm.ts` decides its shape |
+| `errors.ts` | tags every wrong answer — the entire personalisation engine |
+| `cloze.ts` · `cloze-text.ts` | mines gap cards from your own mistakes |
+| `why.ts` | the three-tier answer to "warum?" |
+| `ai.ts` · `coaching.ts` | the five model calls, and what the tutor knows about you |
+| `cost.ts` · `pricing.ts` | what it cost, and the ceiling that stops it |
+| `journey.ts` | the roadmap and milestones behind Der Weg |
+| `outbox.ts` | the offline queue — answers given on a train |
+
+**Four files are pure on purpose** — `pricing.ts`, `cloze-text.ts`, `rhythm.ts`
+and `coaching.ts` have no database import, so they can be tested directly by
+Node. Each was split out of a bigger module for the same reason: the thing
+inside was silently wrong-able. A mispriced token, an off-by-one gap, a
+rotation that never fires and a prompt that stops steering all look like
+nothing at all from the outside.
 
 **Content and progress are separate.** Everything in `data/` is shared and
 committed; the database holds both, but the tables are split so your progress is
@@ -201,17 +323,21 @@ decks.
 `deutschmate.db` is **gitignored**. It is your learning history and lives on your
 machine only. Back it up.
 
-### Two people — partly built
+### Two people, one install
 
-The database is fully ready for it: every progress table is keyed by user, and
-the API routes honour `?user=alex`. **The pages do not.** All nine
-server-rendered pages currently hardcode `sid`, so a second person on the same
-install would see the first person's progress everywhere.
+Go to **`/wer`** and type a name. That name is the identity — there is no
+password, because this runs on your laptop and the thing being protected is a
+flashcard deck (spec §10). The choice is a cookie, so each browser or phone
+stays whoever it was.
 
-Two people on **separate machines** works perfectly today — each clone has its
-own database, which is the setup this was built for. Two people sharing one
-install needs a user switcher (a cookie and `activeUser()` in place of the
-hardcoded name) that isn't written yet.
+Every progress table is keyed by user and every page reads the same
+`activeUser()`, so the two halves cannot disagree: your streak, your due cards,
+your budget, your milestones. Content is shared — one copy of 2,400 words, one
+copy of the audio. Two people on separate machines works too; each clone just
+has its own database.
+
+A link can target someone explicitly with `?user=alex`, which is how the tests
+drive a throwaway learner without touching yours.
 
 ---
 
@@ -241,7 +367,15 @@ the [Goethe-Institut](https://www.goethe.de/de/spr/kup/prf.html).
 
 ## Known gaps
 
-- **No video has timestamps yet**, so the video block never appears. The editor
-  is at `/admin/video` and takes about ten minutes per video.
+- **No video has been imported at all** — the `video` table is empty and no unit
+  carries a `video_id`, so the video block never appears and the input slot
+  alternates between listening and reading. The editor is at `/admin/video` and
+  takes about ten minutes per video.
+- **The Progress page is eleven sections in flat order.** Every number on it is
+  real, but nothing says which to read first. `/weg` took the long-arc half
+  away; the remainder still needs a hierarchy.
+- **Unit prerequisites are in the schema and never read.** `prereq_json` exists
+  on every unit; progression walks straight down `ord`. That is fine for a
+  linear course and would be wrong the moment one branched.
 - **Speech recognition is Chrome-only.** Speaking and voice mode degrade to
   listen-and-repeat elsewhere, and say so.

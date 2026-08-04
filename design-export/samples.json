@@ -148,22 +148,22 @@
     {
       "key": "1",
       "label": "Nochmal",
-      "hint": "no idea"
+      "hint": "keine Ahnung"
     },
     {
       "key": "2",
       "label": "Schwer",
-      "hint": "slowly"
+      "hint": "langsam"
     },
     {
       "key": "3",
       "label": "Gut",
-      "hint": "knew it"
+      "hint": "gewusst"
     },
     {
       "key": "4",
       "label": "Einfach",
-      "hint": "instant"
+      "hint": "sofort"
     }
   ],
   "offlineMessages": [

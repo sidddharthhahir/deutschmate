@@ -74,13 +74,28 @@ for (let d = 0; d < 60; d++) {
 }
 
 section("degrades when content is missing");
-/* No video authored yet — the real state of this install, since no video has
-   timestamps. Reading must take the slot rather than the day silently
-   collapsing to listening every time. */
+/* No video imported yet — the real state of this install. Reading must take
+   the slot rather than the day silently collapsing to listening every time. */
 const nv = over(30, NO_VIDEO);
 eq(nv.video, 0, "no video block when none is ready");
 ok(nv.reading === 15 && nv.listening === 15, "reading and listening split the days",
   `reading ${nv.reading} · listening ${nv.listening}`);
+
+/* The bug this pins: recycling alternated on the calendar day, but with no
+   video the input slot ALSO alternates on the calendar day — so "odd day" and
+   "reading day" were one condition and every single reading was a recycled
+   one. The FULL fixture hid it, because three input slots break the alignment.
+   Checked in the configuration that actually ships. */
+ok(
+  nv.recycleReading > 0 && nv.recycleReading < nv.reading,
+  "still only every other reading, with no video to break the cycle",
+  `${nv.recycleReading} recycled of ${nv.reading} readings`,
+);
+ok(
+  Math.abs(nv.recycleReading - nv.reading / 2) <= 1,
+  "and it really is half of them, not all",
+  `${nv.recycleReading} vs ${nv.reading / 2}`,
+);
 
 const none = over(30, NOTHING);
 eq(none.listening, 30, "with neither, every day is listening");

@@ -18,6 +18,8 @@ type Plan = {
   mode: "normal" | "wiedereinstieg";
   dueTotal: number;
   unitsInLevel: number;
+  /** How many new words today actually offers — 12, or 6 when the pace was cut. */
+  pacing: { words: number; accuracy: number | null; reduced: boolean };
 };
 
 type State = "loading" | "normal" | "empty" | "offline" | "error";
@@ -230,8 +232,13 @@ export default function Home() {
                           : [
                               `${plan!.totalMinutes} min`,
                               plan!.dueTotal > 0 && `${plan!.dueTotal} Wiederholungen`,
+                              /* The real number, not the usual one. The pace
+                                 drops to 6 when the week's accuracy falls below
+                                 80%, and promising 12 on a day that offers 6
+                                 is exactly the kind of number principle 4
+                                 exists to stop. */
                               plan!.blocks.some((b) => b.kind === "new-vocab") &&
-                                "12 neue Wörter",
+                                `${plan!.pacing.words} neue Wörter`,
                             ]
                               .filter(Boolean)
                               .join(" · ")}

@@ -44,12 +44,19 @@ export function rhythmFor(dayIndex: number, has: Available): Rhythm {
   const input: Rhythm["input"] =
     has.video && inputChoice === 2 ? "video" : has.reading && inputChoice === 1 ? "reading" : "listening";
 
+  /* Which reading day this is, counted in reading days rather than calendar
+     days. Alternating on `dayIndex % 2` looked right and was not: with no video
+     the input slot itself already rotates on `dayIndex % 2`, so "odd day" and
+     "reading day" were the same condition and EVERY reading was a recycled one.
+     No video has been imported yet, so that was the shipping behaviour. */
+  const readingDay = Math.floor(dayIndex / inputSlots);
+
   return {
     audioFirstReview: dayIndex % 3 === 1,
     input,
     // Every other reading day. This unit's text is tied to words met this week
     // and is therefore the easy one; the old text is the honest test.
-    recycleReading: input === "reading" && dayIndex % 2 === 1,
+    recycleReading: input === "reading" && readingDay % 2 === 1,
     /* Speaking takes two slots of three, writing one. It used to be one of
        three with the third slot empty — a learner spoke aloud on a third of
        their days, in a course whose premise is self-study, where speaking is

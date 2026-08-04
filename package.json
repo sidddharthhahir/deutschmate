@@ -24,7 +24,8 @@
     "attach-examples": "node scripts/attach-examples.mts",
     "backup": "node scripts/backup.mts",
     "restore": "node scripts/restore.mts",
-    "export-deck": "node scripts/export-deck.mts"
+    "export-deck": "node scripts/export-deck.mts",
+    "export-design": "node scripts/export-for-design.mts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.115.0",

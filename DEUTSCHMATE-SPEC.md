@@ -5,6 +5,21 @@
 **Users:** me + roommate now; anyone later.
 **Budget:** ~$13 one-time content build + ~$7–9/month runtime. Ceiling $10/mo.
 
+> **This is the plan, not the record.** It was written before the code and has
+> deliberately not been rewritten to agree with it — a spec quietly edited to
+> match the implementation stops being useful, because you can no longer tell a
+> decision from a drift. Where the build differs, **§20 lists every change and
+> why**. Three headline ones, so nothing here misleads on a first read:
+>
+> - the deck reached **2,400 words**, so the course is nearer **seven months**
+>   than six (§4 still says six)
+> - a session is **4–10 blocks**, not 6, and old scenarios and readings now come
+>   back on a rotation (§3)
+> - the $10 ceiling is **enforced before every paid call**, not just planned
+>   against (§13)
+>
+> For what the app does today, read `README.md`.
+
 ---
 
 ## 0. The one-sentence product
@@ -435,12 +450,28 @@ All 2,400 words, all 60 grammar points, full Modellsatz practice runs.
 ## 12. Architecture
 
 ```
-Next.js 15 (App Router) + Tailwind + shadcn/ui
+Next.js 16 (App Router) + Tailwind 4          ← 15 + shadcn/ui as planned
   ├─ /app/api/*          route handlers — the only server code
-  ├─ SQLite (better-sqlite3)     one file, committed / backed up
-  ├─ /public/audio/*     pre-generated ogg/mp3, ~72 MB
+  ├─ SQLite (node:sqlite)        one file, GITIGNORED   ← not better-sqlite3
+  ├─ /public/audio/*     pre-generated ogg, 37 MB
   └─ /data/*.json        seeded curriculum, in the repo
 ```
+
+Two corrections to the plan, both deliberate:
+
+**`node:sqlite`, not better-sqlite3.** It ships inside Node 24, so there is no
+native module to compile. `npm install` cannot fail on a missing build
+toolchain, which is the single most common way a clone-and-run repo stops being
+clone-and-run.
+
+**The database file is gitignored, not committed.** The spec's own §10 splits
+content from progress; committing the db would commit both, and one person's
+review history is not the other's. Content rebuilds from `data/` with
+`npm run setup`, so nothing is lost by leaving it out.
+
+Also dropped: **shadcn/ui**. Plain Tailwind. Every component here is either a
+one-off or shared through `src/components/`, and a component library would have
+been a dependency carrying opinions this app already has.
 
 Runs with `npm run dev`. That is a valid deployment for two people. Deploy to
 Vercel + Neon (both free) when the roommate wants it on their phone.
@@ -688,3 +719,120 @@ tab was proposed and **declined**, for two reasons:
 lists every scenario across all units, so you can replay "Im Restaurant" any
 time. Same access, no new tab, no new content pipeline, no new decisions on the
 home screen.
+
+---
+
+## 20. What the build changed
+
+This spec is the plan, written before the code. It has not been rewritten to
+match what got built, because a spec quietly edited to agree with the
+implementation stops being useful — you can no longer tell a decision from a
+drift. What follows is the diff.
+
+Everything below was **added or changed after the fact**, with the reason. The
+rest of the document still describes the app.
+
+### §3 Session structure — four changes
+
+| Change | Why |
+|---|---|
+| Blocks 2 and 5 each split into several | *Fix* became **Fix · Lücken · Grammatik-Wdh.**; *Output* became **Sprechen/Schreiben** and **Gespräch** as two slots, not one. A session is 4–10 blocks, not 6 — and block 1 is absent entirely when nothing is due, which is every day of the first week. |
+| Speaking gets two output days in three | The spec listed speaking, writing and conversation as one rotating slot, which gave speaking a third of days. It is the skill self-study destroys, and the only one that costs nothing per use — Web Speech is in the browser, writing correction is a model call. The free skill was the rationed one. |
+| Old readings and scenarios come back | Words and grammar were on a forgetting curve; situations were one-and-done. A scenario is the slowest thing here to build and the fastest to lose. Every third conversation and every other reading is one from a unit finished over a week ago, labelled with its origin. |
+| A short session exists | `?kurz=1` runs blocks 1–2 only. Not in the spec; added because the alternative to a bad-day escape valve is a broken streak. It can legitimately be empty. |
+| The recap names tomorrow | §4 forbids a bare unit number and the recap was showing "Unit 15". It now shows the unit's title. |
+
+Also corrected in passing: §3's recap mock-up shows *"Hören 92% · Sprechen
+81%"*. Those numbers are not in the recap payload and never were — per-skill
+accuracy lives on Fortschritt. The four real ones are minutes, new words,
+reviews, and today's overall correct rate.
+
+The rotation logic lives in `src/lib/rhythm.ts` as a pure function, so a month
+of it can be walked in a test. It was `dayIndex % 3` expressions inline until a
+test tried to check them and could not — the day index comes from the wall
+clock, so nothing outside could observe more than today.
+
+### §8 The vocabulary constraint — extended
+
+The whitelist is as specified. What was added: the tutor is also told **what
+this learner keeps getting wrong** — three error tags and four lapsing words,
+from the same queries that already drove the Fix block — and told, three
+separate times, never to mention them. A model handed "they confuse der and
+den" will try to help by explaining it, which is exactly what the conversation
+block must not do; corrections run afterwards for that reason.
+
+### §12 Model routing — one addition, one correction
+
+The three-category routing holds. Added: **every call now states its thinking
+setting explicitly.** Sonnet 5 thinks by default when the parameter is omitted,
+so a two-sentence café reply was paying for a reasoning pass at output rates.
+Conversation and review run with thinking off at low effort; writing correction
+keeps adaptive thinking, being rare and worth accuracy.
+
+Correction to the caching claim: prompt caching does **not** start working on
+day one. The minimum cacheable prefix is 1024 tokens and a beginner's whitelist
+is a few dozen words, so the breakpoint does nothing for roughly the first
+month. It does not error — it silently does not cache. The measured share is on
+`/fortschritt`.
+
+### §13 Cost — the ceiling is now enforced
+
+The spec planned against $9/month and had no mechanism. There is one now:
+`DEUTSCHMATE_BUDGET`, $5 per learner per rolling 30 days, checked **before every
+paid call**. Past it, the app takes the same path it takes with no API key at
+all — which already existed and was already tested (§17). A budget nothing
+enforces is a wish.
+
+### §10 Data model — no schema change *for the above*
+
+None of the changes in this section added a table or a column. The milestones
+on Der Weg, the recycling rotation, and the tutor's memory are all derived from
+rows that already existed for other reasons. Nothing is written when a
+milestone is "earned", so there is no second source of truth to drift from the
+facts, and a restored backup shows the same history.
+
+**§10 itself, however, is out of date.** Six tables in the running schema are
+not in it: `reading`, `cloze`, `exam_run`, `explanation`, `pending_correction`,
+`usage`. Columns drifted too — `error_pattern` is keyed by `signature`, not
+`trigger_regex`; `unit` gained `can_do_json` and `dialogue_json`; `grammar`
+gained `drills_json`. **`src/lib/schema.sql` is the source of truth**, and it
+is commented.
+
+### §7 Mastery and unlocking — two rules were never built
+
+Stated there, absent from the code, and worth knowing before anyone relies on
+them:
+
+**"A unit completes at ≥80% of its words learned AND grammar ≥70"** — no. A
+unit completes when every one of its words has been *introduced*
+(`unseenInUnit()` reaching zero). Nothing checks retention, and grammar
+mastery is never consulted. The looser rule is deliberate now: gating the
+course on retention means a bad fortnight stops you seeing new material, which
+is the point at which people quit. The forgetting curve already handles
+retention; the unit boundary only has to handle coverage.
+
+**"A unit unlocks when its prerequisites are complete"** — no. `prereq_json`
+exists on every unit row and is read nowhere in `src/`. Progression walks
+`ord` order and takes the first unfinished unit. Correct for a linear course,
+wrong the moment one branches.
+
+Also in §7: **grammar mastery is not a rolling accuracy**. It is a card-state
+count — `reps >= 3 AND state = 2`, the same shape as vocabulary.
+
+### §11 · §14 counts
+
+**36 grammar points, not ~60.** §6 and §13 both say sixty; thirty-six were
+written, they cover A1.1 → B1.2, and 44 units teach one. The cost line that
+budgeted "60 grammar explanations ≈ $2" was correspondingly generous.
+
+### §19 — the tab was rejected, the content was built anyway
+
+§19 declined a "Real Life" nav tab and kept a Szenarien filter instead. The nav
+is still four, so the letter holds. But `/alltag` now ships six standalone
+survival bundles with their own phrases and Mitbringen checklists — precisely
+the duplication §19 argued against — reachable from Üben rather than the nav,
+alongside `/nachrichten`, `/unterwegs`, `/aussprache` and `/text`.
+
+The reasoning that survived: **no new top-level decisions.** The reasoning that
+did not: **no new content pipeline.** Worth saying plainly rather than leaving
+§19 reading as though nothing happened.
