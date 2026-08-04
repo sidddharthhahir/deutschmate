@@ -6,7 +6,7 @@ import Noun from "@/components/Article";
 import { playAudio } from "@/lib/speech";
 import type { Leech } from "@/lib/leech";
 
-type Action = "reset" | "pause" | "resume" | "cloze";
+type Action = "reset" | "pause" | "resume" | "cloze" | "mnemonic";
 
 /** What each row is currently saying about itself. */
 type Note = { text: string; tone: "ok" | "warn" } | null;
@@ -30,11 +30,14 @@ export default function LeechList({
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ cardId: card.cardId, action }),
       });
-      const data = (await res.json()) as { ok?: boolean };
+      const data = (await res.json()) as { ok?: boolean; mnemonic?: string; reason?: string };
 
       // The row updates from what the server actually did, not from what the
       // button was called. A cloze that couldn't be made says so.
-      setNotes((n) => ({ ...n, [card.cardId]: noteFor(action, Boolean(data.ok)) }));
+      setNotes((n) => ({
+        ...n,
+        [card.cardId]: noteFor(action, Boolean(data.ok), data.reason),
+      }));
       if (data.ok) {
         setRows((rs) =>
           rs.map((r) =>
@@ -46,7 +49,9 @@ export default function LeechList({
                   ? { ...r, suspended: 0 }
                   : action === "reset"
                     ? { ...r, reps: 0, suspended: 0 }
-                    : r,
+                    : action === "mnemonic"
+                      ? { ...r, mnemonic: data.mnemonic ?? r.mnemonic }
+                      : r,
           ),
         );
       }
@@ -119,10 +124,23 @@ export default function LeechList({
               </p>
             )}
 
+            {/* The hook, once someone has asked for one. Stored on the word, so
+                the second person to hit this wall gets it without a request. */}
+            {r.mnemonic && (
+              <p className="border-line text-secondary dm-fade mt-3 border-l-2 py-0.5 pl-3 text-[14.5px] leading-relaxed">
+                {r.mnemonic}
+              </p>
+            )}
+
             <div className="mt-4 flex flex-wrap gap-2">
               {r.example_de && (
                 <Act onClick={() => void act(r, "cloze")} busy={busy === r.cardId}>
                   Im Satz üben
+                </Act>
+              )}
+              {!r.mnemonic && (
+                <Act onClick={() => void act(r, "mnemonic")} busy={busy === r.cardId}>
+                  Eselsbrücke
                 </Act>
               )}
               <Act onClick={() => void act(r, "reset")} busy={busy === r.cardId}>
@@ -152,11 +170,21 @@ export default function LeechList({
   );
 }
 
-function noteFor(action: Action, ok: boolean): Note {
+const MNEMONIC_FAILED: Record<string, string> = {
+  offline: "Eselsbrücke braucht das Netz — der Rest der Seite nicht.",
+  budget: "Budget für diesen Monat ist aufgebraucht.",
+  empty: "Nichts Brauchbares zurückbekommen.",
+};
+
+function noteFor(action: Action, ok: boolean, reason?: string): Note {
   if (!ok) {
-    return action === "cloze"
-      ? { text: "Kein passender Beispielsatz — nichts angelegt.", tone: "warn" }
-      : { text: "Ging nicht.", tone: "warn" };
+    if (action === "cloze") {
+      return { text: "Kein passender Beispielsatz — nichts angelegt.", tone: "warn" };
+    }
+    if (action === "mnemonic") {
+      return { text: MNEMONIC_FAILED[reason ?? ""] ?? "Ging nicht.", tone: "warn" };
+    }
+    return { text: "Ging nicht.", tone: "warn" };
   }
   switch (action) {
     case "cloze":
@@ -167,6 +195,8 @@ function noteFor(action: Action, ok: boolean): Note {
       return { text: "Pausiert. Kommt nicht mehr, bis du es zurückholst.", tone: "ok" };
     case "resume":
       return { text: "Wieder im Deck.", tone: "ok" };
+    case "mnemonic":
+      return null;
   }
 }
 

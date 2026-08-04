@@ -14,7 +14,6 @@ type Word = {
   article: string | null;
   plural: string | null;
   pos: string;
-  ipa: string | null;
   en: string;
   level: string;
   topic: string | null;
@@ -134,7 +133,8 @@ export default async function WordPage({ params }: { params: Promise<{ id: strin
                   <ArticleWord article="die" /> {w.plural}
                 </>
               )}
-              {w.ipa && ` · ${w.ipa}`} · {w.level}
+              {" · "}
+              {w.level}
               {w.topic && ` · ${w.topic}`}
             </p>
           </div>

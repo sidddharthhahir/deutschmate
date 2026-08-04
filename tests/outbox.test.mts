@@ -23,16 +23,20 @@ Object.defineProperty(globalThis, "navigator", {
   configurable: true,
 });
 (globalThis as any).window = { addEventListener() {}, removeEventListener() {} };
+// The learner is a cookie, and every key is scoped by it.
+(globalThis as any).document = { cookie: "" };
+const beUser = (name: string) => ((globalThis as any).document.cookie = `dm_user=${name}`);
 
 let mode: "ok" | "throw" | "500" | "400" = "ok";
 const seen: { url: string; body: any }[] = [];
-(globalThis as any).fetch = async (url: string, init: any) => {
+const modeFetch = async (url: string, init: any) => {
   seen.push({ url, body: JSON.parse(init.body) });
   if (mode === "throw") throw new Error("network down");
   if (mode === "500") return { status: 500, json: async () => ({}) };
   if (mode === "400") return { status: 400, json: async () => ({ error: "nope" }) };
   return { status: 200, json: async () => ({ ok: true }) };
 };
+(globalThis as any).fetch = modeFetch;
 
 // Imported after the stubs exist, because the module reads them on load.
 const ob = await import("../src/lib/outbox.ts");
@@ -100,15 +104,60 @@ section("the plan cache is date-scoped");
 ob.cachePlan("full", { blocks: [1, 2, 3] } as any);
 ok(ob.cachedPlan("full") !== null, "today's plan is returned");
 ok(ob.cachedPlan("short") === null, "a plan built for a different session shape is not");
-const raw = JSON.parse(store.get("dm.plan.v1")!);
+const raw = JSON.parse(store.get("dm.plan.v1:sid")!);
 raw.date = "2020-01-01";
-store.set("dm.plan.v1", JSON.stringify(raw));
+store.set("dm.plan.v1:sid", JSON.stringify(raw));
 ok(ob.cachedPlan("full") === null, "yesterday's plan is refused");
 
+/* The bug this whole section exists for: /wer promises "nothing is shared
+   between learners", and the queue of ungraded answers was. */
+section("switching learner does not hand over the other one's queue");
+(globalThis as any).fetch = modeFetch; // the section above swapped it out
+store.clear();
+beUser("sid");
+mode = "throw";
+await ob.send("/api/review", { cardId: 501, grade: 1 });
+ok(ob.pendingCount() === 1, "sid has one unsent answer", ob.pendingCount());
+
+beUser("mira");
+ok(ob.pendingCount() === 0, "mira's queue is empty, not sid's", ob.pendingCount());
+await ob.send("/api/review", { cardId: 502, grade: 2 });
+ok(ob.pendingCount() === 1, "mira queues her own", ob.pendingCount());
+
+beUser("sid");
+ok(ob.pendingCount() === 1, "and sid's is still exactly his", ob.pendingCount());
+ok(store.has("dm.outbox.v1:sid") && store.has("dm.outbox.v1:mira"), "two separate keys");
+
+section("the plan and the saved session are scoped the same way");
+beUser("sid");
+ob.cachePlan("full", { blocks: ["sid"] } as any);
+beUser("mira");
+ok(ob.cachedPlan("full") === null, "mira does not start sid's cached session");
+
+section("replay is stamped with the learner who answered");
+mode = "ok";
+beUser("sid");
+const pinMark = seen.length;
+await ob.flush();
+const pinned = seen.slice(pinMark);
+ok(pinned.length === 1 && pinned[0].body.user === "sid",
+  "the queued grade replays as sid regardless of the cookie later",
+  JSON.stringify(pinned.map((p) => p.body)));
+ok(ob.pin({ cardId: 1, user: "mira" }, "sid") as any,
+  "an explicit user in the body is not overwritten");
+ok((ob.pin({ cardId: 1, user: "mira" }, "sid") as any).user === "mira", "…it stays mira");
+
+section("a queue written before the keys were scoped is adopted, not dropped");
+store.clear();
+beUser("sid");
+store.set("dm.outbox.v1", JSON.stringify([{ url: "/api/review", body: { cardId: 7 }, at: 1 }]));
+ok(ob.pendingCount() === 1, "the legacy queue is still there", ob.pendingCount());
+ok(!store.has("dm.outbox.v1"), "and the unscoped key is gone, so it happens once");
+
 section("corrupt storage does not throw");
-store.set("dm.outbox.v1", "{{{not json");
+store.set("dm.outbox.v1:sid", "{{{not json");
 ok(ob.pendingCount() === 0, "unreadable queue reads as empty");
-store.set("dm.plan.v1", "]][[");
+store.set("dm.plan.v1:sid", "]][[");
 ok(ob.cachedPlan("full") === null, "unreadable plan reads as absent");
 
 done();

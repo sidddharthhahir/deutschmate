@@ -1,40 +1,45 @@
-"use client";
+﻿"use client";
 
 import { useCallback, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useModalFlag } from "@/lib/keys";
 
 type Hit = {
-  kind: "wort" | "grammatik" | "unit" | "szenario";
+  kind: "wort" | "grammatik" | "unit" | "szenario" | "seite";
   label: string;
   sub: string;
   href: string;
 };
 
+/* Every fixed jump below used to carry kind: "unit", so the palette opened with
+   fifteen rows each tagged "UNIT" — including "Wer lernt hier?" and the tour.
+   The tag is the only thing distinguishing a row's type; fifteen wrong ones
+   make it noise. */
 const KIND_LABEL: Record<Hit["kind"], string> = {
   wort: "Wort",
   grammatik: "Grammatik",
   unit: "Unit",
   szenario: "Gespräch",
+  seite: "Seite",
 };
 
 /** Fixed destinations, offered before you've typed anything. */
 const JUMPS: Hit[] = [
-  { kind: "unit", label: "Heutige Sitzung", sub: "die eine Taste", href: "/session" },
-  { kind: "unit", label: "Nur 20 Minuten", sub: "kurze Sitzung", href: "/session?kurz=1" },
-  { kind: "unit", label: "Dein Text", sub: "beliebiges Deutsch einfügen", href: "/text" },
-  { kind: "unit", label: "Nachrichten", sub: "langsam gesprochen, täglich", href: "/nachrichten" },
-  { kind: "unit", label: "Alltag", sub: "Bürgeramt, WG, Arzt, Bank", href: "/alltag" },
-  { kind: "unit", label: "Unterwegs", sub: "freihändig hören", href: "/unterwegs" },
-  { kind: "unit", label: "Minimalpaare", sub: "Aussprache", href: "/aussprache" },
-  { kind: "unit", label: "Wortschatz", sub: "alle Wörter", href: "/wortschatz" },
-  { kind: "unit", label: "Problemwörter", sub: "was gegen dich kämpft", href: "/problemwoerter" },
-  { kind: "unit", label: "Übungstest", sub: "30 Fragen, 30 Minuten", href: "/pruefung" },
-  { kind: "unit", label: "Diese Woche", sub: "Wochenrückblick", href: "/woche" },
-  { kind: "unit", label: "Fortschritt", sub: "alle Zahlen", href: "/fortschritt" },
-  { kind: "unit", label: "Der Weg", sub: "alle 120 Units · Meilensteine", href: "/weg" },
-  { kind: "unit", label: "How does this work?", sub: "the tour, again", href: "/willkommen" },
-  { kind: "unit", label: "Wer lernt hier? · Switch learner", sub: "eigenes Deck pro Person", href: "/wer" },
+  { kind: "seite", label: "Heutige Sitzung", sub: "die eine Taste", href: "/session" },
+  { kind: "seite", label: "Nur 20 Minuten", sub: "kurze Sitzung", href: "/session?kurz=1" },
+  { kind: "seite", label: "Dein Text", sub: "beliebiges Deutsch einfügen", href: "/text" },
+  { kind: "seite", label: "Nachrichten", sub: "langsam gesprochen, täglich", href: "/nachrichten" },
+  { kind: "seite", label: "Alltag", sub: "Bürgeramt, WG, Arzt, Bank", href: "/alltag" },
+  { kind: "seite", label: "Unterwegs", sub: "freihändig hören", href: "/unterwegs" },
+  { kind: "seite", label: "Minimalpaare", sub: "Aussprache", href: "/aussprache" },
+  { kind: "seite", label: "Wortschatz", sub: "alle Wörter", href: "/wortschatz" },
+  { kind: "seite", label: "Problemwörter", sub: "was gegen dich kämpft", href: "/problemwoerter" },
+  { kind: "seite", label: "Übungstest", sub: "30 Fragen, 30 Minuten", href: "/pruefung" },
+  { kind: "seite", label: "Diese Woche", sub: "Wochenrückblick", href: "/woche" },
+  { kind: "seite", label: "Fortschritt", sub: "alle Zahlen", href: "/fortschritt" },
+  { kind: "seite", label: "Der Weg", sub: "alle 120 Units · Meilensteine", href: "/weg" },
+  { kind: "seite", label: "How does this work?", sub: "the tour, again", href: "/willkommen" },
+  { kind: "seite", label: "Wer lernt hier? · Switch learner", sub: "eigenes Deck pro Person", href: "/wer" },
 ];
 
 /**

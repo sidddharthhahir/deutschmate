@@ -20,6 +20,8 @@ import GrammarReviewBlock from "@/components/blocks/GrammarReviewBlock";
 import SessionRecap, { type Recap } from "@/components/SessionRecap";
 import { useOnline } from "@/lib/hooks";
 import { cachePlan, cachedPlan, flush, onOutboxChange, pendingCount, send } from "@/lib/outbox";
+import { myKey } from "@/lib/who";
+import { shouldIgnoreKey } from "@/lib/keys";
 
 type Block = {
   kind: string;
@@ -54,7 +56,10 @@ type Plan = {
  * three hours of study, which is exactly the kind of number this app is not
  * allowed to invent.
  */
-const SAVE_KEY = "dm.session.v2";
+/* Scoped to the learner. Unscoped, switching user on /wer offered the other
+   person's half-finished session as "Weiter?" — see lib/who.ts. */
+const SAVE_BASE = "dm.session.v2";
+const saveKey = () => myKey(SAVE_BASE);
 
 type Saved = { date: string; shape: string; completed: string[]; spentMs: number };
 
@@ -62,7 +67,7 @@ const today = () => new Date().toISOString().slice(0, 10);
 
 function readSaved(shape: string): Saved | null {
   try {
-    const raw = localStorage.getItem(SAVE_KEY);
+    const raw = localStorage.getItem(saveKey());
     if (!raw) return null;
     const s = JSON.parse(raw) as Saved;
     // Yesterday's half-session is not resumable: the plan is rebuilt daily and
@@ -93,7 +98,7 @@ function resumeIndex(blocks: { kind: string }[], completed: string[]): number {
 
 function clearSaved() {
   try {
-    localStorage.removeItem(SAVE_KEY);
+    localStorage.removeItem(saveKey());
   } catch {
     /* private mode — resume is a nicety, never a requirement */
   }
@@ -197,6 +202,21 @@ function SessionRunner() {
     };
   }, []);
 
+  /* Esc leaves the session.
+     The header has read "Esc  Beenden" since the runner was written, and the
+     shortcut sheet advertises it, and nothing listened for the key — the label
+     was decoration next to a link. Guarded like every other global key, so it
+     does not yank you out of the session while an overlay is up or while you
+     are typing a sentence that happens to want Escape. */
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key !== "Escape" || shouldIgnoreKey(e)) return;
+      window.location.href = "/";
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, []);
+
   const blocks = useMemo(() => plan?.blocks ?? [], [plan]);
   const block = blocks[i];
 
@@ -242,7 +262,7 @@ function SessionRunner() {
     setI(next);
     try {
       localStorage.setItem(
-        SAVE_KEY,
+        saveKey(),
         JSON.stringify({
           date: today(),
           shape,
@@ -452,8 +472,12 @@ function OfflineAware({
   if (!online && !block.offline && fb) {
     return (
       <>
+        {/* Named the block it replaced, which was always "Video" — the only
+            block that ships a fallback. Since no video has ever been imported,
+            this banner has never been rendered; keeping a video-specific
+            sentence in it would be a promise about a feature with no data. */}
         <div className="mb-4 rounded-lg border border-amber-900/40 bg-amber-950/20 px-3 py-2 text-center text-xs text-amber-200/70">
-          Offline — Ersatzübung statt Video
+          Offline — Ersatzübung
         </div>
         <BlockRenderer kind={fb.kind} payload={fb.payload} onDone={onDone} onSkip={onSkip} />
       </>

@@ -12,6 +12,11 @@ type Plan = {
   user: { id: string; name: string; level: string };
   streak: number;
   unit: { id: string; ord: number; title: string } | null;
+  /* What tomorrow opens, by name. Home used to compute `unit.ord + 1` and print
+     "Unit 15" — a bare unit number, which spec §4 forbids and the recap already
+     avoids by reading this field. It is also wrong at a level boundary, where
+     the next unit's ord resets to 1. */
+  next: { ord: number; title: string } | null;
   canDo: string[];
   blocks: { kind: string; title: string; minutes: number; offline: boolean }[];
   totalMinutes: number;
@@ -108,7 +113,15 @@ export default function Home() {
     state === "error"
       ? { dot: "bg-das", text: "Tagesplan nicht geladen — lokal weiter" }
       : !online && state === "normal"
-        ? { dot: "bg-accent", text: "Offline — Ersatzübung statt Video" }
+        ? {
+            dot: "bg-accent",
+            /* Said "Ersatzübung statt Video". No video has ever been imported —
+               the video table is empty and every unit's video_id is NULL — so
+               it named a substitution that could not happen, on a screen whose
+               job is to tell you what today is. What is true offline is that
+               the conversation needs the network and everything else does not. */
+            text: "Offline — alles außer dem Gespräch geht",
+          }
         : null;
 
   return (
@@ -177,7 +190,7 @@ export default function Home() {
                 {state === "empty" && (
                   <p className="text-secondary max-w-[420px] text-[15px] leading-[1.55]">
                     Keine Wiederholungen fällig, keine neue Unit.
-                    {plan?.unit && ` Unit ${plan.unit.ord + 1} öffnet morgen früh.`}
+                    {plan?.next && ` „${plan.next.title}“ öffnet morgen früh.`}
                   </p>
                 )}
 
@@ -190,7 +203,8 @@ export default function Home() {
 
                 {state === "normal" && !online && (
                   <p className="text-secondary max-w-[400px] text-[15px] leading-[1.55]">
-                    Alle Karten und der Lesetext liegen auf dem Gerät. Nur das Video fehlt.
+                    Alle Karten und der Lesetext liegen auf dem Gerät. Nur das Gespräch
+                    braucht Netz.
                   </p>
                 )}
               </div>
@@ -208,9 +222,9 @@ export default function Home() {
                         Wortschatz lesen · zählt nicht als Sitzung
                       </span>
                     </Link>
-                    {plan?.unit && (
+                    {plan?.next && (
                       <div className="font-mono text-muted text-[12.5px]">
-                        Morgen: Unit {plan.unit.ord + 1}
+                        Morgen: {plan.next.title}
                       </div>
                     )}
                   </>
@@ -285,9 +299,15 @@ export default function Home() {
                           href="/session?kurz=1"
                           className="border-line-sub hover:border-line text-muted hover:text-secondary flex items-center justify-between rounded-xl border px-5 py-3 transition-colors"
                         >
-                          <span className="text-[14px]">Nur 20 Minuten heute</span>
+                          {/* Both halves used to be hardcoded and both were
+                              wrong: the short session is up to four blocks and
+                              nearer 28 minutes than 20, and which blocks appear
+                              depends on what is actually due. What IS always
+                              true is the rule that defines the shape — nothing
+                              new, only the things that decay. */}
+                          <span className="text-[14px]">Kürzere Sitzung heute</span>
                           <span className="font-mono text-[11.5px]">
-                            Wiederholen · Fix · Lücken
+                            Nur Wiederholen · nichts Neues
                           </span>
                         </Link>
 

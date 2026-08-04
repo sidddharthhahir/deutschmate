@@ -792,17 +792,48 @@ export function buildSession(
 function corpusSentences(level: string, dayIndex: number, limit: number) {
   const levels = LEVELS.slice(0, Math.max(1, LEVELS.indexOf(level as (typeof LEVELS)[number]) + 1));
   const ph = levels.map(() => "?").join(",");
-  return all<{ id: string; de: string; en: string; source: string | null }>(
+
+  /*
+   * A window that moves by one page a day.
+   *
+   * It used to be a cursor over the id: `id > 'tat-' + (dayIndex % 36)`, base
+   * 36, "walks the whole corpus over time instead of replaying the first rows".
+   * It did not. Two things broke it. The modulo made day 36 identical to day 0,
+   * so the walk stopped after five weeks of a seven-month course. And Tatoeba
+   * ids are wildly skewed — 941 of the 1,827 sentences start with `tat-1` — so
+   * the 36 landing points were not spread across the corpus at all.
+   *
+   * Measured over 210 days: the old cursor reached 105 of 1,827 sentences at
+   * B1.2 (6%) and 102 of 400 at A1.1, and both numbers were already final on
+   * day 36. This reaches 92% and 100% respectively. Listening and Sätze bauen
+   * were quietly drilling the same hundred sentences for months.
+   */
+  const total =
+    get<{ n: number }>(`SELECT COUNT(*) AS n FROM sentence WHERE level IN (${ph})`, ...levels)?.n ??
+    0;
+  if (!total) return [];
+
+  const offset = (dayIndex * limit) % total;
+  const rows = all<{ id: string; de: string; en: string; source: string | null }>(
     `SELECT id, de, en, source FROM sentence
-      WHERE level IN (${ph})
-      ORDER BY (id > ?) DESC, id
-      LIMIT ?`,
+      WHERE level IN (${ph}) ORDER BY id LIMIT ? OFFSET ?`,
     ...levels,
-    // A moving cursor through a stable ordering: cheap, deterministic, and it
-    // walks the whole corpus over time instead of replaying the first rows.
-    `tat-${(dayIndex % 36).toString(36)}`,
     limit,
+    offset,
   );
+
+  // Wrap round rather than returning a short block on the last page.
+  if (rows.length < limit) {
+    rows.push(
+      ...all<{ id: string; de: string; en: string; source: string | null }>(
+        `SELECT id, de, en, source FROM sentence
+          WHERE level IN (${ph}) ORDER BY id LIMIT ?`,
+        ...levels,
+        limit - rows.length,
+      ),
+    );
+  }
+  return rows;
 }
 
 /**

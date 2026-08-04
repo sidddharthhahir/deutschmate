@@ -6,6 +6,7 @@ import { currentStreak, paceProjection } from "@/lib/session";
 import { LEECH_THRESHOLD, leeches } from "@/lib/leech";
 import { examHistory, type SectionScore } from "@/lib/exam";
 import { grammarStats } from "@/lib/grammar-srs";
+import { SOUND_SPELLING } from "@/lib/pairs";
 import { spendThisMonth, projectedMonthly, budgetLeft } from "@/lib/cost";
 import Noun from "@/components/Article";
 import Page, { Section } from "@/components/Page";
@@ -37,11 +38,22 @@ export default async function ProgressPage() {
     "SELECT COUNT(*) AS n FROM card WHERE user_id=? AND ref_type='word' AND stability > 30",
     user.id,
   );
-  const seen = n("SELECT words_seen AS n FROM browse_progress WHERE user_id=?", user.id);
+  // Distinct words, not page turns — see the word_seen table in schema.sql.
+  const seen = n("SELECT COUNT(*) AS n FROM word_seen WHERE user_id=?", user.id);
 
   const perSkill = all<{ kind: string; n: number; correct: number }>(
     `SELECT kind, COUNT(*) AS n, COALESCE(SUM(correct),0) AS correct
        FROM attempt WHERE user_id = ? GROUP BY kind ORDER BY n DESC`,
+    user.id,
+  ).filter((s) => !NOT_GRADED.has(s.kind));
+
+  /* Heard in walk mode. Real, worth showing, and not an accuracy — so it is a
+     count in a sentence rather than a permanent 100% bar. The route stores the
+     number of words per walk in user_answer; this is playbacks, repeats
+     included, which is what "gehört" honestly means. */
+  const heard = n(
+    `SELECT COALESCE(SUM(CAST(user_answer AS INTEGER)), 0) AS n
+       FROM attempt WHERE user_id = ? AND kind = 'exposure'`,
     user.id,
   );
 
@@ -101,12 +113,17 @@ export default async function ProgressPage() {
         <div className="grid grid-cols-2 gap-6 md:grid-cols-4">
           <Stat n={seen} label="gesehen" hint="im Wortschatz gelesen" />
           <Stat n={inDeck} label="im Deck" hint="mindestens 1× geübt" />
-          <Stat n={learned} label="gelernt" hint="3+ Wdh., letzte 2 richtig" />
+          {/* The hint said "letzte 2 richtig", which is not what the query
+              asks. `state = 2` is the FSRS review state and says nothing about
+              the last two answers. */}
+          <Stat n={learned} label="gelernt" hint="3+ Wdh. · in Wiederholung" />
           <Stat n={mastered} label="gemeistert" hint="Stabilität > 30 Tage" />
         </div>
         <p className="text-muted mt-4 max-w-[62ch] text-[13px] leading-relaxed">
           „gesehen“ und „gelernt“ sind bewusst getrennt — Lesen ist Wiedererkennen,
           nicht Können.
+          {heard > 0 &&
+            ` ${heard}× hast du unterwegs ein Wort gehört — auch das ist keins von beidem.`}
         </p>
 
         <Section title={`Wortschatz — ${learned} von ${totalWords}`}>
@@ -416,7 +433,19 @@ const LABELS: Record<string, string> = {
   "exam-hoeren": "Test · Hören",
   "exam-wortschatz": "Test · Wortschatz",
   "exam-grammatik": "Test · Grammatik",
+  "grammar-review": "Grammatik-Wdh.",
 };
+
+/**
+ * Kinds that are not answers, and so have no accuracy.
+ *
+ * `exposure` is written by walk mode with correct = 1, unconditionally — it
+ * records that a word was played into your ears, which is not a question you
+ * can get wrong. Charted alongside the rest it rendered as a permanent
+ * "exposure — 100%" bar, the exact shape of the fake progress principle 4
+ * exists to prevent, and with a raw English key because LABELS had no entry.
+ */
+const NOT_GRADED = new Set(["exposure"]);
 
 const COST_LABEL: Record<string, string> = {
   chat: "Gespräch",
@@ -426,12 +455,9 @@ const COST_LABEL: Record<string, string> = {
   mistake: "Fehler erklärt",
 };
 
-/** Derived from real recognition results — never a phoneme score. */
-const SOUND_MAP: Record<string, RegExp> = {
-  ü: /ü/, ö: /ö/, ä: /ä/, ch: /ch/, sch: /sch/,
-  "sp / st": /^(sp|st)/, r: /r/, z: /z/, ß: /ß/,
-  ei: /ei/, "eu / äu": /(eu|äu)/, ie: /ie/,
-};
+/* Derived from real recognition results — never a phoneme score. The map lives
+   in lib/pairs.ts, next to the drills, because a sound this page can name and
+   the drill cannot open on is worse than one it never mentions. */
 
 function soundBreakdown(userId: string) {
   const rows = all<{ expected: string; user_answer: string }>(
@@ -444,7 +470,7 @@ function soundBreakdown(userId: string) {
   for (const r of rows) {
     const heard = new Set((r.user_answer ?? "").toLowerCase().replace(/[.,!?]/g, "").split(/\s+/));
     for (const w of r.expected.toLowerCase().replace(/[.,!?]/g, "").split(/\s+/)) {
-      for (const [sound, re] of Object.entries(SOUND_MAP)) {
+      for (const [sound, re] of Object.entries(SOUND_SPELLING)) {
         if (!re.test(w)) continue;
         const t = tally.get(sound) ?? { ok: 0, total: 0 };
         t.total++;

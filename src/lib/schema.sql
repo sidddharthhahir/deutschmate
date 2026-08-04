@@ -23,14 +23,17 @@ CREATE TABLE IF NOT EXISTS word (
   article       TEXT,                      -- der | die | das | NULL for non-nouns
   plural        TEXT,                      -- "Häuser"
   pos           TEXT NOT NULL,             -- noun | verb | adj | adv | prep | conj | pron | num | phrase
-  ipa           TEXT,
+  -- No `ipa`. It was in the schema, rendered on /wort, and NULL for all 2,400
+  -- words, because nothing in the repo produces it. 2,373 of those words have a
+  -- native recording instead, which is the better answer to "how does this
+  -- sound" anyway.
   en            TEXT NOT NULL,             -- primary English gloss
   level         TEXT NOT NULL,             -- A1.1 A1.2 A2.1 A2.2 B1.1 B1.2
   topic         TEXT,                      -- family, food, travel, ...
   audio_url     TEXT,                      -- /audio/words/haus.ogg
   audio_source  TEXT,                      -- commons | piper | NULL
   forms_json    TEXT,                      -- verb conjugations, comparatives
-  mnemonic      TEXT,                      -- generated once at build time
+  mnemonic      TEXT,                      -- on demand, and only for leeches
   example_de    TEXT,
   example_en    TEXT,
   freq_rank     INTEGER,
@@ -136,8 +139,9 @@ CREATE TABLE IF NOT EXISTS user (
   id                TEXT PRIMARY KEY,
   name              TEXT NOT NULL UNIQUE,
   level             TEXT NOT NULL DEFAULT 'A1.1',
-  daily_goal_min    INTEGER NOT NULL DEFAULT 60,
-  browse_batch_size INTEGER NOT NULL DEFAULT 50,
+  -- No `daily_goal_min`, no `browse_batch_size`. Both defaulted, neither had a
+  -- screen that could change it, and nothing obeyed them — the plan decides how
+  -- long a session is and /api/wortschatz owns its page size.
   created_at        TEXT NOT NULL DEFAULT (datetime('now'))
 );
 
@@ -185,11 +189,21 @@ CREATE TABLE IF NOT EXISTS unit_progress (
   UNIQUE(user_id, unit_id)
 );
 
-CREATE TABLE IF NOT EXISTS browse_progress (
-  user_id      TEXT PRIMARY KEY REFERENCES user(id) ON DELETE CASCADE,
-  last_word_id TEXT,
-  words_seen   INTEGER NOT NULL DEFAULT 0,
-  updated_at   TEXT NOT NULL DEFAULT (datetime('now'))
+/*
+ * Which words have been looked at in the browser.
+ *
+ * This replaced a single running counter, `browse_progress.words_seen`, which
+ * was incremented by the size of each batch with no deduplication. Paging back
+ * and forward re-counted; switching topic re-counted; the number was rendered
+ * as the first headline stat on /fortschritt directly above a paragraph
+ * insisting the counts are honest, and it could climb past the 2,400 words that
+ * exist. One row per word makes "gesehen" mean what it says.
+ */
+CREATE TABLE IF NOT EXISTS word_seen (
+  user_id  TEXT NOT NULL REFERENCES user(id) ON DELETE CASCADE,
+  word_id  TEXT NOT NULL REFERENCES word(id),
+  seen_at  TEXT NOT NULL DEFAULT (datetime('now')),
+  PRIMARY KEY (user_id, word_id)
 );
 
 CREATE TABLE IF NOT EXISTS session_log (

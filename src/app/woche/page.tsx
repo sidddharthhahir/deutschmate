@@ -85,14 +85,20 @@ export default async function WeekPage() {
   const now = tally("-7 days", "-0 days");
   const before = tally("-14 days", "-7 days");
 
+  /* The keys come from the union of both weeks, so every row already has a
+     count on at least one side — the filter that used to sit here,
+     `before > 0 || now > 0`, was always true, and its comment claimed the
+     opposite ("history on both sides"). Rather than tighten it to && and lose
+     brand-new problems entirely, the two directions are separated: a tag with
+     no history last week has not become more frequent, it has appeared, and
+     TagRows says "neu" for it instead of rendering "0× → 3×" as a trend. */
   const moved: Row[] = [...new Set([...now.keys(), ...before.keys()])]
     .map((tag) => ({ tag, now: now.get(tag) ?? 0, before: before.get(tag) ?? 0 }))
-    // A tag needs history on both sides to have a direction at all.
-    .filter((r) => r.before > 0 || r.now > 0)
     .sort((a, b) => a.now - a.before - (b.now - b.before));
 
-  const better = moved.filter((r) => r.now < r.before).slice(0, 3);
-  const worse = moved.filter((r) => r.now > r.before).reverse().slice(0, 3);
+  const better = moved.filter((r) => r.before > 0 && r.now < r.before).slice(0, 3);
+  const worse = moved.filter((r) => r.before > 0 && r.now > r.before).reverse().slice(0, 3);
+  const fresh = moved.filter((r) => r.before === 0 && r.now > 0).slice(0, 3);
 
   const empty = sessions === 0 && reviews === 0;
 
@@ -174,6 +180,13 @@ export default async function WeekPage() {
                   </div>
                 )}
 
+                {fresh.length > 0 && (
+                  <div>
+                    <p className="text-secondary mb-2 text-[13px]">Neu diese Woche</p>
+                    <TagRows rows={fresh} />
+                  </div>
+                )}
+
                 <p className="text-muted mt-4 max-w-[62ch] text-[12.5px] leading-relaxed">
                   Beide Zahlen stehen da, damit du die Rechnung siehst statt sie zu
                   glauben. Eine Woche ist eine kleine Stichprobe — eine Richtung, kein
@@ -228,7 +241,7 @@ function TagRows({ rows }: { rows: Row[] }) {
             {TAGS[r.tag as Tag] ?? r.tag}
           </span>
           <span className="font-mono text-muted flex-none text-[12.5px] tabular-nums">
-            {r.before}× → {r.now}×
+            {r.before === 0 ? `neu · ${r.now}×` : `${r.before}× → ${r.now}×`}
           </span>
         </Link>
       ))}

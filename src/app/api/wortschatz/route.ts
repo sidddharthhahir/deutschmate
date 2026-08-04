@@ -1,11 +1,16 @@
 import { NextResponse } from "next/server";
 import { activeUser, userFromRequest } from "@/lib/user";
-import { all, get, run } from "@/lib/db";
+import { all, get, run, tx } from "@/lib/db";
 import { toSqlDate } from "@/lib/srs";
 import { createEmptyCard } from "ts-fsrs";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
+
+/* Words per page. Was `user.browse_batch_size`, a column with a default of 50,
+   no screen that could change it, and a client that hardcoded 50 anyway — the
+   two happened to agree, which is the only reason nothing looked wrong. */
+const BATCH = 50;
 
 /**
  * Wortschatz — browse the whole vocabulary (spec §5).
@@ -20,7 +25,7 @@ export async function GET(req: Request) {
   const level = url.searchParams.get("level");
   const topic = url.searchParams.get("topic");
   const q = url.searchParams.get("q")?.trim();
-  const size = Number(url.searchParams.get("size") ?? user.browse_batch_size);
+  const size = Number(url.searchParams.get("size") ?? BATCH);
   const offset = Number(url.searchParams.get("offset") ?? 0);
 
   const where: string[] = [];
@@ -35,7 +40,12 @@ export async function GET(req: Request) {
 
   const rows = all(
     `SELECT w.*, u.id AS unit_id, u.ord AS unit_ord, u.title AS unit_title,
-            CASE WHEN c.reps > 0 THEN 1 ELSE 0 END AS in_deck,
+            -- A card exists, not "has been answered". The badge is set by the
+            -- "+ Deck" button, which creates the card with reps = 0 — so
+            -- testing reps > 0 meant "im Deck" flipped back to "+ Deck" on the
+            -- next page turn, search or refresh, every time. The card was
+            -- always really there; only the badge disagreed.
+            CASE WHEN c.id IS NOT NULL THEN 1 ELSE 0 END AS in_deck,
             c.stability
        FROM word w
        LEFT JOIN card c ON c.ref_id = w.id AND c.ref_type='word' AND c.user_id = ?
@@ -56,10 +66,10 @@ export async function GET(req: Request) {
     ...params,
   )?.n ?? 0;
 
-  const progress = get<{ words_seen: number; last_word_id: string | null }>(
-    "SELECT words_seen, last_word_id FROM browse_progress WHERE user_id = ?",
+  const seen = get<{ n: number }>(
+    "SELECT COUNT(*) AS n FROM word_seen WHERE user_id = ?",
     user.id,
-  );
+  )?.n ?? 0;
 
   const topics = all<{ topic: string; n: number }>(
     "SELECT topic, COUNT(*) AS n FROM word WHERE topic IS NOT NULL GROUP BY topic ORDER BY n DESC",
@@ -71,8 +81,8 @@ export async function GET(req: Request) {
     offset,
     size,
     topics,
-    seen: progress?.words_seen ?? 0,
-    batchSize: user.browse_batch_size,
+    seen,
+    batchSize: BATCH,
   });
 }
 
@@ -82,25 +92,28 @@ export async function POST(req: Request) {
     user?: string;
     action: "seen" | "add";
     wordId?: string;
-    lastWordId?: string;
-    count?: number;
+    /** The ids actually on screen. A count alone cannot be deduplicated. */
+    wordIds?: unknown;
   };
   const user = await activeUser(body.user ?? undefined);
 
   if (body.action === "seen") {
-    run(
-      `INSERT INTO browse_progress (user_id, last_word_id, words_seen, updated_at)
-       VALUES (?, ?, ?, datetime('now'))
-       ON CONFLICT(user_id) DO UPDATE
-         SET last_word_id = excluded.last_word_id,
-             words_seen = words_seen + excluded.words_seen,
-             updated_at = datetime('now')`,
-      user.id,
-      body.lastWordId ?? null,
-      body.count ?? 0,
-    );
+    /* One row per word, ignored on repeat. The previous version added the
+       batch size to a running total, so the headline "gesehen" figure counted
+       page turns: browsing back and forward, or switching topic, inflated it
+       without a single new word being read. */
+    const ids = (Array.isArray(body.wordIds) ? body.wordIds : [])
+      .filter((id): id is string => typeof id === "string" && id.length > 0 && id.length <= 64)
+      .slice(0, 500);
+    if (ids.length) {
+      tx(() => {
+        for (const id of ids) {
+          run("INSERT OR IGNORE INTO word_seen (user_id, word_id) VALUES (?, ?)", user.id, id);
+        }
+      });
+    }
     const seen = get<{ n: number }>(
-      "SELECT words_seen AS n FROM browse_progress WHERE user_id = ?",
+      "SELECT COUNT(*) AS n FROM word_seen WHERE user_id = ?",
       user.id,
     )?.n ?? 0;
     // Counted separately from "learned" on purpose — principle 4 (spec §5).
@@ -113,7 +126,11 @@ export async function POST(req: Request) {
       `INSERT INTO card (user_id, ref_type, ref_id, due, stability, difficulty,
          elapsed_days, scheduled_days, reps, lapses, state)
        VALUES (?, 'word', ?, ?, 0, 0, 0, 0, 0, 0, 0)
-       ON CONFLICT(user_id, ref_type, ref_id) DO UPDATE SET due = excluded.due`,
+       -- DO NOTHING, like /api/text. Updating due meant that tapping "+ Deck"
+       -- on a word already halfway up the curve yanked it back to today and
+       -- threw away weeks of scheduling — a destructive act behind a button
+       -- whose only advertised effect is "add".
+       ON CONFLICT(user_id, ref_type, ref_id) DO NOTHING`,
       user.id,
       body.wordId,
       toSqlDate(empty.due),

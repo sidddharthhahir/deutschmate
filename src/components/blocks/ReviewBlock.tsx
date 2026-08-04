@@ -67,6 +67,27 @@ export default function ReviewBlock({ payload, onDone }: BlockProps<Payload>) {
   const [undo, setUndo] = useState<{ card: DueCard } | null>(null);
   const undoTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
+  /**
+   * The grade waiting out its undo window.
+   *
+   * "Z zurücknehmen (5 s)" used to undo nothing that mattered. The grade was
+   * POSTed the instant the button was pressed, so FSRS had already moved the
+   * card and logged the attempt; taking it back only put the card at the front
+   * of the local queue, and answering it again graded it a SECOND time — two
+   * attempt rows, two steps of the curve, from one card.
+   *
+   * So the send waits instead. Nothing is sent until the window closes, which
+   * is the only reading of "zurücknehmen" that is true.
+   */
+  const held = useRef<{ cardId: number; grade: number } | null>(null);
+
+  const commit = useCallback(() => {
+    const g = held.current;
+    held.current = null;
+    // Through the outbox: a grade given on a train is queued, not lost.
+    if (g) void send("/api/review", { cardId: g.cardId, grade: g.grade });
+  }, []);
+
   const audioFirst = Boolean(payload.audioFirst);
 
   const total = payload.cards.length;
@@ -92,27 +113,37 @@ export default function ReviewBlock({ payload, onDone }: BlockProps<Payload>) {
   const grade = useCallback(
     (g: number) => {
       if (!card) return;
+      // Answering the next card closes the previous one's window. Without this
+      // the timer below would be cleared and that grade would never be sent.
+      commit();
+
       setQueue((q) => q.slice(1));
       setRevealed(false);
       setPeeked(false);
       setUndo({ card });
+      held.current = { cardId: card.cardId, grade: g };
       if (undoTimer.current) clearTimeout(undoTimer.current);
-      undoTimer.current = setTimeout(() => setUndo(null), UNDO_MS);
-
-      // Through the outbox: a grade given on a train is queued, not lost.
-      void send("/api/review", { cardId: card.cardId, grade: g });
+      undoTimer.current = setTimeout(() => {
+        setUndo(null);
+        commit();
+      }, UNDO_MS);
     },
-    [card],
+    [card, commit],
   );
 
   const takeBack = useCallback(() => {
     if (!undo) return;
+    held.current = null; // never sent, so there is nothing to reverse
     setQueue((q) => [undo.card, ...q]);
     setRevealed(false);
     setPeeked(false);
     setUndo(null);
     if (undoTimer.current) clearTimeout(undoTimer.current);
   }, [undo]);
+
+  /* Leaving the block closes the window early rather than dropping the grade —
+     the last card of a review would otherwise be lost every single time. */
+  useEffect(() => commit, [commit]);
 
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
@@ -163,10 +194,23 @@ export default function ReviewBlock({ payload, onDone }: BlockProps<Payload>) {
             ≈ {minutesLeft} min übrig
           </span>
         </div>
+        {/* `gap` arrives on the payload of a Wiedereinstieg — the recovery
+            session built after three days away, capped at 20 cards. The whole
+            mode was invisible: this line hardcoded "Aufwärmen", the block's
+            own title never rendered, and you came back from a week off to a
+            screen indistinguishable from a normal day, being let off lightly
+            with no explanation of why. */}
         <div className="font-mono text-muted text-center text-[12.5px]">
-          {audioFirst ? "Nur Hören" : "Aufwärmen"} · Karte {done + 1} von {total}
+          {payload.gap ? "Wiedereinstieg" : audioFirst ? "Nur Hören" : "Aufwärmen"} · Karte{" "}
+          {done + 1} von {total}
           {payload.capped && ` · ${payload.backlog} fällig, Rest morgen`}
         </div>
+        {payload.gap ? (
+          <p className="text-secondary mx-auto max-w-[52ch] text-center text-[13.5px] leading-relaxed">
+            {payload.gap} Tage Pause, {payload.backlog} Karten fällig. Heute nur die
+            wichtigsten {total} — der Rest kommt zurück, wenn du wieder drin bist.
+          </p>
+        ) : null}
       </div>
 
       {/* ------------------------------------------------------------ card */}

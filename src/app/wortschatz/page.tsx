@@ -79,15 +79,19 @@ export default function WortschatzPage() {
   }, [size, offset, topic, q]);
 
   async function markSeen() {
-    await fetch("/api/wortschatz", {
+    // The ids, not the count: the server deduplicates, so paging back and
+    // forward over the same words no longer inflates "gesehen".
+    const res = await fetch("/api/wortschatz", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        action: "seen",
-        lastWordId: rows.at(-1)?.id,
-        count: rows.length,
-      }),
+      body: JSON.stringify({ action: "seen", wordIds: rows.map((r) => r.id) }),
     });
+    try {
+      const d = (await res.json()) as { seen?: number };
+      if (typeof d.seen === "number") setSeen(d.seen);
+    } catch {
+      /* the page turn matters more than the counter */
+    }
     setOffset((o) => o + size);
   }
 

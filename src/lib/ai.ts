@@ -165,7 +165,32 @@ export type Turn = { role: "user" | "assistant"; content: string };
  * the word list is ordered by frequency rank (never by a set or a map), and the
  * scenario — which changes per unit — sits AFTER the breakpoint.
  */
+/**
+ * The floor under the whitelist.
+ *
+ * knownVocabulary() returns the words this learner has actually met, which on
+ * day one is none — and the rule below is absolute, so the prompt read
+ * "ALLOWED WORDS (0):" followed by nothing: an instruction forbidding every
+ * German word there is. /alltag is the likeliest place to hit it, and it is
+ * aimed squarely at people who do not have a deck yet.
+ *
+ * These are the words a tutor cannot open a conversation without. They are in
+ * the A1.1 curriculum regardless, so nobody is being taught out of order —
+ * they are simply available before the deck says so.
+ */
+const STARTER_WORDS = [
+  "hallo", "guten", "Tag", "Morgen", "Abend", "tschüss", "auf Wiedersehen",
+  "ja", "nein", "bitte", "danke", "gut", "sehr", "und", "oder", "aber",
+  "ich", "du", "Sie", "wir", "er", "sie", "es",
+  "bin", "bist", "ist", "sind", "habe", "hast", "hat", "haben",
+  "wie", "was", "wer", "wo", "wann", "warum",
+  "heiße", "heißt", "komme", "kommst", "kommt", "aus", "wohne", "wohnst",
+  "möchte", "möchten", "kann", "nicht", "kein", "ein", "eine", "der", "die", "das",
+  "Entschuldigung", "langsam", "noch einmal", "verstehe",
+];
+
 function tutorSystem(level: string, vocabulary: string[], scenario: Scenario) {
+  const allowed = vocabulary.length ? vocabulary : STARTER_WORDS;
   return [
     {
       type: "text" as const,
@@ -180,8 +205,8 @@ If the list is very short, the learner is on their first days. Speak in single
 words and two-word phrases rather than reaching for a word that is not there.
 Repetition is fine — hearing "Wie geht's?" a third time is a lesson, not a gap.
 
-ALLOWED WORDS (${vocabulary.length}):
-${vocabulary.join(", ")}
+ALLOWED WORDS (${allowed.length}):
+${allowed.join(", ")}
 
 HOW TO SPEAK
 - One or two short sentences per turn. Never a paragraph.
@@ -410,6 +435,49 @@ Rules:
     messages: [{ role: "user", content: sentence }],
   });
   return { result: text(msg), model: TASK.explain.model, usage: msg.usage };
+}
+
+/**
+ * A memory hook for a word that will not stick.
+ *
+ * `word.mnemonic` has been in the schema, selected by four queries and
+ * rendered in three places since the beginning — and was NULL for all 2,400
+ * words, because the build-time generation pass the spec planned never
+ * happened. Three bits of UI that could never appear.
+ *
+ * Generated on demand instead, and only for leeches: a mnemonic for "Haus" is
+ * noise, a mnemonic for the word you have failed eight times is the whole
+ * point. That makes it nearly free — you can only have so many leeches — and
+ * it is stored on the shared `word` row, so when one flatmate unsticks a word
+ * the other gets the hook for nothing.
+ */
+export async function mnemonicFor(
+  userId: string,
+  word: { lemma: string; article: string | null; en: string; pos: string },
+) {
+  guard(userId);
+  const msg = await client().messages.create({
+    model: TASK.mistake.model,
+    max_tokens: 120,
+    system: `You write one memory hook for a German word a learner keeps forgetting.
+
+One or two sentences, English, concrete and visual. Rules:
+- Hang it on how the German SOUNDS to an English ear, or on a real connection
+  to an English word. Never invent a false etymology — say "sounds like", not
+  "comes from".
+- If the word has an article, the hook must encode the gender too: that is
+  usually the half they are losing.
+- No preamble, no "Here's a mnemonic", no quotation marks around the whole
+  thing. Just the hook.
+- Silly is fine. Silly is why it works. Nothing crude.`,
+    messages: [
+      {
+        role: "user",
+        content: `${word.article ? `${word.article} ` : ""}${word.lemma} (${word.pos}) = ${word.en}`,
+      },
+    ],
+  });
+  return { result: text(msg), model: TASK.mistake.model, usage: msg.usage };
 }
 
 /**

@@ -23,7 +23,11 @@ export async function GET(req: Request) {
   return NextResponse.json({
     // plan.level, not user.level — building the session can promote the learner
     // to the next level, and the stale copy would show the old one for a day.
-    user: { id: user.id, name: user.name, level: plan.level, goal: user.daily_goal_min },
+    /* No `goal`. daily_goal_min rode along here for weeks and was read by
+       nothing: session length comes from the block plan and from the 20-minute
+       escape valve, and no screen sets it. A number nobody can change and
+       nothing obeys is worse than no number at all. */
+    user: { id: user.id, name: user.name, level: plan.level },
     streak: currentStreak(user.id),
     ...plan,
   });

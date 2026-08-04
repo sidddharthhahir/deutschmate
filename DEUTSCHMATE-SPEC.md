@@ -377,7 +377,7 @@ German.
 **Global content** — shared by all users, built once, committed to the repo:
 
 ```sql
-word(id, lemma, article, plural, pos, ipa, en, level, topic,
+word(id, lemma, article, plural, pos, en, level, topic,        -- no `ipa`, see §21
      audio_url, forms_json, mnemonic, example_de, example_en, freq_rank)
 sentence(id, de, en, level, word_ids_json, audio_url, source)
 grammar(id, slug, title, level, ord, explain_md, examples_json, prereq_json)
@@ -390,13 +390,13 @@ error_pattern(id, tag, trigger_regex, explain_md)
 **Per-user** — never shared:
 
 ```sql
-user(id, name, level, daily_goal_min, browse_batch_size, created_at)
+user(id, name, level, created_at)      -- no goal or batch columns, see §21
 card(id, user_id, ref_type, ref_id, due, stability, difficulty,
      reps, lapses, state)                            -- FSRS state
 attempt(id, user_id, kind, ref_id, correct, user_answer,
         error_tags_json, created_at)
 unit_progress(id, user_id, unit_id, status, completed_at)
-browse_progress(id, user_id, last_word_id, words_seen, updated_at)
+word_seen(user_id, word_id, seen_at)   -- was browse_progress, see §21
 session_log(id, user_id, date, minutes, blocks_json, streak_day)
 ```
 
@@ -867,3 +867,75 @@ alongside `/nachrichten`, `/unterwegs`, `/aussprache` and `/text`.
 The reasoning that survived: **no new top-level decisions.** The reasoning that
 did not: **no new content pipeline.** Worth saying plainly rather than leaving
 §19 reading as though nothing happened.
+
+---
+
+## 21. The cosmetic audit
+
+One feature turned out to be **cosmetic**: `/alltag` passed ids like
+`surv-anmeldung` to the conversation route, which looked them up in the `unit`
+table, found nothing, and fell through to "a friendly German speaker having a
+short chat". All six briefs rendered perfectly beside a conversation that was
+not theirs. Nothing errored. It survived a full read of the page.
+
+That failure has a shape — *correct-looking output over a disconnected
+mechanism* — so the whole app was swept for it. This section is what the sweep
+found, because a list of near-misses is more useful than a claim of quality.
+
+### Mechanisms that were not connected
+
+| | |
+|---|---|
+| **"✓ geführt" on /ueben** | Read `attempt.ref_id` for conversations. The chat route logged those rows without a `refId`, so the column was NULL for every conversation ever had, the set was permanently empty, and all six level headers read "0 / 20 geführt" forever. A flawless conversation logged nothing at all — rows were written per *correction* — so the one outcome worth celebrating left no trace. Both fixed. |
+| **"Text gespeichert · die Korrektur kommt, sobald du wieder online bist"** | A plain `fetch`. Offline it rejected, the catch set the flag, and the screen confirmed the saving of eighty words that had just been dropped. The server's queue only ever received texts submitted while the network was up. It goes through the outbox now. |
+| **The drain for that queue** | `GET /api/writing` — "drain the offline queue once we're back online" — had no callers anywhere in `src/`. Rows accumulated permanently under a banner promising they'd be checked. It is called from /ueben now, and shows the corrections rather than silently resolving them. |
+| **"Z zurücknehmen (5 s)"** | The grade was POSTed the moment the button was pressed; take-back only re-queued the card locally. Answering again graded it a *second* time — two attempt rows, two steps of the curve. The send now waits out the undo window, which is the only reading of the word that is true. |
+| **"Esc Beenden"** | Printed in the session header and listed in the shortcut sheet. No Escape listener existed. |
+| **The corpus rotation** | `id > 'tat-' + (dayIndex % 36)`, commented "walks the whole corpus over time instead of replaying the first rows". The modulo made day 36 identical to day 0, and Tatoeba ids are skewed — 941 of 1,827 start with `tat-1`. Measured over the 210-day course: **105 of 1,827 sentences at B1.2**, final by week five. Now an offset window: 92% at B1.2, 100% at A1.1. `tests/corpus.test.mts` measures coverage rather than checking that two days differ, which the broken version also passed. |
+| **Three localStorage keys** | `/wer` says, in as many words, "nothing is shared between learners except the course itself". The saved session, the cached plan and — worst — **the queue of ungraded answers** were global. Switch learner mid-queue and one person's reviews replayed into the other's deck, under whichever cookie happened to be set when the network returned. Keys are scoped by learner now (`src/lib/who.ts`), replays are stamped with the learner who answered, and a pre-existing queue is adopted rather than orphaned. |
+| **"gemischt" on /aussprache** | Linked to `?laut=alle`, which is not a known sound, so it fell through to the auto-picked weak one. On a new account there is no weak sound and it happened to give the mixed spread — so the chip broke only once you had enough data for the page to have an opinion. |
+| **Two copies of the sound map** | Each commented "the same map the other one uses", already drifted: /fortschritt could name "eu / äu" as your worst sound while the drill had no way to open on it. One copy now, in `lib/pairs.ts`, containing only sounds that have drills. |
+
+### Claims that were false rather than disconnected
+
+- **Home: "Morgen: Unit 15."** §4 forbids a bare unit number and the recap
+  already obeyed it. Home did the arithmetic itself — and `ord + 1` is also
+  wrong at a level boundary, where the next unit's ord resets to 1.
+- **Home: "Nur 20 Minuten heute · Wiederholen · Fix · Lücken."** Both halves
+  hardcoded, both wrong: the short session is up to four blocks and nearer 28
+  minutes, and which blocks appear depends on what is due. It now states the
+  rule that actually defines the shape — nothing new, only what decays.
+- **"Offline — Ersatzübung statt Video."** No video has ever been imported.
+- **"gesehen" on /fortschritt**, the first headline stat, directly above a
+  paragraph insisting the counts are honest: a running total incremented by the
+  page size with no deduplication. Paging back and forward re-counted; it could
+  climb past the 2,400 words that exist. `browse_progress` is replaced by
+  `word_seen`, one row per word.
+- **"✓ im Deck"** reverted to "+ Deck" on the next page turn — the badge tested
+  `reps > 0` and the button creates the card with `reps = 0`. Re-clicking also
+  reset the card's schedule to today, discarding weeks of it.
+- **"gelernt · 3+ Wdh., letzte 2 richtig."** The query is `reps >= 3 AND state
+  = 2`; FSRS review state says nothing about the last two answers.
+- **Walk mode** wrote `correct = 1` unconditionally and the accuracy chart drew
+  it as a permanent **"exposure — 100%"** bar, in English, because the label map
+  had no entry. It is a count in a sentence now, not a bar.
+- **"Häufiger geworden · 0× → 3×"** for a mistake with no history. The filter
+  meant to require history on both sides was `||`, always true.
+
+### Dead columns, removed rather than left as traps
+
+`word.ipa` — NULL for all 2,400 words, rendered on `/wort`, nothing in the repo
+produces it, and 2,373 of those words have a native recording. `daily_goal_min`
+and `browse_batch_size` — both defaulted, neither editable anywhere, neither
+obeyed. `word.mnemonic` was on this list too; instead of removing it, it is now
+generated on demand for leeches and stored on the shared row, so the second
+person to hit the same wall gets it free.
+
+### Things that are empty but honest
+
+`video` has no rows, and the session only offers a video once it has
+hand-marked segments, so nothing pretends otherwise — `/admin/video` is the tool
+for adding them. `error_pattern` has no rows either: the "prebuilt" tier that
+§12 planned was never written, and the cache fills itself from real mistakes.
+`topic` covers 6% of words, and the filter chips are built from the topics that
+exist, with counts.

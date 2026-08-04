@@ -222,3 +222,31 @@ export function pairsFor(sound: string | null, limit = 8): Pair[] {
 }
 
 export const SOUNDS = [...new Set(PAIRS.map((p) => p.sound))];
+
+/**
+ * How a sound is spotted in a word's spelling.
+ *
+ * ONE copy. There were two — /aussprache had ten keys, /fortschritt had twelve,
+ * and each called itself "the same map the other one uses". They had already
+ * drifted: Fortschritt could name "eu / äu" as your worst sound while the drill
+ * had no way to open on it, and both listed "sp / st", for which no minimal
+ * pair exists in PAIRS, so picking it produced a generic spread instead.
+ *
+ * Every key here has drillable pairs. `lang / kurz` deliberately has none:
+ * it is the largest group in PAIRS (six), and vowel length is not something
+ * spelling reveals reliably enough to accuse a learner of failing it. It stays
+ * reachable by hand from the chips, just never auto-selected.
+ */
+export const SOUND_SPELLING: Record<string, RegExp> = {
+  ü: /ü/,
+  ö: /ö/,
+  ä: /ä/,
+  ch: /ch/,
+  sch: /sch/,
+  r: /r/,
+  z: /z/,
+  ß: /ß/,
+  ei: /ei/,
+  ie: /ie/,
+  "eu / äu": /(eu|äu)/,
+};

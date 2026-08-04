@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Restore the progress half from a JSON export.
  *
  *   node scripts/restore.mts backups/2026-08-03T12-00-00.json
@@ -48,7 +48,7 @@ const TABLES = [
   "card",
   "attempt",
   "unit_progress",
-  "browse_progress",
+  "word_seen",
   "session_log",
   "cloze",
   "exam_run",

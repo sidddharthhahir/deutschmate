@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useOnline } from "@/lib/hooks";
+import { send } from "@/lib/outbox";
 import { GermanTextarea } from "@/components/GermanInput";
 import { Card, Eyebrow, SkipLink, type BlockProps } from "./shared";
 
@@ -14,6 +15,15 @@ type Result = { corrections: Correction[]; natural: string; encouragement: strin
  *
  * Offline you still write — the text is stored and corrected on reconnect.
  * "Write now, grade later" is a fine experience, so this never blocks a session.
+ *
+ * IT DID NOT STORE ANYTHING. This was a plain fetch, so offline it rejected,
+ * the catch set `queued`, and the screen said "Text gespeichert · die Korrektur
+ * kommt automatisch, sobald du wieder online bist" over eighty words that had
+ * just been dropped on the floor. The server's queue only ever received texts
+ * submitted while the network was up — the one case where it is not needed.
+ *
+ * It goes through the outbox now, like every other write that must survive a
+ * dead network, so the sentence on the screen is true.
  */
 export default function WritingBlock({ payload, onDone, onSkip }: BlockProps<Payload>) {
   const [text, setText] = useState("");
@@ -28,16 +38,15 @@ export default function WritingBlock({ payload, onDone, onSkip }: BlockProps<Pay
   async function submit() {
     setBusy(true);
     try {
-      const res = await fetch("/api/writing", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ prompt: payload.prompt, body: text, queueOnly: !online }),
+      // null means the outbox is holding it — that IS the storage the screen
+      // below promises, and it replays to /api/writing on reconnect.
+      const data = await send<Result & { queued?: boolean }>("/api/writing", {
+        prompt: payload.prompt,
+        body: text,
+        queueOnly: !online,
       });
-      const data = await res.json();
-      if (data.queued) setQueued(true);
+      if (!data || data.queued) setQueued(true);
       else setResult(data);
-    } catch {
-      setQueued(true);
     } finally {
       setBusy(false);
     }

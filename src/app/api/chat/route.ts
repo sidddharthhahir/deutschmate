@@ -47,6 +47,12 @@ export async function POST(req: Request) {
 
   try {
     if (action === "review") {
+      /* The scene that was talked through. Every conversation attempt row used
+         to be written with a NULL ref_id, so nothing downstream could tell
+         which scenario it belonged to — /ueben's "✓ geführt" checked exactly
+         that column and stayed empty no matter how much you talked. */
+      const scene = str(raw.unitId, 40) || null;
+
       const rev = await reviewConversation({
         userId: user.id,
         level: user.level,
@@ -60,11 +66,17 @@ export async function POST(req: Request) {
         logAttempt({
           userId: user.id,
           kind: "conversation",
+          refId: scene,
           correct: false,
           answer: c.original,
           expected: c.corrected,
           tags: [c.tag as Tag],
         });
+      }
+      /* A conversation with nothing to correct wrote no row at all, so the one
+         outcome worth celebrating was the one that left no trace. */
+      if (!corrections.length) {
+        logAttempt({ userId: user.id, kind: "conversation", refId: scene, correct: true });
       }
       return NextResponse.json({ corrections });
     }

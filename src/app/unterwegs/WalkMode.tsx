@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { playAudio, speak } from "@/lib/speech";
+import { send } from "@/lib/outbox";
 
 type Card = {
   cardId: number;
@@ -75,7 +76,9 @@ export default function WalkMode({ cards }: { cards: Card[] }) {
 
       after(THINK * 1000, () => {
         setShowing(true);
-        speak(c.en, 1);
+        // The gloss is English. This is the only call site that isn't German,
+        // and it used to be read out by a German voice.
+        speak(c.en, 1, "en");
       });
       after(THINK * 1000 + 2200, () => {
         setHeard((n) => n + 1);
@@ -116,11 +119,10 @@ export default function WalkMode({ cards }: { cards: Card[] }) {
   useEffect(() => {
     if (phase !== "done" || logged.current || heard === 0) return;
     logged.current = true;
-    void fetch("/api/unterwegs", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ heard }),
-    });
+    /* Through the outbox. A walk is the single most likely thing in this app
+       to happen without a network — that is the point of it — and a bare fetch
+       dropped the whole walk silently on exactly that day. */
+    void send("/api/unterwegs", { heard });
   }, [phase, heard]);
 
   if (phase === "empty") {

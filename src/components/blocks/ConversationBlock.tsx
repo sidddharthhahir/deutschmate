@@ -140,7 +140,11 @@ export default function ConversationBlock({ payload, onDone, onSkip }: BlockProp
         const res = await fetch("/api/chat", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ action: "review", history: turns }),
+          /* unitId matters here, not just on "say": the review is what writes
+             the attempt rows, and without it every conversation was logged
+             against no scenario at all. /ueben's "✓ geführt" reads exactly
+             that column and was therefore never true for anyone. */
+          body: JSON.stringify({ action: "review", unitId: payload.unitId, history: turns }),
         });
         const data = await res.json();
         setCorrections(data.corrections ?? []);
@@ -244,6 +248,39 @@ export default function ConversationBlock({ payload, onDone, onSkip }: BlockProp
   }
 
   const scripted = mode === "scripted";
+
+  /**
+   * Scripted mode with no script.
+   *
+   * The six Alltag scenarios pass `dialogue: null` on purpose — they are meant
+   * to be talked through, not clicked. When the model is unreachable the block
+   * fell back to scripted mode anyway and rendered the banner "Offline-Variante
+   * — vorbereiteter Dialog" above an empty log with zero buttons. There was no
+   * way forward at all: no options, no skip, nothing but the browser's back
+   * button. Spec §17 says the session never dead-ends, and this was the one
+   * screen that did.
+   */
+  if (scripted && !dialogue.length) {
+    return (
+      <Card>
+        <p className="font-serif text-center text-[21px]">
+          Gerade kein Gespräch möglich
+        </p>
+        <p className="text-muted mx-auto mt-3 max-w-[44ch] text-center text-[14px] leading-relaxed">
+          {payload.scenario.role} — dieses Szenario wird gesprochen, es gibt keinen
+          vorbereiteten Dialog dafür. Ohne Netz oder ohne Schlüssel geht es nicht.
+          Die Sätze auf dieser Seite kannst du trotzdem üben; sie liegen auf dem Gerät.
+        </p>
+        <button
+          onClick={onDone}
+          className="bg-fg mt-7 w-full rounded-xl py-3.5 font-medium text-[#16211E] transition-colors hover:bg-white"
+        >
+          Weiter
+        </button>
+      </Card>
+    );
+  }
+
   const log = scripted ? scriptLog : turns.map((t) => ({ who: t.role === "user" ? "you" : "them", text: t.content, why: undefined }));
 
   return (

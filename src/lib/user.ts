@@ -1,23 +1,23 @@
 import { cookies } from "next/headers";
 import { all, get, run } from "./db";
+import { DEFAULT_USER, USER_COOKIE, normalise } from "./who.ts";
 
 export type User = {
   id: string;
   name: string;
   level: string;
-  daily_goal_min: number;
-  browse_batch_size: number;
 };
 
-/** Which learner this browser is. Not auth — a name, per spec §10. */
-export const USER_COOKIE = "dm_user";
-
-const DEFAULT_USER = "sid";
+/**
+ * The cookie name, the default learner and the name→id rule all live in
+ * lib/who.ts, because the browser needs the same three answers to scope its
+ * localStorage keys. Two copies of this rule would mean a key and a row could
+ * disagree about who someone is.
+ */
+export { USER_COOKIE };
 
 /** Names are ids. Anything unusable falls back rather than erroring. */
-export function normaliseName(name: string): string {
-  return name.trim().toLowerCase().replace(/[^a-z0-9_-]/g, "").slice(0, 32) || DEFAULT_USER;
-}
+export const normaliseName = normalise;
 
 /**
  * No auth (spec §10). A name is the identity; real auth arrives at user #5.

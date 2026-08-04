@@ -1,4 +1,4 @@
-/**
+﻿/**
  * The whole test harness. No framework, on purpose.
  *
  * These tests exist to answer one question before a change ships: does a
@@ -52,7 +52,7 @@ export function open() {
 /** Every table keyed by user. A test user must leave nothing behind. */
 const USER_TABLES = [
   "attempt", "cloze", "exam_run", "session_log", "unit_progress",
-  "browse_progress", "pending_correction", "card",
+  "word_seen", "pending_correction", "card",
 ];
 
 /**

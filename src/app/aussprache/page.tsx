@@ -2,16 +2,13 @@
 import AppHeader from "@/components/AppHeader";
 import { all } from "@/lib/db";
 import { activeUser } from "@/lib/user";
-import { pairsFor, SOUNDS } from "@/lib/pairs";
+import { pairsFor, SOUNDS, SOUND_SPELLING } from "@/lib/pairs";
 import PairDrill from "./PairDrill";
 
 export const dynamic = "force-dynamic";
 
-/** Same map Fortschritt groups recognition results by. */
-const SOUND_MAP: Record<string, RegExp> = {
-  ü: /ü/, ö: /ö/, ä: /ä/, ch: /ch/, sch: /sch/,
-  r: /r/, z: /z/, ß: /ß/, ei: /ei/, ie: /ie/,
-};
+/** Explicitly "everything", as opposed to "whatever is weakest". */
+const MIXED = "alle";
 
 /**
  * Which sound is actually failing for this learner.
@@ -34,7 +31,7 @@ function weakestSound(userId: string): { sound: string; ok: number; total: numbe
       (r.user_answer ?? "").toLowerCase().replace(/[.,!?]/g, "").split(/\s+/),
     );
     for (const w of r.expected.toLowerCase().replace(/[.,!?]/g, "").split(/\s+/)) {
-      for (const [sound, re] of Object.entries(SOUND_MAP)) {
+      for (const [sound, re] of Object.entries(SOUND_SPELLING)) {
         if (!re.test(w)) continue;
         const t = tally.get(sound) ?? { ok: 0, total: 0 };
         t.total++;
@@ -63,8 +60,14 @@ export default async function PronunciationPage({
   const user = await activeUser();
   const weak = weakestSound(user.id);
 
-  // Explicit choice wins; otherwise open on whatever the data says is worst.
-  const chosen = laut && SOUNDS.includes(laut) ? laut : (weak?.sound ?? null);
+  /* Explicit choice wins; otherwise open on whatever the data says is worst.
+     "gemischt" is an explicit choice too — it used to link to ?laut=alle,
+     which is not in SOUNDS, so it fell through to the auto-picked weak sound.
+     On a new account `weak` is null and it happened to give the mixed spread,
+     which is exactly why nobody noticed: the chip stopped working only once
+     you had enough speaking attempts for the page to have an opinion. */
+  const mixed = laut === MIXED;
+  const chosen = mixed ? null : laut && SOUNDS.includes(laut) ? laut : (weak?.sound ?? null);
   const pairs = pairsFor(chosen, 10);
 
   return (
@@ -112,8 +115,12 @@ export default async function PronunciationPage({
             </Link>
           ))}
           <Link
-            href="/aussprache?laut=alle"
-            className="border-line text-secondary hover:border-line-strong hover:text-fg rounded-full border px-3.5 py-1.5 text-[13px] transition-colors"
+            href={`/aussprache?laut=${MIXED}`}
+            className={`rounded-full border px-3.5 py-1.5 text-[13px] transition-colors ${
+              mixed
+                ? "border-fg text-fg"
+                : "border-line text-secondary hover:border-line-strong hover:text-fg"
+            }`}
           >
             gemischt
           </Link>

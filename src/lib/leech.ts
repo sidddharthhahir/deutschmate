@@ -84,6 +84,34 @@ function ownedCard(userId: string, cardId: number) {
 }
 
 /**
+ * The word behind one of this learner's leech cards, for the mnemonic pass.
+ *
+ * Returns the existing hook if there is one, so a second request costs nothing
+ * — the column is shared across users, which is the point.
+ */
+export function leechWord(userId: string, cardId: number) {
+  return get<{
+    id: string;
+    lemma: string;
+    article: string | null;
+    pos: string;
+    en: string;
+    mnemonic: string | null;
+  }>(
+    `SELECT w.id, w.lemma, w.article, w.pos, w.en, w.mnemonic
+       FROM card c JOIN word w ON w.id = c.ref_id
+      WHERE c.id = ? AND c.user_id = ? AND c.ref_type = 'word'`,
+    cardId,
+    userId,
+  );
+}
+
+/** Store a hook on the shared word row. Both flatmates get it. */
+export function storeMnemonic(wordId: string, text: string) {
+  run("UPDATE word SET mnemonic = ? WHERE id = ?", text, wordId);
+}
+
+/**
  * Forget the card.
  *
  * Lapses are deliberately KEPT. Zeroing them would make the word disappear from

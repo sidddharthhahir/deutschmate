@@ -22,15 +22,34 @@ export function playAudio(url: string | null, fallbackText?: string) {
   if (fallbackText) speak(fallbackText);
 }
 
-export function speak(text: string, rate = 0.9) {
+/**
+ * Say something.
+ *
+ * `lang` exists because one caller is not German: walk mode reads the English
+ * gloss aloud between words, and it went through here with lang="de-DE" and a
+ * German voice, which pronounces "the coast" as though it were German. Every
+ * other call site is German and gets the default.
+ *
+ * getVoices() is also asynchronous in every browser: on a cold page it returns
+ * an empty list, so the explicit voice pick below silently does nothing the
+ * first time. `u.lang` still routes it correctly, which is why nobody noticed —
+ * the warm-up subscribes once so later calls get the real choice.
+ */
+export function speak(text: string, rate = 0.9, lang: "de" | "en" = "de") {
   if (typeof window === "undefined" || !window.speechSynthesis) return;
+  const tag = lang === "en" ? "en-GB" : "de-DE";
   window.speechSynthesis.cancel();
   const u = new SpeechSynthesisUtterance(text);
-  u.lang = "de-DE";
+  u.lang = tag;
   u.rate = rate;
-  const de = window.speechSynthesis.getVoices().find((v) => v.lang.startsWith("de"));
-  if (de) u.voice = de;
+  const match = window.speechSynthesis.getVoices().find((v) => v.lang.startsWith(lang));
+  if (match) u.voice = match;
   window.speechSynthesis.speak(u);
+}
+
+/* Ask for the voice list once so it is populated by the time anything speaks. */
+if (typeof window !== "undefined" && window.speechSynthesis) {
+  window.speechSynthesis.getVoices();
 }
 
 export function playAt(url: string | null, text: string, rate: number) {

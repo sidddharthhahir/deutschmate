@@ -50,15 +50,20 @@ export async function GET(req: Request) {
     like,
   );
 
-  const units = all<{ id: string; ord: number; title: string; level: string }>(
-    `SELECT id, ord, title, level FROM unit WHERE title LIKE ? ORDER BY level, ord LIMIT 5`,
-    like,
-  );
-
+  /*
+   * One row per unit.
+   *
+   * There were two queries here, both matching `unit.title LIKE ?`, and all 120
+   * units have a scenario_json — so every unit-title match produced two rows
+   * with the identical label. One went to /szenario/<id>, which is the thing
+   * you wanted; the other was labelled "Unit" and went to /fortschritt, a
+   * generic page with nothing about that unit on it. Half of every search
+   * result was a dead end wearing the same name as the live one.
+   */
   const scenarios = all<{ id: string; ord: number; title: string; level: string }>(
     `SELECT id, ord, title, level FROM unit
       WHERE scenario_json IS NOT NULL AND title LIKE ?
-      ORDER BY level, ord LIMIT 4`,
+      ORDER BY level, ord LIMIT 5`,
     like,
   );
 
@@ -75,16 +80,10 @@ export async function GET(req: Request) {
       sub: g.level,
       href: `/grammatik/${g.slug}`,
     })),
-    ...units.map((u) => ({
-      kind: "unit" as const,
-      label: u.title,
-      sub: `${u.level} · Unit ${u.ord}`,
-      href: `/fortschritt`,
-    })),
     ...scenarios.map((u) => ({
       kind: "szenario" as const,
       label: u.title,
-      sub: `Gespräch · ${u.level}`,
+      sub: `${u.level} · Unit ${u.ord} · Gespräch`,
       href: `/szenario/${u.id}`,
     })),
   ];

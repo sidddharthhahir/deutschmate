@@ -8,6 +8,7 @@ import { grammarDueCount, grammarStats } from "@/lib/grammar-srs";
 import { lastExam } from "@/lib/exam";
 import { LEVELS } from "@/lib/session";
 import Page, { Section, Tile } from "@/components/Page";
+import PendingTexts from "./PendingTexts";
 
 export const dynamic = "force-dynamic";
 
@@ -161,16 +162,9 @@ export default async function PracticePage() {
           </p>
         )}
 
-        {pending > 0 && (
-          <div className="border-line-sub bg-raised mt-4 rounded-xl border p-4">
-            <p className="text-accent/90 text-[14px]">
-              {pending} {pending === 1 ? "Text wartet" : "Texte warten"} auf Korrektur
-            </p>
-            <p className="text-muted mt-1 text-[12.5px]">
-              Offline geschrieben — wird beim nächsten Online-Start automatisch geprüft.
-            </p>
-          </div>
-        )}
+        {/* Was a count and a promise. Nothing in the app called the endpoint
+            that would have kept it, so the pile only grew. */}
+        <PendingTexts initial={pending} />
 
         {/* 120 rows, all of them looking identical, was the single biggest
             wall in the app. Two changes: each says whether you have actually

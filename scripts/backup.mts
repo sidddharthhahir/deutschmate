@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Back up the database.
  *
  *   node scripts/backup.mts              # snapshot + JSON export
@@ -34,7 +34,7 @@ const PROGRESS_TABLES = [
   "card",
   "attempt",
   "unit_progress",
-  "browse_progress",
+  "word_seen",
   "session_log",
   "cloze",
   "exam_run",

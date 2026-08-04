@@ -228,7 +228,7 @@ npm test                 # all of them
 npm test text outbox     # only files matching these names
 ```
 
-Fourteen suites, no framework. Eight run anywhere; six need `npm run dev`
+Sixteen suites, no framework. Ten run anywhere; six need `npm run dev`
 listening and are **skipped with a message** if it isn't — never quietly
 passed. They use throwaway user ids in the real database, which is how the app
 separates two flatmates, and clean up after themselves.
@@ -249,6 +249,15 @@ separates two flatmates, and clean up after themselves.
 | `recycle` | old scenarios and readings come back, and say where they came from |
 | `grammar` | a taught rule returns when due, with a different drill |
 | `why` | every wrong answer comes back with a reason, on every path, with or without a key |
+| `who` | two flatmates on one browser get separate keys, and a queued answer replays to whoever gave it |
+| `corpus` | the sentence rotation covers the corpus over a course, not just over a month |
+
+`corpus` is worth a note on how it is written. The obvious test — "do two
+consecutive days differ?" — passed while the rotation was reaching 6% of the
+sentences, because consecutive days *did* differ; it was day 36 that repeated
+day 0. So the test measures coverage over the 210 days the course actually
+takes. A feature that runs, looks full, and quietly serves the same hundred
+rows for seven months is the kind this suite exists to catch.
 
 `progression` is the one that matters. Nothing in the app reports "the learner
 cannot get past A1.1" — it just keeps offering unit 1, which is exactly what
@@ -342,6 +351,14 @@ your budget, your milestones. Content is shared — one copy of 2,400 words, one
 copy of the audio. Two people on separate machines works too; each clone just
 has its own database.
 
+The **browser's** half of that split is `src/lib/who.ts`, and it is newer than
+the rest. The saved session, the cached plan, the tour flag and the queue of
+answers given offline all lived under one global localStorage key, so switching
+learner on a shared laptop handed the next person the previous one's state —
+including unsent grades, which then replayed into the wrong deck. Everything
+client-side is keyed by learner now, and a replay carries the name of whoever
+answered rather than trusting the cookie at the time it lands.
+
 A link can target someone explicitly with `?user=alex`, which is how the tests
 drive a throwaway learner without touching yours.
 
@@ -382,3 +399,20 @@ the [Goethe-Institut](https://www.goethe.de/de/spr/kup/prf.html).
   away; the remainder still needs a hierarchy.
 - **Speech recognition is Chrome-only.** Speaking and voice mode degrade to
   listen-and-repeat elsewhere, and say so.
+- **`error_pattern` has no prebuilt rows.** Spec §12 planned about 200 common
+  mistakes written in advance; none were. The tier exists and works — it just
+  starts empty and fills from real answers, so the first person to make a given
+  mistake pays for the explanation and the second gets it free.
+- **`/alltag` needs the network.** Those six scenarios are conversations by
+  design and carry no scripted fallback, so offline they say so and offer the
+  phrase list instead of a dialogue. Unit scenarios do have a script.
+
+### A note on how these were found
+
+Spec §21 lists a sweep for one specific failure shape: a feature that renders
+correctly over a mechanism that is not connected. It found nine of them,
+including a conversation tracker that could never be true, an offline queue for
+written texts that stored nothing, and a sentence rotation reaching 6% of the
+corpus behind a comment claiming it covered all of it. None of them errored,
+none broke a test, and every one of them looked right on screen. If you are
+reading this repo to judge it, read §21 first.
