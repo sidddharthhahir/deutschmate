@@ -1,5 +1,8 @@
 import Anthropic from "@anthropic-ai/sdk";
 import { budgetLeft } from "./cost";
+import { coachingBrief, type Memory } from "./coaching";
+
+export type { Memory };
 
 /**
  * The AI layer.
@@ -208,14 +211,20 @@ export async function converse(opts: {
   vocabulary: string[];
   scenario: Scenario;
   history: Turn[];
+  memory?: Memory;
 }) {
   guard(opts.userId);
+
+  const system = tutorSystem(opts.level, opts.vocabulary, opts.scenario);
+  const brief = opts.memory ? coachingBrief(opts.memory) : null;
+  if (brief) system.push({ type: "text" as const, text: brief });
+
   const msg = await client().messages.create({
     model: TASK.chat.model,
     max_tokens: TASK.chat.maxTokens,
     thinking: NO_THINKING,
     output_config: { effort: TASK.chat.effort },
-    system: tutorSystem(opts.level, opts.vocabulary, opts.scenario),
+    system,
     messages: opts.history.length
       ? opts.history
       : [{ role: "user", content: "(the learner has just arrived — greet them)" }],

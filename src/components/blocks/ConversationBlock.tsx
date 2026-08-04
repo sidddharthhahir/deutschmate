@@ -9,7 +9,13 @@ import { Card, Eyebrow, SkipLink, type BlockProps } from "./shared";
 type Scenario = { role: string; goal: string; opener: string };
 type DialogueOption = { say: string; ok: boolean; why?: string; next: number };
 type DialogueStep = { them: string; options: DialogueOption[] };
-type Payload = { scenario: Scenario; dialogue: DialogueStep[] | null; unitId: string };
+type Payload = {
+  scenario: Scenario;
+  dialogue: DialogueStep[] | null;
+  unitId: string;
+  /** Set when this scene is a revisit: which unit it originally came from. */
+  from?: string | null;
+};
 
 type Turn = { role: "user" | "assistant"; content: string };
 type Correction = { original: string; corrected: string; why: string; tag: string };
@@ -251,10 +257,20 @@ export default function ConversationBlock({ payload, onDone, onSkip }: BlockProp
         </div>
       )}
 
-      <Eyebrow>Gespräch · {payload.scenario.role}</Eyebrow>
+      <Eyebrow>
+        {payload.from ? "Nochmal" : "Gespräch"} · {payload.scenario.role}
+      </Eyebrow>
 
       <Card>
-        <p className="text-muted mb-5 text-center text-[14px]">{payload.scenario.goal}</p>
+        <p className="text-muted mb-1 text-center text-[14px]">{payload.scenario.goal}</p>
+        {/* Naming the origin turns "why this again?" into "right, that one" —
+            and a scene you half-remember is the one worth redoing. */}
+        {payload.from && (
+          <p className="font-mono text-muted/70 mb-4 text-center text-[11.5px]">
+            schon gemacht · {payload.from}
+          </p>
+        )}
+        {!payload.from && <div className="mb-4" />}
 
         <div className="max-h-[300px] space-y-3 overflow-y-auto">
           {log.map((m, n) => (

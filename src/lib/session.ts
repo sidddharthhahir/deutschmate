@@ -2,6 +2,7 @@ import { all, get, run } from "./db";
 import { dueCards, dueCount } from "./srs";
 import { topErrorTags } from "./errors";
 import { dueCloze, mineFromErrors } from "./cloze";
+import { rhythmFor, today } from "./rhythm";
 import { dueGrammar } from "./grammar-srs";
 
 /**
@@ -250,6 +251,41 @@ export function unseenInUnit(userId: string, unitId: string): number {
   return unseenWords(userId, ids).length;
 }
 
+/**
+ * Units the learner finished at least a week ago.
+ *
+ * Words and grammar rules come back on a forgetting curve; situations never
+ * did. You did the café in unit 8 and the app never mentioned it again, which
+ * is exactly backwards — a scenario is the slowest thing to build and the
+ * fastest to lose, and it is the part you would actually use in Germany.
+ *
+ * A week's delay so a unit finished yesterday is not "revision" — that is
+ * still the same lesson. Oldest completion first, so the rotation below starts
+ * with whatever has been sitting untouched the longest.
+ */
+export function pastUnits(userId: string): Unit[] {
+  return all<Unit>(
+    `SELECT u.* FROM unit_progress p JOIN unit u ON u.id = p.unit_id
+      WHERE p.user_id = ? AND p.status = 'complete'
+        AND p.completed_at < datetime('now', '-7 days')
+      ORDER BY p.completed_at`,
+    userId,
+  );
+}
+
+/**
+ * Pick one past unit, rotating by day.
+ *
+ * Deterministic rather than random, for the same reason the rest of the
+ * session is: reloading the page must not hand you a different revision. With
+ * n finished units each comes back every n days, so the interval stretches as
+ * the course goes on — which is roughly what you want from old material, and
+ * is honest about being a rotation rather than a second forgetting curve.
+ */
+function rotate<T>(items: T[], dayIndex: number): T | undefined {
+  return items.length ? items[dayIndex % items.length] : undefined;
+}
+
 export function markUnitComplete(userId: string, unitId: string) {
   run(
     `INSERT INTO unit_progress (user_id, unit_id, status, completed_at)
@@ -373,10 +409,11 @@ export function buildSession(
 
   const blocks: Block[] = [];
 
-  // Rotates the input and output blocks day to day so the rhythm stays fixed
-  // while the content varies. Deterministic per calendar day, not random —
-  // reloading the page must not reshuffle the session you're halfway through.
-  const dayIndex = Math.floor(Date.now() / 86_400_000);
+  /* Rotates the input and output blocks day to day so the rhythm stays fixed
+     while the content varies. The decisions themselves live in lib/rhythm.ts,
+     pure and testable; this file only carries them out. */
+  const dayIndex = today();
+  const older = pastUnits(userId);
 
   // 1. Aufwärmen — always first, never skippable.
   //
@@ -396,7 +433,7 @@ export function buildSession(
         cards: due,
         capped: total > REVIEW_CAP,
         backlog: total,
-        audioFirst: dayIndex % 3 === 1,
+        audioFirst: rhythmFor(dayIndex, { video: false, reading: false }).audioFirstReview,
       },
     });
   }
@@ -503,7 +540,24 @@ export function buildSession(
         segments_json: string;
       }>("SELECT id, youtube_id, title, channel, segments_json FROM video WHERE id = ?", unit.video_id)
     : undefined;
-  const reading = unit?.reading_id
+  // Only offer a video once it actually has hand-marked segments — an
+  // unsegmented embed is just a YouTube link, not a lesson.
+  const videoReady = Boolean(
+    video && (JSON.parse(video.segments_json) as unknown[]).length > 0,
+  );
+  const recyclable = older.filter((u) => u.reading_id);
+  const rhythm = rhythmFor(dayIndex, {
+    video: videoReady,
+    reading: Boolean(unit?.reading_id || recyclable.length),
+  });
+
+  /* On a recycle day, read something from a unit you finished a while back
+     instead of this unit's text. The current text is tied to words you met this
+     week and is therefore the easy one; the old text is the honest test of
+     whether any of it stuck. */
+  const oldReadingUnit = rhythm.recycleReading ? rotate(recyclable, dayIndex) : undefined;
+  const readingId = oldReadingUnit?.reading_id ?? unit?.reading_id;
+  const reading = readingId
     ? get<{
         id: string;
         title: string;
@@ -511,15 +565,10 @@ export function buildSession(
         word_count: number;
         questions_json: string;
         glossary_json: string;
-      }>("SELECT * FROM reading WHERE id = ?", unit.reading_id)
+      }>("SELECT * FROM reading WHERE id = ?", readingId)
     : undefined;
 
-  // Only offer a video once it actually has hand-marked segments — an
-  // unsegmented embed is just a YouTube link, not a lesson.
-  const videoReady = video && (JSON.parse(video.segments_json) as unknown[]).length > 0;
-  const inputChoice = dayIndex % (videoReady ? 3 : reading ? 2 : 1);
-
-  if (videoReady && inputChoice === 2) {
+  if (videoReady && rhythm.input === "video") {
     blocks.push({
       kind: "video",
       title: "Video",
@@ -540,10 +589,12 @@ export function buildSession(
         },
       },
     });
-  } else if (reading && inputChoice === 1) {
+  } else if (reading && rhythm.input === "reading") {
     blocks.push({
       kind: "reading",
-      title: "Lesen",
+      // Named so the learner knows why an old text turned up, rather than
+      // wondering whether the app has lost its place.
+      title: oldReadingUnit ? "Wiederlesen" : "Lesen",
       minutes: 15,
       offline: true,
       skippable: true,
@@ -554,6 +605,7 @@ export function buildSession(
         wordCount: reading.word_count,
         questions: JSON.parse(reading.questions_json),
         glossary: JSON.parse(reading.glossary_json),
+        from: oldReadingUnit ? `Unit ${oldReadingUnit.ord} · ${oldReadingUnit.title}` : null,
       },
     });
   } else if (unitWords.length) {
@@ -579,11 +631,8 @@ export function buildSession(
     });
   }
 
-  // Rotate the spoken/written output block by day so it isn't the same every
-  // session, while keeping the overall rhythm identical.
-  const outputChoice = dayIndex % 3;
-
-  if (outputChoice === 0 && unitWords.length) {
+  // Spoken or written, rotated by day. See rhythm.ts for the split and why.
+  if (rhythm.output === "speaking" && unitWords.length) {
     blocks.push({
       kind: "speaking",
       title: "Sprechen",
@@ -592,7 +641,7 @@ export function buildSession(
       skippable: true,
       payload: { items: listeningItems(unitWords, atLevel, dayIndex).slice(0, 5) },
     });
-  } else if (outputChoice === 1 && unit) {
+  } else if (unit) {
     blocks.push({
       kind: "writing",
       title: "Schreiben",
@@ -607,17 +656,28 @@ export function buildSession(
     });
   }
 
-  if (unit?.scenario_json) {
+  /* Every third session the conversation is one you have had before, from a
+     unit finished over a week ago. This is the block that most needed it: a
+     scenario is ten minutes of the hardest thing in the course, and doing each
+     one exactly once is how you end up able to order coffee in unit 8 and not
+     in month five. */
+  const oldScenarioUnit = rhythm.recycleScenario
+    ? rotate(older.filter((u) => u.scenario_json), dayIndex)
+    : undefined;
+  const talkUnit = oldScenarioUnit ?? unit;
+
+  if (talkUnit?.scenario_json) {
     blocks.push({
       kind: "conversation",
-      title: "Gespräch",
+      title: oldScenarioUnit ? "Nochmal sprechen" : "Gespräch",
       minutes: 10,
       offline: false, // falls back to the scripted dialogue below
       skippable: true,
       payload: {
-        scenario: JSON.parse(unit.scenario_json),
-        dialogue: unit.dialogue_json ? JSON.parse(unit.dialogue_json) : null,
-        unitId: unit.id,
+        scenario: JSON.parse(talkUnit.scenario_json),
+        dialogue: talkUnit.dialogue_json ? JSON.parse(talkUnit.dialogue_json) : null,
+        unitId: talkUnit.id,
+        from: oldScenarioUnit ? `Unit ${oldScenarioUnit.ord} · ${oldScenarioUnit.title}` : null,
       },
     });
   }

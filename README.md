@@ -76,7 +76,9 @@ which is what stops hot reload dying silently from another device.
 2. **Offline-first.** A full daily session must be finishable in airplane mode.
    Every block has an offline path; the session runner never dead-ends.
 3. **Vocabulary-constrained AI.** Every generated sentence uses only words the
-   learner already knows. This is what separates a teacher from a chatbot.
+   learner already knows, and the tutor is briefed on what *this* learner keeps
+   getting wrong — then told never to mention it. That is what separates a
+   teacher from a chatbot.
 4. **Never fake progress.** If you can't point at the database row that produced
    a number, don't show the number.
 
@@ -125,7 +127,7 @@ npm test                 # all of them
 npm test text outbox     # only files matching these names
 ```
 
-Nine suites, no framework. Five run anywhere; four need `npm run dev`
+Twelve suites, no framework. Seven run anywhere; five need `npm run dev`
 listening and are **skipped with a message** if it isn't — never quietly
 passed. They use throwaway user ids in the real database, which is how the app
 separates two flatmates, and clean up after themselves.
@@ -135,10 +137,13 @@ separates two flatmates, and clean up after themselves.
 | `content` | every word belongs to a unit, every reference resolves, every noun has an article |
 | `fresh-clone` | seeds a throwaway database from `data/` alone and checks nothing is missing |
 | `cost` | token pricing, the cache saving, and the budget ceiling |
+| `rhythm` | walks a month of the session rotation — every skill gets its share |
+| `coaching` | the tutor is told your weak spots, and told never to mention them |
 | `text` | cloze gaps and exam scoring |
 | `outbox` | the offline queue: what is retried, what is dropped, what survives a corrupt store |
 | `progression` | walks a new learner through all 120 units and checks every word gets taught |
 | `unit-carryover` | an oversized unit comes back tomorrow instead of losing its remainder |
+| `recycle` | old scenarios and readings come back, and say where they came from |
 | `grammar` | a taught rule returns when due, with a different drill |
 | `why` | every wrong answer comes back with a reason, on every path, with or without a key |
 

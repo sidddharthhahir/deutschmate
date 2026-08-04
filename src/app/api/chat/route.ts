@@ -4,7 +4,8 @@ import { readJson, str, arr } from "@/lib/http";
 import { recordUsage } from "@/lib/cost";
 import { knownVocabulary } from "@/lib/session";
 import { converse, reviewConversation, aiAvailable, type Turn, type Scenario } from "@/lib/ai";
-import { logAttempt, type Tag } from "@/lib/errors";
+import { logAttempt, topErrorTags, type Tag } from "@/lib/errors";
+import { leeches, LEECH_THRESHOLD } from "@/lib/leech";
 import { get } from "@/lib/db";
 
 export const runtime = "nodejs";
@@ -93,12 +94,25 @@ export async function POST(req: Request) {
     // The whitelist. Everything the learner has actually met, nothing else.
     const vocabulary = knownVocabulary(user.id);
 
+    /* What the tutor knows about this person. Both of these already drive the
+       Fix block and Problemwörter; the conversation was the one place that had
+       the data available and ignored it, so every chat started from zero.
+       Kept small on purpose — three tags and four words is enough to steer a
+       ten-minute conversation and cheap enough not to think about. */
+    const memory = {
+      mistakes: topErrorTags(user.id, 14, 3).map((t) => t.label),
+      stuck: leeches(user.id, LEECH_THRESHOLD, 4)
+        .filter((l) => l.suspended === 0)
+        .map((l) => (l.article ? `${l.article} ${l.lemma}` : l.lemma)),
+    };
+
     const { reply, model, usage } = await converse({
       userId: user.id,
       level: user.level,
       vocabulary,
       scenario,
       history,
+      memory,
     });
     recordUsage(user.id, "chat", model, usage);
 

@@ -12,6 +12,8 @@ type Payload = {
   wordCount: number;
   questions: Question[];
   glossary: Record<string, string>;
+  /** Set when this is a revisit: which unit the text originally came from. */
+  from?: string | null;
 };
 
 /**
@@ -35,11 +37,21 @@ export default function ReadingBlock({ payload, onDone, onSkip }: BlockProps<Pay
   if (phase === "read") {
     return (
       <div>
-        <Eyebrow>Lesen · {payload.wordCount} Wörter</Eyebrow>
+        <Eyebrow>
+          {payload.from ? "Wiederlesen" : "Lesen"} · {payload.wordCount} Wörter
+        </Eyebrow>
         <Card>
-          <h2 className="font-serif mb-6 text-center text-[26px] font-semibold">
+          <h2 className="font-serif mb-2 text-center text-[26px] font-semibold">
             {payload.title}
           </h2>
+          {/* Says why an old text turned up, so it reads as revision rather
+              than as the app having lost its place. */}
+          {payload.from && (
+            <p className="font-mono text-muted mb-6 text-center text-[11.5px]">
+              schon gelesen · {payload.from}
+            </p>
+          )}
+          {!payload.from && <div className="mb-6" />}
 
           <GermanText
             body={payload.body}
