@@ -25,6 +25,7 @@ import {
   SESSION_TTL_DAYS,
 } from "../src/lib/auth.ts";
 import { createUserByEmail, userByEmail } from "../src/lib/accounts.ts";
+import { check } from "../src/lib/env.ts";
 
 const EMAIL = "test-auth@example.invalid";
 
@@ -32,10 +33,11 @@ const EMAIL = "test-auth@example.invalid";
    closed the one below, and a closed handle throws rather than cleaning up. */
 const wipe = () => {
   const d = open();
-  const u = d.prepare("SELECT id FROM user WHERE email = ?").get(EMAIL) as
-    | { id: string }
-    | undefined;
-  if (u) {
+  for (const email of [EMAIL, "test-auth-second@example.invalid"]) {
+    const u = d.prepare("SELECT id FROM user WHERE email = ?").get(email) as
+      | { id: string }
+      | undefined;
+    if (!u) continue;
     d.prepare("DELETE FROM session WHERE user_id = ?").run(u.id);
     d.prepare("DELETE FROM auth_token WHERE user_id = ?").run(u.id);
     d.prepare("DELETE FROM user WHERE id = ?").run(u.id);
@@ -157,6 +159,41 @@ eq(
   0,
   "no orphan tokens",
 );
+
+section("a link nobody can follow is caught before it is sent");
+/*
+ * The worst failure this feature has, because it is invisible: DEUTSCHMATE_URL
+ * left at localhost, a link mailed to a colleague, and it resolves to THEIR
+ * machine where nothing is listening. That looks exactly like the email not
+ * arriving, so nobody debugs the URL.
+ *
+ * `check()` reads the environment and the real database, so this restores both.
+ * Driven with two accounts present, since one account on localhost is the
+ * ordinary single-person install and must stay silent.
+ */
+const REAL_URL = process.env.DEUTSCHMATE_URL;
+const urlIssues = () => check().filter((i) => i.name === "DEUTSCHMATE_URL");
+const otherAccount = createUserByEmail("test-auth-second@example.invalid");
+ok(otherAccount !== null, "a second account exists to make the URL matter");
+
+process.env.DEUTSCHMATE_URL = "http://localhost:3000";
+ok(
+  urlIssues().some((i) => i.level === "error" && /localhost/.test(i.message)),
+  "two accounts and a localhost URL is an error, not a shrug",
+);
+
+process.env.DEUTSCHMATE_URL = "https://deutschmate.example.com";
+eq(urlIssues().length, 0, "a real host says nothing");
+
+process.env.DEUTSCHMATE_URL = "deutschmate.example.com";
+ok(
+  urlIssues().some((i) => i.level === "error" && /scheme/.test(i.message)),
+  "and a URL with no scheme is caught whatever the account count",
+);
+
+if (otherAccount) db.prepare("DELETE FROM user WHERE id = ?").run(otherAccount.id);
+if (REAL_URL === undefined) delete process.env.DEUTSCHMATE_URL;
+else process.env.DEUTSCHMATE_URL = REAL_URL;
 
 db.close();
 done();

@@ -22,6 +22,7 @@
 import { secretsAvailable } from "./secrets.ts";
 import { anyStoredKeys } from "./apikey.ts";
 import { orphanedRows } from "./shared-cache.ts";
+import { get } from "./db.ts";
 
 export type Issue = { name: string; level: "error" | "warn"; message: string };
 
@@ -144,6 +145,33 @@ export function check(): Issue[] {
     }
   } catch {
     /* no database yet; nothing to be inconsistent with */
+  }
+
+  /*
+   * localhost is fine until it is not, and the moment it stops being fine is
+   * knowable: a second account exists.
+   *
+   * A sign-in link is built from DEUTSCHMATE_URL and mailed to a person. If it
+   * says localhost, it resolves to THEIR machine, where nothing is listening —
+   * and the failure looks exactly like the email not arriving, which is the
+   * least debuggable symptom this app can produce. Nobody remembers to change a
+   * URL at deploy time; they remember when the first invite bounces.
+   *
+   * One account and localhost is the ordinary single-person install, and says
+   * nothing.
+   */
+  try {
+    const local = !url || /localhost|127\.0\.0\.1/.test(url);
+    const n = get<{ n: number }>("SELECT COUNT(*) AS n FROM user")?.n ?? 0;
+    if (local && n > 1) {
+      issues.push({
+        name: "DEUTSCHMATE_URL",
+        level: "error",
+        message: `${n} accounts on this install, but links point at localhost — everyone but you gets a link to their own machine`,
+      });
+    }
+  } catch {
+    /* no database yet */
   }
 
   /*
