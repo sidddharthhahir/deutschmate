@@ -1,5 +1,5 @@
 import { createEmptyCard } from "ts-fsrs";
-import { all, get, run } from "./db";
+import { all, get, run, tx } from "./db";
 import { gradeCard, toSqlDate, Rating } from "./srs";
 
 /**
@@ -45,27 +45,33 @@ function parseDrills(json: string): Drill[] {
  * happened to appear in a unit.
  */
 export function introduceGrammar(userId: string, grammarId: string, correct: boolean) {
-  run(
-    `INSERT INTO card (user_id, ref_type, ref_id, due, state)
-     VALUES (?, 'grammar', ?, ?, 0)
-     ON CONFLICT(user_id, ref_type, ref_id) DO NOTHING`,
-    userId,
-    grammarId,
-    toSqlDate(createEmptyCard(new Date()).due),
-  );
+  // One unit, as in introduceWord: insert, read, grade, all or nothing. A
+  // lesson fires this once per drill, so a partial application here is a
+  // grammar point that sits at reps = 0, permanently due, and comes back in the
+  // session that taught it.
+  return tx(() => {
+    run(
+      `INSERT INTO card (user_id, ref_type, ref_id, due, state)
+       VALUES (?, 'grammar', ?, ?, 0)
+       ON CONFLICT(user_id, ref_type, ref_id) DO NOTHING`,
+      userId,
+      grammarId,
+      toSqlDate(createEmptyCard(new Date()).due),
+    );
 
-  const card = get<{ id: number; reps: number }>(
-    "SELECT id, reps FROM card WHERE user_id = ? AND ref_type = 'grammar' AND ref_id = ?",
-    userId,
-    grammarId,
-  );
-  // A lesson fires this once per drill. Only the first one is the first rep;
-  // the rest must not re-grade, and a point already in rotation keeps its
-  // history. Without this the card would sit at reps=0, permanently due, and
-  // come back for review in the same session it was taught.
-  if (!card || card.reps > 0) return null;
+    const card = get<{ id: number; reps: number }>(
+      "SELECT id, reps FROM card WHERE user_id = ? AND ref_type = 'grammar' AND ref_id = ?",
+      userId,
+      grammarId,
+    );
+    // A lesson fires this once per drill. Only the first one is the first rep;
+    // the rest must not re-grade, and a point already in rotation keeps its
+    // history. Without this the card would sit at reps=0, permanently due, and
+    // come back for review in the same session it was taught.
+    if (!card || card.reps > 0) return null;
 
-  return gradeCard(userId, card.id, correct ? Rating.Good : Rating.Again);
+    return gradeCard(userId, card.id, correct ? Rating.Good : Rating.Again);
+  });
 }
 
 /** Grammar points due for review right now. */

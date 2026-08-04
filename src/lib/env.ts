@@ -21,6 +21,7 @@
 
 import { secretsAvailable } from "./secrets.ts";
 import { anyStoredKeys } from "./apikey.ts";
+import { orphanedRows } from "./shared-cache.ts";
 
 export type Issue = { name: string; level: "error" | "warn"; message: string };
 
@@ -143,6 +144,28 @@ export function check(): Issue[] {
     }
   } catch {
     /* no database yet; nothing to be inconsistent with */
+  }
+
+  /*
+   * Cached explanations with no owner and no share flag.
+   *
+   * The migration that added `explanation.created_by` keeps the rows whose
+   * sentence is app content and deletes the rest, so this should be zero. It is
+   * reported rather than cleaned up silently: these rows can contain German
+   * somebody pasted, and what happens to a leftover of that kind is the
+   * operator's call, not a side effect of starting the server.
+   */
+  try {
+    const n = orphanedRows();
+    if (n > 0) {
+      issues.push({
+        name: "explanation",
+        level: "warn",
+        message: `${n} cached explanation(s) have no owner — nobody can read them; remove with: DELETE FROM explanation WHERE shared = 0 AND created_by IS NULL`,
+      });
+    }
+  } catch {
+    /* no database yet */
   }
 
   return issues;

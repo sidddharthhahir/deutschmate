@@ -4,6 +4,7 @@ import { activeUser } from "@/lib/user";
 import { readJson, badRequest, unauthorized, str } from "@/lib/http";
 import { clearApiKey, keyState, looksLikeKey, setApiKey, setBudget } from "@/lib/apikey";
 import { secretsAvailable } from "@/lib/secrets";
+import { contributions, forgetContributions } from "@/lib/shared-cache";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -81,6 +82,26 @@ export async function POST(req: Request) {
     }
     setBudget(user.id, n);
     return NextResponse.json({ ok: true });
+  }
+
+  // ------------------------------------------------------- the cache
+  /*
+   * Taking your text back out.
+   *
+   * "private" deletes the explanations of German you pasted, which only you
+   * could read anyway — the ones most likely to be a letter you did not think
+   * of as data. "all" also withdraws what you contributed to the shared pool:
+   * explanations of the app's own sentences and of mistakes, which other
+   * accounts here have been reading for free. That makes the app poorer for
+   * everyone and it is still your call, because your key paid for it.
+   *
+   * Prebuilt rows are never in scope. They shipped with the app and the offline
+   * explanation tier depends on them.
+   */
+  if (action === "cache:forget") {
+    const scope = str(raw.scope, 10) === "all" ? "all" : "private";
+    const removed = forgetContributions(user.id, scope);
+    return NextResponse.json({ ok: true, removed, cache: contributions(user.id) });
   }
 
   return badRequest("unknown action");

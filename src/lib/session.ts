@@ -1,4 +1,4 @@
-import { all, get, run } from "./db";
+import { all, get, run, tx } from "./db";
 import { dueCards, dueCount } from "./srs";
 import { topErrorTags } from "./errors";
 import { dueCloze, mineFromErrors } from "./cloze";
@@ -965,25 +965,49 @@ function shuffle<T>(xs: T[]): T[] {
 
 // ---------------------------------------------------------------- logging
 
+/**
+ * Record a finished session and return the streak it leaves behind.
+ *
+ * Two small changes, neither of them urgent, both of them removing a way for
+ * the number on the recap to differ from the number in the database.
+ *
+ * It returned the streak it had just COMPUTED. The ON CONFLICT branch
+ * deliberately does not touch streak_day — a second session today must not
+ * advance the streak — so on an upsert the returned value and the stored value
+ * come from different places. They agree in normal operation, because both
+ * derive from yesterday's row. They stop agreeing if today's row came from
+ * anywhere else: a restored backup, an import, a clock that moved. It reads the
+ * row back now, so what is shown is what is stored, always.
+ *
+ * And read and write are one transaction. Nothing can interleave here today —
+ * this function and `node:sqlite` are both synchronous — but a second process
+ * against the same file, or one `await` added later, would make the gap real.
+ */
 export function logSession(userId: string, minutes: number, blocks: string[]) {
-  const yesterday = get<{ streak_day: number }>(
-    `SELECT streak_day FROM session_log
-      WHERE user_id = ? AND date = date('now','-1 day')`,
-    userId,
-  );
-  const streak = (yesterday?.streak_day ?? 0) + 1;
-  run(
-    `INSERT INTO session_log (user_id, date, minutes, blocks_json, streak_day)
-     VALUES (?, date('now'), ?, ?, ?)
-     ON CONFLICT(user_id, date) DO UPDATE
-       SET minutes = minutes + excluded.minutes,
-           blocks_json = excluded.blocks_json`,
-    userId,
-    minutes,
-    JSON.stringify(blocks),
-    streak,
-  );
-  return streak;
+  return tx(() => {
+    const yesterday = get<{ streak_day: number }>(
+      `SELECT streak_day FROM session_log
+        WHERE user_id = ? AND date = date('now','-1 day')`,
+      userId,
+    );
+    run(
+      `INSERT INTO session_log (user_id, date, minutes, blocks_json, streak_day)
+       VALUES (?, date('now'), ?, ?, ?)
+       ON CONFLICT(user_id, date) DO UPDATE
+         SET minutes = minutes + excluded.minutes,
+             blocks_json = excluded.blocks_json`,
+      userId,
+      minutes,
+      JSON.stringify(blocks),
+      (yesterday?.streak_day ?? 0) + 1,
+    );
+    return (
+      get<{ streak_day: number }>(
+        "SELECT streak_day FROM session_log WHERE user_id = ? AND date = date('now')",
+        userId,
+      )?.streak_day ?? 1
+    );
+  });
 }
 
 export function currentStreak(userId: string): number {

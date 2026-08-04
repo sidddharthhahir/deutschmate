@@ -77,27 +77,35 @@ function toFsrs(r: DbCard): FsrsCard {
  * hand from Wortschatz.
  */
 export function introduceWord(userId: string, wordId: string, correct: boolean) {
-  const empty = createEmptyCard(new Date());
-  run(
-    `INSERT INTO card (user_id, ref_type, ref_id, due, stability, difficulty,
-       elapsed_days, scheduled_days, reps, lapses, state)
-     VALUES (?, 'word', ?, ?, 0, 0, 0, 0, 0, 0, 0)
-     ON CONFLICT(user_id, ref_type, ref_id) DO NOTHING`,
-    userId,
-    wordId,
-    toSqlDate(empty.due),
-  );
+  // Insert, read back and grade as one unit. Four statements that are only
+  // correct together: without a transaction, a throw between them leaves a card
+  // with no first rep and no attempt row, and the guard below — decided from a
+  // row a second process could change first — lets the word be introduced
+  // twice. tx() is reentrant, so gradeCard's own transaction joins this one
+  // rather than throwing.
+  return tx(() => {
+    const empty = createEmptyCard(new Date());
+    run(
+      `INSERT INTO card (user_id, ref_type, ref_id, due, stability, difficulty,
+         elapsed_days, scheduled_days, reps, lapses, state)
+       VALUES (?, 'word', ?, ?, 0, 0, 0, 0, 0, 0, 0)
+       ON CONFLICT(user_id, ref_type, ref_id) DO NOTHING`,
+      userId,
+      wordId,
+      toSqlDate(empty.due),
+    );
 
-  const card = get<DbCard>(
-    "SELECT * FROM card WHERE user_id = ? AND ref_type = 'word' AND ref_id = ?",
-    userId,
-    wordId,
-  );
-  // Already in rotation — a re-introduction must not reset a real history.
-  if (!card || card.reps > 0) return null;
+    const card = get<DbCard>(
+      "SELECT * FROM card WHERE user_id = ? AND ref_type = 'word' AND ref_id = ?",
+      userId,
+      wordId,
+    );
+    // Already in rotation — a re-introduction must not reset a real history.
+    if (!card || card.reps > 0) return null;
 
-  // The recognition check at the end of the introduction IS the first rep.
-  return gradeCard(userId, card.id, correct ? Rating.Good : Rating.Again);
+    // The recognition check at the end of the introduction IS the first rep.
+    return gradeCard(userId, card.id, correct ? Rating.Good : Rating.Again);
+  });
 }
 
 export type DueCard = {
@@ -182,17 +190,40 @@ export function gradeCard(
   grade: Grade,
   log?: { answer?: string; expected?: string },
 ) {
-  const row = get<DbCard>("SELECT * FROM card WHERE id = ? AND user_id = ?", cardId, userId);
-  if (!row) throw new Error(`card ${cardId} not found for user ${userId}`);
+  /*
+   * The read is INSIDE the transaction, and it was not.
+   *
+   * The ownership check and the FSRS state were read first, `scheduler.next()`
+   * computed from that snapshot, and only then did the write begin.
+   *
+   * Be precise about what that did and did not cost, because it is easy to
+   * oversell. This function is synchronous from top to bottom and so is
+   * `node:sqlite`, so within ONE Node process nothing can run between the read
+   * and the write — two grades cannot interleave here today. The gap matters
+   * for two other reasons:
+   *
+   *   - Two processes against one database file. One `next start` today; a
+   *     second instance, a cron script or a worker sharing the volume is an
+   *     ordinary thing to add, and then the read-then-write really is a
+   *     lost update with no error anywhere.
+   *   - The moment anything in this function awaits. An `await` between the
+   *     SELECT and the UPDATE would open the hole silently, in a diff that
+   *     looked like it was about something else.
+   *
+   * tx() is BEGIN IMMEDIATE, so a second writer waits for the first to commit
+   * and then reads what it actually left behind.
+   */
+  return tx(() => {
+    const row = get<DbCard>("SELECT * FROM card WHERE id = ? AND user_id = ?", cardId, userId);
+    if (!row) throw new Error(`card ${cardId} not found for user ${userId}`);
 
-  const now = new Date();
-  const { card } = scheduler.next(toFsrs(row), now, grade);
+    const now = new Date();
+    const { card } = scheduler.next(toFsrs(row), now, grade);
 
-  tx(() => {
     run(
       `UPDATE card SET due=?, stability=?, difficulty=?, elapsed_days=?,
          scheduled_days=?, reps=?, lapses=?, state=?, last_review=?
-       WHERE id=?`,
+       WHERE id=? AND user_id=?`,
       toSqlDate(card.due),
       card.stability,
       card.difficulty,
@@ -203,6 +234,11 @@ export function gradeCard(
       card.state,
       toSqlDate(now),
       cardId,
+      /* Scoped, though the SELECT above already proved ownership. One of two
+         statements in the app that touched a per-user table without it; both
+         were safe by argument rather than by construction, and an argument is
+         one refactor from being wrong. */
+      userId,
     );
     // Cloze grades are logged under their own kind. Folding them into 'review'
     // would inflate the review count on the recap and in the accuracy table
@@ -221,14 +257,14 @@ export function gradeCard(
       log?.expected ?? null,
       JSON.stringify(tags),
     );
-  });
 
-  return {
-    due: card.due.toISOString(),
-    scheduled_days: card.scheduled_days,
-    stability: card.stability,
-    state: card.state,
-  };
+    return {
+      due: card.due.toISOString(),
+      scheduled_days: card.scheduled_days,
+      stability: card.stability,
+      state: card.state,
+    };
+  });
 }
 
 /**

@@ -58,7 +58,8 @@ export async function whyWrong(
       const m = await explainMistake(userId, expected, answer, tags);
       recordUsage(userId, "mistake", m.model, m.usage);
       if (m.result) {
-        storeExplanation(tags[0] ?? "vocabulary", sig, m.result, "generated");
+        // Attributed to whoever's key paid for it, so it can be withdrawn.
+        storeExplanation(tags[0] ?? "vocabulary", sig, m.result, "generated", userId);
         return { text: m.result, source: "model", tags };
       }
     } catch {

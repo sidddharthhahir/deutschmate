@@ -124,7 +124,15 @@ export async function GET(req: Request) {
           tags: [c.tag as Tag],
         });
       }
-      run("UPDATE pending_correction SET resolved_at = datetime('now') WHERE id = ?", p.id);
+      // Scoped by user as well as id. `p` came from a SELECT that was already
+      // filtered by user, so this was safe — but safe by argument, and the
+      // argument lives twenty lines up. The predicate makes it safe by
+      // construction, which survives someone changing the query above.
+      run(
+        "UPDATE pending_correction SET resolved_at = datetime('now') WHERE id = ? AND user_id = ?",
+        p.id,
+        user.id,
+      );
       resolved.push({ id: p.id, written: p.created_at, ...result });
     } catch {
       break;

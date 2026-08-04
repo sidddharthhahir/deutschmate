@@ -4,7 +4,9 @@ import { requireUser } from "@/lib/user";
 import { keyState, budgetFor } from "@/lib/apikey";
 import { budgetCeiling } from "@/lib/env";
 import { spendThisMonth } from "@/lib/cost";
+import { contributions } from "@/lib/shared-cache";
 import KeyForm from "./KeyForm";
+import CacheSection from "./CacheSection";
 
 export const dynamic = "force-dynamic";
 
@@ -73,6 +75,8 @@ export default async function SettingsPage() {
             Antwort auch ohne Schlüssel begründet wird.
           </p>
         </section>
+
+        <CacheSection initial={contributions(user.id)} />
 
         <p className="text-muted/70 mt-10 text-[12px] leading-relaxed">
           Dein Schlüssel wird verschlüsselt gespeichert (AES-256-GCM) und nie wieder

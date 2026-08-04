@@ -36,7 +36,7 @@ let _db: DatabaseSync | null = null;
  *
  * Append-only. Never remove a line, never reorder.
  */
-const MIGRATIONS: [table: string, column: string, decl: string][] = [
+const MIGRATIONS: [table: string, column: string, decl: string, after?: string][] = [
   ["video", "unit_id", "TEXT"],
   ["card", "suspended", "INTEGER NOT NULL DEFAULT 0"],
   // Sign-in. NULL for accounts that predate it; claimed on first sign-in.
@@ -47,10 +47,43 @@ const MIGRATIONS: [table: string, column: string, decl: string][] = [
   ["user", "api_key_hint", "TEXT"],
   ["user", "api_key_at", "TEXT"],
   ["user", "budget_cents", "INTEGER"],
+  // Who paid for a cached row, and whether it may be served to other accounts.
+  ["error_pattern", "created_by", "TEXT"],
+  ["explanation", "created_by", "TEXT"],
+  [
+    "explanation",
+    "shared",
+    "INTEGER NOT NULL DEFAULT 0",
+    /*
+     * Sorting the rows that already exist, once.
+     *
+     * Until now every explanation was global, including ones for sentences
+     * somebody pasted into /text — which can be a letter from a landlord or a
+     * doctor. They were written verbatim into a table every account reads.
+     *
+     * A row is kept and marked shared if its sentence actually occurs in app
+     * content. `instr` and not LIKE: a sentence containing % or _ would be a
+     * wildcard under LIKE and could match content it is not in, and a false
+     * positive here means publishing someone's private text.
+     *
+     * The rest are DELETED, and that is deliberate rather than tidy-up. They
+     * have no owner to attribute them to, the new lookup cannot reach them, and
+     * they are the exact thing this column exists to stop. Losing them costs a
+     * few cached answers; keeping them keeps the problem.
+     */
+    `UPDATE explanation SET shared = 1
+      WHERE EXISTS (SELECT 1 FROM sentence s WHERE instr(lower(s.de),    lower(explanation.sentence)) > 0)
+         OR EXISTS (SELECT 1 FROM reading  r WHERE instr(lower(r.body),  lower(explanation.sentence)) > 0)
+         OR EXISTS (SELECT 1 FROM word     w WHERE instr(lower(COALESCE(w.example_de,'')), lower(explanation.sentence)) > 0)
+         OR EXISTS (SELECT 1 FROM grammar  g WHERE instr(lower(g.examples_json), lower(explanation.sentence)) > 0)
+         OR EXISTS (SELECT 1 FROM unit     u WHERE instr(lower(COALESCE(u.dialogue_json,'')), lower(explanation.sentence)) > 0)
+         OR EXISTS (SELECT 1 FROM video    v WHERE instr(lower(v.segments_json), lower(explanation.sentence)) > 0);
+     DELETE FROM explanation WHERE shared = 0;`,
+  ],
 ];
 
 export function migrate(db: DatabaseSync) {
-  for (const [table, column, decl] of MIGRATIONS) {
+  for (const [table, column, decl, after] of MIGRATIONS) {
     const exists = db
       .prepare(`SELECT name FROM sqlite_master WHERE type='table' AND name=?`)
       .get(table);
@@ -58,6 +91,10 @@ export function migrate(db: DatabaseSync) {
     const cols = db.prepare(`PRAGMA table_info(${table})`).all() as { name: string }[];
     if (cols.some((c) => c.name === column)) continue;
     db.exec(`ALTER TABLE ${table} ADD COLUMN ${column} ${decl}`);
+    // Runs exactly once, in the same startup that adds the column — the next
+    // one sees the column present and skips both. A fresh database created by
+    // schema.sql never reaches here, and has nothing to backfill anyway.
+    if (after) db.exec(after);
   }
 }
 
@@ -171,16 +208,59 @@ export function run(sql: string, ...params: unknown[]) {
   return getDb().prepare(sql).run(...(params as any[]));
 }
 
-/** Wrap a function in a transaction. node:sqlite has no .transaction() helper. */
+/** Nesting depth, so an inner tx() joins the outer one instead of throwing. */
+let _depth = 0;
+
+/**
+ * Wrap a function in a transaction. node:sqlite has no .transaction() helper.
+ *
+ * BEGIN IMMEDIATE, NOT BEGIN.
+ *
+ * A plain `BEGIN` is deferred: it takes no lock until the first statement, and
+ * a transaction that READS and then WRITES has to upgrade its lock partway
+ * through. If another writer got there in between, SQLite cannot upgrade and
+ * returns SQLITE_BUSY immediately — `busy_timeout` does not help, because
+ * waiting cannot resolve it. `IMMEDIATE` takes the write lock up front, which
+ * turns a deadlock into a wait. Every tx() in this app writes.
+ *
+ * REENTRANT, because the alternative is a landmine.
+ *
+ * `BEGIN` inside a `BEGIN` throws "cannot start a transaction within a
+ * transaction". Nothing nested today, but `buildSession` calls
+ * `mineFromErrors`, which calls `addCloze` — which opens its own — up to forty
+ * times. Wrapping the session build, or a future bulk import, would have blown
+ * up at runtime for a reason nobody would guess from the stack. An inner tx()
+ * now just runs inside the outer one, which is what the caller meant.
+ *
+ * The old ROLLBACK also threw when no transaction was active, replacing the
+ * real error with a confusing one; it is now conditional.
+ */
 export function tx<T>(fn: () => T): T {
   const db = getDb();
-  db.exec("BEGIN");
+  if (_depth > 0) {
+    // Already inside one. The outer commit or rollback covers this work.
+    _depth++;
+    try {
+      return fn();
+    } finally {
+      _depth--;
+    }
+  }
+
+  db.exec("BEGIN IMMEDIATE");
+  _depth = 1;
   try {
     const out = fn();
+    _depth = 0;
     db.exec("COMMIT");
     return out;
   } catch (e) {
-    db.exec("ROLLBACK");
+    _depth = 0;
+    try {
+      db.exec("ROLLBACK");
+    } catch {
+      /* nothing to roll back — do not mask the error that got us here */
+    }
     throw e;
   }
 }

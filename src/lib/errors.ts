@@ -217,15 +217,32 @@ export function patternExplanation(expected: string, got: string, tags: Tag[]) {
   return null;
 }
 
-export function storeExplanation(tag: string, signature: string, md: string, source = "generated") {
+/**
+ * Write a mistake explanation into the shared pool.
+ *
+ * `createdBy` is who paid for it. These rows stay global — a mistake signature
+ * is a pair of short answer fragments, not somebody's prose, and an explanation
+ * of "der → den" is the right answer for whoever makes it next. But a shared
+ * row with no author cannot be withdrawn, and after BYO keys somebody's money
+ * is behind each one. NULL means prebuilt: shipped with the app, cost nobody
+ * anything, and never deletable as a "contribution".
+ */
+export function storeExplanation(
+  tag: string,
+  signature: string,
+  md: string,
+  source = "generated",
+  createdBy: string | null = null,
+) {
   run(
-    `INSERT INTO error_pattern (tag, signature, explain_md, source, hits)
-     VALUES (?, ?, ?, ?, 1)
+    `INSERT INTO error_pattern (tag, signature, explain_md, source, created_by, hits)
+     VALUES (?, ?, ?, ?, ?, 1)
      ON CONFLICT(signature) DO UPDATE SET hits = hits + 1`,
     tag,
     signature,
     md,
     source,
+    createdBy,
   );
 }
 

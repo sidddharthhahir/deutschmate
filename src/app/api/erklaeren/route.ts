@@ -1,9 +1,9 @@
 ﻿import { NextResponse } from "next/server";
-import { get, run } from "@/lib/db";
 import { activeUser } from "@/lib/user";
 import { readJson, badRequest, unauthorized } from "@/lib/http";
 import { explainSentence, aiAvailable } from "@/lib/ai";
 import { recordUsage } from "@/lib/cost";
+import { findExplanation, saveExplanation } from "@/lib/shared-cache";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -16,12 +16,12 @@ export const dynamic = "force-dynamic";
  *   2. model call   only on a miss, on the cheap model
  *   3. stored       so the second person to ask gets tier 1
  *
- * The cache is global rather than per-user: you and your flatmate read the
- * same 38 texts, so half of these are answered before either of you asks.
+ * Shared for the app's own sentences — you and your flatmate read the same 38
+ * texts, so half of these are answered before either of you asks. Private for
+ * anything else, because /text takes whatever German you paste and some of it
+ * is nobody else's business. lib/shared-cache.ts decides which, from the
+ * database rather than from the request.
  */
-
-const signature = (s: string, level: string) =>
-  `${level}|${s.trim().toLowerCase().replace(/\s+/g, " ")}`;
 
 export async function POST(req: Request) {
   const raw = await readJson(req);
@@ -36,14 +36,14 @@ export async function POST(req: Request) {
   }
   const sentence = given;
 
-  const sig = signature(sentence, user.level);
-  const hit = get<{ body_md: string }>(
-    "SELECT body_md FROM explanation WHERE signature = ?",
-    sig,
-  );
+  const hit = findExplanation(sentence, user.level, user.id);
   if (hit) {
-    run("UPDATE explanation SET hits = hits + 1 WHERE signature = ?", sig);
-    return NextResponse.json({ ok: true, explanation: hit.body_md, source: "cache" });
+    return NextResponse.json({
+      ok: true,
+      explanation: hit.body_md,
+      source: "cache",
+      shared: hit.shared,
+    });
   }
 
   if (!aiAvailable(user.id)) {
@@ -63,16 +63,8 @@ export async function POST(req: Request) {
       user.level,
     );
     recordUsage(user.id, "explain", model, usage);
-    run(
-      `INSERT INTO explanation (signature, sentence, level, body_md)
-       VALUES (?, ?, ?, ?)
-       ON CONFLICT(signature) DO UPDATE SET hits = hits + 1`,
-      sig,
-      sentence,
-      user.level,
-      md,
-    );
-    return NextResponse.json({ ok: true, explanation: md, source: "model" });
+    const shared = saveExplanation(sentence, user.level, user.id, md);
+    return NextResponse.json({ ok: true, explanation: md, source: "model", shared });
   } catch {
     return NextResponse.json({ ok: false, reason: "failed", explanation: null });
   }

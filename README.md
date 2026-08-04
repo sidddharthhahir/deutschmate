@@ -298,7 +298,7 @@ npm test                 # all of them
 npm test text outbox     # only files matching these names
 ```
 
-Twenty-two suites, no framework. Fourteen run anywhere; eight need `npm run dev`
+Twenty-three suites, no framework. Fifteen run anywhere; eight need `npm run dev`
 listening and are **skipped with a message** if it isn't — never quietly
 passed. They use throwaway user ids in the real database, which is how the app
 separates two flatmates, and clean up after themselves.
@@ -327,6 +327,7 @@ separates two flatmates, and clean up after themselves.
 | `tenancy` | you cannot act as another learner, mint an account, or write to shared content |
 | `auth` | tokens work once, sessions are stored hashed, deleting an account takes its credentials |
 | `apikey` | a stored key is never in the row, never in the response, and never another learner's |
+| `shared-cache` | course sentences are cached for everyone, pasted text only for you, and both are deletable |
 
 `corpus` and `error-key` are worth a note on how they are written, because both
 guard the same kind of failure.
@@ -388,7 +389,7 @@ src/lib/       the engine — scheduling, session builder, error tagging, AI
 src/app/       22 pages and 17 API routes
 src/components/blocks/   the 14 block types a session is made of
 scripts/       content generation and maintenance
-tests/         14 suites, run with `npm test`
+tests/         23 suites, run with `npm test`
 public/audio/  2,381 native recordings from Wikimedia Commons (37 MB)
 ```
 
@@ -473,6 +474,30 @@ answered rather than trusting the cookie at the time it lands.
 
 A link can target someone explicitly with `?user=alex`, which is how the tests
 drive a throwaway learner without touching yours.
+
+### What the other people here can read
+
+Explanations are cached and **shared on purpose** — that is why the second
+person to ask about a sentence pays nothing, and why the app gets cheaper the
+more it is used. The line is drawn at whose German it is:
+
+| | shared with everyone here | private to you |
+|---|---|---|
+| a sentence from the course | ✓ | |
+| a mistake you made in an exercise | ✓ | |
+| German you pasted into `/text` | | ✓ |
+| your writing, your answers, your deck | | ✓ |
+
+The app decides which by checking the sentence against its own content tables.
+**There is no request parameter for it** — a page asking to share is not
+evidence the text is safe to share, and pasted text is where the letters from
+the Ausländerbehörde end up. The rule fails toward private, so the worst case is
+a duplicate model call, not a published letter.
+
+**Einstellungen → Zwischenspeicher** shows what you have contributed, as counts,
+and deletes it: your own, or also what you gave the shared pool. The 955
+prebuilt explanations are never in scope — they shipped with the app and the
+offline tier depends on them.
 
 ---
 

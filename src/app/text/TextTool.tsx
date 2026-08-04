@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import GermanText from "@/components/GermanText";
 import { GermanTextarea } from "@/components/GermanInput";
 import Noun from "@/components/Article";
@@ -149,6 +150,18 @@ export default function TextTool() {
           Deck zu legen ändert die Zahl bewusst nicht — gelernt sind sie damit ja noch
           nicht. Und Grammatik ist gar nicht mitgezählt: du kannst 90 % der Wörter kennen
           und den Satz trotzdem nicht verstehen.
+        </p>
+
+        {/* Said here, where the pasting happens, and not only in Einstellungen.
+            People paste letters from the Ausländerbehörde into this box. */}
+        <p className="text-muted mt-3 max-w-[62ch] text-[13px] leading-relaxed">
+          Dein Text bleibt auf diesem Rechner. Erklärungen dazu („Erklär mir das“)
+          werden nur für dich gespeichert — anders als bei Sätzen aus dem Kurs, die
+          alle hier teilen. Löschen kannst du sie in{" "}
+          <Link href="/einstellungen" className="text-secondary underline underline-offset-2">
+            Einstellungen
+          </Link>
+          .
         </p>
 
         {queued.length > 0 && (

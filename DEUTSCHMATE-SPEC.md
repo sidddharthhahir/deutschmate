@@ -1116,3 +1116,153 @@ instantly** — no key needed, no budget spent, no round trip. `tests/why.test.m
 asserts specifically that der/den, the commonest accusative slip in German,
 never costs a model call: `rule` would pass a looser check while quietly
 charging for it forever.
+
+---
+
+## 23. More than one person
+
+The spec was written for one learner and a flatmate sharing a laptop, and §10's
+data model had `user_id` on every progress table from the start — so multi-user
+was always half-built. What was missing was everything around it: there was no
+way to *become* a user, no way to pay for the AI half except the operator's own
+env var, and several places where "this is safe" rested on an argument rather
+than on the code.
+
+Five steps, in order.
+
+### 1–2. Accounts, and a door
+
+`user` gained `email`; two new tables, `auth_token` and `session`. Sign-in is a
+magic link: an address, a mailed link, a fourteen-day session. No password to
+choose, forget, or leak, and no password column to be breached.
+
+**Both are stored as sha256 only.** A database copy therefore does not contain a
+usable session or a usable link. Redemption is a single `UPDATE` that both
+requires the token to be unused and marks it used, so two clicks on the same
+link cannot both win — the check and the claim are one statement rather than a
+read followed by a write.
+
+Middleware redirects page requests with no session cookie to `/anmelden`. It
+runs in the edge runtime, which cannot load `node:sqlite`, so the cookie names
+live in `lib/who.ts` — a module the edge can import — rather than in `lib/auth.ts`.
+
+`npm run invite <email>` mints a link from the command line. It is also the way
+back in if you lock yourself out.
+
+### 3. Config, not constants
+
+Two files replaced a scatter of literals:
+
+- **`data/models.json`** — the model catalogue: ids, prices, context windows,
+  which model fills the `quality` and `cheap` roles, and the cache multipliers
+  (1h writes are **2×**, not 1.25×). Dated and sourced. Changing model or price
+  is a JSON edit, not a grep.
+- **`lib/config.ts`** — every product number with the reason next to it. Twelve
+  new words a day, sixty reviews, eight lapses to a leech.
+
+`lib/env.ts` owns the environment: `check()` returns problems, `describe()`
+reports presence and never a value, and `npm run config` prints both.
+
+### 4. Everyone brings their own key
+
+The course is free and runs on this machine; the four features that need a model
+run on the learner's own Anthropic credential. This install's bill no longer
+grows with the number of people on it, and nobody can spend anybody else's money.
+
+Stored AES-256-GCM, keyed by `DEUTSCHMATE_SECRET`. The key is never returned to
+a browser, never logged, never in a response — the settings page knows only the
+last four characters. Every decryption failure returns null and produces the
+same sentence, because distinguishing "wrong secret" from "corrupt row" only
+tells an attacker which guess was closer.
+
+**What it buys**: a database that leaves the machine — a mislaid backup, a file
+copied off a box. **What it does not buy**: safety from someone who can read the
+server's environment, because the key to decrypt is there.
+
+One bug fixed along the way that had nothing to do with encryption: the
+Anthropic client was a module-level singleton. Fine with one key in an env var;
+a billing bug the moment there are two learners, because whoever called first
+owned the cached client and the second person's request went out on their key.
+Constructed per call now.
+
+### 5. Correctness under two devices
+
+The rest of the audit, which matters more once the same person is on a phone and
+a laptop and the outbox can replay a session while a live one is running.
+
+**Four read-then-write gaps**, and it is worth being exact about them rather
+than claiming a scare. `gradeCard` read the card's FSRS state, computed the next
+schedule, and *then* opened a transaction to write it. That is a lost update in
+the general case — but this function is synchronous top to bottom and so is
+`node:sqlite`, so **within one Node process nothing can interleave and no grade
+was ever actually lost.** It is fixed because the gap becomes real the moment
+there are two processes against one database file (a second instance, a worker,
+a cron script — an ordinary thing to add), and because an `await` introduced
+later would open it silently, in a diff that looked like it was about something
+else. Same treatment for `introduceWord` and `introduceGrammar`, where the
+stronger argument is atomicity: four statements that are only correct together,
+and a throw between them leaves a card with no first rep.
+
+`logSession` was a different shape. It returned the streak it had just
+*computed*, while the `ON CONFLICT` branch deliberately leaves `streak_day`
+alone — so on an upsert the returned and the stored number come from different
+places. They agree in normal operation. They stop agreeing if today's row came
+from a restored backup or an import. It reads the row back now.
+
+**`tx()` was three bugs.** It used deferred `BEGIN`, so a transaction that read
+before writing had to upgrade its lock mid-flight and got `SQLITE_BUSY`
+immediately — a failure `busy_timeout` cannot help with, because waiting does
+not resolve it. It threw on nesting, which made wrapping anything that already
+transacted a landmine. And its rollback threw when no transaction was active,
+replacing the real error with a confusing one. Now `BEGIN IMMEDIATE`, reentrant,
+and a rollback that cannot mask what went wrong.
+
+**Two writes without `AND user_id = ?`** (`UPDATE card`, `UPDATE
+pending_correction`). Both were safe — each had an ownership check above it —
+but safe by argument, and the argument lived twenty lines away.
+
+### The shared cache needed a line drawn through it
+
+§12 argues that the write-through cache is why costs decay: German learners make
+a finite set of mistakes and read the same texts, so the second person to ask
+pays nothing. That is still right. It was written when the only sentences
+reaching the cache came from the curriculum.
+
+Then `/text` let anyone paste any German they liked, and the whole sentence was
+written verbatim into a table every account on the install reads from. People
+paste letters from the Ausländerbehörde into that box.
+
+So `explanation` now records **who asked** and **whether it may be shared**, and
+`lib/shared-cache.ts` owns the decision:
+
+- A sentence that occurs in the app's own content may be shared. Everything else
+  is private to its author.
+- The flag is set by the server, from the content tables — **never from the
+  request**. A client asking to share is not evidence that the text is safe to
+  share, and `tests/shared-cache.test.mts` asserts there is no parameter to pass.
+- Matching is `instr`, not `LIKE`: a sentence containing `%` would be a wildcard
+  and could match content it does not appear in. False positives publish someone's
+  private text; false negatives only cache it per-person. The rule fails toward
+  private, including a minimum of three words — "der" occurs in every text the
+  app ships.
+- Private rows carry their owner **in the key**. `signature` is UNIQUE, so
+  without that the second person to ask about the same private sentence would
+  collide with the first person's row, be unable to read it, and pay again on
+  every ask, forever.
+
+Mistake explanations stay global — a signature is two short answer fragments,
+and an explanation of "der → den" is the right answer for whoever makes it next
+— but they gained `created_by`, so a shared row has an author and can be
+withdrawn.
+
+Einstellungen states all of this in German, shows what you have contributed as
+counts (never the text), and has two buttons: delete your own, or also withdraw
+what you gave the shared pool. Withdrawing makes the app poorer for the other
+people on the install, so it says so before you press it. **Prebuilt rows are
+never in scope** — §22's 955 explanations shipped with the app and the offline
+tier depends on them.
+
+The migration that adds the column sorts what already exists: rows whose
+sentence is app content are kept and marked shared, and the rest are deleted.
+That is deliberate rather than tidy-up — they have no owner, the new lookup
+cannot reach them, and they are the exact thing the column exists to prevent.

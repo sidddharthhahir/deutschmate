@@ -113,23 +113,48 @@ CREATE TABLE IF NOT EXISTS error_pattern (
   signature     TEXT NOT NULL UNIQUE,      -- normalised "expected|got" key
   explain_md    TEXT NOT NULL,
   source        TEXT NOT NULL DEFAULT 'generated',  -- prebuilt | generated
+  /* Who paid for this row. NULL for prebuilt entries, which cost nobody
+     anything. Rows here stay shared — the set of mistakes German learners make
+     is finite and small, and one person's explanation of "der → den" is the
+     right answer for everyone. The column exists so that "shared" is a fact
+     with an author rather than an anonymous pile, and so a learner can take
+     their contributions back (see lib/shared-cache.ts). */
+  created_by    TEXT,
   hits          INTEGER NOT NULL DEFAULT 0,
   created_at    TEXT NOT NULL DEFAULT (datetime('now'))
 );
 CREATE INDEX IF NOT EXISTS idx_error_tag ON error_pattern(tag);
+CREATE INDEX IF NOT EXISTS idx_error_by ON error_pattern(created_by);
 
 /* Sentence explanations, write-through cached (spec §12).
-   Global, not per-user: two learners at A1 ask about the same sentences, so
-   the second one gets the answer free. Keyed by the normalised sentence. */
+   Keyed by the normalised sentence.
+
+   SHARED ONLY WHEN THE SENTENCE IS THE APP'S OWN.
+
+   This started as one global table, which was right when the only sentences
+   reaching it came from the curriculum: you and your flatmate read the same 38
+   texts, so the second person to ask got the answer free. Then /text let anyone
+   paste any German they liked — a letter from the Ausländerbehörde, a message
+   from their landlord, a doctor's note — and the whole sentence was written
+   verbatim into a table every account on the install reads from.
+
+   So the row now records who asked and whether it may be shared. `shared` is
+   set by the server, from whether the sentence actually occurs in app content;
+   it is never taken from the request, because a client that asks to share is
+   not evidence that the text is safe to share. Everything else stays private to
+   its author and is theirs to delete. */
 CREATE TABLE IF NOT EXISTS explanation (
   id         INTEGER PRIMARY KEY AUTOINCREMENT,
   signature  TEXT NOT NULL UNIQUE,
   sentence   TEXT NOT NULL,
   level      TEXT NOT NULL,
   body_md    TEXT NOT NULL,
+  created_by TEXT,
+  shared     INTEGER NOT NULL DEFAULT 0,
   hits       INTEGER NOT NULL DEFAULT 1,
   created_at TEXT NOT NULL DEFAULT (datetime('now'))
 );
+CREATE INDEX IF NOT EXISTS idx_explanation_by ON explanation(created_by);
 
 -- ============================================================
 -- PROGRESS
