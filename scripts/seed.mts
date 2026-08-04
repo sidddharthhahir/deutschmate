@@ -11,6 +11,7 @@ import { DatabaseSync } from "node:sqlite";
 import { readFileSync, readdirSync, existsSync } from "node:fs";
 import path from "node:path";
 import { applySchema, DB_PATH } from "../src/lib/db.ts";
+import { wordKey } from "../src/lib/error-key.ts";
 
 const ROOT = process.cwd();
 
@@ -386,6 +387,111 @@ if (existsSync(videoPath)) {
   db.exec("COMMIT");
   const timestamped = videos.filter((v) => (v.segments ?? []).length).length;
   console.log(`OK${videos.length} videos (${timestamped} timestamped)`);
+}
+
+// -------------------------------------------------------- error patterns
+/*
+ * The prebuilt half of the explanation cache (spec §12).
+ *
+ * These are keyed on the DIFFERENCE between a right and a wrong answer, not on
+ * a sentence pair, which is what makes writing them in advance possible at all
+ * — see src/lib/error-key.ts. Seeded with source='prebuilt' so they are
+ * distinguishable from rows the app wrote itself, and re-seeding refreshes the
+ * text without touching the hit counts.
+ */
+type RawPattern = {
+  _?: string;
+  key?: string;
+  wrong?: string;
+  right?: string;
+  /** Surface forms, for pairs of verbs. See the note below. */
+  wrongForms?: string[];
+  rightForms?: string[];
+  both?: boolean;
+  tag: string;
+  why?: string;
+};
+const PATTERN_FILE = path.join(ROOT, "data/error-patterns.json");
+if (existsSync(PATTERN_FILE)) {
+  const raw = JSON.parse(readFileSync(PATTERN_FILE, "utf8")) as RawPattern[];
+  const rows: { sig: string; tag: string; md: string }[] = [];
+  let entries = 0;
+
+  for (const p of raw) {
+    if (p._ || !p.why) continue; // section headings carry no explanation
+    entries++;
+
+    if (p.key) {
+      rows.push({ sig: p.key, tag: p.tag, md: p.why });
+      continue;
+    }
+
+    /* A key is built from the surface forms a learner actually types, so a
+       pair of verbs needs its conjugations spelled out: "Ich kenne es nicht"
+       for "Ich weiß es nicht" produces `w:kenne→weiß`, and an entry written
+       about the infinitives kennen and wissen would never have matched it.
+       One entry, one explanation, every form crossed with every form. */
+    const lefts = p.wrongForms ?? (p.wrong ? [p.wrong] : []);
+    const rights = p.rightForms ?? (p.right ? [p.right] : []);
+    for (const l of lefts) {
+      for (const r of rights) {
+        rows.push({ sig: wordKey(l, r), tag: p.tag, md: p.why });
+        // `both` means the distinction reads the same from either side, so the
+        // reverse direction gets the same text rather than a second entry.
+        if (p.both) rows.push({ sig: wordKey(r, l), tag: p.tag, md: p.why });
+      }
+    }
+  }
+
+  /* First one wins, so an earlier, more specific section beats a later one.
+     A duplicate is a mistake in the data either way, so it is reported. */
+  const seen = new Set<string>();
+  const dupes: string[] = [];
+  const unique = rows.filter((r) => {
+    if (seen.has(r.sig)) {
+      dupes.push(r.sig);
+      return false;
+    }
+    seen.add(r.sig);
+    return true;
+  });
+  if (dupes.length) {
+    console.warn(`  ! duplicate error-pattern keys: ${[...new Set(dupes)].join(", ")}`);
+  }
+
+  const upP = db.prepare(`
+    INSERT INTO error_pattern (tag, signature, explain_md, source, hits)
+    VALUES (?, ?, ?, 'prebuilt', 0)
+    ON CONFLICT(signature) DO UPDATE SET
+      tag=excluded.tag, explain_md=excluded.explain_md, source='prebuilt'
+  `);
+  db.exec("BEGIN");
+  for (const r of unique) upP.run(r.tag, r.sig, r.md);
+
+  /* Drop prebuilt rows the file no longer produces.
+     Upserting alone leaves the old key behind when an entry is reworded or its
+     key changes — `w:im→am` survived a rewrite that had replaced it with
+     `w:in→an`, unreachable and invisible, and the row count quietly disagreed
+     with the file. Only `prebuilt` rows are touched: a generated one was
+     earned by somebody actually making that mistake. */
+  const live = new Set(unique.map((r) => r.sig));
+  const stale = (
+    db.prepare("SELECT signature FROM error_pattern WHERE source = 'prebuilt'").all() as {
+      signature: string;
+    }[]
+  )
+    .map((r) => r.signature)
+    .filter((s) => !live.has(s));
+  const del = db.prepare("DELETE FROM error_pattern WHERE signature = ? AND source = 'prebuilt'");
+  for (const s of stale) del.run(s);
+  db.exec("COMMIT");
+
+  console.log(
+    `OK${entries} prebuilt error patterns  (${unique.length} keys after conjugations` +
+      `${stale.length ? `, ${stale.length} stale removed` : ""})`,
+  );
+} else {
+  console.log("--  no data/error-patterns.json");
 }
 
 // Sanity: every word referenced by a unit must exist.

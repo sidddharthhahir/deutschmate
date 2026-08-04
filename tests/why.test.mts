@@ -28,8 +28,14 @@ const a = await post("/api/attempt", {
 ok(a.ok === true, "the attempt is recorded");
 ok(typeof a.explanation === "string" && a.explanation.length > 0,
   "and comes back with a reason", `${a.source}: ${String(a.explanation).slice(0, 60)}`);
-ok(["cache", "model", "rule"].includes(a.source), "from a known tier", a.source);
+ok(["cache", "prebuilt", "model", "rule"].includes(a.source), "from a known tier", a.source);
 ok(Array.isArray(a.tags) && a.tags.length > 0, "tagged for the Fix block", a.tags?.join(", "));
+
+/* der/den is the single most common accusative slip in German, so it is the
+   one mistake that must never need a model call. If this stops being answered
+   from the prebuilt table, something has broken in the key or the seed —
+   `rule` would still pass the check above while costing money forever. */
+ok(a.source === "prebuilt", "and the commonest mistake in the language is free", a.source);
 
 section("the tier is honest about itself");
 /* With no API key the rule tier answers, and it must still say something real.
@@ -38,7 +44,7 @@ section("the tier is honest about itself");
 if (a.source === "rule") {
   ok(a.explanation.includes("**"), "the rule tier names the error type", a.explanation);
 } else {
-  ok(true, `a live model or cache answered (${a.source}) — the rule tier is the floor`);
+  ok(true, `answered from ${a.source} — the rule tier is the floor, not the norm`);
 }
 
 section("a correct answer does not pay for an explanation");

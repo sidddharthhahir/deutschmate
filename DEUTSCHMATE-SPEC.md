@@ -935,7 +935,85 @@ person to hit the same wall gets it free.
 
 `video` has no rows, and the session only offers a video once it has
 hand-marked segments, so nothing pretends otherwise — `/admin/video` is the tool
-for adding them. `error_pattern` has no rows either: the "prebuilt" tier that
-§12 planned was never written, and the cache fills itself from real mistakes.
-`topic` covers 6% of words, and the filter chips are built from the topics that
-exist, with counts.
+for adding them. `topic` covers 6% of words, and the filter chips are built from
+the topics that exist, with counts.
+
+`error_pattern` was on this list. It is not any more — see §22.
+
+---
+
+## 22. The prebuilt error patterns
+
+§12 planned "~200 prebuilt error patterns" and none were written. The reason is
+worth recording, because it was not laziness: **there was nothing sensible to
+write.** The cache is keyed on `expected|got` — the exact sentence and the exact
+wrong answer — and you cannot enumerate in advance the sentences a learner will
+meet. Two hundred rows against that key would have been two hundred correct
+explanations that never once fired. Spec §21 exists because that is the app's
+characteristic failure, so building it that way would have been building the
+thing this project has spent a week removing.
+
+### A mistake now has two keys
+
+| | | |
+|---|---|---|
+| **sentence** | `ich sehe den mann\|ich sehe der mann` | learned, exact, written back from a live call |
+| **pattern** | `w:der→den` | prebuilt, general, written by hand |
+
+The pattern key is the *difference*, not the sentences, so the same slip in a
+hundred different sentences is one row. `src/lib/error-key.ts` decides what
+counts as the same mistake:
+
+- one word differs, and it is a closed-class word → `w:wrong→right`
+- one word differs by a real verb ending on a shared stem → `v:-e→-st`, so every
+  regular verb in the language shares one entry
+- only the capital changed → `case`; only an umlaut → `sp:umlaut`
+- the same words in a different order → `order:verb-position-2`
+- four words differ → **null**. Two sentences that disagree in four places have
+  no single lesson in them, and inventing a key for that would mean serving a
+  stored explanation of a mistake nobody made.
+
+Contracted prepositions fold to the preposition inside them, so *nach Arzt* for
+*zum Arzt* reaches the entry about nach and zu rather than dying on `w:nach→zum`.
+
+**The rule the file enforces**: a pattern explanation must be true without
+seeing the sentence. That is why live model output is still stored under the
+sentence key only — it says things like *"'Mann' is masculine"*, which would be
+a lie the moment it was reused on a sentence about a Frau.
+
+### What is in it
+
+`data/error-patterns.json` — **249 entries, 955 signatures** after the
+conjugation cross-product. Articles and case (48), the perfect auxiliary (15),
+verb endings by ending and the strong-verb stem changes (45), negation (10),
+pronouns (20), prepositions (22), confusable words (60-odd pairs, most of them
+registered in both directions), the structural keys, and **one last-resort row
+per tag** so the offline path gives a rule rather than a bare label.
+
+Four tags were added to carry them, because the classifier could not previously
+name what was wrong: `article-dativ`, `article-genitiv`, `perfekt-hilfsverb`,
+`praeposition`. Before this, *mit der Mann* was reported as a gender mistake
+when the gender was right and the case was not.
+
+### What the test measures
+
+`tests/error-key.test.mts` drives **41 wrong answers a beginner actually
+produces** — *Ich sehe der Mann*, *Er hat nach Hause gegangen*, *Ich kenne es
+nicht*, *Ich habe sehr Arbeit* — and fails unless every one of them reaches a
+specific explanation. That check found four things a row count never would:
+
+- `ein→einen` was being keyed as a verb ending, because `ein` and `einen` share
+  a stem and two short tails exactly like `gehe` and `gehst`
+- `stehen→stellen` likewise, so the entry written about them never fired
+- entries written about infinitives could not match conjugated forms — *kenne*
+  is what a learner types, not *kennen*
+- the seeder upserted and never deleted, so a reworded entry left its old key
+  behind, unreachable
+
+### What it changes
+
+Most of what a beginner gets wrong is now explained **for free, offline, and
+instantly** — no key needed, no budget spent, no round trip. `tests/why.test.mts`
+asserts specifically that der/den, the commonest accusative slip in German,
+never costs a model call: `rule` would pass a looser check while quietly
+charging for it forever.

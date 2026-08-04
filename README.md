@@ -202,10 +202,21 @@ with will try to help by explaining it, and a tutor that stops to teach
 mid-sentence is how beginners stop talking — corrections run afterwards, on
 purpose.
 
-**Every wrong answer gets a reason.** Cache → cheap model → the rule-based tag
-description. That third tier is why it can never come back empty: with no key,
-no network or a spent budget, *"Nominative article where accusative is needed"*
-is still true.
+**Every wrong answer gets a reason, and most of them cost nothing.** Four tiers:
+the exact sentence pair if anyone has hit it before → **955 prebuilt patterns**
+→ the cheap model → the rule-based tag description.
+
+Tier two is the one that matters for the bill. It is keyed on the *difference*
+rather than the sentences, so `w:der→den` covers the accusative slip in every
+sentence it can happen in, and `v:-e→-st` covers the du ending on every regular
+verb in the language. Articles and case, the perfect auxiliary, verb endings,
+nicht vs kein, pronouns, prepositions, sixty-odd confusable word pairs — most of
+what a beginner actually gets wrong is answered instantly, offline, for free.
+`data/error-patterns.json`, and spec §22 for why the key had to change before
+any of them could be written.
+
+The fourth tier is why it can never come back empty: with no key, no network or
+a spent budget, *"Nominative article where accusative is needed"* is still true.
 
 ---
 
@@ -228,7 +239,7 @@ npm test                 # all of them
 npm test text outbox     # only files matching these names
 ```
 
-Sixteen suites, no framework. Ten run anywhere; six need `npm run dev`
+Seventeen suites, no framework. Eleven run anywhere; six need `npm run dev`
 listening and are **skipped with a message** if it isn't — never quietly
 passed. They use throwaway user ids in the real database, which is how the app
 separates two flatmates, and clean up after themselves.
@@ -251,13 +262,24 @@ separates two flatmates, and clean up after themselves.
 | `why` | every wrong answer comes back with a reason, on every path, with or without a key |
 | `who` | two flatmates on one browser get separate keys, and a queued answer replays to whoever gave it |
 | `corpus` | the sentence rotation covers the corpus over a course, not just over a month |
+| `error-key` | 41 mistakes a beginner really makes, each one reaching a specific prebuilt explanation |
 
-`corpus` is worth a note on how it is written. The obvious test — "do two
-consecutive days differ?" — passed while the rotation was reaching 6% of the
-sentences, because consecutive days *did* differ; it was day 36 that repeated
-day 0. So the test measures coverage over the 210 days the course actually
-takes. A feature that runs, looks full, and quietly serves the same hundred
-rows for seven months is the kind this suite exists to catch.
+`corpus` and `error-key` are worth a note on how they are written, because both
+guard the same kind of failure.
+
+The obvious corpus test — "do two consecutive days differ?" — passed while the
+rotation was reaching 6% of the sentences, because consecutive days *did*
+differ; it was day 36 that repeated day 0. So it measures coverage over the 210
+days the course actually takes.
+
+The obvious error-pattern test — "are there 200 rows?" — would pass on 200 rows
+that never match anything. So it drives 41 wrong answers a beginner really
+produces and fails unless each one reaches a specific explanation. It caught
+four real bugs on its first run, including entries written about infinitives
+that could never match the conjugated forms people type.
+
+A feature that runs, looks full, and does nothing is the kind this suite exists
+to catch.
 
 `progression` is the one that matters. Nothing in the app reports "the learner
 cannot get past A1.1" — it just keeps offering unit 1, which is exactly what
@@ -399,10 +421,6 @@ the [Goethe-Institut](https://www.goethe.de/de/spr/kup/prf.html).
   away; the remainder still needs a hierarchy.
 - **Speech recognition is Chrome-only.** Speaking and voice mode degrade to
   listen-and-repeat elsewhere, and say so.
-- **`error_pattern` has no prebuilt rows.** Spec §12 planned about 200 common
-  mistakes written in advance; none were. The tier exists and works — it just
-  starts empty and fills from real answers, so the first person to make a given
-  mistake pays for the explanation and the second gets it free.
 - **`/alltag` needs the network.** Those six scenarios are conversations by
   design and carry no scripted fallback, so offline they say so and offer the
   phrase list instead of a dialogue. Unit scenarios do have a script.

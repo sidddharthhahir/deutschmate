@@ -1,4 +1,5 @@
 import { all, get, run } from "./db";
+import { patternFor } from "./error-key.ts";
 
 /**
  * Error tagging — the entire personalisation engine (spec §9).
@@ -11,9 +12,13 @@ import { all, get, run } from "./db";
 export const TAGS = {
   "article-gender": "Wrong article (der/die/das)",
   "article-akkusativ": "Nominative article where accusative is needed",
+  "article-dativ": "Dative needed (mit, nach, bei, seit, von, zu, aus)",
+  "article-genitiv": "Genitive needed",
   "verb-ending": "Wrong verb ending for the subject",
   "verb-position-2": "Verb not in second position",
   "verb-final": "Infinitive not at the end after a modal",
+  "perfekt-hilfsverb": "haben or sein in the perfect",
+  "praeposition": "Wrong preposition",
   "plural": "Wrong plural form",
   "negation": "nicht vs kein",
   "pronoun": "Wrong pronoun (du / Sie / ihr)",
@@ -25,7 +30,31 @@ export const TAGS = {
 
 export type Tag = keyof typeof TAGS;
 
-const ARTICLES = ["der", "die", "das", "den", "dem", "des", "ein", "eine", "einen", "einem"];
+/* Article forms, grouped by the case they mark, so a swap can be classified
+   rather than lumped under "wrong article". The dative set is what makes
+   `article-dativ` detectable at all: the previous classifier had two article
+   tags and folded every dative slip into "wrong gender", which is the one
+   thing it is not. */
+const NOMINATIVE = ["der", "die", "das", "ein", "eine", "kein", "keine", "mein", "meine"];
+const ACCUSATIVE = ["den", "einen", "keinen", "meinen", "diesen", "jeden"];
+const DATIVE = ["dem", "einem", "einer", "keinem", "keiner", "meinem", "meiner", "diesem", "allen"];
+const GENITIVE = ["des", "eines", "einer", "dessen"];
+const ARTICLES = [...new Set([...NOMINATIVE, ...ACCUSATIVE, ...DATIVE, ...GENITIVE, "dieser", "diese", "dieses", "jeder", "alle", "ihr", "ihre", "ihren", "dein", "deine", "sein", "seine", "unser", "unsere"])];
+
+/** Auxiliaries whose swap is a haben/sein decision, not a conjugation slip. */
+const AUX = new Set([
+  "hat", "ist", "habe", "bin", "haben", "sind", "hast", "bist", "habt", "seid",
+  "hatte", "war", "hatten", "waren",
+]);
+const HABEN = new Set(["hat", "habe", "haben", "hast", "habt", "hatte", "hatten"]);
+
+/** Prepositions common enough at A1–B1 that a swap is worth naming. */
+const PREPOSITIONS = new Set([
+  "in", "an", "auf", "über", "unter", "vor", "hinter", "neben", "zwischen",
+  "mit", "nach", "bei", "seit", "von", "zu", "aus", "außer", "gegenüber",
+  "für", "um", "durch", "gegen", "ohne", "bis",
+  "im", "am", "zum", "zur", "ins", "ans", "beim", "vom",
+]);
 
 /**
  * Classify a wrong answer by comparing it to the expected one.
@@ -51,29 +80,45 @@ export function classify(expected: string, got: string): Tag[] {
     tags.add(eVerb !== gVerb ? "verb-position-2" : "word-order");
   }
 
-  // Article swaps.
+  /* Article swaps, named by the case that was actually wanted.
+     This used to be two outcomes — "accusative" for three hardcoded pairs and
+     "wrong gender" for everything else — so `mit der Mann` was reported as a
+     gender mistake when the gender was right and the case was not. The
+     prebuilt explanations are keyed per pair, but the tag is what the Fix
+     block and /fehler group by, so it has to be the real one. */
   for (let i = 0; i < Math.min(eW.length, gW.length); i++) {
-    const a = eW[i].toLowerCase();
-    const b = gW[i].toLowerCase();
-    if (a === b) continue;
-    if (ARTICLES.includes(a) && ARTICLES.includes(b)) {
-      const accPair =
-        (a === "den" && b === "der") ||
-        (a === "einen" && b === "ein") ||
-        (a === "der" && b === "den");
-      tags.add(accPair ? "article-akkusativ" : "article-gender");
-    }
+    const want = eW[i].toLowerCase();
+    const wrote = gW[i].toLowerCase();
+    if (want === wrote) continue;
+    if (!ARTICLES.includes(want) || !ARTICLES.includes(wrote)) continue;
+    if (GENITIVE.includes(want) && !GENITIVE.includes(wrote)) tags.add("article-genitiv");
+    else if (DATIVE.includes(want) && !DATIVE.includes(wrote)) tags.add("article-dativ");
+    else if (ACCUSATIVE.includes(want) && !ACCUSATIVE.includes(wrote))
+      tags.add("article-akkusativ");
+    else tags.add("article-gender");
   }
 
-  // Verb ending: same stem, different tail.
   for (let i = 0; i < Math.min(eW.length, gW.length); i++) {
-    const a = eW[i].toLowerCase();
-    const b = gW[i].toLowerCase();
-    if (a === b || a.length < 3 || b.length < 3) continue;
-    const stem = Math.min(a.length, b.length) - 2;
-    if (stem > 1 && a.slice(0, stem) === b.slice(0, stem) && a !== b) {
-      tags.add("verb-ending");
+    const want = eW[i].toLowerCase();
+    const wrote = gW[i].toLowerCase();
+    if (want === wrote) continue;
+
+    // haben or sein in the perfect: a decision about the verb, not an ending.
+    if (AUX.has(want) && AUX.has(wrote) && HABEN.has(want) !== HABEN.has(wrote)) {
+      tags.add("perfekt-hilfsverb");
+      continue;
     }
+
+    // A preposition swapped for another preposition.
+    if (PREPOSITIONS.has(want) && PREPOSITIONS.has(wrote)) {
+      tags.add("praeposition");
+      continue;
+    }
+
+    // Verb ending: same stem, different tail.
+    if (want.length < 3 || wrote.length < 3) continue;
+    const stem = Math.min(want.length, wrote.length) - 2;
+    if (stem > 1 && want.slice(0, stem) === wrote.slice(0, stem)) tags.add("verb-ending");
   }
 
   // Umlaut / ß differences only → spelling.
@@ -148,6 +193,11 @@ export function topErrorTags(userId: string, days = 14, limit = 3) {
  * model on a miss, then store the result so the second person to make this
  * mistake gets it free. German learners make a finite set of mistakes, so this
  * table converges and the live-call cost decays toward zero.
+ *
+ * Two kinds of row live here, distinguished by their signature and by `source`:
+ * exact sentence pairs, written back from live calls, and the general patterns
+ * in `data/error-patterns.json`, seeded with `source = 'prebuilt'`. See
+ * lib/error-key.ts for why the second kind needs a different key.
  */
 export function cachedExplanation(signature: string) {
   const row = get<{ explain_md: string }>(
@@ -157,6 +207,24 @@ export function cachedExplanation(signature: string) {
   if (row) {
     run("UPDATE error_pattern SET hits = hits + 1 WHERE signature = ?", signature);
     return row.explain_md;
+  }
+  return null;
+}
+
+/**
+ * The prebuilt explanation for a mistake, most specific first.
+ *
+ * `w:der→den` before `tag:article-akkusativ`: naming the exact pair is worth
+ * more than naming the case, and the per-tag rows exist so that something true
+ * is always available even for a pair nobody wrote down.
+ */
+export function patternExplanation(expected: string, got: string, tags: Tag[]) {
+  const keys = [patternFor(expected, got), ...tags.map((t) => `tag:${t}`)].filter(
+    (k): k is string => Boolean(k),
+  );
+  for (const key of keys) {
+    const hit = cachedExplanation(key);
+    if (hit) return hit;
   }
   return null;
 }
@@ -173,7 +241,6 @@ export function storeExplanation(tag: string, signature: string, md: string, sou
   );
 }
 
-export function signatureFor(expected: string, got: string) {
-  const norm = (s: string) => s.trim().toLowerCase().replace(/\s+/g, " ").replace(/[.!?]$/, "");
-  return `${norm(expected)}|${norm(got)}`;
-}
+/* Both keys live in lib/error-key.ts — a pure module, so the rules that decide
+   what counts as "the same mistake" can be tested without a database. */
+export { signatureFor, patternFor } from "./error-key.ts";

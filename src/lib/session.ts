@@ -907,16 +907,24 @@ function builderItems(unit: Unit, words: Word[], level: string, dayIndex: number
  * where you happen to be in the course.
  */
 function drillsForTags(tags: string[]) {
+  /* Every tag the classifier can produce needs a row here, or the Fix block
+     silently has nothing to drill for it. The four new ones — dative, genitive,
+     the perfect auxiliary and prepositions — arrived with the prebuilt error
+     patterns, and all four already had a grammar point written. */
   const TAG_TO_SLUG: Record<string, string[]> = {
     "article-gender": ["artikel-nominativ"],
     "article-akkusativ": ["akkusativ"],
+    "article-dativ": ["dativ", "praepositionen-kasus"],
+    "article-genitiv": ["genitiv"],
     "verb-ending": ["praesens-regular", "verb-sein", "verb-haben"],
     "verb-position-2": ["verb-position-2"],
     "verb-final": ["modalverben"],
+    "perfekt-hilfsverb": ["perfekt"],
+    praeposition: ["praepositionen-kasus", "wechselpraepositionen"],
     plural: ["plural"],
     negation: ["nicht-kein"],
     pronoun: ["personalpronomen"],
-    "word-order": ["verb-position-2"],
+    "word-order": ["verb-position-2", "nebensaetze"],
   };
   const slugs = [...new Set(tags.flatMap((t) => TAG_TO_SLUG[t] ?? []))];
   if (!slugs.length) return [];
