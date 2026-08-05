@@ -54,6 +54,8 @@ export default function ReviewBlock({ payload, onDone }: BlockProps<Payload>) {
   const [peeked, setPeeked] = useState(false);
   const [undo, setUndo] = useState<{ card: DueCard } | null>(null);
   const undoTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  /** Seconds left in the undo window, shown on the closing card. */
+  const [left, setLeft] = useState(UNDO_MS / 1000);
 
   /** The grade waiting out its undo window. */
   const held = useRef<{ cardId: number; grade: number } | null>(null);
@@ -88,6 +90,15 @@ export default function ReviewBlock({ payload, onDone }: BlockProps<Payload>) {
   /** The last card had no undo window. */
   const closing = queue.length === 0 && undo !== null;
 
+  // Ticked by the interval below, reset in grade(). The closing screen used to
+  // say the grade goes out "sobald du weitergehst" and offer a Z with no expiry,
+  // while this same window committed it and advanced five seconds later.
+  useEffect(() => {
+    if (!closing) return;
+    const t = setInterval(() => setLeft((n) => Math.max(0, n - 1)), 1000);
+    return () => clearInterval(t);
+  }, [closing]);
+
   useEffect(() => {
     if (queue.length === 0 && !closing) onDone();
   }, [queue.length, closing, onDone]);
@@ -103,6 +114,7 @@ export default function ReviewBlock({ payload, onDone }: BlockProps<Payload>) {
       setRevealed(false);
       setPeeked(false);
       setUndo({ card });
+      setLeft(UNDO_MS / 1000);
       held.current = { cardId: card.cardId, grade: g };
       if (undoTimer.current) clearTimeout(undoTimer.current);
       undoTimer.current = setTimeout(() => {
@@ -212,13 +224,14 @@ export default function ReviewBlock({ payload, onDone }: BlockProps<Payload>) {
               onClick={takeBack}
               className="border-line text-secondary hover:border-line-strong hover:text-fg w-full rounded-xl border py-3 text-[14px] transition-colors"
             >
-              Z&nbsp;&nbsp;zurücknehmen
+              Z&nbsp;&nbsp;zurücknehmen{left > 0 ? ` (${left} s)` : ""}
             </button>
           </div>
 
           <p className="text-muted max-w-[44ch] text-[12.5px] leading-relaxed">
-            Die Bewertung ist noch nicht abgeschickt. Sie geht raus, sobald du
-            weitergehst.
+            {left > 0
+              ? `Die Bewertung geht in ${left} Sekunden raus — oder sofort, wenn du weitergehst.`
+              : "Die Bewertung ist abgeschickt."}
           </p>
         </div>
       </main>

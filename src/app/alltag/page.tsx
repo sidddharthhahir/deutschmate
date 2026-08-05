@@ -7,14 +7,18 @@ export const dynamic = "force-dynamic";
 
 /** Alltag — German with consequences. */
 export default function SurvivalPage() {
-  const items = survivalScenarios();
+  // Counted, not typed: the lead said "Six" while rendering twelve. Sorted by
+  // level too — appended scenarios put an A1.2 after two B1.1s.
+  const items = [...survivalScenarios()].sort(
+    (a, b) => a.level.localeCompare(b.level) || a.ord - b.ord,
+  );
 
   return (
     <Page
       back="/ueben"
       backLabel="Üben"
       title="Alltag in Deutschland"
-      lead="Six conversations you will actually have. Each with the phrases that matter and the list of documents to bring."
+      lead={`${items.length} conversations you will actually have, easiest first. Each with the phrases that matter, what they will say back, and the documents to bring.`}
     >
       <>
         {items.length === 0 ? (

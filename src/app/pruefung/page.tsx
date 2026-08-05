@@ -2,6 +2,7 @@
 import { requireUser } from "@/lib/user";
 import { examHistory, type SectionScore } from "@/lib/exam";
 import ExamRunner from "./ExamRunner";
+import { TAP } from "@/lib/ui";
 
 export const dynamic = "force-dynamic";
 
@@ -75,7 +76,7 @@ export default async function ExamPage() {
             href="https://www.goethe.de/de/spr/kup/prf.html"
             target="_blank"
             rel="noreferrer noopener"
-            className="text-accent mt-3 inline-block text-[14px] hover:underline"
+            className={`text-accent mt-3 text-[14px] hover:underline ${TAP}`}
           >
             goethe.de → Prüfungen ↗
           </a>

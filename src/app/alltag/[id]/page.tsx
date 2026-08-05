@@ -33,7 +33,8 @@ export default async function SurvivalScenario({
           ← Alltag
         </Link>
 
-        <h1 className="font-serif mt-4 text-[30px] font-semibold tracking-[-0.015em]">
+        {/* break-de: "Nebenkostenabrechnung" at 30px is wider than a 375px screen. */}
+        <h1 className="font-serif break-de mt-4 text-[30px] font-semibold tracking-[-0.015em]">
           {s.title}
         </h1>
         <p className="text-secondary mt-2 text-[15px] leading-relaxed">

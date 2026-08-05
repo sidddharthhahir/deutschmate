@@ -10,6 +10,7 @@ import { LEVELS } from "@/lib/session";
 import Page, { Section, Tile } from "@/components/Page";
 import PendingTexts from "./PendingTexts";
 import { plural } from "@/lib/plural";
+import { survivalScenarios } from "@/lib/survival";
 
 export const dynamic = "force-dynamic";
 
@@ -136,7 +137,7 @@ export default async function PracticePage() {
             <Tile
               href="/alltag"
               title="Alltag"
-              sub="Bürgeramt, WG, Arzt, Bank"
+              sub={`${survivalScenarios().length} Termine · Bürgeramt, Arzt, Handwerker …`}
             />
             <Tile
               href="/unterwegs"

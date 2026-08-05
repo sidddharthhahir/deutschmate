@@ -109,18 +109,20 @@ export default async function ProgressPage() {
       width="wide"
       title="Fortschritt"
       aside={
-        <div className="flex items-baseline gap-4">
+        <div className="flex items-baseline gap-x-4">
           {/* Whose numbers these are. On a shared laptop that is not obvious,
-              and it used to be impossible to tell or change. */}
+              and it used to be impossible to tell or change. Real padding rather
+              than the TAP overlay: these sit side by side and can wrap, so two
+              overlays would steal each other's taps. */}
           <Link
             href="/wer"
-            className="font-mono text-muted hover:text-secondary text-[12.5px] transition-colors"
+            className="font-mono text-muted hover:text-secondary py-3 text-[12.5px] transition-colors"
           >
             {user.name}
           </Link>
           <Link
             href="/woche"
-            className="text-accent text-[12.5px] hover:underline"
+            className="text-accent py-3 text-[12.5px] hover:underline"
           >
             Diese Woche →
           </Link>

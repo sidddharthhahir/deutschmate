@@ -229,16 +229,18 @@ export default async function WeekPage() {
           </>
         )}
 
-        <div className="border-line-sub mt-10 flex flex-wrap gap-4 border-t pt-6">
+        {/* Real padding, not the TAP overlay: these wrap on a phone, and two
+            overlays that close together would fight over the same taps. */}
+        <div className="border-line-sub mt-10 flex flex-wrap gap-x-4 border-t pt-4">
           <Link
             href="/fortschritt"
-            className="text-accent text-[13.5px] hover:underline"
+            className="text-accent py-3 text-[13.5px] hover:underline"
           >
             Gesamtfortschritt →
           </Link>
           <Link
             href="/problemwoerter"
-            className="text-accent text-[13.5px] hover:underline"
+            className="text-accent py-3 text-[13.5px] hover:underline"
           >
             Problemwörter →
           </Link>

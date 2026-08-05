@@ -259,7 +259,7 @@ function Chip({
   return (
     <button
       onClick={onClick}
-      className={`font-mono rounded-full px-3 py-1 text-[11.5px] transition-colors ${
+      className={`font-mono rounded-full px-3 py-2 text-[11.5px] transition-colors ${
         active
           ? "bg-fg text-[#16211E]"
           : "border-line text-muted hover:border-line-strong hover:text-secondary border"

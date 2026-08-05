@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { markTourSeen } from "@/lib/tour";
+import { TAP, TAP_BLOCK } from "@/lib/ui";
 
 /** What this app is, for someone who has never seen it. IN ENGLISH, deliberately. */
 
@@ -277,7 +278,10 @@ export default function Tour({ firstRun }: { firstRun: boolean }) {
             key={n}
             onClick={() => setI(n)}
             aria-label={`Step ${n + 1}`}
-            className={`h-1 flex-1 rounded-[2px] transition-colors ${
+            // TAP_BLOCK, not TAP: these are flex-1 children, and the rail is
+            // drawn 4px tall. The overlay is vertical only, so the six do not
+            // overlap each other.
+            className={`h-1 flex-1 rounded-[2px] transition-colors ${TAP_BLOCK} ${
               n <= i ? "bg-fg" : "bg-line"
             }`}
           />
@@ -345,7 +349,7 @@ export default function Tour({ firstRun }: { firstRun: boolean }) {
         <div className="mt-5 text-center">
           <Link
             href="/"
-            className="font-mono text-muted hover:text-secondary text-[11.5px] transition-colors"
+            className={`font-mono text-muted hover:text-secondary text-[11.5px] transition-colors ${TAP}`}
           >
             Skip — I&apos;ll just start
           </Link>

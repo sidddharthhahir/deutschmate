@@ -52,7 +52,7 @@ const JUMPS: Hit[] = [
   {
     kind: "seite",
     label: "Alltag",
-    sub: "Bürgeramt, WG, Arzt, Bank",
+    sub: "Bürgeramt, Arzt, Handwerker, Nebenkosten …",
     href: "/alltag",
   },
   {

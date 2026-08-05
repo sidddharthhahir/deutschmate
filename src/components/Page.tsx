@@ -45,7 +45,9 @@ export default function Page({
             back ? "mt-4" : ""
           }`}
         >
-          <h1 className="font-serif text-[32px] leading-[1.1] font-semibold tracking-[-0.015em]">
+          {/* break-de: titles come from content, and a German compound at 32px
+              is wider than a 375px screen. */}
+          <h1 className="font-serif break-de text-[32px] leading-[1.1] font-semibold tracking-[-0.015em]">
             {title}
           </h1>
           {aside && <div className="flex-none">{aside}</div>}

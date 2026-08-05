@@ -6,6 +6,7 @@ import { modalIsOpen } from "@/lib/keys";
 import { extractVideoId } from "@/lib/youtube";
 import { mount, sourceOf, type Playable, type Source } from "@/lib/player";
 import { TAP } from "@/lib/ui";
+import { plural } from "@/lib/plural";
 
 type Segment = { t_start: number; t_end: number; de: string; en: string };
 type Unit = { id: string; ord: number; title: string; level: string };
@@ -415,7 +416,7 @@ export default function VideoAdmin() {
               >
                 {saved ??
                   (canWrite
-                    ? `Speichern (${segments.length} Sätze)`
+                    ? `Speichern (${plural(segments.length, "Satz", "Sätze")})`
                     : "Speichern ist aus")}
               </button>
             </div>

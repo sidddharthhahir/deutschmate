@@ -40,7 +40,7 @@ export default async function ScenarioPage({
           ← Üben
         </Link>
 
-        <h1 className="font-serif mt-6 mb-8 text-[28px] font-semibold tracking-[-0.015em]">
+        <h1 className="font-serif break-de mt-6 mb-8 text-[28px] font-semibold tracking-[-0.015em]">
           {u.title}
           <span className="font-mono text-muted ml-3 text-[12.5px] font-normal">
             {u.level} · Unit {u.ord}

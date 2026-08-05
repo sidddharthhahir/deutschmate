@@ -117,7 +117,7 @@ export default function TextTool() {
               void run(SAMPLE);
             }}
             disabled={busy}
-            className="font-mono text-muted hover:text-secondary text-[12px] transition-colors"
+            className="font-mono text-muted hover:text-secondary py-3 text-[12px] transition-colors"
           >
             Beispiel ausprobieren
           </button>

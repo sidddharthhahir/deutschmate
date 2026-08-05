@@ -1481,7 +1481,40 @@ twenty pages that no overlay covers another control.
 
 The general rule: an invisible overlay is right for a link that is alone on its
 line and wrong the moment two of them are close, and the difference is only
-visible if you check.
+visible if you check. `lib/ui.ts` exports both shapes — `TAP` for a link on its
+own line, `TAP_BLOCK` for a flex child where `inline-block` would break the
+layout, which is what the tour's 4px step rail needed.
+
+### Doing a session, again
+
+The fifth pass in §24 was a session in a browser. Doing another one after all of
+the above found four more, none of which any static check could see.
+
+**The closing card lied twice.** "Die Bewertung ist noch nicht abgeschickt. Sie
+geht raus, sobald du weitergehst" — while the same `UNDO_MS` timer committed it
+and advanced the block five seconds later, whether you moved on or not. The Z it
+offered stopped working at the same moment, with no countdown, while the
+*in-block* undo had been showing "(5 s)" all along. It counts down now and says
+what it actually does. Verified the whole loop: grade, Z inside the window, card
+restored, and **zero** `/api/review` requests — the grade genuinely never left.
+
+**"1 NEUE WÖRTER".** The recap did not inflect. `lib/plural.ts` already existed,
+with `plural()`, `word()` and even `is()` for verb agreement, and `/woche` two
+clicks away was using it correctly — the recap and the home screen just weren't.
+An app that teaches German printing broken German is the same class of error as
+a number that is wrong: the learner cannot tell which parts to trust.
+
+**"Six conversations you will actually have"**, on a page rendering twelve. The
+lead was typed; it is counted now. The list was also in insertion order, so an
+A1.2 appointment sat below two B1.1 ones — sorted by level. Two more places
+still advertised the original four scenarios by name.
+
+**A German compound broke the layout.** "Nebenkostenabrechnung" at 30px is 356px
+wide in a 327px box, so the newest scenario page scrolled sideways on a phone.
+`globals.css` has had a `.break-de` class for exactly this since before the bug,
+with a comment describing it — applied to review cards and walk mode, never to
+the page headings that render content. It is on every heading that shows a word
+from `data/` now, not just the one that broke.
 
 ### Two things found while checking the numbers above
 

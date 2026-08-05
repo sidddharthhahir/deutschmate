@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { ArticleWord } from "@/components/Article";
 import { de } from "@/lib/tags";
+import { word } from "@/lib/plural";
 
 /**
  * Count a number up on mount. The only celebratory motion in the app, and it earns its place here:
@@ -82,6 +83,8 @@ export default function SessionRecap({
   nextUnit?: string | null;
 }) {
   const mistake = recap?.lastMistakeTags?.[0];
+  const newWords = recap?.newWords ?? 0;
+  const reviews = recap?.reviews ?? 0;
 
   return (
     <main className="bg-warm-bg text-warm-fg flex min-h-screen flex-col px-6 py-12 md:px-10">
@@ -112,9 +115,16 @@ export default function SessionRecap({
         <div className="bg-warm-line h-px" />
 
         <div className="grid grid-cols-2 gap-6 md:grid-cols-4">
-          <Stat n={minutes} label="Minuten" />
-          <Stat n={recap?.newWords ?? 0} label="Neue Wörter" />
-          <Stat n={recap?.reviews ?? 0} label="Wiederholungen" />
+          {/* lib/plural.ts, which already existed — this screen just said "1 NEUE WÖRTER". */}
+          <Stat n={minutes} label={word(minutes, "Minute", "Minuten")} />
+          <Stat
+            n={newWords}
+            label={word(newWords, "Neues Wort", "Neue Wörter")}
+          />
+          <Stat
+            n={reviews}
+            label={word(reviews, "Wiederholung", "Wiederholungen")}
+          />
           <Stat n={recap?.accuracy ?? null} label="Richtig" suffix="%" />
         </div>
 

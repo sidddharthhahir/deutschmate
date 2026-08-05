@@ -7,6 +7,7 @@ import AppHeader from "@/components/AppHeader";
 import { useOnline } from "@/lib/hooks";
 import { shouldIgnoreKey } from "@/lib/keys";
 import { tourSeen } from "@/lib/tour";
+import { plural } from "@/lib/plural";
 
 type Plan = {
   user: { id: string; name: string; level: string };
@@ -243,7 +244,11 @@ export default function Home() {
                       <span className="text-[22px] font-semibold tracking-[-0.01em] md:text-[24px]">
                         ▶&nbsp;&nbsp;
                         {state === "error"
-                          ? `${plan?.dueTotal ?? 0} Wiederholungen`
+                          ? plural(
+                              plan?.dueTotal ?? 0,
+                              "Wiederholung",
+                              "Wiederholungen",
+                            )
                           : "Heutige Sitzung"}
                       </span>
                       <span className="font-mono text-[13px] text-[#43574F]">
@@ -252,11 +257,20 @@ export default function Home() {
                           : [
                               `${plan!.totalMinutes} min`,
                               plan!.dueTotal > 0 &&
-                                `${plan!.dueTotal} Wiederholungen`,
+                                plural(
+                                  plan!.dueTotal,
+                                  "Wiederholung",
+                                  "Wiederholungen",
+                                ),
                               /* The real number, not the usual one. */
                               plan!.blocks.some(
                                 (b) => b.kind === "new-vocab",
-                              ) && `${plan!.pacing.words} neue Wörter`,
+                              ) &&
+                                plural(
+                                  plan!.pacing.words,
+                                  "neues Wort",
+                                  "neue Wörter",
+                                ),
                             ]
                               .filter(Boolean)
                               .join(" · ")}

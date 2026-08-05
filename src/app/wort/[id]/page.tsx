@@ -135,7 +135,7 @@ export default async function WordPage({
 
         <header className="border-line-sub mt-6 flex items-start justify-between gap-6 border-b pb-7">
           <div>
-            <h1 className="font-serif text-[44px] leading-none font-semibold tracking-[-0.02em] md:text-[56px]">
+            <h1 className="font-serif break-de text-[44px] leading-none font-semibold tracking-[-0.02em] md:text-[56px]">
               <Noun article={isNoun ? w.article : null}>{w.lemma}</Noun>
             </h1>
             <p className="font-serif text-secondary mt-3 text-[24px]">{w.en}</p>

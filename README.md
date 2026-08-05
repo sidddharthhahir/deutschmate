@@ -794,11 +794,23 @@ the [Goethe-Institut](https://www.goethe.de/de/spr/kup/prf.html).
   Nebenkostenabrechnung. `tests/content.test.mts` and `tests/scene.test.mts`
   both asserted `=== 6`, so adding any would have turned them red — they check a
   floor and a duplicate-id rule now, which is what they meant all along.
-- ~~Tap targets are desktop-sized.~~ The header links were 23px tall and the
-  "← back" links 19px, against a 44px guideline. `TAP` in `src/lib/ui.ts` is an
-  invisible `::after` that widens the hit area without moving the text; the two
-  places where two links sit close enough for overlays to collide got real
-  padding instead. Measured at 375px, not assumed: 48px and 44px.
+- ~~Tap targets are desktop-sized.~~ The header links were 23px tall, the
+  "← back" links 19px, and the tour's step rail 4px, against a 44px guideline.
+  `TAP` in `src/lib/ui.ts` is an invisible `::after` that widens the hit area
+  without moving the text; the places where two controls sit close enough for
+  overlays to collide got real padding instead. Measured at 375px across twenty
+  pages: nothing under 30px, and no overlay covering another control.
+- ~~The closing review card said the grade "goes out as soon as you move on".~~
+  A five-second timer sent it and advanced the block on its own, and the Z it
+  offered expired silently at the same moment. It counts down now and says what
+  it does. Checked the whole loop in a browser: Z inside the window restores the
+  card and sends **nothing**.
+- ~~"1 NEUE WÖRTER".~~ `lib/plural.ts` already existed and `/woche` was using it
+  properly; the recap and the home screen were not. An app teaching German
+  should not print broken German.
+- ~~"Nebenkostenabrechnung" scrolled the page sideways on a phone.~~ 356px of
+  heading in a 327px box. `globals.css` has had a `.break-de` class for this
+  since before the bug — it is on every heading that renders content now.
 
 ### A note on how these were found
 
@@ -808,7 +820,7 @@ tracker that could never be true, an offline queue for written texts that stored
 nothing, and a sentence rotation reaching 6% of the corpus behind a comment
 claiming it covered all of it.
 
-Eight passes, each finding what the one before it structurally could not:
+Nine passes, each finding what the one before it structurally could not:
 
 | | |
 |---|---|
@@ -820,6 +832,7 @@ Eight passes, each finding what the one before it structurally could not:
 | **deleting the comments** | a cookie nothing writes, and a constant named twice |
 | **reading the server log** | one deprecation warning in 6,272 lines, for a convention that will stop working |
 | **running the suite four times** | a 40% flake whose checks always passed — a red that meant nothing |
+| **doing another hour of German** | a screen that lied about its own timer, broken German in the recap, and a compound noun wider than a phone |
 
 The third is worth the detail. The recap counters animate up from zero with
 `requestAnimationFrame`, browsers do not run rAF in a background tab, and there
@@ -861,5 +874,12 @@ One run is a sample of one, and a suite that fails two runs in five looks
 perfectly healthy the three times you happen to look. Both the flake and the
 line-ending problem above were found this way — by re-running something that had
 already said it was fine.
+
+The ninth is the third one again, and it keeps paying. Sitting through another
+session — sign in with the form, grade a card, undo it, finish, read the recap —
+found a screen lying about its own five-second timer, two counters printing
+broken German, a page header saying "six" over a list of twelve, and a compound
+noun 29px wider than a phone. Every one is invisible to the type checker, the
+linter, the tests and the dead-code pass, all of which were green throughout.
 
 If you are reading this repo to judge it, read §21, §24 and §25 first.
