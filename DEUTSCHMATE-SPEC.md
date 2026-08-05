@@ -1485,6 +1485,31 @@ visible if you check. `lib/ui.ts` exports both shapes — `TAP` for a link on it
 own line, `TAP_BLOCK` for a flex child where `inline-block` would break the
 layout, which is what the tour's 4px step rail needed.
 
+### The dev server ran out of memory, and the app did not
+
+It aborted at a **15.6 GB heap** after 5.7 hours, having served 88,969 requests
+and compiled ten times — so not recompilation churn. 70,624 of those were
+`POST /api/attempt`, which is what twenty-odd full test runs look like when
+`progression` walks all 120 units each time.
+
+The tempting conclusion is "dev servers leak, ignore it". §21's whole argument is
+that the tempting conclusion is how a real fault survives a review, so it was
+measured instead. Production build, `--max-old-space-size=192`, 15,000 attempt
+POSTs in five rounds of 3,000:
+
+```
+baseline 103 MB → 224 → 226 → 226 → 227 → 228 MB
+```
+
+Flat, zero failures, 43–44 s per round throughout — no GC thrashing, no
+degradation. Uncapped, the same load drifts to 322 MB, which is V8 declining to
+collect while it has gigabytes of headroom. Given a reason, it collects and holds.
+
+So: no unbounded retention in the request path, and a small box will not run out
+of memory. The dev server still will, under a load no learner produces; restart
+it. Recorded here because "we tested it for a week and it was fine" is not the
+same claim as "we filled the heap and it held".
+
 ### Doing a session, again
 
 The fifth pass in §24 was a session in a browser. Doing another one after all of

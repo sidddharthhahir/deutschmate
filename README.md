@@ -403,6 +403,19 @@ listening and are **skipped with a message** if it isn't — never quietly
 passed. They use throwaway user ids in the real database, which is how the app
 separates two flatmates, and clean up after themselves.
 
+**The dev server will die if you leave it running under the suite all day.** It
+OOM'd here at a 15.6 GB heap after 5.7 hours and 89,000 requests — `progression`
+alone walks 120 units, so twenty-odd full runs is seventy thousand POSTs. That is
+Next's dev-mode accumulation, not this app. Restart `npm run dev` and carry on.
+
+Measured, because "it's just dev mode" is exactly the kind of thing that turns out
+to be wrong: the production server was capped at a 192 MB old space and given
+15,000 attempt POSTs. RSS settled at **224 MB and stayed there** — 224, 226, 226,
+227, 228 across five rounds of 3,000 — with zero failures and identical
+throughput each round. Uncapped it drifts to 322 MB over the same load, which is
+V8 declining to collect while it has 4 GB of headroom, not a leak. Give it a
+reason and it collects.
+
 The suite used to fail about **two runs in five**, always on `undo.test.mts`,
 always with exit 3221226505 — and its ten checks passed every time. The crash was
 libuv's `UV_HANDLE_CLOSING` assertion on Windows: Node's fetch keeps a socket
