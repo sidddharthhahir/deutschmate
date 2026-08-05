@@ -158,7 +158,10 @@ export function getDb(): DatabaseSync {
 }
 
 /** Row helpers — node:sqlite returns null-prototype objects, so re-wrap them. */
-export function all<T = Record<string, unknown>>(sql: string, ...params: unknown[]): T[] {
+export function all<T = Record<string, unknown>>(
+  sql: string,
+  ...params: unknown[]
+): T[] {
   const rows = getDb()
     .prepare(sql)
     .all(...(params as never[]));

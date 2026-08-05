@@ -1,5 +1,10 @@
 import { all, get, run } from "./db";
-import type { Exam, ExamQuestion, SectionKey, SectionScore } from "./exam-score";
+import type {
+  Exam,
+  ExamQuestion,
+  SectionKey,
+  SectionScore,
+} from "./exam-score";
 import { EXAM_MINUTES as MINUTES } from "@/lib/config";
 
 export type { Exam, SectionScore };
