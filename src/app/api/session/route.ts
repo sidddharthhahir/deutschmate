@@ -18,7 +18,8 @@ export const dynamic = "force-dynamic";
 export async function GET(req: Request) {
   const user = await activeUser(req);
   if (!user) return unauthorized();
-  const shape = new URL(req.url).searchParams.get("shape") === "short" ? "short" : "full";
+  const shape =
+    new URL(req.url).searchParams.get("shape") === "short" ? "short" : "full";
   const plan = buildSession(user.id, user.level, shape);
 
   return NextResponse.json({
@@ -97,11 +98,15 @@ export async function POST(req: Request) {
     recap: {
       attempts: today?.n ?? 0,
       correct: today?.correct ?? 0,
-      accuracy: today?.n ? Math.round(((today.correct ?? 0) / today.n) * 100) : null,
+      accuracy: today?.n
+        ? Math.round(((today.correct ?? 0) / today.n) * 100)
+        : null,
       reviews: reviews?.n ?? 0,
       newWords: newWords?.n ?? 0,
       remainingDue: dueCount(user.id),
-      lastMistakeTags: topMistake ? (JSON.parse(topMistake.tags) as string[]) : [],
+      lastMistakeTags: topMistake
+        ? (JSON.parse(topMistake.tags) as string[])
+        : [],
     },
   });
 }

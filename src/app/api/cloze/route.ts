@@ -1,7 +1,13 @@
 ﻿import { NextResponse } from "next/server";
 import { activeUser } from "@/lib/user";
 import { readJson, badRequest, str, int, unauthorized } from "@/lib/http";
-import { addCloze, clozeTotal, dueCloze, clozeDueCount, deleteCloze } from "@/lib/cloze";
+import {
+  addCloze,
+  clozeTotal,
+  dueCloze,
+  clozeDueCount,
+  deleteCloze,
+} from "@/lib/cloze";
 import { blankWord } from "@/lib/cloze-text";
 
 export const runtime = "nodejs";
@@ -18,13 +24,7 @@ export async function GET(req: Request) {
   });
 }
 
-/**
- * POST — mine a sentence the learner is looking at right now.
- *
- * Called from the reading block: you tapped a word, you got its meaning, and
- * this turns that moment into a card. `word` picks the gap; the sentence is
- * whatever contained it.
- */
+/** POST — mine a sentence the learner is looking at right now. */
 export async function POST(req: Request) {
   const raw = await readJson(req);
   const user = await activeUser(req, raw);
@@ -56,7 +56,12 @@ export async function POST(req: Request) {
 
   // `created: false` means the identical gap already exists. Reporting that as
   // a distinct outcome, not as success, keeps the button honest.
-  return NextResponse.json({ ok: true, created, sentence: gap.sentence, answer: gap.answer });
+  return NextResponse.json({
+    ok: true,
+    created,
+    sentence: gap.sentence,
+    answer: gap.answer,
+  });
 }
 
 /** DELETE — remove a gap the learner doesn't want. Takes its card with it. */

@@ -1,16 +1,4 @@
-/**
- * Add the scripted fallback to the six survival scenarios.
- *
- * A one-shot content edit, written as a script rather than done by hand so the
- * shape is validated as it is written: every `next` has to point at a real turn
- * or at -1, every turn needs at least one correct option, and the whole thing
- * has to survive the same parse the app does. Editing 500 lines of JSON by hand
- * and finding out at runtime is the alternative.
- *
- *   node scripts/add-survival-dialogue.mts
- *
- * Idempotent: re-running replaces the dialogue rather than appending to it.
- */
+/** Add the scripted fallback to the six survival scenarios. */
 import { readFileSync, writeFileSync } from "node:fs";
 
 type Option = { say: string; ok: boolean; why?: string; next: number };
@@ -24,7 +12,11 @@ const DIALOGUES: Record<string, Turn[]> = {
     {
       them: "Haben Sie einen Termin?",
       options: [
-        { say: "Ja, um zehn Uhr. Ich möchte mich anmelden.", ok: true, next: 1 },
+        {
+          say: "Ja, um zehn Uhr. Ich möchte mich anmelden.",
+          ok: true,
+          next: 1,
+        },
         {
           say: "Ich bin am ersten März eingezogen.",
           ok: false,
@@ -36,7 +28,11 @@ const DIALOGUES: Record<string, Turn[]> = {
     {
       them: "Ihren Pass bitte. Und haben Sie die Wohnungsgeberbestätigung dabei?",
       options: [
-        { say: "Ja, hier ist meine Wohnungsgeberbestätigung.", ok: true, next: 2 },
+        {
+          say: "Ja, hier ist meine Wohnungsgeberbestätigung.",
+          ok: true,
+          next: 2,
+        },
         {
           say: "Nein, brauche ich die?",
           ok: false,
@@ -87,7 +83,11 @@ const DIALOGUES: Record<string, Turn[]> = {
     {
       them: "Erzähl mal was von dir.",
       options: [
-        { say: "Ich studiere Informatik im zweiten Semester.", ok: true, next: 1 },
+        {
+          say: "Ich studiere Informatik im zweiten Semester.",
+          ok: true,
+          next: 1,
+        },
         {
           say: "Wie hoch sind die Nebenkosten?",
           ok: false,
@@ -99,7 +99,11 @@ const DIALOGUES: Record<string, Turn[]> = {
     {
       them: "Kochst du gern?",
       options: [
-        { say: "Ja, sehr gern. Ich koche fast jeden Abend.", ok: true, next: 2 },
+        {
+          say: "Ja, sehr gern. Ich koche fast jeden Abend.",
+          ok: true,
+          next: 2,
+        },
         {
           say: "Nein.",
           ok: false,
@@ -135,7 +139,11 @@ const DIALOGUES: Record<string, Turn[]> = {
     {
       them: "Zwei Kaltmieten. Wann könntest du einziehen?",
       options: [
-        { say: "Ab dem ersten. Wann würdet ihr Bescheid geben?", ok: true, next: -1 },
+        {
+          say: "Ab dem ersten. Wann würdet ihr Bescheid geben?",
+          ok: true,
+          next: -1,
+        },
         {
           say: "Weiß ich noch nicht.",
           ok: false,
@@ -150,7 +158,11 @@ const DIALOGUES: Record<string, Turn[]> = {
     {
       them: "Waren Sie schon mal bei uns? Ihre Versichertenkarte bitte.",
       options: [
-        { say: "Nein, das erste Mal. Hier ist meine Karte.", ok: true, next: 1 },
+        {
+          say: "Nein, das erste Mal. Hier ist meine Karte.",
+          ok: true,
+          next: 1,
+        },
         {
           say: "Ich habe seit drei Tagen Halsschmerzen.",
           ok: false,
@@ -174,7 +186,11 @@ const DIALOGUES: Record<string, Turn[]> = {
     {
       them: "Haben Sie Fieber gemessen?",
       options: [
-        { say: "Ja, achtunddreißig Grad. Und mir ist schlecht.", ok: true, next: 3 },
+        {
+          say: "Ja, achtunddreißig Grad. Und mir ist schlecht.",
+          ok: true,
+          next: 3,
+        },
         {
           say: "Ein bisschen Fieber, glaube ich.",
           ok: false,
@@ -186,7 +202,11 @@ const DIALOGUES: Record<string, Turn[]> = {
     {
       them: "Nehmen Sie regelmäßig Medikamente?",
       options: [
-        { say: "Nein. Aber ich bin gegen Penizillin allergisch.", ok: true, next: 4 },
+        {
+          say: "Nein. Aber ich bin gegen Penizillin allergisch.",
+          ok: true,
+          next: 4,
+        },
         {
           say: "Nein.",
           ok: false,
@@ -213,7 +233,11 @@ const DIALOGUES: Record<string, Turn[]> = {
     {
       them: "Möchten Sie ein Girokonto eröffnen?",
       options: [
-        { say: "Ja, ein Girokonto. Ist das für Studenten kostenlos?", ok: true, next: 1 },
+        {
+          say: "Ja, ein Girokonto. Ist das für Studenten kostenlos?",
+          ok: true,
+          next: 1,
+        },
         {
           say: "Ja, ein Sparkonto bitte.",
           ok: false,
@@ -249,7 +273,11 @@ const DIALOGUES: Record<string, Turn[]> = {
     {
       them: "Das Konto ist für Studenten kostenlos.",
       options: [
-        { say: "Fallen später Gebühren an? Und bekomme ich eine EC-Karte?", ok: true, next: 4 },
+        {
+          say: "Fallen später Gebühren an? Und bekomme ich eine EC-Karte?",
+          ok: true,
+          next: 4,
+        },
         {
           say: "Gut, danke.",
           ok: false,
@@ -261,7 +289,11 @@ const DIALOGUES: Record<string, Turn[]> = {
     {
       them: "Die Karte kommt in etwa einer Woche per Post. Die PIN schicken wir Ihnen getrennt.",
       options: [
-        { say: "Das habe ich nicht ganz verstanden — die PIN kommt separat?", ok: true, next: -1 },
+        {
+          say: "Das habe ich nicht ganz verstanden — die PIN kommt separat?",
+          ok: true,
+          next: -1,
+        },
         {
           say: "Alles klar, danke.",
           ok: false,
@@ -288,7 +320,11 @@ const DIALOGUES: Record<string, Turn[]> = {
     {
       them: "Danke. Warum möchten Sie kündigen?",
       options: [
-        { say: "Ich ziehe um. Zum nächstmöglichen Zeitpunkt, bitte.", ok: true, next: 2 },
+        {
+          say: "Ich ziehe um. Zum nächstmöglichen Zeitpunkt, bitte.",
+          ok: true,
+          next: 2,
+        },
         {
           say: "Das geht Sie nichts an.",
           ok: false,
@@ -300,7 +336,11 @@ const DIALOGUES: Record<string, Turn[]> = {
     {
       them: "Wir können Ihnen ein besseres Angebot machen — zwei Monate gratis.",
       options: [
-        { say: "Nein danke, ich möchte kein neues Angebot.", ok: true, next: 3 },
+        {
+          say: "Nein danke, ich möchte kein neues Angebot.",
+          ok: true,
+          next: 3,
+        },
         {
           say: "Vielleicht — erzählen Sie mal.",
           ok: false,
@@ -312,7 +352,11 @@ const DIALOGUES: Record<string, Turn[]> = {
     {
       them: "Die Kündigungsfrist beträgt drei Monate. Der Vertrag läuft noch bis Ende des Jahres.",
       options: [
-        { say: "Verstanden. Ich bestehe auf der Kündigung zum nächstmöglichen Zeitpunkt.", ok: true, next: 4 },
+        {
+          say: "Verstanden. Ich bestehe auf der Kündigung zum nächstmöglichen Zeitpunkt.",
+          ok: true,
+          next: 4,
+        },
         {
           say: "Dann rufe ich nochmal an, wenn es näher dran ist.",
           ok: false,
@@ -324,7 +368,11 @@ const DIALOGUES: Record<string, Turn[]> = {
     {
       them: "In Ordnung, ich habe die Kündigung aufgenommen.",
       options: [
-        { say: "Bitte schicken Sie mir eine schriftliche Bestätigung.", ok: true, next: -1 },
+        {
+          say: "Bitte schicken Sie mir eine schriftliche Bestätigung.",
+          ok: true,
+          next: -1,
+        },
         {
           say: "Danke, tschüss.",
           ok: false,
@@ -339,7 +387,11 @@ const DIALOGUES: Record<string, Turn[]> = {
     {
       them: "Um welche Prüfung geht es?",
       options: [
-        { say: "Um Analysis zwei. Ich konnte mich nicht rechtzeitig anmelden.", ok: true, next: 1 },
+        {
+          say: "Um Analysis zwei. Ich konnte mich nicht rechtzeitig anmelden.",
+          ok: true,
+          next: 1,
+        },
         {
           say: "Um eine Prüfung im Sommer.",
           ok: false,
@@ -363,7 +415,11 @@ const DIALOGUES: Record<string, Turn[]> = {
     {
       them: "Mit Attest geht es. Das müssen Sie aber schriftlich beantragen.",
       options: [
-        { say: "Kann ich die Prüfung nachholen? Wo bekomme ich das Formular?", ok: true, next: 3 },
+        {
+          say: "Kann ich die Prüfung nachholen? Wo bekomme ich das Formular?",
+          ok: true,
+          next: 3,
+        },
         {
           say: "Können Sie das für mich machen?",
           ok: false,
@@ -375,7 +431,11 @@ const DIALOGUES: Record<string, Turn[]> = {
     {
       them: "Füllen Sie bitte dieses Formular aus.",
       options: [
-        { say: "Bis wann muss ich es abgeben? Könnten Sie mir das schriftlich geben?", ok: true, next: 4 },
+        {
+          say: "Bis wann muss ich es abgeben? Könnten Sie mir das schriftlich geben?",
+          ok: true,
+          next: 4,
+        },
         {
           say: "Alles klar, danke.",
           ok: false,
@@ -401,7 +461,10 @@ const DIALOGUES: Record<string, Turn[]> = {
 
 // ------------------------------------------------------------------ apply
 const FILE = "data/scenarios-survival.json";
-const data = JSON.parse(readFileSync(FILE, "utf8")) as Record<string, unknown>[];
+const data = JSON.parse(readFileSync(FILE, "utf8")) as Record<
+  string,
+  unknown
+>[];
 
 let problems = 0;
 const fail = (m: string) => {
@@ -417,10 +480,12 @@ for (const [id, turns] of Object.entries(DIALOGUES)) {
   }
   turns.forEach((t, i) => {
     if (!t.them.trim()) fail(`${id} turn ${i}: empty prompt`);
-    if (!t.options.some((o) => o.ok)) fail(`${id} turn ${i}: no correct option`);
+    if (!t.options.some((o) => o.ok))
+      fail(`${id} turn ${i}: no correct option`);
     for (const o of t.options) {
       if (!o.say.trim()) fail(`${id} turn ${i}: empty option`);
-      if (!o.ok && !o.why) fail(`${id} turn ${i}: wrong option "${o.say}" has no explanation`);
+      if (!o.ok && !o.why)
+        fail(`${id} turn ${i}: wrong option "${o.say}" has no explanation`);
       // -1 ends the conversation; anything else must be a real turn, and must
       // move forward — a `next` pointing backwards is an infinite loop.
       if (o.next !== -1 && (o.next <= i || o.next >= turns.length)) {

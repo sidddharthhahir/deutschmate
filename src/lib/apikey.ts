@@ -2,10 +2,8 @@ import { get, run } from "./db.ts";
 import { decrypt, encrypt, hintOf, secretsAvailable } from "./secrets.ts";
 
 /**
- * Each learner's own Anthropic key: nobody can spend anybody else's and the
- * operator's bill does not grow with the number of people. Stored encrypted,
- * read back only to make a call — never returned to a browser, logged, or put
- * in a response.
+ * Each learner's own Anthropic key: nobody can spend anybody else's and the operator's bill does
+ * not grow with the number of people.
  */
 
 export type KeyState =
@@ -27,10 +25,17 @@ export function keyState(userId: string): KeyState {
     api_key_enc: string | null;
     api_key_hint: string | null;
     api_key_at: string | null;
-  }>("SELECT api_key_enc, api_key_hint, api_key_at FROM user WHERE id = ?", userId);
+  }>(
+    "SELECT api_key_enc, api_key_hint, api_key_at FROM user WHERE id = ?",
+    userId,
+  );
   if (!row?.api_key_enc) return { state: "none" };
   if (!decrypt(row.api_key_enc)) return { state: "unreadable" };
-  return { state: "set", hint: row.api_key_hint ?? "????", at: row.api_key_at ?? "" };
+  return {
+    state: "set",
+    hint: row.api_key_hint ?? "????",
+    at: row.api_key_at ?? "",
+  };
 }
 
 export function setApiKey(userId: string, key: string): boolean {
@@ -52,10 +57,7 @@ export function clearApiKey(userId: string) {
   );
 }
 
-/**
- * Their key first, the server's as fallback. Null when there is neither, which
- * every caller treats as "unavailable" — the same path a spent budget takes.
- */
+/** Their key first, the server's as fallback. */
 export function keyFor(userId: string): string | null {
   const row = get<{ api_key_enc: string | null }>(
     "SELECT api_key_enc FROM user WHERE id = ?",
@@ -64,18 +66,20 @@ export function keyFor(userId: string): string | null {
   return decrypt(row?.api_key_enc) || serverApiKey() || null;
 }
 
-/**
- * Lives here, not env.ts, because env.ts imports this file — the dependency runs
- * one way. Both variable names, because the SDK honours both and a key in the
- * unread one is indistinguishable from no key.
- */
+/** Lives here, not env.ts, because env.ts imports this file — the dependency runs one way. */
 export function serverApiKey(): string {
-  return (process.env.ANTHROPIC_API_KEY ?? process.env.ANTHROPIC_AUTH_TOKEN ?? "").trim();
+  return (
+    process.env.ANTHROPIC_API_KEY ??
+    process.env.ANTHROPIC_AUTH_TOKEN ??
+    ""
+  ).trim();
 }
 
 export function anyStoredKeys(): boolean {
   return Boolean(
-    get<{ n: number }>("SELECT COUNT(*) AS n FROM user WHERE api_key_enc IS NOT NULL")?.n,
+    get<{ n: number }>(
+      "SELECT COUNT(*) AS n FROM user WHERE api_key_enc IS NOT NULL",
+    )?.n,
   );
 }
 

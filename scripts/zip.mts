@@ -1,15 +1,6 @@
 import { inflateRawSync } from "node:zlib";
 
-/**
- * Read one file out of a ZIP using only node:zlib.
- *
- * The Tatoeba archive is a plain DEFLATE zip, which inflateRaw already handles —
- * the only missing piece is the container format, and that is fifty lines. An
- * unzip dependency for two one-off importers would cost more than this.
- *
- * Shared by import-sentences and attach-examples; it was written twice before
- * this file existed, which is exactly one time too many for a binary parser.
- */
+/** Read one file out of a ZIP using only node:zlib. */
 export function readFromZip(zip: Buffer, wanted: string): Buffer {
   let eocd = -1;
   const floor = Math.max(0, zip.length - 66_000); // max comment length + header
@@ -19,13 +10,15 @@ export function readFromZip(zip: Buffer, wanted: string): Buffer {
       break;
     }
   }
-  if (eocd === -1) throw new Error("not a zip: no end-of-central-directory record");
+  if (eocd === -1)
+    throw new Error("not a zip: no end-of-central-directory record");
 
   const count = zip.readUInt16LE(eocd + 10);
   let p = zip.readUInt32LE(eocd + 16);
 
   for (let n = 0; n < count; n++) {
-    if (zip.readUInt32LE(p) !== 0x02014b50) throw new Error("corrupt central directory");
+    if (zip.readUInt32LE(p) !== 0x02014b50)
+      throw new Error("corrupt central directory");
     const method = zip.readUInt16LE(p + 10);
     const compSize = zip.readUInt32LE(p + 20);
     const nameLen = zip.readUInt16LE(p + 28);

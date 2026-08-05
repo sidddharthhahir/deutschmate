@@ -7,35 +7,11 @@ import { coachingBrief, type Memory } from "./coaching";
 export type { Memory };
 
 /**
- * The AI layer.
- *
- * Three rules from the spec, all load-bearing:
- *
- *  §8  Every generated sentence uses ONLY words the learner already knows.
- *      This is what separates a teacher from a chatbot. A beginner talking to
- *      an unconstrained model gets fluent German they can't read, gives up,
- *      and blames themselves.
- *
- *  §12 Spend once with the best model, serve from SQLite forever. Only
- *      genuinely per-user work reaches this file at runtime: conversation and
- *      writing correction. Everything else is pre-generated or cached.
- *
- *  §17 Every call has an offline fallback. Nothing here is allowed to be the
- *      reason a session can't be finished.
+ * The AI layer. Three rules from the spec, all load-bearing: §8 Every generated sentence uses ONLY
+ * words the learner already knows.
  */
 
-/**
- * Which model does which kind of work.
- *
- * The ids come from data/models.json, so adding a model or moving a role to a
- * different one is a data edit — no code change, no rebuild of anyone's mental
- * model of this file. The two roles themselves are a design decision and stay
- * here:
- *
- *   quality  conversation and writing correction, where a missed error is one
- *            the learner keeps making
- *   cheap    mechanical explanations on a cache miss
- */
+/** Which model does which kind of work. */
 export const MODELS = {
   get quality() {
     return modelFor("quality");
@@ -46,102 +22,79 @@ export const MODELS = {
 };
 
 /**
- * Per-task model settings, in one place so the cost of the whole app can be
- * read off a single table.
- *
- * The two knobs that actually move the bill:
- *
- *   thinking — Sonnet 5 thinks by DEFAULT when the field is omitted. That is a
- *   change from earlier models and it is the wrong default here: a two-sentence
- *   café reply does not need a reasoning pass, and the thinking tokens are
- *   billed at output rates. Every call below states its choice rather than
- *   inheriting one.
- *
- *   effort — how hard the model works before answering. `low` is right for
- *   conversation (short, formulaic, heavily constrained by the vocabulary
- *   whitelist) and wrong for writing correction, where missing a real error is
- *   worse than the extra tokens.
- *
- * Haiku 4.5 supports neither parameter — `effort` is rejected outright, and its
- * thinking is the older budget_tokens form. Omitting both is "no thinking",
- * which is what these calls want anyway.
+ * Per-task model settings, in one place so the cost of the whole app can be read off a single
+ * table.
  */
 const TASK = {
-  chat: { get model() { return MODELS.quality; }, maxTokens: 300, effort: "low" },
-  review: { get model() { return MODELS.quality; }, maxTokens: 900, effort: "low" },
-  writing: { get model() { return MODELS.quality; }, maxTokens: 1500, effort: "medium" },
-  explain: { get model() { return MODELS.cheap; }, maxTokens: 500 },
-  mistake: { get model() { return MODELS.cheap; }, maxTokens: 250 },
+  chat: {
+    get model() {
+      return MODELS.quality;
+    },
+    maxTokens: 300,
+    effort: "low",
+  },
+  review: {
+    get model() {
+      return MODELS.quality;
+    },
+    maxTokens: 900,
+    effort: "low",
+  },
+  writing: {
+    get model() {
+      return MODELS.quality;
+    },
+    maxTokens: 1500,
+    effort: "medium",
+  },
+  explain: {
+    get model() {
+      return MODELS.cheap;
+    },
+    maxTokens: 500,
+  },
+  mistake: {
+    get model() {
+      return MODELS.cheap;
+    },
+    maxTokens: 250,
+  },
 } as const;
 
-/**
- * The TTL the tutor prompt is cached with, named once.
- *
- * It is stated here AND passed to priceOf, because those two used to disagree:
- * the call asked for an hour and the price table charged the five-minute rate.
- * A constant that two places have to remember is a constant that will drift.
- */
+/** The TTL the tutor prompt is cached with, named once. */
 export const TUTOR_CACHE_TTL = "1h" as const;
 
 /** Sonnet-5 calls: state the thinking choice, never inherit the default. */
 const NO_THINKING = { type: "disabled" } as const;
 
-/**
- * Every call returns its usage alongside its result.
- *
- * These counts arrive on every response and used to be discarded everywhere
- * except the chat route, which meant the one hard constraint on this project —
- * a $10 monthly ceiling — could not be checked. Callers pass them to
- * recordUsage(); see lib/cost.ts.
- */
+/** Every call returns its usage alongside its result. */
 export type Metered<T> = { result: T; model: string; usage: Anthropic.Usage };
 
-/**
- * Is there a credential to call with, FOR THIS LEARNER?
- *
- * It used to be one question about the process: is the server's env var set.
- * Each learner brings their own key now, so it is a question about them — and
- * the answer differs between two people using the same install at the same
- * moment. One has added a key and gets a conversation; the other has not and
- * gets the scripted dialogue, which is a complete feature and not a failure.
- *
- * `keyFor` still falls back to the server's own key when the operator set one,
- * so a single-person install behaves exactly as it always did.
- */
+/** Is there a credential to call with, FOR THIS LEARNER? */
 export function aiAvailable(userId: string) {
   return keyFor(userId) !== null;
 }
 
 /** Thrown when the month's budget is used up. Routes turn this into `offline`. */
 export class BudgetExceeded extends Error {
-  constructor(readonly spent: number, readonly ceiling: number) {
-    super(`monthly budget reached — $${spent.toFixed(2)} of $${ceiling.toFixed(2)}`);
+  constructor(
+    readonly spent: number,
+    readonly ceiling: number,
+  ) {
+    super(
+      `monthly budget reached — $${spent.toFixed(2)} of $${ceiling.toFixed(2)}`,
+    );
     this.name = "BudgetExceeded";
   }
 }
 
-/**
- * Refuse to spend past the ceiling.
- *
- * The app is built around a hard monthly limit, and a limit nothing enforces is
- * a wish. Every paid call passes through here first. The learner is not blocked
- * by this — the session falls back to its offline path exactly as it does with
- * no API key at all, which is the same code path and is already tested.
- */
+/** Refuse to spend past the ceiling. */
 function guard(userId: string) {
   const left = budgetLeft(userId);
   if (left.remaining <= 0) throw new BudgetExceeded(left.spent, left.ceiling);
 }
 
-/**
- * A client holding one learner's key.
- *
- * NOT a module singleton any more, and it cannot be: the whole point is that
- * two people using this install call with different credentials, and a cached
- * client would hand the second person's request to the first person's key and
- * bill them for it. Constructed per call, which is cheap — the SDK object is
- * configuration around `fetch`, not a connection.
- */
+/** A client holding one learner's key. */
 function client(userId: string) {
   const apiKey = keyFor(userId);
   if (!apiKey) throw new Error("no API key for this learner");
@@ -156,14 +109,7 @@ function text(msg: Anthropic.Message) {
     .trim();
 }
 
-/**
- * Parse a structured response, or return a fallback.
- *
- * Structured outputs make malformed JSON unlikely, not impossible — a response
- * cut short by max_tokens is valid text and invalid JSON. An unguarded parse
- * here threw past the caller's recordUsage(), so a call that had already been
- * billed vanished from the ledger and the learner saw a generic failure.
- */
+/** Parse a structured response, or return a fallback. */
 function parseOr<T>(msg: Anthropic.Message, fallback: T): T {
   try {
     return JSON.parse(text(msg)) as T;
@@ -176,55 +122,73 @@ function parseOr<T>(msg: Anthropic.Message, fallback: T): T {
 
 export type Turn = { role: "user" | "assistant"; content: string };
 
+/** Build the tutor system prompt. */
 /**
- * Build the tutor system prompt.
- *
- * The vocabulary list is large but IDENTICAL across every request in a session,
- * so it sits at the front of the prompt behind a cache breakpoint. Cache reads
- * cost ~10% of normal input — at B1 the whitelist is a few thousand tokens and
- * without this it would be the app's single biggest expense.
- *
- * The TTL is one hour, not the five-minute default, because that is the shape
- * of the session this app is built for. Five minutes means a fresh write every
- * few turns while the learner is typing; an hour means one write per sitting.
- * The write costs 2x instead of 1.25x, so it pays for itself after three turns
- * and every turn after that is a 0.1x read.
- *
- * It does not cache on day one, and that is fine. Sonnet 5's minimum cacheable
- * prefix is 1024 tokens; the instructions above are roughly 400, so the marker
- * starts doing anything once the whitelist is a few hundred words — somewhere
- * in the first month. A prefix under the minimum is not an error, it simply
- * does not cache, so this reads as working when it is not yet. Check
- * usage.cache_read_input_tokens on /fortschritt rather than assuming: the
- * "% aus Cache" figure there is measured, not predicted. Nothing is lost in the
- * meantime — an uncached 400-token prompt costs about a tenth of a cent.
- *
- * Two things keep the prefix stable, and both matter more than the marker:
- * the word list is ordered by frequency rank (never by a set or a map), and the
- * scenario — which changes per unit — sits AFTER the breakpoint.
- */
-/**
- * The floor under the whitelist.
- *
- * knownVocabulary() returns the words this learner has actually met, which on
- * day one is none — and the rule below is absolute, so the prompt read
- * "ALLOWED WORDS (0):" followed by nothing: an instruction forbidding every
- * German word there is. /alltag is the likeliest place to hit it, and it is
- * aimed squarely at people who do not have a deck yet.
- *
- * These are the words a tutor cannot open a conversation without. They are in
- * the A1.1 curriculum regardless, so nobody is being taught out of order —
- * they are simply available before the deck says so.
+ * The floor under the whitelist. knownVocabulary() returns the words this learner has actually
+ * met, which on day one is none — and the rule below is absolute, so the prompt read "ALLOWED
+ * WORDS (0):" followed by nothing: an instruction forbidding every German word there is. /alltag
+ * is the likeliest place to hit it, and it is aimed squarely at people who do not have a deck yet.
  */
 const STARTER_WORDS = [
-  "hallo", "guten", "Tag", "Morgen", "Abend", "tschüss", "auf Wiedersehen",
-  "ja", "nein", "bitte", "danke", "gut", "sehr", "und", "oder", "aber",
-  "ich", "du", "Sie", "wir", "er", "sie", "es",
-  "bin", "bist", "ist", "sind", "habe", "hast", "hat", "haben",
-  "wie", "was", "wer", "wo", "wann", "warum",
-  "heiße", "heißt", "komme", "kommst", "kommt", "aus", "wohne", "wohnst",
-  "möchte", "möchten", "kann", "nicht", "kein", "ein", "eine", "der", "die", "das",
-  "Entschuldigung", "langsam", "noch einmal", "verstehe",
+  "hallo",
+  "guten",
+  "Tag",
+  "Morgen",
+  "Abend",
+  "tschüss",
+  "auf Wiedersehen",
+  "ja",
+  "nein",
+  "bitte",
+  "danke",
+  "gut",
+  "sehr",
+  "und",
+  "oder",
+  "aber",
+  "ich",
+  "du",
+  "Sie",
+  "wir",
+  "er",
+  "sie",
+  "es",
+  "bin",
+  "bist",
+  "ist",
+  "sind",
+  "habe",
+  "hast",
+  "hat",
+  "haben",
+  "wie",
+  "was",
+  "wer",
+  "wo",
+  "wann",
+  "warum",
+  "heiße",
+  "heißt",
+  "komme",
+  "kommst",
+  "kommt",
+  "aus",
+  "wohne",
+  "wohnst",
+  "möchte",
+  "möchten",
+  "kann",
+  "nicht",
+  "kein",
+  "ein",
+  "eine",
+  "der",
+  "die",
+  "das",
+  "Entschuldigung",
+  "langsam",
+  "noch einmal",
+  "verstehe",
 ];
 
 function tutorSystem(level: string, vocabulary: string[], scenario: Scenario) {
@@ -254,7 +218,7 @@ HOW TO SPEAK
 - Do NOT correct grammar mid-conversation. Corrections come afterwards, from a
   separate pass. Interrupting a beginner mid-sentence is how people stop talking.
 - If the learner writes English, reply in German anyway, more simply.`,
-      cache_control: { type: "ephemeral" as const, ttl: "1h" as const },
+      cache_control: { type: "ephemeral" as const, ttl: TUTOR_CACHE_TTL },
     },
     {
       type: "text" as const,
@@ -290,19 +254,17 @@ export async function converse(opts: {
     system,
     messages: opts.history.length
       ? opts.history
-      : [{ role: "user", content: "(the learner has just arrived — greet them)" }],
+      : [
+          {
+            role: "user",
+            content: "(the learner has just arrived — greet them)",
+          },
+        ],
   });
   return { reply: text(msg), model: TASK.chat.model, usage: msg.usage };
 }
 
-/**
- * The correction schema, shared by both correction passes.
- *
- * It was written out twice, identically, in two functions that must agree —
- * `tag` in particular has to match the closed set the error tagger knows about,
- * and a schema that drifted in one place would have produced tags no page could
- * render.
- */
+/** The correction schema, shared by both correction passes. */
 const CORRECTION_ITEM = {
   type: "object",
   properties: {
@@ -360,7 +322,8 @@ Explain in plain English, one sentence, no jargon unless you define it.`,
   });
 
   return {
-    result: parseOr<{ corrections: Correction[] }>(msg, { corrections: [] }).corrections,
+    result: parseOr<{ corrections: Correction[] }>(msg, { corrections: [] })
+      .corrections,
     model: TASK.review.model,
     usage: msg.usage,
   };
@@ -423,7 +386,10 @@ Be encouraging but accurate. Rules:
   verb-position-2, verb-final, plural, negation, pronoun, capitalisation,
   spelling, word-order, vocabulary.`,
     messages: [
-      { role: "user", content: `Task: ${opts.prompt}\n\nTheir text:\n${opts.body}` },
+      {
+        role: "user",
+        content: `Task: ${opts.prompt}\n\nTheir text:\n${opts.body}`,
+      },
     ],
   });
 
@@ -441,18 +407,14 @@ Be encouraging but accurate. Rules:
 // ---------------------------------------------------------------- explanations
 
 /**
- * Break a German sentence down for a learner at `level`.
- *
- * Cache-miss path only — the caller stores the result (spec §12). German
- * learners look up the same sentences, so this table converges and the live
- * cost decays toward zero, which is what keeps the whole thing inside $10.
- *
- * No prompt caching here on purpose: the system prompt is ~150 tokens and
- * Haiku's minimum cacheable prefix is 4096. A cache_control marker on a prefix
- * that short does nothing at all — it does not error, it just never caches, and
- * it would read as if the saving were already handled.
+ * Break a German sentence down for a learner at `level`. Cache-miss path only — the caller stores
+ * the result (spec §12).
  */
-export async function explainSentence(userId: string, sentence: string, level: string) {
+export async function explainSentence(
+  userId: string,
+  sentence: string,
+  level: string,
+) {
   guard(userId);
   const msg = await client(userId).messages.create({
     model: TASK.explain.model,
@@ -475,20 +437,7 @@ Rules:
   return { result: text(msg), model: TASK.explain.model, usage: msg.usage };
 }
 
-/**
- * A memory hook for a word that will not stick.
- *
- * `word.mnemonic` has been in the schema, selected by four queries and
- * rendered in three places since the beginning — and was NULL for all 2,400
- * words, because the build-time generation pass the spec planned never
- * happened. Three bits of UI that could never appear.
- *
- * Generated on demand instead, and only for leeches: a mnemonic for "Haus" is
- * noise, a mnemonic for the word you have failed eight times is the whole
- * point. That makes it nearly free — you can only have so many leeches — and
- * it is stored on the shared `word` row, so when one flatmate unsticks a word
- * the other gets the hook for nothing.
- */
+/** A memory hook for a word that will not stick. */
 export async function mnemonicFor(
   userId: string,
   word: { lemma: string; article: string | null; en: string; pos: string },
@@ -518,13 +467,7 @@ One or two sentences, English, concrete and visual. Rules:
   return { result: text(msg), model: TASK.mistake.model, usage: msg.usage };
 }
 
-/**
- * Why an answer was wrong — the "Warum?" behind every correction.
- *
- * Cache-miss path only; the result is stored by the caller (spec §12) against a
- * signature of (expected, answer), so the same mistake is explained once and
- * then served from SQLite for every learner who makes it afterwards.
- */
+/** Why an answer was wrong — the "Warum?" behind every correction. */
 export async function explainMistake(
   userId: string,
   expected: string,

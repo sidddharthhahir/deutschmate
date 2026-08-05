@@ -1,15 +1,26 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Card, Eyebrow, Progress, Option, Verdict, record, type BlockProps } from "./shared";
+import {
+  Card,
+  Eyebrow,
+  Progress,
+  Option,
+  Verdict,
+  record,
+  type BlockProps,
+} from "./shared";
 
-type Q = { q: string; options: string[]; a: number; why?: string; refId?: string };
+type Q = {
+  q: string;
+  options: string[];
+  a: number;
+  why?: string;
+  refId?: string;
+};
 type Payload = { unitId: string | null };
 
-/**
- * Abschluss — eight questions built from what you actually touched today.
- * A last retrieval pass before the recap, not a graded test.
- */
+/** Abschluss — eight questions built from what you actually touched today. */
 export default function QuizBlock({ payload, onDone }: BlockProps<Payload>) {
   const [questions, setQuestions] = useState<Q[] | null>(null);
   const [i, setI] = useState(0);
@@ -27,7 +38,8 @@ export default function QuizBlock({ payload, onDone }: BlockProps<Payload>) {
     if (questions && questions.length === 0) onDone();
   }, [questions, onDone]);
 
-  if (!questions) return <p className="font-mono text-muted text-center text-sm">…</p>;
+  if (!questions)
+    return <p className="font-mono text-muted text-center text-sm">…</p>;
 
   const q = questions[i];
 
@@ -62,10 +74,13 @@ export default function QuizBlock({ payload, onDone }: BlockProps<Payload>) {
       answer: q.options[n],
       expected: q.options[q.a],
     });
-    setTimeout(() => {
-      setPicked(null);
-      setI((x) => x + 1);
-    }, correct ? 600 : 1800);
+    setTimeout(
+      () => {
+        setPicked(null);
+        setI((x) => x + 1);
+      },
+      correct ? 600 : 1800,
+    );
   }
 
   return (
@@ -95,7 +110,9 @@ export default function QuizBlock({ payload, onDone }: BlockProps<Payload>) {
             </Option>
           ))}
         </div>
-        {picked !== null && q.why && <Verdict ok={picked === q.a} why={q.why} />}
+        {picked !== null && q.why && (
+          <Verdict ok={picked === q.a} why={q.why} />
+        )}
       </Card>
     </div>
   );

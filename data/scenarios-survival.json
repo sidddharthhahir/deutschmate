@@ -1371,7 +1371,9 @@
     "why": "Deliveries in Germany go to a neighbour, a shop, or a Filiale, and the slip in your letterbox is in German. Small, frequent, and it teaches the vocabulary of every counter.",
     "bring": [
       "Benachrichtigungskarte",
-      "Personalausweis oder Reisepass"
+      "Personalausweis oder Reisepass",
+      "Sendungsnummer, falls die Karte fehlt",
+      "Vollmacht, wenn du für jemand anderen abholst"
     ],
     "scenario": {
       "role": "a Postmitarbeiterin behind the counter, brisk, a queue behind you",

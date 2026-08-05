@@ -1,25 +1,19 @@
 ﻿/**
- * Make a sign-in link from the command line.
- *
- *   npm run invite you@example.com
- *
- * The operator's door. With mail configured the link is emailed, exactly as it
- * would be from the sign-in form; with none — which is still the default, so
- * the app runs with no network and no provider account (spec §17) — it is
- * printed here and you hand it over however you like.
- *
- * Also the way OUT of a lockout: if nobody can sign in, whoever has the machine
- * can always mint a link. That matters because the alternative to this script
- * is editing the database by hand, and it is why the printed fallback has to
- * survive a broken mail provider rather than being replaced by it.
- *
- * An address with no account gets one, with an empty deck. An existing account
- * keeps everything it has — including the two name-keyed accounts from before
- * sign-in existed, which claim an address the first time one is attached.
+ * Make a sign-in link from the command line. npm run invite you@example.com The operator's door.
  */
 import "./load-env.mts";
-import { createSignInToken, deliver, normaliseEmail, sweepExpired } from "../src/lib/auth.ts";
-import { allUsers, createUserByEmail, userByEmail, userById } from "../src/lib/accounts.ts";
+import {
+  createSignInToken,
+  deliver,
+  normaliseEmail,
+  sweepExpired,
+} from "../src/lib/auth.ts";
+import {
+  allUsers,
+  createUserByEmail,
+  userByEmail,
+  userById,
+} from "../src/lib/accounts.ts";
 import { run } from "../src/lib/db.ts";
 
 const arg = process.argv[2];
@@ -31,14 +25,18 @@ if (!arg) {
   if (users.length) {
     console.log("  Accounts on this install:\n");
     for (const u of users) {
-      console.log(`    ${u.id.padEnd(24)} ${u.name.padEnd(16)} ${u.email ?? "— no address"}`);
+      console.log(
+        `    ${u.id.padEnd(24)} ${u.name.padEnd(16)} ${u.email ?? "— no address"}`,
+      );
     }
     console.log(
       "\n  An account with no address cannot sign in yet. Give it one:\n" +
         `    npm run invite you@example.com ${users.find((u) => !u.email)?.id ?? "<id>"}\n`,
     );
   } else {
-    console.log("  No accounts yet — the first address you invite creates one.\n");
+    console.log(
+      "  No accounts yet — the first address you invite creates one.\n",
+    );
   }
   process.exit(1);
 }

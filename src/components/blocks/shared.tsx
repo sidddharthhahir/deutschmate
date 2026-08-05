@@ -11,7 +11,9 @@ export type BlockProps<P = unknown> = {
 
 export function Card({ children }: { children: ReactNode }) {
   return (
-    <div className="border-line bg-surface rounded-[14px] border p-6 md:p-8">{children}</div>
+    <div className="border-line bg-surface rounded-[14px] border p-6 md:p-8">
+      {children}
+    </div>
   );
 }
 
@@ -55,12 +57,7 @@ export function Progress({ done, total }: { done: number; total: number }) {
   );
 }
 
-/**
- * Multiple-choice option.
- *
- * Correct/incorrect is carried by border weight and a leading mark as well as
- * colour, so the state survives greyscale and colour blindness.
- */
+/** Multiple-choice option. */
 export function Option({
   children,
   onClick,
@@ -111,7 +108,8 @@ export function Verdict({
       <p className="font-medium">{ok ? "Richtig" : "Nicht ganz"}</p>
       {!ok && expected && (
         <p className="text-secondary mt-1.5">
-          Richtig wäre: <span className="font-serif text-fg text-[16px]">{expected}</span>
+          Richtig wäre:{" "}
+          <span className="font-serif text-fg text-[16px]">{expected}</span>
         </p>
       )}
       {why && <p className="mt-2 leading-relaxed opacity-90">{why}</p>}
@@ -119,13 +117,7 @@ export function Verdict({
   );
 }
 
-/**
- * Credit for a corpus sentence.
- *
- * Tatoeba sentences are CC-BY 2.0 FR, which requires attribution wherever the
- * work appears — not once in a README. Rendered small and out of the way, but
- * rendered.
- */
+/** Credit for a corpus sentence. */
 export function SentenceCredit({ credit }: { credit?: string | null }) {
   if (!credit || !credit.startsWith("tatoeba")) return null;
   return (
@@ -147,13 +139,7 @@ export function SkipLink({ onSkip }: { onSkip?: () => void }) {
   );
 }
 
-/**
- * Post an attempt. Errors are tagged server-side — that's the Fix block's fuel.
- *
- * Goes through the outbox, so an answer given offline is queued and replayed
- * rather than dropped. When it queues there is no explanation to show, which
- * the caller sees as an empty tag list.
- */
+/** Post an attempt. */
 export async function record(opts: {
   kind: string;
   refId?: string;
@@ -162,6 +148,9 @@ export async function record(opts: {
   expected?: string;
   explain?: boolean;
 }): Promise<{ tags: string[]; explanation?: string }> {
-  const res = await send<{ tags: string[]; explanation?: string }>("/api/attempt", opts);
+  const res = await send<{ tags: string[]; explanation?: string }>(
+    "/api/attempt",
+    opts,
+  );
   return res ?? { tags: [] };
 }

@@ -15,20 +15,14 @@ type Payload = {
   segments: Segment[];
 };
 
-/**
- * Video, from whichever source the row carries.
- *
- * Most of the course is Deutsche Welle's "Nicos Weg" served as mp4s from DW's
- * own CDN, which means a plain <video> element and no third-party script on the
- * page. A few extras are YouTube embeds. lib/player.ts hides the difference —
- * everything below drives the same six operations either way.
- *
- * Seeking, looping one sentence and changing rate from our own code is the
- * entire feature; nothing is downloaded or re-hosted in either case.
- */
+/** Video, from whichever source the row carries. */
 const SPEEDS = [0.75, 1];
 
-export default function VideoBlock({ payload, onDone, onSkip }: BlockProps<Payload>) {
+export default function VideoBlock({
+  payload,
+  onDone,
+  onSkip,
+}: BlockProps<Payload>) {
   const holder = useRef<HTMLDivElement>(null);
   const player = useRef<Playable | null>(null);
   const loopUntil = useRef<number | null>(null);
@@ -36,7 +30,9 @@ export default function VideoBlock({ payload, onDone, onSkip }: BlockProps<Paylo
   const [active, setActive] = useState<number | null>(null);
   const [showEn, setShowEn] = useState(false);
   const [speed, setSpeed] = useState(1);
-  const [gloss, setGloss] = useState<{ word: string; meaning: string } | null>(null);
+  const [gloss, setGloss] = useState<{ word: string; meaning: string } | null>(
+    null,
+  );
 
   // Memoised: `payload.segments ?? []` creates a new array every render, which
   // would restart the playback-tracking interval on each one.
@@ -108,7 +104,9 @@ export default function VideoBlock({ payload, onDone, onSkip }: BlockProps<Paylo
       <Eyebrow>Video{payload.channel ? ` · ${payload.channel}` : ""}</Eyebrow>
 
       <Card>
-        <h2 className="font-serif mb-4 text-center text-[20px] font-medium">{payload.title}</h2>
+        <h2 className="font-serif mb-4 text-center text-[20px] font-medium">
+          {payload.title}
+        </h2>
 
         <div className="overflow-hidden rounded-xl bg-black">
           <div className="aspect-video">
@@ -128,7 +126,9 @@ export default function VideoBlock({ payload, onDone, onSkip }: BlockProps<Paylo
                       player.current?.rate(s);
                     }}
                     className={`font-mono rounded-full px-3 py-1 text-[11.5px] transition-colors ${
-                      speed === s ? "bg-line-strong text-fg" : "text-muted hover:bg-raised"
+                      speed === s
+                        ? "bg-line-strong text-fg"
+                        : "text-muted hover:bg-raised"
                     }`}
                   >
                     {s}×
@@ -174,7 +174,9 @@ export default function VideoBlock({ payload, onDone, onSkip }: BlockProps<Paylo
                     )}
                   </span>
                   {showEn && (
-                    <span className="text-muted block pl-[38px] text-[14px]">{s.en}</span>
+                    <span className="text-muted block pl-[38px] text-[14px]">
+                      {s.en}
+                    </span>
                   )}
                 </button>
               ))}
@@ -188,7 +190,10 @@ export default function VideoBlock({ payload, onDone, onSkip }: BlockProps<Paylo
           <p className="text-muted mt-5 text-center text-[14px] leading-relaxed">
             Für dieses Video sind noch keine Sätze markiert.
             <br />
-            <a href="/admin/video" className="text-secondary hover:text-accent underline">
+            <a
+              href="/admin/video"
+              className="text-secondary hover:text-accent underline"
+            >
               Im Segment-Editor markieren
             </a>
           </p>
@@ -198,9 +203,14 @@ export default function VideoBlock({ payload, onDone, onSkip }: BlockProps<Paylo
           <div className="border-line bg-bg mt-4 flex items-center justify-between rounded-xl border px-4 py-3">
             <div>
               <span className="font-serif text-[18px]">{gloss.word}</span>
-              <span className="text-secondary ml-3 text-[15px]">{gloss.meaning}</span>
+              <span className="text-secondary ml-3 text-[15px]">
+                {gloss.meaning}
+              </span>
             </div>
-            <button onClick={() => setGloss(null)} className="text-muted hover:text-fg">
+            <button
+              onClick={() => setGloss(null)}
+              className="text-muted hover:text-fg"
+            >
               ✕
             </button>
           </div>

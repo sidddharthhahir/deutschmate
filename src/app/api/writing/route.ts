@@ -10,11 +10,8 @@ export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 /**
- * Writing correction, with the offline queue from spec §17.
- *
- * Offline you still write — the text is queued locally and corrected on
- * reconnect. Writing is the one block where "do it now, grade it later" is a
- * genuinely fine experience, so it never blocks a session.
+ * Writing correction, with the offline queue from spec §17. Writing is the one block where "do it
+ * now, grade it later" is a genuinely fine experience, so it never blocks a session.
  */
 export async function POST(req: Request) {
   const raw = await readJson(req);
@@ -66,16 +63,20 @@ export async function POST(req: Request) {
       });
     }
     if (!result.corrections.length) {
-      logAttempt({ userId: user.id, kind: "writing", correct: true, answer: text });
+      logAttempt({
+        userId: user.id,
+        kind: "writing",
+        correct: true,
+        answer: text,
+      });
     }
 
     return NextResponse.json(result);
   } catch (e) {
-    /* Queue rather than lose the text — including when the month's budget is
-       spent, where the queue drains by itself once the window rolls forward.
-       The reason is passed through so the page can say which it was; "we could
-       not reach the model" and "you have used this month's budget" call for
-       different things from the reader. */
+    /*
+     * Queue rather than lose the text — including when the month's budget is spent, where the
+     * queue drains by itself once the window rolls forward.
+     */
     run(
       "INSERT INTO pending_correction (user_id, prompt, body) VALUES (?, ?, ?)",
       user.id,
@@ -93,7 +94,12 @@ export async function POST(req: Request) {
 export async function GET(req: Request) {
   const user = await activeUser(req);
   if (!user) return unauthorized();
-  const pending = all<{ id: number; prompt: string; body: string; created_at: string }>(
+  const pending = all<{
+    id: number;
+    prompt: string;
+    body: string;
+    created_at: string;
+  }>(
     `SELECT id, prompt, body, created_at FROM pending_correction
       WHERE user_id = ? AND resolved_at IS NULL ORDER BY id`,
     user.id,
@@ -124,10 +130,7 @@ export async function GET(req: Request) {
           tags: [c.tag as Tag],
         });
       }
-      // Scoped by user as well as id. `p` came from a SELECT that was already
-      // filtered by user, so this was safe — but safe by argument, and the
-      // argument lives twenty lines up. The predicate makes it safe by
-      // construction, which survives someone changing the query above.
+      // Scoped by user as well as id.
       run(
         "UPDATE pending_correction SET resolved_at = datetime('now') WHERE id = ? AND user_id = ?",
         p.id,
@@ -138,5 +141,8 @@ export async function GET(req: Request) {
       break;
     }
   }
-  return NextResponse.json({ pending: pending.length - resolved.length, resolved });
+  return NextResponse.json({
+    pending: pending.length - resolved.length,
+    resolved,
+  });
 }

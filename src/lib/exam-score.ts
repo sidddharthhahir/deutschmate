@@ -1,11 +1,4 @@
-/**
- * The exam's pure half: shapes and arithmetic, no database.
- *
- * Split out because the runner is a client component. Importing the scorer
- * from exam.ts would drag node:sqlite into the browser bundle — and the fix
- * for that must not be "let the client score it a second, separate way",
- * which is how two implementations of one number get started.
- */
+/** The exam's pure half: shapes and arithmetic, no database. */
 
 export type SectionKey = "lesen" | "hoeren" | "wortschatz" | "grammatik";
 
@@ -43,13 +36,8 @@ export type SectionScore = {
 };
 
 /**
- * Score a paper against a list of picks — one index per question in flattened
- * order, `null` for skipped.
- *
- * Sections are walked with a running offset rather than by looking each
- * question up in the flattened array: identical questions can legitimately
- * appear twice (two sections can draw the same drill), and indexOf would then
- * score the second one against the first one's position.
+ * Score a paper against a list of picks — one index per question in flattened order, `null` for
+ * skipped.
  */
 export function scoreExam(exam: Exam, picks: (number | null)[]) {
   const questions = exam.sections.flatMap((s) => s.questions);
@@ -60,7 +48,8 @@ export function scoreExam(exam: Exam, picks: (number | null)[]) {
     return {
       key: s.key,
       title: s.title,
-      correct: s.questions.filter((q, k) => picks[from + k] === q.answer).length,
+      correct: s.questions.filter((q, k) => picks[from + k] === q.answer)
+        .length,
       total: s.questions.length,
     };
   });

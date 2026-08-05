@@ -9,15 +9,7 @@ import { introduceGrammar } from "@/lib/grammar-srs";
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-/**
- * Log an attempt and, when it's wrong, explain why.
- *
- * The explanation path is the write-through cache from spec §12:
- *   1. rule-based classification (free, offline, instant)
- *   2. cached explanation for this exact mistake (free, instant)
- *   3. only then a model call — and the result is stored, so the next person
- *      to make the same mistake gets it free.
- */
+/** Log an attempt and, when it's wrong, explain why. */
 export async function POST(req: Request) {
   const raw = await readJson(req);
   const user = await activeUser(req, raw);

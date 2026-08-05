@@ -13,13 +13,7 @@ import { plural } from "@/lib/plural";
 
 export const dynamic = "force-dynamic";
 
-/**
- * Üben — free practice.
- *
- * The Szenarien list here is what replaced a proposed sixth "Real Life" tab:
- * same access to every roleplay in the course, no new navigation target, and
- * the home screen keeps its single button.
- */
+/** Üben — free practice. */
 export default async function PracticePage() {
   const user = await requireUser();
   // SQLite stores `due` as "YYYY-MM-DD HH:MM:SS", so compare like for like.
@@ -35,9 +29,12 @@ export default async function PracticePage() {
     "SELECT id, ord, level, title, scenario_json FROM unit WHERE scenario_json IS NOT NULL ORDER BY level, ord",
   );
 
-  const grammar = all<{ id: string; slug: string; title: string; level: string }>(
-    "SELECT id, slug, title, level FROM grammar ORDER BY ord",
-  );
+  const grammar = all<{
+    id: string;
+    slug: string;
+    title: string;
+    level: string;
+  }>("SELECT id, slug, title, level FROM grammar ORDER BY ord");
 
   const due = dueCount(user.id);
   const leeches = leechCount(user.id);
@@ -68,12 +65,11 @@ export default async function PracticePage() {
 
   // Levels at or below the learner's own open by default; the rest fold away.
   const here = LEVELS.indexOf(user.level as (typeof LEVELS)[number]);
-  const reached = new Set<string>(LEVELS.filter((_, i) => here < 0 || i <= here));
+  const reached = new Set<string>(
+    LEVELS.filter((_, i) => here < 0 || i <= here),
+  );
 
-  /* Per-rule state, from the same cards the session schedules. The summary
-     line already said "N eingeführt · M sitzen"; the pills themselves were 36
-     identical shapes, so the one place you would look up a rule could not tell
-     you which ones you were shaky on. */
+  /* Per-rule state, from the same cards the session schedules. */
   const gramState = new Map(
     all<{ ref_id: string; reps: number; state: number; due: string }>(
       `SELECT ref_id, reps, state, due FROM card
@@ -93,9 +89,15 @@ export default async function PracticePage() {
           <Tile
             href="/session"
             title="Wiederholen"
-            sub={due ? `${plural(due, "Karte", "Karten")} fällig` : "nichts fällig"}
+            sub={
+              due ? `${plural(due, "Karte", "Karten")} fällig` : "nichts fällig"
+            }
           />
-          <Tile href="/wortschatz" title="Wortschatz lesen" sub="alle Wörter durchblättern" />
+          <Tile
+            href="/wortschatz"
+            title="Wortschatz lesen"
+            sub="alle Wörter durchblättern"
+          />
           <Tile
             href="/pruefung"
             title="Übungstest"
@@ -156,10 +158,10 @@ export default async function PracticePage() {
 
         {gapsAll > 0 && (
           <p className="text-muted mt-4 text-[13px]">
-            {gapsAll} {gapsAll === 1 ? "Lückensatz" : "Lückensätze"} aus deinen eigenen
-            Fehlern und Lesetexten
-            {gapsDue > 0 && ` · ${gapsDue} heute fällig`} — kommen automatisch in der
-            Sitzung.
+            {gapsAll} {gapsAll === 1 ? "Lückensatz" : "Lückensätze"} aus deinen
+            eigenen Fehlern und Lesetexten
+            {gapsDue > 0 && ` · ${gapsDue} heute fällig`} — kommen automatisch
+            in der Sitzung.
           </p>
         )}
 
@@ -186,7 +188,9 @@ export default async function PracticePage() {
                   <summary className="border-line-sub hover:border-line flex cursor-pointer items-baseline justify-between rounded-lg border px-4 py-2.5 transition-colors">
                     <span className="font-mono text-secondary text-[12px] tracking-[0.14em] uppercase">
                       {lv}
-                      {lv === user.level && <span className="text-accent"> · hier</span>}
+                      {lv === user.level && (
+                        <span className="text-accent"> · hier</span>
+                      )}
                     </span>
                     <span className="font-mono text-muted text-[11.5px] tabular-nums">
                       {talkedHere} / {mine.length} geführt
@@ -195,7 +199,10 @@ export default async function PracticePage() {
 
                   <div className="border-line divide-line-sub mt-2 mb-4 divide-y rounded-[14px] border">
                     {mine.map((u) => {
-                      const s = JSON.parse(u.scenario_json!) as { role: string; goal: string };
+                      const s = JSON.parse(u.scenario_json!) as {
+                        role: string;
+                        goal: string;
+                      };
                       const doneIt = talked.has(u.id);
                       return (
                         <Link
@@ -205,15 +212,23 @@ export default async function PracticePage() {
                         >
                           <div className="flex items-baseline justify-between gap-3">
                             <span className="font-serif text-[18px]">
-                              {doneIt && <span className="text-accent mr-2 text-[14px]">✓</span>}
+                              {doneIt && (
+                                <span className="text-accent mr-2 text-[14px]">
+                                  ✓
+                                </span>
+                              )}
                               {u.title}
                             </span>
                             <span className="font-mono text-muted flex-none text-[11px]">
                               Unit {u.ord}
                             </span>
                           </div>
-                          <p className="text-secondary mt-0.5 text-[14px]">{s.goal}</p>
-                          <p className="text-muted/70 mt-0.5 text-[12px]">mit: {s.role}</p>
+                          <p className="text-secondary mt-0.5 text-[14px]">
+                            {s.goal}
+                          </p>
+                          <p className="text-muted/70 mt-0.5 text-[12px]">
+                            mit: {s.role}
+                          </p>
                         </Link>
                       );
                     })}
@@ -268,17 +283,19 @@ export default async function PracticePage() {
                 >
                   {due && <span className="text-accent mr-1.5">•</span>}
                   {g.title}
-                  <span className="font-mono text-muted ml-2 text-[10px]">{g.level}</span>
+                  <span className="font-mono text-muted ml-2 text-[10px]">
+                    {g.level}
+                  </span>
                 </Link>
               );
             })}
           </div>
           <p className="text-muted mt-3 text-[11.5px]">
-            Punkt = heute fällig · kräftig = sitzt · blass = noch nicht eingeführt
+            Punkt = heute fällig · kräftig = sitzt · blass = noch nicht
+            eingeführt
           </p>
         </Section>
       </>
     </Page>
   );
 }
-

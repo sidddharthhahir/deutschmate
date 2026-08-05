@@ -5,18 +5,7 @@ import ExamRunner from "./ExamRunner";
 
 export const dynamic = "force-dynamic";
 
-/**
- * Übungstest.
- *
- * The only screen in the app that runs long, silent and timed. Everything else
- * corrects you within two seconds, which is right for learning and tells you
- * nothing about what you can hold together for half an hour.
- *
- * It is scrupulously not called a Modellsatz. The official Goethe Modellsätze
- * are free PDFs from the Goethe-Institut and they are the real answer to "am I
- * B1 yet"; this is built from the app's own content and says so on the results
- * screen, where a number would otherwise be mistaken for a verdict.
- */
+/** Übungstest. The only screen in the app that runs long, silent and timed. */
 export default async function ExamPage() {
   const user = await requireUser();
   const history = examHistory(user.id, 8);
@@ -52,14 +41,19 @@ export default async function ExamPage() {
                     <div className="flex items-baseline gap-3">
                       <span className="font-serif text-[19px] tabular-nums">
                         {h.correct}
-                        <span className="text-muted text-[14px]">/{h.total}</span>
+                        <span className="text-muted text-[14px]">
+                          /{h.total}
+                        </span>
                       </span>
                       <span className="font-mono text-muted text-[11.5px]">
-                        {h.level} · {h.created_at.slice(0, 10)} · {h.minutes} min
+                        {h.level} · {h.created_at.slice(0, 10)} · {h.minutes}{" "}
+                        min
                       </span>
                     </div>
                     <span className="font-mono text-muted text-[11.5px]">
-                      {sections.map((s) => `${s.title} ${s.correct}/${s.total}`).join(" · ")}
+                      {sections
+                        .map((s) => `${s.title} ${s.correct}/${s.total}`)
+                        .join(" · ")}
                     </span>
                   </div>
                 );
@@ -73,9 +67,9 @@ export default async function ExamPage() {
             Die echten Modellsätze
           </h2>
           <p className="text-secondary max-w-[62ch] text-[14px] leading-relaxed">
-            The Goethe-Institut publishes a complete Modellsatz for every level as a free
-            PDF, with audio and an answer key. If you want to know whether you would pass,
-            that is the test — not this one.
+            The Goethe-Institut publishes a complete Modellsatz for every level
+            as a free PDF, with audio and an answer key. If you want to know
+            whether you would pass, that is the test — not this one.
           </p>
           <a
             href="https://www.goethe.de/de/spr/kup/prf.html"

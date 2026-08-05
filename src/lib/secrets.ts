@@ -1,10 +1,13 @@
-import { createCipheriv, createDecipheriv, randomBytes, scryptSync } from "node:crypto";
+import {
+  createCipheriv,
+  createDecipheriv,
+  randomBytes,
+  scryptSync,
+} from "node:crypto";
 
 /**
- * AES-256-GCM for things this server holds on somebody else's behalf — today,
- * each learner's Anthropic key. Protects a database that leaves the machine: a
- * mislaid backup, a copied file. NOT someone who can read the environment, since
- * the key to decrypt is there. That is the honest limit.
+ * AES-256-GCM for things this server holds on somebody else's behalf — today, each learner's
+ * Anthropic key.
  */
 
 /** Fixed: there is one key and it is not a password. */
@@ -32,7 +35,10 @@ export function secretsAvailable(): boolean {
 /** `v1.<iv>.<tag>.<ciphertext>`, base64url. Versioned so a future algorithm is detectable. */
 export function encrypt(plain: string): string {
   const key = masterKey();
-  if (!key) throw new Error("DEUTSCHMATE_SECRET is not set — refusing to store a secret");
+  if (!key)
+    throw new Error(
+      "DEUTSCHMATE_SECRET is not set — refusing to store a secret",
+    );
   const iv = randomBytes(IV_BYTES);
   const c = createCipheriv(ALGO, key, iv);
   const body = Buffer.concat([c.update(plain, "utf8"), c.final()]);
@@ -44,11 +50,7 @@ export function encrypt(plain: string): string {
   ].join(".");
 }
 
-/**
- * Null for every failure — no key, a rotated one, a corrupt row, a tampered tag.
- * The learner sees one sentence in all four cases; telling them apart would only
- * say which guess was closer.
- */
+/** Null for every failure — no key, a rotated one, a corrupt row, a tampered tag. */
 export function decrypt(packed: string | null | undefined): string | null {
   const key = masterKey();
   if (!key || !packed) return null;
@@ -57,7 +59,10 @@ export function decrypt(packed: string | null | undefined): string | null {
   try {
     const d = createDecipheriv(ALGO, key, Buffer.from(iv, "base64url"));
     d.setAuthTag(Buffer.from(tag, "base64url"));
-    return Buffer.concat([d.update(Buffer.from(body, "base64url")), d.final()]).toString("utf8");
+    return Buffer.concat([
+      d.update(Buffer.from(body, "base64url")),
+      d.final(),
+    ]).toString("utf8");
   } catch {
     return null;
   }

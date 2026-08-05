@@ -1,8 +1,6 @@
 /**
- * Every number that decides what the app does. Read and changed by whoever
- * maintains the course — deliberately not exposed as settings (principle 1).
- * Deployment config is env.ts, provider prices are data/models.json, per-learner
- * limits are on the `user` table. tests/config.test.mts asserts each is read.
+ * Every number that decides what the app does. Read and changed by whoever maintains the course —
+ * deliberately not exposed as settings (principle 1).
  */
 
 // pacing — 2,400 words at 12/day is the 200-day estimate; 6 stops a bad week compounding

@@ -4,23 +4,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { markTourSeen } from "@/lib/tour";
 
-/**
- * What this app is, for someone who has never seen it.
- *
- * IN ENGLISH, deliberately. This was written in German first, which was
- * backwards: the person who most needs the instructions is the one on day one
- * of A1.1, and they cannot read German. Explaining the app in the language
- * being taught is a joke at the beginner's expense.
- *
- * The split the whole app should follow:
- *   German   the material, and short interface labels you will learn anyway
- *            (Wiederholen, Aufwärmen, Lücken) — that is free exposure
- *   English  anything explaining how something works, or why a number means
- *            what it means
- *
- * German words that ARE the interface are kept and glossed inline the first
- * time, because you will meet them every day and might as well learn them.
- */
+/** What this app is, for someone who has never seen it. IN ENGLISH, deliberately. */
 
 type Step = {
   eyebrow: string;
@@ -46,23 +30,24 @@ const STEPS: Step[] = [
     body: (
       <>
         <p>
-          DeutschMate takes you from A1.1 to B1.2 — 120 units, 2,400 words, 36 grammar
-          points. Built for about an hour a day, roughly seven months.
+          DeutschMate takes you from A1.1 to B1.2 — 120 units, 2,400 words, 36
+          grammar points. Built for about an hour a day, roughly seven months.
         </p>
         <p>
-          It is a teacher, not a flashcard app. And what it teaches points at the
-          conversations you cannot avoid here: the Bürgeramt, the WG viewing, the
-          doctor, cancelling a contract.
+          It is a teacher, not a flashcard app. And what it teaches points at
+          the conversations you cannot avoid here: the Bürgeramt, the WG
+          viewing, the doctor, cancelling a contract.
         </p>
         <p>
-          The difference from a vocabulary app: <strong className="text-fg">it decides
-          what you do today</strong>. You never pick a lesson, a difficulty or a topic.
-          That choice is the thing that stops people, so it was removed.
+          The difference from a vocabulary app:{" "}
+          <strong className="text-fg">it decides what you do today</strong>. You
+          never pick a lesson, a difficulty or a topic. That choice is the thing
+          that stops people, so it was removed.
         </p>
         <p className="text-muted text-[14px]">
-          The interface is in German on purpose — the words you see every day are words
-          you learn for free. Anything <em>explaining</em> how the app works, like this,
-          is in English.
+          The interface is in German on purpose — the words you see every day
+          are words you learn for free. Anything <em>explaining</em> how the app
+          works, like this, is in English.
         </p>
       </>
     ),
@@ -72,28 +57,26 @@ const STEPS: Step[] = [
           The entire interface
         </p>
         <p className="font-serif mt-2 text-[26px]">Press Enter.</p>
-        <p className="text-muted mt-2 text-[13px]">That is the whole daily decision.</p>
+        <p className="text-muted mt-2 text-[13px]">
+          That is the whole daily decision.
+        </p>
       </div>
     ),
   },
   {
     eyebrow: "Your day",
-    /* "six to nine" was a guess. Five always run once you are inside a unit —
-       input, Sätze bauen, an output block, the conversation and Abschluss —
-       and the other five appear only when there is something to do: reviews
-       due, mistakes to fix, gaps mined, grammar coming back, new material not
-       yet met today. */
+    /* "six to nine" was a guess. */
     title: "One button, then five to ten blocks.",
     body: (
       <>
         <p>
-          The home screen has one button. Behind it is today&apos;s session — the same
-          rhythm every day, different content each time.
+          The home screen has one button. Behind it is today&apos;s session —
+          the same rhythm every day, different content each time.
         </p>
         <p>
-          <strong className="text-fg">Go all the way to the end.</strong> The recap screen
-          is what saves the session. Quit before it and nothing is recorded: no streak, no
-          cards scheduled.
+          <strong className="text-fg">Go all the way to the end.</strong> The
+          recap screen is what saves the session. Quit before it and nothing is
+          recorded: no streak, no cards scheduled.
         </p>
       </>
     ),
@@ -129,17 +112,18 @@ const STEPS: Step[] = [
     body: (
       <>
         <p>
-          You see a word. <span className="kbd">Space</span> reveals the meaning, then{" "}
-          <span className="kbd">1</span>–<span className="kbd">4</span> says how well you
-          knew it. Each button shows what it costs you: “Gut → 10 min”, “Einfach → 8 d”.
+          You see a word. <span className="kbd">Space</span> reveals the
+          meaning, then <span className="kbd">1</span>–
+          <span className="kbd">4</span> says how well you knew it. Each button
+          shows what it costs you: “Gut → 10 min”, “Einfach → 8 d”.
         </p>
         <p>
-          Be honest with the grades. The schedule is only as good as what you tell it, and
-          nobody is watching.
+          Be honest with the grades. The schedule is only as good as what you
+          tell it, and nobody is watching.
         </p>
         <p className="text-muted text-[14px]">
-          Mis-hit a key? <span className="kbd">Z</span> undoes the last grade for five
-          seconds.
+          Mis-hit a key? <span className="kbd">Z</span> undoes the last grade
+          for five seconds.
         </p>
       </>
     ),
@@ -175,14 +159,15 @@ const STEPS: Step[] = [
             which is not there is the worst kind — it reads perfectly. */}
         <p>
           Under the big button there is{" "}
-          <De de="Kürzere Sitzung heute" en="a shorter session today" />. It runs only the
-          parts that decay if skipped — reviews, Fix, gaps, grammar — and nothing new. Use
-          it on the day you would otherwise skip entirely.
+          <De de="Kürzere Sitzung heute" en="a shorter session today" />. It
+          runs only the parts that decay if skipped — reviews, Fix, gaps,
+          grammar — and nothing new. Use it on the day you would otherwise skip
+          entirely.
         </p>
         <p>
-          For the walk to uni there is <De de="Unterwegs" en="on the move" />: headphones
-          in, phone in your pocket. It never grades anything, because nobody can honestly
-          judge their own recall while crossing a road.
+          For the walk to uni there is <De de="Unterwegs" en="on the move" />:
+          headphones in, phone in your pocket. It never grades anything, because
+          nobody can honestly judge their own recall while crossing a road.
         </p>
       </>
     ),
@@ -192,23 +177,41 @@ const STEPS: Step[] = [
     title: "The course is not the whole app.",
     body: (
       <p>
-        Four things with nothing to do with the syllabus, which are the ones that help on
-        an actual Tuesday in Germany:
+        Four things with nothing to do with the syllabus, which are the ones
+        that help on an actual Tuesday in Germany:
       </p>
     ),
     aside: (
       <div className="space-y-2.5">
         {[
-          ["Dein Text", "your text", "Paste any German — a flat advert, a letter from the Amt, an email. It tells you what you already know and turns the sentences into cards."],
-          ["Nachrichten", "news", "Real news read slowly, new every day, from Deutsche Welle."],
-          ["Alltag", "everyday life", "Bürgeramt, flat viewing, doctor, bank — with the phrases that matter and the documents to bring."],
-          ["Minimalpaare", "minimal pairs", "schon / schön. Drills the exact sound the recogniser keeps mishearing from you."],
+          [
+            "Dein Text",
+            "your text",
+            "Paste any German — a flat advert, a letter from the Amt, an email. It tells you what you already know and turns the sentences into cards.",
+          ],
+          [
+            "Nachrichten",
+            "news",
+            "Real news read slowly, new every day, from Deutsche Welle.",
+          ],
+          [
+            "Alltag",
+            "everyday life",
+            "Bürgeramt, flat viewing, doctor, bank — with the phrases that matter and the documents to bring.",
+          ],
+          [
+            "Minimalpaare",
+            "minimal pairs",
+            "schon / schön. Drills the exact sound the recogniser keeps mishearing from you.",
+          ],
         ].map(([de, en, what]) => (
           <div key={de} className="border-line-sub rounded-xl border p-3.5">
             <p className="font-serif text-[17px]">
               {de} <span className="text-muted text-[13px]">· {en}</span>
             </p>
-            <p className="text-muted mt-1 text-[12.5px] leading-relaxed">{what}</p>
+            <p className="text-muted mt-1 text-[12.5px] leading-relaxed">
+              {what}
+            </p>
           </div>
         ))}
       </div>
@@ -220,17 +223,19 @@ const STEPS: Step[] = [
     body: (
       <>
         <p>
-          Every number in this app counts something you actually did. No guessed CEFR
-          level, no probability of passing an exam, no pronunciation score. When the app
-          does not know something, it says so instead of inventing a figure.
+          Every number in this app counts something you actually did. No guessed
+          CEFR level, no probability of passing an exam, no pronunciation score.
+          When the app does not know something, it says so instead of inventing
+          a figure.
         </p>
         <p className="text-muted text-[14px]">
-          That is why <De de="gesehen" en="seen" /> and <De de="gelernt" en="learned" /> are
-          counted separately: reading a word is recognition, not knowledge.
+          That is why <De de="gesehen" en="seen" /> and{" "}
+          <De de="gelernt" en="learned" /> are counted separately: reading a
+          word is recognition, not knowledge.
         </p>
         <p className="border-line-sub mt-4 border-t pt-4 text-[14px]">
-          <strong className="text-fg">One warning.</strong> Your progress lives only on this
-          computer and never goes to GitHub. Once a week, run{" "}
+          <strong className="text-fg">One warning.</strong> Your progress lives
+          only on this computer and never goes to GitHub. Once a week, run{" "}
           <code className="bg-raised text-der rounded px-1.5 py-0.5 font-mono text-[12.5px]">
             npm run backup
           </code>
@@ -254,7 +259,8 @@ export default function Tour({ firstRun }: { firstRun: boolean }) {
 
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
-      if (e.key === "ArrowRight") setI((n) => Math.min(STEPS.length - 1, n + 1));
+      if (e.key === "ArrowRight")
+        setI((n) => Math.min(STEPS.length - 1, n + 1));
       if (e.key === "ArrowLeft") setI((n) => Math.max(0, n - 1));
     }
     window.addEventListener("keydown", onKey);
@@ -278,7 +284,10 @@ export default function Tour({ firstRun }: { firstRun: boolean }) {
         ))}
       </div>
 
-      <div key={i} className="dm-rise grid gap-8 md:grid-cols-[1fr_320px] md:gap-12">
+      <div
+        key={i}
+        className="dm-rise grid gap-8 md:grid-cols-[1fr_320px] md:gap-12"
+      >
         <div>
           <p className="font-mono text-muted text-[11.5px] tracking-[0.14em] uppercase">
             {step.eyebrow}

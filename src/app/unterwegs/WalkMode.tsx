@@ -21,16 +21,8 @@ type Phase = "idle" | "playing" | "paused" | "done" | "empty";
 /** Seconds of silence after the German, before the English. */
 
 /**
- * Unterwegs — the session you do with the screen in your pocket.
- *
- * You need an hour a day and you have a walk to the tram. This plays a word,
- * leaves a gap long enough to actually retrieve it, says the English, moves on.
- *
- * IT DOES NOT GRADE ANYTHING, and that is the whole design. Nobody can honestly
- * rate their own recall while crossing a road, and a stream of guessed grades
- * would corrupt the schedule for every card it touched. This is exposure. It is
- * logged as exposure — the counter says "gehört", never "gelernt", and the FSRS
- * due dates are untouched.
+ * Unterwegs — the session you do with the screen in your pocket. It is logged as exposure — the
+ * counter says "gehört", never "gelernt", and the FSRS due dates are untouched.
  */
 export default function WalkMode({ cards }: { cards: Card[] }) {
   const [phase, setPhase] = useState<Phase>(cards.length ? "idle" : "empty");
@@ -40,10 +32,7 @@ export default function WalkMode({ cards }: { cards: Card[] }) {
 
   const timers = useRef<ReturnType<typeof setTimeout>[]>([]);
 
-  /* Stable identities. Declared as plain consts they were rebuilt every
-     render, while runCard captured whichever pair existed when its useCallback
-     last ran — a classic stale closure, and the compiler refuses to compile
-     around it. They only touch a ref, so [] is honest. */
+  /* Stable identities. */
   const clear = useCallback(() => {
     timers.current.forEach(clearTimeout);
     timers.current = [];
@@ -55,13 +44,7 @@ export default function WalkMode({ cards }: { cards: Card[] }) {
 
   const card = cards[i];
 
-  /* One card: German, silence, English, next. Chained with timers rather than
-     speech-end events, because SpeechSynthesis end events are unreliable on
-     iOS and a dropped event would stall the whole walk.
-
-     The step advances through a ref rather than calling itself: a useCallback
-     that names itself in its own body reads its binding before initialisation,
-     which is a genuine temporal-dead-zone hazard and not something to silence. */
+  /* One card: German, silence, English, next. */
   const step = useRef<(index: number) => void>(() => {});
 
   const runCard = useCallback(
@@ -131,8 +114,8 @@ export default function WalkMode({ cards }: { cards: Card[] }) {
       <div className="border-line rounded-[14px] border p-8 text-center">
         <p className="font-serif text-[20px]">Nichts zu hören.</p>
         <p className="text-muted mx-auto mt-2 max-w-[44ch] text-[14px] leading-relaxed">
-          Diese Runde spielt Wörter ab, die du schon kennst. Dein Deck ist noch leer —
-          mach erst eine Sitzung.
+          Diese Runde spielt Wörter ab, die du schon kennst. Dein Deck ist noch
+          leer — mach erst eine Sitzung.
         </p>
         <Link
           href="/session"
@@ -154,8 +137,8 @@ export default function WalkMode({ cards }: { cards: Card[] }) {
           Wörter gehört
         </p>
         <p className="text-muted mx-auto mt-5 max-w-[46ch] text-[13px] leading-relaxed">
-          Gehört, nicht wiederholt. Das zählt nicht als Wiederholung und ändert nichts an
-          deinem Plan — die Karten kommen weiter, wann sie dran sind.
+          Gehört, nicht wiederholt. Das zählt nicht als Wiederholung und ändert
+          nichts an deinem Plan — die Karten kommen weiter, wann sie dran sind.
         </p>
         <div className="mt-7 flex flex-col gap-2.5">
           <button
@@ -184,11 +167,15 @@ export default function WalkMode({ cards }: { cards: Card[] }) {
       <div className="border-line rounded-[14px] border p-6 md:p-8">
         <p className="font-serif text-[21px]">
           {plural(cards.length, "Wort", "Wörter")}, etwa{" "}
-          {plural(Math.max(1, Math.round((cards.length * (THINK + 2.2)) / 60)), "Minute", "Minuten")}
+          {plural(
+            Math.max(1, Math.round((cards.length * (THINK + 2.2)) / 60)),
+            "Minute",
+            "Minuten",
+          )}
         </p>
         <p className="text-secondary mt-3 max-w-[54ch] text-[14.5px] leading-relaxed">
-          Kopfhörer rein, Handy in die Tasche. Deutsch, {THINK} Sekunden Pause, dann die
-          Bedeutung. Du musst nichts drücken und nichts bewerten.
+          Kopfhörer rein, Handy in die Tasche. Deutsch, {THINK} Sekunden Pause,
+          dann die Bedeutung. Du musst nichts drücken und nichts bewerten.
         </p>
         <button
           onClick={start}

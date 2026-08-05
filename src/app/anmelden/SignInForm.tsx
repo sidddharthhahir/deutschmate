@@ -3,13 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
-/**
- * The address field.
- *
- * Posts and then navigates to `?sent=1`, rather than being a plain form POST,
- * so the "check your email" screen is reached without the browser re-submitting
- * on refresh. The response never contains the link — see /api/auth.
- */
+/** The address field. The response never contains the link — see /api/auth. */
 export default function SignInForm() {
   const router = useRouter();
   const [email, setEmail] = useState("");

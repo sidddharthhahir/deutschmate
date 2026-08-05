@@ -5,14 +5,7 @@ import WalkMode from "./WalkMode";
 
 export const dynamic = "force-dynamic";
 
-/**
- * Unterwegs — an hour a day is easier to find in twenty-minute pieces.
- *
- * Draws from words already met, oldest-seen first, so the walk covers ground
- * the deck isn't scheduling today. It deliberately does NOT pull due cards:
- * those deserve a real review with a real grade, and hearing them here first
- * would waste the retrieval.
- */
+/** Unterwegs — an hour a day is easier to find in twenty-minute pieces. */
 export default async function WalkPage() {
   const user = await requireUser();
 

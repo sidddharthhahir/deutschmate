@@ -10,14 +10,10 @@ export const dynamic = "force-dynamic";
 /** Explicitly "everything", as opposed to "whatever is weakest". */
 const MIXED = "alle";
 
-/**
- * Which sound is actually failing for this learner.
- *
- * Counted from real speaking attempts: for every word the recogniser was
- * given, did it come back? Grouped by the sounds each word contains. The
- * weakest group with a real sample is what the drill opens on.
- */
-function weakestSound(userId: string): { sound: string; ok: number; total: number } | null {
+/** Which sound is actually failing for this learner. */
+function weakestSound(
+  userId: string,
+): { sound: string; ok: number; total: number } | null {
   const rows = all<{ expected: string; user_answer: string }>(
     `SELECT expected, user_answer FROM attempt
       WHERE user_id = ? AND kind = 'speaking' AND expected IS NOT NULL`,
@@ -28,9 +24,15 @@ function weakestSound(userId: string): { sound: string; ok: number; total: numbe
   const tally = new Map<string, { ok: number; total: number }>();
   for (const r of rows) {
     const heard = new Set(
-      (r.user_answer ?? "").toLowerCase().replace(/[.,!?]/g, "").split(/\s+/),
+      (r.user_answer ?? "")
+        .toLowerCase()
+        .replace(/[.,!?]/g, "")
+        .split(/\s+/),
     );
-    for (const w of r.expected.toLowerCase().replace(/[.,!?]/g, "").split(/\s+/)) {
+    for (const w of r.expected
+      .toLowerCase()
+      .replace(/[.,!?]/g, "")
+      .split(/\s+/)) {
       for (const [sound, re] of Object.entries(SOUND_SPELLING)) {
         if (!re.test(w)) continue;
         const t = tally.get(sound) ?? { ok: 0, total: 0 };
@@ -60,14 +62,13 @@ export default async function PronunciationPage({
   const user = await requireUser();
   const weak = weakestSound(user.id);
 
-  /* Explicit choice wins; otherwise open on whatever the data says is worst.
-     "gemischt" is an explicit choice too — it used to link to ?laut=alle,
-     which is not in SOUNDS, so it fell through to the auto-picked weak sound.
-     On a new account `weak` is null and it happened to give the mixed spread,
-     which is exactly why nobody noticed: the chip stopped working only once
-     you had enough speaking attempts for the page to have an opinion. */
+  /* Explicit choice wins; otherwise open on whatever the data says is worst. */
   const mixed = laut === MIXED;
-  const chosen = mixed ? null : laut && SOUNDS.includes(laut) ? laut : (weak?.sound ?? null);
+  const chosen = mixed
+    ? null
+    : laut && SOUNDS.includes(laut)
+      ? laut
+      : (weak?.sound ?? null);
   const pairs = pairsFor(chosen, 10);
 
   return (
@@ -88,14 +89,16 @@ export default async function PronunciationPage({
 
         {weak && !laut ? (
           <p className="text-secondary mt-3 max-w-[62ch] text-[15px] leading-relaxed">
-            Bei <span className="font-serif text-fg text-[17px]">{weak.sound}</span> hat die
-            Erkennung {weak.ok} von {weak.total} deiner Wörter verstanden — von allen Lauten
-            mit genug Daten der schwächste. Deshalb fängt die Übung hier an.
+            Bei{" "}
+            <span className="font-serif text-fg text-[17px]">{weak.sound}</span>{" "}
+            hat die Erkennung {weak.ok} von {weak.total} deiner Wörter
+            verstanden — von allen Lauten mit genug Daten der schwächste.
+            Deshalb fängt die Übung hier an.
           </p>
         ) : (
           <p className="text-secondary mt-3 max-w-[62ch] text-[15px] leading-relaxed">
-            Zwei Wörter, ein Laut Unterschied. Wenn beide gleich klingen, sagst du nicht
-            ungenau — du sagst ein anderes Wort.
+            Zwei Wörter, ein Laut Unterschied. Wenn beide gleich klingen, sagst
+            du nicht ungenau — du sagst ein anderes Wort.
           </p>
         )}
 
@@ -131,9 +134,9 @@ export default async function PronunciationPage({
         </div>
 
         <p className="text-muted mt-10 max-w-[62ch] text-[12.5px] leading-relaxed">
-          Die Erkennung ist keine Phonetikerin. Sie sagt dir, welches der beiden Wörter bei
-          einer Maschine ankommt — ein echtes Signal, aber kein Aussprache-Score, und
-          gelegentlich irrt sie sich.
+          Die Erkennung ist keine Phonetikerin. Sie sagt dir, welches der beiden
+          Wörter bei einer Maschine ankommt — ein echtes Signal, aber kein
+          Aussprache-Score, und gelegentlich irrt sie sich.
         </p>
       </div>
     </main>

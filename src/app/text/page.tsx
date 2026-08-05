@@ -4,16 +4,8 @@ import TextTool from "./TextTool";
 export const dynamic = "force-dynamic";
 
 /**
- * Dein Text — the app pointed at real German.
- *
- * Everything else here teaches from 38 curated readings, which run out and
- * were never about your Tuesday. This takes anything you paste — a WG advert,
- * a letter from the Ausländerbehörde, a university email, a menu — and gives
- * it the same treatment: what you already know, what the course can teach you
- * next, tap for meaning, keep a sentence as a card.
- *
- * No new machinery. The scanner is a join against the word table, and the
- * reading surface is the same component the course's own texts use.
+ * Dein Text — the app pointed at real German. Everything else here teaches from 38 curated
+ * readings, which run out and were never about your Tuesday.
  */
 export default function TextPage() {
   return (

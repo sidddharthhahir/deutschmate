@@ -5,19 +5,7 @@ import { plural } from "@/lib/plural";
 
 type Cache = { privateRows: number; sharedRows: number; patterns: number };
 
-/**
- * What your key has paid into the cache, and how to take it back out.
- *
- * The app shares answers between accounts on purpose — that is why the second
- * person to ask about a sentence pays nothing. This section exists because a
- * learner cannot consent to something nobody told them about, and because after
- * BYO keys it is their money behind every shared row.
- *
- * Two buttons, not one, because the two deletions mean different things.
- * Removing your private explanations costs nobody anything. Withdrawing your
- * shared ones makes the app worse for the other people on this install, so it
- * says so before you press it.
- */
+/** What your key has paid into the cache, and how to take it back out. */
 export default function CacheSection({ initial }: { initial: Cache }) {
   const [cache, setCache] = useState(initial);
   const [busy, setBusy] = useState<"private" | "all" | null>(null);
@@ -36,7 +24,11 @@ export default function CacheSection({ initial }: { initial: Cache }) {
       const data = (await res.json()) as { removed?: number; cache?: Cache };
       if (data.cache) setCache(data.cache);
       const n = data.removed ?? 0;
-      setSaid(n === 0 ? "Nichts zu löschen." : `${plural(n, "Eintrag", "Einträge")} gelöscht.`);
+      setSaid(
+        n === 0
+          ? "Nichts zu löschen."
+          : `${plural(n, "Eintrag", "Einträge")} gelöscht.`,
+      );
     } catch {
       setSaid("Hat nicht geklappt. Nochmal?");
     } finally {
@@ -54,18 +46,28 @@ export default function CacheSection({ initial }: { initial: Cache }) {
       </h2>
 
       <p className="text-secondary max-w-[58ch] text-[14px] leading-relaxed">
-        Erklärungen zu Sätzen aus dem Kurs und zu Fehlern werden geteilt: Wer sie als
-        Zweites braucht, bekommt sie umsonst. Erklärungen zu Texten, die du selbst
-        einfügst, bleiben bei dir — die sieht sonst niemand.
+        Erklärungen zu Sätzen aus dem Kurs und zu Fehlern werden geteilt: Wer
+        sie als Zweites braucht, bekommt sie umsonst. Erklärungen zu Texten, die
+        du selbst einfügst, bleiben bei dir — die sieht sonst niemand.
       </p>
 
       {nothing ? (
-        <p className="text-muted mt-4 text-[13px]">Du hast noch nichts gespeichert.</p>
+        <p className="text-muted mt-4 text-[13px]">
+          Du hast noch nichts gespeichert.
+        </p>
       ) : (
         <>
           <div className="mt-5 space-y-2 text-[14px]">
-            <Row n={cache.privateRows} label="nur für dich" hint="deine eigenen Texte" />
-            <Row n={cache.sharedRows} label="geteilt" hint="Sätze aus dem Kurs" />
+            <Row
+              n={cache.privateRows}
+              label="nur für dich"
+              hint="deine eigenen Texte"
+            />
+            <Row
+              n={cache.sharedRows}
+              label="geteilt"
+              hint="Sätze aus dem Kurs"
+            />
             <Row n={cache.patterns} label="Fehlererklärungen" hint="geteilt" />
           </div>
 

@@ -1,19 +1,8 @@
 "use client";
 
 /**
- * The outbox: writes that survive a dead network.
- *
- * "Offline-first" was principle 2 and it was only half true. Blocks ran offline,
- * but every grade was a fire-and-forget POST — lose the network mid-session and
- * sixty answers vanished silently, which is worse than refusing to start.
- *
- * Anything that CHANGES something goes through here. On failure it is queued in
- * localStorage and replayed when the network returns.
- *
- * ONE HONEST CAVEAT. FSRS schedules from the moment it is told, not from the
- * moment you answered. A card graded on the tram at 09:00 and synced at 18:00
- * is scheduled from 18:00. At daily granularity that is a rounding error, but
- * it is a real difference and worth knowing rather than hiding.
+ * The outbox: writes that survive a dead network. "Offline-first" was principle 2 and it was only
+ * half true.
  */
 
 /* Explicit ".ts" so tests/outbox.test.mts can load this straight through Node's
@@ -25,22 +14,10 @@ const BASE = "dm.outbox.v1";
 
 export type Pending = { url: string; body: unknown; at: number };
 
-/**
- * The queue belongs to a learner, not to a browser.
- *
- * It held ungraded answers under one global name, so switching user on /wer
- * handed the next person the previous person's unsent reviews — and the replay
- * posted them under whichever cookie was set when the network came back. See
- * lib/who.ts.
- */
+/** The queue belongs to a learner, not to a browser. */
 const keyFor = (user: string) => scoped(BASE, user);
 
-/**
- * One-time rescue of anything queued before the keys were scoped. Whoever is
- * using the browser now is the best available guess at who answered, and it is
- * the guess the old code was making implicitly anyway — the difference is that
- * this happens once, at the keyboard, instead of silently at replay time.
- */
+/** One-time rescue of anything queued before the keys were scoped. */
 function adoptLegacy(user: string) {
   try {
     const old = localStorage.getItem(BASE);
@@ -49,7 +26,10 @@ function adoptLegacy(user: string) {
     const items = JSON.parse(old);
     if (!Array.isArray(items) || !items.length) return;
     const mine = readFor(user);
-    localStorage.setItem(keyFor(user), JSON.stringify([...mine, ...items].slice(-MAX)));
+    localStorage.setItem(
+      keyFor(user),
+      JSON.stringify([...mine, ...items].slice(-MAX)),
+    );
   } catch {
     /* a corrupt legacy blob is not worth failing a session over */
   }
@@ -105,14 +85,11 @@ function enqueue(url: string, body: unknown) {
   announce();
 }
 
-/**
- * POST that never loses the write.
- *
- * Returns the parsed response when it went through, or null when it was
- * queued — callers that need the answer (a grade preview, a correction) must
- * handle null rather than assume success.
- */
-export async function send<T = unknown>(url: string, body: unknown): Promise<T | null> {
+/** POST that never loses the write. */
+export async function send<T = unknown>(
+  url: string,
+  body: unknown,
+): Promise<T | null> {
   if (typeof navigator !== "undefined" && !navigator.onLine) {
     enqueue(url, body);
     return null;
@@ -136,14 +113,7 @@ export async function send<T = unknown>(url: string, body: unknown): Promise<T |
   }
 }
 
-/**
- * Stamp the replay with the learner who owns the queue.
- *
- * Every POST route resolves the user from `raw.user` first and the cookie
- * second. Without this, an answer given as one learner and replayed as another
- * would be scheduled into the wrong deck — and the cookie can legitimately have
- * changed between the two moments.
- */
+/** Stamp the replay with the learner who owns the queue. */
 export function pin(body: unknown, user: string): unknown {
   if (!body || typeof body !== "object" || Array.isArray(body)) return body;
   const b = body as Record<string, unknown>;
@@ -171,13 +141,7 @@ export async function flush(): Promise<{ sent: number; left: number }> {
     }
   }
 
-  /* Re-read rather than writing back the snapshot.
-     A flush takes as many round trips as there are queued items, and the
-     learner keeps answering during them. Overwriting storage with
-     `items.slice(sent)` discarded anything enqueued while the loop was running
-     — inside the one module whose entire job is that answers do not vanish.
-     Dropping exactly `sent` entries from the current queue keeps them, because
-     new items are always appended after the ones being replayed. */
+  /* Re-read rather than writing back the snapshot. */
   const current = read();
   const left = current.slice(sent);
   write(left);
@@ -186,12 +150,8 @@ export async function flush(): Promise<{ sent: number; left: number }> {
 }
 
 /**
- * Today's session plan, kept so the session can start without a server.
- *
- * Only today's: the plan is rebuilt daily and yesterday's block list would
- * schedule the wrong work. Stored separately from the outbox because one is a
- * cache and the other is unsent data — conflating them risks dropping writes
- * while clearing a cache.
+ * Today's session plan, kept so the session can start without a server. Only today's: the plan is
+ * rebuilt daily and yesterday's block list would schedule the wrong work.
  */
 const PLAN_BASE = "dm.plan.v1";
 
@@ -199,7 +159,10 @@ const today = () => new Date().toISOString().slice(0, 10);
 
 export function cachePlan(shape: string, plan: unknown) {
   try {
-    localStorage.setItem(myKey(PLAN_BASE), JSON.stringify({ date: today(), shape, plan }));
+    localStorage.setItem(
+      myKey(PLAN_BASE),
+      JSON.stringify({ date: today(), shape, plan }),
+    );
   } catch {
     /* best effort */
   }

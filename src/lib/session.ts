@@ -17,11 +17,8 @@ import {
 } from "@/lib/config";
 
 /**
- * The session runner (spec §3).
- *
- * Fixed rhythm, variable content. The rhythm never changes so it becomes a
- * habit; the scheduler picks what fills each block. This is the "one button" —
- * the user never chooses a lesson.
+ * The session runner (spec §3). The rhythm never changes so it becomes a habit; the scheduler
+ * picks what fills each block.
  */
 
 export type BlockKind =
@@ -92,16 +89,8 @@ export type Word = {
 /** What we drop to when the existing load is clearly not sticking. */
 
 /**
- * How many new words to introduce today.
- *
- * A fixed 12/day is a promise the learner may not be able to keep. If the last
- * week of reviews is going badly, adding twelve more words makes tomorrow worse
- * — the backlog compounds and that is the point where people quit.
- *
- * Purely counted from attempts, and it needs a real sample (20+ reviews) before
- * it will act, so one bad morning doesn't throttle the course. Returns the
- * reason too, because the app must be able to say WHY it slowed down rather
- * than quietly giving you less.
+ * How many new words to introduce today. Returns the reason too, because the app must be able to
+ * say WHY it slowed down rather than quietly giving you less.
  */
 export function newWordBudget(userId: string) {
   const row = get<{ n: number; correct: number }>(
@@ -114,34 +103,30 @@ export function newWordBudget(userId: string) {
 
   const n = row?.n ?? 0;
   if (n < PACE_MIN_REVIEWS) {
-    return { words: NEW_WORDS_PER_DAY, accuracy: null as number | null, reduced: false };
+    return {
+      words: NEW_WORDS_PER_DAY,
+      accuracy: null as number | null,
+      reduced: false,
+    };
   }
 
-  /* `accuracy` is a percentage because that is what the recap prints; the
-     config threshold is a fraction because every other ratio in that file is.
-     Converting here rather than storing 80 in config keeps the file internally
-     consistent — and this mismatch is exactly why the constant sat unused: the
-     obvious rewire, `accuracy < PACE_CUT_ACCURACY`, would have compared 74 to
-     0.8 and cut the intake for everybody, forever. */
+  /*
+   * `accuracy` is a percentage because that is what the recap prints; the config threshold is a
+   * fraction because every other ratio in that file is.
+   */
   const accuracy = Math.round(((row?.correct ?? 0) / n) * 100);
   const reduced = accuracy < PACE_CUT_ACCURACY * 100;
-  return { words: reduced ? NEW_WORDS_REDUCED : NEW_WORDS_PER_DAY, accuracy, reduced };
+  return {
+    words: reduced ? NEW_WORDS_REDUCED : NEW_WORDS_PER_DAY,
+    accuracy,
+    reduced,
+  };
 }
 
 // ---------------------------------------------------------------- progression
 
 export function unitsFor(level: string) {
   return all<Unit>("SELECT * FROM unit WHERE level = ? ORDER BY ord", level);
-}
-
-export function unitStatus(userId: string, unitId: string) {
-  return (
-    get<{ status: string }>(
-      "SELECT status FROM unit_progress WHERE user_id = ? AND unit_id = ?",
-      userId,
-      unitId,
-    )?.status ?? "locked"
-  );
 }
 
 /** Words in a unit that the user has never been shown. */
@@ -161,7 +146,10 @@ function unseenWords(userId: string, wordIds: string[]): Word[] {
 function wordsIn(ids: string[]): Word[] {
   if (!ids.length) return [];
   const ph = ids.map(() => "?").join(",");
-  return all<Word>(`SELECT * FROM word WHERE id IN (${ph}) ORDER BY freq_rank`, ...ids);
+  return all<Word>(
+    `SELECT * FROM word WHERE id IN (${ph}) ORDER BY freq_rank`,
+    ...ids,
+  );
 }
 
 /** The course, in order. A1.1 → B1.2, exactly the scope in the spec. */
@@ -178,23 +166,14 @@ function completedUnits(userId: string): Set<string> {
 }
 
 /**
- * Spec §7: a unit is available once its prerequisites are complete.
- *
- * `prereq_json` has been on every unit row since the first migration and was
- * read nowhere — 120 rows of correct data that nothing consulted, which is a
- * trap rather than a feature. Either read it or drop the column; it is read
- * now.
- *
- * Today it agrees with `ord` order exactly (each unit requires the one before,
- * across level boundaries), so this changes no behaviour. It is a guarantee
- * rather than a change: if the data and the ordering ever disagree, the data
- * wins, which is the right way round when a curriculum gets reshuffled.
- *
- * A prerequisite naming a unit that does not exist is ignored rather than
- * treated as unmet. A typo in the content files must not be able to strand a
- * learner on a unit they can never unlock.
+ * Spec §7: a unit is available once its prerequisites are complete. A typo in the content files
+ * must not be able to strand a learner on a unit they can never unlock.
  */
-function prereqsMet(unit: Unit, done: Set<string>, known: Set<string>): boolean {
+function prereqsMet(
+  unit: Unit,
+  done: Set<string>,
+  known: Set<string>,
+): boolean {
   let ids: unknown;
   try {
     ids = JSON.parse(unit.prereq_json);
@@ -202,40 +181,34 @@ function prereqsMet(unit: Unit, done: Set<string>, known: Set<string>): boolean 
     return true; // malformed content is not the learner's problem
   }
   if (!Array.isArray(ids)) return true;
-  return ids.every((id) => typeof id !== "string" || !known.has(id) || done.has(id));
+  return ids.every(
+    (id) => typeof id !== "string" || !known.has(id) || done.has(id),
+  );
 }
 
 /**
- * The current unit — searched across the WHOLE course, not just one level.
- *
- * This used to look only inside `level`, and nothing anywhere ever changed
- * `user.level` from its default. The effect was that finishing A1.1 left the
- * learner permanently on the last A1.1 unit: 100 of the 120 units, and every
- * word above A1.1, were unreachable from the daily session. All that content
- * was in the database the whole time.
- *
- * Finishing a level now promotes the learner to the next one, which is a real
- * event derived from completed units — not a guess about their ability.
+ * The current unit — searched across the WHOLE course, not just one level. This used to look only
+ * inside `level`, and nothing anywhere ever changed `user.level` from its default.
  */
 export function currentUnit(userId: string, level: string): Unit | null {
   const start = Math.max(0, LEVELS.indexOf(level as (typeof LEVELS)[number]));
   const done = completedUnits(userId);
-  const known = new Set(all<{ id: string }>("SELECT id FROM unit").map((r) => r.id));
+  const known = new Set(
+    all<{ id: string }>("SELECT id FROM unit").map((r) => r.id),
+  );
 
-  /* Two passes. The first honours prerequisites; the second ignores them.
-     Prerequisites form a linear chain, so one unmet link strands every unit
-     after it — and without the second pass the walk fell through to "the
-     course is finished" and handed a beginner the last unit of B1.2. That is a
-     far worse failure than ignoring a prerequisite: bad content data must
-     never be able to end someone's course. The chain is correct today, so the
-     second pass does not run. */
+  /*
+   * Two passes. That is a far worse failure than ignoring a prerequisite: bad content data must
+   * never be able to end someone's course.
+   */
   for (const respectPrereqs of [true, false]) {
     for (let i = start; i < LEVELS.length; i++) {
       const lv = LEVELS[i];
       for (const u of unitsFor(lv)) {
         if (done.has(u.id)) continue;
         if (respectPrereqs && !prereqsMet(u, done, known)) continue;
-        if (lv !== level) run("UPDATE user SET level = ? WHERE id = ?", lv, userId);
+        if (lv !== level)
+          run("UPDATE user SET level = ? WHERE id = ?", lv, userId);
         return u;
       }
     }
@@ -247,18 +220,7 @@ export function currentUnit(userId: string, level: string): Unit | null {
   return last[last.length - 1] ?? null;
 }
 
-/**
- * Where your current pace lands you.
- *
- * Arithmetic on completed units and nothing else: units finished, days since
- * the first one, remaining units, a date. It is explicitly NOT a claim that
- * you will be B1.2 in March — it is the answer to "if I keep going exactly
- * like this, when do I run out of course", which is a question about the
- * calendar rather than about your German.
- *
- * Returns null until there is enough history to divide by, because a
- * projection from two days of data is a guess wearing a date.
- */
+/** Where your current pace lands you. */
 export function paceProjection(userId: string) {
   const row = get<{ done: number; first: string | null }>(
     `SELECT COUNT(*) AS done, MIN(completed_at) AS first
@@ -271,7 +233,10 @@ export function paceProjection(userId: string) {
 
   const days = Math.max(
     1,
-    Math.round((Date.now() - new Date(row.first.replace(" ", "T") + "Z").getTime()) / 86_400_000),
+    Math.round(
+      (Date.now() - new Date(row.first.replace(" ", "T") + "Z").getTime()) /
+        86_400_000,
+    ),
   );
   const perWeek = (done / days) * 7;
   if (perWeek <= 0) return null;
@@ -294,19 +259,12 @@ export function paceProjection(userId: string) {
 /** How many units this level has — for "Unit 3 von 20" without hardcoding 20. */
 export function unitCount(level: string): number {
   return (
-    get<{ n: number }>("SELECT COUNT(*) AS n FROM unit WHERE level = ?", level)?.n ?? 0
+    get<{ n: number }>("SELECT COUNT(*) AS n FROM unit WHERE level = ?", level)
+      ?.n ?? 0
   );
 }
 
-/**
- * Words in this unit the learner has still never been shown.
- *
- * A day introduces at most 12 new words (fewer if the pace was cut), but four
- * units hold more than that — Zahlen has 16, the final B1.2 unit has 22. The
- * unit used to be marked complete at the end of the session regardless, and
- * `currentUnit` skips completed units, so those 20 words were silently dropped
- * from the course and could only be found by hand in Wortschatz.
- */
+/** Words in this unit the learner has still never been shown. */
 export function unseenInUnit(userId: string, unitId: string): number {
   const unit = get<{ word_ids_json: string }>(
     "SELECT word_ids_json FROM unit WHERE id = ?",
@@ -318,16 +276,8 @@ export function unseenInUnit(userId: string, unitId: string): number {
 }
 
 /**
- * Units the learner finished at least a week ago.
- *
- * Words and grammar rules come back on a forgetting curve; situations never
- * did. You did the café in unit 8 and the app never mentioned it again, which
- * is exactly backwards — a scenario is the slowest thing to build and the
- * fastest to lose, and it is the part you would actually use in Germany.
- *
- * A week's delay so a unit finished yesterday is not "revision" — that is
- * still the same lesson. Oldest completion first, so the rotation below starts
- * with whatever has been sitting untouched the longest.
+ * Units the learner finished at least a week ago. Words and grammar rules come back on a
+ * forgetting curve; situations never did.
  */
 export function pastUnits(userId: string): Unit[] {
   return all<Unit>(
@@ -340,13 +290,8 @@ export function pastUnits(userId: string): Unit[] {
 }
 
 /**
- * Pick one past unit, rotating by day.
- *
- * Deterministic rather than random, for the same reason the rest of the
- * session is: reloading the page must not hand you a different revision. With
- * n finished units each comes back every n days, so the interval stretches as
- * the course goes on — which is roughly what you want from old material, and
- * is honest about being a rotation rather than a second forgetting curve.
+ * Pick one past unit, rotating by day. Deterministic rather than random, for the same reason the
+ * rest of the session is: reloading the page must not hand you a different revision.
  */
 function rotate<T>(items: T[], dayIndex: number): T | undefined {
   return items.length ? items[dayIndex % items.length] : undefined;
@@ -415,33 +360,16 @@ export type SessionPlan = {
   unitsInLevel: number;
   /** Set when the new-word count was cut, with the accuracy that caused it. */
   pacing: { words: number; accuracy: number | null; reduced: boolean };
-  /**
-   * What comes after this unit, by name.
-   *
-   * The recap said "Morgen: Unit 15", which spec §4 forbids in as many words:
-   * never show a bare unit number, because a number is not a reason to come
-   * back and "Im Restaurant" is.
-   */
+  /** What comes after this unit, by name. */
   next: { ord: number; title: string } | null;
 };
 
-/**
- * "short" runs only the parts that decay: reviews, Fix, Lücken, grammar.
- *
- * This bends "one button, no decisions" and it is the right trade. The session
- * is an hour; some days you have fifteen minutes. Without an escape valve the
- * only options are abandon it mid-way — losing the streak and leaving cards
- * ungraded — or skip the day entirely. A valve used twice a month beats a
- * broken streak twice a month.
- */
+/** "short" runs only the parts that decay: reviews, Fix, Lücken, grammar. */
 export type SessionMode = "full" | "short";
 
 /**
- * Build today's session.
- *
- * Two shapes: the normal six-block rhythm, and Wiedereinstieg (spec §15) after
- * a gap of 3+ days — reviews only, hard-capped, no new material, and it says so.
- * Coming back to 300 due cards is what kills SRS apps.
+ * Build today's session. Two shapes: the normal six-block rhythm, and Wiedereinstieg (spec §15)
+ * after a gap of 3+ days — reviews only, hard-capped, no new material, and it says so.
  */
 export function buildSession(
   userId: string,
@@ -490,7 +418,12 @@ export function buildSession(
           minutes: 15,
           offline: true,
           skippable: false,
-          payload: { cards: dueCards(userId, GAP_CARDS), capped: true, backlog: total, gap },
+          payload: {
+            cards: dueCards(userId, GAP_CARDS),
+            capped: true,
+            backlog: total,
+            gap,
+          },
         },
       ],
     };
@@ -505,11 +438,6 @@ export function buildSession(
   const older = pastUnits(userId);
 
   // 1. Aufwärmen — always first, never skippable.
-  //
-  //    Every third day it runs audio-first: same cards, same grading, the word
-  //    hidden until you've answered. Listening is the skill that lags when all
-  //    your practice is on the page, and this is the cheapest possible fix for
-  //    it. Rotated rather than offered as a setting — the session doesn't ask.
   const due = dueCards(userId, REVIEW_CAP);
   if (due.length) {
     blocks.push({
@@ -522,7 +450,8 @@ export function buildSession(
         cards: due,
         capped: total > REVIEW_CAP,
         backlog: total,
-        audioFirst: rhythmFor(dayIndex, { video: false, reading: false }).audioFirstReview,
+        audioFirst: rhythmFor(dayIndex, { video: false, reading: false })
+          .audioFirstReview,
       },
     });
   }
@@ -613,7 +542,11 @@ export function buildSession(
         minutes: 15,
         offline: true,
         skippable: false,
-        payload: { grammar, examples: JSON.parse(grammar.examples_json), drills: JSON.parse(grammar.drills_json) },
+        payload: {
+          grammar,
+          examples: JSON.parse(grammar.examples_json),
+          drills: JSON.parse(grammar.drills_json),
+        },
       });
     }
   }
@@ -649,7 +582,9 @@ export function buildSession(
      instead of this unit's text. The current text is tied to words you met this
      week and is therefore the easy one; the old text is the honest test of
      whether any of it stuck. */
-  const oldReadingUnit = rhythm.recycleReading ? rotate(recyclable, dayIndex) : undefined;
+  const oldReadingUnit = rhythm.recycleReading
+    ? rotate(recyclable, dayIndex)
+    : undefined;
   const readingId = oldReadingUnit?.reading_id ?? unit?.reading_id;
   const reading = readingId
     ? get<{
@@ -700,7 +635,9 @@ export function buildSession(
         wordCount: reading.word_count,
         questions: JSON.parse(reading.questions_json),
         glossary: JSON.parse(reading.glossary_json),
-        from: oldReadingUnit ? `Unit ${oldReadingUnit.ord} · ${oldReadingUnit.title}` : null,
+        from: oldReadingUnit
+          ? `Unit ${oldReadingUnit.ord} · ${oldReadingUnit.title}`
+          : null,
       },
     });
   } else if (unitWords.length) {
@@ -734,7 +671,9 @@ export function buildSession(
       minutes: 8,
       offline: true, // Web Speech runs in the browser
       skippable: true,
-      payload: { items: listeningItems(unitWords, atLevel, dayIndex).slice(0, 5) },
+      payload: {
+        items: listeningItems(unitWords, atLevel, dayIndex).slice(0, 5),
+      },
     });
   } else if (unit) {
     blocks.push({
@@ -751,13 +690,15 @@ export function buildSession(
     });
   }
 
-  /* Every third session the conversation is one you have had before, from a
-     unit finished over a week ago. This is the block that most needed it: a
-     scenario is ten minutes of the hardest thing in the course, and doing each
-     one exactly once is how you end up able to order coffee in unit 8 and not
-     in month five. */
+  /*
+   * Every third session the conversation is one you have had before, from a unit finished over a
+   * week ago.
+   */
   const oldScenarioUnit = rhythm.recycleScenario
-    ? rotate(older.filter((u) => u.scenario_json), dayIndex)
+    ? rotate(
+        older.filter((u) => u.scenario_json),
+        dayIndex,
+      )
     : undefined;
   const talkUnit = oldScenarioUnit ?? unit;
 
@@ -770,9 +711,13 @@ export function buildSession(
       skippable: true,
       payload: {
         scenario: JSON.parse(talkUnit.scenario_json),
-        dialogue: talkUnit.dialogue_json ? JSON.parse(talkUnit.dialogue_json) : null,
+        dialogue: talkUnit.dialogue_json
+          ? JSON.parse(talkUnit.dialogue_json)
+          : null,
         unitId: talkUnit.id,
-        from: oldScenarioUnit ? `Unit ${oldScenarioUnit.ord} · ${oldScenarioUnit.title}` : null,
+        from: oldScenarioUnit
+          ? `Unit ${oldScenarioUnit.ord} · ${oldScenarioUnit.title}`
+          : null,
       },
     });
   }
@@ -803,39 +748,29 @@ export function buildSession(
 
 // ---------------------------------------------------------------- generators
 
-/**
- * Extra sentences from the corpus, at or below the learner's level.
- *
- * Every one was filtered at import time to use only vocabulary this course
- * teaches, so the constraint that governs the AI tutor (spec §8) holds here
- * too. Rotated by day so the same eight don't repeat all week.
- */
+/** Extra sentences from the corpus, at or below the learner's level. */
 function corpusSentences(level: string, dayIndex: number, limit: number) {
-  const levels = LEVELS.slice(0, Math.max(1, LEVELS.indexOf(level as (typeof LEVELS)[number]) + 1));
+  const levels = LEVELS.slice(
+    0,
+    Math.max(1, LEVELS.indexOf(level as (typeof LEVELS)[number]) + 1),
+  );
   const ph = levels.map(() => "?").join(",");
 
-  /*
-   * A window that moves by one page a day.
-   *
-   * It used to be a cursor over the id: `id > 'tat-' + (dayIndex % 36)`, base
-   * 36, "walks the whole corpus over time instead of replaying the first rows".
-   * It did not. Two things broke it. The modulo made day 36 identical to day 0,
-   * so the walk stopped after five weeks of a seven-month course. And Tatoeba
-   * ids are wildly skewed — 941 of the 1,827 sentences start with `tat-1` — so
-   * the 36 landing points were not spread across the corpus at all.
-   *
-   * Measured over 210 days: the old cursor reached 105 of 1,827 sentences at
-   * B1.2 (6%) and 102 of 400 at A1.1, and both numbers were already final on
-   * day 36. This reaches 92% and 100% respectively. Listening and Sätze bauen
-   * were quietly drilling the same hundred sentences for months.
-   */
+  /* A window that moves by one page a day. Two things broke it. */
   const total =
-    get<{ n: number }>(`SELECT COUNT(*) AS n FROM sentence WHERE level IN (${ph})`, ...levels)?.n ??
-    0;
+    get<{ n: number }>(
+      `SELECT COUNT(*) AS n FROM sentence WHERE level IN (${ph})`,
+      ...levels,
+    )?.n ?? 0;
   if (!total) return [];
 
   const offset = (dayIndex * limit) % total;
-  const rows = all<{ id: string; de: string; en: string; source: string | null }>(
+  const rows = all<{
+    id: string;
+    de: string;
+    en: string;
+    source: string | null;
+  }>(
     `SELECT id, de, en, source FROM sentence
       WHERE level IN (${ph}) ORDER BY id LIMIT ? OFFSET ?`,
     ...levels,
@@ -858,12 +793,8 @@ function corpusSentences(level: string, dayIndex: number, limit: number) {
 }
 
 /**
- * Listening items: hear it, type it.
- *
- * The unit's own curated examples come first — they use the words being taught
- * today — then corpus sentences fill the block out. Before the corpus import
- * this block could only ever offer as many items as the unit had example
- * sentences, which was often three.
+ * Listening items: hear it, type it. Before the corpus import this block could only ever offer as
+ * many items as the unit had example sentences, which was often three.
  */
 function listeningItems(words: Word[], level: string, dayIndex: number) {
   const curated = words
@@ -877,23 +808,26 @@ function listeningItems(words: Word[], level: string, dayIndex: number) {
       credit: null as string | null,
     }));
 
-  const extra = corpusSentences(level, dayIndex, 8 - curated.length).map((s) => ({
-    wordId: s.id,
-    de: s.de,
-    en: s.en,
-    audio: null,
-    credit: s.source,
-  }));
+  const extra = corpusSentences(level, dayIndex, 8 - curated.length).map(
+    (s) => ({
+      wordId: s.id,
+      de: s.de,
+      en: s.en,
+      audio: null,
+      credit: s.source,
+    }),
+  );
 
   return [...curated, ...extra];
 }
 
-/**
- * Sentence-builder items. Uses the unit's curated example sentences so every
- * tile is a word the learner has met — the vocabulary constraint applies to
- * generated exercises too, not just the AI.
- */
-function builderItems(unit: Unit, words: Word[], level: string, dayIndex: number) {
+/** Sentence-builder items. */
+function builderItems(
+  unit: Unit,
+  words: Word[],
+  level: string,
+  dayIndex: number,
+) {
   const make = (id: string, de: string, en: string, credit: string | null) => {
     const tokens = de.replace(/([.!?])$/, "").split(/\s+/);
     return {
@@ -913,20 +847,14 @@ function builderItems(unit: Unit, words: Word[], level: string, dayIndex: number
 
   // Offset the corpus cursor from the listening block's, or the same sentence
   // turns up twice in one session — heard, then rebuilt.
-  const extra = corpusSentences(level, dayIndex + 7, 8 - curated.length).map((s) =>
-    make(s.id, s.de, s.en, s.source),
+  const extra = corpusSentences(level, dayIndex + 7, 8 - curated.length).map(
+    (s) => make(s.id, s.de, s.en, s.source),
   );
 
   return [...curated, ...extra];
 }
 
-/**
- * Fix-block drills: pull grammar drills whose point matches the failing tag.
- *
- * Deliberately NOT filtered by level — if you're still getting Akkusativ wrong
- * at B1, you should get the A1.2 drill back. The tag says what you need, not
- * where you happen to be in the course.
- */
+/** Fix-block drills: pull grammar drills whose point matches the failing tag. */
 function drillsForTags(tags: string[]) {
   /* Every tag the classifier can produce needs a row here, or the Fix block
      silently has nothing to drill for it. The four new ones — dative, genitive,
@@ -955,7 +883,14 @@ function drillsForTags(tags: string[]) {
     ...slugs,
   );
   return rows.flatMap((r) =>
-    (JSON.parse(r.drills_json) as { q: string; options: string[]; a: number; why: string }[])
+    (
+      JSON.parse(r.drills_json) as {
+        q: string;
+        options: string[];
+        a: number;
+        why: string;
+      }[]
+    )
       .slice(0, 3)
       .map((d) => ({ ...d, from: r.title, slug: r.slug })),
   );
@@ -973,7 +908,9 @@ function writingPrompt(unit: Unit): string {
   };
   return (
     byUnit[unit.id] ??
-    (canDo.length ? `Schreib ein paar Sätze: ${canDo[0]}.` : `Schreib über „${unit.title}".`)
+    (canDo.length
+      ? `Schreib ein paar Sätze: ${canDo[0]}.`
+      : `Schreib über „${unit.title}".`)
   );
 }
 
@@ -988,24 +925,7 @@ function shuffle<T>(xs: T[]): T[] {
 
 // ---------------------------------------------------------------- logging
 
-/**
- * Record a finished session and return the streak it leaves behind.
- *
- * Two small changes, neither of them urgent, both of them removing a way for
- * the number on the recap to differ from the number in the database.
- *
- * It returned the streak it had just COMPUTED. The ON CONFLICT branch
- * deliberately does not touch streak_day — a second session today must not
- * advance the streak — so on an upsert the returned value and the stored value
- * come from different places. They agree in normal operation, because both
- * derive from yesterday's row. They stop agreeing if today's row came from
- * anywhere else: a restored backup, an import, a clock that moved. It reads the
- * row back now, so what is shown is what is stored, always.
- *
- * And read and write are one transaction. Nothing can interleave here today —
- * this function and `node:sqlite` are both synchronous — but a second process
- * against the same file, or one `await` added later, would make the gap real.
- */
+/** Record a finished session and return the streak it leaves behind. */
 export function logSession(userId: string, minutes: number, blocks: string[]) {
   return tx(() => {
     const yesterday = get<{ streak_day: number }>(

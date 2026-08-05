@@ -1,25 +1,17 @@
 /**
  * "Z zurücknehmen (5 s)" — the promise, on the card it used to break on.
- *
- * The footer of every review advertises the undo. It was false twice over:
- *
- *   1. the grade was POSTed the instant the button was pressed, so taking it
- *      back reversed nothing — and answering again graded the card a SECOND
- *      time, two attempt rows and two steps of the curve from one card;
- *   2. after that was fixed by holding the send, the LAST card of a block still
- *      had no window at all, because emptying the queue ended the block in the
- *      same tick and the unmount committed the grade.
- *
- * The block now ends on a closing card instead of on nothing, which is the
- * thing this file guards: a take-back must leave the database exactly as if the
- * grade had never happened.
- *
- * Driven through the API rather than the component, because what must be true
- * is a fact about rows and FSRS state, not about a render.
- *
  * needs: server, seeded database
  */
-import { get, post, ok, eq, section, done, scratchUser, open } from "./harness.mts";
+import {
+  get,
+  post,
+  ok,
+  eq,
+  section,
+  done,
+  scratchUser,
+  open,
+} from "./harness.mts";
 
 const U = scratchUser("test-undo");
 await get(`/api/session?user=${U}`); // create the user
@@ -30,7 +22,9 @@ await get(`/api/session?user=${U}`); // create the user
 function rows(kind: string, ref: string): number {
   const db = open();
   const r = db
-    .prepare("SELECT COUNT(*) AS n FROM attempt WHERE user_id = ? AND kind = ? AND ref_id = ?")
+    .prepare(
+      "SELECT COUNT(*) AS n FROM attempt WHERE user_id = ? AND kind = ? AND ref_id = ?",
+    )
     .get(U, kind, ref) as { n: number };
   db.close();
   return r.n;
@@ -38,7 +32,9 @@ function rows(kind: string, ref: string): number {
 function card(ref: string) {
   const db = open();
   const r = db
-    .prepare("SELECT id, reps, state FROM card WHERE user_id = ? AND ref_id = ?")
+    .prepare(
+      "SELECT id, reps, state FROM card WHERE user_id = ? AND ref_id = ?",
+    )
     .get(U, ref) as { id: number; reps: number; state: number } | undefined;
   db.close();
   return r;

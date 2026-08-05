@@ -7,14 +7,7 @@ import { de } from "@/lib/tags";
 
 export const dynamic = "force-dynamic";
 
-/**
- * One mistake, every time you made it.
- *
- * Fortschritt could say "article-akkusativ · 23×" and stop there, which tells
- * you that something is wrong without ever showing you the thing. Every row
- * here is already stored — `expected`, `user_answer` and `error_tags_json` are
- * written on every attempt — so this page is a query, not new data collection.
- */
+/** One mistake, every time you made it. */
 
 /** Tag → the grammar point that actually explains it. */
 const TAG_TO_SLUG: Record<string, string> = {
@@ -47,7 +40,11 @@ const KIND_LABEL: Record<string, string> = {
   "exam-grammatik": "Test · Grammatik",
 };
 
-export default async function TagPage({ params }: { params: Promise<{ tag: string }> }) {
+export default async function TagPage({
+  params,
+}: {
+  params: Promise<{ tag: string }>;
+}) {
   const { tag } = await params;
   const label = de(tag);
   if (!label) notFound();
@@ -124,7 +121,11 @@ export default async function TagPage({ params }: { params: Promise<{ tag: strin
               {earlier}× in den 14 Tagen davor
               {" · "}
               <span className={recent < earlier ? "text-accent" : "text-das"}>
-                {recent < earlier ? "seltener" : recent > earlier ? "häufiger" : "gleich"}
+                {recent < earlier
+                  ? "seltener"
+                  : recent > earlier
+                    ? "häufiger"
+                    : "gleich"}
               </span>
             </>
           )}
@@ -150,13 +151,16 @@ export default async function TagPage({ params }: { params: Promise<{ tag: strin
 
           {rows.length === 0 ? (
             <p className="text-muted text-[14px]">
-              Noch kein Beispiel gespeichert. Der Zähler steigt erst, wenn ein Fehler mit
-              vollem Satz aufgezeichnet wurde.
+              Noch kein Beispiel gespeichert. Der Zähler steigt erst, wenn ein
+              Fehler mit vollem Satz aufgezeichnet wurde.
             </p>
           ) : (
             <div className="space-y-2">
               {rows.map((r) => (
-                <div key={r.id} className="border-line-sub rounded-xl border p-4">
+                <div
+                  key={r.id}
+                  className="border-line-sub rounded-xl border p-4"
+                >
                   <div className="mb-2 flex items-baseline justify-between gap-3">
                     <span className="font-mono text-muted text-[10.5px] tracking-[0.1em] uppercase">
                       {KIND_LABEL[r.kind] ?? r.kind}
@@ -168,7 +172,9 @@ export default async function TagPage({ params }: { params: Promise<{ tag: strin
                   <p className="font-serif text-das/70 text-[16px] line-through">
                     {r.user_answer || "—"}
                   </p>
-                  <p className="font-serif text-fg mt-1 text-[18px]">{r.expected}</p>
+                  <p className="font-serif text-fg mt-1 text-[18px]">
+                    {r.expected}
+                  </p>
                 </div>
               ))}
             </div>
@@ -176,8 +182,8 @@ export default async function TagPage({ params }: { params: Promise<{ tag: strin
         </section>
 
         <p className="text-muted mt-8 max-w-[62ch] text-[12.5px] leading-relaxed">
-          Diese Liste ist gezählt, nicht bewertet. Sie sagt dir, wie oft und wobei — nicht,
-          wie gut du bist.
+          Diese Liste ist gezählt, nicht bewertet. Sie sagt dir, wie oft und
+          wobei — nicht, wie gut du bist.
         </p>
       </div>
     </main>

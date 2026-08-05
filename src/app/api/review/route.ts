@@ -1,7 +1,15 @@
 ﻿import { NextResponse } from "next/server";
 import { get } from "@/lib/db";
 import { activeUser } from "@/lib/user";
-import { readJson, badRequest, notFound, str, int, bool, unauthorized } from "@/lib/http";
+import {
+  readJson,
+  badRequest,
+  notFound,
+  str,
+  int,
+  bool,
+  unauthorized,
+} from "@/lib/http";
 import { dueCards, dueCount, gradeCard } from "@/lib/srs";
 import { whyWrong } from "@/lib/why";
 import type { Grade } from "ts-fsrs";
@@ -10,8 +18,11 @@ export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 const ownsCard = (userId: string, cardId: number) =>
-  get<{ id: number }>("SELECT id FROM card WHERE id = ? AND user_id = ?", cardId, userId) !==
-  undefined;
+  get<{ id: number }>(
+    "SELECT id FROM card WHERE id = ? AND user_id = ?",
+    cardId,
+    userId,
+  ) !== undefined;
 
 export async function GET(req: Request) {
   const user = await activeUser(req);
@@ -19,28 +30,32 @@ export async function GET(req: Request) {
 
   // Deck size = words actually met. There is no top-up: a card appears when a
   // word is introduced, so this number is a count of learning, not of seeding.
-  const total = get<{ n: number }>(
-    "SELECT COUNT(*) AS n FROM card WHERE user_id = ? AND ref_type='word'",
-    user.id,
-  )?.n ?? 0;
+  const total =
+    get<{ n: number }>(
+      "SELECT COUNT(*) AS n FROM card WHERE user_id = ? AND ref_type='word'",
+      user.id,
+    )?.n ?? 0;
 
-  const reviewedToday = get<{ n: number }>(
-    `SELECT COUNT(*) AS n FROM attempt
+  const reviewedToday =
+    get<{ n: number }>(
+      `SELECT COUNT(*) AS n FROM attempt
       WHERE user_id = ? AND kind='review' AND date(created_at) = date('now')`,
-    user.id,
-  )?.n ?? 0;
+      user.id,
+    )?.n ?? 0;
 
-  const learned = get<{ n: number }>(
-    `SELECT COUNT(*) AS n FROM card
+  const learned =
+    get<{ n: number }>(
+      `SELECT COUNT(*) AS n FROM card
       WHERE user_id = ? AND ref_type='word' AND reps >= 3 AND state = 2`,
-    user.id,
-  )?.n ?? 0;
+      user.id,
+    )?.n ?? 0;
 
-  const mastered = get<{ n: number }>(
-    `SELECT COUNT(*) AS n FROM card
+  const mastered =
+    get<{ n: number }>(
+      `SELECT COUNT(*) AS n FROM card
       WHERE user_id = ? AND ref_type='word' AND stability > 30`,
-    user.id,
-  )?.n ?? 0;
+      user.id,
+    )?.n ?? 0;
 
   return NextResponse.json({
     user: user.id,
@@ -79,12 +94,7 @@ export async function POST(req: Request) {
     expected,
   });
 
-  /* "Why?" on a typed answer that was wrong.
-     It lives here rather than in a second call to /api/attempt because
-     gradeCard has already logged the attempt — a separate call would log it
-     twice and quietly skew every accuracy figure in the app. Same three tiers
-     as everywhere else: cache, then the cheap model, then the rule-based tag
-     description, so this never becomes a reason a card can't be graded. */
+  /* "Why?" on a typed answer that was wrong. */
   let explanation: string | null = null;
   if (bool(raw.explain) && expected && answer && grade < 3) {
     explanation = (await whyWrong(user.id, expected, answer)).text;

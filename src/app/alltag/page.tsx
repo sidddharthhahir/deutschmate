@@ -5,13 +5,7 @@ import Phrases from "./Phrases";
 
 export const dynamic = "force-dynamic";
 
-/**
- * Alltag — German with consequences.
- *
- * The course teaches you to order a coffee. This is the Bürgeramt, the WG
- * viewing and the phone contract you cannot get out of: the conversations
- * where not having the words costs you a room, a deadline or a month's money.
- */
+/** Alltag — German with consequences. */
 export default function SurvivalPage() {
   const items = survivalScenarios();
 
@@ -25,15 +19,20 @@ export default function SurvivalPage() {
       <>
         {items.length === 0 ? (
           <Empty title="No scenarios loaded">
-            data/scenarios-survival.json is missing. Run <code>npm run setup</code>.
+            data/scenarios-survival.json is missing. Run{" "}
+            <code>npm run setup</code>.
           </Empty>
         ) : (
           <div className="space-y-3">
             {items.map((s) => (
               <div key={s.id} className="border-line rounded-[14px] border p-6">
                 <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
-                  <h2 className="font-serif text-[22px] font-medium">{s.title}</h2>
-                  <span className="font-mono text-muted flex-none text-[11px]">{s.level}</span>
+                  <h2 className="font-serif text-[22px] font-medium">
+                    {s.title}
+                  </h2>
+                  <span className="font-mono text-muted flex-none text-[11px]">
+                    {s.level}
+                  </span>
                 </div>
 
                 <p className="text-secondary mt-2 max-w-[62ch] text-[14px] leading-relaxed">
@@ -58,7 +57,8 @@ export default function SurvivalPage() {
 
                 <details className="group mt-4">
                   <summary className="font-mono text-muted hover:text-secondary cursor-pointer text-[12px] transition-colors">
-                    {s.phrases.length + (s.hear?.length ?? 0)} Sätze · antippen zum Hören
+                    {s.phrases.length + (s.hear?.length ?? 0)} Sätze · antippen
+                    zum Hören
                   </summary>
                   <div className="border-line-sub mt-3 border-t pt-3">
                     <p className="font-mono text-muted mb-2 text-[10.5px] tracking-[0.14em] uppercase">
@@ -92,9 +92,9 @@ export default function SurvivalPage() {
         )}
 
         <p className="text-muted mt-10 max-w-[62ch] text-[12.5px] leading-relaxed">
-          The roleplay follows the same rule as everywhere else: the other person only
-          uses words you already know. A real Amt does not — which is what the phrase
-          lists above are for.
+          The roleplay follows the same rule as everywhere else: the other
+          person only uses words you already know. A real Amt does not — which
+          is what the phrase lists above are for.
         </p>
       </>
     </Page>

@@ -12,10 +12,7 @@ type Plan = {
   user: { id: string; name: string; level: string };
   streak: number;
   unit: { id: string; ord: number; title: string } | null;
-  /* What tomorrow opens, by name. Home used to compute `unit.ord + 1` and print
-     "Unit 15" — a bare unit number, which spec §4 forbids and the recap already
-     avoids by reading this field. It is also wrong at a level boundary, where
-     the next unit's ord resets to 1. */
+  /* What tomorrow opens, by name. */
   next: { ord: number; title: string } | null;
   canDo: string[];
   blocks: { kind: string; title: string; minutes: number; offline: boolean }[];
@@ -44,16 +41,12 @@ export default function Home() {
   const online = useOnline();
 
   /**
-   * `state` starts at "loading", so nothing needs to set it on mount. Every
-   * write happens after the await, never synchronously inside the effect.
-   * `nonce` is bumped by the retry button to re-run the fetch.
+   * `state` starts at "loading", so nothing needs to set it on mount. Every write happens after
+   * the await, never synchronously inside the effect.
    */
   const [nonce, setNonce] = useState(0);
 
-  /* First visit on this browser goes to the tour. Home is a greeting and one
-     button — perfectly clear once you know what it does, and completely
-     opaque before. Runs before the plan fetch so there's no flash of a screen
-     you're about to be redirected away from. */
+  /* First visit on this browser goes to the tour. */
   useEffect(() => {
     if (!tourSeen()) router.replace("/willkommen?neu=1");
   }, [router]);
@@ -81,7 +74,10 @@ export default function Home() {
         if (stale) return;
         setState("error");
         setLastTry(
-          new Date().toLocaleTimeString("de-DE", { hour: "2-digit", minute: "2-digit" }),
+          new Date().toLocaleTimeString("de-DE", {
+            hour: "2-digit",
+            minute: "2-digit",
+          }),
         );
       }
     })();
@@ -123,11 +119,7 @@ export default function Home() {
       : !online && state === "normal"
         ? {
             dot: "bg-accent",
-            /* Said "Ersatzübung statt Video". No video has ever been imported —
-               the video table is empty and every unit's video_id is NULL — so
-               it named a substitution that could not happen, on a screen whose
-               job is to tell you what today is. What is true offline is that
-               the conversation needs the network and everything else does not. */
+            /* Said "Ersatzübung statt Video". */
             text: "Offline — alles außer dem Gespräch geht",
           }
         : null;
@@ -138,8 +130,12 @@ export default function Home() {
 
       {banner && (
         <div className="bg-raised border-line-sub flex flex-none items-center gap-2.5 border-b px-6 py-3.5 md:px-10">
-          <span className={`h-[7px] w-[7px] flex-none rounded-full ${banner.dot}`} />
-          <span className="font-mono text-secondary text-[12.5px]">{banner.text}</span>
+          <span
+            className={`h-[7px] w-[7px] flex-none rounded-full ${banner.dot}`}
+          />
+          <span className="font-mono text-secondary text-[12.5px]">
+            {banner.text}
+          </span>
         </div>
       )}
 
@@ -204,15 +200,15 @@ export default function Home() {
 
                 {state === "error" && (
                   <p className="text-secondary max-w-[400px] text-[15px] leading-[1.55]">
-                    Der heutige Plan konnte nicht geladen werden. Deine Karten liegen auf
-                    dem Gerät — du kannst sofort wiederholen.
+                    Der heutige Plan konnte nicht geladen werden. Deine Karten
+                    liegen auf dem Gerät — du kannst sofort wiederholen.
                   </p>
                 )}
 
                 {state === "normal" && !online && (
                   <p className="text-secondary max-w-[400px] text-[15px] leading-[1.55]">
-                    Alle Karten und der Lesetext liegen auf dem Gerät. Nur das Gespräch
-                    braucht Netz.
+                    Alle Karten und der Lesetext liegen auf dem Gerät. Nur das
+                    Gespräch braucht Netz.
                   </p>
                 )}
               </div>
@@ -225,7 +221,9 @@ export default function Home() {
                       href="/wortschatz"
                       className="border-line hover:border-line-strong hover:text-fg text-secondary flex flex-col items-start gap-1.5 rounded-[14px] border px-6 py-5 transition-colors"
                     >
-                      <span className="text-[19px] font-medium">Freiwillig weiterüben</span>
+                      <span className="text-[19px] font-medium">
+                        Freiwillig weiterüben
+                      </span>
                       <span className="font-mono text-muted text-[12.5px]">
                         Wortschatz lesen · zählt nicht als Sitzung
                       </span>
@@ -253,14 +251,12 @@ export default function Home() {
                           ? "aus dem lokalen Deck"
                           : [
                               `${plan!.totalMinutes} min`,
-                              plan!.dueTotal > 0 && `${plan!.dueTotal} Wiederholungen`,
-                              /* The real number, not the usual one. The pace
-                                 drops to 6 when the week's accuracy falls below
-                                 80%, and promising 12 on a day that offers 6
-                                 is exactly the kind of number principle 4
-                                 exists to stop. */
-                              plan!.blocks.some((b) => b.kind === "new-vocab") &&
-                                `${plan!.pacing.words} neue Wörter`,
+                              plan!.dueTotal > 0 &&
+                                `${plan!.dueTotal} Wiederholungen`,
+                              /* The real number, not the usual one. */
+                              plan!.blocks.some(
+                                (b) => b.kind === "new-vocab",
+                              ) && `${plan!.pacing.words} neue Wörter`,
                             ]
                               .filter(Boolean)
                               .join(" · ")}
@@ -294,7 +290,8 @@ export default function Home() {
                           <div className="font-mono text-muted flex justify-between text-[12px]">
                             <span>
                               {plan!.blocks.length} Blöcke ·{" "}
-                              {plan!.blocks[0]?.title} → {plan!.blocks.at(-1)?.title}
+                              {plan!.blocks[0]?.title} →{" "}
+                              {plan!.blocks.at(-1)?.title}
                             </span>
                             <span>≈ {plan!.totalMinutes} min</span>
                           </div>
@@ -313,14 +310,17 @@ export default function Home() {
                               depends on what is actually due. What IS always
                               true is the rule that defines the shape — nothing
                               new, only the things that decay. */}
-                          <span className="text-[14px]">Kürzere Sitzung heute</span>
+                          <span className="text-[14px]">
+                            Kürzere Sitzung heute
+                          </span>
                           <span className="font-mono text-[11.5px]">
                             Nur Wiederholen · nichts Neues
                           </span>
                         </Link>
 
                         <div className="font-mono text-muted flex items-center gap-2.5 pt-1 text-[12px]">
-                          <span className="kbd text-fg">Enter</span> startet die Sitzung
+                          <span className="kbd text-fg">Enter</span> startet die
+                          Sitzung
                         </div>
                       </>
                     )}

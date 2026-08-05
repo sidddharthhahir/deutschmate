@@ -1,6 +1,14 @@
 ﻿import { NextResponse } from "next/server";
 import { activeUser } from "@/lib/user";
-import { readJson, badRequest, str, int, bool, arr, unauthorized } from "@/lib/http";
+import {
+  readJson,
+  badRequest,
+  str,
+  int,
+  bool,
+  arr,
+  unauthorized,
+} from "@/lib/http";
 import { buildExam, saveExamRun, type SectionScore } from "@/lib/exam";
 import { logAttempt } from "@/lib/errors";
 
@@ -8,12 +16,8 @@ export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 /**
- * GET — assemble a test.
- *
- * The correct answers ship with the paper. That's deliberate: the exam has to
- * survive the network dropping halfway through (principle 2), and it has to
- * show a full per-question review at the end without a round trip. The only
- * person who could exploit it is the learner, against their own private stats.
+ * GET — assemble a test. The only person who could exploit it is the learner, against their own
+ * private stats.
  */
 export async function GET(req: Request) {
   const url = new URL(req.url);
@@ -32,7 +36,11 @@ export async function POST(req: Request) {
   /* arr() rather than `?? []`: a `sections` of "nope" is truthy, has a
      .length, and then blew up on .reduce inside saveExamRun. */
   const sections = arr<SectionScore>(raw.sections).filter(
-    (s) => s && typeof s.title === "string" && Number.isFinite(s.correct) && Number.isFinite(s.total),
+    (s) =>
+      s &&
+      typeof s.title === "string" &&
+      Number.isFinite(s.correct) &&
+      Number.isFinite(s.total),
   );
   if (!sections.length) return badRequest("sections required");
 

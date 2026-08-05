@@ -24,23 +24,17 @@ type Item = {
 type Payload = { items: Item[] };
 
 /**
- * The sentence builder.
- *
- * Tiles are physical: filled and light when placed, outlined when waiting in
- * the pool. Explanations come from the write-through cache — rule first,
- * cached second, a model call only on a genuine miss.
+ * The sentence builder. Explanations come from the write-through cache — rule first, cached
+ * second, a model call only on a genuine miss.
  */
-export default function BuilderBlock({ payload, onDone, onSkip }: BlockProps<Payload>) {
+export default function BuilderBlock({
+  payload,
+  onDone,
+  onSkip,
+}: BlockProps<Payload>) {
   const items = payload.items ?? [];
 
-  /**
-   * One state object rather than five.
-   *
-   * The obvious version keeps `i` separate and resets pool/placed/checked in an
-   * effect when `i` changes — which renders once with the PREVIOUS item's tiles
-   * still on screen before the effect fires. Advancing the index and rebuilding
-   * the tiles is a single transition, so it belongs in a single setState.
-   */
+  /** One state object rather than five. */
   const [s, setS] = useState(() => ({
     i: 0,
     pool: items[0]?.tokens ?? [],
@@ -152,7 +146,9 @@ export default function BuilderBlock({ payload, onDone, onSkip }: BlockProps<Pay
         {!checked ? (
           <div className="mt-6 flex gap-2">
             <button
-              onClick={() => setS((p) => ({ ...p, pool: it.tokens, placed: [] }))}
+              onClick={() =>
+                setS((p) => ({ ...p, pool: it.tokens, placed: [] }))
+              }
               className="border-line text-secondary hover:border-line-strong hover:text-fg rounded-xl border px-5 py-3.5 text-[14px] transition-colors"
             >
               Zurücksetzen

@@ -1,21 +1,6 @@
 /**
- * Enrich a plain word list from German Wiktionary.
- *
- *   node scripts/import-words.mts data/wordlist-a2.txt A2.1
- *
- * Input: one lemma per line (blank lines and #comments ignored).
- * Output: data/words-<level>.json in the same shape as words-a1-1.json, ready
- *         for `npm run seed`.
- *
- * WHY THIS EXISTS
- * The Goethe-Institut publishes official A1/A2/B1 Wortlisten as PDFs. Those
- * PDFs are the curriculum spine, but they have to be extracted by hand — paste
- * the lemmas into a .txt and this fills in gender, plural, verb forms and the
- * English gloss for all of them.
- *
- * Everything it fetches is CC BY-SA from Wiktionary. Review the output before
- * committing: Wiktionary's first English gloss is usually right but not always
- * the sense a beginner needs.
+ * Enrich a plain word list from German Wiktionary. node scripts/import-words.mts
+ * data/wordlist-a2.txt A2.1 Input: one lemma per line (blank lines and #comments ignored).
  */
 import { readFileSync, writeFileSync, existsSync } from "node:fs";
 import path from "node:path";
@@ -62,7 +47,10 @@ type Out = {
 function slug(lemma: string) {
   return lemma
     .toLowerCase()
-    .replace(/ä/g, "ae").replace(/ö/g, "oe").replace(/ü/g, "ue").replace(/ß/g, "ss")
+    .replace(/ä/g, "ae")
+    .replace(/ö/g, "oe")
+    .replace(/ü/g, "ue")
+    .replace(/ß/g, "ss")
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-|-$/g, "");
 }
@@ -100,7 +88,8 @@ function parse(lemma: string, wikitext: string): Out | null {
       id: slug(lemma),
       lemma,
       article: g ? GENUS[g.toLowerCase()] : undefined,
-      plural: param(noun, "Nominativ Plural") ?? param(noun, "Nominativ Plural 1"),
+      plural:
+        param(noun, "Nominativ Plural") ?? param(noun, "Nominativ Plural 1"),
       pos: "noun",
       en,
     };
@@ -196,18 +185,32 @@ for (let i = 0; i < lemmas.length; i += BATCH) {
   await sleep(400);
 }
 
-const outPath = path.join(ROOT, "data", `words-${level.toLowerCase().replace(".", "-")}.json`);
+const outPath = path.join(
+  ROOT,
+  "data",
+  `words-${level.toLowerCase().replace(".", "-")}.json`,
+);
 writeFileSync(outPath, JSON.stringify(results, null, 2) + "\n");
 
-console.log(`\n\n✓ ${results.length}/${lemmas.length} enriched -> ${path.relative(ROOT, outPath)}`);
+console.log(
+  `\n\n✓ ${results.length}/${lemmas.length} enriched -> ${path.relative(ROOT, outPath)}`,
+);
 const nouns = results.filter((r) => r.pos === "noun");
 const withArticle = nouns.filter((r) => r.article).length;
 console.log(`  nouns: ${nouns.length} (${withArticle} with article)`);
 console.log(`  verbs: ${results.filter((r) => r.pos === "verb").length}`);
 
 if (failed.length) {
-  const failPath = path.join(ROOT, "data", `failed-${level.toLowerCase().replace(".", "-")}.txt`);
+  const failPath = path.join(
+    ROOT,
+    "data",
+    `failed-${level.toLowerCase().replace(".", "-")}.txt`,
+  );
   writeFileSync(failPath, failed.join("\n") + "\n");
-  console.log(`  ${failed.length} need manual entry -> ${path.relative(ROOT, failPath)}`);
+  console.log(
+    `  ${failed.length} need manual entry -> ${path.relative(ROOT, failPath)}`,
+  );
 }
-console.log(`\nReview the JSON, then add it to scripts/seed.mts and run: npm run seed`);
+console.log(
+  `\nReview the JSON, then add it to scripts/seed.mts and run: npm run seed`,
+);

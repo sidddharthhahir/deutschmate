@@ -13,13 +13,7 @@ export const dynamic = "force-dynamic";
    no screen that could change it, and a client that hardcoded 50 anyway — the
    two happened to agree, which is the only reason nothing looked wrong. */
 
-/**
- * Wortschatz — browse the whole vocabulary (spec §5).
- *
- * Because the browse deck IS the curriculum deck, each row can say which unit
- * teaches the word. Browsing is reading ahead in your own course, and
- * [+ Deck] means "teach me this now, before Unit 88 comes round".
- */
+/** Wortschatz — browse the whole vocabulary (spec §5). */
 export async function GET(req: Request) {
   const url = new URL(req.url);
   const user = await activeUser(req);
@@ -32,8 +26,14 @@ export async function GET(req: Request) {
 
   const where: string[] = [];
   const params: unknown[] = [];
-  if (level) { where.push("w.level = ?"); params.push(level); }
-  if (topic) { where.push("w.topic = ?"); params.push(topic); }
+  if (level) {
+    where.push("w.level = ?");
+    params.push(level);
+  }
+  if (topic) {
+    where.push("w.topic = ?");
+    params.push(topic);
+  }
   if (q) {
     where.push("(w.lemma LIKE ? OR w.en LIKE ?)");
     params.push(`%${q}%`, `%${q}%`);
@@ -63,15 +63,15 @@ export async function GET(req: Request) {
     offset,
   );
 
-  const total = get<{ n: number }>(
-    `SELECT COUNT(*) AS n FROM word w ${clause}`,
-    ...params,
-  )?.n ?? 0;
+  const total =
+    get<{ n: number }>(`SELECT COUNT(*) AS n FROM word w ${clause}`, ...params)
+      ?.n ?? 0;
 
-  const seen = get<{ n: number }>(
-    "SELECT COUNT(*) AS n FROM word_seen WHERE user_id = ?",
-    user.id,
-  )?.n ?? 0;
+  const seen =
+    get<{ n: number }>(
+      "SELECT COUNT(*) AS n FROM word_seen WHERE user_id = ?",
+      user.id,
+    )?.n ?? 0;
 
   const topics = all<{ topic: string; n: number }>(
     "SELECT topic, COUNT(*) AS n FROM word WHERE topic IS NOT NULL GROUP BY topic ORDER BY n DESC",
@@ -101,24 +101,29 @@ export async function POST(req: Request) {
   if (!user) return unauthorized();
 
   if (body.action === "seen") {
-    /* One row per word, ignored on repeat. The previous version added the
-       batch size to a running total, so the headline "gesehen" figure counted
-       page turns: browsing back and forward, or switching topic, inflated it
-       without a single new word being read. */
+    /* One row per word, ignored on repeat. */
     const ids = (Array.isArray(body.wordIds) ? body.wordIds : [])
-      .filter((id): id is string => typeof id === "string" && id.length > 0 && id.length <= 64)
+      .filter(
+        (id): id is string =>
+          typeof id === "string" && id.length > 0 && id.length <= 64,
+      )
       .slice(0, 500);
     if (ids.length) {
       tx(() => {
         for (const id of ids) {
-          run("INSERT OR IGNORE INTO word_seen (user_id, word_id) VALUES (?, ?)", user.id, id);
+          run(
+            "INSERT OR IGNORE INTO word_seen (user_id, word_id) VALUES (?, ?)",
+            user.id,
+            id,
+          );
         }
       });
     }
-    const seen = get<{ n: number }>(
-      "SELECT COUNT(*) AS n FROM word_seen WHERE user_id = ?",
-      user.id,
-    )?.n ?? 0;
+    const seen =
+      get<{ n: number }>(
+        "SELECT COUNT(*) AS n FROM word_seen WHERE user_id = ?",
+        user.id,
+      )?.n ?? 0;
     // Counted separately from "learned" on purpose — principle 4 (spec §5).
     return NextResponse.json({ ok: true, seen });
   }

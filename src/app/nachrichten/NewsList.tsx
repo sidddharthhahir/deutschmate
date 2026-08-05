@@ -16,7 +16,11 @@ type State = "loading" | "ready" | "unavailable";
 function when(raw: string) {
   const d = new Date(raw);
   if (Number.isNaN(d.getTime())) return raw;
-  return d.toLocaleDateString("de-DE", { weekday: "short", day: "numeric", month: "long" });
+  return d.toLocaleDateString("de-DE", {
+    weekday: "short",
+    day: "numeric",
+    month: "long",
+  });
 }
 
 function mmss(s: number | null) {
@@ -62,8 +66,9 @@ export default function NewsList() {
       <div className="border-line rounded-[14px] border p-6">
         <p className="font-serif text-[19px]">Nachrichten nicht erreichbar</p>
         <p className="text-secondary mt-2 max-w-[54ch] text-[14px] leading-relaxed">
-          Die Sendungen kommen direkt von der Deutschen Welle — ohne Verbindung gibt es
-          hier nichts zu zeigen, und alte Meldungen als „heute“ auszugeben wäre falsch.
+          Die Sendungen kommen direkt von der Deutschen Welle — ohne Verbindung
+          gibt es hier nichts zu zeigen, und alte Meldungen als „heute“
+          auszugeben wäre falsch.
         </p>
       </div>
     );
@@ -113,8 +118,8 @@ export default function NewsList() {
         </div>
 
         <p className="text-muted mt-4 text-[12px] leading-relaxed">
-          Hör es einmal ohne Text. Dann noch einmal mit. Dann kopier dir die Sätze, die du
-          nicht verstanden hast, in „Dein Text“.
+          Hör es einmal ohne Text. Dann noch einmal mit. Dann kopier dir die
+          Sätze, die du nicht verstanden hast, in „Dein Text“.
         </p>
       </div>
 
@@ -143,7 +148,9 @@ export default function NewsList() {
                   )}
                   {e.audio && (
                     <button
-                      onClick={() => setPlaying(playing === e.audio ? null : e.audio)}
+                      onClick={() =>
+                        setPlaying(playing === e.audio ? null : e.audio)
+                      }
                       className="font-mono text-accent text-[11.5px] hover:underline"
                     >
                       {playing === e.audio ? "schließen" : "▶ hören"}
@@ -151,7 +158,13 @@ export default function NewsList() {
                   )}
                 </span>
                 {playing === e.audio && e.audio && (
-                  <audio controls autoPlay preload="none" src={e.audio} className="w-full" />
+                  <audio
+                    controls
+                    autoPlay
+                    preload="none"
+                    src={e.audio}
+                    className="w-full"
+                  />
                 )}
               </div>
             ))}
@@ -160,8 +173,8 @@ export default function NewsList() {
       )}
 
       <p className="text-muted/70 mt-8 text-[11.5px] leading-relaxed">
-        {source}. Audio und Texte gehören der Deutschen Welle und werden direkt von dort
-        geladen — DeutschMate speichert und verbreitet nichts davon.
+        {source}. Audio und Texte gehören der Deutschen Welle und werden direkt
+        von dort geladen — DeutschMate speichert und verbreitet nichts davon.
       </p>
     </div>
   );

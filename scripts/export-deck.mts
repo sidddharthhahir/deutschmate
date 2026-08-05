@@ -1,23 +1,7 @@
 /**
- * Export the deck to something any other tool can read.
- *
- *   node scripts/export-deck.mts              # Anki-ready TSV + full JSON
- *   node scripts/export-deck.mts --user sid
- *
- * Six months of learning should not be trapped in one SQLite file on one
- * laptop. This is the exit door: if DeutschMate stops being the right tool,
- * the work comes with you.
- *
- * Two formats, because they answer different questions:
- *
- *   .tsv    drag straight into Anki. Front, Back, Tags. Anki's importer reads
- *           this with no configuration, which is the whole point.
- *   .json   everything — FSRS state, lapse counts, mined gaps, review history
- *           totals. Lossless, for anyone who wants to do something else with it.
- *
- * Scheduling state is exported but NOT translated into Anki's model. Anki and
- * FSRS store different things, and a converted interval would look precise
- * while being made up. The numbers are there in the JSON; the TSV is content.
+ * Export the deck to something any other tool can read. node scripts/export-deck.mts # Anki-ready
+ * TSV + full JSON node scripts/export-deck.mts --user sid Six months of learning should not be
+ * trapped in one SQLite file on one laptop.
  */
 import { DatabaseSync } from "node:sqlite";
 import { mkdirSync, writeFileSync } from "node:fs";
@@ -156,7 +140,9 @@ writeFileSync(
 
 db.close();
 
-console.log(`OK  ${path.relative(ROOT, tsv)}    ${words.length} words + ${cloze.length} gaps`);
+console.log(
+  `OK  ${path.relative(ROOT, tsv)}    ${words.length} words + ${cloze.length} gaps`,
+);
 console.log(`OK  ${path.relative(ROOT, json)}   full state\n`);
 console.log("Anki:  File -> Import -> pick the .tsv -> Basic note type.");
 console.log("       Headers set the separator and tags automatically.");

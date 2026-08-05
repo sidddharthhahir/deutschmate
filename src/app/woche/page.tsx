@@ -7,18 +7,7 @@ import { plural, word } from "@/lib/plural";
 
 export const dynamic = "force-dynamic";
 
-/**
- * Diese Woche — the reflective counterpart to the daily recap.
- *
- * The recap answers "how did today go" in the ninety seconds after a session.
- * Nothing answered "is this working", which is the question that decides
- * whether you're still here in month four.
- *
- * Everything is a count or a difference between two counts. The one piece of
- * interpretation — which mistake improved most — is a subtraction between two
- * seven-day windows, and the page shows both numbers so you can see the
- * subtraction rather than trust it.
- */
+/** Diese Woche — the reflective counterpart to the daily recap. */
 
 const DAYS = ["So", "Mo", "Di", "Mi", "Do", "Fr", "Sa"];
 
@@ -26,7 +15,8 @@ type Row = { tag: string; now: number; before: number };
 
 export default async function WeekPage() {
   const user = await requireUser();
-  const n = (sql: string, ...p: unknown[]) => get<{ n: number }>(sql, ...p)?.n ?? 0;
+  const n = (sql: string, ...p: unknown[]) =>
+    get<{ n: number }>(sql, ...p)?.n ?? 0;
 
   // ---------------------------------------------------------------- the week
   const days = all<{ date: string; minutes: number }>(
@@ -75,7 +65,8 @@ export default async function WeekPage() {
     const m = new Map<string, number>();
     for (const r of rows) {
       try {
-        for (const t of JSON.parse(r.tags) as string[]) m.set(t, (m.get(t) ?? 0) + 1);
+        for (const t of JSON.parse(r.tags) as string[])
+          m.set(t, (m.get(t) ?? 0) + 1);
       } catch {
         /* a malformed row just doesn't count */
       }
@@ -86,19 +77,26 @@ export default async function WeekPage() {
   const now = tally("-7 days", "-0 days");
   const before = tally("-14 days", "-7 days");
 
-  /* The keys come from the union of both weeks, so every row already has a
-     count on at least one side — the filter that used to sit here,
-     `before > 0 || now > 0`, was always true, and its comment claimed the
-     opposite ("history on both sides"). Rather than tighten it to && and lose
-     brand-new problems entirely, the two directions are separated: a tag with
-     no history last week has not become more frequent, it has appeared, and
-     TagRows says "neu" for it instead of rendering "0× → 3×" as a trend. */
+  /*
+   * The keys come from the union of both weeks, so every row already has a count on at least one
+   * side — the filter that used to sit here, `before > 0 || now > 0`, was always true, and its
+   * comment claimed the opposite ("history on both sides").
+   */
   const moved: Row[] = [...new Set([...now.keys(), ...before.keys()])]
-    .map((tag) => ({ tag, now: now.get(tag) ?? 0, before: before.get(tag) ?? 0 }))
+    .map((tag) => ({
+      tag,
+      now: now.get(tag) ?? 0,
+      before: before.get(tag) ?? 0,
+    }))
     .sort((a, b) => a.now - a.before - (b.now - b.before));
 
-  const better = moved.filter((r) => r.before > 0 && r.now < r.before).slice(0, 3);
-  const worse = moved.filter((r) => r.before > 0 && r.now > r.before).reverse().slice(0, 3);
+  const better = moved
+    .filter((r) => r.before > 0 && r.now < r.before)
+    .slice(0, 3);
+  const worse = moved
+    .filter((r) => r.before > 0 && r.now > r.before)
+    .reverse()
+    .slice(0, 3);
   const fresh = moved.filter((r) => r.before === 0 && r.now > 0).slice(0, 3);
 
   const empty = sessions === 0 && reviews === 0;
@@ -157,19 +155,31 @@ export default async function WeekPage() {
                 {lastSevenDays().map((d) => {
                   const hit = days.find((x) => x.date === d.iso);
                   return (
-                    <div key={d.iso} className="flex flex-1 flex-col items-center gap-1.5">
+                    <div
+                      key={d.iso}
+                      className="flex flex-1 flex-col items-center gap-1.5"
+                    >
                       <div
-                        title={hit ? `${d.iso}: ${hit.minutes} min` : `${d.iso}: nichts`}
+                        title={
+                          hit
+                            ? `${d.iso}: ${hit.minutes} min`
+                            : `${d.iso}: nichts`
+                        }
                         className={`h-12 w-full rounded-[3px] ${
                           hit ? "bg-accent" : "bg-line"
                         }`}
                         style={
                           hit
-                            ? { opacity: 0.35 + Math.min(0.65, hit.minutes / 90) }
+                            ? {
+                                opacity:
+                                  0.35 + Math.min(0.65, hit.minutes / 90),
+                              }
                             : undefined
                         }
                       />
-                      <span className="font-mono text-muted text-[10.5px]">{d.label}</span>
+                      <span className="font-mono text-muted text-[10.5px]">
+                        {d.label}
+                      </span>
                     </div>
                   );
                 })}
@@ -184,29 +194,35 @@ export default async function WeekPage() {
 
                 {better.length > 0 && (
                   <div className="mb-5">
-                    <p className="text-accent mb-2 text-[13px]">Seltener geworden</p>
+                    <p className="text-accent mb-2 text-[13px]">
+                      Seltener geworden
+                    </p>
                     <TagRows rows={better} />
                   </div>
                 )}
 
                 {worse.length > 0 && (
                   <div>
-                    <p className="text-das mb-2 text-[13px]">Häufiger geworden</p>
+                    <p className="text-das mb-2 text-[13px]">
+                      Häufiger geworden
+                    </p>
                     <TagRows rows={worse} />
                   </div>
                 )}
 
                 {fresh.length > 0 && (
                   <div>
-                    <p className="text-secondary mb-2 text-[13px]">Neu diese Woche</p>
+                    <p className="text-secondary mb-2 text-[13px]">
+                      Neu diese Woche
+                    </p>
                     <TagRows rows={fresh} />
                   </div>
                 )}
 
                 <p className="text-muted mt-4 max-w-[62ch] text-[12.5px] leading-relaxed">
-                  Beide Zahlen stehen da, damit du die Rechnung siehst statt sie zu
-                  glauben. Eine Woche ist eine kleine Stichprobe — eine Richtung, kein
-                  Urteil.
+                  Beide Zahlen stehen da, damit du die Rechnung siehst statt sie
+                  zu glauben. Eine Woche ist eine kleine Stichprobe — eine
+                  Richtung, kein Urteil.
                 </p>
               </section>
             )}
@@ -214,10 +230,16 @@ export default async function WeekPage() {
         )}
 
         <div className="border-line-sub mt-10 flex flex-wrap gap-4 border-t pt-6">
-          <Link href="/fortschritt" className="text-accent text-[13.5px] hover:underline">
+          <Link
+            href="/fortschritt"
+            className="text-accent text-[13.5px] hover:underline"
+          >
             Gesamtfortschritt →
           </Link>
-          <Link href="/problemwoerter" className="text-accent text-[13.5px] hover:underline">
+          <Link
+            href="/problemwoerter"
+            className="text-accent text-[13.5px] hover:underline"
+          >
             Problemwörter →
           </Link>
         </div>
@@ -253,9 +275,7 @@ function TagRows({ rows }: { rows: Row[] }) {
           href={`/fehler/${r.tag}`}
           className="hover:bg-raised -mx-3 flex items-baseline justify-between gap-4 rounded-lg px-3 py-1.5 transition-colors"
         >
-          <span className="text-secondary text-[14px]">
-            {de(r.tag)}
-          </span>
+          <span className="text-secondary text-[14px]">{de(r.tag)}</span>
           <span className="font-mono text-muted flex-none text-[12.5px] tabular-nums">
             {r.before === 0 ? `neu · ${r.now}×` : `${r.before}× → ${r.now}×`}
           </span>
@@ -285,7 +305,9 @@ function Stat({
       <span className="font-mono text-secondary text-[11px] tracking-[0.08em] uppercase">
         {label}
       </span>
-      {sub && <span className="text-muted/70 text-[11px] leading-tight">{sub}</span>}
+      {sub && (
+        <span className="text-muted/70 text-[11px] leading-tight">{sub}</span>
+      )}
     </div>
   );
 }

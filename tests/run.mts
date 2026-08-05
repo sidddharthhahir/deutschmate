@@ -1,15 +1,4 @@
-/**
- * npm test
- *
- * Runs every tests/*.test.mts in its own process and reports one line each.
- *
- * Some tests need the dev server, because the thing worth testing is the API a
- * page actually calls, not a re-implementation of it. Those are skipped with a
- * visible message when nothing is listening — skipped, never silently passed.
- *
- *   npm test              everything it can run
- *   npm test text outbox  only the files whose name contains one of these
- */
+/** npm test Runs every tests/*.test.mts in its own process and reports one line each. */
 import { spawnSync } from "node:child_process";
 import { readdirSync, readFileSync } from "node:fs";
 import path from "node:path";
@@ -25,7 +14,11 @@ const files = readdirSync(HERE)
   .sort();
 
 if (!files.length) {
-  console.error(filters.length ? `No test matches ${filters.join(", ")}` : "No tests found.");
+  console.error(
+    filters.length
+      ? `No test matches ${filters.join(", ")}`
+      : "No tests found.",
+  );
   process.exit(1);
 }
 
@@ -46,13 +39,19 @@ if (wantsServer) {
   }
 }
 
-const results: { file: string; state: "pass" | "fail" | "skip"; note: string }[] = [];
+const results: {
+  file: string;
+  state: "pass" | "fail" | "skip";
+  note: string;
+}[] = [];
 
 for (const file of files) {
   const need = needs(file);
   if (need.includes("server") && !serverUp) {
     results.push({ file, state: "skip", note: `needs a server at ${BASE}` });
-    console.log(`\n${"=".repeat(64)}\n  ${file}   SKIPPED — no server at ${BASE}\n${"=".repeat(64)}`);
+    console.log(
+      `\n${"=".repeat(64)}\n  ${file}   SKIPPED — no server at ${BASE}\n${"=".repeat(64)}`,
+    );
     continue;
   }
 
@@ -80,6 +79,8 @@ const skipped = results.filter((r) => r.state === "skip").length;
 console.log(
   `\n${results.length - failed - skipped} passed` +
     (failed ? `, ${failed} FAILED` : "") +
-    (skipped ? `, ${skipped} skipped — start \`npm run dev\` to run those` : ""),
+    (skipped
+      ? `, ${skipped} skipped — start \`npm run dev\` to run those`
+      : ""),
 );
 process.exit(failed ? 1 : 0);

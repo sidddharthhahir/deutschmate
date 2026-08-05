@@ -1,18 +1,8 @@
 import { NextResponse } from "next/server";
 
 /**
- * Request parsing that cannot itself be the bug.
- *
- * Every route used to start with `await req.json()` and then read fields off
- * the result. Three ways that goes wrong, all of which returned a 500 with an
- * empty body:
- *
- *   malformed JSON   `req.json()` throws before the handler runs
- *   `null` body      valid JSON, but destructuring it throws
- *   wrong types      `body.word.trim()` when word is a number
- *
- * A 500 means "the server is broken". None of these are — they are ordinary
- * bad requests, and the client can only respond sensibly if it's told so.
+ * Request parsing that cannot itself be the bug. None of these are — they are ordinary bad
+ * requests, and the client can only respond sensibly if it's told so.
  */
 
 /** Parse a JSON body, or return an empty object. Never throws. */
@@ -35,16 +25,12 @@ export function notFound(error: string) {
   return NextResponse.json({ error }, { status: 404 });
 }
 
-/**
- * Nobody is signed in.
- *
- * A route says this; a page redirects to /anmelden instead. Both are "you are
- * not signed in", and answering one the other's way is how you get a JSON blob
- * rendered as a web page, or a fetch that follows a redirect and parses HTML as
- * its result.
- */
+/** Nobody is signed in. */
 export function unauthorized() {
-  return NextResponse.json({ error: "not signed in", signIn: "/anmelden" }, { status: 401 });
+  return NextResponse.json(
+    { error: "not signed in", signIn: "/anmelden" },
+    { status: 401 },
+  );
 }
 
 // ---------------------------------------------------------------- coercion
@@ -57,7 +43,11 @@ export function str(v: unknown, max = 2000): string {
 }
 
 /** A finite integer within range, or null. */
-export function int(v: unknown, min = -Infinity, max = Infinity): number | null {
+export function int(
+  v: unknown,
+  min = -Infinity,
+  max = Infinity,
+): number | null {
   const n = typeof v === "number" ? v : typeof v === "string" ? Number(v) : NaN;
   if (!Number.isFinite(n) || !Number.isInteger(n)) return null;
   return n >= min && n <= max ? n : null;

@@ -1,16 +1,5 @@
 /**
  * Old scenarios and readings come back.
- *
- * Words and grammar rules were on a forgetting curve; situations were not. You
- * did the café in unit 8 and never saw it again — which is backwards, because a
- * ten-minute conversation is the slowest thing in the course to build and the
- * fastest to lose.
- *
- * The failure this guards against is silence: a rotation that quietly never
- * fires looks exactly like the old behaviour, and nothing on screen would say
- * so. So the checks below drive the session builder across a run of days and
- * assert the old material actually appears, with its origin named.
- *
  * needs: server, seeded database
  */
 import { get, ok, section, done, scratchUser, open } from "./harness.mts";
@@ -21,7 +10,9 @@ import { rhythmFor, today } from "../src/lib/rhythm.ts";
    segmented video does not quietly make this test wrong. */
 function hasSegmentedVideo(): boolean {
   const d = open();
-  const rows = d.prepare("SELECT segments_json FROM video").all() as { segments_json: string }[];
+  const rows = d.prepare("SELECT segments_json FROM video").all() as {
+    segments_json: string;
+  }[];
   d.close();
   return rows.some((r) => {
     try {
@@ -38,7 +29,11 @@ await get(`/api/session?user=${U}`); // create the user
 section("nothing to revisit on day one");
 const fresh = await get(`/api/session?user=${U}`);
 const freshTitles = fresh.blocks.map((b: any) => b.title);
-ok(!freshTitles.includes("Wiederlesen"), "no recycled reading", freshTitles.join(" "));
+ok(
+  !freshTitles.includes("Wiederlesen"),
+  "no recycled reading",
+  freshTitles.join(" "),
+);
 ok(!freshTitles.includes("Nochmal sprechen"), "no recycled conversation");
 
 section("a unit finished yesterday is not revision");
@@ -77,22 +72,13 @@ for (const u of many) mark2.run(U, u.id);
 db2.close();
 
 /*
- * Which slot fires today is fixed by the calendar, and the day index comes from
- * the wall clock — a request can only ever observe today. Whether the rotation
- * is correctly *proportioned* is rhythm.test.mts's job, walking a month of pure
- * day indices. What this checks is that the wiring behind whichever slot fires
- * today resolves a real past unit and labels it.
- *
- * THE EXPECTATION IS COMPUTED, NOT ASSUMED. This used to assert that today
- * revisits something, full stop — which is true on a bit over half of days and
- * false on the rest, so the suite passed or failed depending on the date. It
- * had been green by luck; day 20670 is a listening-and-speaking day with
- * neither recycle slot set, and that is correct behaviour rather than a
- * regression. Asking the same function the app asks makes this deterministic
- * and, on a quiet day, still a real check: nothing may be labelled a revisit
- * when the rotation did not call for one.
+ * Which slot fires today is fixed by the calendar, and the day index comes from the wall clock — a
+ * request can only ever observe today.
  */
-const expected = rhythmFor(today(), { video: hasSegmentedVideo(), reading: true });
+const expected = rhythmFor(today(), {
+  video: hasSegmentedVideo(),
+  reading: true,
+});
 const shouldRecycle = expected.recycleReading || expected.recycleScenario;
 
 const plan = await get(`/api/session?user=${U}`);
@@ -107,10 +93,7 @@ ok(
   `day ${today()} · reading=${expected.recycleReading} scenario=${expected.recycleScenario} · ${titles}`,
 );
 
-/* The block checks below only run on a revisit day. These two run every day, so
-   the suite is never reduced to asserting an absence: the plan the server built
-   has to match the rotation the pure function describes, or one of them has
-   drifted from the other. */
+/* The block checks below only run on a revisit day. */
 const kinds = plan.blocks.map((b: any) => b.kind);
 ok(
   kinds.includes(expected.input),
@@ -138,14 +121,23 @@ for (const b of recycled) {
 section("a revisited block is a real one, not a stub");
 for (const b of recycled) {
   if (b.kind === "reading") {
-    ok(typeof b.payload.body === "string" && b.payload.body.length > 50,
-      "the old text is actually loaded", `${b.payload.wordCount} Wörter`);
+    ok(
+      typeof b.payload.body === "string" && b.payload.body.length > 50,
+      "the old text is actually loaded",
+      `${b.payload.wordCount} Wörter`,
+    );
   }
   if (b.kind === "conversation") {
-    ok(!!b.payload.scenario?.role && !!b.payload.scenario?.goal,
-      "the old scene is actually loaded", b.payload.scenario?.role);
-    ok(b.payload.unitId !== plan.unit?.id,
-      "and it is a different unit from today's", `${b.payload.unitId} vs ${plan.unit?.id}`);
+    ok(
+      !!b.payload.scenario?.role && !!b.payload.scenario?.goal,
+      "the old scene is actually loaded",
+      b.payload.scenario?.role,
+    );
+    ok(
+      b.payload.unitId !== plan.unit?.id,
+      "and it is a different unit from today's",
+      `${b.payload.unitId} vs ${plan.unit?.id}`,
+    );
   }
 }
 

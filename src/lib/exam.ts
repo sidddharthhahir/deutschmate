@@ -1,27 +1,10 @@
 import { all, get, run } from "./db";
-import type { Exam, ExamQuestion, ExamSection, SectionKey, SectionScore } from "./exam-score";
+import type { Exam, ExamQuestion, SectionKey, SectionScore } from "./exam-score";
 import { EXAM_MINUTES as MINUTES } from "@/lib/config";
 
-export type { Exam, ExamQuestion, ExamSection, SectionKey, SectionScore };
-export { scoreExam } from "./exam-score";
+export type { Exam, SectionScore };
 
-/**
- * Übungstest — the exam-shaped run.
- *
- * WHAT THIS IS, precisely, because the distinction matters (principle 4):
- * this is a timed test built from THIS APP'S OWN content, in the shape of a
- * Goethe exam. It is not the official Modellsatz, it is not scored against the
- * official key, and a percentage here is not a prediction that you would pass.
- * The Goethe-Institut publishes real Modellsätze as free PDFs; those are the
- * ones that answer "am I actually B1 yet", and the app links to them rather
- * than pretending to reproduce them.
- *
- * What it IS good for, and what nothing else in the app does: sustained
- * performance. Every other block is short, forgiving and immediate. Here you
- * answer thirty questions across four skills with a clock running and no
- * feedback until the end — which is the only condition under which you find
- * out what you actually retain under pressure.
- */
+/** Übungstest — the exam-shaped run. */
 
 export const LEVELS = ["A1.1", "A1.2", "A2.1", "A2.2", "B1.1", "B1.2"] as const;
 export type Level = (typeof LEVELS)[number];
@@ -50,11 +33,7 @@ function shuffle<T>(xs: T[]): T[] {
   return a;
 }
 
-/**
- * Place the right answer among distractors and report where it landed.
- * Options are always shuffled — a fixed position is a tell, and a learner
- * will find it long before they find the grammar.
- */
+/** Place the right answer among distractors and report where it landed. */
 function withOptions(correct: string, distractors: string[]) {
   const opts = shuffle([correct, ...distractors.slice(0, 3)]);
   return { options: opts, answer: opts.indexOf(correct) };
@@ -69,7 +48,12 @@ function placeholders(n: number) {
 /** Reading: a real passage from the course, with its own comprehension questions. */
 function lesen(levels: string[], want: number): ExamQuestion[] {
   const ph = placeholders(levels.length);
-  const rows = all<{ id: string; title: string; body: string; questions_json: string }>(
+  const rows = all<{
+    id: string;
+    title: string;
+    body: string;
+    questions_json: string;
+  }>(
     `SELECT id, title, body, questions_json FROM reading
       WHERE level IN (${ph}) AND questions_json != '[]'`,
     ...levels,
@@ -101,16 +85,15 @@ function lesen(levels: string[], want: number): ExamQuestion[] {
   return out;
 }
 
-/**
- * Listening: hear a sentence, pick what was said.
- *
- * Discrimination, not comprehension — the distractors are other real sentences
- * from the same level, so the task is genuinely about hearing rather than
- * guessing from context.
- */
+/** Listening: hear a sentence, pick what was said. */
 function hoeren(levels: string[], want: number): ExamQuestion[] {
   const ph = placeholders(levels.length);
-  const rows = all<{ id: string; example_de: string; example_en: string; audio_url: string | null }>(
+  const rows = all<{
+    id: string;
+    example_de: string;
+    example_en: string;
+    audio_url: string | null;
+  }>(
     `SELECT id, example_de, example_en, audio_url FROM word
       WHERE level IN (${ph}) AND example_de IS NOT NULL AND length(example_de) > 12`,
     ...levels,
@@ -139,7 +122,13 @@ function hoeren(levels: string[], want: number): ExamQuestion[] {
 /** Vocabulary: German word, four English glosses. Distractors share the POS. */
 function wortschatz(levels: string[], want: number): ExamQuestion[] {
   const ph = placeholders(levels.length);
-  const rows = all<{ id: string; lemma: string; article: string | null; pos: string; en: string }>(
+  const rows = all<{
+    id: string;
+    lemma: string;
+    article: string | null;
+    pos: string;
+    en: string;
+  }>(
     `SELECT id, lemma, article, pos, en FROM word WHERE level IN (${ph})`,
     ...levels,
   );
@@ -156,7 +145,10 @@ function wortschatz(levels: string[], want: number): ExamQuestion[] {
     .slice(0, want)
     .map((r) => {
       const same = shuffle((byPos.get(r.pos) ?? []).filter((e) => e !== r.en));
-      const distractors = same.length >= 3 ? same : shuffle(rows.map((x) => x.en).filter((e) => e !== r.en));
+      const distractors =
+        same.length >= 3
+          ? same
+          : shuffle(rows.map((x) => x.en).filter((e) => e !== r.en));
       const { options, answer } = withOptions(r.en, distractors);
       return {
         id: `wortschatz-${r.id}`,

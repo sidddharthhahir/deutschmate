@@ -4,16 +4,7 @@ import Tour from "./Tour";
 
 export const dynamic = "force-dynamic";
 
-/**
- * Willkommen — the page that explains the app.
- *
- * Someone opening DeutschMate cold sees a greeting and one button, which is
- * exactly right once you know what it does and completely opaque before. This
- * is the six screens that make the first press make sense.
- *
- * Reached automatically on a first visit, and from the header and the command
- * palette for ever after.
- */
+/** Willkommen — the page that explains the app. */
 export default async function WelcomePage({
   searchParams,
 }: {

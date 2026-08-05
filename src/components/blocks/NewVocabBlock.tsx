@@ -3,7 +3,15 @@
 import { useCallback, useEffect, useState } from "react";
 import { playAudio } from "@/lib/speech";
 import Noun, { ArticleWord } from "@/components/Article";
-import { Card, Eyebrow, Progress, PrimaryButton, Option, record, type BlockProps } from "./shared";
+import {
+  Card,
+  Eyebrow,
+  Progress,
+  PrimaryButton,
+  Option,
+  record,
+  type BlockProps,
+} from "./shared";
 
 type Word = {
   id: string;
@@ -26,15 +34,19 @@ type Payload = {
   pacing?: { words: number; accuracy: number | null; reduced: boolean };
 };
 
-/**
- * Introducing new words — not a test. Show it, hear it, see it in a sentence,
- * then one recognition check so the word enters FSRS with a real first rep.
- */
-export default function NewVocabBlock({ payload, onDone }: BlockProps<Payload>) {
+/** Introducing new words — not a test. */
+export default function NewVocabBlock({
+  payload,
+  onDone,
+}: BlockProps<Payload>) {
   // Index, phase and selection move together when the word changes, so they
   // live in one state object. Splitting them forced a reset effect that
   // rendered the new word in the previous word's phase for one frame.
-  const [s, setS] = useState<{ i: number; phase: "show" | "check"; picked: string | null }>({
+  const [s, setS] = useState<{
+    i: number;
+    phase: "show" | "check";
+    picked: string | null;
+  }>({
     i: 0,
     phase: "show",
     picked: null,
@@ -62,12 +74,20 @@ export default function NewVocabBlock({ payload, onDone }: BlockProps<Payload>) 
     .sort();
 
   const isNoun = w.pos === "noun" && w.article;
-  const forms = w.forms_json ? (JSON.parse(w.forms_json) as Record<string, string>) : null;
+  const forms = w.forms_json
+    ? (JSON.parse(w.forms_json) as Record<string, string>)
+    : null;
 
   async function choose(en: string) {
     setS((p) => ({ ...p, picked: en }));
     const correct = en === w.en;
-    await record({ kind: "new-vocab", refId: w.id, correct, answer: en, expected: w.en });
+    await record({
+      kind: "new-vocab",
+      refId: w.id,
+      correct,
+      answer: en,
+      expected: w.en,
+    });
     // Advance and reset the phase in one transition.
     setTimeout(
       () => setS((p) => ({ i: p.i + 1, phase: "show", picked: null })),
@@ -88,9 +108,9 @@ export default function NewVocabBlock({ payload, onDone }: BlockProps<Payload>) 
           someone less and letting them think it's normal is a small lie. */}
       {payload.pacing?.reduced && s.i === 0 && (
         <p className="border-line-sub bg-raised text-secondary mx-auto mb-4 max-w-[52ch] rounded-xl border px-4 py-3 text-center text-[13px] leading-relaxed">
-          Heute nur {total} statt 12 neue Wörter. Deine Wiederholungen der letzten
-          Woche lagen bei {payload.pacing.accuracy}% — erst das Alte festigen, dann
-          Neues drauflegen.
+          Heute nur {total} statt 12 neue Wörter. Deine Wiederholungen der
+          letzten Woche lagen bei {payload.pacing.accuracy}% — erst das Alte
+          festigen, dann Neues drauflegen.
         </p>
       )}
 
@@ -101,7 +121,9 @@ export default function NewVocabBlock({ payload, onDone }: BlockProps<Payload>) 
 
         {phase === "show" && (
           <>
-            <p className="font-serif text-secondary mt-3 text-center text-[24px]">{w.en}</p>
+            <p className="font-serif text-secondary mt-3 text-center text-[24px]">
+              {w.en}
+            </p>
             {isNoun && w.plural && (
               <p className="font-mono text-muted mt-1.5 text-center text-[13px]">
                 Plural: <ArticleWord article="die" /> {w.plural}
@@ -113,7 +135,8 @@ export default function NewVocabBlock({ payload, onDone }: BlockProps<Payload>) 
                 onClick={play}
                 className="border-line text-secondary hover:border-line-strong hover:text-fg inline-flex items-center gap-2.5 rounded-full border px-5 py-2.5 text-[14px] transition-colors"
               >
-                <span className="text-[10px]">▶</span> Audio <span className="kbd">R</span>
+                <span className="text-[10px]">▶</span> Audio{" "}
+                <span className="kbd">R</span>
               </button>
             </div>
 
@@ -142,7 +165,9 @@ export default function NewVocabBlock({ payload, onDone }: BlockProps<Payload>) 
             )}
 
             <div className="mt-8">
-              <PrimaryButton onClick={() => setS((p) => ({ ...p, phase: "check" }))}>
+              <PrimaryButton
+                onClick={() => setS((p) => ({ ...p, phase: "check" }))}
+              >
                 Verstanden
               </PrimaryButton>
             </div>

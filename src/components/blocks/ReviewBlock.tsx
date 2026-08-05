@@ -31,27 +31,13 @@ type Payload = {
   backlog: number;
   gap?: number;
   /**
-   * Audio first: hear the word, answer, then see it.
-   *
-   * Listening is the skill that lags for almost every learner, because reading
-   * German quietly rehearses spelling rather than sound. Same cards, same
-   * grading, same schedule — only the order of the senses changes. The session
-   * rotates it in every third day rather than making it a setting.
+   * Audio first: hear the word, answer, then see it. Same cards, same grading, same schedule —
+   * only the order of the senses changes.
    */
   audioFirst?: boolean;
 };
 
-/**
- * The review card.
- *
- * Seen ~60 times a day for six months, so rhythm beats decoration:
- *  - the hand never leaves 1–4; the mouse is never required
- *  - "Gut" is the only filled button and the widest — it's the common answer,
- *    so it's findable without reading
- *  - grade is carried by position, size, fill and the printed number key.
- *    Colour is deliberately NOT one of the carriers.
- *  - Z undoes the last grade for 5 s, because a mis-hit at speed is inevitable
- */
+/** The review card. */
 const GRADES = [
   { g: 1, label: "Nochmal", hint: "keine Ahnung", grow: "0.86fr" },
   { g: 2, label: "Schwer", hint: "langsam", grow: "0.94fr" },
@@ -69,18 +55,7 @@ export default function ReviewBlock({ payload, onDone }: BlockProps<Payload>) {
   const [undo, setUndo] = useState<{ card: DueCard } | null>(null);
   const undoTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  /**
-   * The grade waiting out its undo window.
-   *
-   * "Z zurücknehmen (5 s)" used to undo nothing that mattered. The grade was
-   * POSTed the instant the button was pressed, so FSRS had already moved the
-   * card and logged the attempt; taking it back only put the card at the front
-   * of the local queue, and answering it again graded it a SECOND time — two
-   * attempt rows, two steps of the curve, from one card.
-   *
-   * So the send waits instead. Nothing is sent until the window closes, which
-   * is the only reading of "zurücknehmen" that is true.
-   */
+  /** The grade waiting out its undo window. */
   const held = useRef<{ cardId: number; grade: number } | null>(null);
 
   const commit = useCallback(() => {
@@ -97,14 +72,8 @@ export default function ReviewBlock({ payload, onDone }: BlockProps<Payload>) {
   const card = queue[0];
 
   /*
-   * Minutes left IN THIS BLOCK, from cards remaining — the number people
-   * actually want, which a segment rail alone never answers.
-   *
-   * The label has to say which "longer" it means. This block takes the whole
-   * screen and replaces the session chrome, which shows "72 min übrig" for the
-   * whole session; landing here and reading "≈ 2 min übrig" in the same corner,
-   * in the same words, reads as the session having collapsed to two minutes.
-   * Both numbers were right and one of them was lying by placement.
+   * Minutes left IN THIS BLOCK, from cards remaining — the number people actually want, which a
+   * segment rail alone never answers.
    */
   const minutesLeft = Math.max(1, Math.round((queue.length * 9) / 60));
 
@@ -116,26 +85,7 @@ export default function ReviewBlock({ payload, onDone }: BlockProps<Payload>) {
     play();
   }, [play]);
 
-  /**
-   * The last card had no undo window.
-   *
-   * Grading it emptied the queue, the effect below fired `onDone()` in the same
-   * tick, the block unmounted and the grade committed — so "Z zurücknehmen
-   * (5 s)", printed in the footer of every review, was true for every card
-   * except the one people most often fumble: the last one, when you are already
-   * reaching for whatever comes next.
-   *
-   * Delaying `onDone()` by five seconds would have fixed it by putting a dead
-   * pause at the end of every review block, which is a worse app. So the block
-   * ends on a card instead of on nothing: what you just graded, still takeable
-   * back, with Weiter under it. Press it and you leave immediately; ignore it
-   * and the window closes on its own and the session moves on.
-   *
-   * Derived, not stored. Setting it in an effect would be a setState cascade,
-   * and `undo` is already the exact state that means "a grade is still
-   * reversible" — when the timer clears it, this flips false and the effect
-   * advances.
-   */
+  /** The last card had no undo window. */
   const closing = queue.length === 0 && undo !== null;
 
   useEffect(() => {
@@ -267,7 +217,8 @@ export default function ReviewBlock({ payload, onDone }: BlockProps<Payload>) {
           </div>
 
           <p className="text-muted max-w-[44ch] text-[12.5px] leading-relaxed">
-            Die Bewertung ist noch nicht abgeschickt. Sie geht raus, sobald du weitergehst.
+            Die Bewertung ist noch nicht abgeschickt. Sie geht raus, sobald du
+            weitergehst.
           </p>
         </div>
       </main>
@@ -312,14 +263,19 @@ export default function ReviewBlock({ payload, onDone }: BlockProps<Payload>) {
             screen indistinguishable from a normal day, being let off lightly
             with no explanation of why. */}
         <div className="font-mono text-muted text-center text-[12.5px]">
-          {payload.gap ? "Wiedereinstieg" : audioFirst ? "Nur Hören" : "Aufwärmen"} · Karte{" "}
-          {done + 1} von {total}
+          {payload.gap
+            ? "Wiedereinstieg"
+            : audioFirst
+              ? "Nur Hören"
+              : "Aufwärmen"}{" "}
+          · Karte {done + 1} von {total}
           {payload.capped && ` · ${payload.backlog} fällig, Rest morgen`}
         </div>
         {payload.gap ? (
           <p className="text-secondary mx-auto max-w-[52ch] text-center text-[13.5px] leading-relaxed">
-            {payload.gap} Tage Pause, {payload.backlog} Karten fällig. Heute nur die
-            wichtigsten {total} — der Rest kommt zurück, wenn du wieder drin bist.
+            {payload.gap} Tage Pause, {payload.backlog} Karten fällig. Heute nur
+            die wichtigsten {total} — der Rest kommt zurück, wenn du wieder drin
+            bist.
           </p>
         ) : null}
       </div>
@@ -339,12 +295,16 @@ export default function ReviewBlock({ payload, onDone }: BlockProps<Payload>) {
             >
               ▶
             </button>
-            <p className="font-serif text-secondary text-[22px] md:text-[26px]">Was hörst du?</p>
+            <p className="font-serif text-secondary text-[22px] md:text-[26px]">
+              Was hörst du?
+            </p>
           </>
         ) : (
           <div
             className={`font-serif break-de leading-[1.05] font-semibold tracking-[-0.015em] ${
-              revealed ? "text-[34px] md:text-[64px]" : "text-[38px] md:text-[76px]"
+              revealed
+                ? "text-[34px] md:text-[64px]"
+                : "text-[38px] md:text-[76px]"
             }`}
           >
             <Noun article={isNoun ? card.article : null}>{card.lemma}</Noun>
@@ -463,7 +423,11 @@ export default function ReviewBlock({ payload, onDone }: BlockProps<Payload>) {
           <button
             onClick={takeBack}
             disabled={!undo}
-            className={undo ? "text-secondary hover:text-fg" : "text-muted/40 cursor-default"}
+            className={
+              undo
+                ? "text-secondary hover:text-fg"
+                : "text-muted/40 cursor-default"
+            }
           >
             Z&nbsp;&nbsp;zurücknehmen{undo ? " (5 s)" : ""}
           </button>

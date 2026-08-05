@@ -3,13 +3,7 @@ import NewsList from "./NewsList";
 
 export const dynamic = "force-dynamic";
 
-/**
- * Nachrichten — the input that never runs out.
- *
- * Every other source in the app is finite and was written for a syllabus. This
- * one is today's actual news, spoken slowly by Deutsche Welle for learners,
- * and it will still be new in month six.
- */
+/** Nachrichten — the input that never runs out. */
 export default function NewsPage() {
   return (
     <Page

@@ -18,16 +18,22 @@ type Payload = {
 };
 
 type Turn = { role: "user" | "assistant"; content: string };
-type Correction = { original: string; corrected: string; why: string; tag: string };
+type Correction = {
+  original: string;
+  corrected: string;
+  why: string;
+  tag: string;
+};
 
 /**
- * Conversation — the one block that wants the network.
- *
- * Offline it falls back to the unit's scripted dialogue, styled identically so
- * it reads as a variant rather than a downgrade. Corrections appear only at the
- * end: interrupting a beginner mid-sentence is how people stop speaking.
+ * Conversation — the one block that wants the network. Corrections appear only at the end:
+ * interrupting a beginner mid-sentence is how people stop speaking.
  */
-export default function ConversationBlock({ payload, onDone, onSkip }: BlockProps<Payload>) {
+export default function ConversationBlock({
+  payload,
+  onDone,
+  onSkip,
+}: BlockProps<Payload>) {
   const [mode, setMode] = useState<"probing" | "live" | "scripted">("probing");
   const [turns, setTurns] = useState<Turn[]>([]);
   const [input, setInput] = useState("");
@@ -40,18 +46,7 @@ export default function ConversationBlock({ payload, onDone, onSkip }: BlockProp
   >([]);
   const [corrections, setCorrections] = useState<Correction[] | null>(null);
   const [listening, setListening] = useState(false);
-  /**
-   * Hands-free mode.
-   *
-   * The typed conversation is practice for writing; the goal is talking to a
-   * person. Everything this needs already existed — listenOnce(), speak(), and
-   * the vocabulary-constrained tutor — so voice mode is the loop that joins
-   * them: they speak, it listens, it replies aloud, repeat.
-   *
-   * Off by default. Speech recognition needs a microphone permission and a
-   * quiet room, neither of which can be assumed, and the typed path stays
-   * fully functional so nothing depends on it.
-   */
+  /** Hands-free mode. */
   const [voice, setVoice] = useState(false);
   const [voiceError, setVoiceError] = useState<string | null>(null);
   const endRef = useRef<HTMLDivElement>(null);
@@ -71,7 +66,11 @@ export default function ConversationBlock({ payload, onDone, onSkip }: BlockProp
         const res = await fetch("/api/chat", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ action: "say", unitId: payload.unitId, history: [] }),
+          body: JSON.stringify({
+            action: "say",
+            unitId: payload.unitId,
+            history: [],
+          }),
         });
         const data = await res.json();
         if (cancelled) return;
@@ -117,7 +116,11 @@ export default function ConversationBlock({ payload, onDone, onSkip }: BlockProp
       const res = await fetch("/api/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ action: "say", unitId: payload.unitId, history }),
+        body: JSON.stringify({
+          action: "say",
+          unitId: payload.unitId,
+          history,
+        }),
       });
       const data = await res.json();
       if (data.reply) {
@@ -146,7 +149,11 @@ export default function ConversationBlock({ payload, onDone, onSkip }: BlockProp
              the attempt rows, and without it every conversation was logged
              against no scenario at all. /ueben's "✓ geführt" reads exactly
              that column and was therefore never true for anyone. */
-          body: JSON.stringify({ action: "review", unitId: payload.unitId, history: turns }),
+          body: JSON.stringify({
+            action: "review",
+            unitId: payload.unitId,
+            history: turns,
+          }),
         });
         const data = await res.json();
         setCorrections(data.corrections ?? []);
@@ -173,11 +180,8 @@ export default function ConversationBlock({ payload, onDone, onSkip }: BlockProp
   }
 
   /**
-   * One hands-free turn: listen, send, and the reply is spoken by send().
-   *
-   * Deliberately turn-by-turn rather than a self-restarting loop. Continuous
-   * recognition re-triggers on the tutor's own voice coming out of the
-   * speakers, and an infinite conversation with itself is worse than a tap.
+   * One hands-free turn: listen, send, and the reply is spoken by send(). Deliberately
+   * turn-by-turn rather than a self-restarting loop.
    */
   async function voiceTurn() {
     if (thinking || listening) return;
@@ -201,17 +205,12 @@ export default function ConversationBlock({ payload, onDone, onSkip }: BlockProp
     }
   }
 
-  /**
-   * The scripted conversation logs too.
-   *
-   * Only the live path recorded anything, and the live path needs an API key —
-   * so with no key, which is the state this app ships in, every conversation
-   * anyone had left no trace at all. /ueben's "N geführt" stayed at 0 forever,
-   * the same feature and the same column that was fixed for the live path an
-   * hour earlier. Half a fix looks exactly like a whole one from the outside.
-   */
+  /** The scripted conversation logs too. */
   function pick(o: DialogueOption) {
-    setScriptLog((l) => [...l, { who: "you", text: o.say, why: o.ok ? undefined : o.why }]);
+    setScriptLog((l) => [
+      ...l,
+      { who: "you", text: o.say, why: o.ok ? undefined : o.why },
+    ]);
     if (!o.ok) {
       scriptOk.current = false;
       const right = dialogue[step]?.options.find((x) => x.ok);
@@ -227,7 +226,11 @@ export default function ConversationBlock({ payload, onDone, onSkip }: BlockProp
       // One row for a conversation with nothing wrong in it, so that talking
       // well is recorded rather than only talking badly.
       if (scriptOk.current) {
-        void record({ kind: "conversation", refId: payload.unitId, correct: true });
+        void record({
+          kind: "conversation",
+          refId: payload.unitId,
+          correct: true,
+        });
       }
       setTimeout(onDone, 1200);
       return;
@@ -252,12 +255,20 @@ export default function ConversationBlock({ payload, onDone, onSkip }: BlockProp
           ) : (
             <div className="space-y-3.5">
               <p className="font-mono text-muted text-[11.5px] tracking-[0.14em] uppercase">
-                {corrections.length} {corrections.length === 1 ? "Korrektur" : "Korrekturen"}
+                {corrections.length}{" "}
+                {corrections.length === 1 ? "Korrektur" : "Korrekturen"}
               </p>
               {corrections.map((c, n) => (
-                <div key={n} className="bg-bg border-line-sub rounded-xl border p-4">
-                  <p className="font-serif text-das/80 text-[16px] line-through">{c.original}</p>
-                  <p className="font-serif text-fg mt-1 text-[18px]">{c.corrected}</p>
+                <div
+                  key={n}
+                  className="bg-bg border-line-sub rounded-xl border p-4"
+                >
+                  <p className="font-serif text-das/80 text-[16px] line-through">
+                    {c.original}
+                  </p>
+                  <p className="font-serif text-fg mt-1 text-[18px]">
+                    {c.corrected}
+                  </p>
                   <p className="text-muted mt-2 text-[14px]">{c.why}</p>
                 </div>
               ))}
@@ -277,14 +288,7 @@ export default function ConversationBlock({ payload, onDone, onSkip }: BlockProp
   const scripted = mode === "scripted";
 
   /**
-   * Scripted mode with no script.
-   *
-   * The six Alltag scenarios pass `dialogue: null` on purpose — they are meant
-   * to be talked through, not clicked. When the model is unreachable the block
-   * fell back to scripted mode anyway and rendered the banner "Offline-Variante
-   * — vorbereiteter Dialog" above an empty log with zero buttons. There was no
-   * way forward at all: no options, no skip, nothing but the browser's back
-   * button. Spec §17 says the session never dead-ends, and this was the one
+   * Scripted mode with no script. Spec §17 says the session never dead-ends, and this was the one
    * screen that did.
    */
   if (scripted && !dialogue.length) {
@@ -294,9 +298,10 @@ export default function ConversationBlock({ payload, onDone, onSkip }: BlockProp
           Gerade kein Gespräch möglich
         </p>
         <p className="text-muted mx-auto mt-3 max-w-[44ch] text-center text-[14px] leading-relaxed">
-          {payload.scenario.role} — dieses Szenario wird gesprochen, es gibt keinen
-          vorbereiteten Dialog dafür. Ohne Netz oder ohne Schlüssel geht es nicht.
-          Die Sätze auf dieser Seite kannst du trotzdem üben; sie liegen auf dem Gerät.
+          {payload.scenario.role} — dieses Szenario wird gesprochen, es gibt
+          keinen vorbereiteten Dialog dafür. Ohne Netz oder ohne Schlüssel geht
+          es nicht. Die Sätze auf dieser Seite kannst du trotzdem üben; sie
+          liegen auf dem Gerät.
         </p>
         <button
           onClick={onDone}
@@ -308,7 +313,13 @@ export default function ConversationBlock({ payload, onDone, onSkip }: BlockProp
     );
   }
 
-  const log = scripted ? scriptLog : turns.map((t) => ({ who: t.role === "user" ? "you" : "them", text: t.content, why: undefined }));
+  const log = scripted
+    ? scriptLog
+    : turns.map((t) => ({
+        who: t.role === "user" ? "you" : "them",
+        text: t.content,
+        why: undefined,
+      }));
 
   return (
     <div>
@@ -326,7 +337,9 @@ export default function ConversationBlock({ payload, onDone, onSkip }: BlockProp
       </Eyebrow>
 
       <Card>
-        <p className="text-muted mb-1 text-center text-[14px]">{payload.scenario.goal}</p>
+        <p className="text-muted mb-1 text-center text-[14px]">
+          {payload.scenario.goal}
+        </p>
         {/* Naming the origin turns "why this again?" into "right, that one" —
             and a scene you half-remember is the one worth redoing. */}
         {payload.from && (
@@ -391,7 +404,9 @@ export default function ConversationBlock({ payload, onDone, onSkip }: BlockProp
                   : "Antippen und auf Deutsch antworten"}
             </p>
 
-            {voiceError && <p className="text-das text-center text-[13px]">{voiceError}</p>}
+            {voiceError && (
+              <p className="text-das text-center text-[13px]">{voiceError}</p>
+            )}
 
             <div className="flex w-full flex-col gap-2 pt-2">
               <button

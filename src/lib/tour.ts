@@ -3,13 +3,8 @@
 import { myKey } from "./who";
 
 /**
- * Has this person seen the tour?
- *
- * localStorage rather than the database, so clearing your browser to see it
- * again works — but keyed by learner, not by browser. The original reasoning
- * ("a property of this browser") assumed each flatmate has their own laptop,
- * and /wer exists precisely because they do not: whoever set the app up
- * dismissed the welcome, and the second person never saw it.
+ * Has this person seen the tour? localStorage rather than the database, so clearing your browser
+ * to see it again works — but keyed by learner, not by browser.
  */
 const BASE = "dm.tour.v1";
 
@@ -30,4 +25,3 @@ export function markTourSeen() {
     /* nothing to do — worst case it shows once more */
   }
 }
-

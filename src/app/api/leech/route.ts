@@ -1,6 +1,13 @@
 ﻿import { NextResponse } from "next/server";
 import { activeUser } from "@/lib/user";
-import { readJson, badRequest, notFound, str, int, unauthorized } from "@/lib/http";
+import {
+  readJson,
+  badRequest,
+  notFound,
+  str,
+  int,
+  unauthorized,
+} from "@/lib/http";
 import { aiAvailable, mnemonicFor, BudgetExceeded } from "@/lib/ai";
 import { recordUsage } from "@/lib/cost";
 import {
@@ -39,24 +46,33 @@ export async function POST(req: Request) {
   const cardId = int(raw.cardId, 1);
   const action = str(raw.action, 20) as Action;
   if (cardId === null || !ACTIONS.includes(action)) {
-    return badRequest(`cardId (positive integer) and action (${ACTIONS.join("|")}) required`);
+    return badRequest(
+      `cardId (positive integer) and action (${ACTIONS.join("|")}) required`,
+    );
   }
 
-  /* Ask for a memory hook. Three tiers like every other generated text: the
-     stored one if anyone has ever asked for this word, then a model call that
-     is written back, then nothing — and "nothing" says so rather than showing
-     an empty box. */
+  /* Ask for a memory hook. */
   if (action === "mnemonic") {
     const w = leechWord(user.id, cardId);
     if (!w) return notFound(`card ${cardId} not found`);
-    if (w.mnemonic) return NextResponse.json({ ok: true, mnemonic: w.mnemonic, source: "cache" });
-    if (!aiAvailable(user.id)) return NextResponse.json({ ok: false, reason: "offline" });
+    if (w.mnemonic)
+      return NextResponse.json({
+        ok: true,
+        mnemonic: w.mnemonic,
+        source: "cache",
+      });
+    if (!aiAvailable(user.id))
+      return NextResponse.json({ ok: false, reason: "offline" });
     try {
       const m = await mnemonicFor(user.id, w);
       recordUsage(user.id, "mnemonic", m.model, m.usage);
       if (!m.result) return NextResponse.json({ ok: false, reason: "empty" });
       storeMnemonic(w.id, m.result);
-      return NextResponse.json({ ok: true, mnemonic: m.result, source: "model" });
+      return NextResponse.json({
+        ok: true,
+        mnemonic: m.result,
+        source: "model",
+      });
     } catch (e) {
       return NextResponse.json({
         ok: false,

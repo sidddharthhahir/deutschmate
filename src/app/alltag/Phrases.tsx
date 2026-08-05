@@ -4,18 +4,7 @@ import { speak } from "@/lib/speech";
 
 export type Line = { de: string; en: string };
 
-/**
- * A list of phrases you can hear.
- *
- * Browser speech synthesis, so it costs nothing and works offline. These
- * sentences are longer than a single word and none of them has a Commons
- * recording, which is the case `speak()` exists for.
- *
- * `hear` lines are read a little slower than `say` lines. The point of the
- * ones you'll be asked is decoding them at all, and an Amt clerk in a hurry is
- * exactly the speed a learner cannot follow — the slow pass comes first, the
- * real thing comes in the roleplay.
- */
+/** A list of phrases you can hear. */
 export default function Phrases({
   lines,
   slow = false,

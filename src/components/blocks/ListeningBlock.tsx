@@ -25,11 +25,12 @@ type Payload = { items: Item[] };
 
 const SPEEDS = [0.75, 1, 1.25];
 
-/**
- * Hear it, type it. Transcript hidden by default — the point is decoding
- * sound, not reading. Runs fully offline.
- */
-export default function ListeningBlock({ payload, onDone, onSkip }: BlockProps<Payload>) {
+/** Hear it, type it. */
+export default function ListeningBlock({
+  payload,
+  onDone,
+  onSkip,
+}: BlockProps<Payload>) {
   const [i, setI] = useState(0);
   const [value, setValue] = useState("");
   const [checked, setChecked] = useState(false);
@@ -62,17 +63,17 @@ export default function ListeningBlock({ payload, onDone, onSkip }: BlockProps<P
   if (!it) return null;
 
   const norm = (s: string) =>
-    s.toLowerCase().replace(/[.,!?;:]/g, "").replace(/\s+/g, " ").trim();
+    s
+      .toLowerCase()
+      .replace(/[.,!?;:]/g, "")
+      .replace(/\s+/g, " ")
+      .trim();
   const correct = norm(value) === norm(it.de);
 
   async function check() {
     setChecked(true);
     setShowText(true);
-    /* Ask for the "why" on a miss. Mishearing a dictation is almost always a
-       grammar or ending problem — dem for den, a missing -st — and the sentence
-       alone does not say which; the learner has to spot the difference and
-       infer the rule. The explanation is cached server-side by (expected,
-       answer), so the same slip is explained once for everyone. */
+    /* Ask for the "why" on a miss. */
     const res = await record({
       kind: "listening",
       refId: it.wordId,
@@ -156,7 +157,9 @@ export default function ListeningBlock({ payload, onDone, onSkip }: BlockProps<P
         )}
 
         {showText && !checked && (
-          <p className="font-serif text-secondary mt-4 text-center text-[18px]">{it.de}</p>
+          <p className="font-serif text-secondary mt-4 text-center text-[18px]">
+            {it.de}
+          </p>
         )}
 
         {checked && (
@@ -178,7 +181,11 @@ export default function ListeningBlock({ payload, onDone, onSkip }: BlockProps<P
             </div>
             <p className="text-muted mt-3 text-center text-[14px]">{it.en}</p>
             <SentenceCredit credit={it.credit} />
-            <Verdict ok={correct} expected={correct ? undefined : it.de} why={why} />
+            <Verdict
+              ok={correct}
+              expected={correct ? undefined : it.de}
+              why={why}
+            />
             <button
               onClick={next}
               className="bg-fg mt-4 w-full rounded-xl py-3.5 font-medium text-[#16211E] transition-colors hover:bg-white"

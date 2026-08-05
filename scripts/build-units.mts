@@ -1,20 +1,7 @@
 /**
- * Build the full 120-unit curriculum.
- *
- *   node scripts/build-units.mts
- *
- * Units are half hand-authored, half derived:
- *
- *   HAND-AUTHORED (data/blueprints-*.json) — title, can-do statements,
- *   roleplay scenario, offline dialogue. The pedagogy.
- *
- *   DERIVED (from the database) — the word list and the grammar link.
- *   Words are taken in frequency order within a level, which is also thematic
- *   order because the source lists were written that way. Deriving them means
- *   a unit can never reference a word that doesn't exist, and the split stays
- *   correct automatically when vocabulary is added.
- *
- * Writes data/units-generated.json, which seed.mts picks up.
+ * Build the full 120-unit curriculum. node scripts/build-units.mts Units are half hand-authored,
+ * half derived: HAND-AUTHORED (data/blueprints-*.json) — title, can-do statements, roleplay
+ * scenario, offline dialogue.
  */
 import { DatabaseSync } from "node:sqlite";
 import { readFileSync, writeFileSync, existsSync } from "node:fs";
@@ -47,18 +34,24 @@ const BLUEPRINT_FILES = [
 
 const blueprints: Blueprint[] = BLUEPRINT_FILES.filter((f) =>
   existsSync(path.join(ROOT, f)),
-).flatMap((f) => JSON.parse(readFileSync(path.join(ROOT, f), "utf8")) as Blueprint[]);
+).flatMap(
+  (f) => JSON.parse(readFileSync(path.join(ROOT, f), "utf8")) as Blueprint[],
+);
 
 console.log(`${blueprints.length} blueprints loaded`);
 
 // Units 1-12 of A1.1 are hand-written in data/units-a1-1.json with their own
 // curated word sets. Don't regenerate them; start A1.1 at 13.
 const HANDWRITTEN = new Set(
-  (JSON.parse(readFileSync(path.join(ROOT, "data/units-a1-1.json"), "utf8")) as {
-    id: string;
-    word_ids?: string[];
-    words: string[];
-  }[]).flatMap((u) => u.words),
+  (
+    JSON.parse(
+      readFileSync(path.join(ROOT, "data/units-a1-1.json"), "utf8"),
+    ) as {
+      id: string;
+      word_ids?: string[];
+      words: string[];
+    }[]
+  ).flatMap((u) => u.words),
 );
 
 type Word = { id: string; level: string };
@@ -68,13 +61,8 @@ const out: unknown[] = [];
 let missingBlueprints = 0;
 
 /**
- * ONE global pool, ordered by level then frequency, minus anything the
- * hand-written A1.1 units already teach.
- *
- * Per-level pools don't work: the 12 hand-written units consume 133 of the 145
- * A1.1 words, leaving 12 for the remaining 8 slots — nearly empty units. A
- * single ordered pool lets a level that runs dry borrow the opening words of
- * the next one, which is exactly what a real syllabus does at a level boundary.
+ * ONE global pool, ordered by level then frequency, minus anything the hand-written A1.1 units
+ * already teach.
  */
 const LEVEL_ORDER = Object.fromEntries(LEVELS.map((l, i) => [l, i]));
 const globalPool = (
@@ -106,7 +94,9 @@ for (const level of LEVELS) {
 
   // Space the grammar points evenly across the level's units rather than
   // front-loading them — a learner should not meet six new rules in week one.
-  const grammarEvery = grammar.length ? Math.max(1, Math.floor(slots / grammar.length)) : 0;
+  const grammarEvery = grammar.length
+    ? Math.max(1, Math.floor(slots / grammar.length))
+    : 0;
 
   let grammarUsed = 0;
   let placedHere = 0;
@@ -121,13 +111,19 @@ for (const level of LEVELS) {
     // Last generated unit sweeps up any remainder so no word is left unplaced.
     const isLast = out.length === totalSlots - 1;
     const take = isLast ? globalPool.length - globalCursor : perUnitGlobal;
-    const words = globalPool.slice(globalCursor, globalCursor + take).map((w) => w.id);
+    const words = globalPool
+      .slice(globalCursor, globalCursor + take)
+      .map((w) => w.id);
     globalCursor += take;
     placedHere += words.length;
 
     const idx = ord - firstOrd;
     let grammarId: string | null = null;
-    if (grammarEvery && idx % grammarEvery === 0 && grammarUsed < grammar.length) {
+    if (
+      grammarEvery &&
+      idx % grammarEvery === 0 &&
+      grammarUsed < grammar.length
+    ) {
       grammarId = grammar[grammarUsed].id;
       grammarUsed++;
     }
@@ -161,11 +157,7 @@ for (const level of LEVELS) {
   );
 }
 
-/**
- * Offline fallback when a blueprint doesn't ship a hand-written dialogue.
- * Deliberately minimal: one exchange built from the scenario itself, so the
- * conversation block always has something rather than dead-ending (spec §17).
- */
+/** Offline fallback when a blueprint doesn't ship a hand-written dialogue. */
 function defaultDialogue(bp: Blueprint) {
   return [
     {
@@ -188,4 +180,5 @@ writeFileSync(
 );
 
 console.log(`\nOK ${out.length} units -> data/units-generated.json`);
-if (missingBlueprints) console.log(`  ${missingBlueprints} slots have no blueprint yet`);
+if (missingBlueprints)
+  console.log(`  ${missingBlueprints} slots have no blueprint yet`);

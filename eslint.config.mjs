@@ -14,11 +14,7 @@ const eslintConfig = defineConfig([
     "next-env.d.ts",
   ]),
   {
-    /* The tests read API responses as the wire actually delivers them. Giving
-       those reads a declared type would mean asserting the shape the code
-       claims, which is the thing under test — a test that type-checks against
-       the app's own types cannot catch the app changing them. So `any` is the
-       honest annotation here, and only here. */
+    /* The tests read API responses as the wire actually delivers them. */
     files: ["tests/**/*.mts"],
     rules: { "@typescript-eslint/no-explicit-any": "off" },
   },

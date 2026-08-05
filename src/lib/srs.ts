@@ -16,15 +16,7 @@ import { classify } from "./errors";
  */
 const scheduler = fsrs(generatorParameters({ enable_fuzz: true }));
 
-/**
- * SQLite has no date type — dates are strings, compared as strings. An ISO
- * timestamp ("2026-08-03T12:45:00.000Z") does NOT string-compare correctly
- * against datetime('now') ("2026-08-03 12:45:00"): "T" > " ", so every card
- * looks permanently in the future and nothing is ever due.
- *
- * Store SQLite's own UTC format everywhere, and wrap reads in datetime() so
- * any legacy ISO rows still parse.
- */
+/** SQLite has no date type — dates are strings, compared as strings. */
 export function toSqlDate(d: Date): string {
   return d.toISOString().replace("T", " ").slice(0, 19);
 }
@@ -62,27 +54,13 @@ function toFsrs(r: DbCard): FsrsCard {
   };
 }
 
-/**
- * Put a word into the deck at the moment it is introduced, with a real rep.
- *
- * A card is created here and nowhere automatic: "has a card" means "you have
- * met this word", which is what the deck counts on Fortschritt claim and what
- * the AI's vocabulary whitelist assumes.
- *
- * The app used to pre-create a card for every word of the learner's level at
- * signup, all due immediately. The result was that a brand-new learner's very
- * first block was sixty review cards for words the app had never taught them —
- * and sixty "Nochmal" presses poisoning FSRS before the first lesson. Words now
- * enter the deck when they are taught (here) or when the learner adds one by
- * hand from Wortschatz.
- */
-export function introduceWord(userId: string, wordId: string, correct: boolean) {
-  // Insert, read back and grade as one unit. Four statements that are only
-  // correct together: without a transaction, a throw between them leaves a card
-  // with no first rep and no attempt row, and the guard below — decided from a
-  // row a second process could change first — lets the word be introduced
-  // twice. tx() is reentrant, so gradeCard's own transaction joins this one
-  // rather than throwing.
+/** Put a word into the deck at the moment it is introduced, with a real rep. */
+export function introduceWord(
+  userId: string,
+  wordId: string,
+  correct: boolean,
+) {
+  // Insert, read back and grade as one unit.
   return tx(() => {
     const empty = createEmptyCard(new Date());
     run(
@@ -124,13 +102,7 @@ export type DueCard = {
   intervals: Record<number, string>;
 };
 
-/**
- * Due cards, capped at `limit`.
- *
- * Spec §15: the cap is not a nicety. Come back from a five-day trip to 300 due
- * cards and you quit. Order by how overdue a card is relative to its interval,
- * so the most-forgotten surface first rather than simply the oldest.
- */
+/** Due cards, capped at `limit`. */
 export function dueCards(userId: string, limit = 60): DueCard[] {
   // Pull the FSRS state alongside the word so each card can be projected
   // server-side — the client never needs to know how scheduling works.
@@ -177,44 +149,20 @@ export function dueCount(userId: string): number {
   );
 }
 
-/**
- * Apply a grade, persist the new schedule, and log the attempt.
- *
- * `log` carries the learner's actual text when the card type has one (cloze).
- * Without it the attempt row stores only the grade, and the error tagger has
- * nothing to classify — so a typed gap answer would never reach the Fix block.
- */
+/** Apply a grade, persist the new schedule, and log the attempt. */
 export function gradeCard(
   userId: string,
   cardId: number,
   grade: Grade,
   log?: { answer?: string; expected?: string },
 ) {
-  /*
-   * The read is INSIDE the transaction, and it was not.
-   *
-   * The ownership check and the FSRS state were read first, `scheduler.next()`
-   * computed from that snapshot, and only then did the write begin.
-   *
-   * Be precise about what that did and did not cost, because it is easy to
-   * oversell. This function is synchronous from top to bottom and so is
-   * `node:sqlite`, so within ONE Node process nothing can run between the read
-   * and the write — two grades cannot interleave here today. The gap matters
-   * for two other reasons:
-   *
-   *   - Two processes against one database file. One `next start` today; a
-   *     second instance, a cron script or a worker sharing the volume is an
-   *     ordinary thing to add, and then the read-then-write really is a
-   *     lost update with no error anywhere.
-   *   - The moment anything in this function awaits. An `await` between the
-   *     SELECT and the UPDATE would open the hole silently, in a diff that
-   *     looked like it was about something else.
-   *
-   * tx() is BEGIN IMMEDIATE, so a second writer waits for the first to commit
-   * and then reads what it actually left behind.
-   */
+  /* The read is INSIDE the transaction, and it was not. */
   return tx(() => {
-    const row = get<DbCard>("SELECT * FROM card WHERE id = ? AND user_id = ?", cardId, userId);
+    const row = get<DbCard>(
+      "SELECT * FROM card WHERE id = ? AND user_id = ?",
+      cardId,
+      userId,
+    );
     if (!row) throw new Error(`card ${cardId} not found for user ${userId}`);
 
     const now = new Date();
@@ -234,10 +182,7 @@ export function gradeCard(
       card.state,
       toSqlDate(now),
       cardId,
-      /* Scoped, though the SELECT above already proved ownership. One of two
-         statements in the app that touched a per-user table without it; both
-         were safe by argument rather than by construction, and an argument is
-         one refactor from being wrong. */
+      /* Scoped, though the SELECT above already proved ownership. */
       userId,
     );
     // Cloze grades are logged under their own kind. Folding them into 'review'
@@ -245,7 +190,9 @@ export function gradeCard(
     // with a different exercise — two skills, two rows.
     const correct = grade === Rating.Again ? 0 : 1;
     const tags =
-      !correct && log?.expected && log?.answer ? classify(log.expected, log.answer) : [];
+      !correct && log?.expected && log?.answer
+        ? classify(log.expected, log.answer)
+        : [];
     run(
       `INSERT INTO attempt (user_id, kind, ref_id, correct, user_answer, expected, error_tags_json)
        VALUES (?, ?, ?, ?, ?, ?, ?)`,
@@ -267,13 +214,7 @@ export function gradeCard(
   });
 }
 
-/**
- * What each button would cost, computed before you answer.
- *
- * Shown on the grade buttons so the choice is informed rather than a guess:
- * "Gut → 4 d" tells you what you're committing to. Anki does this and learners
- * calibrate noticeably faster with it.
- */
+/** What each button would cost, computed before you answer. */
 export function previewIntervals(row: FsrsFields): Record<number, string> {
   const now = new Date();
   const base = toFsrs(row as DbCard);

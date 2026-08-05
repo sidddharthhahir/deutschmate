@@ -2,22 +2,20 @@ import { NextResponse } from "next/server";
 import Anthropic from "@anthropic-ai/sdk";
 import { activeUser } from "@/lib/user";
 import { readJson, badRequest, unauthorized, str } from "@/lib/http";
-import { clearApiKey, keyState, looksLikeKey, setApiKey, setBudget } from "@/lib/apikey";
+import {
+  clearApiKey,
+  keyState,
+  looksLikeKey,
+  setApiKey,
+  setBudget,
+} from "@/lib/apikey";
 import { secretsAvailable } from "@/lib/secrets";
 import { contributions, forgetContributions } from "@/lib/shared-cache";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-/**
- * The learner's own API key, and their own spend cap.
- *
- * THE KEY IS NEVER RETURNED. Not here, not anywhere. The only thing this route
- * will say about a stored key is its last four characters and when it was
- * added, which is enough to answer "did I save it, and which one" and useless
- * to anybody else. A settings page that can show you your key is a settings
- * page that can show it to whoever borrows your laptop.
- */
+/** The learner's own API key, and their own spend cap. THE KEY IS NEVER RETURNED. */
 export async function POST(req: Request) {
   const raw = await readJson(req);
   const user = await activeUser(req, raw);
@@ -34,7 +32,9 @@ export async function POST(req: Request) {
     }
     const key = str(raw.key, 300);
     if (!looksLikeKey(key)) {
-      return badRequest("that does not look like an Anthropic key (they start sk-ant-…)");
+      return badRequest(
+        "that does not look like an Anthropic key (they start sk-ant-…)",
+      );
     }
 
     /* Verified before it is stored, with a call that costs nothing: listing
@@ -49,7 +49,9 @@ export async function POST(req: Request) {
     } catch (e) {
       const status = (e as { status?: number })?.status;
       if (status === 401 || status === 403) {
-        return badRequest("Anthropic rejected that key — check it was copied whole");
+        return badRequest(
+          "Anthropic rejected that key — check it was copied whole",
+        );
       }
       /* Anything else is this server's problem, not the key's: no network, a
          rate limit, an outage. Store it and say it could not be checked, which
@@ -58,7 +60,12 @@ export async function POST(req: Request) {
     }
 
     if (!setApiKey(user.id, key)) return badRequest("could not store that key");
-    return NextResponse.json({ ok: true, verified, why, key: keyState(user.id) });
+    return NextResponse.json({
+      ok: true,
+      verified,
+      why,
+      key: keyState(user.id),
+    });
   }
 
   if (action === "key:remove") {
@@ -78,30 +85,24 @@ export async function POST(req: Request) {
     }
     const n = Number(value);
     if (!Number.isFinite(n) || n < 0 || n > 1000) {
-      return badRequest("a budget between 0 and 1000 dollars, or empty for the default");
+      return badRequest(
+        "a budget between 0 and 1000 dollars, or empty for the default",
+      );
     }
     setBudget(user.id, n);
     return NextResponse.json({ ok: true });
   }
 
   // ------------------------------------------------------- the cache
-  /*
-   * Taking your text back out.
-   *
-   * "private" deletes the explanations of German you pasted, which only you
-   * could read anyway — the ones most likely to be a letter you did not think
-   * of as data. "all" also withdraws what you contributed to the shared pool:
-   * explanations of the app's own sentences and of mistakes, which other
-   * accounts here have been reading for free. That makes the app poorer for
-   * everyone and it is still your call, because your key paid for it.
-   *
-   * Prebuilt rows are never in scope. They shipped with the app and the offline
-   * explanation tier depends on them.
-   */
+  /* Taking your text back out. */
   if (action === "cache:forget") {
     const scope = str(raw.scope, 10) === "all" ? "all" : "private";
     const removed = forgetContributions(user.id, scope);
-    return NextResponse.json({ ok: true, removed, cache: contributions(user.id) });
+    return NextResponse.json({
+      ok: true,
+      removed,
+      cache: contributions(user.id),
+    });
   }
 
   return badRequest("unknown action");

@@ -1,33 +1,6 @@
 import nodemailer from "nodemailer";
 
-/**
- * Sending email, behind one function.
- *
- * `lib/auth.ts` has always had a `deliver()` seam and this is what drops into
- * it. Nothing above it knows a provider exists.
- *
- * THREE TRANSPORTS, CHOSEN BY CONFIG, DEFAULTING TO THE ONE THAT NEEDS NOTHING
- *
- *   console   the server terminal. The default, and still the right answer for
- *             one person on a laptop: no account, no domain, no network. The
- *             repo's "clone and run" promise (spec §17) depends on this staying
- *             the default rather than becoming a setup step.
- *   smtp      any provider, including a company mailbox. Almost certainly what
- *             a @firmway.eu address wants.
- *   resend    an HTTP API, for when you have no SMTP credentials to hand.
- *
- * WHY NODEMAILER AND NOT A HAND-ROLLED SMTP CLIENT
- *
- * Node has no SMTP client, and the temptation was to write one over node:net —
- * it is only a few commands. The parts that go wrong are the parts that fail
- * *silently*: STARTTLS upgrade, AUTH mechanism negotiation, RFC 2047 encoding
- * of a subject with an umlaut in it, dot-stuffing a body line that begins with
- * a period, CRLF discipline. Every one produces mail that either vanishes or
- * arrives mangled, and the app would report success. That is the exact failure
- * shape this codebase keeps deleting, so: one dependency.
- *
- * Resend needs no dependency at all — it is one fetch — so it does not get one.
- */
+/** Sending email, behind one function. */
 
 export type MailTransport = "console" | "smtp" | "resend";
 
@@ -42,17 +15,11 @@ export type SendResult = { ok: boolean; via: MailTransport; error?: string };
 
 const str = (name: string): string => (process.env[name] ?? "").trim();
 
-/**
- * Which transport is configured.
- *
- * Explicit `DEUTSCHMATE_MAIL` wins. Otherwise credentials decide, so that
- * filling in SMTP_HOST is enough and there is no second switch to forget —
- * a switch you can set without the credentials, or credentials without the
- * switch, is two ways to have mail silently not send.
- */
+/** Which transport is configured. */
 export function transport(): MailTransport {
   const explicit = str("DEUTSCHMATE_MAIL").toLowerCase();
-  if (explicit === "smtp" || explicit === "resend" || explicit === "console") return explicit;
+  if (explicit === "smtp" || explicit === "resend" || explicit === "console")
+    return explicit;
   if (str("SMTP_HOST")) return "smtp";
   if (str("RESEND_API_KEY")) return "resend";
   return "console";
@@ -70,13 +37,8 @@ export function fromAddress(): string {
 }
 
 /**
- * Providers that silently rewrite a From they did not authenticate.
- *
- * Gmail and Microsoft 365 do not reject a mismatched From — they replace it
- * with the account you logged in as. So the mail arrives, the app reports
- * success, and the address the learner sees is not the one configured. Nothing
- * anywhere says why. Worth one check, because the fix is one line and the
- * symptom is "my colleague got an email from a stranger".
+ * Providers that silently rewrite a From they did not authenticate. Gmail and Microsoft 365 do not
+ * reject a mismatched From — they replace it with the account you logged in as.
  */
 export function fromWillBeRewritten(): string | null {
   const host = str("SMTP_HOST").toLowerCase();
@@ -95,7 +57,10 @@ export function mailReady(): { ok: boolean; why?: string } {
   const t = transport();
   if (t === "console") return { ok: true };
   if (!str("DEUTSCHMATE_MAIL_FROM")) {
-    return { ok: false, why: "DEUTSCHMATE_MAIL_FROM is unset — a provider will reject the message" };
+    return {
+      ok: false,
+      why: "DEUTSCHMATE_MAIL_FROM is unset — a provider will reject the message",
+    };
   }
   if (t === "smtp") {
     if (!str("SMTP_HOST")) return { ok: false, why: "SMTP_HOST is unset" };
@@ -106,17 +71,15 @@ export function mailReady(): { ok: boolean; why?: string } {
     }
     return { ok: true };
   }
-  if (!str("RESEND_API_KEY")) return { ok: false, why: "RESEND_API_KEY is unset" };
+  if (!str("RESEND_API_KEY"))
+    return { ok: false, why: "RESEND_API_KEY is unset" };
   return { ok: true };
 }
 
 /**
- * Port and TLS, which is where SMTP setups usually go wrong.
- *
- * 465 is implicit TLS — the socket is encrypted from the first byte. 587 is
- * STARTTLS: it opens in the clear and upgrades, which nodemailer does when
- * `secure` is false. Getting these the wrong way round produces a hang rather
- * than an error, so the port decides unless SMTP_SECURE says otherwise.
+ * Port and TLS, which is where SMTP setups usually go wrong. 465 is implicit TLS — the socket is
+ * encrypted from the first byte. 587 is STARTTLS: it opens in the clear and upgrades, which
+ * nodemailer does when `secure` is false.
  */
 function smtpOptions() {
   const port = Number(str("SMTP_PORT")) || 587;
@@ -153,7 +116,11 @@ async function sendSmtp(mail: Mail): Promise<SendResult> {
     });
     return { ok: true, via: "smtp" };
   } catch (e) {
-    return { ok: false, via: "smtp", error: e instanceof Error ? e.message : "SMTP failed" };
+    return {
+      ok: false,
+      via: "smtp",
+      error: e instanceof Error ? e.message : "SMTP failed",
+    };
   }
 }
 
@@ -178,22 +145,23 @@ async function sendResend(mail: Mail): Promise<SendResult> {
       /* Resend puts the reason in the body, and it is usually the one that
          matters: an unverified sending domain. Worth surfacing verbatim. */
       const body = await res.text().catch(() => "");
-      return { ok: false, via: "resend", error: `${res.status} ${body.slice(0, 300)}` };
+      return {
+        ok: false,
+        via: "resend",
+        error: `${res.status} ${body.slice(0, 300)}`,
+      };
     }
     return { ok: true, via: "resend" };
   } catch (e) {
-    return { ok: false, via: "resend", error: e instanceof Error ? e.message : "request failed" };
+    return {
+      ok: false,
+      via: "resend",
+      error: e instanceof Error ? e.message : "request failed",
+    };
   }
 }
 
-/**
- * Send, or say why not.
- *
- * Never throws. The caller is a sign-in request whose response must not depend
- * on whether the send worked — see the route for why — so a failure has to come
- * back as a value that can be logged rather than as an exception that changes
- * the response shape.
- */
+/** Send, or say why not. Never throws. */
 export async function sendMail(mail: Mail): Promise<SendResult> {
   const t = transport();
   if (t === "console") return { ok: true, via: "console" };

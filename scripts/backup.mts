@@ -1,25 +1,17 @@
 ﻿/**
- * Back up the database.
- *
- *   node scripts/backup.mts              # snapshot + JSON export
- *   node scripts/backup.mts --list       # what's already saved
- *   node scripts/backup.mts --prune 20   # keep the newest 20 snapshots
- *
- * Six months of learning lives in one file on one laptop. This is the cheapest
- * possible insurance against that file going away, and it exists because the
- * alternative — noticing after the fact — has no fix at all.
- *
- * Two artefacts per run, on purpose:
- *
- *   .db   a byte-exact snapshot, taken through SQLite's own VACUUM INTO so it
- *         is consistent even while the dev server is mid-write. Restoring is
- *         a file copy.
- *   .json the progress half only, in a form that outlives the schema. If the
- *         tables change shape a year from now, the .db may not restore cleanly
- *         but the JSON is still readable — by import.mts, or by a human.
+ * Back up the database. node scripts/backup.mts # snapshot + JSON export node scripts/backup.mts
+ * --list # what's already saved node scripts/backup.mts --prune 20 # keep the newest 20 snapshots
+ * Six months of learning lives in one file on one laptop.
  */
 import { DatabaseSync } from "node:sqlite";
-import { existsSync, mkdirSync, readdirSync, statSync, unlinkSync, writeFileSync } from "node:fs";
+import {
+  existsSync,
+  mkdirSync,
+  readdirSync,
+  statSync,
+  unlinkSync,
+  writeFileSync,
+} from "node:fs";
 import path from "node:path";
 
 const ROOT = process.cwd();
@@ -60,7 +52,9 @@ if (has("--list")) {
   if (!files.length) console.log("No backups yet.");
   for (const f of files) {
     const s = statSync(path.join(OUT, f));
-    console.log(`  ${f}  ${(s.size / 1024 / 1024).toFixed(1)} MB  ${s.mtime.toISOString()}`);
+    console.log(
+      `  ${f}  ${(s.size / 1024 / 1024).toFixed(1)} MB  ${s.mtime.toISOString()}`,
+    );
   }
   process.exit(0);
 }
@@ -87,7 +81,9 @@ if (has("--prune")) {
       }
     }
   }
-  console.log(`Pruned ${removed} file(s), kept the newest ${keep} snapshot(s).`);
+  console.log(
+    `Pruned ${removed} file(s), kept the newest ${keep} snapshot(s).`,
+  );
   process.exit(0);
 }
 
@@ -115,7 +111,10 @@ for (const t of PROGRESS_TABLES) {
     .prepare("SELECT name FROM sqlite_master WHERE type='table' AND name=?")
     .get(t);
   if (!exists) continue;
-  const data = db.prepare(`SELECT * FROM ${t}`).all().map((r) => ({ ...(r as object) }));
+  const data = db
+    .prepare(`SELECT * FROM ${t}`)
+    .all()
+    .map((r) => ({ ...(r as object) }));
   payload[t] = data;
   rows += data.length;
 }

@@ -1,18 +1,5 @@
 /**
  * Which brief the tutor is actually given.
- *
- * This is the bug that hid best in the whole app. All six Alltag scenarios
- * pass an id like "surv-anmeldung" to the conversation route; the route looked
- * it up in the `unit` table, found nothing, and fell back to "a friendly
- * German speaker having a short chat". So the Bürgeramt, the WG viewing and
- * the contract cancellation all ran as a chat with a stranger — while the page
- * beside them displayed the correct brief, word for word.
- *
- * Nothing failed. No error, no empty screen, no missing text. The conversation
- * worked perfectly; it was simply the wrong conversation. That is why it
- * survived a full audit of the page, and why the check below is on the
- * resolution rather than on anything visible.
- *
  * needs: nothing
  */
 import { readFileSync } from "node:fs";
@@ -30,7 +17,10 @@ type Survival = {
 };
 
 const survival = JSON.parse(
-  readFileSync(path.join(process.cwd(), "data/scenarios-survival.json"), "utf8"),
+  readFileSync(
+    path.join(process.cwd(), "data/scenarios-survival.json"),
+    "utf8",
+  ),
 ) as Survival[];
 
 const UNIT_JSON = JSON.stringify({
@@ -42,7 +32,11 @@ const UNIT_JSON = JSON.stringify({
 section("a survival scenario reaches the model");
 for (const s of survival) {
   const scene = resolveScene(s.scenario, null);
-  ok(!isGeneric(scene), `${s.id} resolves to its own brief`, scene.role.slice(0, 46));
+  ok(
+    !isGeneric(scene),
+    `${s.id} resolves to its own brief`,
+    scene.role.slice(0, 46),
+  );
   ok(scene.role === s.scenario.role, `  and it is the one the page shows`);
 }
 
@@ -64,12 +58,22 @@ ok(isGeneric(resolveScene(undefined, undefined)), "unknown id");
 ok(isGeneric(resolveScene({}, null)), "an empty survival object");
 ok(isGeneric(resolveScene({ role: "a clerk" }, null)), "a role with no goal");
 ok(isGeneric(resolveScene(undefined, "{{{ not json")), "a malformed unit blob");
-ok(isGeneric(resolveScene(undefined, '{"role":"x"}')), "a unit blob missing its goal");
+ok(
+  isGeneric(resolveScene(undefined, '{"role":"x"}')),
+  "a unit blob missing its goal",
+);
 
 section("an opener is optional, a role and goal are not");
-const noOpener = resolveScene({ role: "a nurse", goal: "take your details" }, null);
+const noOpener = resolveScene(
+  { role: "a nurse", goal: "take your details" },
+  null,
+);
 eq(noOpener.role, "a nurse", "the brief is used");
-eq(noOpener.opener, GENERIC.opener, "and the opener falls back rather than being empty");
+eq(
+  noOpener.opener,
+  GENERIC.opener,
+  "and the opener falls back rather than being empty",
+);
 
 section("the content itself");
 /* The premise of the whole fix: these ids are NOT unit ids, which is why a
@@ -80,12 +84,25 @@ ok(
   "every survival id is namespaced away from unit ids",
   survival.map((s) => s.id).join(" "),
 );
-ok(survival.length === 6, "six scenarios", survival.length);
+// A floor, not a count: adding a scenario must not turn this red.
+ok(survival.length >= 6, "at least the six the spec names", survival.length);
+ok(
+  new Set(survival.map((s) => s.id)).size === survival.length,
+  "no two scenarios share an id",
+);
 for (const s of survival) {
-  ok(s.phrases.length >= 5, `${s.id}: enough to say`, `${s.phrases.length} phrases`);
+  ok(
+    s.phrases.length >= 5,
+    `${s.id}: enough to say`,
+    `${s.phrases.length} phrases`,
+  );
   /* The half that was missing. Rehearsing your own lines does not get you
      through an appointment where you cannot understand the question. */
-  ok((s.hear?.length ?? 0) >= 5, `  and enough to hear`, `${s.hear?.length ?? 0} lines`);
+  ok(
+    (s.hear?.length ?? 0) >= 5,
+    `  and enough to hear`,
+    `${s.hear?.length ?? 0} lines`,
+  );
   ok(s.bring.length >= 3, `  and knows what to bring`, `${s.bring.length}`);
 }
 

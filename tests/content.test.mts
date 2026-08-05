@@ -1,10 +1,6 @@
 /**
- * The content itself, before anything runs on it.
- *
- * A word that belongs to no unit is never taught; a unit pointing at a word
- * that does not exist renders a blank card. Neither shows up as an error
- * anywhere — the session just quietly skips it — so it has to be checked here.
- *
+ * The content itself, before anything runs on it. A word that belongs to no unit is never taught;
+ * a unit pointing at a word that does not exist renders a blank card.
  * needs: seeded database
  */
 import { readdirSync, existsSync, readFileSync } from "node:fs";
@@ -14,10 +10,25 @@ import { open, ok, section, done } from "./harness.mts";
 const db = open();
 
 const units = db
-  .prepare("SELECT id, level, ord, word_ids_json, grammar_id FROM unit ORDER BY level, ord")
-  .all() as { id: string; level: string; ord: number; word_ids_json: string; grammar_id: string | null }[];
-const words = db.prepare("SELECT id, lemma, article, pos, en, level FROM word").all() as {
-  id: string; lemma: string; article: string | null; pos: string; en: string; level: string;
+  .prepare(
+    "SELECT id, level, ord, word_ids_json, grammar_id FROM unit ORDER BY level, ord",
+  )
+  .all() as {
+  id: string;
+  level: string;
+  ord: number;
+  word_ids_json: string;
+  grammar_id: string | null;
+}[];
+const words = db
+  .prepare("SELECT id, lemma, article, pos, en, level FROM word")
+  .all() as {
+  id: string;
+  lemma: string;
+  article: string | null;
+  pos: string;
+  en: string;
+  level: string;
 }[];
 
 section("shape");
@@ -30,40 +41,79 @@ const inUnits = units.flatMap((u) => JSON.parse(u.word_ids_json) as string[]);
 const inUnitsSet = new Set(inUnits);
 
 const orphans = words.filter((w) => !inUnitsSet.has(w.id));
-ok(orphans.length === 0, "no word belongs to no unit",
-  orphans.length ? orphans.slice(0, 5).map((w) => w.lemma).join(", ") : "");
+ok(
+  orphans.length === 0,
+  "no word belongs to no unit",
+  orphans.length
+    ? orphans
+        .slice(0, 5)
+        .map((w) => w.lemma)
+        .join(", ")
+    : "",
+);
 
 const dangling = [...inUnitsSet].filter((id) => !wordIds.has(id));
-ok(dangling.length === 0, "no unit points at a missing word",
-  dangling.slice(0, 5).join(", "));
+ok(
+  dangling.length === 0,
+  "no unit points at a missing word",
+  dangling.slice(0, 5).join(", "),
+);
 
-ok(inUnits.length === inUnitsSet.size, "no word is taught by two units",
-  `${inUnits.length - inUnitsSet.size} repeated`);
+ok(
+  inUnits.length === inUnitsSet.size,
+  "no word is taught by two units",
+  `${inUnits.length - inUnitsSet.size} repeated`,
+);
 
 const grammarIds = new Set(
-  (db.prepare("SELECT id FROM grammar").all() as { id: string }[]).map((g) => g.id),
+  (db.prepare("SELECT id FROM grammar").all() as { id: string }[]).map(
+    (g) => g.id,
+  ),
 );
-const badGrammar = units.filter((u) => u.grammar_id && !grammarIds.has(u.grammar_id));
-ok(badGrammar.length === 0, "no unit points at a missing grammar point",
-  badGrammar.map((u) => u.id).join(", "));
+const badGrammar = units.filter(
+  (u) => u.grammar_id && !grammarIds.has(u.grammar_id),
+);
+ok(
+  badGrammar.length === 0,
+  "no unit points at a missing grammar point",
+  badGrammar.map((u) => u.id).join(", "),
+);
 
 section("no unit is too big to finish");
 /* A session introduces at most twelve words. A unit larger than that carries
    over to the next day, which is fine — but past about thirty it stops feeling
    like a unit and the reading and scenario go stale sitting there. */
-const sizes = units.map((u) => (JSON.parse(u.word_ids_json) as string[]).length).sort((a, b) => a - b);
-ok(sizes[0] >= 5, "the smallest unit still teaches something", `${sizes[0]} words`);
-ok(sizes.at(-1)! <= 32, "the largest unit is at most three days of vocabulary", `${sizes.at(-1)} words`);
+const sizes = units
+  .map((u) => (JSON.parse(u.word_ids_json) as string[]).length)
+  .sort((a, b) => a - b);
+ok(
+  sizes[0] >= 5,
+  "the smallest unit still teaches something",
+  `${sizes[0]} words`,
+);
+ok(
+  sizes.at(-1)! <= 32,
+  "the largest unit is at most three days of vocabulary",
+  `${sizes.at(-1)} words`,
+);
 
 section("every card can be shown");
 const noGloss = words.filter((w) => !w.en?.trim());
 ok(noGloss.length === 0, "every word has an English meaning", noGloss.length);
 
 const nounsNoArticle = words.filter((w) => w.pos === "noun" && !w.article);
-ok(nounsNoArticle.length === 0, "every noun has der/die/das",
-  nounsNoArticle.slice(0, 5).map((w) => w.lemma).join(", "));
+ok(
+  nounsNoArticle.length === 0,
+  "every noun has der/die/das",
+  nounsNoArticle
+    .slice(0, 5)
+    .map((w) => w.lemma)
+    .join(", "),
+);
 
-const badArticle = words.filter((w) => w.article && !["der", "die", "das"].includes(w.article));
+const badArticle = words.filter(
+  (w) => w.article && !["der", "die", "das"].includes(w.article),
+);
 ok(badArticle.length === 0, "and it is one of the three", badArticle.length);
 
 const LEVELS = ["A1.1", "A1.2", "A2.1", "A2.2", "B1.1", "B1.2"];
@@ -74,11 +124,18 @@ section("examples");
 /* Without an example a word cannot be clozed, cannot appear in the sentence
    builder and cannot be drilled from Problemwörter — see attach-examples.mts. */
 const withExample = (
-  db.prepare("SELECT COUNT(*) n FROM word WHERE example_de IS NOT NULL AND example_de <> ''").get() as { n: number }
+  db
+    .prepare(
+      "SELECT COUNT(*) n FROM word WHERE example_de IS NOT NULL AND example_de <> ''",
+    )
+    .get() as { n: number }
 ).n;
 const pct = Math.round((withExample / words.length) * 100);
-ok(pct >= 95, "at least 95% of words have an example sentence",
-  `${withExample}/${words.length} (${pct}%)`);
+ok(
+  pct >= 95,
+  "at least 95% of words have an example sentence",
+  `${withExample}/${words.length} (${pct}%)`,
+);
 
 section("audio");
 /* The .ogg files ship with the repo but `audio_url` is set by seeding, not by
@@ -87,27 +144,42 @@ section("audio");
 const AUDIO_DIR = path.join(process.cwd(), "public/audio/words");
 if (existsSync(AUDIO_DIR)) {
   const onDisk = new Set(
-    readdirSync(AUDIO_DIR).filter((f) => f.endsWith(".ogg")).map((f) => f.slice(0, -4)),
+    readdirSync(AUDIO_DIR)
+      .filter((f) => f.endsWith(".ogg"))
+      .map((f) => f.slice(0, -4)),
   );
-  const linked = db.prepare(
-    "SELECT id, audio_url FROM word WHERE audio_url IS NOT NULL AND audio_url <> ''",
-  ).all() as { id: string; audio_url: string }[];
+  const linked = db
+    .prepare(
+      "SELECT id, audio_url FROM word WHERE audio_url IS NOT NULL AND audio_url <> ''",
+    )
+    .all() as { id: string; audio_url: string }[];
   const linkedIds = new Set(linked.map((w) => w.id));
 
-  /* Recordings for words the deck no longer teaches are kept deliberately.
-     Commons rate-limits hard — the last full fetch was throttled 114 times —
-     so a file already on disk is worth more than the few kilobytes it costs if
-     the word ever comes back. They are ignored here rather than flagged. */
-  const unlinked = [...onDisk].filter((id) => wordIds.has(id) && !linkedIds.has(id));
-  ok(unlinked.length === 0, "every recording whose word is still taught is linked",
-    unlinked.slice(0, 5).join(", "));
+  /* Recordings for words the deck no longer teaches are kept deliberately. */
+  const unlinked = [...onDisk].filter(
+    (id) => wordIds.has(id) && !linkedIds.has(id),
+  );
+  ok(
+    unlinked.length === 0,
+    "every recording whose word is still taught is linked",
+    unlinked.slice(0, 5).join(", "),
+  );
 
   const missingFile = linked.filter((w) => !onDisk.has(w.id));
-  ok(missingFile.length === 0, "no word points at a recording that is not there",
-    missingFile.slice(0, 5).map((w) => w.id).join(", "));
+  ok(
+    missingFile.length === 0,
+    "no word points at a recording that is not there",
+    missingFile
+      .slice(0, 5)
+      .map((w) => w.id)
+      .join(", "),
+  );
 
-  ok(linked.every((w) => w.audio_url === `/audio/words/${w.id}.ogg`),
-    "and every link uses the served path", `${linked.length} recordings`);
+  ok(
+    linked.every((w) => w.audio_url === `/audio/words/${w.id}.ogg`),
+    "and every link uses the served path",
+    `${linked.length} recordings`,
+  );
 } else {
   console.log("SKIP  public/audio/words is absent");
 }
@@ -121,20 +193,11 @@ for (const lv of LEVELS) {
 }
 
 section("content made at runtime can be committed");
-/*
- * Segments and mnemonics are the only content the app creates that does not
- * come from `data/`. Without a way back into the repo they live on one laptop:
- * a second clone starts from nothing and a lost database loses hours of
- * hand-marking. `npm run export-content` writes them out and `npm run seed`
- * reads them back.
- *
- * What is checked here is the shape of that contract, because the round trip
- * itself needs a database in a known state. The failure it guards is the one
- * already found once: the exporter decided whether to write AFTER stripping
- * stale entries, so the single case that needed writing was the one that did
- * not — and the stale data stayed in the file for good.
- */
-const exporter = readFileSync(path.join(process.cwd(), "scripts/export-content.mts"), "utf8");
+/* Segments and mnemonics are the only content the app creates that does not come from `data/`. */
+const exporter = readFileSync(
+  path.join(process.cwd(), "scripts/export-content.mts"),
+  "utf8",
+);
 ok(
   /if \(attached \|\| removed\)/.test(exporter),
   "the exporter writes when it REMOVED something, not only when it added",
@@ -148,7 +211,10 @@ ok(
   "and says in writing which tables it refuses to export — this repo is public",
 );
 
-const seeder = readFileSync(path.join(process.cwd(), "scripts/seed.mts"), "utf8");
+const seeder = readFileSync(
+  path.join(process.cwd(), "scripts/seed.mts"),
+  "utf8",
+);
 ok(/data\/mnemonics\.json/.test(seeder), "the seeder reads mnemonics back");
 ok(
   /segments_json=CASE WHEN excluded\.segments_json IN/.test(seeder),
@@ -157,21 +223,26 @@ ok(
 
 const mnem = path.join(process.cwd(), "data", "mnemonics.json");
 if (existsSync(mnem)) {
-  const parsed = JSON.parse(readFileSync(mnem, "utf8")) as { mnemonics?: Record<string, string> };
-  ok(typeof parsed.mnemonics === "object", "data/mnemonics.json has the shape the seeder expects");
+  const parsed = JSON.parse(readFileSync(mnem, "utf8")) as {
+    mnemonics?: Record<string, string>;
+  };
+  ok(
+    typeof parsed.mnemonics === "object",
+    "data/mnemonics.json has the shape the seeder expects",
+  );
 }
 
 section("the six survival scenarios can be run without a network");
 /*
- * These are the conversations you rehearse the night before, often on a phone
- * with no signal, and they were the only ones in the app with no scripted
- * fallback — so "you need a network for this one" arrived at the moment it was
- * least useful. The dialogues live in a JSON file, which means whoever edits
- * them next can break the wiring silently: a `next` pointing at a turn that
- * does not exist just stops the conversation dead, with no error anywhere.
+ * These are the conversations you rehearse the night before, often on a phone with no signal, and
+ * they were the only ones in the app with no scripted fallback — so "you need a network for this
+ * one" arrived at the moment it was least useful.
  */
 const survival = JSON.parse(
-  readFileSync(path.join(process.cwd(), "data", "scenarios-survival.json"), "utf8"),
+  readFileSync(
+    path.join(process.cwd(), "data", "scenarios-survival.json"),
+    "utf8",
+  ),
 ) as {
   id: string;
   title: string;
@@ -183,7 +254,11 @@ const survival = JSON.parse(
 
 /* A floor, not a count. Principle 5 says this set grows, and a test that
    pins it at six turns adding a scenario into a failing build. */
-ok(survival.length >= 6, "the pack is not shrinking", `${survival.length} scenarios`);
+ok(
+  survival.length >= 6,
+  "the pack is not shrinking",
+  `${survival.length} scenarios`,
+);
 ok(
   new Set(survival.map((s) => s.id)).size === survival.length,
   "and no two share an id — the second would be unreachable at /alltag/<id>",
@@ -195,7 +270,11 @@ for (const s of survival) {
     ok(false, `${s.id} has a scripted fallback`, s.title);
     continue;
   }
-  ok(d.length >= 3, `${s.id}: long enough to be worth running`, `${d.length} turns`);
+  ok(
+    d.length >= 3,
+    `${s.id}: long enough to be worth running`,
+    `${d.length} turns`,
+  );
   ok(
     d.every((t) => t.options.some((o) => o.ok)),
     `${s.id}: every turn has a right answer`,
@@ -207,7 +286,11 @@ for (const s of survival) {
   /* Forward-only so the tree cannot loop, and every destination real so it
      cannot dead-end. -1 is the exit. */
   ok(
-    d.every((t, i) => t.options.every((o) => o.next === -1 || (o.next > i && o.next < d.length))),
+    d.every((t, i) =>
+      t.options.every(
+        (o) => o.next === -1 || (o.next > i && o.next < d.length),
+      ),
+    ),
     `${s.id}: every branch leads to a later turn or to the end`,
   );
   ok(

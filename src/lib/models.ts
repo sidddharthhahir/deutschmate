@@ -1,25 +1,7 @@
 import { readFileSync } from "node:fs";
 import path from "node:path";
 
-/**
- * The model catalogue, loaded from data/models.json.
- *
- * WHY THIS IS A FILE AND NOT A CONST
- *
- * The price table used to live in pricing.ts as a literal. That is fine right
- * up until Anthropic changes a rate — and then /fortschritt reports the wrong
- * spend, confidently, with no error anywhere. Principle 4 is "never show a
- * number you cannot point at the row that produced it", and a price nobody has
- * checked since the day it was typed is exactly that number.
- *
- * With per-learner API keys it stops being an internal inaccuracy and becomes
- * the app being wrong about somebody else's money.
- *
- * Read the same way schema.sql is read — `readFileSync` from `process.cwd()`,
- * cached for the process. Not imported as a module, because a JSON import
- * behaves differently under Next's bundler and Node's type stripping, and the
- * seed scripts and the tests use the second one.
- */
+/** The model catalogue, loaded from data/models.json. */
 
 export type Model = {
   id: string;
@@ -42,7 +24,10 @@ let _cat: Catalogue | null = null;
 
 export function catalogue(): Catalogue {
   if (_cat) return _cat;
-  const raw = readFileSync(path.join(process.cwd(), "data/models.json"), "utf8");
+  const raw = readFileSync(
+    path.join(process.cwd(), "data/models.json"),
+    "utf8",
+  );
   const parsed = JSON.parse(raw) as Catalogue;
 
   /* Validated on load rather than trusted. A typo in a price is silent and
@@ -51,7 +36,9 @@ export function catalogue(): Catalogue {
   if (!parsed.models?.length) throw new Error("data/models.json has no models");
   for (const m of parsed.models) {
     if (!m.id || !(m.in > 0) || !(m.out > 0)) {
-      throw new Error(`data/models.json: ${m.id ?? "a model"} has no usable price`);
+      throw new Error(
+        `data/models.json: ${m.id ?? "a model"} has no usable price`,
+      );
     }
   }
   const { read, write_5m, write_1h } = parsed.cache ?? {};
@@ -61,7 +48,9 @@ export function catalogue(): Catalogue {
   for (const role of ["quality", "cheap"] as const) {
     const id = parsed.roles?.[role];
     if (!id || !parsed.models.some((m) => m.id === id)) {
-      throw new Error(`data/models.json: role "${role}" names an unlisted model`);
+      throw new Error(
+        `data/models.json: role "${role}" names an unlisted model`,
+      );
     }
   }
   _cat = parsed;

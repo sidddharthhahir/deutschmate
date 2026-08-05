@@ -19,14 +19,7 @@ type Video = {
   segments: Segment[];
 };
 
-/**
- * Segment editor — the ~12 minutes of human work per unit, made bearable.
- *
- * Play the video, hit [ at the start of a sentence and ] at the end, type what
- * you hear. You transcribe it yourself: that keeps the app to embedding (which
- * is legitimate) rather than scraping captions, and typing the line is a
- * genuinely useful listening exercise in its own right.
- */
+/** Segment editor — the ~12 minutes of human work per unit, made bearable. */
 export default function VideoAdmin() {
   const holder = useRef<HTMLDivElement>(null);
   const player = useRef<Playable | null>(null);
@@ -70,16 +63,7 @@ export default function VideoAdmin() {
      queue below usually hands over a DW mp4 instead. */
   const load = useCallback((source: Source) => setLoaded(source), []);
 
-  /*
-   * Mounting happens in an effect, not inside load().
-   *
-   * The player's container is rendered under `{loaded && …}`, so it does not
-   * exist until after the state change has painted. Doing it imperatively meant
-   * reading `holder.current` in the same tick it was set — null, silent return,
-   * no player. The old code got away with it only because it awaited the
-   * YouTube API first, which handed React a frame by accident; a <video>
-   * element needs no await and the accident stopped happening.
-   */
+  /* Mounting happens in an effect, not inside load(). */
   useEffect(() => {
     if (!loaded || !holder.current) return;
     let dead = false;
@@ -121,22 +105,7 @@ export default function VideoAdmin() {
       a.title.localeCompare(b.title, "de", { numeric: true }),
   );
 
-  /*
-   * TWO WAYS TO MARK A LINE, AND THE SECOND IS THE FAST ONE.
-   *
-   * Typing is the original: [ at the start, type what you hear, Enter at the
-   * end. It is slow for a reason that has nothing to do with typing speed —
-   * you are transcribing and listening at the same time, so you pause, rewind,
-   * and go again. About ten minutes for a ninety-second clip.
-   *
-   * With a transcript pasted in, the words are already there. [ and ] are all
-   * that is left, the next line loads itself, and the job becomes tapping twice
-   * per sentence while the video plays at 0.75×. DW publishes the manuscript
-   * for every Nicos Weg lesson on learngerman.dw.com — one copy, one paste.
-   *
-   * The timings still come from a person, because they are the part that has to
-   * match the audio and nothing here can hear it.
-   */
+  /* TWO WAYS TO MARK A LINE, AND THE SECOND IS THE FAST ONE. */
   const mark = useCallback(() => {
     if (markStart === null) {
       setMarkStart(now());
@@ -149,7 +118,12 @@ export default function VideoAdmin() {
       if (line.trim() && end > markStart) {
         setSegments((s) => [
           ...s,
-          { t_start: markStart, t_end: end, de: line.trim(), en: draftEn.trim() },
+          {
+            t_start: markStart,
+            t_end: end,
+            de: line.trim(),
+            en: draftEn.trim(),
+          },
         ]);
         if (script.length) setScriptAt((i) => i + 1);
       }
@@ -213,7 +187,9 @@ export default function VideoAdmin() {
       setTimeout(() => setSaved(null), 8000);
       return;
     }
-    setSaved(`Gespeichert: ${d.segments} ${d.segments === 1 ? "Satz" : "Sätze"}`);
+    setSaved(
+      `Gespeichert: ${d.segments} ${d.segments === 1 ? "Satz" : "Sätze"}`,
+    );
     const fresh = await (await fetch("/api/video")).json();
     setVideos(fresh.videos);
     setTimeout(() => setSaved(null), 3000);
@@ -239,14 +215,20 @@ export default function VideoAdmin() {
   return (
     <main className="min-h-screen bg-neutral-950 text-neutral-100">
       <div className="mx-auto max-w-4xl px-5 py-10">
-        <Link href="/" className="text-sm text-neutral-600 hover:text-neutral-400">
+        <Link
+          href="/"
+          className="text-sm text-neutral-600 hover:text-neutral-400"
+        >
           ← zurück
         </Link>
         <h1 className="mt-4 text-xl font-medium">Video-Segment-Editor</h1>
         <p className="mt-1 text-sm text-neutral-500">
-          Video laden · <kbd className="rounded bg-neutral-800 px-1.5">[</kbd> am Satzanfang ·
-          Satz tippen · <kbd className="rounded bg-neutral-800 px-1.5">Enter</kbd> am Satzende.
-          <kbd className="ml-2 rounded bg-neutral-800 px-1.5">Leertaste</kbd> = Play/Pause.
+          Video laden · <kbd className="rounded bg-neutral-800 px-1.5">[</kbd>{" "}
+          am Satzanfang · Satz tippen ·{" "}
+          <kbd className="rounded bg-neutral-800 px-1.5">Enter</kbd> am
+          Satzende.
+          <kbd className="ml-2 rounded bg-neutral-800 px-1.5">Leertaste</kbd> =
+          Play/Pause.
         </p>
 
         {/* Said before the work, not after it.
@@ -259,11 +241,14 @@ export default function VideoAdmin() {
           <div className="mt-5 rounded-xl border border-amber-800/60 bg-amber-950/30 p-3.5">
             <p className="text-sm text-amber-200">Speichern ist aus.</p>
             <p className="mt-1 text-[13px] leading-relaxed text-amber-200/70">
-              Dieser Editor schreibt in den Lehrplan, den alle hier lesen, also ist er
-              standardmäßig zu. Zum Einschalten{" "}
-              <code className="rounded bg-black/30 px-1.5">DEUTSCHMATE_ADMIN=1</code> in{" "}
-              <code className="rounded bg-black/30 px-1.5">.env.local</code> setzen und den
-              Server neu starten. Anschauen kannst du alles auch so.
+              Dieser Editor schreibt in den Lehrplan, den alle hier lesen, also
+              ist er standardmäßig zu. Zum Einschalten{" "}
+              <code className="rounded bg-black/30 px-1.5">
+                DEUTSCHMATE_ADMIN=1
+              </code>{" "}
+              in <code className="rounded bg-black/30 px-1.5">.env.local</code>{" "}
+              setzen und den Server neu starten. Anschauen kannst du alles auch
+              so.
             </p>
           </div>
         )}
@@ -358,8 +343,8 @@ export default function VideoAdmin() {
                 <div className="mt-3 rounded-xl border border-neutral-800 p-3">
                   <div className="mb-2 flex items-baseline justify-between text-xs text-neutral-500">
                     <span>
-                      Transkript · Zeile {Math.min(scriptAt + 1, script.length)} von{" "}
-                      {script.length}
+                      Transkript · Zeile {Math.min(scriptAt + 1, script.length)}{" "}
+                      von {script.length}
                     </span>
                     <button
                       onClick={() => {
@@ -373,7 +358,9 @@ export default function VideoAdmin() {
                   </div>
                   {scriptAt < script.length ? (
                     <>
-                      <p className="text-base text-neutral-100">{script[scriptAt]}</p>
+                      <p className="text-base text-neutral-100">
+                        {script[scriptAt]}
+                      </p>
                       {script[scriptAt + 1] && (
                         <p className="mt-1 truncate text-xs text-neutral-600">
                           danach: {script[scriptAt + 1]}
@@ -390,7 +377,9 @@ export default function VideoAdmin() {
 
               <div
                 className={`mt-3 rounded-xl border p-3 ${
-                  markStart !== null ? "border-emerald-700 bg-emerald-950/20" : "border-neutral-800"
+                  markStart !== null
+                    ? "border-emerald-700 bg-emerald-950/20"
+                    : "border-neutral-800"
                 }`}
               >
                 <p className="mb-2 text-xs text-neutral-500">
@@ -423,7 +412,10 @@ export default function VideoAdmin() {
                 title={canWrite ? undefined : "DEUTSCHMATE_ADMIN=1 setzen"}
                 className="mt-3 w-full rounded-lg bg-neutral-100 py-2.5 text-sm font-medium text-neutral-900 disabled:bg-neutral-800 disabled:text-neutral-600"
               >
-                {saved ?? (canWrite ? `Speichern (${segments.length} Sätze)` : "Speichern ist aus")}
+                {saved ??
+                  (canWrite
+                    ? `Speichern (${segments.length} Sätze)`
+                    : "Speichern ist aus")}
               </button>
             </div>
 
@@ -433,7 +425,10 @@ export default function VideoAdmin() {
               </p>
               <div className="max-h-[520px] space-y-1 overflow-y-auto">
                 {segments.map((s, i) => (
-                  <div key={i} className="group flex gap-2 rounded-lg bg-neutral-900 px-3 py-2">
+                  <div
+                    key={i}
+                    className="group flex gap-2 rounded-lg bg-neutral-900 px-3 py-2"
+                  >
                     <button
                       onClick={() => {
                         player.current?.seek(s.t_start);
@@ -445,10 +440,16 @@ export default function VideoAdmin() {
                     </button>
                     <div className="min-w-0 flex-1">
                       <p className="truncate text-sm">{s.de}</p>
-                      {s.en && <p className="truncate text-xs text-neutral-600">{s.en}</p>}
+                      {s.en && (
+                        <p className="truncate text-xs text-neutral-600">
+                          {s.en}
+                        </p>
+                      )}
                     </div>
                     <button
-                      onClick={() => setSegments((x) => x.filter((_, n) => n !== i))}
+                      onClick={() =>
+                        setSegments((x) => x.filter((_, n) => n !== i))
+                      }
                       className="text-neutral-700 opacity-0 transition group-hover:opacity-100 hover:text-rose-400"
                     >
                       ✕
@@ -456,7 +457,9 @@ export default function VideoAdmin() {
                   </div>
                 ))}
                 {!segments.length && (
-                  <p className="py-8 text-center text-sm text-neutral-700">Noch nichts markiert.</p>
+                  <p className="py-8 text-center text-sm text-neutral-700">
+                    Noch nichts markiert.
+                  </p>
                 )}
               </div>
             </div>
@@ -475,8 +478,12 @@ export default function VideoAdmin() {
           <h2 className="mb-3 flex flex-wrap items-baseline justify-between gap-2 text-xs uppercase tracking-widest text-neutral-600">
             <span>Gespeicherte Videos ({videos.length})</span>
             {videos.length > 0 && (
-              <span className={todo === 0 ? "text-emerald-600" : "text-amber-600"}>
-                {todo === 0 ? "alle segmentiert" : `${todo} noch zu segmentieren`}
+              <span
+                className={todo === 0 ? "text-emerald-600" : "text-amber-600"}
+              >
+                {todo === 0
+                  ? "alle segmentiert"
+                  : `${todo} noch zu segmentieren`}
               </span>
             )}
           </h2>
@@ -510,7 +517,8 @@ export default function VideoAdmin() {
             })}
             {!videos.length && (
               <p className="py-6 text-center text-sm text-neutral-700">
-                Noch keine Videos. <code className="text-neutral-500">npm run videos</code> lädt
+                Noch keine Videos.{" "}
+                <code className="text-neutral-500">npm run videos</code> lädt
                 die geprüfte Liste — oder oben eine YouTube-URL einfügen.
               </p>
             )}
@@ -520,4 +528,3 @@ export default function VideoAdmin() {
     </main>
   );
 }
-

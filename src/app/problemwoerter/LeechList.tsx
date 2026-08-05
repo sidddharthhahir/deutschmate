@@ -30,7 +30,11 @@ export default function LeechList({
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ cardId: card.cardId, action }),
       });
-      const data = (await res.json()) as { ok?: boolean; mnemonic?: string; reason?: string };
+      const data = (await res.json()) as {
+        ok?: boolean;
+        mnemonic?: string;
+        reason?: string;
+      };
 
       // The row updates from what the server actually did, not from what the
       // button was called. A cloze that couldn't be made says so.
@@ -70,8 +74,8 @@ export default function LeechList({
       <div className="border-line rounded-[14px] border p-8 text-center">
         <p className="font-serif text-[20px]">Keine Problemwörter.</p>
         <p className="text-muted mx-auto mt-2 max-w-[46ch] text-[14px] leading-relaxed">
-          Kein Wort hat dich {threshold}-mal oder öfter aus dem Konzept gebracht. Das ist
-          eine gute Nachricht und keine leere Seite.
+          Kein Wort hat dich {threshold}-mal oder öfter aus dem Konzept
+          gebracht. Das ist eine gute Nachricht und keine leere Seite.
         </p>
       </div>
     );
@@ -95,7 +99,9 @@ export default function LeechList({
                   href={`/wort/${r.wordId}`}
                   className="font-serif hover:text-accent text-[22px] font-medium transition-colors"
                 >
-                  <Noun article={r.pos === "noun" ? r.article : null}>{r.lemma}</Noun>
+                  <Noun article={r.pos === "noun" ? r.article : null}>
+                    {r.lemma}
+                  </Noun>
                 </Link>
                 <span className="text-secondary text-[15px]">{r.en}</span>
               </div>
@@ -119,7 +125,9 @@ export default function LeechList({
               <p className="font-serif text-secondary mt-2.5 text-[16px]">
                 {r.example_de}
                 {r.example_en && (
-                  <span className="text-muted ml-2 text-[13px]">{r.example_en}</span>
+                  <span className="text-muted ml-2 text-[13px]">
+                    {r.example_en}
+                  </span>
                 )}
               </p>
             )}
@@ -134,16 +142,25 @@ export default function LeechList({
 
             <div className="mt-4 flex flex-wrap gap-2">
               {r.example_de && (
-                <Act onClick={() => void act(r, "cloze")} busy={busy === r.cardId}>
+                <Act
+                  onClick={() => void act(r, "cloze")}
+                  busy={busy === r.cardId}
+                >
                   Im Satz üben
                 </Act>
               )}
               {!r.mnemonic && (
-                <Act onClick={() => void act(r, "mnemonic")} busy={busy === r.cardId}>
+                <Act
+                  onClick={() => void act(r, "mnemonic")}
+                  busy={busy === r.cardId}
+                >
                   Eselsbrücke
                 </Act>
               )}
-              <Act onClick={() => void act(r, "reset")} busy={busy === r.cardId}>
+              <Act
+                onClick={() => void act(r, "reset")}
+                busy={busy === r.cardId}
+              >
                 Neu anfangen
               </Act>
               <Act
@@ -179,20 +196,35 @@ const MNEMONIC_FAILED: Record<string, string> = {
 function noteFor(action: Action, ok: boolean, reason?: string): Note {
   if (!ok) {
     if (action === "cloze") {
-      return { text: "Kein passender Beispielsatz — nichts angelegt.", tone: "warn" };
+      return {
+        text: "Kein passender Beispielsatz — nichts angelegt.",
+        tone: "warn",
+      };
     }
     if (action === "mnemonic") {
-      return { text: MNEMONIC_FAILED[reason ?? ""] ?? "Ging nicht.", tone: "warn" };
+      return {
+        text: MNEMONIC_FAILED[reason ?? ""] ?? "Ging nicht.",
+        tone: "warn",
+      };
     }
     return { text: "Ging nicht.", tone: "warn" };
   }
   switch (action) {
     case "cloze":
-      return { text: "Lückensatz angelegt — kommt in der nächsten Sitzung.", tone: "ok" };
+      return {
+        text: "Lückensatz angelegt — kommt in der nächsten Sitzung.",
+        tone: "ok",
+      };
     case "reset":
-      return { text: "Zurückgesetzt. Das Wort kommt wie neu zurück.", tone: "ok" };
+      return {
+        text: "Zurückgesetzt. Das Wort kommt wie neu zurück.",
+        tone: "ok",
+      };
     case "pause":
-      return { text: "Pausiert. Kommt nicht mehr, bis du es zurückholst.", tone: "ok" };
+      return {
+        text: "Pausiert. Kommt nicht mehr, bis du es zurückholst.",
+        tone: "ok",
+      };
     case "resume":
       return { text: "Wieder im Deck.", tone: "ok" };
     case "mnemonic":

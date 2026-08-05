@@ -4,25 +4,7 @@ import { toSqlDate } from "./srs";
 import { blankForError } from "./cloze-text";
 import { CLOZE_BACKLOG_CAP as BACKLOG_CAP } from "@/lib/config";
 
-export { blankAt, blankWord, blankForError } from "./cloze-text";
-
-/**
- * Cloze cards — fill the gap.
- *
- * Two sources, both free and both personal:
- *
- *   error    A sentence you got wrong, with the exact token you missed blanked.
- *            No content had to be written for this: the attempt table already
- *            stores `expected` and `user_answer`, so the drill is a diff.
- *
- *   reading  A line you tapped while reading, blanking the word you looked up.
- *            The reading block already glosses words; promoting the gloss to a
- *            card is one more button on a panel that is already open.
- *
- * A cloze is only worth making when ONE token is wrong. Two or more differences
- * and the blank stops testing anything specific — those stay with the Fix block,
- * which drills the rule rather than the sentence.
- */
+/** Cloze cards — fill the gap. A cloze is only worth making when ONE token is wrong. */
 
 export type Cloze = {
   id: number;
@@ -50,12 +32,7 @@ export function clozeBacklog(userId: string): number {
   );
 }
 
-/**
- * Store a cloze and give it an FSRS card.
- *
- * Returns false when the same gap already exists — the UNIQUE constraint makes
- * re-mining the same mistake a no-op rather than a duplicate drill.
- */
+/** Store a cloze and give it an FSRS card. */
 export function addCloze(opts: {
   userId: string;
   full: string;
@@ -94,17 +71,16 @@ export function addCloze(opts: {
   });
 }
 
-/**
- * Turn recent mistakes into cloze cards.
- *
- * Runs on session build, so the feature needs no user action: make a mistake
- * today, meet it as a gap tomorrow. The UNIQUE constraint deduplicates, so
- * re-scanning the same window every day is cheap and idempotent.
- */
+/** Turn recent mistakes into cloze cards. */
 export function mineFromErrors(userId: string, days = 14): number {
   if (clozeBacklog(userId) >= BACKLOG_CAP) return 0;
 
-  const rows = all<{ id: number; expected: string; user_answer: string; tags: string }>(
+  const rows = all<{
+    id: number;
+    expected: string;
+    user_answer: string;
+    tags: string;
+  }>(
     `SELECT id, expected, user_answer, error_tags_json AS tags
        FROM attempt
       WHERE user_id = ? AND correct = 0
@@ -178,19 +154,16 @@ export function clozeDueCount(userId: string): number {
 }
 
 /**
- * Throw a gap away.
- *
- * Mining is automatic, so some of what it produces is junk — a typo you will
+ * Throw a gap away. Mining is automatic, so some of what it produces is junk — a typo you will
  * never repeat, a proper noun, a sentence that made sense only in the moment.
- * Without a way out, that junk stays in rotation forever in the one block the
- * learner never chose the contents of.
- *
- * The card goes with it. A card pointing at a deleted cloze would surface as
- * an empty gap with no way to answer it.
  */
 export function deleteCloze(userId: string, clozeId: number): boolean {
   return tx(() => {
-    const res = run("DELETE FROM cloze WHERE id = ? AND user_id = ?", clozeId, userId);
+    const res = run(
+      "DELETE FROM cloze WHERE id = ? AND user_id = ?",
+      clozeId,
+      userId,
+    );
     if (!res.changes) return false;
     run(
       "DELETE FROM card WHERE user_id = ? AND ref_type = 'cloze' AND ref_id = ?",
@@ -203,6 +176,9 @@ export function deleteCloze(userId: string, clozeId: number): boolean {
 
 export function clozeTotal(userId: string): number {
   return (
-    get<{ n: number }>("SELECT COUNT(*) AS n FROM cloze WHERE user_id = ?", userId)?.n ?? 0
+    get<{ n: number }>(
+      "SELECT COUNT(*) AS n FROM cloze WHERE user_id = ?",
+      userId,
+    )?.n ?? 0
   );
 }

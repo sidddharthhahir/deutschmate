@@ -1,36 +1,6 @@
 /**
- * Give every word a sentence it lives in.
- *
- *   node scripts/attach-examples.mts
- *   node scripts/attach-examples.mts --stats
- *
- * WHY THIS MATTERS MORE THAN MORE VOCABULARY. Only 137 of the 1,225 words in
- * the deck at the time had an example sentence, and every level above A1.1 had
- * none at all. Three things were quietly degraded by that:
- *
- *   "Im Satz üben" on Problemwörter refused for 1,088 of those 1,225, because
- *   clozeLeech needs an example to make a gap from — so the main remedy for a
- *   stuck word was unavailable for almost every stuck word.
- *
- *   The listening and sentence-builder blocks filter unit words on having an
- *   example, so from A1.2 onward the unit's own vocabulary contributed nothing
- *   to them and they ran entirely on generic corpus sentences.
- *
- *   The exam's Hören section draws from words with examples, so it could only
- *   ever ask about A1.1 words.
- *
- * A word met only as a word is also the classic recipe for a leech. Context is
- * not decoration here; it is most of how vocabulary sticks.
- *
- * TWO PASSES, cheapest first:
- *   1. the levelled corpus already in data/sentences.json, which records which
- *      words each sentence uses
- *   2. the full Tatoeba archive, searched per remaining word
- *
- * Pass 2 relaxes the vocabulary constraint on purpose. For a sentence you READ
- * as an example, with its translation beside it, an unknown neighbouring word
- * costs little — unlike a sentence you have to produce or decode alone. It
- * still prefers short sentences made mostly of words the course teaches.
+ * Give every word a sentence it lives in. node scripts/attach-examples.mts node
+ * scripts/attach-examples.mts --stats WHY THIS MATTERS MORE THAN MORE VOCABULARY.
  */
 import { DatabaseSync } from "node:sqlite";
 import { existsSync, readFileSync, writeFileSync } from "node:fs";
@@ -57,10 +27,16 @@ type Word = {
 const LEVELS = ["A1.1", "A1.2", "A2.1", "A2.2", "B1.1", "B1.2"];
 const lower = (s: string) => s.toLocaleLowerCase("de");
 const fold = (s: string) =>
-  lower(s).replace(/ä/g, "a").replace(/ö/g, "o").replace(/ü/g, "u").replace(/ß/g, "ss");
+  lower(s)
+    .replace(/ä/g, "a")
+    .replace(/ö/g, "o")
+    .replace(/ü/g, "u")
+    .replace(/ß/g, "ss");
 
 const words = db
-  .prepare("SELECT id, lemma, level, pos, forms_json, example_de FROM word ORDER BY freq_rank")
+  .prepare(
+    "SELECT id, lemma, level, pos, forms_json, example_de FROM word ORDER BY freq_rank",
+  )
   .all() as Word[];
 
 if (process.argv.includes("--stats")) {
@@ -68,7 +44,9 @@ if (process.argv.includes("--stats")) {
   console.log(`${withEx} of ${words.length} words have an example`);
   for (const lv of LEVELS) {
     const at = words.filter((w) => w.level === lv);
-    console.log(`  ${lv}  ${at.filter((w) => w.example_de).length} / ${at.length}`);
+    console.log(
+      `  ${lv}  ${at.filter((w) => w.example_de).length} / ${at.length}`,
+    );
   }
   process.exit(0);
 }
@@ -78,7 +56,9 @@ function formsOf(w: Word): string[] {
   const out = new Set<string>([w.lemma]);
   if (w.forms_json) {
     try {
-      for (const f of Object.values(JSON.parse(w.forms_json) as Record<string, string>)) {
+      for (const f of Object.values(
+        JSON.parse(w.forms_json) as Record<string, string>,
+      )) {
         if (typeof f === "string" && f) out.add(f);
       }
     } catch {
@@ -89,7 +69,10 @@ function formsOf(w: Word): string[] {
 }
 
 const tokens = (s: string) =>
-  s.replace(/[.,!?;:„""»«()[\]–—]/g, " ").split(/\s+/).filter(Boolean);
+  s
+    .replace(/[.,!?;:„""»«()[\]–—]/g, " ")
+    .split(/\s+/)
+    .filter(Boolean);
 
 const bare = (t: string) => t.replace(/^[^\p{L}\p{N}]+|[^\p{L}\p{N}]+$/gu, "");
 
@@ -99,7 +82,9 @@ function contains(sentence: string, forms: string[]): boolean {
   return forms.some((f) => {
     const target = fold(f);
     // Exact token, or a token beginning with the stem (Haus → Häuser).
-    return toks.some((t) => t === target || (target.length >= 4 && t.startsWith(target)));
+    return toks.some(
+      (t) => t === target || (target.length >= 4 && t.startsWith(target)),
+    );
   });
 }
 
@@ -181,24 +166,32 @@ if (stillMissing.length && existsSync(ZIP)) {
 }
 
 // ------------------------------------------------------------------ output
-/* Only words that had no example are searched for one, so `chosen` is this
-   run's finds, not the whole set. Writing it straight out threw away every
-   example found by an earlier run: the database still had them, so nothing
-   looked wrong here — but a fresh clone seeded from this file got 145 examples
-   instead of 2,347. The file has to carry the union. */
+/*
+ * Only words that had no example are searched for one, so `chosen` is this run's finds, not the
+ * whole set.
+ */
 type Example = { id: string; de: string; en: string; source: string };
 const merged = new Map<string, Example>();
 /* The database is the fuller record while an already-truncated file is being
    repaired, so it goes in first and the file overwrites it where they agree. */
 for (const r of db
-  .prepare("SELECT id, example_de, example_en FROM word WHERE example_de IS NOT NULL AND example_de <> ''")
+  .prepare(
+    "SELECT id, example_de, example_en FROM word WHERE example_de IS NOT NULL AND example_de <> ''",
+  )
   .all() as { id: string; example_de: string; example_en: string | null }[]) {
-  merged.set(r.id, { id: r.id, de: r.example_de, en: r.example_en ?? "", source: "tatoeba" });
+  merged.set(r.id, {
+    id: r.id,
+    de: r.example_de,
+    en: r.example_en ?? "",
+    source: "tatoeba",
+  });
 }
 if (existsSync(OUT)) {
-  for (const e of JSON.parse(readFileSync(OUT, "utf8")) as Example[]) merged.set(e.id, e);
+  for (const e of JSON.parse(readFileSync(OUT, "utf8")) as Example[])
+    merged.set(e.id, e);
 }
-for (const [id, v] of chosen) merged.set(id, { id, de: v.de, en: v.en, source: v.source });
+for (const [id, v] of chosen)
+  merged.set(id, { id, de: v.de, en: v.en, source: v.source });
 
 // A word that has left the deck should not keep a row here forever.
 const live = new Set(words.map((w) => w.id));
@@ -208,13 +201,24 @@ const payload = [...merged.values()];
 writeFileSync(OUT, JSON.stringify(payload, null, 1), "utf8");
 
 const covered = words.filter((w) => w.example_de || chosen.has(w.id)).length;
-console.log(`\nwrote ${payload.length} examples to ${path.relative(ROOT, OUT)}  (+${chosen.size} this run)`);
-console.log(`coverage now ${covered} of ${words.length} (${Math.round((covered / words.length) * 100)}%)`);
+console.log(
+  `\nwrote ${payload.length} examples to ${path.relative(ROOT, OUT)}  (+${chosen.size} this run)`,
+);
+console.log(
+  `coverage now ${covered} of ${words.length} (${Math.round((covered / words.length) * 100)}%)`,
+);
 
 const left = words.filter((w) => !w.example_de && !chosen.has(w.id));
 if (left.length) {
   console.log(`\nstill without an example (${left.length}):`);
-  console.log("  " + left.slice(0, 20).map((w) => w.lemma).join(", ") + (left.length > 20 ? " …" : ""));
+  console.log(
+    "  " +
+      left
+        .slice(0, 20)
+        .map((w) => w.lemma)
+        .join(", ") +
+      (left.length > 20 ? " …" : ""),
+  );
 }
 console.log(`\nRun \`npm run seed\` to apply them.`);
 db.close();

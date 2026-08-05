@@ -6,17 +6,7 @@ import { readJson, badRequest, int, unauthorized } from "@/lib/http";
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-/**
- * Log a hands-free listening round.
- *
- * kind='exposure', correct=1, and NO card is touched. Listening to a word on
- * a walk is contact, not retrieval — writing it into the review count would
- * inflate the one number that is supposed to mean "I recalled this", and
- * grading the cards from it would corrupt every schedule involved.
- *
- * It is recorded at all so the time isn't invisible: Fortschritt can say you
- * heard 40 words on Tuesday without claiming you reviewed them.
- */
+/** Log a hands-free listening round. kind='exposure', correct=1, and NO card is touched. */
 export async function POST(req: Request) {
   const raw = await readJson(req);
   const user = await activeUser(req, raw);

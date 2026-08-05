@@ -1,7 +1,4 @@
-/**
- * Six more Alltag scenarios. One-shot, validated as it writes.
- *   node scripts/add-survival-scenarios.mts
- */
+/** Six more Alltag scenarios. */
 import { readFileSync, writeFileSync } from "node:fs";
 
 type Line = { de: string; en: string };
@@ -27,7 +24,11 @@ const NEW: Scenario[] = [
     ord: 7,
     title: "In der Apotheke",
     why: "German pharmacies keep most things behind the counter, so you have to ask out loud for what you want. Doing it once badly is how everyone learns.",
-    bring: ["Rezept, falls du eins hast", "Versichertenkarte bei Rezepten", "Bargeld oder Karte"],
+    bring: [
+      "Rezept, falls du eins hast",
+      "Versichertenkarte bei Rezepten",
+      "Bargeld oder Karte",
+    ],
     scenario: {
       role: "an Apothekerin, friendly and quick, used to explaining dosages",
       goal: "Describe what is wrong and leave with the right thing and the dose",
@@ -35,19 +36,34 @@ const NEW: Scenario[] = [
     },
     phrases: [
       { de: "Ich habe Kopfschmerzen.", en: "I have a headache." },
-      { de: "Haben Sie etwas gegen Husten?", en: "Do you have something for a cough?" },
+      {
+        de: "Haben Sie etwas gegen Husten?",
+        en: "Do you have something for a cough?",
+      },
       { de: "Ich habe kein Rezept.", en: "I do not have a prescription." },
       { de: "Wie oft soll ich das nehmen?", en: "How often should I take it?" },
       { de: "Gibt es das auch günstiger?", en: "Is there a cheaper version?" },
-      { de: "Ich bin gegen Penizillin allergisch.", en: "I am allergic to penicillin." },
+      {
+        de: "Ich bin gegen Penizillin allergisch.",
+        en: "I am allergic to penicillin.",
+      },
     ],
     hear: [
       { de: "Haben Sie ein Rezept?", en: "Do you have a prescription?" },
       { de: "Für Sie selbst?", en: "For yourself?" },
       { de: "Seit wann haben Sie das?", en: "Since when have you had this?" },
-      { de: "Dreimal täglich nach dem Essen.", en: "Three times a day after meals." },
-      { de: "Nehmen Sie sonst noch Medikamente?", en: "Are you taking any other medication?" },
-      { de: "Das bekommen Sie nur auf Rezept.", en: "That is prescription-only." },
+      {
+        de: "Dreimal täglich nach dem Essen.",
+        en: "Three times a day after meals.",
+      },
+      {
+        de: "Nehmen Sie sonst noch Medikamente?",
+        en: "Are you taking any other medication?",
+      },
+      {
+        de: "Das bekommen Sie nur auf Rezept.",
+        en: "That is prescription-only.",
+      },
     ],
     dialogue: [
       {
@@ -77,7 +93,11 @@ const NEW: Scenario[] = [
       {
         them: "Kein Problem, dagegen gibt es etwas rezeptfrei. Nehmen Sie sonst noch Medikamente?",
         options: [
-          { say: "Nein. Aber ich bin gegen Penizillin allergisch.", ok: true, next: 3 },
+          {
+            say: "Nein. Aber ich bin gegen Penizillin allergisch.",
+            ok: true,
+            next: 3,
+          },
           {
             say: "Nein.",
             ok: false,
@@ -128,24 +148,40 @@ const NEW: Scenario[] = [
     scenario: {
       role: "a Kundenberater at a Krankenkasse, patient but working through a form",
       goal: "Get insured as a student and leave knowing when the card arrives",
-      opener: "Guten Tag. Sie möchten sich versichern? Sind Sie Student oder berufstätig?",
+      opener:
+        "Guten Tag. Sie möchten sich versichern? Sind Sie Student oder berufstätig?",
     },
     phrases: [
-      { de: "Ich möchte mich versichern.", en: "I would like to take out insurance." },
+      {
+        de: "Ich möchte mich versichern.",
+        en: "I would like to take out insurance.",
+      },
       { de: "Ich bin Student.", en: "I am a student." },
       { de: "Was kostet das im Monat?", en: "What does that cost per month?" },
       { de: "Ab wann bin ich versichert?", en: "From when am I insured?" },
-      { de: "Brauchen Sie noch etwas von mir?", en: "Do you need anything else from me?" },
+      {
+        de: "Brauchen Sie noch etwas von mir?",
+        en: "Do you need anything else from me?",
+      },
       {
         de: "Ich brauche eine Bescheinigung für die Uni.",
         en: "I need a certificate for the university.",
       },
     ],
     hear: [
-      { de: "Sind Sie schon in Deutschland versichert?", en: "Are you already insured in Germany?" },
+      {
+        de: "Sind Sie schon in Deutschland versichert?",
+        en: "Are you already insured in Germany?",
+      },
       { de: "Wie alt sind Sie?", en: "How old are you?" },
-      { de: "Wir brauchen Ihre Meldebescheinigung.", en: "We need your registration certificate." },
-      { de: "Die Karte kommt in etwa zwei Wochen.", en: "The card arrives in about two weeks." },
+      {
+        de: "Wir brauchen Ihre Meldebescheinigung.",
+        en: "We need your registration certificate.",
+      },
+      {
+        de: "Die Karte kommt in etwa zwei Wochen.",
+        en: "The card arrives in about two weeks.",
+      },
       { de: "Bitte unterschreiben Sie hier.", en: "Please sign here." },
       {
         de: "Die Bescheinigung schicken wir direkt an die Uni.",
@@ -245,9 +281,18 @@ const NEW: Scenario[] = [
         en: "I would like to extend my residence permit.",
       },
       { de: "Mein Titel läuft im März ab.", en: "My permit expires in March." },
-      { de: "Ich studiere seit zwei Jahren hier.", en: "I have been studying here for two years." },
-      { de: "Welche Unterlagen fehlen noch?", en: "Which documents are still missing?" },
-      { de: "Bis wann muss ich das nachreichen?", en: "By when do I have to submit that?" },
+      {
+        de: "Ich studiere seit zwei Jahren hier.",
+        en: "I have been studying here for two years.",
+      },
+      {
+        de: "Welche Unterlagen fehlen noch?",
+        en: "Which documents are still missing?",
+      },
+      {
+        de: "Bis wann muss ich das nachreichen?",
+        en: "By when do I have to submit that?",
+      },
       {
         de: "Bekomme ich eine Bescheinigung für die Zwischenzeit?",
         en: "Do I get a certificate for the interim?",
@@ -256,10 +301,19 @@ const NEW: Scenario[] = [
     hear: [
       { de: "Haben Sie einen Termin?", en: "Do you have an appointment?" },
       { de: "Wann läuft Ihr Titel ab?", en: "When does your permit expire?" },
-      { de: "Wie finanzieren Sie Ihren Aufenthalt?", en: "How are you financing your stay?" },
+      {
+        de: "Wie finanzieren Sie Ihren Aufenthalt?",
+        en: "How are you financing your stay?",
+      },
       { de: "Das reicht so nicht aus.", en: "That is not sufficient." },
-      { de: "Sie müssen das nachreichen.", en: "You will have to submit that later." },
-      { de: "Die Gebühr beträgt hundert Euro.", en: "The fee is one hundred euros." },
+      {
+        de: "Sie müssen das nachreichen.",
+        en: "You will have to submit that later.",
+      },
+      {
+        de: "Die Gebühr beträgt hundert Euro.",
+        en: "The fee is one hundred euros.",
+      },
     ],
     dialogue: [
       {
@@ -354,20 +408,41 @@ const NEW: Scenario[] = [
       opener: "Der Nächste bitte. Was kann ich für Sie tun?",
     },
     phrases: [
-      { de: "Ich möchte ein Paket abholen.", en: "I would like to collect a parcel." },
-      { de: "Hier ist meine Benachrichtigungskarte.", en: "Here is my notification slip." },
+      {
+        de: "Ich möchte ein Paket abholen.",
+        en: "I would like to collect a parcel.",
+      },
+      {
+        de: "Hier ist meine Benachrichtigungskarte.",
+        en: "Here is my notification slip.",
+      },
       { de: "Mein Name ist …", en: "My name is …" },
       { de: "Ich habe meinen Ausweis dabei.", en: "I have my ID with me." },
-      { de: "Können Sie das bitte wiederholen?", en: "Could you repeat that, please?" },
-      { de: "Wie lange liegt das Paket noch hier?", en: "How long will the parcel stay here?" },
+      {
+        de: "Können Sie das bitte wiederholen?",
+        en: "Could you repeat that, please?",
+      },
+      {
+        de: "Wie lange liegt das Paket noch hier?",
+        en: "How long will the parcel stay here?",
+      },
     ],
     hear: [
-      { de: "Haben Sie die Karte dabei?", en: "Do you have the slip with you?" },
+      {
+        de: "Haben Sie die Karte dabei?",
+        en: "Do you have the slip with you?",
+      },
       { de: "Ihren Ausweis bitte.", en: "Your ID, please." },
       { de: "Bitte hier unterschreiben.", en: "Please sign here." },
-      { de: "Das Paket ist für jemand anderen.", en: "The parcel is for somebody else." },
+      {
+        de: "Das Paket ist für jemand anderen.",
+        en: "The parcel is for somebody else.",
+      },
       { de: "Einen Moment, ich hole es.", en: "One moment, I will fetch it." },
-      { de: "Da ist eine Nachgebühr fällig.", en: "There is a charge due on this." },
+      {
+        de: "Da ist eine Nachgebühr fällig.",
+        en: "There is a charge due on this.",
+      },
     ],
     dialogue: [
       {
@@ -450,20 +525,44 @@ const NEW: Scenario[] = [
       opener: "Sanitär Berger, guten Tag?",
     },
     phrases: [
-      { de: "Bei mir ist die Heizung ausgefallen.", en: "My heating has stopped working." },
-      { de: "Es tropft unter der Spüle.", en: "It is dripping under the sink." },
+      {
+        de: "Bei mir ist die Heizung ausgefallen.",
+        en: "My heating has stopped working.",
+      },
+      {
+        de: "Es tropft unter der Spüle.",
+        en: "It is dripping under the sink.",
+      },
       { de: "Seit gestern Abend.", en: "Since yesterday evening." },
       { de: "Wann könnten Sie kommen?", en: "When could you come?" },
-      { de: "Ich bin ab sechzehn Uhr zu Hause.", en: "I am home from four o'clock." },
-      { de: "Die Hausverwaltung zahlt das.", en: "The property management pays for it." },
+      {
+        de: "Ich bin ab sechzehn Uhr zu Hause.",
+        en: "I am home from four o'clock.",
+      },
+      {
+        de: "Die Hausverwaltung zahlt das.",
+        en: "The property management pays for it.",
+      },
     ],
     hear: [
       { de: "Was genau ist das Problem?", en: "What exactly is the problem?" },
-      { de: "Seit wann geht das schon so?", en: "How long has it been like that?" },
-      { de: "Sind Sie Mieter oder Eigentümer?", en: "Are you a tenant or the owner?" },
+      {
+        de: "Seit wann geht das schon so?",
+        en: "How long has it been like that?",
+      },
+      {
+        de: "Sind Sie Mieter oder Eigentümer?",
+        en: "Are you a tenant or the owner?",
+      },
       { de: "Diese Woche wird schwierig.", en: "This week will be difficult." },
-      { de: "Passt Ihnen Donnerstag zwischen zehn und zwölf?", en: "Does Thursday between ten and twelve suit you?" },
-      { de: "Geben Sie mir bitte Ihre Adresse.", en: "Give me your address, please." },
+      {
+        de: "Passt Ihnen Donnerstag zwischen zehn und zwölf?",
+        en: "Does Thursday between ten and twelve suit you?",
+      },
+      {
+        de: "Geben Sie mir bitte Ihre Adresse.",
+        en: "Give me your address, please.",
+      },
     ],
     dialogue: [
       {
@@ -567,8 +666,14 @@ const NEW: Scenario[] = [
         de: "Ich habe eine Frage zur Nebenkostenabrechnung.",
         en: "I have a question about the service-charge statement.",
       },
-      { de: "Die Nachzahlung erscheint mir sehr hoch.", en: "The back payment seems very high to me." },
-      { de: "Wie wurden die Heizkosten umgelegt?", en: "How were the heating costs apportioned?" },
+      {
+        de: "Die Nachzahlung erscheint mir sehr hoch.",
+        en: "The back payment seems very high to me.",
+      },
+      {
+        de: "Wie wurden die Heizkosten umgelegt?",
+        en: "How were the heating costs apportioned?",
+      },
       {
         de: "Ich möchte Einsicht in die Belege nehmen.",
         en: "I would like to inspect the receipts.",
@@ -577,15 +682,30 @@ const NEW: Scenario[] = [
         de: "Bitte senden Sie mir das schriftlich.",
         en: "Please send me that in writing.",
       },
-      { de: "Ich widerspreche der Abrechnung.", en: "I am objecting to the statement." },
+      {
+        de: "Ich widerspreche der Abrechnung.",
+        en: "I am objecting to the statement.",
+      },
     ],
     hear: [
       { de: "Um welche Wohnung geht es?", en: "Which flat is this about?" },
       { de: "Die Abrechnung ist korrekt.", en: "The statement is correct." },
-      { de: "Das wird nach Quadratmetern umgelegt.", en: "That is apportioned by square metres." },
-      { de: "Die Energiepreise sind gestiegen.", en: "Energy prices have risen." },
-      { de: "Sie können die Belege einsehen.", en: "You may inspect the receipts." },
-      { de: "Der Betrag ist bereits fällig.", en: "The amount is already due." },
+      {
+        de: "Das wird nach Quadratmetern umgelegt.",
+        en: "That is apportioned by square metres.",
+      },
+      {
+        de: "Die Energiepreise sind gestiegen.",
+        en: "Energy prices have risen.",
+      },
+      {
+        de: "Sie können die Belege einsehen.",
+        en: "You may inspect the receipts.",
+      },
+      {
+        de: "Der Betrag ist bereits fällig.",
+        en: "The amount is already due.",
+      },
     ],
     dialogue: [
       {
@@ -691,7 +811,8 @@ for (const s of NEW) {
   seen.add(s.id);
   ords.add(s.ord);
 
-  if (!/^(A1\.[12]|A2\.[12]|B1\.[12])$/.test(s.level)) fail(`${s.id}: odd level ${s.level}`);
+  if (!/^(A1\.[12]|A2\.[12]|B1\.[12])$/.test(s.level))
+    fail(`${s.id}: odd level ${s.level}`);
   if (s.phrases.length < 4) fail(`${s.id}: too few phrases`);
   if (s.hear.length < 4) fail(`${s.id}: too few hear lines`);
   if (!s.bring.length) fail(`${s.id}: nothing to bring`);
@@ -703,10 +824,12 @@ for (const s of NEW) {
   if (d.length < 3) fail(`${s.id}: dialogue too short`);
   d.forEach((t, i) => {
     if (!t.them.trim()) fail(`${s.id} turn ${i}: empty prompt`);
-    if (!t.options.some((o) => o.ok)) fail(`${s.id} turn ${i}: no right answer`);
+    if (!t.options.some((o) => o.ok))
+      fail(`${s.id} turn ${i}: no right answer`);
     for (const o of t.options) {
       if (!o.say.trim()) fail(`${s.id} turn ${i}: empty option`);
-      if (!o.ok && !o.why) fail(`${s.id} turn ${i}: wrong answer with no explanation`);
+      if (!o.ok && !o.why)
+        fail(`${s.id} turn ${i}: wrong answer with no explanation`);
       if (o.next !== -1 && (o.next <= i || o.next >= d.length)) {
         fail(`${s.id} turn ${i}: next=${o.next} is not a later turn or -1`);
       }

@@ -6,35 +6,17 @@ import {
   type CacheTtl,
 } from "./pricing";
 
-/**
- * What the AI actually costs.
- *
- * The budget for this app was a hard €10/month, and until now there was no way
- * to check it. The irony was that every response already carried exact token
- * counts — input, output, cache reads, cache writes — and every caller threw
- * them away. This records them and prices them.
- *
- * The numbers here are the API's own counts, not an estimate of them. The only
- * estimated part is the money, because prices change and promotional rates
- * exist; standard published rates are used, so the figure errs high rather
- * than reassuring you with a number that turns out to be optimistic.
- */
+/** What the AI actually costs. */
 
-export { priceOf, isPriced, ceiling, type Usage } from "./pricing";
-/* The rates themselves come from data/models.json now — lib/models.ts explains
-   why a price table typed into a source file is a number principle 4 forbids. */
-export { priceList, modelFor } from "./models.ts";
+export { isPriced } from "./pricing";
+// Rates come from data/models.json; lib/models.ts says why a price table typed
+// into a source file is a number principle 4 forbids.
+export { priceList } from "./models.ts";
 import { budgetFor } from "./apikey.ts";
 
 /**
- * Record a call. Never throws — a failed bookkeeping write must not take down
- * the feature it was measuring.
- *
- * `ttl` is the cache lifetime the call ASKED for, because the write multiplier
- * depends on it: 1.25x at five minutes, 2x at an hour. Every cached call in
- * this app uses the hour, which is why that is the default — and pricing them
- * all at the five-minute rate is exactly the understatement this parameter
- * exists to end.
+ * Record a call. Never throws — a failed bookkeeping write must not take down the feature it was
+ * measuring.
  */
 export function recordUsage(
   userId: string,
@@ -108,7 +90,10 @@ function totals(userId: string, since: string): Spend {
     input,
     output: row?.output ?? 0,
     cacheRead,
-    cacheShare: input + cacheRead ? Math.round((cacheRead / (input + cacheRead)) * 100) : 0,
+    cacheShare:
+      input + cacheRead
+        ? Math.round((cacheRead / (input + cacheRead)) * 100)
+        : 0,
     byKind,
   };
 }
@@ -116,15 +101,8 @@ function totals(userId: string, since: string): Spend {
 export const spendThisMonth = (userId: string) => totals(userId, "-30 days");
 
 /**
- * How much of the ceiling is left.
- *
- * The ceiling is the learner's own if they have set one, and the deployment
- * default otherwise. It stopped being a limit imposed by the operator the
- * moment the money became theirs — it is a brake they set on their own
- * spending, and one they are allowed to set to zero.
- *
- * Still per learner either way, so nobody can spend anybody else out of a
- * conversation.
+ * How much of the ceiling is left. The ceiling is the learner's own if they have set one, and the
+ * deployment default otherwise.
  */
 export function budgetLeft(userId: string) {
   const spent = spendThisMonth(userId).dollars;
@@ -132,13 +110,7 @@ export function budgetLeft(userId: string) {
   return { spent, ceiling: c, remaining: Math.max(0, c - spent) };
 }
 
-/**
- * Projected monthly spend from the last 30 days.
- *
- * Straight arithmetic on what has actually been spent, scaled by how long the
- * data covers. Returns null until there is a week of history — a projection
- * from two days would swing wildly and mean nothing.
- */
+/** Projected monthly spend from the last 30 days. */
 export function projectedMonthly(userId: string): number | null {
   const first = get<{ d: number | null }>(
     `SELECT CAST(julianday('now') - julianday(MIN(created_at)) AS REAL) AS d
@@ -151,4 +123,3 @@ export function projectedMonthly(userId: string): number | null {
   const window = totals(userId, `-${Math.ceil(days)} days`);
   return (window.dollars / days) * 30;
 }
-

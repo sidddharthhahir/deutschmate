@@ -7,13 +7,7 @@ import type { Pair } from "@/lib/pairs";
 
 type Heard = { said: string; matched: "a" | "b" | null };
 
-/**
- * One of the two words.
- *
- * Declared at module scope, not inside the drill. Defining a component during
- * render gives it a new identity every time, so React unmounts and remounts
- * the whole card on each keystroke — losing focus and any animation with it.
- */
+/** One of the two words. */
 function WordCard({
   word,
   en,
@@ -67,17 +61,16 @@ function WordCard({
 }
 
 /**
- * Minimal pairs.
- *
- * The check is deliberately blunt: you pick a word, say it, and the recogniser
- * reports which of the two it heard. That is a real, falsifiable signal — if
- * you aim for "schön" and the machine writes "schon", the distinction isn't
- * landing. It is not a pronunciation score, and the page says so.
- *
- * A recogniser is not a phonetician. It will sometimes be wrong, and the UI
- * treats a mismatch as information rather than a verdict.
+ * Minimal pairs. The check is deliberately blunt: you pick a word, say it, and the recogniser
+ * reports which of the two it heard.
  */
-export default function PairDrill({ pairs, sound }: { pairs: Pair[]; sound: string | null }) {
+export default function PairDrill({
+  pairs,
+  sound,
+}: {
+  pairs: Pair[];
+  sound: string | null;
+}) {
   const [i, setI] = useState(0);
   const [target, setTarget] = useState<"a" | "b" | null>(null);
   const [listening, setListening] = useState(false);
@@ -90,7 +83,11 @@ export default function PairDrill({ pairs, sound }: { pairs: Pair[]; sound: stri
 
   if (!p) return null;
 
-  const norm = (s: string) => s.toLocaleLowerCase("de").replace(/[.,!?]/g, "").trim();
+  const norm = (s: string) =>
+    s
+      .toLocaleLowerCase("de")
+      .replace(/[.,!?]/g, "")
+      .trim();
 
   async function say(which: "a" | "b") {
     if (listening) return;
@@ -101,8 +98,11 @@ export default function PairDrill({ pairs, sound }: { pairs: Pair[]; sound: stri
     try {
       const said = await listenOnce(6000);
       const n = norm(said);
-      const matched: "a" | "b" | null =
-        n.includes(norm(p.a)) ? "a" : n.includes(norm(p.b)) ? "b" : null;
+      const matched: "a" | "b" | null = n.includes(norm(p.a))
+        ? "a"
+        : n.includes(norm(p.b))
+          ? "b"
+          : null;
       setHeard({ said, matched });
       if (matched === which) setTally((t) => ({ ...t, hit: t.hit + 1 }));
       else setTally((t) => ({ ...t, miss: t.miss + 1 }));
@@ -165,9 +165,13 @@ export default function PairDrill({ pairs, sound }: { pairs: Pair[]; sound: stri
         ))}
       </div>
 
-      <p className="text-secondary mt-5 text-center text-[14px] leading-relaxed">{p.tip}</p>
+      <p className="text-secondary mt-5 text-center text-[14px] leading-relaxed">
+        {p.tip}
+      </p>
 
-      {error && <p className="text-das mt-3 text-center text-[13px]">{error}</p>}
+      {error && (
+        <p className="text-das mt-3 text-center text-[13px]">{error}</p>
+      )}
 
       {heard && (
         <div
@@ -178,7 +182,10 @@ export default function PairDrill({ pairs, sound }: { pairs: Pair[]; sound: stri
           }`}
         >
           {heard.matched === target ? (
-            <p>Erkannt als „{target === "a" ? p.a : p.b}“ — der Unterschied kommt an.</p>
+            <p>
+              Erkannt als „{target === "a" ? p.a : p.b}“ — der Unterschied kommt
+              an.
+            </p>
           ) : heard.matched ? (
             <p>
               Du wolltest „{target === "a" ? p.a : p.b}“, gehört wurde „
@@ -210,8 +217,8 @@ export default function PairDrill({ pairs, sound }: { pairs: Pair[]; sound: stri
 
       {!micAvailable && (
         <p className="text-muted mt-5 text-center text-[12.5px] leading-relaxed">
-          Dein Browser kann keine Spracherkennung. Anhören und nachsprechen geht trotzdem —
-          nur die Rückmeldung fehlt.
+          Dein Browser kann keine Spracherkennung. Anhören und nachsprechen geht
+          trotzdem — nur die Rückmeldung fehlt.
         </p>
       )}
     </div>

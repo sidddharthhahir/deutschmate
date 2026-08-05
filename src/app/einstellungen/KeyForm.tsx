@@ -9,13 +9,7 @@ type State =
   | { state: "unreadable" }
   | { state: "unavailable" };
 
-/**
- * Paste a key, remove it, set a cap.
- *
- * The field is `type="password"` and is cleared the instant the key is stored —
- * there is no state in this component that holds it after the request, and the
- * server never sends one back. What comes back is the last four characters.
- */
+/** Paste a key, remove it, set a cap. */
 export default function KeyForm({
   state,
   spend,
@@ -30,7 +24,10 @@ export default function KeyForm({
   const router = useRouter();
   const [key, setKey] = useState("");
   const [busy, setBusy] = useState(false);
-  const [note, setNote] = useState<{ text: string; tone: "ok" | "warn" } | null>(null);
+  const [note, setNote] = useState<{
+    text: string;
+    tone: "ok" | "warn";
+  } | null>(null);
   const [budget, setBudget] = useState(isDefault ? "" : String(cap));
 
   async function post(body: Record<string, unknown>) {
@@ -42,7 +39,11 @@ export default function KeyForm({
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),
       });
-      const data = (await res.json()) as { ok?: boolean; error?: string; verified?: boolean };
+      const data = (await res.json()) as {
+        ok?: boolean;
+        error?: string;
+        verified?: boolean;
+      };
       if (!res.ok || !data.ok) {
         setNote({ text: data.error ?? "Ging nicht.", tone: "warn" });
         return null;
@@ -65,7 +66,10 @@ export default function KeyForm({
     setNote(
       data.verified
         ? { text: "Gespeichert und geprüft.", tone: "ok" }
-        : { text: "Gespeichert — konnte gerade nicht bei Anthropic geprüft werden.", tone: "warn" },
+        : {
+            text: "Gespeichert — konnte gerade nicht bei Anthropic geprüft werden.",
+            tone: "warn",
+          },
     );
     router.refresh();
   }
@@ -78,9 +82,18 @@ export default function KeyForm({
 
   async function saveBudget(e: React.FormEvent) {
     e.preventDefault();
-    if (!(await post({ action: "budget", budget: budget.trim() === "" ? null : budget }))) return;
+    if (
+      !(await post({
+        action: "budget",
+        budget: budget.trim() === "" ? null : budget,
+      }))
+    )
+      return;
     setNote({
-      text: budget.trim() === "" ? "Auf den Standard zurückgesetzt." : "Limit gesetzt.",
+      text:
+        budget.trim() === ""
+          ? "Auf den Standard zurückgesetzt."
+          : "Limit gesetzt.",
       tone: "ok",
     });
     router.refresh();
@@ -89,12 +102,14 @@ export default function KeyForm({
   if (state.state === "unavailable") {
     return (
       <div className="border-line bg-raised mt-8 rounded-xl border p-5">
-        <p className="font-serif text-[19px]">Dieser Server speichert keine Schlüssel</p>
+        <p className="font-serif text-[19px]">
+          Dieser Server speichert keine Schlüssel
+        </p>
         <p className="text-muted mt-2 max-w-[52ch] text-[13.5px] leading-relaxed">
-          Es ist kein <code className="font-mono">DEUTSCHMATE_SECRET</code> gesetzt, also gibt
-          es nichts, womit dein Schlüssel verschlüsselt werden könnte — und unverschlüsselt
-          wird er nicht abgelegt. <code className="font-mono">npm run setup</code> erzeugt
-          eins.
+          Es ist kein <code className="font-mono">DEUTSCHMATE_SECRET</code>{" "}
+          gesetzt, also gibt es nichts, womit dein Schlüssel verschlüsselt
+          werden könnte — und unverschlüsselt wird er nicht abgelegt.{" "}
+          <code className="font-mono">npm run setup</code> erzeugt eins.
         </p>
       </div>
     );
@@ -127,10 +142,13 @@ export default function KeyForm({
 
         {state.state === "unreadable" && (
           <div className="border-das/40 bg-raised rounded-xl border p-4">
-            <p className="text-das text-[14px]">Dein Schlüssel ist nicht mehr lesbar</p>
+            <p className="text-das text-[14px]">
+              Dein Schlüssel ist nicht mehr lesbar
+            </p>
             <p className="text-muted mt-1 max-w-[52ch] text-[12.5px] leading-relaxed">
-              Gespeichert ist etwas, aber dieser Server kann es nicht entschlüsseln — meist
-              heißt das, <code className="font-mono">DEUTSCHMATE_SECRET</code> hat sich
+              Gespeichert ist etwas, aber dieser Server kann es nicht
+              entschlüsseln — meist heißt das,{" "}
+              <code className="font-mono">DEUTSCHMATE_SECRET</code> hat sich
               geändert. Füg ihn einfach nochmal ein.
             </p>
           </div>
@@ -148,7 +166,9 @@ export default function KeyForm({
               type="password"
               value={key}
               onChange={(e) => setKey(e.target.value)}
-              placeholder={state.state === "set" ? "Neuen Schlüssel einfügen" : "sk-ant-…"}
+              placeholder={
+                state.state === "set" ? "Neuen Schlüssel einfügen" : "sk-ant-…"
+              }
               autoComplete="off"
               spellCheck={false}
               className="border-line bg-bg text-fg focus:border-line-strong placeholder:text-muted font-mono min-w-0 flex-1 rounded-xl border px-4 py-3 text-[14px] outline-none"
@@ -162,7 +182,8 @@ export default function KeyForm({
             </button>
           </div>
           <p className="text-muted mt-2 text-[12.5px]">
-            Aus console.anthropic.com → API keys. Er wird beim Speichern einmal geprüft.
+            Aus console.anthropic.com → API keys. Er wird beim Speichern einmal
+            geprüft.
           </p>
         </form>
       </section>
@@ -172,7 +193,8 @@ export default function KeyForm({
           Dein Limit · 30 Tage
         </h2>
         <p className="text-secondary text-[14px]">
-          Bisher ausgegeben: <span className="font-mono">{spend.toFixed(2)} $</span> von{" "}
+          Bisher ausgegeben:{" "}
+          <span className="font-mono">{spend.toFixed(2)} $</span> von{" "}
           <span className="font-mono">{cap.toFixed(2)} $</span>
           {isDefault && <span className="text-muted"> (Standard)</span>}
         </p>
@@ -196,9 +218,10 @@ export default function KeyForm({
           </button>
         </form>
         <p className="text-muted mt-2 max-w-[56ch] text-[12.5px] leading-relaxed">
-          Wird durchgesetzt, nicht nur angezeigt: Ist es aufgebraucht, gehen Gespräch,
-          Schreibkorrektur und neue Erklärungen denselben Weg wie ohne Schlüssel — der Rest
-          der App läuft weiter. Leer lassen für den Standard, 0 für gar keine Ausgaben.
+          Wird durchgesetzt, nicht nur angezeigt: Ist es aufgebraucht, gehen
+          Gespräch, Schreibkorrektur und neue Erklärungen denselben Weg wie ohne
+          Schlüssel — der Rest der App läuft weiter. Leer lassen für den
+          Standard, 0 für gar keine Ausgaben.
         </p>
       </section>
 

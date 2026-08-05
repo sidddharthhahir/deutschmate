@@ -1,38 +1,9 @@
 /**
- * Build the video catalogue, then seed it.
- *
- *   npm run videos                 verify data/videos.json and seed it
- *   npm run videos -- --check      verify only, write nothing
- *   npm run videos -- --refresh    re-pull every DW feed, rewrite the catalogue
- *   npm run videos -- --prune      also drop db rows the catalogue dropped,
- *                                  but only those with no segments
- *
- * WHERE THE VIDEOS COME FROM
- *
- * Deutsche Welle's "Nicos Weg" — a free A1–B1 drama course from a public
- * broadcaster, already cut into ~90-second lesson-sized episodes.
- *
- * DW publishes the whole thing as three official video podcasts: 226 episodes
- * with direct mp4s on their own CDN, episode and unit numbers encoded in the
- * filenames, and durations. That is the source. The YouTube route reached 14 of
- * them, because playlist pages 302 to a consent banner and the RSS feeds return
- * only the newest 15 entries — a handful of extras that are not in the podcasts
- * (the full-length films, the recaps) stay on YouTube and are kept by hand.
- *
- * WHAT THIS DELIBERATELY DOES NOT DO
- *
- * It does not write segments. A segment is a timestamp plus the line actually
- * spoken, and the only way to know the line is to listen. Invented ones would
- * be subtitles that disagree with the video — worse than no video, because a
- * learner would believe them. `session.ts` will not offer a video until it has
- * segments, so everything seeded here stays invisible until a person has been
- * through /admin/video.
- *
- * It also does not guess unit_id. The DW "Einheit" in the filename is DW's
- * course structure, not this app's 20-units-per-level one, and mapping 226
- * episodes onto 120 units by arithmetic would put the wrong video in a lesson
- * silently. Level is set, which is what the editor sorts by; the unit is picked
- * while watching, which is when you are segmenting it anyway.
+ * Build the video catalogue, then seed it. npm run videos verify data/videos.json and seed it npm
+ * run videos -- --check verify only, write nothing npm run videos -- --refresh re-pull every DW
+ * feed, rewrite the catalogue npm run videos -- --prune also drop db rows the catalogue dropped,
+ * but only those with no segments WHERE THE VIDEOS COME FROM Deutsche Welle's "Nicos Weg" — a free
+ * A1–B1 drama course from a public broadcaster, already cut into ~90-second lesson-sized episodes.
  */
 import "./load-env.mts";
 import { readFileSync, writeFileSync } from "node:fs";
@@ -67,9 +38,21 @@ const data = JSON.parse(readFileSync(FILE, "utf8")) as Catalogue;
    different word order — guessed names return HTTP 200 with an empty body, so
    a feed is validated by episode count, never by status. */
 const FEEDS: { level: string; url: string; label: string }[] = [
-  { level: "A1", url: "https://rss.dw.com/xmlhd/DKpodcast_nicosweg_A1_videos_en", label: "A1" },
-  { level: "A2", url: "https://rss.dw.com/xmlhd/DKpodcast_nicosweg_A2_videos_en", label: "A2" },
-  { level: "B1", url: "https://rss.dw.com/xml/DKpodcast_nicosweg_video_B1_de", label: "B1" },
+  {
+    level: "A1",
+    url: "https://rss.dw.com/xmlhd/DKpodcast_nicosweg_A1_videos_en",
+    label: "A1",
+  },
+  {
+    level: "A2",
+    url: "https://rss.dw.com/xmlhd/DKpodcast_nicosweg_A2_videos_en",
+    label: "A2",
+  },
+  {
+    level: "B1",
+    url: "https://rss.dw.com/xml/DKpodcast_nicosweg_video_B1_de",
+    label: "B1",
+  },
 ];
 
 const seconds = (hms?: string) =>
@@ -82,27 +65,31 @@ const seconds = (hms?: string) =>
 
 const text = (block: string, tag: string) =>
   block
-    .match(new RegExp(`<${tag}[^>]*>(?:<!\\[CDATA\\[)?([\\s\\S]*?)(?:\\]\\]>)?</${tag}>`))?.[1]
+    .match(
+      new RegExp(
+        `<${tag}[^>]*>(?:<!\\[CDATA\\[)?([\\s\\S]*?)(?:\\]\\]>)?</${tag}>`,
+      ),
+    )?.[1]
     ?.trim();
 
-/**
- * DW's course splits into ~19 "Einheiten" per level; this app has 20 units per
- * half-level. First half of the Einheiten to the .1, second half to the .2.
- * A coarse bucket for sorting the editor's queue — deliberately NOT a claim
- * about which unit an episode belongs to.
- */
-const halfLevel = (base: string, einheit: number) => `${base}.${einheit <= 9 ? 1 : 2}`;
+/** DW's course splits into ~19 "Einheiten" per level; this app has 20 units per half-level. */
+const halfLevel = (base: string, einheit: number) =>
+  `${base}.${einheit <= 9 ? 1 : 2}`;
 
 async function pullFeeds(): Promise<Entry[]> {
   const out: Entry[] = [];
   for (const f of FEEDS) {
-    const res = await fetch(f.url, { headers: { "User-Agent": "DeutschMate/1.0" } });
+    const res = await fetch(f.url, {
+      headers: { "User-Agent": "DeutschMate/1.0" },
+    });
     if (!res.ok) {
       console.log(`  ${red("✗")} ${f.label}: HTTP ${res.status}`);
       continue;
     }
     const xml = await res.text();
-    const items = [...xml.matchAll(/<item>([\s\S]*?)<\/item>/g)].map((m) => m[1]);
+    const items = [...xml.matchAll(/<item>([\s\S]*?)<\/item>/g)].map(
+      (m) => m[1],
+    );
     let kept = 0;
     for (const it of items) {
       const src = it.match(/<enclosure[^>]*url="([^"]+)"/)?.[1];
@@ -118,7 +105,9 @@ async function pullFeeds(): Promise<Entry[]> {
       });
       kept++;
     }
-    console.log(`  ${green("✓")} ${f.label}: ${kept} episodes from ${items.length} items`);
+    console.log(
+      `  ${green("✓")} ${f.label}: ${kept} episodes from ${items.length} items`,
+    );
   }
   return out;
 }
@@ -154,7 +143,9 @@ const entries = (JSON.parse(readFileSync(FILE, "utf8")) as Catalogue).videos;
 const files = entries.filter((v) => v.src_url);
 const tube = entries.filter((v) => !v.src_url && v.youtube_id);
 
-console.log(`  Verifying ${files.length} DW files and ${tube.length} YouTube embeds…\n`);
+console.log(
+  `  Verifying ${files.length} DW files and ${tube.length} YouTube embeds…\n`,
+);
 
 const ok: Entry[] = [];
 let bad = 0;
@@ -166,7 +157,10 @@ let bad = 0;
 const sample = files.filter((_, i) => i % 40 === 0).slice(0, 6);
 for (const v of sample) {
   try {
-    const r = await fetch(v.src_url!, { method: "HEAD", signal: AbortSignal.timeout(15_000) });
+    const r = await fetch(v.src_url!, {
+      method: "HEAD",
+      signal: AbortSignal.timeout(15_000),
+    });
     const type = r.headers.get("content-type") ?? "";
     const ranges = r.headers.get("accept-ranges");
     console.log(
@@ -174,7 +168,9 @@ for (const v of sample) {
     );
     if (!r.ok || !type.startsWith("video/")) bad++;
   } catch (e) {
-    console.log(`  ${red("✗")} ${(e as Error).message}  ${v.title.slice(0, 44)}`);
+    console.log(
+      `  ${red("✗")} ${(e as Error).message}  ${v.title.slice(0, 44)}`,
+    );
     bad++;
   }
 }
@@ -201,7 +197,9 @@ for (const v of tube) {
     }
     await r.json();
     ok.push(v);
-    console.log(`  ${green("✓")} ${v.youtube_id}  ${dim(v.title.slice(0, 48))}`);
+    console.log(
+      `  ${green("✓")} ${v.youtube_id}  ${dim(v.title.slice(0, 48))}`,
+    );
   } catch (e) {
     console.log(`  ${red("✗")} ${v.youtube_id}  ${(e as Error).message}`);
     bad++;
@@ -216,7 +214,12 @@ if (checkOnly) {
 
 // --------------------------------------------------------------------- seed
 const idOf = (v: Entry) =>
-  v.src_url ? `dw-${v.src_url.split("/").pop()!.replace(/\.mp4$/, "")}` : `yt-${v.youtube_id}`;
+  v.src_url
+    ? `dw-${v.src_url
+        .split("/")
+        .pop()!
+        .replace(/\.mp4$/, "")}`
+    : `yt-${v.youtube_id}`;
 
 getDb();
 let inserted = 0;
@@ -264,14 +267,7 @@ for (const v of ok) {
   }
 }
 
-/*
- * Rows from an earlier import that the catalogue no longer lists.
- *
- * Never deleted by default: one of them may be the video somebody spent twelve
- * minutes marking up, and a seed script is not the place to make that call.
- * `--prune` removes only the ones with NO segments, which is safe by
- * construction — the thing worth protecting is precisely what it checks for.
- */
+/* Rows from an earlier import that the catalogue no longer lists. */
 const stale = all<{ id: string; title: string; n: number }>(
   `SELECT id, title, length(segments_json) AS n FROM video
     WHERE id NOT IN (${ok.map(() => "?").join(",")})`,
@@ -287,7 +283,9 @@ if (prune) {
   const kept = stale.length - empty.length;
   console.log(
     `\n  pruned ${empty.length} unsegmented orphan(s)` +
-      (kept ? `; ${red(`kept ${kept} that HAVE segments`)} — delete those by hand if you mean it` : ""),
+      (kept
+        ? `; ${red(`kept ${kept} that HAVE segments`)} — delete those by hand if you mean it`
+        : ""),
   );
   stale.length = 0;
 }
@@ -296,11 +294,17 @@ const segmented = all<{ n: number }>(
   "SELECT COUNT(*) AS n FROM video WHERE segments_json NOT IN ('[]','')",
 )[0].n;
 
-console.log(`\n  ${green("✓")} ${inserted} added, ${updated} updated, ${linked} linked to a unit`);
+console.log(
+  `\n  ${green("✓")} ${inserted} added, ${updated} updated, ${linked} linked to a unit`,
+);
 if (stale.length) {
-  console.log(`\n  ${stale.length} row(s) no longer in the catalogue, left in place:`);
+  console.log(
+    `\n  ${stale.length} row(s) no longer in the catalogue, left in place:`,
+  );
   for (const s of stale.slice(0, 8)) {
-    console.log(`      ${s.id}  ${s.n > 2 ? "HAS SEGMENTS" : "empty"}  ${dim(s.title.slice(0, 40))}`);
+    console.log(
+      `      ${s.id}  ${s.n > 2 ? "HAS SEGMENTS" : "empty"}  ${dim(s.title.slice(0, 40))}`,
+    );
   }
 }
 console.log(`\n  ${segmented} videos have segments.`);

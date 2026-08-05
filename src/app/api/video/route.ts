@@ -43,22 +43,7 @@ export async function GET(req: Request) {
   });
 }
 
-/**
- * Save a video and its hand-marked segments.
- *
- * OPERATOR ONLY, and it was not.
- *
- * This route had no user resolution and no check of any kind, and line 83 runs
- * `UPDATE unit SET video_id = ? WHERE id = ?` — a write to the *shared content*
- * every learner reads. Anyone who could reach the server could rewrite the
- * curriculum, anonymously, with one curl.
- *
- * It is a tool for whoever has the repo checked out, so it gets an operator
- * switch: `DEUTSCHMATE_ADMIN=1`, off unless deliberately set. That is a switch
- * and not a password, and lib/trust.ts says so plainly rather than implying a
- * safety it does not have — it stops the accidental and the drive-by, and is no
- * defence against someone who can already set your environment.
- */
+/** Save a video and its hand-marked segments. OPERATOR ONLY, and it was not. */
 export async function POST(req: Request) {
   if (!adminEnabled()) {
     return NextResponse.json(
@@ -83,7 +68,10 @@ export async function POST(req: Request) {
      black box inside a lesson. */
   const src = (body.srcUrl ?? "").trim();
   if (src && !/^https:\/\/\S+$/i.test(src)) {
-    return NextResponse.json({ error: "srcUrl must be an https url" }, { status: 400 });
+    return NextResponse.json(
+      { error: "srcUrl must be an https url" },
+      { status: 400 },
+    );
   }
   if ((!body.youtubeId && !src) || !body.title) {
     return NextResponse.json(
@@ -96,7 +84,12 @@ export async function POST(req: Request) {
      that row rather than creating a second one beside it. */
   const id =
     body.id ||
-    (src ? `dw-${src.split("/").pop()!.replace(/\.mp4$/i, "")}` : `yt-${body.youtubeId}`);
+    (src
+      ? `dw-${src
+          .split("/")
+          .pop()!
+          .replace(/\.mp4$/i, "")}`
+      : `yt-${body.youtubeId}`);
   const clean = (body.segments ?? [])
     .filter((s) => s.de?.trim() && s.t_end > s.t_start)
     .sort((a, b) => a.t_start - b.t_start)
@@ -124,7 +117,8 @@ export async function POST(req: Request) {
     JSON.stringify(clean),
   );
 
-  if (body.unitId) run("UPDATE unit SET video_id = ? WHERE id = ?", id, body.unitId);
+  if (body.unitId)
+    run("UPDATE unit SET video_id = ? WHERE id = ?", id, body.unitId);
 
   return NextResponse.json({ ok: true, id, segments: clean.length });
 }

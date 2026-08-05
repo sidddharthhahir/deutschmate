@@ -4,22 +4,7 @@ import { toSqlDate } from "./srs";
 import { addCloze } from "./cloze";
 import { blankWord } from "./cloze-text";
 
-/**
- * Leeches — the words that are eating your time.
- *
- * A card you have forgotten eight times is not being learned by repetition; it
- * is being ground. FSRS keeps scheduling it because that is exactly what FSRS
- * is for, and the app will happily show it to you three hundred more times
- * without ever mentioning that something is wrong.
- *
- * This is the thing that makes people quit spaced repetition, and it is
- * detectable with one WHERE clause. Surfacing it is not a nicety.
- *
- * Three ways out, all honest — nothing here pretends the word is learned:
- *   reset    forget the card and meet the word again from scratch
- *   cloze    stop drilling the word alone, drill it inside its sentence
- *   pause    take it out of rotation and say so
- */
+/** Leeches — the words that are eating your time. */
 
 export const LEECH_THRESHOLD = 8;
 
@@ -54,7 +39,11 @@ const SELECT = `
     FROM card c JOIN word w ON w.id = c.ref_id
    WHERE c.user_id = ? AND c.ref_type = 'word' AND c.lapses >= ?`;
 
-export function leeches(userId: string, min = LEECH_THRESHOLD, limit = 40): Leech[] {
+export function leeches(
+  userId: string,
+  min = LEECH_THRESHOLD,
+  limit = 40,
+): Leech[] {
   return all<Leech>(
     `${SELECT} ORDER BY c.suspended ASC, c.lapses DESC, w.freq_rank ASC LIMIT ?`,
     userId,
@@ -83,12 +72,7 @@ function ownedCard(userId: string, cardId: number) {
   );
 }
 
-/**
- * The word behind one of this learner's leech cards, for the mnemonic pass.
- *
- * Returns the existing hook if there is one, so a second request costs nothing
- * — the column is shared across users, which is the point.
- */
+/** The word behind one of this learner's leech cards, for the mnemonic pass. */
 export function leechWord(userId: string, cardId: number) {
   return get<{
     id: string;
@@ -111,13 +95,7 @@ export function storeMnemonic(wordId: string, text: string) {
   run("UPDATE word SET mnemonic = ? WHERE id = ?", text, wordId);
 }
 
-/**
- * Forget the card.
- *
- * Lapses are deliberately KEPT. Zeroing them would make the word disappear from
- * this page and look solved, which is the one thing the app must never do — the
- * counter is the evidence that this word has a history.
- */
+/** Forget the card. Lapses are deliberately KEPT. */
 export function resetLeech(userId: string, cardId: number): boolean {
   if (!ownedCard(userId, cardId)) return false;
   const empty = createEmptyCard(new Date());
@@ -134,7 +112,11 @@ export function resetLeech(userId: string, cardId: number): boolean {
   return true;
 }
 
-export function suspendLeech(userId: string, cardId: number, on: boolean): boolean {
+export function suspendLeech(
+  userId: string,
+  cardId: number,
+  on: boolean,
+): boolean {
   if (!ownedCard(userId, cardId)) return false;
   run(
     "UPDATE card SET suspended = ? WHERE id = ? AND user_id = ?",
@@ -145,17 +127,16 @@ export function suspendLeech(userId: string, cardId: number, on: boolean): boole
   return true;
 }
 
-/**
- * Drill the word in context instead of alone.
- *
- * An isolated word with no hook is the usual reason a card becomes a leech.
- * Its example sentence gives the answer a shape, a position and a case.
- */
+/** Drill the word in context instead of alone. */
 export function clozeLeech(userId: string, cardId: number): boolean {
   const card = ownedCard(userId, cardId);
   if (!card) return false;
 
-  const w = get<{ lemma: string; example_de: string | null; example_en: string | null }>(
+  const w = get<{
+    lemma: string;
+    example_de: string | null;
+    example_en: string | null;
+  }>(
     "SELECT lemma, example_de, example_en FROM word WHERE id = ?",
     card.ref_id,
   );

@@ -7,7 +7,11 @@ import GrammarPractice from "./GrammarPractice";
 export const dynamic = "force-dynamic";
 
 /** Grammar reference — the same component the session block uses, browsable. */
-export default async function GrammarPage({ params }: { params: Promise<{ slug: string }> }) {
+export default async function GrammarPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
   const { slug } = await params;
 
   const g = get<{

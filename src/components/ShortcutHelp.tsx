@@ -4,20 +4,8 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { isTypingTarget, useModalFlag } from "@/lib/keys";
 
-/**
- * Press ? for the keys.
- *
- * The app is genuinely keyboard-driven — grading a card never needs the mouse —
- * but until now nothing listed the keys anywhere, so you had to discover them
- * from hints printed under the block you happened to be in.
- */
-/**
- * Keys in German, what they do in English.
- *
- * The label on screen stays German because that is what the screen says; the
- * explanation is English because this panel exists for the moment you don't
- * understand something, and answering that in German helps nobody.
- */
+/** Press ? for the keys. */
+/** Keys in German, what they do in English. */
 const GROUPS: { title: string; keys: [string, string][] }[] = [
   {
     title: "Everywhere",
@@ -113,9 +101,14 @@ export default function ShortcutHelp() {
               </p>
               <div className="space-y-1.5">
                 {g.keys.map(([k, what]) => (
-                  <div key={k} className="flex items-baseline justify-between gap-4">
+                  <div
+                    key={k}
+                    className="flex items-baseline justify-between gap-4"
+                  >
                     <span className="kbd text-fg flex-none">{k}</span>
-                    <span className="text-secondary text-right text-[13.5px]">{what}</span>
+                    <span className="text-secondary text-right text-[13.5px]">
+                      {what}
+                    </span>
                   </div>
                 ))}
               </div>

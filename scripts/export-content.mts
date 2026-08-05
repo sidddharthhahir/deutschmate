@@ -1,36 +1,7 @@
 /**
- * Move content made at runtime out of the database and into `data/`, so it is
- * committed rather than living on one laptop.
- *
- *   npm run export-content
- *
- * WHY THIS EXISTS
- *
- * Almost everything the app knows comes from `data/` and is rebuilt by
- * `npm run seed`. Two things do not: the segments somebody hand-marks in
- * /admin/video, and the mnemonics generated for leech words. Both are course
- * content, both cost real time or real money to make, and both were reachable
- * only from the machine they were made on — so a second clone starts from
- * nothing and a lost database loses the lot.
- *
- * WHAT IS DELIBERATELY NOT EXPORTED, AND WHY
- *
- * This repository is public. Three kinds of row stay in the database:
- *
- *   progress            cards, attempts, streaks, mined cloze. Personal, and
- *                       publishing someone's learning history is not a feature.
- *                       `npm run backup` is the tool for that.
- *   error_pattern       generated rows are keyed on the learner's actual wrong
- *                       answer. Small fragments of somebody's mistakes, and
- *                       committing them would make Einstellungen's "withdraw my
- *                       contributions" button a lie — git history does not
- *                       forget.
- *   explanation         the same, plus the private half is German somebody
- *                       pasted into /text, which may be a letter from a
- *                       landlord.
- *
- * The prebuilt error patterns in `data/error-patterns.json` are already
- * committed; those are written by hand and belong to the app.
+ * Move content made at runtime out of the database and into `data/`, so it is committed rather
+ * than living on one laptop. npm run export-content WHY THIS EXISTS Almost everything the app
+ * knows comes from `data/` and is rebuilt by `npm run seed`.
  */
 import "./load-env.mts";
 import { readFileSync, writeFileSync, existsSync } from "node:fs";
@@ -65,7 +36,9 @@ const marked = all<{
   src_url: string | null;
   title: string;
   segments_json: string;
-}>("SELECT youtube_id, src_url, title, segments_json FROM video WHERE segments_json NOT IN ('[]','')");
+}>(
+  "SELECT youtube_id, src_url, title, segments_json FROM video WHERE segments_json NOT IN ('[]','')",
+);
 
 let attached = 0;
 let orphaned = 0;
@@ -77,7 +50,9 @@ for (const v of marked) {
     /* Marked up a video that is not in the catalogue — added by hand in the
        editor. Reported rather than dropped: the work is real and the fix is to
        add it to data/videos.json, which this script must not guess at. */
-    console.log(`  ! not in the catalogue, segments left in the db: ${v.title}`);
+    console.log(
+      `  ! not in the catalogue, segments left in the db: ${v.title}`,
+    );
     orphaned++;
     continue;
   }
@@ -100,11 +75,7 @@ for (const e of catalogue.videos) {
   }
 }
 
-/* `removed` is counted, not inferred from the result. The first version asked
-   "does anything still have segments?" AFTER deleting them, which is false
-   exactly when a deletion happened — so the one case that needed writing was
-   the one case that did not write, and the stale segments stayed in the file
-   forever. Found by deleting a test fixture and watching it survive. */
+/* `removed` is counted, not inferred from the result. */
 if (attached || removed) {
   writeFileSync(VIDEOS, JSON.stringify(catalogue, null, 2) + "\n", "utf8");
   wrote++;

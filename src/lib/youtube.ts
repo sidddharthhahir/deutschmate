@@ -1,16 +1,6 @@
 "use client";
 
-/**
- * YouTube IFrame Player API — one shared declaration.
- *
- * Both the video block and the segment editor drive the player, and two
- * separate `declare global` blocks for window.YT collide (TS2717). This is the
- * single source for the type and the loader.
- *
- * Embedding through the official player is the legitimate way to use these
- * videos, and it is also the only way to get seek / loop / playback-rate
- * control — which is the entire feature.
- */
+/** YouTube IFrame Player API — one shared declaration. */
 
 export type YTPlayer = {
   seekTo(seconds: number, allowSeekAhead: boolean): void;

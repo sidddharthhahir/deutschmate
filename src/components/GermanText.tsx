@@ -5,15 +5,8 @@ import { speak } from "@/lib/speech";
 import ExplainSentence from "@/components/ExplainSentence";
 
 /**
- * A German text you can work on: tap a word for its meaning, keep the sentence
- * as a gap card, ask what the grammar is doing.
- *
- * Split out of ReadingBlock so the same surface serves the course's own texts
- * and anything you paste in. Two copies of this would drift, and the tapping
- * behaviour is the most-used interaction in the app after grading a card.
- *
- * Sentences are split before words so a tapped token knows the sentence it
- * belongs to — that context is what turns "what does this mean" into a card.
+ * A German text you can work on: tap a word for its meaning, keep the sentence as a gap card, ask
+ * what the grammar is doing.
  */
 
 type Gloss = { word: string; meaning: string; sentence: string };
@@ -53,7 +46,8 @@ export default function GermanText({
     const direct =
       g[word] ??
       Object.entries(g).find(
-        ([k]) => k.toLowerCase() === word.toLowerCase() || k.endsWith(` ${word}`),
+        ([k]) =>
+          k.toLowerCase() === word.toLowerCase() || k.endsWith(` ${word}`),
       )?.[1];
     if (direct) return setGloss({ word, meaning: direct, sentence });
 
@@ -91,7 +85,9 @@ export default function GermanText({
 
   return (
     <>
-      <div className={`font-serif mx-auto max-w-[58ch] space-y-4 leading-[1.7] ${text}`}>
+      <div
+        className={`font-serif mx-auto max-w-[58ch] space-y-4 leading-[1.7] ${text}`}
+      >
         {body.split(/\n{2,}/).map((para, n) => (
           <p key={n}>
             {para.split(/(?<=[.!?])\s+/).map((sentence, s) => (
@@ -119,7 +115,9 @@ export default function GermanText({
         <div className="border-line bg-bg dm-fade mt-6 flex flex-wrap items-center justify-between gap-3 rounded-xl border px-4 py-3">
           <div>
             <span className="font-serif text-[18px]">{gloss.word}</span>
-            <span className="text-secondary ml-3 text-[15px]">{gloss.meaning}</span>
+            <span className="text-secondary ml-3 text-[15px]">
+              {gloss.meaning}
+            </span>
           </div>
           <div className="flex items-center gap-3">
             <button
@@ -149,7 +147,8 @@ export default function GermanText({
       {gloss && <ExplainSentence sentence={gloss.sentence} />}
 
       <p className="font-mono text-muted mt-6 text-center text-[11.5px]">
-        Auf ein Wort tippen für die Bedeutung · „Als Lücke merken“ macht daraus eine Karte
+        Auf ein Wort tippen für die Bedeutung · „Als Lücke merken“ macht daraus
+        eine Karte
       </p>
     </>
   );

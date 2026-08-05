@@ -1,14 +1,5 @@
 /**
- * Sign-in.
- *
- * The primitives, driven directly, because every one of them is a way to
- * become somebody else if it is wrong: a token that survives being used, a
- * token that outlives its expiry, a session that is stored in the clear, a
- * redemption that two callers can both win.
- *
- * Deliberately NOT a test of the screens. What must hold here is arithmetic
- * about rows, and a browser test would prove it more slowly and less.
- *
+ * Sign-in. Deliberately NOT a test of the screens.
  * needs: seeded database
  */
 import { readFileSync } from "node:fs";
@@ -36,8 +27,7 @@ const wipe = () => {
   const d = open();
   for (const email of [EMAIL, "test-auth-second@example.invalid"]) {
     const u = d.prepare("SELECT id FROM user WHERE email = ?").get(email) as
-      | { id: string }
-      | undefined;
+      { id: string } | undefined;
     if (!u) continue;
     d.prepare("DELETE FROM session WHERE user_id = ?").run(u.id);
     d.prepare("DELETE FROM auth_token WHERE user_id = ?").run(u.id);
@@ -51,7 +41,11 @@ process.on("exit", wipe);
 const db = open();
 
 section("an address is normalised, not validated");
-eq(normaliseEmail("  Anna@Example.DE "), "anna@example.de", "trimmed and lowercased");
+eq(
+  normaliseEmail("  Anna@Example.DE "),
+  "anna@example.de",
+  "trimmed and lowercased",
+);
 eq(normaliseEmail("a@b"), "a@b", "short but structurally an address");
 eq(normaliseEmail("nope"), null, "no @");
 eq(normaliseEmail("@x.de"), null, "nothing before the @");
@@ -63,8 +57,16 @@ section("an account, once, from an address");
 const user = createUserByEmail(EMAIL)!;
 ok(Boolean(user?.id), "created", user?.id);
 ok(!user.id.includes("@"), "the id is opaque, not the address", user.id);
-eq(createUserByEmail(EMAIL)!.id, user.id, "asking twice does not make a second account");
-eq(createUserByEmail("  TEST-AUTH@EXAMPLE.INVALID ")!.id, user.id, "nor does a different casing");
+eq(
+  createUserByEmail(EMAIL)!.id,
+  user.id,
+  "asking twice does not make a second account",
+);
+eq(
+  createUserByEmail("  TEST-AUTH@EXAMPLE.INVALID ")!.id,
+  user.id,
+  "nor does a different casing",
+);
 eq(userByEmail(EMAIL)?.id, user.id, "and it is findable by address");
 
 section("the secret is never stored");
@@ -76,10 +78,16 @@ const rowsWithToken = (
 ).n;
 eq(rowsWithToken, 0, "the token itself does not appear in the table");
 ok(
-  Boolean(db.prepare("SELECT hash FROM auth_token WHERE user_id = ?").get(user.id)),
+  Boolean(
+    db.prepare("SELECT hash FROM auth_token WHERE user_id = ?").get(user.id),
+  ),
   "only a hash of it does",
 );
-ok(t.url.includes("/api/auth/callback?token="), "the link points at the route handler", t.url);
+ok(
+  t.url.includes("/api/auth/callback?token="),
+  "the link points at the route handler",
+  t.url,
+);
 
 section("a token works exactly once");
 eq(redeemSignInToken(t.token), user.id, "first use signs you in");
@@ -100,22 +108,39 @@ eq(redeemSignInToken(second.token), user.id, "the newer one works");
 
 section("an expired token is refused");
 const stale = createSignInToken(user.id, "http://x");
-db.prepare("UPDATE auth_token SET expires_at = datetime('now','-1 minute') WHERE used_at IS NULL")
-  .run();
+db.prepare(
+  "UPDATE auth_token SET expires_at = datetime('now','-1 minute') WHERE used_at IS NULL",
+).run();
 eq(redeemSignInToken(stale.token), null, "past its expiry, no");
-ok(TOKEN_TTL_MIN > 0 && TOKEN_TTL_MIN <= 60, "and the window is minutes, not days", TOKEN_TTL_MIN);
+ok(
+  TOKEN_TTL_MIN > 0 && TOKEN_TTL_MIN <= 60,
+  "and the window is minutes, not days",
+  TOKEN_TTL_MIN,
+);
 
 section("a session is a hash too");
 const s = createSession(user.id);
 eq(
-  (db.prepare("SELECT COUNT(*) AS n FROM session WHERE hash = ?").get(s.value) as { n: number }).n,
+  (
+    db
+      .prepare("SELECT COUNT(*) AS n FROM session WHERE hash = ?")
+      .get(s.value) as { n: number }
+  ).n,
   0,
   "the cookie value is not in the table",
 );
 eq(userIdForSession(s.value), user.id, "but it resolves to the learner");
-eq(userIdForSession("nonsense-but-long-enough-to-pass"), null, "a made-up one does not");
+eq(
+  userIdForSession("nonsense-but-long-enough-to-pass"),
+  null,
+  "a made-up one does not",
+);
 eq(userIdForSession(undefined), null, "nor does no cookie at all");
-ok(SESSION_TTL_DAYS >= 7, "sessions last long enough not to lose a streak", SESSION_TTL_DAYS);
+ok(
+  SESSION_TTL_DAYS >= 7,
+  "sessions last long enough not to lose a streak",
+  SESSION_TTL_DAYS,
+);
 
 section("signing out");
 destroySession(s.value);
@@ -129,13 +154,17 @@ eq(userIdForSession(b.value), null, "…including the other device");
 
 section("expired rows are swept");
 const dead = createSession(user.id);
-db.prepare("UPDATE session SET expires_at = datetime('now','-1 day') WHERE hash IS NOT NULL")
-  .run();
+db.prepare(
+  "UPDATE session SET expires_at = datetime('now','-1 day') WHERE hash IS NOT NULL",
+).run();
 sweepExpired();
 eq(userIdForSession(dead.value), null, "an expired session does not resolve");
 eq(
-  (db.prepare("SELECT COUNT(*) AS n FROM session WHERE user_id = ?").get(user.id) as { n: number })
-    .n,
+  (
+    db
+      .prepare("SELECT COUNT(*) AS n FROM session WHERE user_id = ?")
+      .get(user.id) as { n: number }
+  ).n,
   0,
   "and its row is gone rather than accumulating",
 );
@@ -146,14 +175,19 @@ createSession(user.id);
 createSignInToken(user.id, "http://x");
 db.prepare("DELETE FROM user WHERE id = ?").run(user.id);
 eq(
-  (db.prepare("SELECT COUNT(*) AS n FROM session WHERE user_id = ?").get(user.id) as { n: number })
-    .n,
+  (
+    db
+      .prepare("SELECT COUNT(*) AS n FROM session WHERE user_id = ?")
+      .get(user.id) as { n: number }
+  ).n,
   0,
   "no orphan sessions",
 );
 eq(
   (
-    db.prepare("SELECT COUNT(*) AS n FROM auth_token WHERE user_id = ?").get(user.id) as {
+    db
+      .prepare("SELECT COUNT(*) AS n FROM auth_token WHERE user_id = ?")
+      .get(user.id) as {
       n: number;
     }
   ).n,
@@ -163,14 +197,8 @@ eq(
 
 section("a link nobody can follow is caught before it is sent");
 /*
- * The worst failure this feature has, because it is invisible: DEUTSCHMATE_URL
- * left at localhost, a link mailed to a colleague, and it resolves to THEIR
- * machine where nothing is listening. That looks exactly like the email not
- * arriving, so nobody debugs the URL.
- *
- * `check()` reads the environment and the real database, so this restores both.
- * Driven with two accounts present, since one account on localhost is the
- * ordinary single-person install and must stay silent.
+ * The worst failure this feature has, because it is invisible: DEUTSCHMATE_URL left at localhost,
+ * a link mailed to a colleague, and it resolves to THEIR machine where nothing is listening.
  */
 const REAL_URL = process.env.DEUTSCHMATE_URL;
 const urlIssues = () => check().filter((i) => i.name === "DEUTSCHMATE_URL");
@@ -192,17 +220,15 @@ ok(
   "and a URL with no scheme is caught whatever the account count",
 );
 
-if (otherAccount) db.prepare("DELETE FROM user WHERE id = ?").run(otherAccount.id);
+if (otherAccount)
+  db.prepare("DELETE FROM user WHERE id = ?").run(otherAccount.id);
 if (REAL_URL === undefined) delete process.env.DEUTSCHMATE_URL;
 else process.env.DEUTSCHMATE_URL = REAL_URL;
 
 section("the sign-in cookie is Secure behind a TLS-terminating proxy");
 /*
- * Read from the source rather than driven, because reproducing it needs a
- * proxy. Almost every real deployment terminates TLS in front of the app and
- * forwards plain http, so `url.protocol` says "http:" on a site the browser
- * reached over https — and the session cookie goes out without Secure. Nothing
- * looks wrong. The header is the only thing that knows.
+ * Read from the source rather than driven, because reproducing it needs a proxy. The header is the
+ * only thing that knows.
  */
 const callback = readFileSync("src/app/api/auth/callback/route.ts", "utf8");
 ok(
@@ -217,7 +243,11 @@ ok(
    taking the LAST element instead of the first is the classic way to get it
    backwards. */
 const chain = "https, http";
-eq(chain.split(",")[0].trim(), "https", "the first hop in a proxy chain is the client's");
+eq(
+  chain.split(",")[0].trim(),
+  "https",
+  "the first hop in a proxy chain is the client's",
+);
 
 db.close();
 done();

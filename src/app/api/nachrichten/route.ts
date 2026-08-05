@@ -3,20 +3,7 @@ import { NextResponse } from "next/server";
 export const runtime = "nodejs";
 export const revalidate = 1800;
 
-/**
- * Langsam gesprochene Nachrichten — real German news, read slowly, daily.
- *
- * The course has 38 readings. They run out, and they were written for a
- * syllabus rather than for today. Deutsche Welle publishes a free daily
- * bulletin spoken at learner pace, which is the one input source that never
- * goes stale and is already pitched at exactly this level.
- *
- * WHAT THIS DOES AND DOESN'T DO. It reads DW's public podcast feed and links
- * to their audio and their page. Nothing is copied into the database, nothing
- * is redistributed, and the audio is streamed from DW's own servers — the same
- * thing any podcast client does. The transcript is DW's and stays on DW's site;
- * the app sends you there rather than reproducing it.
- */
+/** Langsam gesprochene Nachrichten — real German news, read slowly, daily. */
 
 const FEED = "https://rss.dw.com/xml/DKpodcast_lgn_de";
 const UA = "DeutschMate/1.0 (personal language-learning app)";
@@ -68,7 +55,11 @@ export async function GET() {
       next: { revalidate: 1800 },
     });
     if (!res.ok) {
-      return NextResponse.json({ ok: false, reason: `feed ${res.status}`, episodes: [] });
+      return NextResponse.json({
+        ok: false,
+        reason: `feed ${res.status}`,
+        episodes: [],
+      });
     }
 
     const xml = await res.text();
@@ -77,11 +68,15 @@ export async function GET() {
     const episodes: Episode[] = items.map((raw) => {
       const audio = pick(raw, /<enclosure[^>]*url="([^"]+)"/i);
       return {
-        title: decode(pick(raw, /<title>([\s\S]*?)<\/title>/i) ?? "Nachrichten"),
+        title: decode(
+          pick(raw, /<title>([\s\S]*?)<\/title>/i) ?? "Nachrichten",
+        ),
         date: decode(pick(raw, /<pubDate>([\s\S]*?)<\/pubDate>/i) ?? ""),
         link: decode(pick(raw, /<link>([\s\S]*?)<\/link>/i) ?? ""),
         audio: audio ? decode(audio) : null,
-        seconds: duration(pick(raw, /<itunes:duration>([\s\S]*?)<\/itunes:duration>/i)),
+        seconds: duration(
+          pick(raw, /<itunes:duration>([\s\S]*?)<\/itunes:duration>/i),
+        ),
       };
     });
 

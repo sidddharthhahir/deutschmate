@@ -1,17 +1,5 @@
 /**
  * Does the sentence corpus actually rotate?
- *
- * This is the failure mode that hides best. The Hören and Sätze-bauen blocks
- * always had sentences in them, always looked full, and always worked — they
- * were simply the same hundred sentences for seven months. The comment on the
- * code said it "walks the whole corpus over time instead of replaying the first
- * rows", and the cursor was `id > 'tat-' + (dayIndex % 36)`: base-36 landing
- * points on ids that are not evenly distributed (941 of 1,827 sentences start
- * with `tat-1`), and a modulo that made day 36 identical to day 0.
- *
- * So this measures coverage over a real course length rather than checking that
- * two consecutive days differ — which the broken version also passed.
- *
  * needs: seeded database
  */
 import { ok, eq, section, done, open } from "./harness.mts";
@@ -69,13 +57,21 @@ for (const [level, limit, floor] of [
 section("no day is a repeat of a day five weeks earlier");
 /* The specific shape of the old bug: dayIndex % 36 meant day 36 == day 0. */
 const long = walk("B1.2", 8, 40);
-ok(long.perDay[0] !== long.perDay[36], "day 36 differs from day 0", long.perDay[0]?.slice(0, 40));
+ok(
+  long.perDay[0] !== long.perDay[36],
+  "day 36 differs from day 0",
+  long.perDay[0]?.slice(0, 40),
+);
 ok(long.perDay[1] !== long.perDay[37], "day 37 differs from day 1");
 
 section("the last page wraps instead of coming up short");
-const pool = (db.prepare("SELECT COUNT(*) AS n FROM sentence WHERE level = 'A1.1'").get() as {
-  n: number;
-}).n;
+const pool = (
+  db
+    .prepare("SELECT COUNT(*) AS n FROM sentence WHERE level = 'A1.1'")
+    .get() as {
+    n: number;
+  }
+).n;
 const lastDay = Math.floor(pool / 8); // an offset that runs off the end
 const tail = walk("A1.1", 8, lastDay + 1).perDay[lastDay];
 eq(tail.split(",").length, 8, "a full block on the day the window overruns");

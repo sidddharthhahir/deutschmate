@@ -3,22 +3,8 @@
 import { forwardRef, useCallback, useImperativeHandle, useRef } from "react";
 
 /**
- * German text entry on a keyboard that has no German on it.
- *
- * Four blocks now ask you to type German (Lücken, Hören, Schreiben, Gespräch),
- * and on a UK/US layout ä ö ü ß need alt codes nobody remembers. Left alone,
- * that friction gets blamed on German rather than on the keyboard.
- *
- * Two ways in, deliberately both:
- *
- *   Alt + a/o/u/s      for the keyboard. Explicit, so it can never fire by
- *                      accident. Alt+Shift+a gives Ä.
- *   A row of buttons   for the phone, where there is no Alt key at all.
- *
- * What this does NOT do is silently rewrite "ae" to "ä" as you type. That
- * looks clever for one demo and then mangles Museum, Adresse, Gruppe, aktuell
- * and every English loanword — turning a typing aid into a source of wrong
- * answers in the one place where wrong answers are recorded against you.
+ * German text entry on a keyboard that has no German on it. Two ways in, deliberately both: Alt +
+ * a/o/u/s for the keyboard.
  */
 
 const KEYS: Record<string, [lower: string, upper: string]> = {
@@ -33,12 +19,7 @@ const CHARS = ["ä", "ö", "ü", "ß"] as const;
 
 type Field = HTMLInputElement | HTMLTextAreaElement;
 
-/**
- * Insert text at the caret, keeping undo history intact where the browser
- * supports it. `execCommand` is deprecated but it is still the only way to
- * write into a field without destroying the native undo stack; the manual
- * path below is the fallback.
- */
+/** Insert text at the caret, keeping undo history intact where the browser supports it. */
 function insertAtCaret(el: Field, ch: string, onChange: (v: string) => void) {
   el.focus();
   const start = el.selectionStart ?? el.value.length;
@@ -60,10 +41,8 @@ function insertAtCaret(el: Field, ch: string, onChange: (v: string) => void) {
 }
 
 /**
- * Alt + a/o/u/s → ä/ö/ü/ß. Returns a keydown handler to spread onto a field.
- *
- * Only fires with Alt held and no Ctrl/Meta, so it cannot collide with browser
- * or OS shortcuts, and never intercepts a plain keystroke.
+ * Alt + a/o/u/s → ä/ö/ü/ß. Only fires with Alt held and no Ctrl/Meta, so it cannot collide with
+ * browser or OS shortcuts, and never intercepts a plain keystroke.
  */
 function useUmlautKeys(onChange: (v: string) => void) {
   return useCallback(
@@ -92,14 +71,7 @@ type Common = {
   keys?: boolean;
 };
 
-/**
- * The button row. Always rendered for touch, and it doubles as the discovery
- * mechanism for the Alt shortcuts — nobody reads a shortcuts list first.
- *
- * Exported so a layout that can't take the row directly under its field (the
- * chat composer, where the mic and send buttons sit alongside) can place it
- * itself rather than go without.
- */
+/** The button row. */
 export function UmlautBar({
   onInsert,
   disabled,
@@ -129,33 +101,91 @@ export function UmlautBar({
   );
 }
 
-export const GermanInput = forwardRef<GermanFieldHandle, Common>(function GermanInput(
-  { value, onChange, onEnter, disabled, placeholder, className, ariaLabel, keys = true },
+export const GermanInput = forwardRef<GermanFieldHandle, Common>(
+  function GermanInput(
+    {
+      value,
+      onChange,
+      onEnter,
+      disabled,
+      placeholder,
+      className,
+      ariaLabel,
+      keys = true,
+    },
+    ref,
+  ) {
+    const el = useRef<HTMLInputElement>(null);
+    const onKey = useUmlautKeys(onChange);
+    useImperativeHandle(ref, () => ({ focus: () => el.current?.focus() }), []);
+
+    return (
+      <>
+        <input
+          ref={el}
+          value={value}
+          onChange={(e) => onChange(e.target.value)}
+          onKeyDown={(e) => {
+            onKey(e);
+            if (e.key === "Enter" && onEnter && !e.defaultPrevented) {
+              e.preventDefault();
+              onEnter();
+            }
+          }}
+          disabled={disabled}
+          placeholder={placeholder}
+          aria-label={ariaLabel}
+          autoComplete="off"
+          autoCapitalize="off"
+          autoCorrect="off"
+          spellCheck={false}
+          lang="de"
+          className={className}
+        />
+        {keys && (
+          <UmlautBar
+            disabled={disabled}
+            onInsert={(c) =>
+              el.current && insertAtCaret(el.current, c, onChange)
+            }
+          />
+        )}
+      </>
+    );
+  },
+);
+
+export const GermanTextarea = forwardRef<
+  GermanFieldHandle,
+  Common & { rows?: number }
+>(function GermanTextarea(
+  {
+    value,
+    onChange,
+    disabled,
+    placeholder,
+    className,
+    ariaLabel,
+    rows = 7,
+    keys = true,
+  },
   ref,
 ) {
-  const el = useRef<HTMLInputElement>(null);
+  const el = useRef<HTMLTextAreaElement>(null);
   const onKey = useUmlautKeys(onChange);
   useImperativeHandle(ref, () => ({ focus: () => el.current?.focus() }), []);
 
   return (
     <>
-      <input
+      <textarea
         ref={el}
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        onKeyDown={(e) => {
-          onKey(e);
-          if (e.key === "Enter" && onEnter && !e.defaultPrevented) {
-            e.preventDefault();
-            onEnter();
-          }
-        }}
+        onKeyDown={onKey}
         disabled={disabled}
         placeholder={placeholder}
         aria-label={ariaLabel}
-        autoComplete="off"
-        autoCapitalize="off"
-        autoCorrect="off"
+        rows={rows}
         spellCheck={false}
         lang="de"
         className={className}
@@ -169,39 +199,3 @@ export const GermanInput = forwardRef<GermanFieldHandle, Common>(function German
     </>
   );
 });
-
-export const GermanTextarea = forwardRef<GermanFieldHandle, Common & { rows?: number }>(
-  function GermanTextarea(
-    { value, onChange, disabled, placeholder, className, ariaLabel, rows = 7, keys = true },
-    ref,
-  ) {
-    const el = useRef<HTMLTextAreaElement>(null);
-    const onKey = useUmlautKeys(onChange);
-    useImperativeHandle(ref, () => ({ focus: () => el.current?.focus() }), []);
-
-    return (
-      <>
-        <textarea
-          ref={el}
-          value={value}
-          onChange={(e) => onChange(e.target.value)}
-          onKeyDown={onKey}
-          disabled={disabled}
-          placeholder={placeholder}
-          aria-label={ariaLabel}
-          rows={rows}
-          spellCheck={false}
-          lang="de"
-          className={className}
-        />
-        {keys && (
-          <UmlautBar
-            disabled={disabled}
-            onInsert={(c) => el.current && insertAtCaret(el.current, c, onChange)}
-          />
-        )}
-      </>
-    );
-  },
-);
-

@@ -23,11 +23,8 @@ type Row = {
 };
 
 /**
- * Wortschatz — all 2,400 words.
- *
- * Dense by design: this has to stay scannable at 100 rows, so the row is one
- * line of substance plus two quiet subordinate lines. `seen` and `learned` are
- * separate counts and never merged — reading is recognition, not recall.
+ * Wortschatz — all 2,400 words. `seen` and `learned` are separate counts and never merged —
+ * reading is recognition, not recall.
  */
 export default function WortschatzPage() {
   const [rows, setRows] = useState<Row[]>([]);
@@ -40,22 +37,15 @@ export default function WortschatzPage() {
   const [seen, setSeen] = useState(0);
   const [loading, setLoading] = useState(true);
 
-  /**
-   * Every state write sits behind the `stale` guard.
-   *
-   * Typing in the search box fires a request per keystroke. Without the guard,
-   * a slow response for "Ent" can land after a fast one for "Entwicklung" and
-   * repaint the list with the wrong results — the classic out-of-order fetch.
-   *
-   * `loading` is switched ON by whatever changed the query (keystroke, filter,
-   * page turn) and OFF here, after the await, so nothing is set synchronously
-   * inside the effect body.
-   */
+  /** Every state write sits behind the `stale` guard. */
   useEffect(() => {
     let stale = false;
 
     (async () => {
-      const p = new URLSearchParams({ size: String(size), offset: String(offset) });
+      const p = new URLSearchParams({
+        size: String(size),
+        offset: String(offset),
+      });
       if (topic) p.set("topic", topic);
       if (q.trim()) p.set("q", q.trim());
 
@@ -147,7 +137,13 @@ export default function WortschatzPage() {
         </div>
 
         <div className="mb-6 flex flex-wrap gap-1.5">
-          <Chip active={topic === null} onClick={() => { setTopic(null); setOffset(0); }}>
+          <Chip
+            active={topic === null}
+            onClick={() => {
+              setTopic(null);
+              setOffset(0);
+            }}
+          >
             alle
           </Chip>
           {topics.map((t) => (
@@ -165,7 +161,9 @@ export default function WortschatzPage() {
         </div>
 
         {loading ? (
-          <p className="font-mono text-muted py-20 text-center text-sm">Lade…</p>
+          <p className="font-mono text-muted py-20 text-center text-sm">
+            Lade…
+          </p>
         ) : rows.length === 0 ? (
           <p className="font-serif text-muted py-20 text-center text-[19px]">
             Keine Wörter gefunden.
@@ -189,13 +187,17 @@ export default function WortschatzPage() {
                       {w.lemma}
                     </Link>
                     {w.plural && (
-                      <span className="font-mono text-muted text-[12px]">, {w.plural}</span>
+                      <span className="font-mono text-muted text-[12px]">
+                        , {w.plural}
+                      </span>
                     )}
                     <span className="text-secondary">— {w.en}</span>
                   </div>
 
                   {w.example_de && (
-                    <p className="font-serif text-muted mt-0.5 text-[15px]">{w.example_de}</p>
+                    <p className="font-serif text-muted mt-0.5 text-[15px]">
+                      {w.example_de}
+                    </p>
                   )}
                   {w.unit_ord && (
                     <p className="font-mono text-muted/60 mt-1 text-[11px]">

@@ -29,25 +29,23 @@ const SOURCE_LABEL: Record<string, string> = {
 };
 
 const norm = (s: string) =>
-  s.trim().replace(/[.,!?;:]/g, "").replace(/\s+/g, " ");
+  s
+    .trim()
+    .replace(/[.,!?;:]/g, "")
+    .replace(/\s+/g, " ");
 
-/**
- * Lücken — fill the gap.
- *
- * Every card here came from something the learner did: a sentence they got
- * wrong, or a line they tapped while reading. Nothing was authored for it, and
- * the block says where each one came from — a drill you can trace back to your
- * own mistake is worth more than a drill that arrived from nowhere.
- *
- * Typed, not multiple choice. Recall with four options in front of you is
- * recognition wearing a costume; the whole point of the gap is producing the
- * word from nothing.
- */
-export default function ClozeBlock({ payload, onDone, onSkip }: BlockProps<Payload>) {
+/** Lücken — fill the gap. */
+export default function ClozeBlock({
+  payload,
+  onDone,
+  onSkip,
+}: BlockProps<Payload>) {
   const cards = payload.cards ?? [];
   const [i, setI] = useState(0);
   const [value, setValue] = useState("");
-  const [result, setResult] = useState<"right" | "close" | "wrong" | null>(null);
+  const [result, setResult] = useState<"right" | "close" | "wrong" | null>(
+    null,
+  );
   const [why, setWhy] = useState<string | null>(null);
   const [dropped, setDropped] = useState(false);
   const input = useRef<GermanFieldHandle>(null);
@@ -67,11 +65,7 @@ export default function ClozeBlock({ payload, onDone, onSkip }: BlockProps<Paylo
   const grade = useCallback(
     (g: number, typed: string) => {
       if (!card) return;
-      /* On a miss, ask the same call for the reason. "dem is dative; nach
-         always takes dative, so it is dem here" is a lesson; the corrected
-         sentence on its own is a lookup the learner has to reverse-engineer.
-         The answer is cached server-side by (expected, answer), so the second
-         person to make this exact slip pays nothing for it. */
+      /* On a miss, ask the same call for the reason. */
       void send<{ explanation?: string | null }>("/api/review", {
         cardId: card.cardId,
         grade: g,
@@ -234,13 +228,17 @@ export default function ClozeBlock({ payload, onDone, onSkip }: BlockProps<Paylo
               {/* The rule you just broke, fetched with the grade. Nothing to
                   click: on a miss this is the whole point of the card. */}
               {result !== "right" && why && (
-                <p className="dm-fade mt-3 text-left leading-relaxed opacity-90">{why}</p>
+                <p className="dm-fade mt-3 text-left leading-relaxed opacity-90">
+                  {why}
+                </p>
               )}
 
               {/* And the whole sentence, on demand, for when the gap was only
                   half the confusion. Still a click — offering both unasked
                   would bury the one-line rule above it. */}
-              {result !== "right" && <ExplainSentence sentence={card.full} compact />}
+              {result !== "right" && (
+                <ExplainSentence sentence={card.full} compact />
+              )}
             </div>
           )}
         </Card>

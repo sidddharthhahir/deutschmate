@@ -1,23 +1,6 @@
 import type { Mail } from "./mail.ts";
 
-/**
- * The one email this app sends.
- *
- * Written as a pure function of its inputs and kept out of mail.ts, so the
- * wording can be tested without a transport and read without scrolling past
- * SMTP options.
- *
- * PLAIN TEXT IS NOT A COURTESY COPY. Some clients render it instead of the
- * HTML, and a link that only exists in the HTML part is a sign-in that works
- * for most people and mysteriously does not for one. Both parts carry the URL
- * as visible text, so it survives being copied, forwarded, or read aloud.
- *
- * DELIBERATELY PLAIN HTML. Tables-and-inline-styles is how marketing email is
- * built, and it is also how phishing is built. This is one sentence, one link
- * and one line of small print, with inline styles because <style> blocks are
- * stripped by several clients — but no images, no tracking pixel, no
- * link-wrapping redirect. Nothing here reports back that you opened it.
- */
+/** The one email this app sends. */
 export function signInEmail(to: string, url: string, minutes: number): Mail {
   const subject = "Dein DeutschMate-Link";
 
@@ -75,4 +58,8 @@ export function testEmail(to: string, via: string): Mail {
 }
 
 const esc = (s: string) =>
-  s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+  s
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");

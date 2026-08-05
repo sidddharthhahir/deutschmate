@@ -2,7 +2,16 @@
 
 import { useState } from "react";
 import GermanText from "@/components/GermanText";
-import { Card, Eyebrow, Progress, Option, Verdict, SkipLink, record, type BlockProps } from "./shared";
+import {
+  Card,
+  Eyebrow,
+  Progress,
+  Option,
+  Verdict,
+  SkipLink,
+  record,
+  type BlockProps,
+} from "./shared";
 
 type Question = { q: string; options: string[]; a: number };
 type Payload = {
@@ -16,17 +25,12 @@ type Payload = {
   from?: string | null;
 };
 
-/**
- * Reading. Tap any word for a gloss; read first, answer after.
- *
- * Line length is capped at ~62 characters — an hour of German at full window
- * width would be unreadable, and this is the block people spend longest on.
- *
- * The text surface itself lives in GermanText, shared with the paste-your-own
- * page. Tapping words is the second-most-used interaction in the app and two
- * copies of it would drift.
- */
-export default function ReadingBlock({ payload, onDone, onSkip }: BlockProps<Payload>) {
+/** Reading. */
+export default function ReadingBlock({
+  payload,
+  onDone,
+  onSkip,
+}: BlockProps<Payload>) {
   const [phase, setPhase] = useState<"read" | "quiz">("read");
   const [i, setI] = useState(0);
   const [picked, setPicked] = useState<number | null>(null);
@@ -64,7 +68,9 @@ export default function ReadingBlock({ payload, onDone, onSkip }: BlockProps<Pay
           onClick={() => (questions.length ? setPhase("quiz") : onDone())}
           className="bg-fg mt-4 w-full rounded-xl py-4 font-medium text-[#16211E] transition-colors hover:bg-white"
         >
-          {questions.length ? `Fragen beantworten (${questions.length})` : "Weiter"}
+          {questions.length
+            ? `Fragen beantworten (${questions.length})`
+            : "Weiter"}
         </button>
         <SkipLink onSkip={onSkip} />
       </div>
@@ -103,10 +109,13 @@ export default function ReadingBlock({ payload, onDone, onSkip }: BlockProps<Pay
       answer: q.options[n],
       expected: q.options[q.a],
     });
-    setTimeout(() => {
-      setPicked(null);
-      setI((x) => x + 1);
-    }, correct ? 650 : 1700);
+    setTimeout(
+      () => {
+        setPicked(null);
+        setI((x) => x + 1);
+      },
+      correct ? 650 : 1700,
+    );
   }
 
   return (
@@ -134,7 +143,9 @@ export default function ReadingBlock({ payload, onDone, onSkip }: BlockProps<Pay
             </Option>
           ))}
         </div>
-        {picked !== null && picked !== q.a && <Verdict ok={false} expected={q.options[q.a]} />}
+        {picked !== null && picked !== q.a && (
+          <Verdict ok={false} expected={q.options[q.a]} />
+        )}
       </Card>
       <button
         onClick={() => setPhase("read")}

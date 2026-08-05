@@ -127,7 +127,9 @@ export default function TextTool() {
   }
 
   // ----------------------------------------------------------------- result
-  const newInCourse = scan.words.filter((w) => w.wordId && !w.known && !w.queued);
+  const newInCourse = scan.words.filter(
+    (w) => w.wordId && !w.known && !w.queued,
+  );
   const queued = scan.words.filter((w) => w.queued);
   const notInCourse = scan.words.filter((w) => !w.wordId);
 
@@ -135,30 +137,50 @@ export default function TextTool() {
     <div>
       <div className="border-line bg-surface rounded-[14px] border p-6">
         <div className="grid grid-cols-2 gap-5 md:grid-cols-4">
-          <Stat n={scan.tokens} label="Wörter" hint={`${scan.distinct} verschiedene`} />
-          <Stat n={scan.coverage} label="verstehst du" suffix="%" hint="der laufenden Wörter" />
+          <Stat
+            n={scan.tokens}
+            label="Wörter"
+            hint={`${scan.distinct} verschiedene`}
+          />
+          <Stat
+            n={scan.coverage}
+            label="verstehst du"
+            suffix="%"
+            hint="der laufenden Wörter"
+          />
           <Stat
             n={newInCourse.length}
             label="neu im Kurs"
-            hint={queued.length ? `${queued.length} liegen schon bereit` : "kannst du sofort lernen"}
+            hint={
+              queued.length
+                ? `${queued.length} liegen schon bereit`
+                : "kannst du sofort lernen"
+            }
           />
-          <Stat n={notInCourse.length} label="nicht im Kurs" hint="kennt die App nicht" />
+          <Stat
+            n={notInCourse.length}
+            label="nicht im Kurs"
+            hint="kennt die App nicht"
+          />
         </div>
 
         <p className="text-muted mt-5 max-w-[62ch] text-[13px] leading-relaxed">
-          „verstehst du“ zählt nur Wörter, die du wirklich schon geübt hast. Wörter ins
-          Deck zu legen ändert die Zahl bewusst nicht — gelernt sind sie damit ja noch
-          nicht. Und Grammatik ist gar nicht mitgezählt: du kannst 90 % der Wörter kennen
-          und den Satz trotzdem nicht verstehen.
+          „verstehst du“ zählt nur Wörter, die du wirklich schon geübt hast.
+          Wörter ins Deck zu legen ändert die Zahl bewusst nicht — gelernt sind
+          sie damit ja noch nicht. Und Grammatik ist gar nicht mitgezählt: du
+          kannst 90 % der Wörter kennen und den Satz trotzdem nicht verstehen.
         </p>
 
         {/* Said here, where the pasting happens, and not only in Einstellungen.
             People paste letters from the Ausländerbehörde into this box. */}
         <p className="text-muted mt-3 max-w-[62ch] text-[13px] leading-relaxed">
-          Dein Text bleibt auf diesem Rechner. Erklärungen dazu („Erklär mir das“)
-          werden nur für dich gespeichert — anders als bei Sätzen aus dem Kurs, die
-          alle hier teilen. Löschen kannst du sie in{" "}
-          <Link href="/einstellungen" className="text-secondary underline underline-offset-2">
+          Dein Text bleibt auf diesem Rechner. Erklärungen dazu („Erklär mir
+          das“) werden nur für dich gespeichert — anders als bei Sätzen aus dem
+          Kurs, die alle hier teilen. Löschen kannst du sie in{" "}
+          <Link
+            href="/einstellungen"
+            className="text-secondary underline underline-offset-2"
+          >
             Einstellungen
           </Link>
           .
@@ -166,7 +188,8 @@ export default function TextTool() {
 
         {queued.length > 0 && (
           <p className="text-secondary mt-3 text-[13.5px]">
-            {queued.length} {queued.length === 1 ? "Wort wartet" : "Wörter warten"} schon in
+            {queued.length}{" "}
+            {queued.length === 1 ? "Wort wartet" : "Wörter warten"} schon in
             deinem Deck auf die nächste Sitzung.
           </p>
         )}
@@ -239,7 +262,9 @@ function WordList({
       <h2 className="font-mono text-muted mb-2 text-[11.5px] tracking-[0.14em] uppercase">
         {title}
       </h2>
-      <p className="text-muted mb-4 max-w-[62ch] text-[12.5px] leading-relaxed">{note}</p>
+      <p className="text-muted mb-4 max-w-[62ch] text-[12.5px] leading-relaxed">
+        {note}
+      </p>
       <div className="flex flex-wrap gap-1.5">
         {words.slice(0, 120).map((w) => (
           <span
@@ -247,14 +272,14 @@ function WordList({
             title={w.en ?? undefined}
             className="border-line-sub text-secondary rounded-full border px-3 py-1.5 text-[13px]"
           >
-            {w.lemma ? (
-              <Noun article={w.article}>{w.lemma}</Noun>
-            ) : (
-              w.form
+            {w.lemma ? <Noun article={w.article}>{w.lemma}</Noun> : w.form}
+            {w.en && (
+              <span className="text-muted ml-2 text-[11.5px]">{w.en}</span>
             )}
-            {w.en && <span className="text-muted ml-2 text-[11.5px]">{w.en}</span>}
             {w.count > 1 && (
-              <span className="text-muted/60 font-mono ml-2 text-[10.5px]">{w.count}×</span>
+              <span className="text-muted/60 font-mono ml-2 text-[10.5px]">
+                {w.count}×
+              </span>
             )}
           </span>
         ))}

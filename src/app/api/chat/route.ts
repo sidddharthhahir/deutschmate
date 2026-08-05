@@ -3,7 +3,13 @@ import { activeUser } from "@/lib/user";
 import { readJson, str, arr, unauthorized } from "@/lib/http";
 import { recordUsage } from "@/lib/cost";
 import { knownVocabulary } from "@/lib/session";
-import { converse, reviewConversation, aiAvailable, type Turn, type Scenario } from "@/lib/ai";
+import {
+  converse,
+  reviewConversation,
+  aiAvailable,
+  type Turn,
+  type Scenario,
+} from "@/lib/ai";
 import { logAttempt, topErrorTags, type Tag } from "@/lib/errors";
 import { leeches, LEECH_THRESHOLD } from "@/lib/leech";
 import { survivalById } from "@/lib/survival";
@@ -13,15 +19,7 @@ import { get } from "@/lib/db";
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-/**
- * Conversation. Two actions on one route:
- *   say    — one tutor turn, constrained to known vocabulary
- *   review — the post-conversation correction pass
- *
- * If there's no API key or the call fails, we return `offline: true` and the
- * client falls back to the unit's scripted dialogue. The session never
- * dead-ends (spec §17).
- */
+/** Conversation. The session never dead-ends (spec §17). */
 export async function POST(req: Request) {
   const raw = await readJson(req);
   const user = await activeUser(req, raw);
@@ -48,10 +46,7 @@ export async function POST(req: Request) {
 
   try {
     if (action === "review") {
-      /* The scene that was talked through. Every conversation attempt row used
-         to be written with a NULL ref_id, so nothing downstream could tell
-         which scenario it belonged to — /ueben's "✓ geführt" checked exactly
-         that column and stayed empty no matter how much you talked. */
+      /* The scene that was talked through. */
       const scene = str(raw.unitId, 40) || null;
 
       const rev = await reviewConversation({
@@ -77,7 +72,12 @@ export async function POST(req: Request) {
       /* A conversation with nothing to correct wrote no row at all, so the one
          outcome worth celebrating was the one that left no trace. */
       if (!corrections.length) {
-        logAttempt({ userId: user.id, kind: "conversation", refId: scene, correct: true });
+        logAttempt({
+          userId: user.id,
+          kind: "conversation",
+          refId: scene,
+          correct: true,
+        });
       }
       return NextResponse.json({ corrections });
     }
@@ -100,11 +100,7 @@ export async function POST(req: Request) {
     // The whitelist. Everything the learner has actually met, nothing else.
     const vocabulary = knownVocabulary(user.id);
 
-    /* What the tutor knows about this person. Both of these already drive the
-       Fix block and Problemwörter; the conversation was the one place that had
-       the data available and ignored it, so every chat started from zero.
-       Kept small on purpose — three tags and four words is enough to steer a
-       ten-minute conversation and cheap enough not to think about. */
+    /* What the tutor knows about this person. */
     const memory = {
       mistakes: topErrorTags(user.id, 14, 3).map((t) => t.label),
       stuck: leeches(user.id, LEECH_THRESHOLD, 4)

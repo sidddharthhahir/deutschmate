@@ -1,23 +1,37 @@
 "use client";
 
 import { useState } from "react";
-import { Card, Eyebrow, Progress, Option, Verdict, SkipLink, record, type BlockProps } from "./shared";
+import {
+  Card,
+  Eyebrow,
+  Progress,
+  Option,
+  Verdict,
+  SkipLink,
+  record,
+  type BlockProps,
+} from "./shared";
 import { de } from "@/lib/tags";
 
-type Drill = { q: string; options: string[]; a: number; why: string; from: string; slug: string };
+type Drill = {
+  q: string;
+  options: string[];
+  a: number;
+  why: string;
+  from: string;
+  slug: string;
+};
 type Payload = {
   tags: { tag: string; n: number; label: string }[];
   drills: Drill[];
 };
 
-/**
- * The Fix block.
- *
- * Content chosen by one GROUP BY over recent error tags. Showing the tags at
- * the top isn't decoration — it's the app explaining why these drills appeared,
- * which is what makes "adaptive" legible rather than magic.
- */
-export default function FixBlock({ payload, onDone, onSkip }: BlockProps<Payload>) {
+/** The Fix block. */
+export default function FixBlock({
+  payload,
+  onDone,
+  onSkip,
+}: BlockProps<Payload>) {
   const [i, setI] = useState(0);
   const [picked, setPicked] = useState<number | null>(null);
   const drills = payload.drills ?? [];
@@ -38,10 +52,13 @@ export default function FixBlock({ payload, onDone, onSkip }: BlockProps<Payload
       answer: d.options[n],
       expected: d.options[d.a],
     });
-    setTimeout(() => {
-      setPicked(null);
-      setI((x) => x + 1);
-    }, correct ? 700 : 2400);
+    setTimeout(
+      () => {
+        setPicked(null);
+        setI((x) => x + 1);
+      },
+      correct ? 700 : 2400,
+    );
   }
 
   return (
@@ -54,7 +71,10 @@ export default function FixBlock({ payload, onDone, onSkip }: BlockProps<Payload
         </p>
         <ul className="mt-2.5 space-y-1.5">
           {payload.tags.map((t) => (
-            <li key={t.tag} className="text-secondary flex justify-between text-[14px]">
+            <li
+              key={t.tag}
+              className="text-secondary flex justify-between text-[14px]"
+            >
               {/* de(), not t.label — the label is the English description that
                   goes into a model prompt, and this is a German screen. */}
               <span>{de(t.tag)}</span>

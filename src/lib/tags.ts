@@ -1,31 +1,4 @@
-/**
- * What each error tag is called — once, in both languages.
- *
- * THERE WERE THREE COPIES. errors.ts held English descriptions; SessionRecap
- * and ClozeBlock each held their own German map, because errors.ts imports the
- * database and a client component cannot. They had drifted in every way a
- * duplicate can:
- *
- *   article-gender    "Wrong article (der/die/das)" · "der / die / das" · "Artikel"
- *   verb-position-2   "Verb not in second position" · "Verb an Position 2" · "Verbstellung"
- *
- * So the same mistake was called Wortwahl on the recap and "Wrong word chosen"
- * on Fortschritt one click later, and neither German copy knew about the four
- * tags added with the prebuilt explanations — those rendered as raw keys like
- * `perfekt-hilfsverb`.
- *
- * This file imports nothing, so every one of them can use it.
- *
- * TWO MAPS ON PURPOSE, not a translation of one another:
- *
- *   DE  the interface. Short, the way a teacher names it out loud.
- *   EN  the explanation, and the text handed to a model. Fuller, because it
- *       has to stand alone in a prompt with no screen around it.
- *
- * The app's rule is German interface, English explanations (spec §1). A tag in
- * a list of "Häufigste Fehler" is interface; the same tag inside a "Warum?"
- * paragraph is explanation.
- */
+/** What each error tag is called — once, in both languages. */
 
 export const TAG_EN = {
   "article-gender": "Wrong article (der/die/das)",
@@ -69,6 +42,3 @@ export const TAG_DE: Record<Tag, string> = {
 
 /** The German label, falling back to the raw key rather than to nothing. */
 export const de = (tag: string): string => TAG_DE[tag as Tag] ?? tag;
-
-/** The English description, for explanations and prompts. */
-export const en = (tag: string): string => TAG_EN[tag as Tag] ?? tag;

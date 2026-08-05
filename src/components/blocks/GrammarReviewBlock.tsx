@@ -3,7 +3,15 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { send } from "@/lib/outbox";
-import { Card, Eyebrow, Progress, Option, Verdict, SkipLink, type BlockProps } from "./shared";
+import {
+  Card,
+  Eyebrow,
+  Progress,
+  Option,
+  Verdict,
+  SkipLink,
+  type BlockProps,
+} from "./shared";
 
 type Drill = { q: string; options: string[]; a: number; why: string };
 type GrammarCard = {
@@ -19,18 +27,12 @@ type GrammarCard = {
 
 type Payload = { cards: GrammarCard[] };
 
-/**
- * Grammatik-Wiederholung.
- *
- * Two drills per point, then one FSRS grade for the point as a whole — a rule
- * you get half right is a rule you half know, and grading each drill separately
- * would schedule the question rather than the grammar.
- *
- * Grades map straight from performance, with no self-rating: unlike a
- * vocabulary card, the app can see whether you were right here, so asking you
- * to also judge yourself would just add a step and a chance to be wrong.
- */
-export default function GrammarReviewBlock({ payload, onDone, onSkip }: BlockProps<Payload>) {
+/** Grammatik-Wiederholung. */
+export default function GrammarReviewBlock({
+  payload,
+  onDone,
+  onSkip,
+}: BlockProps<Payload>) {
   const cards = payload.cards ?? [];
   const [i, setI] = useState(0);
   const [d, setD] = useState(0);
@@ -94,7 +96,10 @@ export default function GrammarReviewBlock({ payload, onDone, onSkip }: BlockPro
 
   return (
     <div>
-      <Progress done={i * drills.length + d} total={cards.length * drills.length} />
+      <Progress
+        done={i * drills.length + d}
+        total={cards.length * drills.length}
+      />
       <Eyebrow>
         Grammatik-Wiederholung · {i + 1} von {cards.length}
       </Eyebrow>
@@ -102,7 +107,9 @@ export default function GrammarReviewBlock({ payload, onDone, onSkip }: BlockPro
       <div key={`${card.cardId}-${d}`} className="dm-rise">
         <Card>
           <div className="mb-5 flex items-baseline justify-between gap-3">
-            <span className="font-serif text-[19px] font-medium">{card.title}</span>
+            <span className="font-serif text-[19px] font-medium">
+              {card.title}
+            </span>
             <span className="font-mono text-muted flex-none text-[11px]">
               {card.level}
               {card.lapses > 0 && ` · ${card.lapses}× vergessen`}
@@ -131,7 +138,9 @@ export default function GrammarReviewBlock({ payload, onDone, onSkip }: BlockPro
             ))}
           </div>
 
-          {picked !== null && <Verdict ok={picked === drill.a} why={drill.why} />}
+          {picked !== null && (
+            <Verdict ok={picked === drill.a} why={drill.why} />
+          )}
 
           {picked !== null && picked !== drill.a && (
             <Link

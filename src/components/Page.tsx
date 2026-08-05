@@ -2,14 +2,7 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 import AppHeader from "@/components/AppHeader";
 
-/**
- * The shell every secondary page shares.
- *
- * Eight pages were each hand-rolling a back link, an h1 and a lead paragraph
- * with slightly different sizes and margins — 30px here, 32px there, mt-3 on
- * one and mt-2 on the next. Nobody notices any single one; together they make
- * the app feel assembled rather than designed.
- */
+/** The shell every secondary page shares. */
 export default function Page({
   back,
   backLabel,
@@ -58,7 +51,9 @@ export default function Page({
         </div>
 
         {lead && (
-          <p className="text-secondary mt-3 max-w-[62ch] text-[15px] leading-relaxed">{lead}</p>
+          <p className="text-secondary mt-3 max-w-[62ch] text-[15px] leading-relaxed">
+            {lead}
+          </p>
         )}
 
         <div className="mt-8">{children}</div>
@@ -83,29 +78,16 @@ export function Section({
         {title}
       </h2>
       {note && (
-        <p className="text-muted mb-4 max-w-[62ch] text-[12.5px] leading-relaxed">{note}</p>
+        <p className="text-muted mb-4 max-w-[62ch] text-[12.5px] leading-relaxed">
+          {note}
+        </p>
       )}
       {children}
     </section>
   );
 }
 
-/**
- * A named band of sections, with the question it answers.
- *
- * Exists because of one page. Fortschritt is eleven `Section`s in flat order,
- * every number on it real and every one presented as equally important — so
- * the honest complaint about it was never "this is wrong", it was "which of
- * these am I supposed to look at?". A learner opens it with a question in mind,
- * and the page answered none of them in particular.
- *
- * So the bands are named after the questions rather than the data: what do I
- * know, what should I fix, how is it going. Anything that answers no question a
- * learner actually asks belongs at the bottom, or on another page.
- *
- * Deliberately heavier than `Section` — larger, serif, no rule — so the two
- * levels cannot be confused at a glance. That is the entire point of adding it.
- */
+/** A named band of sections, with the question it answers. */
 export function Group({
   title,
   question,
@@ -115,15 +97,7 @@ export function Group({
   title: string;
   /** One line, in the learner's voice. Shown, not just documentation. */
   question: string;
-  /**
-   * False when every section inside is data-gated and there is no data yet.
-   *
-   * Cannot be detected from `children`: conditional JSX renders as `false`, not
-   * as absence, so a group whose contents are all `{x.length > 0 && …}` still
-   * arrives here looking non-empty. Grouping without this makes the empty state
-   * WORSE than the flat list it replaced — a heading and a promise with nothing
-   * under them, which is the "correct-looking, not connected" shape again.
-   */
+  /** False when every section inside is data-gated and there is no data yet. */
   when?: boolean;
   children: ReactNode;
 }) {
@@ -133,18 +107,15 @@ export function Group({
       <h2 className="font-serif text-[24px] leading-tight font-semibold tracking-[-0.015em]">
         {title}
       </h2>
-      <p className="text-muted mt-1.5 max-w-[62ch] text-[13.5px] leading-relaxed">{question}</p>
+      <p className="text-muted mt-1.5 max-w-[62ch] text-[13.5px] leading-relaxed">
+        {question}
+      </p>
       {children}
     </section>
   );
 }
 
-/**
- * What to show when there is genuinely nothing.
- *
- * An empty screen reads as broken. Each of these says what the emptiness means
- * and what would fill it, which is usually good news rather than a failure.
- */
+/** What to show when there is genuinely nothing. */
 export function Empty({
   title,
   children,

@@ -6,17 +6,7 @@ import SignInForm from "./SignInForm";
 
 export const dynamic = "force-dynamic";
 
-/**
- * Sign in.
- *
- * Two jobs on one route, because they are two halves of one act: ask for a
- * link, and follow it. `?token=` is the second half.
- *
- * The redemption happens here rather than in an API route so that following the
- * link from an email client — a plain GET, no JavaScript — lands you signed in
- * on the home screen. A fetch-based flow would need the page to load first,
- * which is exactly what a mail client's preview fetch might do for you.
- */
+/** Sign in. */
 export default async function SignInPage({
   searchParams,
 }: {
@@ -45,9 +35,9 @@ export default async function SignInPage({
             Check your email
           </h1>
           <p className="text-secondary mt-3 text-[15px] leading-relaxed">
-            If <span className="text-fg">{e || "that address"}</span> has an account, a
-            sign-in link is on its way. It works once and expires in {TOKEN_TTL_MIN}{" "}
-            minutes.
+            If <span className="text-fg">{e || "that address"}</span> has an
+            account, a sign-in link is on its way. It works once and expires in{" "}
+            {TOKEN_TTL_MIN} minutes.
           </p>
           {/* Read from the server, not written in. This paragraph used to say
               flatly that email was not configured, which was true when there
@@ -59,13 +49,13 @@ export default async function SignInPage({
               <code className="bg-raised text-der rounded px-1.5 py-0.5 font-mono text-[12px]">
                 npm run dev
               </code>{" "}
-              is running — no provider is configured on this install, so the app still works
-              with no network and no account anywhere.
+              is running — no provider is configured on this install, so the app
+              still works with no network and no account anywhere.
             </p>
           ) : (
             <p className="text-muted mt-6 text-[13px] leading-relaxed">
-              Nothing after a minute or two? Check the spam folder — that is where mail from
-              a new sending domain usually lands.
+              Nothing after a minute or two? Check the spam folder — that is
+              where mail from a new sending domain usually lands.
             </p>
           )}
           <Link
@@ -105,8 +95,9 @@ function Expired() {
         That link no longer works
       </h1>
       <p className="text-secondary mt-3 max-w-[46ch] text-[15px] leading-relaxed">
-        Sign-in links work once and expire after {TOKEN_TTL_MIN} minutes. Asking for a new
-        one also cancels the old — so if you requested two, only the newer works.
+        Sign-in links work once and expire after {TOKEN_TTL_MIN} minutes. Asking
+        for a new one also cancels the old — so if you requested two, only the
+        newer works.
       </p>
       <Link
         href="/anmelden"
@@ -124,8 +115,8 @@ function Shell({ children }: { children: React.ReactNode }) {
       <div className="w-full max-w-[440px] py-16">
         {children}
         <p className="text-muted/70 mt-12 text-[12px] leading-relaxed">
-          DeutschMate keeps your progress on this server and nothing else. Sessions last{" "}
-          {SESSION_TTL_DAYS} days.
+          DeutschMate keeps your progress on this server and nothing else.
+          Sessions last {SESSION_TTL_DAYS} days.
         </p>
       </div>
     </main>

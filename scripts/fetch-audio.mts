@@ -1,12 +1,6 @@
 /**
- * Fetch native German pronunciations from Wikimedia Commons.
- *
- *   node scripts/fetch-audio.mts
- *
- * German Wiktionary recordings are named `De-<Lemma>.ogg`. The naive approach
- * — one API call per candidate filename — gets you rate-limited within seconds
- * and silently returns nothing. The MediaWiki API accepts up to 50 titles per
- * query, so we resolve in batches and only then download, serially and politely.
+ * Fetch native German pronunciations from Wikimedia Commons. node scripts/fetch-audio.mts German
+ * Wiktionary recordings are named `De-<Lemma>.ogg`.
  */
 import { DatabaseSync } from "node:sqlite";
 import { mkdirSync, writeFileSync, existsSync, statSync } from "node:fs";
@@ -18,17 +12,7 @@ const AUDIO_DIR = path.join(ROOT, "public", "audio", "words");
 const API = "https://commons.wikimedia.org/w/api.php";
 const BATCH = 50;
 
-/**
- * Wikimedia's robot policy requires a User-Agent naming the tool AND giving a
- * contact. Two ways to get this wrong, both of which look like "file not found"
- * if you only check res.ok:
- *
- *   no contact at all        → 429 + retry-after: 600 (IP throttled 10 min)
- *   an example.com address   → 403 "Please honor our robot policy"
- *
- * A URL contact is what reliably passes. Set WIKIMEDIA_CONTACT to your own repo
- * or homepage before running this at volume.
- */
+/** Wikimedia's robot policy requires a User-Agent naming the tool AND giving a contact. */
 const CONTACT =
   process.env.WIKIMEDIA_CONTACT ??
   "https://github.com/local/deutschmate; personal language-learning project";
@@ -66,7 +50,13 @@ async function resolveBatch(files: string[]): Promise<Map<string, string>> {
       continue;
     }
     const data = JSON.parse(text) as {
-      query?: { pages?: { title: string; missing?: boolean; imageinfo?: { url: string }[] }[] };
+      query?: {
+        pages?: {
+          title: string;
+          missing?: boolean;
+          imageinfo?: { url: string }[];
+        }[];
+      };
     };
     for (const p of data.query?.pages ?? []) {
       const u = p.imageinfo?.[0]?.url;
@@ -87,7 +77,9 @@ const rounds: ((lemma: string) => string | null)[] = [
 ];
 
 const resolved = new Map<string, string>(); // wordId -> download URL
-let pending = words.filter((w) => !existsSync(path.join(AUDIO_DIR, `${w.id}.ogg`)));
+let pending = words.filter(
+  (w) => !existsSync(path.join(AUDIO_DIR, `${w.id}.ogg`)),
+);
 const alreadyOnDisk = words.length - pending.length;
 
 for (const [i, mk] of rounds.entries()) {
@@ -119,7 +111,9 @@ for (const [i, mk] of rounds.entries()) {
 }
 
 // ---------------------------------------------------------------- download
-const setAudio = db.prepare("UPDATE word SET audio_url=?, audio_source=? WHERE id=?");
+const setAudio = db.prepare(
+  "UPDATE word SET audio_url=?, audio_source=? WHERE id=?",
+);
 let downloaded = 0;
 
 if (alreadyOnDisk) {
@@ -137,7 +131,10 @@ for (const [id, url] of resolved) {
   for (let attempt = 0; attempt < 3 && !ok; attempt++) {
     const res = await fetch(url, { headers: UA });
     if (res.ok) {
-      writeFileSync(path.join(AUDIO_DIR, `${id}.ogg`), Buffer.from(await res.arrayBuffer()));
+      writeFileSync(
+        path.join(AUDIO_DIR, `${id}.ogg`),
+        Buffer.from(await res.arrayBuffer()),
+      );
       setAudio.run(`/audio/words/${id}.ogg`, "commons", id);
       downloaded++;
       process.stdout.write("▪");
@@ -161,18 +158,25 @@ for (const [id, url] of resolved) {
   if (!ok) process.stdout.write("x");
   await sleep(250);
 }
-if (throttled) console.log(`\n  (${throttled} requests were throttled and retried)`);
+if (throttled)
+  console.log(`\n  (${throttled} requests were throttled and retried)`);
 if (firstFailure) console.log(`\n  ! first download failure: ${firstFailure}`);
 
 const have = alreadyOnDisk + downloaded;
 const pct = Math.round((have / words.length) * 100);
 console.log(`\n\n✓ ${have}/${words.length} words have native audio (${pct}%)`);
 
-const missing = words.filter((w) => !existsSync(path.join(AUDIO_DIR, `${w.id}.ogg`)));
+const missing = words.filter(
+  (w) => !existsSync(path.join(AUDIO_DIR, `${w.id}.ogg`)),
+);
 if (missing.length) {
   writeFileSync(
     path.join(ROOT, "data", "missing-audio.json"),
-    JSON.stringify(missing.map((m) => ({ id: m.id, lemma: m.lemma })), null, 2),
+    JSON.stringify(
+      missing.map((m) => ({ id: m.id, lemma: m.lemma })),
+      null,
+      2,
+    ),
   );
   console.log(`  ${missing.length} need Piper TTS → data/missing-audio.json`);
 }

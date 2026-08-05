@@ -2,13 +2,7 @@
 
 import { useEffect } from "react";
 
-/**
- * Register the service worker.
- *
- * Production only. In development the SW sits between Turbopack and the page
- * and makes hot reload behave strangely — and the dev server is, by
- * definition, reachable.
- */
+/** Register the service worker. Production only. */
 export default function ServiceWorker() {
   useEffect(() => {
     if (process.env.NODE_ENV !== "production") return;

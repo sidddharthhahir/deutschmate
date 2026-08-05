@@ -4,9 +4,8 @@ import { get, run, all } from "./db.ts";
 import { norm } from "./error-key.ts";
 
 /**
- * What one learner's key may pay into on everyone's behalf. Mistake patterns and
- * mnemonics stay global — their inputs are the app's own words. Sentence
- * explanations are shared only when the sentence is demonstrably app content.
+ * What one learner's key may pay into on everyone's behalf. Sentence explanations are shared only
+ * when the sentence is demonstrably app content.
  */
 const CONTENT: [table: string, column: string][] = [
   ["sentence", "de"],
@@ -18,11 +17,10 @@ const CONTENT: [table: string, column: string][] = [
 ];
 
 /**
- * Asked of the database, never taken from the request — a client claiming "this one
- * is fine to share" can be wrong, and the cost is somebody's private letter in a
- * table their flatmate reads. `instr`, not LIKE: a % or _ in the sentence is a
- * wildcard and could match content it does not appear in. The length floor is the
- * same rule — "der" occurs in every text the app ships.
+ * Asked of the database, never taken from the request — a client claiming "this one is fine to
+ * share" can be wrong, and the cost is somebody's private letter in a table their flatmate reads.
+ * `instr`, not LIKE: a % or _ in the sentence is a wildcard and could match content it is not in.
+ * The length floor is the same rule — "der" occurs in every text the app ships.
  */
 export function isAppContent(sentence: string): boolean {
   const needle = norm(sentence);
@@ -42,7 +40,11 @@ export function isAppContent(sentence: string): boolean {
  * it the second person to ask about the same private sentence collides with the
  * first, cannot read it, and pays for a fresh answer on every ask forever.
  */
-export function explanationKey(sentence: string, level: string, owner: string | null): string {
+export function explanationKey(
+  sentence: string,
+  level: string,
+  owner: string | null,
+): string {
   const base = `${level}|${norm(sentence)}`;
   return owner ? `${base}|@${owner}` : base;
 }
@@ -56,7 +58,11 @@ export function findExplanation(
 ): CachedExplanation | null {
   const shared = isAppContent(sentence);
   const sig = explanationKey(sentence, level, shared ? null : userId);
-  const row = get<{ body_md: string; shared: number; created_by: string | null }>(
+  const row = get<{
+    body_md: string;
+    shared: number;
+    created_by: string | null;
+  }>(
     "SELECT body_md, shared, created_by FROM explanation WHERE signature = ?",
     sig,
   );
@@ -108,25 +114,32 @@ export type CacheContribution = {
 export function contributions(userId: string): CacheContribution {
   const n = (sql: string) => get<{ n: number }>(sql, userId)?.n ?? 0;
   return {
-    privateRows: n("SELECT COUNT(*) AS n FROM explanation WHERE created_by = ? AND shared = 0"),
-    sharedRows: n("SELECT COUNT(*) AS n FROM explanation WHERE created_by = ? AND shared = 1"),
+    privateRows: n(
+      "SELECT COUNT(*) AS n FROM explanation WHERE created_by = ? AND shared = 0",
+    ),
+    sharedRows: n(
+      "SELECT COUNT(*) AS n FROM explanation WHERE created_by = ? AND shared = 1",
+    ),
     patterns: n(
       "SELECT COUNT(*) AS n FROM error_pattern WHERE created_by = ? AND source = 'generated'",
     ),
   };
 }
 
-/**
- * "private" drops their own unshared rows; "all" also withdraws what they gave the
- * shared pool. Prebuilt rows are never touched — the offline explanation tier
- * depends on them and they cost nobody anything.
- */
-export function forgetContributions(userId: string, scope: "private" | "all"): number {
-  let removed = run("DELETE FROM explanation WHERE created_by = ? AND shared = 0", userId)
-    .changes as number;
+/** "private" drops their own unshared rows; "all" also withdraws what they gave the shared pool. */
+export function forgetContributions(
+  userId: string,
+  scope: "private" | "all",
+): number {
+  let removed = run(
+    "DELETE FROM explanation WHERE created_by = ? AND shared = 0",
+    userId,
+  ).changes as number;
   if (scope === "all") {
-    removed += run("DELETE FROM explanation WHERE created_by = ? AND shared = 1", userId)
-      .changes as number;
+    removed += run(
+      "DELETE FROM explanation WHERE created_by = ? AND shared = 1",
+      userId,
+    ).changes as number;
     removed += run(
       "DELETE FROM error_pattern WHERE created_by = ? AND source = 'generated'",
       userId,

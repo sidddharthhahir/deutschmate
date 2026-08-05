@@ -5,12 +5,8 @@ export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 /**
- * One search across everything the app contains.
- *
- * 2,400 words, 120 units, 36 grammar points, 38 readings and 120 scenarios sit
- * behind four nav links and one search box on one page. This is the query
- * behind Cmd+K, which makes the whole corpus reachable without adding a fifth
- * navigation target and turning Home into a menu.
+ * One search across everything the app contains. 2,400 words, 120 units, 36 grammar points, 38
+ * readings and 120 scenarios sit behind four nav links and one search box on one page.
  */
 
 export type Hit = {
@@ -35,7 +31,13 @@ export async function GET(req: Request) {
   // Anchored matches first: typing "hau" should reach "Haus" before "Bauhaus".
   const starts = `${q}%`;
 
-  const words = all<{ id: string; lemma: string; article: string | null; en: string; level: string }>(
+  const words = all<{
+    id: string;
+    lemma: string;
+    article: string | null;
+    en: string;
+    level: string;
+  }>(
     `SELECT id, lemma, article, en, level FROM word
       WHERE lemma LIKE ? OR en LIKE ?
       ORDER BY (CASE WHEN lemma LIKE ? THEN 0 ELSE 1 END), freq_rank
@@ -50,17 +52,13 @@ export async function GET(req: Request) {
     like,
   );
 
-  /*
-   * One row per unit.
-   *
-   * There were two queries here, both matching `unit.title LIKE ?`, and all 120
-   * units have a scenario_json — so every unit-title match produced two rows
-   * with the identical label. One went to /szenario/<id>, which is the thing
-   * you wanted; the other was labelled "Unit" and went to /fortschritt, a
-   * generic page with nothing about that unit on it. Half of every search
-   * result was a dead end wearing the same name as the live one.
-   */
-  const scenarios = all<{ id: string; ord: number; title: string; level: string }>(
+  /* One row per unit. */
+  const scenarios = all<{
+    id: string;
+    ord: number;
+    title: string;
+    level: string;
+  }>(
     `SELECT id, ord, title, level FROM unit
       WHERE scenario_json IS NOT NULL AND title LIKE ?
       ORDER BY level, ord LIMIT 5`,

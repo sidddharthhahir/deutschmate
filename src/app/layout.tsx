@@ -6,11 +6,8 @@ import ServiceWorker from "@/components/ServiceWorker";
 import "./globals.css";
 
 /**
- * Three typefaces, three jobs (from the Seminar design system):
- *   Source Serif 4 — German text, headings, word cards. Coursebook feel, and
- *                    its umlauts and ß stay unambiguous at small sizes.
- *   IBM Plex Sans  — interface chrome.
- *   IBM Plex Mono  — numbers, keyboard hints, small caps labels.
+ * Three typefaces, three jobs (from the Seminar design system): Source Serif 4 — German text,
+ * headings, word cards.
  */
 const serif = Source_Serif_4({
   variable: "--font-source-serif",
@@ -35,9 +32,14 @@ const mono = IBM_Plex_Mono({
 
 export const metadata: Metadata = {
   title: "DeutschMate",
-  description: "Learn German the way you'll actually use it in Germany. A1.1 → B1.2, one hour a day.",
+  description:
+    "Learn German the way you'll actually use it in Germany. A1.1 → B1.2, one hour a day.",
   manifest: "/manifest.webmanifest",
-  appleWebApp: { capable: true, title: "DeutschMate", statusBarStyle: "black-translucent" },
+  appleWebApp: {
+    capable: true,
+    title: "DeutschMate",
+    statusBarStyle: "black-translucent",
+  },
 };
 
 /**

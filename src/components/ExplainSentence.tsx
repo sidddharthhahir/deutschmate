@@ -4,13 +4,7 @@ import { useState } from "react";
 
 type State = "idle" | "loading" | "done" | "unavailable";
 
-/**
- * "Erklär mir das" — the grammar behind one sentence, on demand.
- *
- * Collapsed by default. The whole design principle of the reading block is
- * that you read first; an explanation panel open by default would turn every
- * text into a grammar exercise.
- */
+/** "Erklär mir das" — the grammar behind one sentence, on demand. */
 export default function ExplainSentence({
   sentence,
   compact,
@@ -49,18 +43,21 @@ export default function ExplainSentence({
           Erklärung
         </p>
         <div className="text-secondary space-y-1.5 text-[13.5px] leading-relaxed">
-          {body.split("\n").filter(Boolean).map((line, n) =>
-            line.trimStart().startsWith("-") ? (
-              <p key={n} className="flex gap-2">
-                <span className="text-muted flex-none">·</span>
-                <span>{line.replace(/^\s*-\s*/, "")}</span>
-              </p>
-            ) : (
-              <p key={n} className="text-fg">
-                {line}
-              </p>
-            ),
-          )}
+          {body
+            .split("\n")
+            .filter(Boolean)
+            .map((line, n) =>
+              line.trimStart().startsWith("-") ? (
+                <p key={n} className="flex gap-2">
+                  <span className="text-muted flex-none">·</span>
+                  <span>{line.replace(/^\s*-\s*/, "")}</span>
+                </p>
+              ) : (
+                <p key={n} className="text-fg">
+                  {line}
+                </p>
+              ),
+            )}
         </div>
       </div>
     );

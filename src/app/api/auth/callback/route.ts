@@ -11,20 +11,7 @@ import { userById } from "@/lib/accounts";
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-/**
- * Following the sign-in link.
- *
- * A ROUTE HANDLER, not a page, because only a Route Handler or a Server Action
- * may set a cookie — a page render cannot, and trying produced a 500 on the one
- * screen a new user reaches first.
- *
- * A GET, because the link is followed by clicking it: from a chat message, or
- * later from an email client, with no JavaScript involved.
- *
- * The token is single-use and redeemed inside one UPDATE (see lib/auth.ts), so
- * a mail client that prefetches the link burns it and the learner sees the
- * expired screen rather than someone else being signed in.
- */
+/** Following the sign-in link. */
 export async function GET(req: Request) {
   const url = new URL(req.url);
   const token = url.searchParams.get("token") ?? "";
@@ -41,21 +28,15 @@ export async function GET(req: Request) {
   const res = NextResponse.redirect(new URL("/", url.origin));
 
   /*
-   * httpOnly so no script can read it; sameSite=lax so arriving from a mail
-   * client or a chat app still carries it; secure only on a real https
-   * deployment, because a laptop on plain http would silently drop it.
-   *
-   * `x-forwarded-proto` is checked FIRST and it matters. Almost any real
-   * deployment puts nginx, Caddy or a platform router in front, terminating TLS
-   * and forwarding plain http — so `url.protocol` reads "http:" on a site the
-   * browser reached over https, and the session cookie would go out without the
-   * Secure flag. Everything looks fine; the cookie is just no longer protected
-   * from being sent over a downgraded connection.
+   * httpOnly so no script can read it; sameSite=lax so arriving from a mail client or a chat app
+   * still carries it; secure only on a real https deployment, because a laptop on plain http would
+   * silently drop it.
    */
-  const https = (req.headers.get("x-forwarded-proto") ?? url.protocol.replace(":", ""))
-    .split(",")[0]
-    .trim()
-    .toLowerCase() === "https";
+  const https =
+    (req.headers.get("x-forwarded-proto") ?? url.protocol.replace(":", ""))
+      .split(",")[0]
+      .trim()
+      .toLowerCase() === "https";
 
   res.cookies.set(SESSION_COOKIE, value, {
     httpOnly: true,

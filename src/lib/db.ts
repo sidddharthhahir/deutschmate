@@ -2,41 +2,22 @@ import { DatabaseSync } from "node:sqlite";
 import { readFileSync } from "node:fs";
 import path from "node:path";
 
-/**
- * SQLite via Node 24's built-in `node:sqlite`.
- *
- * Deliberately not better-sqlite3: that is a native module needing prebuilt
- * binaries or Visual Studio build tools on Windows, plus npm's allow-scripts
- * approval. `node:sqlite` ships with the runtime — nothing to compile, nothing
- * to approve, and it keeps the "runs offline with no external service"
- * guarantee (spec §17) genuinely free.
- */
+/** SQLite via Node 24's built-in `node:sqlite`. */
 
-/**
- * Where the database lives. Exported because the scripts need it too.
- *
- * Four of them used to hold their own copy of this expression and two of those
- * copies ignored DEUTSCHMATE_DB — so pointing the env var at another file made
- * the seeder write one database while the app read a different one, with no
- * error anywhere.
- */
+/** Where the database lives. */
 export const DB_PATH = process.env.DEUTSCHMATE_DB
   ? path.resolve(process.env.DEUTSCHMATE_DB)
   : path.join(process.cwd(), "deutschmate.db");
 
 let _db: DatabaseSync | null = null;
 
-/**
- * Columns added to tables that already exist in someone's database.
- *
- * `CREATE TABLE IF NOT EXISTS` silently does nothing when the table is already
- * there, so adding a column to schema.sql does NOT apply it to an existing db —
- * you get "no such column" from the first index or query that uses it. SQLite
- * has no `ADD COLUMN IF NOT EXISTS`, so check PRAGMA table_info and add.
- *
- * Append-only. Never remove a line, never reorder.
- */
-const MIGRATIONS: [table: string, column: string, decl: string, after?: string][] = [
+/** Columns added to tables that already exist in someone's database. */
+const MIGRATIONS: [
+  table: string,
+  column: string,
+  decl: string,
+  after?: string,
+][] = [
   ["video", "unit_id", "TEXT"],
   ["card", "suspended", "INTEGER NOT NULL DEFAULT 0"],
   // Sign-in. NULL for accounts that predate it; claimed on first sign-in.
@@ -59,21 +40,8 @@ const MIGRATIONS: [table: string, column: string, decl: string, after?: string][
     "shared",
     "INTEGER NOT NULL DEFAULT 0",
     /*
-     * Sorting the rows that already exist, once.
-     *
-     * Until now every explanation was global, including ones for sentences
-     * somebody pasted into /text — which can be a letter from a landlord or a
-     * doctor. They were written verbatim into a table every account reads.
-     *
-     * A row is kept and marked shared if its sentence actually occurs in app
-     * content. `instr` and not LIKE: a sentence containing % or _ would be a
-     * wildcard under LIKE and could match content it is not in, and a false
-     * positive here means publishing someone's private text.
-     *
-     * The rest are DELETED, and that is deliberate rather than tidy-up. They
-     * have no owner to attribute them to, the new lookup cannot reach them, and
-     * they are the exact thing this column exists to stop. Losing them costs a
-     * few cached answers; keeping them keeps the problem.
+     * Sorting the rows that already exist, once. They have no owner to attribute them to, the new
+     * lookup cannot reach them, and they are the exact thing this column exists to stop.
      */
     `UPDATE explanation SET shared = 1
       WHERE EXISTS (SELECT 1 FROM sentence s WHERE instr(lower(s.de),    lower(explanation.sentence)) > 0)
@@ -92,7 +60,9 @@ export function migrate(db: DatabaseSync) {
       .prepare(`SELECT name FROM sqlite_master WHERE type='table' AND name=?`)
       .get(table);
     if (!exists) continue; // schema.sql just created it with the column present
-    const cols = db.prepare(`PRAGMA table_info(${table})`).all() as { name: string }[];
+    const cols = db.prepare(`PRAGMA table_info(${table})`).all() as {
+      name: string;
+    }[];
     if (cols.some((c) => c.name === column)) continue;
     db.exec(`ALTER TABLE ${table} ADD COLUMN ${column} ${decl}`);
     // Runs exactly once, in the same startup that adds the column — the next
@@ -102,15 +72,7 @@ export function migrate(db: DatabaseSync) {
   }
 }
 
-/**
- * Split a SQL file into statements.
- *
- * A plain `sql.split(";")` looks fine until a comment contains a semicolon —
- * then the comment is cut in half, the second fragment leaks into the next
- * statement, and you get a syntax error pointing at a word from a sentence you
- * wrote for a human. Comments and string literals are skipped properly here so
- * schema.sql can be written as ordinary, well-annotated SQL.
- */
+/** Split a SQL file into statements. */
 export function splitStatements(sql: string): string[] {
   const out: string[] = [];
   let buf = "";
@@ -172,8 +134,12 @@ export function splitStatements(sql: string): string[] {
  */
 export function applySchema(db: DatabaseSync, sql: string) {
   const statements = splitStatements(sql);
-  const indexes = statements.filter((s) => /^CREATE\s+(UNIQUE\s+)?INDEX/i.test(s));
-  const rest = statements.filter((s) => !/^CREATE\s+(UNIQUE\s+)?INDEX/i.test(s));
+  const indexes = statements.filter((s) =>
+    /^CREATE\s+(UNIQUE\s+)?INDEX/i.test(s),
+  );
+  const rest = statements.filter(
+    (s) => !/^CREATE\s+(UNIQUE\s+)?INDEX/i.test(s),
+  );
 
   for (const s of rest) db.exec(s);
   migrate(db);
@@ -183,18 +149,19 @@ export function applySchema(db: DatabaseSync, sql: string) {
 export function getDb(): DatabaseSync {
   if (_db) return _db;
   const db = new DatabaseSync(DB_PATH);
-  applySchema(db, readFileSync(path.join(process.cwd(), "src/lib/schema.sql"), "utf8"));
+  applySchema(
+    db,
+    readFileSync(path.join(process.cwd(), "src/lib/schema.sql"), "utf8"),
+  );
   _db = db;
   return db;
 }
 
 /** Row helpers — node:sqlite returns null-prototype objects, so re-wrap them. */
-export function all<T = Record<string, unknown>>(
-  sql: string,
-  ...params: unknown[]
-): T[] {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const rows = getDb().prepare(sql).all(...(params as any[]));
+export function all<T = Record<string, unknown>>(sql: string, ...params: unknown[]): T[] {
+  const rows = getDb()
+    .prepare(sql)
+    .all(...(params as never[]));
   return rows.map((r: unknown) => ({ ...(r as object) })) as T[];
 }
 
@@ -202,43 +169,22 @@ export function get<T = Record<string, unknown>>(
   sql: string,
   ...params: unknown[]
 ): T | undefined {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const row = getDb().prepare(sql).get(...(params as any[]));
+  const row = getDb()
+    .prepare(sql)
+    .get(...(params as never[]));
   return row ? ({ ...row } as T) : undefined;
 }
 
 export function run(sql: string, ...params: unknown[]) {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  return getDb().prepare(sql).run(...(params as any[]));
+  return getDb()
+    .prepare(sql)
+    .run(...(params as never[]));
 }
 
 /** Nesting depth, so an inner tx() joins the outer one instead of throwing. */
 let _depth = 0;
 
-/**
- * Wrap a function in a transaction. node:sqlite has no .transaction() helper.
- *
- * BEGIN IMMEDIATE, NOT BEGIN.
- *
- * A plain `BEGIN` is deferred: it takes no lock until the first statement, and
- * a transaction that READS and then WRITES has to upgrade its lock partway
- * through. If another writer got there in between, SQLite cannot upgrade and
- * returns SQLITE_BUSY immediately — `busy_timeout` does not help, because
- * waiting cannot resolve it. `IMMEDIATE` takes the write lock up front, which
- * turns a deadlock into a wait. Every tx() in this app writes.
- *
- * REENTRANT, because the alternative is a landmine.
- *
- * `BEGIN` inside a `BEGIN` throws "cannot start a transaction within a
- * transaction". Nothing nested today, but `buildSession` calls
- * `mineFromErrors`, which calls `addCloze` — which opens its own — up to forty
- * times. Wrapping the session build, or a future bulk import, would have blown
- * up at runtime for a reason nobody would guess from the stack. An inner tx()
- * now just runs inside the outer one, which is what the caller meant.
- *
- * The old ROLLBACK also threw when no transaction was active, replacing the
- * real error with a confusing one; it is now conditional.
- */
+/** Wrap a function in a transaction. node:sqlite has no .transaction() helper. */
 export function tx<T>(fn: () => T): T {
   const db = getDb();
   if (_depth > 0) {

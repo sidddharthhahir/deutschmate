@@ -60,3 +60,4 @@ next-env.d.ts
 
 # Deck exports are generated on demand from your own progress.
 /exports/
+msg.tmp

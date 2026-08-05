@@ -3,20 +3,24 @@
 import { useEffect, useState } from "react";
 import { speak, listenOnce, diffWords } from "@/lib/speech";
 import { useSpeechSupported } from "@/lib/hooks";
-import { Card, Eyebrow, Progress, SkipLink, record, type BlockProps } from "./shared";
+import {
+  Card,
+  Eyebrow,
+  Progress,
+  SkipLink,
+  record,
+  type BlockProps,
+} from "./shared";
 
 type Item = { wordId: string; de: string; en: string; audio: string | null };
 type Payload = { items: Item[] };
 
-/**
- * Speaking.
- *
- * Record → transcribe → diff against the target → highlight the words the
- * recogniser misheard. Every mark is a real recognition result, never an
- * invented "87% accuracy". Word-level ASR cannot support phoneme scores, so
- * we don't pretend it can — and the screen says so explicitly.
- */
-export default function SpeakingBlock({ payload, onDone, onSkip }: BlockProps<Payload>) {
+/** Speaking. Every mark is a real recognition result, never an invented "87% accuracy". */
+export default function SpeakingBlock({
+  payload,
+  onDone,
+  onSkip,
+}: BlockProps<Payload>) {
   const [i, setI] = useState(0);
   const [listening, setListening] = useState(false);
   const [heard, setHeard] = useState<string | null>(null);
@@ -83,15 +87,11 @@ export default function SpeakingBlock({ payload, onDone, onSkip }: BlockProps<Pa
         </div>
 
         {!supported ? (
-          /* Named accurately. The detection accepts webkitSpeechRecognition,
-             which Safari has had since 14.1, so the honest list is Chrome, Edge
-             and Safari — Firefox is the one that has never shipped it. Saying
-             "use Chrome" sent a Safari user to install a browser they did not
-             need, and left a Firefox user thinking it was their setup. */
+          /* Named accurately. */
           <p className="text-muted mx-auto mt-8 max-w-[48ch] text-center text-[14px] leading-relaxed">
-            Dieser Browser kann keine Spracherkennung — Firefox kann es bis heute nicht. In
-            Chrome, Edge und Safari läuft es. Oder überspring den Block: Sprechen ist nicht
-            die einzige Übung.
+            Dieser Browser kann keine Spracherkennung — Firefox kann es bis
+            heute nicht. In Chrome, Edge und Safari läuft es. Oder überspring
+            den Block: Sprechen ist nicht die einzige Übung.
           </p>
         ) : (
           <div className="mt-8 flex flex-col items-center gap-3">
@@ -99,7 +99,9 @@ export default function SpeakingBlock({ payload, onDone, onSkip }: BlockProps<Pa
               onClick={() => void listen()}
               disabled={listening}
               className={`flex h-24 w-24 items-center justify-center rounded-full text-3xl transition-colors ${
-                listening ? "bg-das text-[#23201A]" : "bg-fg text-[#16211E] hover:bg-white"
+                listening
+                  ? "bg-das text-[#23201A]"
+                  : "bg-fg text-[#16211E] hover:bg-white"
               }`}
             >
               🎤
@@ -110,7 +112,9 @@ export default function SpeakingBlock({ payload, onDone, onSkip }: BlockProps<Pa
           </div>
         )}
 
-        {error && <p className="text-accent/90 mt-5 text-center text-[14px]">{error}</p>}
+        {error && (
+          <p className="text-accent/90 mt-5 text-center text-[14px]">{error}</p>
+        )}
 
         {diff && (
           <div className="border-line-sub mt-7 border-t pt-6">
@@ -122,7 +126,9 @@ export default function SpeakingBlock({ payload, onDone, onSkip }: BlockProps<Pa
                 <span
                   key={n}
                   className={`font-serif rounded px-2 py-1 text-[18px] ${
-                    d.ok ? "bg-[#1F2A20] text-[#CFE3C8]" : "bg-[#2A1F26] text-[#E8C8D6]"
+                    d.ok
+                      ? "bg-[#1F2A20] text-[#CFE3C8]"
+                      : "bg-[#2A1F26] text-[#E8C8D6]"
                   }`}
                 >
                   {d.word}

@@ -1,29 +1,17 @@
 /**
- * Fill the `sentence` table from Tatoeba.
- *
- *   node scripts/import-sentences.mts             # download (cached) + import
- *   node scripts/import-sentences.mts --stats     # what's in there now
- *   node scripts/import-sentences.mts --clear     # drop imported sentences
- *
- * WHY: the table has existed since the first schema and has always held zero
- * rows. Listening, the sentence builder and cloze all draw on the same 137
- * curated examples, so the same handful of sentences comes round forever.
- *
- * LICENCE: Tatoeba sentences are CC-BY 2.0 FR. The per-sentence contributor
- * attribution that ships with the corpus is preserved on every row's `source`
- * column rather than dropped, and the credit is shown in the UI. Nothing is
- * redistributed — the archive stays in data/tatoeba/, which is gitignored.
- *   https://tatoeba.org · https://www.manythings.org/anki/
- *
- * THE FILTER IS THE POINT. Tatoeba has 331k German-English pairs at every
- * difficulty. Importing them wholesale would hand an A1 learner Konjunktiv II.
- * A sentence is kept only when EVERY word in it is one this course teaches —
- * the same vocabulary constraint the AI tutor runs under (spec §8) — and its
- * level is the level of its hardest word. That is what turns a generic corpus
- * into levelled material.
+ * Fill the `sentence` table from Tatoeba. node scripts/import-sentences.mts # download (cached) +
+ * import node scripts/import-sentences.mts --stats # what's in there now node
+ * scripts/import-sentences.mts --clear # drop imported sentences WHY: the table has existed since
+ * the first schema and has always held zero rows.
  */
 import { DatabaseSync } from "node:sqlite";
-import { existsSync, mkdirSync, readFileSync, statSync, writeFileSync } from "node:fs";
+import {
+  existsSync,
+  mkdirSync,
+  readFileSync,
+  statSync,
+  writeFileSync,
+} from "node:fs";
 import path from "node:path";
 import { applySchema } from "../src/lib/db.ts";
 import { readFromZip } from "./zip.mts";
@@ -36,20 +24,13 @@ const CACHE = path.join(ROOT, "data", "tatoeba");
 const ZIP = path.join(CACHE, "deu-eng.zip");
 
 const SOURCE_URL = "https://www.manythings.org/anki/deu-eng.zip";
-const UA = "DeutschMate/1.0 (personal language-learning app; contact via github.com)";
+const UA =
+  "DeutschMate/1.0 (personal language-learning app; contact via github.com)";
 
 const LEVELS = ["A1.1", "A1.2", "A2.1", "A2.2", "B1.1", "B1.2"] as const;
 type Level = (typeof LEVELS)[number];
 
-/**
- * Length bands per level, both ends.
- *
- * The maximum is obvious — a 20-word sentence is not A1 material whatever
- * words it uses. The MINIMUM turned out to matter just as much: the source
- * file is sorted shortest-first, so taking matches in file order produced a
- * corpus averaging three words ("Warum ich?", "Ich passe.") which is useless
- * as listening or builder material.
- */
+/** Length bands per level, both ends. */
 const MIN_WORDS: Record<Level, number> = {
   "A1.1": 4,
   "A1.2": 5,
@@ -78,18 +59,26 @@ const arg = (f: string) => process.argv.includes(f);
 
 if (arg("--stats")) {
   const rows = db
-    .prepare("SELECT level, COUNT(*) n FROM sentence GROUP BY level ORDER BY level")
+    .prepare(
+      "SELECT level, COUNT(*) n FROM sentence GROUP BY level ORDER BY level",
+    )
     .all() as { level: string; n: number }[];
-  const total = (db.prepare("SELECT COUNT(*) n FROM sentence").get() as { n: number }).n;
+  const total = (
+    db.prepare("SELECT COUNT(*) n FROM sentence").get() as { n: number }
+  ).n;
   console.log(`sentence: ${total} rows`);
   for (const r of rows) console.log(`  ${r.level}  ${r.n}`);
   process.exit(0);
 }
 
 if (arg("--clear")) {
-  const before = (db.prepare("SELECT COUNT(*) n FROM sentence").get() as { n: number }).n;
+  const before = (
+    db.prepare("SELECT COUNT(*) n FROM sentence").get() as { n: number }
+  ).n;
   db.exec("DELETE FROM sentence WHERE source LIKE 'tatoeba%'");
-  const after = (db.prepare("SELECT COUNT(*) n FROM sentence").get() as { n: number }).n;
+  const after = (
+    db.prepare("SELECT COUNT(*) n FROM sentence").get() as { n: number }
+  ).n;
   console.log(`sentence: ${before} -> ${after}`);
   process.exit(0);
 }
@@ -102,20 +91,31 @@ if (!existsSync(ZIP)) {
   const res = await fetch(SOURCE_URL, { headers: { "User-Agent": UA } });
   if (!res.ok) {
     console.error(`Download failed: ${res.status} ${res.statusText}`);
-    console.error(`Save the file manually to ${path.relative(ROOT, ZIP)} and re-run.`);
+    console.error(
+      `Save the file manually to ${path.relative(ROOT, ZIP)} and re-run.`,
+    );
     process.exit(1);
   }
   writeFileSync(ZIP, Buffer.from(await res.arrayBuffer()));
 }
-console.log(`Archive: ${path.relative(ROOT, ZIP)} (${(statSync(ZIP).size / 1048576).toFixed(1)} MB)`);
+console.log(
+  `Archive: ${path.relative(ROOT, ZIP)} (${(statSync(ZIP).size / 1048576).toFixed(1)} MB)`,
+);
 
 const text = readFromZip(readFileSync(ZIP), "deu.txt").toString("utf8");
 const lines = text.split("\n");
 console.log(`  ${lines.length.toLocaleString("de-DE")} pairs`);
 
 // -------------------------------------------------------- vocabulary index
-type Word = { id: string; lemma: string; level: string; forms_json: string | null };
-const words = db.prepare("SELECT id, lemma, level, forms_json FROM word").all() as Word[];
+type Word = {
+  id: string;
+  lemma: string;
+  level: string;
+  forms_json: string | null;
+};
+const words = db
+  .prepare("SELECT id, lemma, level, forms_json FROM word")
+  .all() as Word[];
 
 const lower = (s: string) => s.toLocaleLowerCase("de");
 
@@ -136,7 +136,9 @@ for (const w of words) {
   // rejects nearly every real sentence.
   if (w.forms_json) {
     try {
-      for (const f of Object.values(JSON.parse(w.forms_json) as Record<string, string>)) {
+      for (const f of Object.values(
+        JSON.parse(w.forms_json) as Record<string, string>,
+      )) {
         if (typeof f === "string" && f) learn(f, at, w.id);
       }
     } catch {
@@ -148,8 +150,7 @@ for (const w of words) {
 /* Closed-class words a learner meets in week one and that appear in almost
    every German sentence. Without them the filter throws away good A1 material
    whose only "unknown" token is "und". Deliberately short. */
-const FUNCTION_WORDS =
-  `der die das den dem des ein eine einen einem einer eines
+const FUNCTION_WORDS = `der die das den dem des ein eine einen einem einer eines
    und oder aber denn sondern nicht kein keine keinen keinem
    ist sind bin bist seid war waren wäre hat habe hast haben hatte hatten
    ich du er sie es wir ihr mich dich sich uns euch mir dir ihm ihn ihnen
@@ -160,12 +161,14 @@ const FUNCTION_WORDS =
    hier da dort jetzt heute
    wie was wer wen wem wo wann warum welche welcher welches
    dass weil wenn ob als`
-    .split(/\s+/)
-    .filter(Boolean);
+  .split(/\s+/)
+  .filter(Boolean);
 
 for (const f of FUNCTION_WORDS) if (!known.has(lower(f))) learn(f, 0, "");
 
-console.log(`  ${known.size.toLocaleString("de-DE")} known forms from ${words.length} words`);
+console.log(
+  `  ${known.size.toLocaleString("de-DE")} known forms from ${words.length} words`,
+);
 
 const tokens = (s: string) =>
   s
@@ -200,16 +203,14 @@ function attribution(raw: string | undefined): string {
 }
 
 // ---------------------------------------------------------------- collect
-/**
- * Gather every candidate first, then choose.
- *
- * Taking the first 400 matches per level looks equivalent and is not: the
- * source file is ordered by length, so "first 400" means "the 400 shortest",
- * and the import came out averaging three words a sentence. Collecting the
- * full candidate set and sampling evenly across it gives the same count with
- * the whole length range represented.
- */
-type Candidate = { key: string; de: string; en: string; credit: string; wordIds: string[] };
+/** Gather every candidate first, then choose. */
+type Candidate = {
+  key: string;
+  de: string;
+  en: string;
+  credit: string;
+  wordIds: string[];
+};
 const pool = new Map<Level, Candidate[]>(LEVELS.map((l) => [l, []]));
 const seen = new Set<string>();
 
@@ -288,12 +289,7 @@ try {
   throw e;
 }
 
-/* Write the result to data/ as well as the database.
- *
- * This is a content-generation step, like import-words: it needs an 11 MB
- * download and a corpus scan, and neither belongs in a fresh clone's setup.
- * The chosen sentences are committed, so `npm run setup` rebuilds them from
- * the repo with no network and no Tatoeba dependency at all. */
+/* Write the result to data/ as well as the database. */
 const emitted = LEVELS.flatMap((level) =>
   spread(pool.get(level)!, PER_LEVEL).map((c) => ({
     id: `tat-${hash(c.key)}`,
@@ -313,7 +309,9 @@ writeFileSync(
 
 console.log(`\nKept ${kept}:`);
 for (const l of LEVELS) console.log(`  ${l}  ${counts.get(l)}`);
-console.log(`\nWrote data/sentences.json — committed, so setup needs no download.`);
+console.log(
+  `\nWrote data/sentences.json — committed, so setup needs no download.`,
+);
 
 writeFileSync(
   path.join(CACHE, "ATTRIBUTION.txt"),

@@ -1,26 +1,8 @@
 import { all } from "./db";
 
 /**
- * Read any German text against what this learner actually knows.
- *
- * The course can only ever teach from its own 38 readings. This is the piece
- * that points the same machinery at a WG advert, a letter from the
- * Ausländerbehörde, or a menu — the text you actually need to understand today.
- *
- * Every token is sorted into one of four buckets, and the distinctions matter:
- *
- *   known    you have met it — a card with at least one real rep
- *   queued   you added it, it is waiting, you have not studied it yet
- *   course   the course teaches it, you just haven't reached it yet
- *   unknown  not in the 2,400 words at all
- *
- * `queued` exists because adding words must visibly do something without
- * inflating anything. Coverage counts only `known`, so it does not move when
- * you queue a hundred words — you haven't learned them. But the words leave
- * the "new" list, so the button clearly did what it said.
- *
- * "unknown" is not a judgement about the word — it means the app has nothing
- * to say about it, which is a fact about the app, not about your German.
+ * Read any German text against what this learner actually knows. The course can only ever teach
+ * from its own 38 readings.
  */
 
 export type ScanWord = {
@@ -54,7 +36,11 @@ const lower = (s: string) => s.toLocaleLowerCase("de");
 
 /** Umlaut-folded, for matching inflected forms whose stem changes. */
 const fold = (s: string) =>
-  lower(s).replace(/ä/g, "a").replace(/ö/g, "o").replace(/ü/g, "u").replace(/ß/g, "ss");
+  lower(s)
+    .replace(/ä/g, "a")
+    .replace(/ö/g, "o")
+    .replace(/ü/g, "u")
+    .replace(/ß/g, "ss");
 
 export function tokenize(text: string): string[] {
   return text
@@ -75,13 +61,13 @@ type Row = {
 };
 
 /**
- * form → word, built once per request.
- *
- * Includes every inflected form the course generated, because a text says
- * "geht" and "Häuser", never "gehen" and "Haus".
+ * form → word, built once per request. Includes every inflected form the course generated, because
+ * a text says "geht" and "Häuser", never "gehen" and "Haus".
  */
 function formIndex() {
-  const rows = all<Row>("SELECT id, lemma, article, en, level, forms_json FROM word");
+  const rows = all<Row>(
+    "SELECT id, lemma, article, en, level, forms_json FROM word",
+  );
   const byForm = new Map<string, Row>();
   const byStem = new Map<string, Row>();
 
@@ -94,7 +80,9 @@ function formIndex() {
     put(byStem, fold(r.lemma), r);
     if (r.forms_json) {
       try {
-        for (const f of Object.values(JSON.parse(r.forms_json) as Record<string, string>)) {
+        for (const f of Object.values(
+          JSON.parse(r.forms_json) as Record<string, string>,
+        )) {
           if (typeof f === "string" && f) {
             put(byForm, lower(f), r);
             put(byStem, fold(f), r);
@@ -169,6 +157,8 @@ export function scanText(userId: string, text: string): Scan {
     words,
     // Only `known` counts. Queuing a word does not make the text easier to
     // read, and a number that jumped when you pressed a button would be a lie.
-    coverage: tokens.length ? Math.round((knownTokens / tokens.length) * 100) : 0,
+    coverage: tokens.length
+      ? Math.round((knownTokens / tokens.length) * 100)
+      : 0,
   };
 }

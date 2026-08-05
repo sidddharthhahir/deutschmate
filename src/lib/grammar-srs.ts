@@ -3,16 +3,7 @@ import { all, get, run, tx } from "./db";
 import { gradeCard, toSqlDate, Rating } from "./srs";
 
 /**
- * Grammar on the same forgetting curve as vocabulary.
- *
- * Until now only words were spaced-repeated. You met Perfekt once, in one unit,
- * and the app never asked you about it again — so the thing the B1 exam
- * actually tests was the one thing never reviewed. The `card` table always
- * supported ref_type='grammar'; nothing ever wrote one.
- *
- * A grammar card is not a flashcard. Its "front" is a drill drawn from the
- * point's own drills_json, and a different drill each time it comes up — so
- * what gets reinforced is the rule, not the memory of one question.
+ * Grammar on the same forgetting curve as vocabulary. Until now only words were spaced-repeated.
  */
 
 export type GrammarCard = {
@@ -37,18 +28,13 @@ function parseDrills(json: string): Drill[] {
   }
 }
 
-/**
- * Put a grammar point into the deck when it is taught.
- *
- * Mirrors introduceWord: the drills at the end of the lesson are the first rep,
- * so the point is scheduled from real performance rather than from the date it
- * happened to appear in a unit.
- */
-export function introduceGrammar(userId: string, grammarId: string, correct: boolean) {
-  // One unit, as in introduceWord: insert, read, grade, all or nothing. A
-  // lesson fires this once per drill, so a partial application here is a
-  // grammar point that sits at reps = 0, permanently due, and comes back in the
-  // session that taught it.
+/** Put a grammar point into the deck when it is taught. */
+export function introduceGrammar(
+  userId: string,
+  grammarId: string,
+  correct: boolean,
+) {
+  // One unit, as in introduceWord: insert, read, grade, all or nothing.
   return tx(() => {
     run(
       `INSERT INTO card (user_id, ref_type, ref_id, due, state)
@@ -64,10 +50,8 @@ export function introduceGrammar(userId: string, grammarId: string, correct: boo
       userId,
       grammarId,
     );
-    // A lesson fires this once per drill. Only the first one is the first rep;
-    // the rest must not re-grade, and a point already in rotation keeps its
-    // history. Without this the card would sit at reps=0, permanently due, and
-    // come back for review in the same session it was taught.
+    // A lesson fires this once per drill. Only the first one is the first rep; the rest must
+    // not re-grade, and a point already in rotation keeps its history.
     if (!card || card.reps > 0) return null;
 
     return gradeCard(userId, card.id, correct ? Rating.Good : Rating.Again);

@@ -1,16 +1,6 @@
 import type { NextConfig } from "next";
 
-/**
- * Hosts allowed to load dev resources (HMR, /_next/*).
- *
- * Next blocks cross-origin dev requests by default, which is right — but it
- * also blocks the phone. Reaching the dev server from another device means the
- * browser's origin is a LAN or tailnet address, not "localhost", and without
- * these entries hot reload silently stops working while pages still render.
- *
- * These are private ranges only. Nothing here is reachable from the internet,
- * and none of it applies to a production build.
- */
+/** Hosts allowed to load dev resources (HMR, /_next/*). */
 const DEV_ORIGINS = [
   "localhost",
   "127.0.0.1",

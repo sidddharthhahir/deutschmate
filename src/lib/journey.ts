@@ -3,19 +3,8 @@ import { LEVELS } from "./session";
 import { masteryByUnit } from "./mastery";
 
 /**
- * The road behind and the road ahead.
- *
- * Fortschritt answers "how am I doing this month". This answers the two
- * questions it can't: how far is it to the end, and how far have I come. Both
- * are motivating in a way a 30-day accuracy figure is not — people remember
- * the day they first held a conversation, not that their retention was 87%.
- *
- * Principle 4 still applies, and it applies hardest here, because a page about
- * how far you have come is exactly where an app would be tempted to inflate.
- * Every row below is a stored event with a real date on it: a unit you
- * finished, a word you were introduced to, an exam you sat. Nothing is
- * estimated, nothing is a badge for showing up, and a milestone you have not
- * reached does not appear greyed out to bait you — it is simply not there yet.
+ * The road behind and the road ahead. This answers the two questions it can't: how far is it to
+ * the end, and how far have I come.
  */
 
 // ------------------------------------------------------------------ roadmap
@@ -43,14 +32,11 @@ export type LevelRow = {
   finishedAt: string | null;
 };
 
-/**
- * Every unit in the course, marked done / current / ahead.
- *
- * One query for the units and one for the completions rather than a per-unit
- * `unitStatus()` call: 120 units meant 120 round trips, which is fine on
- * SQLite and still the wrong shape to leave in a page that renders on request.
- */
-export function roadmap(userId: string, currentUnitId: string | null): LevelRow[] {
+/** Every unit in the course, marked done / current / ahead. */
+export function roadmap(
+  userId: string,
+  currentUnitId: string | null,
+): LevelRow[] {
   const units = all<{ id: string; level: string; ord: number; title: string }>(
     "SELECT id, level, ord, title FROM unit ORDER BY level, ord",
   );
@@ -109,18 +95,21 @@ export function roadmap(userId: string, currentUnitId: string | null): LevelRow[
 
 // ------------------------------------------------------------------- skills
 
-export type Skill = { level: string; ord: number; title: string; items: string[] };
+export type Skill = {
+  level: string;
+  ord: number;
+  title: string;
+  items: string[];
+};
 
-/**
- * What the learner can now do, in their own course's words.
- *
- * These are the can-do statements of finished units — "ask and understand a
- * price", not "420 words". A count says how much you have touched; a can-do
- * says what you could walk into a shop and manage, which is the thing anyone
- * actually wants to know about their own German.
- */
+/** What the learner can now do, in their own course's words. */
 export function skillsEarned(userId: string): Skill[] {
-  const rows = all<{ level: string; ord: number; title: string; can_do_json: string }>(
+  const rows = all<{
+    level: string;
+    ord: number;
+    title: string;
+    can_do_json: string;
+  }>(
     `SELECT u.level, u.ord, u.title, u.can_do_json
        FROM unit_progress p JOIN unit u ON u.id = p.unit_id
       WHERE p.user_id = ? AND p.status = 'complete'
@@ -132,7 +121,8 @@ export function skillsEarned(userId: string): Skill[] {
       let items: string[] = [];
       try {
         const parsed: unknown = JSON.parse(r.can_do_json);
-        if (Array.isArray(parsed)) items = parsed.filter((x): x is string => typeof x === "string");
+        if (Array.isArray(parsed))
+          items = parsed.filter((x): x is string => typeof x === "string");
       } catch {
         /* a unit with a malformed blob contributes nothing, rather than crashing the page */
       }
@@ -155,20 +145,29 @@ const WORD_MARKS = [1, 100, 250, 500, 1000, 1500, 2000, 2400];
 
 /** The first time each of these happened is worth remembering. */
 const FIRSTS: { kind: string; title: string; detail: string }[] = [
-  { kind: "conversation", title: "Erstes Gespräch", detail: "auf Deutsch geantwortet" },
-  { kind: "writing", title: "Erster eigener Text", detail: "selbst geschrieben, nicht abgeschrieben" },
-  { kind: "reading", title: "Erster Lesetext", detail: "einen ganzen Text gelesen" },
-  { kind: "speaking", title: "Zum ersten Mal gesprochen", detail: "laut, nicht getippt" },
+  {
+    kind: "conversation",
+    title: "Erstes Gespräch",
+    detail: "auf Deutsch geantwortet",
+  },
+  {
+    kind: "writing",
+    title: "Erster eigener Text",
+    detail: "selbst geschrieben, nicht abgeschrieben",
+  },
+  {
+    kind: "reading",
+    title: "Erster Lesetext",
+    detail: "einen ganzen Text gelesen",
+  },
+  {
+    kind: "speaking",
+    title: "Zum ersten Mal gesprochen",
+    detail: "laut, nicht getippt",
+  },
 ];
 
-/**
- * Dated events, oldest first.
- *
- * Everything here is derived from a row that already existed for another
- * reason — the attempt log, unit_progress, session_log, exam_run. Nothing is
- * written when a milestone is "earned", so there is no state to get out of
- * sync with the facts, and a restored backup shows the same history.
- */
+/** Dated events, oldest first. */
 export function milestones(userId: string): Milestone[] {
   const out: Milestone[] = [];
   const day = (ts: string) => ts.slice(0, 10);
@@ -178,7 +177,8 @@ export function milestones(userId: string): Milestone[] {
     "SELECT MIN(date) AS d FROM session_log WHERE user_id = ?",
     userId,
   )?.d;
-  if (first) out.push({ on: first, title: "Angefangen", detail: "erste Sitzung" });
+  if (first)
+    out.push({ on: first, title: "Angefangen", detail: "erste Sitzung" });
 
   /* Words, by the date each was first introduced. A word introduced twice —
      which happens when a unit carries over — must count once, so this ranks
@@ -201,7 +201,11 @@ export function milestones(userId: string): Milestone[] {
             title: "Erstes Wort",
             detail: row.lemma ? `„${row.lemma}“` : "das allererste",
           }
-        : { on: day(row.at), title: `${mark} Wörter`, detail: "eingeführt und im Deck" },
+        : {
+            on: day(row.at),
+            title: `${mark} Wörter`,
+            detail: "eingeführt und im Deck",
+          },
     );
   }
 
@@ -230,12 +234,21 @@ export function milestones(userId: string): Milestone[] {
   );
   for (const l of perLevel) {
     if (l.at && l.done === sizes.get(l.level)) {
-      out.push({ on: day(l.at), title: `${l.level} abgeschlossen`, detail: `alle ${l.done} Units` });
+      out.push({
+        on: day(l.at),
+        title: `${l.level} abgeschlossen`,
+        detail: `alle ${l.done} Units`,
+      });
     }
   }
 
   // First exam, with the score it actually got.
-  const exam = get<{ at: string; correct: number; total: number; level: string }>(
+  const exam = get<{
+    at: string;
+    correct: number;
+    total: number;
+    level: string;
+  }>(
     `SELECT created_at AS at, correct, total, level FROM exam_run
       WHERE user_id = ? ORDER BY created_at LIMIT 1`,
     userId,

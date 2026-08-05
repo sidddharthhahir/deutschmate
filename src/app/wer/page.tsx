@@ -2,7 +2,12 @@ import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
 import Link from "next/link";
 import AppHeader from "@/components/AppHeader";
-import { requireUser, allUsers, createUserByEmail, userByEmail } from "@/lib/user";
+import {
+  requireUser,
+  allUsers,
+  createUserByEmail,
+  userByEmail,
+} from "@/lib/user";
 import {
   SESSION_COOKIE,
   UID_COOKIE,
@@ -17,19 +22,7 @@ import { baseUrl } from "@/lib/env";
 
 export const dynamic = "force-dynamic";
 
-/**
- * Who is using this install.
- *
- * IT USED TO BE A LIST OF BUTTONS THAT MADE YOU ANY OF THEM. One click, no
- * credential — the documented design for two flatmates and one kitchen table
- * (spec §10), and a list of your colleagues' accounts the moment a third person
- * can reach the server.
- *
- * Switching means signing in now. The list stays, because on a shared install
- * it is genuinely useful to see who has a deck here and it is no secret from
- * the people in the room — but the only thing you can do to another account is
- * send it a sign-in link, and that goes to its own address, not to you.
- */
+/** Who is using this install. */
 export default async function WhoPage({
   searchParams,
 }: {
@@ -85,8 +78,8 @@ export default async function WhoPage({
           Wer lernt hier?
         </h1>
         <p className="text-secondary mt-3 text-[15px] leading-relaxed">
-          Who is learning? Each account has its own deck, streak and progress. The course
-          content is shared.
+          Who is learning? Each account has its own deck, streak and progress.
+          The course content is shared.
         </p>
 
         <div className="border-line bg-raised mt-8 rounded-xl border p-5">
@@ -94,7 +87,11 @@ export default async function WhoPage({
             Angemeldet als
           </p>
           <p className="font-serif mt-1.5 text-[21px]">{me.name}</p>
-          {me.email && <p className="text-muted font-mono mt-0.5 text-[12px]">{me.email}</p>}
+          {me.email && (
+            <p className="text-muted font-mono mt-0.5 text-[12px]">
+              {me.email}
+            </p>
+          )}
           <div className="mt-4 flex flex-wrap items-center gap-2">
             {/* Settings live here rather than in the nav: the header is held at
                 four items on purpose, and a fifth starts turning Home into a
@@ -130,13 +127,16 @@ export default async function WhoPage({
                     className="border-line-sub flex items-baseline justify-between rounded-xl border px-5 py-3.5"
                   >
                     <span className="font-serif text-[17px]">{u.name}</span>
-                    <span className="font-mono text-muted text-[11.5px]">{u.level}</span>
+                    <span className="font-mono text-muted text-[11.5px]">
+                      {u.level}
+                    </span>
                   </div>
                 ))}
             </div>
             <p className="text-muted mt-3 text-[12.5px] leading-relaxed">
-              You cannot switch into one of these. Signing in as somebody means having
-              their email — send a link below and it goes to them, not to you.
+              You cannot switch into one of these. Signing in as somebody means
+              having their email — send a link below and it goes to them, not to
+              you.
             </p>
           </div>
         )}
@@ -172,11 +172,13 @@ export default async function WhoPage({
             </p>
           )}
           {error && (
-            <p className="text-das mt-3 text-[13px]">Das sieht nicht nach einer Adresse aus.</p>
+            <p className="text-das mt-3 text-[13px]">
+              Das sieht nicht nach einer Adresse aus.
+            </p>
           )}
           <p className="text-muted mt-3 text-[12.5px] leading-relaxed">
-            An address with no account gets one, with an empty deck. The link works once
-            and expires in {TOKEN_TTL_MIN} minutes.
+            An address with no account gets one, with an empty deck. The link
+            works once and expires in {TOKEN_TTL_MIN} minutes.
           </p>
         </form>
 
@@ -185,9 +187,9 @@ export default async function WhoPage({
             no way to configure it, and a lie the day there was. */}
         {postal === "console" ? (
           <p className="text-muted/70 mt-10 text-[12px] leading-relaxed">
-            No mail provider is configured on this install, on purpose — so it still runs
-            with no network and no account anywhere. The link is printed in the terminal
-            running{" "}
+            No mail provider is configured on this install, on purpose — so it
+            still runs with no network and no account anywhere. The link is
+            printed in the terminal running{" "}
             <code className="bg-raised text-der rounded px-1 py-0.5 font-mono text-[11.5px]">
               npm run dev
             </code>
@@ -195,8 +197,8 @@ export default async function WhoPage({
           </p>
         ) : (
           <p className="text-muted/70 mt-10 text-[12px] leading-relaxed">
-            The link is emailed. If it does not arrive within a minute or two, the spam
-            folder is the first place to look.
+            The link is emailed. If it does not arrive within a minute or two,
+            the spam folder is the first place to look.
           </p>
         )}
       </div>

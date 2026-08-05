@@ -1,14 +1,15 @@
 /**
- * Export real data for the design pass.
- *
- *   node scripts/export-for-design.mts
- *
- * A designer working from invented content produces layouts that break on
- * contact with real data. This dumps actual rows, at actual lengths, including
- * the longest strings in the database — which is what layouts have to survive.
+ * Export real data for the design pass. node scripts/export-for-design.mts A designer working from
+ * invented content produces layouts that break on contact with real data.
  */
 import { DatabaseSync } from "node:sqlite";
-import { writeFileSync, readFileSync, readdirSync, mkdirSync, existsSync } from "node:fs";
+import {
+  writeFileSync,
+  readFileSync,
+  readdirSync,
+  mkdirSync,
+  existsSync,
+} from "node:fs";
 import path from "node:path";
 
 const ROOT = process.cwd();
@@ -25,7 +26,10 @@ const csv = (rows: Record<string, unknown>[]) => {
     const s = v === null || v === undefined ? "" : String(v);
     return /[",\n]/.test(s) ? `"${s.replace(/"/g, '""')}"` : s;
   };
-  return [cols.join(","), ...rows.map((r) => cols.map((c) => esc(r[c])).join(","))].join("\n");
+  return [
+    cols.join(","),
+    ...rows.map((r) => cols.map((c) => esc(r[c])).join(",")),
+  ].join("\n");
 };
 
 // ---------------------------------------------------------------- vocabulary
@@ -54,23 +58,33 @@ writeFileSync(path.join(OUT, "units.csv"), csv(units));
 const longest = {
   words: (
     db
-      .prepare("SELECT lemma, LENGTH(lemma) n FROM word ORDER BY n DESC LIMIT 15")
+      .prepare(
+        "SELECT lemma, LENGTH(lemma) n FROM word ORDER BY n DESC LIMIT 15",
+      )
       .all() as { lemma: string; n: number }[]
   ).map((r) => `${r.lemma} (${r.n})`),
   englishGlosses: (
-    db.prepare("SELECT en, LENGTH(en) n FROM word ORDER BY n DESC LIMIT 10").all() as {
+    db
+      .prepare("SELECT en, LENGTH(en) n FROM word ORDER BY n DESC LIMIT 10")
+      .all() as {
       en: string;
       n: number;
     }[]
   ).map((r) => `${r.en} (${r.n})`),
   unitTitles: (
-    db.prepare("SELECT title, LENGTH(title) n FROM unit ORDER BY n DESC LIMIT 10").all() as {
+    db
+      .prepare(
+        "SELECT title, LENGTH(title) n FROM unit ORDER BY n DESC LIMIT 10",
+      )
+      .all() as {
       title: string;
       n: number;
     }[]
   ).map((r) => `${r.title} (${r.n})`),
   canDoStatements: (
-    db.prepare("SELECT can_do_json FROM unit").all() as { can_do_json: string }[]
+    db.prepare("SELECT can_do_json FROM unit").all() as {
+      can_do_json: string;
+    }[]
   )
     .flatMap((r) => JSON.parse(r.can_do_json) as string[])
     .sort((a, b) => b.length - a.length)
@@ -90,13 +104,19 @@ const sample = {
   scale: {
     words: (db.prepare("SELECT COUNT(*) n FROM word").get() as { n: number }).n,
     wordsWithAudio: (
-      db.prepare("SELECT COUNT(*) n FROM word WHERE audio_url IS NOT NULL").get() as {
+      db
+        .prepare("SELECT COUNT(*) n FROM word WHERE audio_url IS NOT NULL")
+        .get() as {
         n: number;
       }
     ).n,
     units: (db.prepare("SELECT COUNT(*) n FROM unit").get() as { n: number }).n,
-    grammar: (db.prepare("SELECT COUNT(*) n FROM grammar").get() as { n: number }).n,
-    readings: (db.prepare("SELECT COUNT(*) n FROM reading").get() as { n: number }).n,
+    grammar: (
+      db.prepare("SELECT COUNT(*) n FROM grammar").get() as { n: number }
+    ).n,
+    readings: (
+      db.prepare("SELECT COUNT(*) n FROM reading").get() as { n: number }
+    ).n,
   },
   reviewCards: db
     .prepare(
@@ -120,11 +140,7 @@ const sample = {
     "Infinitive not at the end after a modal",
     "nicht vs kein",
   ],
-  /* Read out of ReviewBlock rather than restated. The hand-written copy had
-     English hints — "no idea / slowly / knew it / instant" — while the app has
-     always shown German, so the one file whose entire purpose is "real data,
-     real lengths" was handing a designer four strings that do not exist and
-     are shorter than the real ones. */
+  /* Read out of ReviewBlock rather than restated. */
   gradeButtons: readGrades(),
   offlineMessages: [
     "Offline — Ersatzübung statt Video",
@@ -151,16 +167,20 @@ function walk(dir: string, marker: string, prefix = ""): string[] {
   return out.sort();
 }
 
-const grammarCount =
-  (db.prepare("SELECT COUNT(*) AS n FROM grammar").get() as { n: number }).n;
+const grammarCount = (
+  db.prepare("SELECT COUNT(*) AS n FROM grammar").get() as { n: number }
+).n;
 
 /** The four grade buttons, parsed out of the component that renders them. */
 function readGrades() {
-  const src = readFileSync(path.join(ROOT, "src/components/blocks/ReviewBlock.tsx"), "utf8");
-  const body = src.match(/const GRADES = \[([\s\S]*?)\];/)?.[1] ?? "";
-  return [...body.matchAll(/g:\s*(\d+),\s*label:\s*"([^"]+)",\s*hint:\s*"([^"]+)"/g)].map(
-    (m) => ({ key: m[1], label: m[2], hint: m[3] }),
+  const src = readFileSync(
+    path.join(ROOT, "src/components/blocks/ReviewBlock.tsx"),
+    "utf8",
   );
+  const body = src.match(/const GRADES = \[([\s\S]*?)\];/)?.[1] ?? "";
+  return [
+    ...body.matchAll(/g:\s*(\d+),\s*label:\s*"([^"]+)",\s*hint:\s*"([^"]+)"/g),
+  ].map((m) => ({ key: m[1], label: m[2], hint: m[3] }));
 }
 
 const appDir = path.join(ROOT, "src/app");

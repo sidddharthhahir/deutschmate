@@ -8,20 +8,7 @@ import { findExplanation, saveExplanation } from "@/lib/shared-cache";
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-/**
- * "Erklär mir das" — a grammar breakdown of any sentence in the app.
- *
- * Same three-tier shape as mistake explanations (spec §12):
- *   1. cache hit    free, instant, offline
- *   2. model call   only on a miss, on the cheap model
- *   3. stored       so the second person to ask gets tier 1
- *
- * Shared for the app's own sentences — you and your flatmate read the same 38
- * texts, so half of these are answered before either of you asks. Private for
- * anything else, because /text takes whatever German you paste and some of it
- * is nobody else's business. lib/shared-cache.ts decides which, from the
- * database rather than from the request.
- */
+/** "Erklär mir das" — a grammar breakdown of any sentence in the app. */
 
 export async function POST(req: Request) {
   const raw = await readJson(req);
@@ -57,15 +44,24 @@ export async function POST(req: Request) {
   }
 
   try {
-    const { result: md, model, usage } = await explainSentence(
-      user.id,
-      sentence,
-      user.level,
-    );
+    const {
+      result: md,
+      model,
+      usage,
+    } = await explainSentence(user.id, sentence, user.level);
     recordUsage(user.id, "explain", model, usage);
     const shared = saveExplanation(sentence, user.level, user.id, md);
-    return NextResponse.json({ ok: true, explanation: md, source: "model", shared });
+    return NextResponse.json({
+      ok: true,
+      explanation: md,
+      source: "model",
+      shared,
+    });
   } catch {
-    return NextResponse.json({ ok: false, reason: "failed", explanation: null });
+    return NextResponse.json({
+      ok: false,
+      reason: "failed",
+      explanation: null,
+    });
   }
 }

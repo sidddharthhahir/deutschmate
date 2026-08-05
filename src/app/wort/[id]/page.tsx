@@ -41,35 +41,42 @@ const MET_LABEL: Record<string, string> = {
   video: "Video",
 };
 
-/**
- * Word detail — everything the app knows about one word.
- * Pure joins over data that already exists.
- */
-export default async function WordPage({ params }: { params: Promise<{ id: string }> }) {
+/** Word detail — everything the app knows about one word. */
+export default async function WordPage({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
   const { id } = await params;
   const user = await requireUser();
 
   const w = get<Word>("SELECT * FROM word WHERE id = ?", id);
   if (!w) notFound();
 
-  const unit = get<{ id: string; ord: number; title: string; can_do_json: string }>(
+  const unit = get<{
+    id: string;
+    ord: number;
+    title: string;
+    can_do_json: string;
+  }>(
     `SELECT u.id, u.ord, u.title, u.can_do_json FROM unit u
       WHERE EXISTS (SELECT 1 FROM json_each(u.word_ids_json) je WHERE je.value = ?)`,
     id,
   );
 
   const card = get<{
-    reps: number; lapses: number; stability: number; due: string; state: number;
+    reps: number;
+    lapses: number;
+    stability: number;
+    due: string;
+    state: number;
   }>(
     "SELECT reps, lapses, stability, due, state FROM card WHERE user_id=? AND ref_type='word' AND ref_id=?",
     user.id,
     id,
   );
 
-  /* Where this word has actually turned up for this learner, and how often.
-     A card's rep count says the flashcard came round; this says the word was
-     in a reading, a listening clip and a conversation — which is the thing
-     that makes a word feel known rather than merely revised. */
+  /* Where this word has actually turned up for this learner, and how often. */
   const met = all<{ kind: string; n: number }>(
     `SELECT kind, COUNT(*) AS n FROM attempt
       WHERE user_id = ? AND ref_id = ? GROUP BY kind ORDER BY n DESC`,
@@ -83,7 +90,11 @@ export default async function WordPage({ params }: { params: Promise<{ id: strin
     id,
   );
 
-  const mistakes = all<{ kind: string; user_answer: string; created_at: string }>(
+  const mistakes = all<{
+    kind: string;
+    user_answer: string;
+    created_at: string;
+  }>(
     `SELECT kind, user_answer, created_at FROM attempt
       WHERE user_id=? AND ref_id=? AND correct=0 ORDER BY id DESC LIMIT 8`,
     user.id,
@@ -103,7 +114,9 @@ export default async function WordPage({ params }: { params: Promise<{ id: strin
     id,
   );
 
-  const forms = w.forms_json ? (JSON.parse(w.forms_json) as Record<string, string>) : null;
+  const forms = w.forms_json
+    ? (JSON.parse(w.forms_json) as Record<string, string>)
+    : null;
   const isNoun = w.pos === "noun" && w.article;
   const STATE = ["neu", "wird gelernt", "im Umlauf", "wird aufgefrischt"];
 
@@ -138,15 +151,24 @@ export default async function WordPage({ params }: { params: Promise<{ id: strin
               {w.topic && ` · ${w.topic}`}
             </p>
           </div>
-          <WordAudio url={w.audio_url} lemma={w.lemma} source={w.audio_source} />
+          <WordAudio
+            url={w.audio_url}
+            lemma={w.lemma}
+            source={w.audio_source}
+          />
         </header>
 
         {forms && (
           <Section title="Formen">
             <div className="grid grid-cols-2 gap-x-8 sm:grid-cols-3">
               {Object.entries(forms).map(([p, f]) => (
-                <div key={p} className="border-line-sub flex justify-between border-b py-2">
-                  <span className="font-mono text-muted text-[12.5px]">{p}</span>
+                <div
+                  key={p}
+                  className="border-line-sub flex justify-between border-b py-2"
+                >
+                  <span className="font-mono text-muted text-[12.5px]">
+                    {p}
+                  </span>
                   <span className="font-serif text-fg text-[17px]">{f}</span>
                 </div>
               ))}
@@ -165,7 +187,9 @@ export default async function WordPage({ params }: { params: Promise<{ id: strin
 
         {w.mnemonic && (
           <Section title="Eselsbrücke">
-            <p className="font-serif text-accent/85 text-[18px] italic">{w.mnemonic}</p>
+            <p className="font-serif text-accent/85 text-[18px] italic">
+              {w.mnemonic}
+            </p>
           </Section>
         )}
 
@@ -190,7 +214,9 @@ export default async function WordPage({ params }: { params: Promise<{ id: strin
                   key={m.kind}
                   className="border-line bg-surface font-mono rounded-full border px-3 py-1.5 text-[12.5px]"
                 >
-                  <span className="text-secondary">{MET_LABEL[m.kind] ?? m.kind}</span>
+                  <span className="text-secondary">
+                    {MET_LABEL[m.kind] ?? m.kind}
+                  </span>
                   <span className="text-muted"> {m.n}×</span>
                 </span>
               ))}
@@ -228,7 +254,9 @@ export default async function WordPage({ params }: { params: Promise<{ id: strin
             <div className="space-y-1.5">
               {mistakes.map((m, n) => (
                 <div key={n} className="rounded-lg bg-[#251A20] px-3.5 py-2.5">
-                  <span className="font-serif text-[16px] text-[#E8C8D6]">{m.user_answer}</span>
+                  <span className="font-serif text-[16px] text-[#E8C8D6]">
+                    {m.user_answer}
+                  </span>
                   <span className="font-mono text-muted ml-3 text-[11px]">
                     {m.kind} · {m.created_at.slice(0, 10)}
                   </span>
@@ -242,7 +270,10 @@ export default async function WordPage({ params }: { params: Promise<{ id: strin
           <Section title="Auch in diesen Sätzen">
             <div className="space-y-2">
               {alsoIn.map((s, n) => (
-                <div key={n} className="border-line-sub rounded-lg border px-4 py-2.5">
+                <div
+                  key={n}
+                  className="border-line-sub rounded-lg border px-4 py-2.5"
+                >
                   <p className="font-serif text-[17px]">{s.de}</p>
                   <p className="text-muted text-[13px]">{s.en}</p>
                 </div>
@@ -273,7 +304,13 @@ export default async function WordPage({ params }: { params: Promise<{ id: strin
   );
 }
 
-function Section({ title, children }: { title: string; children: React.ReactNode }) {
+function Section({
+  title,
+  children,
+}: {
+  title: string;
+  children: React.ReactNode;
+}) {
   return (
     <section className="mt-8">
       <h2 className="font-mono text-muted mb-3 text-[11.5px] tracking-[0.14em] uppercase">

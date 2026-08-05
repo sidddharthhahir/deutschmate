@@ -3,7 +3,12 @@
 import Link from "next/link";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { playAudio } from "@/lib/speech";
-import { scoreExam, type Exam, type ExamQuestion, type SectionKey } from "@/lib/exam-score";
+import {
+  scoreExam,
+  type Exam,
+  type ExamQuestion,
+  type SectionKey,
+} from "@/lib/exam-score";
 
 type Phase = "idle" | "loading" | "running" | "done" | "error";
 
@@ -17,16 +22,8 @@ const SECTION_TITLE: Record<SectionKey, string> = {
 };
 
 /**
- * The exam runner.
- *
- * The one place in the app with no immediate feedback and a clock. Everything
- * else is short, forgiving and tells you straight away — which is right for
- * learning and useless for finding out what survives under pressure.
- *
- * The paper (including its answer key) is fetched once and then held in memory,
- * so losing the network mid-exam costs nothing (principle 2). Only the final
- * score needs a round trip, and it retries nothing — if it fails, the page says
- * the result wasn't saved rather than quietly dropping it.
+ * The exam runner. Only the final score needs a round trip, and it retries nothing — if it fails,
+ * the page says the result wasn't saved rather than quietly dropping it.
  */
 export default function ExamRunner({ level }: { level: string }) {
   const [phase, setPhase] = useState<Phase>("idle");
@@ -39,12 +36,8 @@ export default function ExamRunner({ level }: { level: string }) {
   const startedAt = useRef(0);
 
   /**
-   * A mirror of `answers` for the clock to read.
-   *
-   * The countdown used to list `answers` as a dependency, so every pick tore
-   * the interval down and started a new one. Answer four questions inside a
-   * second and the timer never ticks at all — it sits still and then jumps.
-   * The interval now depends only on the deadline, and reads picks from here.
+   * A mirror of `answers` for the clock to read. Answer four questions inside a second and the
+   * timer never ticks at all — it sits still and then jumps.
    */
   const picksRef = useRef<(number | null)[]>([]);
 
@@ -56,46 +49,47 @@ export default function ExamRunner({ level }: { level: string }) {
   const flat: Flat[] = useMemo(() => {
     if (!exam) return [];
     return exam.sections.flatMap((s) =>
-      s.questions.map((q) => ({ ...q, sectionTitle: s.title, instruction: s.instruction })),
+      s.questions.map((q) => ({
+        ...q,
+        sectionTitle: s.title,
+        instruction: s.instruction,
+      })),
     );
   }, [exam]);
 
   // ------------------------------------------------------------------ finish
 
-  const finish = useCallback(
-    async (picks: (number | null)[], paper: Exam) => {
-      setPhase("done");
-      const minutes = Math.max(
-        1,
-        Math.round((Date.now() - startedAt.current) / 60000),
-      );
+  const finish = useCallback(async (picks: (number | null)[], paper: Exam) => {
+    setPhase("done");
+    const minutes = Math.max(
+      1,
+      Math.round((Date.now() - startedAt.current) / 60000),
+    );
 
-      const { questions, sections } = scoreExam(paper, picks);
+    const { questions, sections } = scoreExam(paper, picks);
 
-      try {
-        const res = await fetch("/api/pruefung", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            level: paper.level,
-            minutes,
-            sections,
-            answers: questions.map((q, n) => ({
-              section: q.section,
-              prompt: q.prompt,
-              picked: picks[n] === null ? "—" : q.options[picks[n]!],
-              expected: q.options[q.answer],
-              correct: picks[n] === q.answer,
-            })),
-          }),
-        });
-        setSaved(res.ok ? "ok" : "failed");
-      } catch {
-        setSaved("failed");
-      }
-    },
-    [],
-  );
+    try {
+      const res = await fetch("/api/pruefung", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          level: paper.level,
+          minutes,
+          sections,
+          answers: questions.map((q, n) => ({
+            section: q.section,
+            prompt: q.prompt,
+            picked: picks[n] === null ? "—" : q.options[picks[n]!],
+            expected: q.options[q.answer],
+            correct: picks[n] === q.answer,
+          })),
+        }),
+      });
+      setSaved(res.ok ? "ok" : "failed");
+    } catch {
+      setSaved("failed");
+    }
+  }, []);
 
   // ------------------------------------------------------------------- clock
 
@@ -117,7 +111,9 @@ export default function ExamRunner({ level }: { level: string }) {
   async function start() {
     setPhase("loading");
     try {
-      const res = await fetch(`/api/pruefung?level=${encodeURIComponent(level)}`);
+      const res = await fetch(
+        `/api/pruefung?level=${encodeURIComponent(level)}`,
+      );
       const paper = (await res.json()) as Exam;
       if (!paper.total) return setPhase("error");
       setExam(paper);
@@ -140,12 +136,13 @@ export default function ExamRunner({ level }: { level: string }) {
       <div className="border-line rounded-[14px] border p-6 md:p-8">
         <p className="font-serif text-[22px] font-medium">Übungstest {level}</p>
         <p className="text-secondary mt-2 max-w-[58ch] text-[15px] leading-relaxed">
-          30 Fragen aus vier Teilen, 30 Minuten, keine Rückmeldung bis zum Schluss.
+          30 Fragen aus vier Teilen, 30 Minuten, keine Rückmeldung bis zum
+          Schluss.
         </p>
         {phase === "error" && (
           <p className="text-das mt-3 text-[14px]">
-            Der Test konnte nicht geladen werden. Für diese Stufe gibt es noch nicht genug
-            Inhalt, oder die Verbindung war weg.
+            Der Test konnte nicht geladen werden. Für diese Stufe gibt es noch
+            nicht genug Inhalt, oder die Verbindung war weg.
           </p>
         )}
         <button
@@ -198,15 +195,18 @@ export default function ExamRunner({ level }: { level: string }) {
           {/* The honest caveat, on the results screen where it matters, not
               buried in an intro nobody re-reads. */}
           <p className="text-muted border-line-sub mt-7 max-w-[62ch] border-t pt-5 text-[13px] leading-relaxed">
-            Das ist ein Übungstest aus dem Inhalt dieser App — nicht der offizielle
-            Modellsatz und keine Vorhersage, ob du die echte Prüfung bestehst. Was er dir
-            sagt: welcher der vier Teile bei dir hinterherhinkt.
+            Das ist ein Übungstest aus dem Inhalt dieser App — nicht der
+            offizielle Modellsatz und keine Vorhersage, ob du die echte Prüfung
+            bestehst. Was er dir sagt: welcher der vier Teile bei dir
+            hinterherhinkt.
           </p>
           <p className="font-mono mt-3 text-[12px]">
             {saved === "ok" ? (
               <span className="text-muted">Ergebnis gespeichert.</span>
             ) : saved === "failed" ? (
-              <span className="text-das">Ergebnis nicht gespeichert — offline?</span>
+              <span className="text-das">
+                Ergebnis nicht gespeichert — offline?
+              </span>
             ) : (
               <span className="text-muted">Wird gespeichert…</span>
             )}
@@ -226,7 +226,9 @@ export default function ExamRunner({ level }: { level: string }) {
                 }`}
               >
                 <div className="flex items-start gap-3">
-                  <span className={`mt-0.5 text-[13px] ${ok ? "text-accent" : "text-das"}`}>
+                  <span
+                    className={`mt-0.5 text-[13px] ${ok ? "text-accent" : "text-das"}`}
+                  >
                     {ok ? "✓" : "✕"}
                   </span>
                   <div className="min-w-0 flex-1">
@@ -235,12 +237,15 @@ export default function ExamRunner({ level }: { level: string }) {
                     </p>
                     <p className="font-serif mt-1 text-[17px]">{q.prompt}</p>
                     {q.section === "hoeren" && q.context && (
-                      <p className="font-serif text-secondary mt-1 text-[15px]">{q.context}</p>
+                      <p className="font-serif text-secondary mt-1 text-[15px]">
+                        {q.context}
+                      </p>
                     )}
                     {!ok && (
                       <p className="mt-1.5 text-[13.5px]">
                         <span className="text-muted">
-                          du: {answers[n] === null ? "—" : q.options[answers[n]!]}
+                          du:{" "}
+                          {answers[n] === null ? "—" : q.options[answers[n]!]}
                         </span>
                         <span className="text-secondary ml-3">
                           richtig: {q.options[q.answer]}
@@ -307,14 +312,23 @@ export default function ExamRunner({ level }: { level: string }) {
             onClick={() => setI(n)}
             aria-label={`Frage ${n + 1}`}
             className={`h-1.5 flex-1 rounded-[1px] transition-colors ${
-              n === i ? "bg-fg" : answers[n] !== null ? "bg-line-strong" : "bg-line"
+              n === i
+                ? "bg-fg"
+                : answers[n] !== null
+                  ? "bg-line-strong"
+                  : "bg-line"
             }`}
           />
         ))}
       </div>
 
-      <div key={q.id} className="dm-rise border-line bg-surface rounded-[14px] border p-6 md:p-8">
-        <p className="font-mono text-muted mb-5 text-[11.5px]">{q.instruction}</p>
+      <div
+        key={q.id}
+        className="dm-rise border-line bg-surface rounded-[14px] border p-6 md:p-8"
+      >
+        <p className="font-mono text-muted mb-5 text-[11.5px]">
+          {q.instruction}
+        </p>
 
         {q.section === "lesen" && q.context && (
           <div className="border-line-sub bg-bg mb-6 max-h-[280px] overflow-y-auto rounded-xl border p-5">
@@ -337,7 +351,9 @@ export default function ExamRunner({ level }: { level: string }) {
           </div>
         )}
 
-        <p className="font-serif mb-6 text-center text-[22px] md:text-[26px]">{q.prompt}</p>
+        <p className="font-serif mb-6 text-center text-[22px] md:text-[26px]">
+          {q.prompt}
+        </p>
 
         <div className="space-y-2">
           {q.options.map((o, n) => (

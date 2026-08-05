@@ -1,15 +1,6 @@
 /**
- * One command to make a fresh clone runnable.
- *
- *   npm run setup
- *
- * Everything the app needs is either in the repo or built from it. This checks
- * the machine can run it, builds the database from data/, and tells you the
- * one thing it cannot do for you (the API key).
- *
- * Deliberately idempotent: running it on an existing install re-seeds the
- * content half and leaves your progress alone, because content and progress
- * live in separate tables for exactly this reason (spec §10).
+ * One command to make a fresh clone runnable. npm run setup Everything the app needs is either in
+ * the repo or built from it.
  */
 import { spawnSync } from "node:child_process";
 import { existsSync, readFileSync, writeFileSync, statSync } from "node:fs";
@@ -27,7 +18,9 @@ console.log("\nDeutschMate — setup\n");
 const [major] = process.versions.node.split(".").map(Number);
 if (major < 24) {
   fail(`Node ${process.versions.node} — this needs Node 24 or newer.`);
-  console.log("\n    node:sqlite is built into Node 24. Without it there is no");
+  console.log(
+    "\n    node:sqlite is built into Node 24. Without it there is no",
+  );
   console.log("    database at all, and no native module to install instead.");
   console.log("    https://nodejs.org — take the LTS.\n");
   process.exit(1);
@@ -62,26 +55,16 @@ if (!existsSync(envPath)) {
 }
 
 /*
- * The test suite's credential.
- *
- * Six suites drive throwaway learners through `?user=`, which used to be
- * honoured for anybody who typed it. It is gated now (src/lib/trust.ts), so the
- * harness needs a shared secret — and generating it here means nobody has to
- * invent one, and nobody is tempted to pick "test".
- *
- * Appended rather than templated, so an existing .env.local gets it too. Never
- * regenerated: overwriting it would silently break a dev server that is already
- * running with the old value.
+ * The test suite's credential. Never regenerated: overwriting it would silently break a dev server
+ * that is already running with the old value.
  */
-/**
- * Generate a secret into .env.local if it is missing or too weak.
- *
- * Appended rather than templated, so an existing .env.local gets it too. Never
- * regenerated once valid: overwriting DEUTSCHMATE_SECRET would make every
- * stored API key undecryptable, and overwriting the test token would break a
- * dev server that is already running with the old one.
- */
-function ensureSecret(name: string, bytes: number, minLength: number, note: string) {
+/** Generate a secret into .env.local if it is missing or too weak. */
+function ensureSecret(
+  name: string,
+  bytes: number,
+  minLength: number,
+  note: string,
+) {
   const body = readFileSync(envPath, "utf8");
   const existing = body.match(new RegExp(`^${name}=(.*)$`, "m"))?.[1]?.trim();
   if (existing && existing.length >= minLength) {
@@ -98,22 +81,31 @@ function ensureSecret(name: string, bytes: number, minLength: number, note: stri
 
 /* The test suite's credential. Six suites drive throwaway learners through
    `?user=`, which is gated on this (src/lib/trust.ts). */
-ensureSecret("DEUTSCHMATE_TEST_AUTH", 24, 24, "restart `npm run dev` before `npm test`");
+ensureSecret(
+  "DEUTSCHMATE_TEST_AUTH",
+  24,
+  24,
+  "restart `npm run dev` before `npm test`",
+);
 
-/* The key that encrypts each learner's Anthropic key. Without it the app
-   refuses to store one at all, rather than writing a live credential belonging
-   to somebody else into the database in the clear.
-
-   Keep it. Changing it does not lose anyone's progress, but it does make every
-   stored API key unreadable, and everyone has to paste theirs again. */
-ensureSecret("DEUTSCHMATE_SECRET", 32, 32, "keep it: it decrypts everyone's stored API key");
+/* The key that encrypts each learner's Anthropic key. */
+ensureSecret(
+  "DEUTSCHMATE_SECRET",
+  32,
+  32,
+  "keep it: it decrypts everyone's stored API key",
+);
 
 // ------------------------------------------------------------------ seed
 console.log("\n  Building the database from data/ …\n");
-const seed = spawnSync(process.execPath, [path.join(ROOT, "scripts/seed.mts")], {
-  stdio: "inherit",
-  cwd: ROOT,
-});
+const seed = spawnSync(
+  process.execPath,
+  [path.join(ROOT, "scripts/seed.mts")],
+  {
+    stdio: "inherit",
+    cwd: ROOT,
+  },
+);
 if (seed.status !== 0) {
   fail("Seeding failed — see above.");
   process.exit(1);
@@ -127,13 +119,17 @@ if (existsSync(audioDir)) {
   if (n > 500) ok(`${n} pronunciation recordings`);
   else warn(`only ${n} recordings — run \`npm run audio\` to fetch the rest`);
 } else {
-  warn("no recordings — run `npm run audio` (the browser will speak until then)");
+  warn(
+    "no recordings — run `npm run audio` (the browser will speak until then)",
+  );
 }
 
 // -------------------------------------------------------------------- db
 const { DB_PATH } = await import("../src/lib/db.ts");
 if (existsSync(DB_PATH)) {
-  ok(`${path.basename(DB_PATH)}  ${(statSync(DB_PATH).size / 1048576).toFixed(1)} MB`);
+  ok(
+    `${path.basename(DB_PATH)}  ${(statSync(DB_PATH).size / 1048576).toFixed(1)} MB`,
+  );
 }
 
 // ------------------------------------------------------------------ done

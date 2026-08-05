@@ -1,7 +1,6 @@
 /**
  * When may a request claim to be somebody else? Only the test harness, behind a
- * deliberately-configured shared secret. Not authentication — a test-fixture
- * door with a lock on it.
+ * deliberately-configured shared secret.
  */
 
 /** Sent by the test harness. Named so it is obvious in a log what it is. */
@@ -18,9 +17,8 @@ export function mayActAsAnyone(req?: Request): boolean {
 }
 
 /**
- * Whether the admin tools may write. /api/video runs `UPDATE unit SET video_id`
- * — shared content every learner reads. A switch, not a password: it stops the
- * accidental and the drive-by, and nothing more.
+ * Whether the admin tools may write. /api/video runs `UPDATE unit SET video_id` — shared content
+ * every learner reads.
  */
 export function adminEnabled(): boolean {
   return process.env.DEUTSCHMATE_ADMIN === "1";

@@ -1,12 +1,5 @@
 /**
  * The session's rotation, walked across a month.
- *
- * These are the decisions that used to be `dayIndex % 3` expressions inside
- * buildSession, where they could not be checked: the day index comes from the
- * wall clock, so a test could only ever observe today. A rotation that quietly
- * never fires looks exactly like the old behaviour, and nothing on screen says
- * so — a whole skill can go missing for weeks without a single failing check.
- *
  * needs: nothing
  */
 import { rhythmFor, today, type Available } from "../src/lib/rhythm.ts";
@@ -19,8 +12,14 @@ const NOTHING: Available = { video: false, reading: false };
 /** Walk a month and count how often each choice comes up. */
 function over(days: number, has: Available) {
   const n = {
-    audio: 0, video: 0, reading: 0, listening: 0,
-    recycleReading: 0, speaking: 0, writing: 0, recycleScenario: 0,
+    audio: 0,
+    video: 0,
+    reading: 0,
+    listening: 0,
+    recycleReading: 0,
+    speaking: 0,
+    writing: 0,
+    recycleScenario: 0,
   };
   for (let d = 0; d < days; d++) {
     const r = rhythmFor(d, has);
@@ -36,9 +35,14 @@ function over(days: number, has: Available) {
 section("the same day always gives the same session");
 /* Deterministic, never random: reloading the page mid-session must not hand
    you a different one. */
-eq(rhythmFor(20_400, FULL), rhythmFor(20_400, FULL), "identical for one day index");
+eq(
+  rhythmFor(20_400, FULL),
+  rhythmFor(20_400, FULL),
+  "identical for one day index",
+);
 ok(
-  JSON.stringify(rhythmFor(20_400, FULL)) !== JSON.stringify(rhythmFor(20_401, FULL)),
+  JSON.stringify(rhythmFor(20_400, FULL)) !==
+    JSON.stringify(rhythmFor(20_401, FULL)),
   "and different the next day",
 );
 
@@ -49,19 +53,32 @@ section("speaking outweighs writing");
 const m = over(30, FULL);
 eq(m.speaking, 20, "20 speaking days a month");
 eq(m.writing, 10, "10 writing days");
-ok(m.speaking + m.writing === 30, "and never a day with neither",
-  `${m.speaking} + ${m.writing}`);
+ok(
+  m.speaking + m.writing === 30,
+  "and never a day with neither",
+  `${m.speaking} + ${m.writing}`,
+);
 
 section("every input kind gets a turn");
 eq(m.video + m.reading + m.listening, 30, "one input block a day");
-ok(m.video > 0 && m.reading > 0 && m.listening > 0, "all three appear",
-  `video ${m.video} · reading ${m.reading} · listening ${m.listening}`);
+ok(
+  m.video > 0 && m.reading > 0 && m.listening > 0,
+  "all three appear",
+  `video ${m.video} · reading ${m.reading} · listening ${m.listening}`,
+);
 
 section("old material comes back");
-ok(m.recycleScenario === 10, "a past conversation every third day", m.recycleScenario);
+ok(
+  m.recycleScenario === 10,
+  "a past conversation every third day",
+  m.recycleScenario,
+);
 ok(m.recycleReading > 0, "and a past reading regularly", m.recycleReading);
-ok(m.recycleReading < m.reading, "but not every reading day — new texts still land",
-  `${m.recycleReading} of ${m.reading}`);
+ok(
+  m.recycleReading < m.reading,
+  "but not every reading day — new texts still land",
+  `${m.recycleReading} of ${m.reading}`,
+);
 
 section("a recycled reading is only ever chosen on a reading day");
 for (let d = 0; d < 60; d++) {
@@ -78,8 +95,11 @@ section("degrades when content is missing");
    the slot rather than the day silently collapsing to listening every time. */
 const nv = over(30, NO_VIDEO);
 eq(nv.video, 0, "no video block when none is ready");
-ok(nv.reading === 15 && nv.listening === 15, "reading and listening split the days",
-  `reading ${nv.reading} · listening ${nv.listening}`);
+ok(
+  nv.reading === 15 && nv.listening === 15,
+  "reading and listening split the days",
+  `reading ${nv.reading} · listening ${nv.listening}`,
+);
 
 /* The bug this pins: recycling alternated on the calendar day, but with no
    video the input slot ALSO alternates on the calendar day — so "odd day" and
@@ -100,7 +120,10 @@ ok(
 const none = over(30, NOTHING);
 eq(none.listening, 30, "with neither, every day is listening");
 eq(none.recycleReading, 0, "and nothing pretends to recycle a reading");
-ok(none.speaking + none.writing === 30, "output still rotates regardless of input");
+ok(
+  none.speaking + none.writing === 30,
+  "output still rotates regardless of input",
+);
 
 section("audio-first reviews");
 eq(m.audio, 10, "a third of days hide the word until you answer");

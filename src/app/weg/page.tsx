@@ -7,22 +7,7 @@ import Page, { Section, Empty } from "@/components/Page";
 
 export const dynamic = "force-dynamic";
 
-/**
- * Der Weg — the whole course on one page, behind and ahead.
- *
- * Fortschritt is this month: counts, accuracy, cost. It is the right page for
- * "am I keeping up" and the wrong one for "am I getting anywhere", because a
- * 30-day window cannot show a six-month arc. This page is the arc.
- *
- * Three questions, in the order people ask them:
- *   Wo stehe ich   — the 120 units, done / here / ahead
- *   Das kannst du  — what those finished units mean in plain terms
- *   Meilensteine   — the dated events, oldest first
- *
- * Not linked from the header. The header has four links on purpose, and a
- * fifth would start turning Home into a menu; this hangs off Fortschritt and
- * the command palette, which is where people go looking for it.
- */
+/** Der Weg — the whole course on one page, behind and ahead. */
 
 const DATE = new Intl.DateTimeFormat("de-DE", {
   day: "numeric",
@@ -48,10 +33,7 @@ export default async function WegPage() {
   const totalUnits = levels.reduce((a, l) => a + l.total, 0);
   const firstDay = marks[0]?.on ?? null;
 
-  /* Group the can-do statements by level, dropping repeats. Two units can teach
-     the same thing — "say when something happens" appears in both the clock
-     unit and the appointments unit — and listing it twice reads as padding
-     rather than as the two lessons it actually was. */
+  /* Group the can-do statements by level, dropping repeats. */
   const byLevel = LEVELS.map((lv) => {
     const seen = new Set<string>();
     for (const s of skills) {
@@ -105,7 +87,11 @@ export default async function WegPage() {
                 <div className="flex items-baseline justify-between">
                   <span
                     className={`font-mono text-[13px] ${
-                      isHere ? "text-fg" : l.finishedAt ? "text-secondary" : "text-muted"
+                      isHere
+                        ? "text-fg"
+                        : l.finishedAt
+                          ? "text-secondary"
+                          : "text-muted"
                     }`}
                   >
                     {l.level}
@@ -116,7 +102,9 @@ export default async function WegPage() {
                     {/* Finished and retained are different claims, so they are
                         two numbers. A level you walked through and a level you
                         can still use are not the same thing. */}
-                    {l.done > 0 && <span className="text-der"> · {l.mastered} sitzen</span>}
+                    {l.done > 0 && (
+                      <span className="text-der"> · {l.mastered} sitzen</span>
+                    )}
                     {l.finishedAt && ` · fertig ${niceDate(l.finishedAt)}`}
                   </span>
                 </div>
@@ -131,10 +119,7 @@ export default async function WegPage() {
                         `Unit ${u.ord} · ${u.title}` +
                         (u.done ? ` — ${u.pct}% der Wörter sitzen` : "")
                       }
-                      /* Three states, not two. A finished unit whose words
-                         have drained away is drawn faintly rather than as a
-                         win — the bar should not say "done" about something
-                         you can no longer do. */
+                      /* Three states, not two. */
                       className={`h-[10px] flex-1 rounded-[2px] ${
                         u.current
                           ? "bg-accent"
@@ -166,9 +151,9 @@ export default async function WegPage() {
         {skills.length === 0 ? (
           <Empty title="Noch keine abgeschlossene Unit">
             <p className="text-muted text-[14px] leading-relaxed">
-              Hier steht später, was du konkret kannst — „nach dem Preis fragen“,
-              „sagen, wo du wohnst“ — und nicht, wie viele Karten du angeklickt
-              hast.
+              Hier steht später, was du konkret kannst — „nach dem Preis
+              fragen“, „sagen, wo du wohnst“ — und nicht, wie viele Karten du
+              angeklickt hast.
             </p>
           </Empty>
         ) : (
@@ -181,7 +166,9 @@ export default async function WegPage() {
                 <div className="grid gap-x-8 gap-y-2 md:grid-cols-2">
                   {items.map((item) => (
                     <div key={item} className="flex items-start gap-2.5">
-                      <span className="text-accent mt-[3px] flex-none text-[14px]">✓</span>
+                      <span className="text-accent mt-[3px] flex-none text-[14px]">
+                        ✓
+                      </span>
                       <span className="text-[15px] leading-[1.45]">{item}</span>
                     </div>
                   ))}
@@ -193,7 +180,10 @@ export default async function WegPage() {
       </Section>
 
       {/* ----------------------------------------------------- milestones */}
-      <Section title="Meilensteine" note={marks.length ? `${marks.length} Einträge` : undefined}>
+      <Section
+        title="Meilensteine"
+        note={marks.length ? `${marks.length} Einträge` : undefined}
+      >
         {marks.length === 0 ? (
           <Empty
             title="Noch nichts zu erzählen"
@@ -207,15 +197,22 @@ export default async function WegPage() {
         ) : (
           <ol className="border-line-sub flex flex-col border-l pl-5">
             {marks.map((m, i) => (
-              <li key={`${m.on}-${m.title}-${i}`} className="relative pb-5 last:pb-0">
+              <li
+                key={`${m.on}-${m.title}-${i}`}
+                className="relative pb-5 last:pb-0"
+              >
                 <span className="bg-line-strong absolute top-[7px] -left-[23px] h-[7px] w-[7px] rounded-full" />
                 <div className="flex flex-wrap items-baseline gap-x-3">
-                  <span className="font-serif text-[17px] font-medium">{m.title}</span>
+                  <span className="font-serif text-[17px] font-medium">
+                    {m.title}
+                  </span>
                   <span className="text-muted text-[13.5px]">{m.detail}</span>
                 </div>
                 <div className="font-mono text-muted mt-0.5 text-[12px]">
                   {niceDate(m.on)}
-                  {firstDay && m.on !== firstDay && ` · Tag ${dayIndex(firstDay, m.on)}`}
+                  {firstDay &&
+                    m.on !== firstDay &&
+                    ` · Tag ${dayIndex(firstDay, m.on)}`}
                 </div>
               </li>
             ))}
@@ -223,9 +220,9 @@ export default async function WegPage() {
         )}
 
         <p className="text-muted mt-6 max-w-[62ch] text-[12.5px] leading-relaxed">
-          Jeder Eintrag hat ein Datum, weil er einem echten Ereignis entspricht —
-          einer fertigen Unit, einem eingeführten Wort, einem geschriebenen Text.
-          Es gibt keine Abzeichen fürs Erscheinen.
+          Jeder Eintrag hat ein Datum, weil er einem echten Ereignis entspricht
+          — einer fertigen Unit, einem eingeführten Wort, einem geschriebenen
+          Text. Es gibt keine Abzeichen fürs Erscheinen.
         </p>
       </Section>
 

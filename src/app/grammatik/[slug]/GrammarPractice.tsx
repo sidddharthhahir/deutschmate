@@ -11,9 +11,8 @@ type Props = {
 };
 
 /**
- * Wraps the session's GrammarBlock for standalone browsing, so the reference
- * page and the session render from exactly the same component — one place to
- * change how grammar is presented.
+ * Wraps the session's GrammarBlock for standalone browsing, so the reference page and the session
+ * render from exactly the same component — one place to change how grammar is presented.
  */
 export default function GrammarPractice(props: Props) {
   const [round, setRound] = useState(0);
@@ -43,7 +42,11 @@ export default function GrammarPractice(props: Props) {
       </p>
       <GrammarBlock
         key={round}
-        payload={{ grammar: props.grammar, examples: props.examples, drills: props.drills }}
+        payload={{
+          grammar: props.grammar,
+          examples: props.examples,
+          drills: props.drills,
+        }}
         onDone={() => setFinished(true)}
       />
     </>

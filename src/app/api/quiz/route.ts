@@ -16,9 +16,8 @@ type Word = {
 };
 
 /**
- * The closing quiz is built from what the learner actually touched today —
- * no generation, no model call, fully offline. Question types rotate so the
- * last pass isn't eight identical multiple-choice items.
+ * The closing quiz is built from what the learner actually touched today — no generation, no model
+ * call, fully offline.
  */
 export async function GET(req: Request) {
   const user = await activeUser(req);

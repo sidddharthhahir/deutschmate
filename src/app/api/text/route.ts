@@ -12,12 +12,7 @@ export const dynamic = "force-dynamic";
 
 /** Long enough for a letter or an article, short enough not to be abused. */
 
-/**
- * POST — read a pasted text against this learner's deck.
- *
- * `action: "add"` puts a batch of words in the deck in one transaction, which
- * is the difference between a useful feature and thirty clicks.
- */
+/** POST — read a pasted text against this learner's deck. */
 export async function POST(req: Request) {
   const raw = await readJson(req);
   const user = await activeUser(req, raw);

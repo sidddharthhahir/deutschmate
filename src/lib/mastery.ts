@@ -1,33 +1,6 @@
 import { all } from "./db";
 
-/**
- * Unit mastery (spec §7) — and why it is not a gate.
- *
- * The spec said a unit is complete at "≥80% of its words learned AND its
- * grammar ≥70". That was never built, and building it literally would break
- * the course: `currentUnit()` returns the first unit that is not complete, so
- * a retention threshold on completion means the learner sits on unit 1 for the
- * fortnight it takes FSRS intervals to reach `state = 2` — no new vocabulary,
- * no new grammar, nothing to do but reviews. That is the exact shape of the
- * week people quit in.
- *
- * So the two ideas are separated rather than merged:
- *
- *   COMPLETE   every word has been introduced. Coverage. Drives progression,
- *              because the thing that must never stall is showing up.
- *   MASTERED   ≥80% of those words are actually learned, and the unit's
- *              grammar point is solid. Retention. Drives what the app *says*
- *              about you — never what it lets you do.
- *
- * Retention is already handled where it belongs: the forgetting curve brings
- * words back whether or not the unit is behind you, and `newWordBudget()` cuts
- * the daily intake from twelve to six when the week is going badly. Neither of
- * those stops you.
- *
- * Deliberately computed, never stored. Mastery goes DOWN — one lapse drops a
- * card out of `state = 2` — and a stored status would quietly become a claim
- * about the past that reads as a claim about the present. Principle 4.
- */
+/** Unit mastery (spec §7) — and why it is not a gate. */
 
 /** Spec §7: the share of a unit's words that must be learned. */
 export const MASTERY_THRESHOLD = 0.8;
@@ -48,11 +21,8 @@ export type Mastery = {
 };
 
 /**
- * Mastery for every unit, in one query.
- *
- * Der Weg draws all 120 at once; a per-unit function called in a loop would be
- * 120 round trips to render one page. `json_each` unpacks `word_ids_json`
- * inside SQLite so the word lists never cross into JavaScript.
+ * Mastery for every unit, in one query. `json_each` unpacks `word_ids_json` inside SQLite so the
+ * word lists never cross into JavaScript.
  */
 export function masteryByUnit(userId: string): Map<string, Mastery> {
   const rows = all<{
@@ -81,7 +51,8 @@ export function masteryByUnit(userId: string): Map<string, Mastery> {
   return new Map(
     rows.map((r) => {
       const pct = r.total ? Math.round((r.learned / r.total) * 100) : 0;
-      const grammarSolid = r.grammar_id === null ? null : (r.grammar_solid ?? 0) > 0;
+      const grammarSolid =
+        r.grammar_id === null ? null : (r.grammar_solid ?? 0) > 0;
       return [
         r.id,
         {
@@ -100,9 +71,4 @@ export function masteryByUnit(userId: string): Map<string, Mastery> {
       ] as const;
     }),
   );
-}
-
-/** One unit. Convenience over the batch — same numbers, same definition. */
-export function unitMastery(userId: string, unitId: string): Mastery | null {
-  return masteryByUnit(userId).get(unitId) ?? null;
 }

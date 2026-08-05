@@ -6,28 +6,8 @@ import { ArticleWord } from "@/components/Article";
 import { de } from "@/lib/tags";
 
 /**
- * Count a number up on mount.
- *
- * The only celebratory motion in the app, and it earns its place here: the
- * recap is the screen that decides whether you come back tomorrow. Kept short
- * (700ms), eased out so it settles rather than stops, and skipped entirely
- * under prefers-reduced-motion.
- *
- * THE ANIMATION WAS ALSO THE VALUE.
- *
- * `n` starts at 0 and only ever reaches the real number because a
- * requestAnimationFrame callback walks it there. Browsers do not run rAF in a
- * background tab — so finish a session, lock your phone or switch tabs before
- * the recap paints, and it reads **0 Minuten · 0 neue Wörter · 0
- * Wiederholungen · 0 %** for a session you actually did. Permanently: the
- * effect has already run, and nothing sets the value again.
- *
- * The database was right the whole time; only the screen was wrong, and it was
- * wrong on the one screen the comment above calls the reason people come back.
- *
- * So the frame loop is now decoration over a value that arrives regardless: a
- * timer lands the final number whether or not a single frame was ever drawn.
- * Timers are throttled in a background tab, not cancelled.
+ * Count a number up on mount. The only celebratory motion in the app, and it earns its place here:
+ * the recap is the screen that decides whether you come back tomorrow.
  */
 function useCountUp(target: number | null, ms = 700) {
   const [n, setN] = useState(0);
@@ -39,7 +19,10 @@ function useCountUp(target: number | null, ms = 700) {
     // Reduced motion runs the same code path with a zero duration, so the
     // first frame lands on the final value. Keeps every setState inside a
     // callback rather than firing one synchronously in the effect body.
-    const duration = window.matchMedia("(prefers-reduced-motion: reduce)").matches ? 0 : ms;
+    const duration = window.matchMedia("(prefers-reduced-motion: reduce)")
+      .matches
+      ? 0
+      : ms;
     const start = performance.now();
 
     const tick = (now: number) => {
@@ -74,19 +57,16 @@ export type Recap = {
   lastMistakeTags: string[];
 };
 
-/**
- * Tagesabschluss — the only warm screen in the app.
- *
- * No nav, no progress rail, no way back into the session. It marks an ending,
- * so it gets its own ground colour and nothing to click except "done".
- *
- * Every number here is a count of something that happened (principle 4):
- *   Minuten          wall clock, written to session_log.minutes
- *   Neue Wörter      attempts today where kind='new-vocab'
- *   Wiederholungen   attempts today where kind='review'
- *   Richtig %        SUM(correct) / COUNT(*) over all of today's attempts
- */
-const WEEKDAY = ["Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag"];
+/** Tagesabschluss — the only warm screen in the app. */
+const WEEKDAY = [
+  "Sonntag",
+  "Montag",
+  "Dienstag",
+  "Mittwoch",
+  "Donnerstag",
+  "Freitag",
+  "Samstag",
+];
 
 export default function SessionRecap({
   recap,
@@ -121,7 +101,9 @@ export default function SessionRecap({
             {canDo.map((c) => (
               <div key={c} className="flex items-start gap-3.5">
                 <span className="text-accent mt-0.5 text-[17px]">✓</span>
-                <span className="font-serif text-[19px] md:text-[21px]">{c}</span>
+                <span className="font-serif text-[19px] md:text-[21px]">
+                  {c}
+                </span>
               </div>
             ))}
           </div>
@@ -144,7 +126,8 @@ export default function SessionRecap({
               <Field label="Häufigster Fehler">
                 {mistake === "article-akkusativ" ? (
                   <>
-                    <ArticleWord article="der" /> vs. <ArticleWord article="der" />n
+                    <ArticleWord article="der" /> vs.{" "}
+                    <ArticleWord article="der" />n
                   </>
                 ) : (
                   de(mistake)
@@ -155,7 +138,9 @@ export default function SessionRecap({
             {recap && recap.remainingDue > 0 && (
               <Field label="Noch fällig">
                 {recap.remainingDue}{" "}
-                <span className="font-mono text-warm-muted text-[14px]">morgen</span>
+                <span className="font-mono text-warm-muted text-[14px]">
+                  morgen
+                </span>
               </Field>
             )}
           </div>
@@ -186,7 +171,9 @@ function Stat({
     <div className="flex flex-col gap-1">
       <span className="font-serif text-[44px] leading-none font-semibold tracking-[-0.03em] tabular-nums md:text-[60px]">
         {n === null ? "–" : shown}
-        {n !== null && suffix && <span className="text-[26px] md:text-[32px]">{suffix}</span>}
+        {n !== null && suffix && (
+          <span className="text-[26px] md:text-[32px]">{suffix}</span>
+        )}
       </span>
       <span className="font-mono text-warm-muted text-[11px] tracking-[0.08em] uppercase md:text-[12px]">
         {label}
@@ -195,7 +182,13 @@ function Stat({
   );
 }
 
-function Field({ label, children }: { label: string; children: React.ReactNode }) {
+function Field({
+  label,
+  children,
+}: {
+  label: string;
+  children: React.ReactNode;
+}) {
   return (
     <div className="flex flex-col gap-1.5">
       <span className="font-mono text-warm-muted text-[11.5px] tracking-[0.14em] uppercase">

@@ -8,11 +8,8 @@ import Phrases from "../Phrases";
 export const dynamic = "force-dynamic";
 
 /**
- * One survival conversation.
- *
- * Reuses the course's own runner and conversation engine — the only thing
- * different is the brief. The phrase list stays on screen beside it, because
- * the point is not to test you, it's to get you through the appointment.
+ * One survival conversation. Reuses the course's own runner and conversation engine — the only
+ * thing different is the brief.
  */
 export default async function SurvivalScenario({
   params,
@@ -38,16 +35,15 @@ export default async function SurvivalScenario({
         <h1 className="font-serif mt-4 text-[30px] font-semibold tracking-[-0.015em]">
           {s.title}
         </h1>
-        <p className="text-secondary mt-2 text-[15px] leading-relaxed">{s.why}</p>
+        <p className="text-secondary mt-2 text-[15px] leading-relaxed">
+          {s.why}
+        </p>
 
         <div className="mt-7">
           <ScenarioRunner
             payload={{
               scenario: s.scenario,
-              /* The scripted fallback, for no key, no budget or no signal.
-                 This was deliberately null, on the argument that a canned tree
-                 teaches the tree rather than the situation — right for a course
-                 scenario, wrong for these six. See lib/survival.ts. */
+              /* The scripted fallback, for no key, no budget or no signal. */
               dialogue: s.dialogue ?? null,
               unitId: s.id,
             }}
@@ -82,7 +78,10 @@ export default async function SurvivalScenario({
           </h2>
           <ul className="space-y-1.5">
             {s.bring.map((b) => (
-              <li key={b} className="text-secondary flex items-start gap-2.5 text-[14.5px]">
+              <li
+                key={b}
+                className="text-secondary flex items-start gap-2.5 text-[14.5px]"
+              >
                 <span className="border-line-strong mt-[6px] h-3 w-3 flex-none rounded-[2px] border" />
                 {b}
               </li>

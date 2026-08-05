@@ -1,9 +1,4 @@
-/**
- * Which learner this browser is, client-side, so localStorage is namespaced per
- * person. The cached plan, the resume offer, the tour flag and the offline grade
- * queue were once global: switching learner carried all four across, and the
- * queue replayed one person's answers into the other's deck.
- */
+/** Which learner this browser is, client-side, so localStorage is namespaced per person. */
 
 /** Only a fallback now. A signed-out browser has no learner and no buckets worth keeping. */
 export const DEFAULT_USER = "sid";
@@ -19,7 +14,13 @@ export const UID_COOKIE = "dm_uid";
 
 /** Same normalisation as the server, so a key never disagrees with a row. */
 export function normalise(name: string): string {
-  return name.trim().toLowerCase().replace(/[^a-z0-9_-]/g, "").slice(0, 32) || DEFAULT_USER;
+  return (
+    name
+      .trim()
+      .toLowerCase()
+      .replace(/[^a-z0-9_-]/g, "")
+      .slice(0, 32) || DEFAULT_USER
+  );
 }
 
 /** Pure, so the scoping rule can be tested without a browser. */
@@ -27,12 +28,7 @@ export function scoped(base: string, user: string): string {
   return `${base}:${normalise(user)}`;
 }
 
-/**
- * dm_uid FIRST. Sign-in replaced the old name cookie with dm_uid and this kept
- * reading dm_user, which nothing writes — so every learner fell back to
- * DEFAULT_USER and shared one set of buckets again. Invisible wherever the
- * signed-in id happens to equal the fallback.
- */
+/** dm_uid FIRST. */
 export function userFromCookie(cookie: string): string {
   let legacy: string | null = null;
   for (const part of cookie.split(";")) {

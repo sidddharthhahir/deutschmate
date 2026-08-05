@@ -1,12 +1,5 @@
 /**
  * What one learner's key pays for, and who gets to read it.
- *
- * The cache is shared on purpose — that is spec §12's whole argument. This
- * suite is about the line drawn through it: the app's own sentences may be
- * shared, and German somebody pasted into /text may not. Getting that wrong
- * once puts a letter from their landlord in a table their flatmate reads, so
- * the checks here are mostly attempts to get a private row out.
- *
  * needs: seeded database
  */
 import { ok, eq, section, done, open } from "./harness.mts";
@@ -40,7 +33,9 @@ process.on("exit", wipe);
 /* A sentence the app really ships, taken from the database rather than typed
    here — a literal would rot the moment the content changes and the test would
    then be asserting nothing. */
-const real = get<{ de: string }>("SELECT de FROM sentence WHERE length(de) > 12 LIMIT 1")?.de;
+const real = get<{ de: string }>(
+  "SELECT de FROM sentence WHERE length(de) > 12 LIMIT 1",
+)?.de;
 
 section("what counts as the app's own German");
 ok(real !== undefined, "the seeded corpus has a sentence to test with");
@@ -50,7 +45,9 @@ ok(
   "casing does not matter — the same sentence read aloud in caps is the same sentence",
 );
 ok(
-  !isAppContent("Sehr geehrte Frau Ahir, Ihr Antrag vom 3. Juni wurde abgelehnt."),
+  !isAppContent(
+    "Sehr geehrte Frau Ahir, Ihr Antrag vom 3. Juni wurde abgelehnt.",
+  ),
   "a letter somebody pasted is not",
 );
 /* Substring matching makes short strings match by accident, and the accident
@@ -61,11 +58,13 @@ ok(!isAppContent("Guten Tag"), "nor two words, even real ones");
 
 section("keys keep the two kinds apart");
 ok(
-  explanationKey("Ich bin müde", "A1.1", null) !== explanationKey("Ich bin müde", "A1.1", A),
+  explanationKey("Ich bin müde", "A1.1", null) !==
+    explanationKey("Ich bin müde", "A1.1", A),
   "shared and private rows for the same sentence get different keys",
 );
 ok(
-  explanationKey("Ich bin müde", "A1.1", A) !== explanationKey("Ich bin müde", "A1.1", B),
+  explanationKey("Ich bin müde", "A1.1", A) !==
+    explanationKey("Ich bin müde", "A1.1", B),
   "and two learners' private rows do not collide — otherwise the second pays forever",
 );
 
@@ -77,12 +76,24 @@ eq(findExplanation(PRIVATE, "A1.1", B), null, "the other learner does not");
 
 /* The one that matters most: B pays for their own answer to the same sentence
    and must get their own row, not a collision with A's. */
-eq(saveExplanation(PRIVATE, "A1.1", B, "B's answer"), false, "B's copy is private too");
+eq(
+  saveExplanation(PRIVATE, "A1.1", B, "B's answer"),
+  false,
+  "B's copy is private too",
+);
 eq(findExplanation(PRIVATE, "A1.1", B)?.body_md, "B's answer", "B reads B's");
-eq(findExplanation(PRIVATE, "A1.1", A)?.body_md, "…erklärung…", "A still reads A's, unchanged");
+eq(
+  findExplanation(PRIVATE, "A1.1", A)?.body_md,
+  "…erklärung…",
+  "A still reads A's, unchanged",
+);
 
 section("a course sentence is shared");
-eq(saveExplanation(real!, "A1.1", A, "geteilte Erklärung"), true, "stored as shared");
+eq(
+  saveExplanation(real!, "A1.1", A, "geteilte Erklärung"),
+  true,
+  "stored as shared",
+);
 eq(
   findExplanation(real!, "A1.1", B)?.body_md,
   "geteilte Erklärung",
@@ -98,10 +109,7 @@ eq(
 );
 
 section("nothing is shared because the caller asked nicely");
-/* There is no parameter to pass. The only way to get a row shared is for the
-   sentence to be in the content tables, and this asserts the absence: if a
-   `shared` flag ever appears in the request body, this test should be the
-   thing that makes someone think twice. */
+/* There is no parameter to pass. */
 eq(
   saveExplanation("Bitte teilen Sie das mit allen.", "A1.1", A, "x"),
   false,
@@ -135,11 +143,19 @@ eq(
   "geteilte Erklärung",
   "the shared one stays — deleting your own text is not withdrawing a gift",
 );
-eq(findExplanation(PRIVATE, "A1.1", B)?.body_md, "B's answer", "B's row is untouched");
+eq(
+  findExplanation(PRIVATE, "A1.1", B)?.body_md,
+  "B's answer",
+  "B's row is untouched",
+);
 
 const removed = forgetContributions(A, "all");
 eq(removed, 2, "the shared explanation and the mistake pattern");
-eq(findExplanation(real!, "A1.1", B), null, "withdrawn from everybody, as asked");
+eq(
+  findExplanation(real!, "A1.1", B),
+  null,
+  "withdrawn from everybody, as asked",
+);
 
 section("prebuilt rows are never anybody's to delete");
 const prebuilt =
@@ -149,7 +165,9 @@ const prebuilt =
 ok(prebuilt > 100, "the app ships a few hundred");
 forgetContributions(A, "all");
 eq(
-  get<{ n: number }>("SELECT COUNT(*) AS n FROM error_pattern WHERE source = 'prebuilt'")?.n,
+  get<{ n: number }>(
+    "SELECT COUNT(*) AS n FROM error_pattern WHERE source = 'prebuilt'",
+  )?.n,
   prebuilt,
   "still there — the offline explanation tier depends on them",
 );
@@ -171,14 +189,23 @@ section("a failing tx() rolls back and reports the real error");
 let message = "";
 try {
   tx(() => {
-    run("INSERT INTO explanation (signature, sentence, level, body_md) VALUES (?,?,?,?)",
-      "test-cache-rollback", "x", "A1.1", "y");
+    run(
+      "INSERT INTO explanation (signature, sentence, level, body_md) VALUES (?,?,?,?)",
+      "test-cache-rollback",
+      "x",
+      "A1.1",
+      "y",
+    );
     throw new Error("the actual problem");
   });
 } catch (e) {
   message = (e as Error).message;
 }
-eq(message, "the actual problem", "not 'cannot rollback - no transaction is active'");
+eq(
+  message,
+  "the actual problem",
+  "not 'cannot rollback - no transaction is active'",
+);
 eq(
   get("SELECT 1 FROM explanation WHERE signature = 'test-cache-rollback'"),
   undefined,

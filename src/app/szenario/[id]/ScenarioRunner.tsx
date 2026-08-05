@@ -13,7 +13,11 @@ type DialogueStep = {
 export default function ScenarioRunner({
   payload,
 }: {
-  payload: { scenario: Scenario; dialogue: DialogueStep[] | null; unitId: string };
+  payload: {
+    scenario: Scenario;
+    dialogue: DialogueStep[] | null;
+    unitId: string;
+  };
 }) {
   const router = useRouter();
   const [round, setRound] = useState(0);
@@ -44,5 +48,11 @@ export default function ScenarioRunner({
     );
   }
 
-  return <ConversationBlock key={round} payload={payload} onDone={() => setDone(true)} />;
+  return (
+    <ConversationBlock
+      key={round}
+      payload={payload}
+      onDone={() => setDone(true)}
+    />
+  );
 }

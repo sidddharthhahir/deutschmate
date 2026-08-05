@@ -1,7 +1,14 @@
 ﻿"use client";
 
 import Link from "next/link";
-import { Suspense, useCallback, useEffect, useMemo, useRef, useState } from "react";
+import {
+  Suspense,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import { useSearchParams } from "next/navigation";
 import ReviewBlock from "@/components/blocks/ReviewBlock";
 import FixBlock from "@/components/blocks/FixBlock";
@@ -19,7 +26,14 @@ import ClozeBlock from "@/components/blocks/ClozeBlock";
 import GrammarReviewBlock from "@/components/blocks/GrammarReviewBlock";
 import SessionRecap, { type Recap } from "@/components/SessionRecap";
 import { useOnline } from "@/lib/hooks";
-import { cachePlan, cachedPlan, flush, onOutboxChange, pendingCount, send } from "@/lib/outbox";
+import {
+  cachePlan,
+  cachedPlan,
+  flush,
+  onOutboxChange,
+  pendingCount,
+  send,
+} from "@/lib/outbox";
 import { myKey } from "@/lib/who";
 import { shouldIgnoreKey } from "@/lib/keys";
 import { plural } from "@/lib/plural";
@@ -46,23 +60,20 @@ type Plan = {
 };
 
 /**
- * Where a half-finished session lives.
- *
- * All session state used to be in React memory, so a refresh, a phone call or
- * a laptop going to sleep at block 6 of 8 threw away the whole hour — nothing
- * logged, no streak, cards ungraded. This is the smallest thing that fixes it.
- *
- * `spentMs` accumulates only time actually spent IN the session. Storing a
- * single start timestamp would mean resuming after a three-hour lunch logged
- * three hours of study, which is exactly the kind of number this app is not
- * allowed to invent.
+ * Where a half-finished session lives. `spentMs` accumulates only time actually spent IN the
+ * session.
  */
 /* Scoped to the learner. Unscoped, switching user on /wer offered the other
    person's half-finished session as "Weiter?" — see lib/who.ts. */
 const SAVE_BASE = "dm.session.v2";
 const saveKey = () => myKey(SAVE_BASE);
 
-type Saved = { date: string; shape: string; completed: string[]; spentMs: number };
+type Saved = {
+  date: string;
+  shape: string;
+  completed: string[];
+  spentMs: number;
+};
 
 const today = () => new Date().toISOString().slice(0, 10);
 
@@ -82,14 +93,8 @@ function readSaved(shape: string): Saved | null {
 }
 
 /**
- * Where to pick up, given a freshly built plan and the blocks already done.
- *
- * Resuming by stored INDEX was wrong. The plan is rebuilt on every load and
- * legitimately shrinks as you work: finish the reviews and the review block is
- * gone next time, finish the gaps and Lücken disappears. Index 3 then points
- * at a different block than it did, and the runner would silently skip or
- * repeat one. Block kinds are unique within a plan, so matching on them
- * survives the plan changing underneath.
+ * Where to pick up, given a freshly built plan and the blocks already done. Index 3 then points at
+ * a different block than it did, and the runner would silently skip or repeat one.
  */
 function resumeIndex(blocks: { kind: string }[], completed: string[]): number {
   const done = new Set(completed);
@@ -113,12 +118,7 @@ export default function SessionPage() {
   );
 }
 
-/**
- * The session runner (spec §3).
- *
- * Fixed rhythm, variable content. The user pressed one button; from here they
- * make no navigation decisions until the recap.
- */
+/** The session runner (spec §3). */
 function SessionRunner() {
   const params = useSearchParams();
   const shape = params.get("kurz") === "1" ? "short" : "full";
@@ -154,10 +154,7 @@ function SessionRunner() {
   useEffect(() => {
     let stale = false;
     (async () => {
-      /* Try the server, fall back to today's cached plan. This is what makes
-         principle 2 true rather than aspirational: the blocks always ran
-         offline, but the PLAN came from the server, so a dead network meant no
-         session at all. Grades go to the outbox and sync later. */
+      /* Try the server, fall back to today's cached plan. */
       let data: Plan | null = null;
       let fromCache = false;
 
@@ -203,12 +200,7 @@ function SessionRunner() {
     };
   }, []);
 
-  /* Esc leaves the session.
-     The header has read "Esc  Beenden" since the runner was written, and the
-     shortcut sheet advertises it, and nothing listened for the key — the label
-     was decoration next to a link. Guarded like every other global key, so it
-     does not yank you out of the session while an overlay is up or while you
-     are typing a sentence that happens to want Escape. */
+  /* Esc leaves the session. */
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (e.key !== "Escape" || shouldIgnoreKey(e)) return;
@@ -282,9 +274,9 @@ function SessionRunner() {
         <div className="border-line bg-surface w-full max-w-[420px] rounded-[14px] border p-7 text-center">
           <p className="font-serif text-[22px]">Tagesplan nicht erreichbar</p>
           <p className="text-secondary mt-3 text-[14.5px] leading-relaxed">
-            Der heutige Plan wurde noch nie geladen, deshalb liegt hier auch keine Kopie.
-            Einmal mit Verbindung öffnen — danach läuft die Sitzung auch offline, und
-            deine Antworten werden nachgereicht.
+            Der heutige Plan wurde noch nie geladen, deshalb liegt hier auch
+            keine Kopie. Einmal mit Verbindung öffnen — danach läuft die Sitzung
+            auch offline, und deine Antworten werden nachgereicht.
           </p>
           <div className="mt-6 flex flex-col gap-2.5">
             <button
@@ -372,10 +364,7 @@ function SessionRunner() {
         streak={streak}
         canDo={plan.canDo}
         minutes={minutes}
-        /* Named, not numbered. Spec §4 forbids a bare unit number in as many
-           words, and this is the line whose whole job is to make tomorrow
-           sound worth turning up for — "Im Restaurant" does that, "Unit 15"
-           does not. */
+        /* Named, not numbered. */
         nextUnit={
           carryOver > 0
             ? // "1 Wörter" is what a machine writes. This line is read by
@@ -443,7 +432,8 @@ function SessionRunner() {
         <div className="font-mono text-muted text-center text-[12.5px]">
           {block.title} · Block {i + 1} von {blocks.length}
           {offline && " · offline"}
-          {pending > 0 && ` · ${plural(pending, "Antwort wartet", "Antworten warten")} auf Sync`}
+          {pending > 0 &&
+            ` · ${plural(pending, "Antwort wartet", "Antworten warten")} auf Sync`}
         </div>
       </div>
 
@@ -456,12 +446,7 @@ function SessionRunner() {
   );
 }
 
-/**
- * Spec §17: the session never dead-ends.
- *
- * A block marked `offline: false` ships a `fallback` payload. If the browser is
- * offline we render that instead — no error, no empty screen, no round trip.
- */
+/** Spec §17: the session never dead-ends. */
 function OfflineAware({
   block,
   onDone,
@@ -475,8 +460,7 @@ function OfflineAware({
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const fb = (block.payload as any)?.fallback as
-    | { kind: string; payload: unknown }
-    | undefined;
+    { kind: string; payload: unknown } | undefined;
 
   if (!online && !block.offline && fb) {
     return (
@@ -488,12 +472,24 @@ function OfflineAware({
         <div className="mb-4 rounded-lg border border-amber-900/40 bg-amber-950/20 px-3 py-2 text-center text-xs text-amber-200/70">
           Offline — Ersatzübung
         </div>
-        <BlockRenderer kind={fb.kind} payload={fb.payload} onDone={onDone} onSkip={onSkip} />
+        <BlockRenderer
+          kind={fb.kind}
+          payload={fb.payload}
+          onDone={onDone}
+          onSkip={onSkip}
+        />
       </>
     );
   }
 
-  return <BlockRenderer kind={block.kind} payload={block.payload} onDone={onDone} onSkip={onSkip} />;
+  return (
+    <BlockRenderer
+      kind={block.kind}
+      payload={block.payload}
+      onDone={onDone}
+      onSkip={onSkip}
+    />
+  );
 }
 
 function BlockRenderer({

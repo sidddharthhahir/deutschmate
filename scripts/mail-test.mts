@@ -1,15 +1,7 @@
 /**
- * Prove the mail settings work, before trusting a sign-in to them.
- *
- *   npm run mail:test you@example.com
- *
- * Worth its own command because the alternative is testing with a real invite,
- * and a failed invite burns a token, mails nobody, and looks identical to the
- * message going to spam. This says which transport ran and what the provider
- * said back.
- *
- * It sends nothing unless you name an address. With no argument it reports the
- * configuration and stops, which is the common case: "is this even on?"
+ * Prove the mail settings work, before trusting a sign-in to them. npm run mail:test
+ * you@example.com Worth its own command because the alternative is testing with a real invite, and
+ * a failed invite burns a token, mails nobody, and looks identical to the message going to spam.
  */
 import "./load-env.mts";
 import { from, mailReady, sendMail, transport } from "../src/lib/mail.ts";
@@ -31,10 +23,14 @@ if (via === "smtp") {
   console.log(`  port        ${port}`);
   /* Presence only. A terminal is not a place to print a mailbox password, and
      the only question worth answering is whether one is configured. */
-  console.log(`  auth        ${process.env.SMTP_USER?.trim() ? "user + password set" : "none"}`);
+  console.log(
+    `  auth        ${process.env.SMTP_USER?.trim() ? "user + password set" : "none"}`,
+  );
 }
 if (via === "resend") {
-  console.log(`  api key     ${process.env.RESEND_API_KEY?.trim() ? "set" : "unset"}`);
+  console.log(
+    `  api key     ${process.env.RESEND_API_KEY?.trim() ? "set" : "unset"}`,
+  );
 }
 
 if (!ready.ok) {
@@ -52,7 +48,9 @@ if (via === "console") {
 }
 
 if (!to) {
-  console.log(`\n  ${green("✓")} configured. To send a real test:\n\n      npm run mail:test you@example.com\n`);
+  console.log(
+    `\n  ${green("✓")} configured. To send a real test:\n\n      npm run mail:test you@example.com\n`,
+  );
   process.exit(0);
 }
 

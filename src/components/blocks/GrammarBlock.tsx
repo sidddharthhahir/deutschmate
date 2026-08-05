@@ -1,7 +1,15 @@
 "use client";
 
 import { useState } from "react";
-import { Card, Eyebrow, Progress, Option, Verdict, record, type BlockProps } from "./shared";
+import {
+  Card,
+  Eyebrow,
+  Progress,
+  Option,
+  Verdict,
+  record,
+  type BlockProps,
+} from "./shared";
 
 type Drill = { q: string; options: string[]; a: number; why: string };
 type Example = { de: string; en: string };
@@ -11,13 +19,7 @@ type Payload = {
   drills: Drill[];
 };
 
-/**
- * Grammar: short and visual, never a wall of text.
- *
- * The explanations are authored as small tables and code blocks, so this
- * renderer only handles the handful of markdown constructs we actually write.
- * No markdown dependency for a fixed set of 36 documents.
- */
+/** Grammar: short and visual, never a wall of text. */
 function renderMd(md: string) {
   const out: React.ReactNode[] = [];
   const lines = md.split("\n");
@@ -30,7 +32,8 @@ function renderMd(md: string) {
     if (line.startsWith("```")) {
       const buf: string[] = [];
       i++;
-      while (i < lines.length && !lines[i].startsWith("```")) buf.push(lines[i++]);
+      while (i < lines.length && !lines[i].startsWith("```"))
+        buf.push(lines[i++]);
       i++;
       out.push(
         <pre
@@ -46,7 +49,10 @@ function renderMd(md: string) {
     if (line.trim().startsWith("|")) {
       const rows: string[][] = [];
       while (i < lines.length && lines[i].trim().startsWith("|")) {
-        const cells = lines[i].split("|").slice(1, -1).map((c) => c.trim());
+        const cells = lines[i]
+          .split("|")
+          .slice(1, -1)
+          .map((c) => c.trim());
         if (!cells.every((c) => /^-+$/.test(c) || c === "")) rows.push(cells);
         i++;
       }
@@ -90,7 +96,8 @@ function renderMd(md: string) {
 
     if (line.startsWith("- ")) {
       const items: string[] = [];
-      while (i < lines.length && lines[i].startsWith("- ")) items.push(lines[i++].slice(2));
+      while (i < lines.length && lines[i].startsWith("- "))
+        items.push(lines[i++].slice(2));
       out.push(
         <ul key={key++} className="my-3 space-y-1 pl-5">
           {items.map((t, n) => (
@@ -124,7 +131,10 @@ function inline(s: string): React.ReactNode {
       );
     if (p.startsWith("`") && p.endsWith("`"))
       return (
-        <code key={i} className="bg-raised font-mono text-der rounded px-1.5 py-0.5 text-[13px]">
+        <code
+          key={i}
+          className="bg-raised font-mono text-der rounded px-1.5 py-0.5 text-[13px]"
+        >
           {p.slice(1, -1)}
         </code>
       );
@@ -145,13 +155,20 @@ export default function GrammarBlock({ payload, onDone }: BlockProps<Payload>) {
       <div>
         <Eyebrow>Grammatik</Eyebrow>
         <Card>
-          <h2 className="font-serif mb-5 text-[26px] font-semibold">{payload.grammar.title}</h2>
-          <div className="max-w-[62ch] text-[15px]">{renderMd(payload.grammar.explain_md)}</div>
+          <h2 className="font-serif mb-5 text-[26px] font-semibold">
+            {payload.grammar.title}
+          </h2>
+          <div className="max-w-[62ch] text-[15px]">
+            {renderMd(payload.grammar.explain_md)}
+          </div>
 
           {payload.examples?.length > 0 && (
             <div className="border-line-sub mt-6 space-y-2 border-t pt-5">
               {payload.examples.map((e, n) => (
-                <div key={n} className="bg-bg border-line-sub rounded-xl border px-4 py-3">
+                <div
+                  key={n}
+                  className="bg-bg border-line-sub rounded-xl border px-4 py-3"
+                >
                   <p className="font-serif text-fg text-[18px]">{e.de}</p>
                   <p className="text-muted mt-0.5 text-[14px]">{e.en}</p>
                 </div>
@@ -184,10 +201,13 @@ export default function GrammarBlock({ payload, onDone }: BlockProps<Payload>) {
       answer: d.options[n],
       expected: d.options[d.a],
     });
-    setTimeout(() => {
-      setPicked(null);
-      setI((x) => x + 1);
-    }, correct ? 700 : 2400);
+    setTimeout(
+      () => {
+        setPicked(null);
+        setI((x) => x + 1);
+      },
+      correct ? 700 : 2400,
+    );
   }
 
   return (

@@ -1,16 +1,14 @@
 /**
  * Sending the one email this app sends.
- *
- * No network here — a suite that needs a live SMTP host is a suite nobody runs.
- * What is checked is everything that decides WHETHER and HOW a message goes
- * out, because each of those has a silent failure behind it: a transport that
- * thinks it is configured when it is not, a link that only exists in the HTML
- * part, a port/TLS combination that hangs instead of erroring.
- *
  * needs: nothing
  */
 import { ok, eq, section, done } from "./harness.mts";
-import { from, fromWillBeRewritten, mailReady, transport } from "../src/lib/mail.ts";
+import {
+  from,
+  fromWillBeRewritten,
+  mailReady,
+  transport,
+} from "../src/lib/mail.ts";
 import { signInEmail, testEmail } from "../src/lib/mail-templates.ts";
 
 /* The process environment is the input to every function here, so it is saved
@@ -42,7 +40,9 @@ section("with nothing set, nothing is sent anywhere");
 eq(transport(), "console", "the default is the terminal");
 eq(mailReady().ok, true, "and it is always ready — that is the point of it");
 
-section("credentials switch the transport on, without a second switch to forget");
+section(
+  "credentials switch the transport on, without a second switch to forget",
+);
 process.env.SMTP_HOST = "smtp.example.com";
 eq(transport(), "smtp", "SMTP_HOST alone is enough");
 clear();
@@ -59,7 +59,11 @@ eq(
   "console with SMTP still configured — a way to stop sending without losing the settings",
 );
 process.env.DEUTSCHMATE_MAIL = "nonsense";
-eq(transport(), "smtp", "an unrecognised value is ignored rather than silently disabling mail");
+eq(
+  transport(),
+  "smtp",
+  "an unrecognised value is ignored rather than silently disabling mail",
+);
 clear();
 
 section("half-configured is caught, because the symptom would be silence");
@@ -68,7 +72,11 @@ eq(mailReady().ok, false, "no From address");
 ok(/MAIL_FROM/.test(mailReady().why ?? ""), "and it says which");
 
 process.env.DEUTSCHMATE_MAIL_FROM = "DeutschMate <no-reply@example.com>";
-eq(mailReady().ok, true, "host plus From is enough — an internal relay needs no login");
+eq(
+  mailReady().ok,
+  true,
+  "host plus From is enough — an internal relay needs no login",
+);
 
 process.env.SMTP_USER = "someone";
 eq(mailReady().ok, false, "a user with no password is not");
@@ -85,13 +93,18 @@ eq(mailReady().ok, true, "resend with one");
 clear();
 
 section("the From address");
-eq(from().includes("localhost"), true, "unset falls back to something obviously local");
+eq(
+  from().includes("localhost"),
+  true,
+  "unset falls back to something obviously local",
+);
 process.env.DEUTSCHMATE_MAIL_FROM = "DeutschMate <hallo@example.com>";
 eq(from(), "DeutschMate <hallo@example.com>", "a display name survives intact");
 clear();
 
 section("the link is in BOTH parts of the message");
-const URL = "https://deutschmate.example.com/api/auth/callback?token=abc123&x=1";
+const URL =
+  "https://deutschmate.example.com/api/auth/callback?token=abc123&x=1";
 const mail = signInEmail("anna@example.de", URL, 20);
 eq(mail.to, "anna@example.de", "addressed to the person who asked");
 ok(mail.text.includes(URL), "plain text carries the raw link");
@@ -103,13 +116,26 @@ ok(
 ok(mail.html.includes("20 Minuten"), "in the HTML too");
 
 section("the HTML escapes, even though every value here is ours");
-ok(mail.html.includes("&amp;x=1"), "an ampersand in the URL is an entity, not a broken attribute");
-const nasty = signInEmail("x@y.z", 'https://e.com/?t="><script>alert(1)</script>', 20);
-ok(!nasty.html.includes("<script>"), "a quote-and-tag payload cannot break out of the href");
+ok(
+  mail.html.includes("&amp;x=1"),
+  "an ampersand in the URL is an entity, not a broken attribute",
+);
+const nasty = signInEmail(
+  "x@y.z",
+  'https://e.com/?t="><script>alert(1)</script>',
+  20,
+);
+ok(
+  !nasty.html.includes("<script>"),
+  "a quote-and-tag payload cannot break out of the href",
+);
 
 section("nothing in the message phones home");
 ok(!/<img/i.test(mail.html), "no image, so no tracking pixel");
-ok(!/http:\/\//.test(mail.html.replace(URL, "")), "no plain-http asset to be stripped or snooped");
+ok(
+  !/http:\/\//.test(mail.html.replace(URL, "")),
+  "no plain-http asset to be stripped or snooped",
+);
 eq(
   (mail.html.match(/https?:\/\//g) ?? []).length,
   2,
@@ -118,10 +144,8 @@ eq(
 
 section("Gmail and Microsoft rewrite a From they did not authenticate");
 /*
- * Neither rejects a mismatched From — they replace it with the account you
- * logged in as. The mail arrives, the app reports success, and the address the
- * recipient sees is not the configured one. No error anywhere, so the only
- * place this can be caught is before it is sent.
+ * Neither rejects a mismatched From — they replace it with the account you logged in as. No error
+ * anywhere, so the only place this can be caught is before it is sent.
  */
 clear();
 const rewrite = (host: string, user: string, fromAddr: string) => {
@@ -137,7 +161,11 @@ eq(
   "silent when the From is the authenticated account",
 );
 ok(
-  rewrite("smtp.gmail.com", "me@gmail.com", "DeutschMate <no-reply@firmway.eu>") !== null,
+  rewrite(
+    "smtp.gmail.com",
+    "me@gmail.com",
+    "DeutschMate <no-reply@firmway.eu>",
+  ) !== null,
   "warns when it is a different address",
 );
 eq(

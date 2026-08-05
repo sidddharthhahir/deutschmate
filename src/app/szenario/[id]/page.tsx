@@ -7,7 +7,11 @@ import ScenarioRunner from "./ScenarioRunner";
 export const dynamic = "force-dynamic";
 
 /** A single roleplay, replayable outside the daily session. */
-export default async function ScenarioPage({ params }: { params: Promise<{ id: string }> }) {
+export default async function ScenarioPage({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
   const { id } = await params;
 
   const u = get<{
