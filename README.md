@@ -305,6 +305,7 @@ npm run config           # every effective setting, and what looks wrong
 npm run invite <email>   # a sign-in link; no argument lists the accounts
 npm run mail:test        # what mail is configured; add an address to send one
 npm run videos           # verify the video catalogue and seed it
+npm run export-content   # segments + mnemonics out of the db, into data/
 npm run backup           # snapshot + JSON export of your progress
 npm run restore <file>   # put a backup back
 npm run export-deck      # Anki-ready TSV + full JSON
@@ -414,6 +415,19 @@ scripts/       content generation and maintenance
 tests/         25 suites, run with `npm test`
 public/audio/  2,381 native recordings from Wikimedia Commons (37 MB)
 ```
+
+**Everything a clone needs is committed** — including the audio, which is why
+the repo is not small. `npm run setup` rebuilds the database from `data/` with
+no network. Three things are deliberately *not* in the repo:
+
+| | Why |
+|---|---|
+| `deutschmate.db` | progress is personal, and it is rebuildable from `data/` anyway. `npm run backup` is how you keep it. |
+| `.env.local` | secrets. `.env.example` ships instead, and `npm run setup` fills in the generated ones. |
+| cached explanations | `error_pattern` rows generated at runtime are keyed on the learner's real wrong answer, and `explanation` holds German somebody pasted into `/text`. Committing either would publish it, and would make Einstellungen's "withdraw my contributions" a lie — git history does not forget. |
+
+Everything else that gets made at runtime — video segments, mnemonics — has a
+way back into `data/` via `npm run export-content`.
 
 The engine, in the order a session touches it:
 
@@ -642,6 +656,12 @@ the [Goethe-Institut](https://www.goethe.de/de/spr/kup/prf.html).
   onto 120 units by arithmetic would put the wrong video in a lesson silently.
   Level is set, which is what the queue sorts by; the unit is chosen while
   watching, which is when you are segmenting it anyway.
+
+  **Commit the work when you have done some.** Segments are saved to the
+  database, not the repo, so `npm run export-content` writes them into
+  `data/videos.json` (and any generated mnemonics into `data/mnemonics.json`).
+  Commit those and every clone gets them; without it, ten hours of marking up
+  lives on one laptop and dies with it.
 - **Speech recognition needs Chrome, Edge or Safari.** Firefox has never shipped
   the Web Speech API. Speaking and voice mode degrade to listen-and-repeat there
   and say which browsers work. This is feature-detected, so the day Firefox

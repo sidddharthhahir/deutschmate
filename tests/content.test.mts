@@ -120,6 +120,47 @@ for (const lv of LEVELS) {
   ok(n > 0, `${lv} has units`, n);
 }
 
+section("content made at runtime can be committed");
+/*
+ * Segments and mnemonics are the only content the app creates that does not
+ * come from `data/`. Without a way back into the repo they live on one laptop:
+ * a second clone starts from nothing and a lost database loses hours of
+ * hand-marking. `npm run export-content` writes them out and `npm run seed`
+ * reads them back.
+ *
+ * What is checked here is the shape of that contract, because the round trip
+ * itself needs a database in a known state. The failure it guards is the one
+ * already found once: the exporter decided whether to write AFTER stripping
+ * stale entries, so the single case that needed writing was the one that did
+ * not — and the stale data stayed in the file for good.
+ */
+const exporter = readFileSync(path.join(process.cwd(), "scripts/export-content.mts"), "utf8");
+ok(
+  /if \(attached \|\| removed\)/.test(exporter),
+  "the exporter writes when it REMOVED something, not only when it added",
+);
+ok(
+  !/some\(\(e\) => e\.segments\)/.test(exporter),
+  "and does not infer that from the post-deletion state",
+);
+ok(
+  /error_pattern|explanation/.test(exporter),
+  "and says in writing which tables it refuses to export — this repo is public",
+);
+
+const seeder = readFileSync(path.join(process.cwd(), "scripts/seed.mts"), "utf8");
+ok(/data\/mnemonics\.json/.test(seeder), "the seeder reads mnemonics back");
+ok(
+  /segments_json=CASE WHEN excluded\.segments_json IN/.test(seeder),
+  "and an empty file never overwrites segments already in the database",
+);
+
+const mnem = path.join(process.cwd(), "data", "mnemonics.json");
+if (existsSync(mnem)) {
+  const parsed = JSON.parse(readFileSync(mnem, "utf8")) as { mnemonics?: Record<string, string> };
+  ok(typeof parsed.mnemonics === "object", "data/mnemonics.json has the shape the seeder expects");
+}
+
 section("the six survival scenarios can be run without a network");
 /*
  * These are the conversations you rehearse the night before, often on a phone

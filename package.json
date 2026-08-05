@@ -29,7 +29,8 @@
     "invite": "node scripts/invite.mts",
     "config": "node scripts/config.mts",
     "mail:test": "node scripts/mail-test.mts",
-    "videos": "node scripts/videos.mts"
+    "videos": "node scripts/videos.mts",
+    "export-content": "node scripts/export-content.mts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.115.0",

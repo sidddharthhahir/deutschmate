@@ -183,6 +183,33 @@ console.log(
     (keptInUse ? `\n   ${keptInUse} kept despite that: they already have review history` : ""),
 );
 
+// --------------------------------------------------------------- mnemonics
+/* The other half of `npm run export-content`. Mnemonics are generated on
+   somebody's own API key for words they keep failing; exporting and re-seeding
+   them means the next clone gets them for nothing. Applied after words so the
+   rows exist, and only where the word still does — a mnemonic for a word later
+   dropped from the content files is skipped rather than erroring. */
+const mnemonicPath = path.join(ROOT, "data/mnemonics.json");
+if (existsSync(mnemonicPath)) {
+  const parsed = JSON.parse(readFileSync(mnemonicPath, "utf8")) as {
+    mnemonics?: Record<string, string>;
+  };
+  const entries = Object.entries(parsed.mnemonics ?? {});
+  const setM = db.prepare("UPDATE word SET mnemonic = ? WHERE id = ?");
+  db.exec("BEGIN");
+  let applied = 0;
+  for (const [id, text] of entries) {
+    if (typeof text === "string" && text.trim() && setM.run(text.trim(), id).changes) applied++;
+  }
+  db.exec("COMMIT");
+  if (entries.length) {
+    console.log(
+      `OK ${applied} mnemonics` +
+        (applied < entries.length ? `  (${entries.length - applied} for words no longer here)` : ""),
+    );
+  }
+}
+
 // ---------------------------------------------------------------- examples
 // Curated, not generated at runtime: every sentence uses only words at or below
 // its own level, which is what makes the listening and builder blocks legible.
