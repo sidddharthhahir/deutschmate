@@ -36,6 +36,26 @@ export type Survival = {
    * conversation stops there. Optional so a scenario without it still renders.
    */
   hear?: { de: string; en: string }[];
+  /**
+   * The offline path, and it used to be missing on exactly the wrong six.
+   *
+   * The original argument for leaving it out was that a canned tree teaches the
+   * tree rather than the situation. That is true of a *course* scenario, where
+   * the point is fluency and there is another one tomorrow. It is the wrong
+   * trade here: these are the conversations you rehearse the night before,
+   * often on a phone, and "you need a network for this one" is the answer at
+   * the moment it is least useful. Every unit scenario already has one — the
+   * six that actually matter were the six without.
+   *
+   * The live model conversation is still the main path and still better. This
+   * is what happens when there is no key, no budget left, or no signal.
+   */
+  dialogue?: DialogueTurn[];
+};
+
+export type DialogueTurn = {
+  them: string;
+  options: { say: string; ok: boolean; why?: string; next: number }[];
 };
 
 let cache: Survival[] | null = null;

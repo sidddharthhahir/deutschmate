@@ -44,9 +44,11 @@ export default async function SurvivalScenario({
           <ScenarioRunner
             payload={{
               scenario: s.scenario,
-              // No scripted fallback: these briefs are open conversations, and
-              // a canned dialogue tree would teach the tree, not the situation.
-              dialogue: null,
+              /* The scripted fallback, for no key, no budget or no signal.
+                 This was deliberately null, on the argument that a canned tree
+                 teaches the tree rather than the situation — right for a course
+                 scenario, wrong for these six. See lib/survival.ts. */
+              dialogue: s.dialogue ?? null,
               unitId: s.id,
             }}
           />

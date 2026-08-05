@@ -83,9 +83,15 @@ export default function SpeakingBlock({ payload, onDone, onSkip }: BlockProps<Pa
         </div>
 
         {!supported ? (
-          <p className="text-muted mx-auto mt-8 max-w-[46ch] text-center text-[14px] leading-relaxed">
-            Dieser Browser kann keine Spracherkennung. In Chrome funktioniert es — oder
-            überspring den Block.
+          /* Named accurately. The detection accepts webkitSpeechRecognition,
+             which Safari has had since 14.1, so the honest list is Chrome, Edge
+             and Safari — Firefox is the one that has never shipped it. Saying
+             "use Chrome" sent a Safari user to install a browser they did not
+             need, and left a Firefox user thinking it was their setup. */
+          <p className="text-muted mx-auto mt-8 max-w-[48ch] text-center text-[14px] leading-relaxed">
+            Dieser Browser kann keine Spracherkennung — Firefox kann es bis heute nicht. In
+            Chrome, Edge und Safari läuft es. Oder überspring den Block: Sprechen ist nicht
+            die einzige Übung.
           </p>
         ) : (
           <div className="mt-8 flex flex-col items-center gap-3">

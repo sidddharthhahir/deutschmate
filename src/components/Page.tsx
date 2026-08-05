@@ -91,6 +91,55 @@ export function Section({
 }
 
 /**
+ * A named band of sections, with the question it answers.
+ *
+ * Exists because of one page. Fortschritt is eleven `Section`s in flat order,
+ * every number on it real and every one presented as equally important — so
+ * the honest complaint about it was never "this is wrong", it was "which of
+ * these am I supposed to look at?". A learner opens it with a question in mind,
+ * and the page answered none of them in particular.
+ *
+ * So the bands are named after the questions rather than the data: what do I
+ * know, what should I fix, how is it going. Anything that answers no question a
+ * learner actually asks belongs at the bottom, or on another page.
+ *
+ * Deliberately heavier than `Section` — larger, serif, no rule — so the two
+ * levels cannot be confused at a glance. That is the entire point of adding it.
+ */
+export function Group({
+  title,
+  question,
+  when = true,
+  children,
+}: {
+  title: string;
+  /** One line, in the learner's voice. Shown, not just documentation. */
+  question: string;
+  /**
+   * False when every section inside is data-gated and there is no data yet.
+   *
+   * Cannot be detected from `children`: conditional JSX renders as `false`, not
+   * as absence, so a group whose contents are all `{x.length > 0 && …}` still
+   * arrives here looking non-empty. Grouping without this makes the empty state
+   * WORSE than the flat list it replaced — a heading and a promise with nothing
+   * under them, which is the "correct-looking, not connected" shape again.
+   */
+  when?: boolean;
+  children: ReactNode;
+}) {
+  if (!when) return null;
+  return (
+    <section className="mt-14 first:mt-4">
+      <h2 className="font-serif text-[24px] leading-tight font-semibold tracking-[-0.015em]">
+        {title}
+      </h2>
+      <p className="text-muted mt-1.5 max-w-[62ch] text-[13.5px] leading-relaxed">{question}</p>
+      {children}
+    </section>
+  );
+}
+
+/**
  * What to show when there is genuinely nothing.
  *
  * An empty screen reads as broken. Each of these says what the emptiness means

@@ -33,7 +33,14 @@ export function useOnline(): boolean {
 
 const noopSubscribe = () => () => {};
 
-/** True when this browser can do speech recognition (Chrome and friends). */
+/**
+ * True when this browser can do speech recognition.
+ *
+ * Chrome, Edge and Safari — Safari through the webkit-prefixed constructor,
+ * which `Recognition()` in lib/speech.ts already accepts. Firefox has never
+ * shipped it. Feature detection rather than a browser list, so the day Firefox
+ * does ship it this turns on with no code change.
+ */
 export function useSpeechSupported(): boolean {
   return useSyncExternalStore(noopSubscribe, speechSupported, () => false);
 }

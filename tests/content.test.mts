@@ -7,7 +7,7 @@
  *
  * needs: seeded database
  */
-import { readdirSync, existsSync } from "node:fs";
+import { readdirSync, existsSync, readFileSync } from "node:fs";
 import path from "node:path";
 import { open, ok, section, done } from "./harness.mts";
 
@@ -118,6 +118,55 @@ section("progression is possible");
 for (const lv of LEVELS) {
   const n = units.filter((u) => u.level === lv).length;
   ok(n > 0, `${lv} has units`, n);
+}
+
+section("the six survival scenarios can be run without a network");
+/*
+ * These are the conversations you rehearse the night before, often on a phone
+ * with no signal, and they were the only ones in the app with no scripted
+ * fallback — so "you need a network for this one" arrived at the moment it was
+ * least useful. The dialogues live in a JSON file, which means whoever edits
+ * them next can break the wiring silently: a `next` pointing at a turn that
+ * does not exist just stops the conversation dead, with no error anywhere.
+ */
+const survival = JSON.parse(
+  readFileSync(path.join(process.cwd(), "data", "scenarios-survival.json"), "utf8"),
+) as {
+  id: string;
+  title: string;
+  dialogue?: {
+    them: string;
+    options: { say: string; ok: boolean; why?: string; next: number }[];
+  }[];
+}[];
+
+ok(survival.length === 6, "six of them", survival.length);
+
+for (const s of survival) {
+  const d = s.dialogue;
+  if (!Array.isArray(d) || !d.length) {
+    ok(false, `${s.id} has a scripted fallback`, s.title);
+    continue;
+  }
+  ok(d.length >= 3, `${s.id}: long enough to be worth running`, `${d.length} turns`);
+  ok(
+    d.every((t) => t.options.some((o) => o.ok)),
+    `${s.id}: every turn has a right answer`,
+  );
+  ok(
+    d.every((t) => t.options.every((o) => o.ok || o.why)),
+    `${s.id}: every wrong answer explains itself — here the explanation IS the lesson`,
+  );
+  /* Forward-only so the tree cannot loop, and every destination real so it
+     cannot dead-end. -1 is the exit. */
+  ok(
+    d.every((t, i) => t.options.every((o) => o.next === -1 || (o.next > i && o.next < d.length))),
+    `${s.id}: every branch leads to a later turn or to the end`,
+  );
+  ok(
+    d.some((t) => t.options.some((o) => o.next === -1)),
+    `${s.id}: the conversation can actually finish`,
+  );
 }
 
 db.close();

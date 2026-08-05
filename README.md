@@ -565,15 +565,26 @@ the [Goethe-Institut](https://www.goethe.de/de/spr/kup/prf.html).
 - **No video has been imported at all** — the `video` table is empty and no unit
   carries a `video_id`, so the video block never appears and the input slot
   alternates between listening and reading. The editor is at `/admin/video` and
-  takes about ten minutes per video.
-- **The Progress page is eleven sections in flat order.** Every number on it is
-  real, but nothing says which to read first. `/weg` took the long-arc half
-  away; the remainder still needs a hierarchy.
-- **Speech recognition is Chrome-only.** Speaking and voice mode degrade to
-  listen-and-repeat elsewhere, and say so.
-- **`/alltag` needs the network.** Those six scenarios are conversations by
-  design and carry no scripted fallback, so offline they say so and offer the
-  phrase list instead of a dialogue. Unit scenarios do have a script.
+  takes about ten minutes per video. This is the one gap that is content work
+  rather than code: somebody has to choose the videos and type what they hear.
+  Transcribing by hand is deliberate — it keeps the app to embedding rather than
+  scraping captions, and typing the line is a listening exercise in itself.
+- **Speech recognition needs Chrome, Edge or Safari.** Firefox has never shipped
+  the Web Speech API. Speaking and voice mode degrade to listen-and-repeat there
+  and say which browsers work. This is feature-detected, so the day Firefox
+  ships it, it turns on with no code change.
+
+### Closed since
+
+- ~~The Progress page is eleven sections in flat order.~~ Now four named bands —
+  *Was kannst du · Wie läuft es · Was hakt · Nebenbei* — each showing the
+  question it answers. Named after questions rather than after data, so anything
+  answering no question a learner actually asks sits at the bottom.
+- ~~`/alltag` needs the network.~~ All six now carry a scripted branching
+  dialogue, so they run with no key, no budget and no signal. They were the last
+  scenarios in the app without one, and the worst six to be missing it: these
+  are what you rehearse the night before, often on a phone. The live model
+  conversation is still the better path when it is available.
 
 ### A note on how these were found
 

@@ -12,7 +12,7 @@ import { de } from "@/lib/tags";
 import { spendThisMonth, projectedMonthly, budgetLeft, priceList, isPriced } from "@/lib/cost";
 import { keyState } from "@/lib/apikey";
 import Noun from "@/components/Article";
-import Page, { Section } from "@/components/Page";
+import Page, { Group, Section } from "@/components/Page";
 
 export const dynamic = "force-dynamic";
 
@@ -123,8 +123,23 @@ export default async function ProgressPage() {
       }
     >
       <>
+        {/*
+         * THREE QUESTIONS, IN THE ORDER A LEARNER ASKS THEM.
+         *
+         * This page was eleven Sections in flat order. Every number on it was
+         * real — the complaint was never that it lied — but they were all
+         * presented at the same weight, so nothing said which to read first,
+         * and a page you have to scan end to end to use is a page you stop
+         * opening. The bands are named after questions rather than after data,
+         * and anything answering no question a learner actually asks sits at
+         * the bottom under "Nebenbei".
+         */}
+        <Group
+          title="Was kannst du?"
+          question="Wie viel vom Kurs sitzt wirklich — und wie viel hast du nur gesehen."
+        >
         {/* Headline counts — the four that matter, in serif at size. */}
-        <div className="grid grid-cols-2 gap-6 md:grid-cols-4">
+        <div className="mt-6 grid grid-cols-2 gap-6 md:grid-cols-4">
           <Stat n={seen} label="gesehen" hint="im Wortschatz gelesen" />
           <Stat n={inDeck} label="im Deck" hint="mindestens 1× geübt" />
           {/* The hint said "letzte 2 richtig", which is not what the query
@@ -152,7 +167,12 @@ export default async function ProgressPage() {
             Wörter — eine Regel, die du einmal gesehen hast, ist keine Regel, die du kannst.
           </p>
         </Section>
+        </Group>
 
+        <Group
+          title="Wie läuft es?"
+          question="Das Tempo und der Weg — wo du im Kurs stehst und wann er dir ausgeht."
+        >
         {pace && (
           <Section title="Tempo">
             <p className="font-serif text-[19px] leading-relaxed">
@@ -195,7 +215,21 @@ export default async function ProgressPage() {
             <span className="text-muted group-hover:text-fg transition-colors">→</span>
           </Link>
         </Section>
+        </Group>
 
+        {/* Every section in here is data-gated, so on a new account the whole
+            band would be a heading over nothing. */}
+        <Group
+          title="Was hakt?"
+          question="Die einzige Gruppe hier, aus der eine Handlung folgt. Der Rest ist zum Anschauen."
+          when={
+            perSkill.length > 0 ||
+            tags.length > 0 ||
+            stuck.length > 0 ||
+            exams.length > 0 ||
+            sounds.length > 0
+          }
+        >
         {perSkill.length > 0 && (
           <Section title="Genauigkeit nach Übungsart">
             <div className="space-y-3">
@@ -276,9 +310,28 @@ export default async function ProgressPage() {
           <Section title={`Übungstests · ${exams.length}`}>
             <div className="space-y-2">
               {exams.map((e) => {
+                /*
+                 * Valid JSON of the wrong SHAPE used to take the page down.
+                 *
+                 * The try/catch covered a malformed string and then trusted
+                 * whatever came out, so a row whose sections carry no `title` —
+                 * a restored backup from an older schema, a hand-edited row —
+                 * threw on `.slice` of undefined and replaced all eleven
+                 * sections of Fortschritt with "This page couldn't load".
+                 * One unreadable exam result is worth exactly one missing
+                 * breakdown; the score beside it is still true and still shown.
+                 */
                 let sections: SectionScore[] = [];
                 try {
-                  sections = JSON.parse(e.sections_json);
+                  const parsed: unknown = JSON.parse(e.sections_json);
+                  if (Array.isArray(parsed)) {
+                    sections = parsed.filter(
+                      (s): s is SectionScore =>
+                        typeof s?.title === "string" &&
+                        Number.isFinite(s?.correct) &&
+                        Number.isFinite(s?.total),
+                    );
+                  }
                 } catch {
                   /* total still renders */
                 }
@@ -322,6 +375,12 @@ export default async function ProgressPage() {
           </Section>
         )}
 
+        </Group>
+
+        <Group
+          title="Nebenbei"
+          question="Zwei Zahlen, die dein Deutsch nicht messen: was es gekostet hat und wie lange du dagesessen hast."
+        >
         {/* The €10 ceiling, checkable. These are the API's own token counts,
             priced at standard published rates — the figure errs high rather
             than reassuring you with an optimistic one. */}
@@ -475,6 +534,7 @@ export default async function ProgressPage() {
             </div>
           )}
         </Section>
+        </Group>
       </>
     </Page>
   );
