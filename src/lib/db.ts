@@ -47,6 +47,10 @@ const MIGRATIONS: [table: string, column: string, decl: string, after?: string][
   ["user", "api_key_hint", "TEXT"],
   ["user", "api_key_at", "TEXT"],
   ["user", "budget_cents", "INTEGER"],
+  // A video can now be a direct mp4 (Deutsche Welle's own CDN) rather than a
+  // YouTube embed. See the comment on the video table in schema.sql.
+  ["video", "src_url", "TEXT"],
+  ["video", "duration", "INTEGER"],
   // Who paid for a cached row, and whether it may be served to other accounts.
   ["error_pattern", "created_by", "TEXT"],
   ["explanation", "created_by", "TEXT"],

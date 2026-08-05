@@ -32,87 +32,1372 @@
   },
   "videos": [
     {
-      "youtube_id": "dC6ZGLzdaTs",
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A1_E11_L2_F46_hd.mp4",
+      "title": "Nicos Weg A1 · Folge 46: Ich mag (nicht)!",
+      "level": "A1.2",
+      "duration": 99
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A1_E11_L1_F45_hd.mp4",
+      "title": "Nicos Weg A1 · Folge 45: Lebensmittel",
+      "level": "A1.2",
+      "duration": 88
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A1_E10_L4_F44_hd.mp4",
+      "title": "Nicos Weg A1 · Folge 44: Im Büro",
+      "level": "A1.2",
+      "duration": 94
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A1_E0_L1_F1_hd.mp4",
       "title": "Nicos Weg A1 · Folge 1: Hallo!",
       "level": "A1.1",
+      "duration": 81,
       "unit_id": "a1-1-u01",
-      "why": "Unit 1 is 'Hallo!' and its can-do is greeting someone at any time of day."
+      "why": "Unit 1 is 'Hallo!' — greet someone at any time of day."
     },
     {
-      "youtube_id": "upvuC9FR-xU",
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/dwtv_video/flv/nicosweg/A1_E0_L2_F2_neu_AVC_1920x1080.mp4",
       "title": "Nicos Weg A1 · Folge 2: Kein Problem!",
-      "level": "A1.1"
+      "level": "A1.1",
+      "duration": 95
     },
     {
-      "youtube_id": "idFrq0H1Af0",
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A1_E0_L3_F3_hd.mp4",
       "title": "Nicos Weg A1 · Folge 3: Tschüss!",
-      "level": "A1.1"
+      "level": "A1.1",
+      "duration": 72
     },
     {
-      "youtube_id": "-qAuGimugds",
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A1_E0_L4_F4_hd.mp4",
       "title": "Nicos Weg A1 · Folge 4: Von A bis Z",
-      "level": "A1.1"
+      "level": "A1.1",
+      "duration": 94
     },
     {
-      "youtube_id": "FoYSUfsLcjA",
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A1_E1_L1_F5_hd.mp4",
       "title": "Nicos Weg A1 · Folge 5: Ich heiße Emma",
       "level": "A1.1",
+      "duration": 68,
       "unit_id": "a1-1-u02",
       "why": "Unit 2 is 'Ich heiße …' — say your name."
     },
     {
-      "youtube_id": "fZr-eVZ3YOs",
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A1_E1_L2_F6_hd.mp4",
       "title": "Nicos Weg A1 · Folge 6: Das ist Nico",
       "level": "A1.1",
+      "duration": 46,
       "unit_id": "a1-1-u03",
-      "why": "Unit 3 is 'Ich bin, du bist' — say what you are, and introduce someone."
+      "why": "Unit 3 is 'Ich bin, du bist' — say what you are."
     },
     {
-      "youtube_id": "Q7ECRAQrzFc",
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A1_E1_L3_F7_hd.mp4",
       "title": "Nicos Weg A1 · Folge 7: Woher kommst du?",
       "level": "A1.1",
+      "duration": 98,
       "unit_id": "a1-1-u04",
       "why": "Same title as unit 4, word for word."
     },
     {
-      "youtube_id": "T89sIATrpBc",
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A1_E1_L4_F8_hd.mp4",
       "title": "Nicos Weg A1 · Folge 8: Nico hat ein Problem",
-      "level": "A1.1"
+      "level": "A1.1",
+      "duration": 88
     },
     {
-      "youtube_id": "p1dci7nBJRo",
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A1_E2_L1_F9_hd.mp4",
       "title": "Nicos Weg A1 · Folge 9: Zahlen von 1 bis 100",
       "level": "A1.1",
+      "duration": 94,
       "unit_id": "a1-1-u05",
-      "why": "Unit 5 is 'Zahlen' — count to twenty. The episode goes further, which is fine for an input block."
+      "why": "Unit 5 is 'Zahlen' — count."
     },
     {
-      "youtube_id": "5wyalwdmpzk",
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A1_E2_L2_F10_hd.mp4",
       "title": "Nicos Weg A1 · Folge 10: Wichtige Nummern",
-      "level": "A1.1"
+      "level": "A1.1",
+      "duration": 90
     },
     {
-      "youtube_id": "AI9EmNzxXGE",
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A1_E2_L3_F11_hd.mp4",
       "title": "Nicos Weg A1 · Folge 11: Adressen",
-      "level": "A1.1"
+      "level": "A1.1",
+      "duration": 103
     },
     {
-      "youtube_id": "IhLqeX8QjSg",
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A1_E2_L4_F12_hd.mp4",
       "title": "Nicos Weg A1 · Folge 12: Auf dem Amt",
-      "level": "A1.2",
-      "why": "No A1.1 unit covers the Amt. Pairs with the Alltag scenario 'Anmeldung beim Bürgeramt' rather than with a unit."
+      "level": "A1.1",
+      "duration": 120
     },
     {
-      "youtube_id": "VWDtpIIAgAI",
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A1_E3_L1_F13_hd.mp4",
       "title": "Nicos Weg A1 · Folge 13: Was machst du hier?",
-      "level": "A1.1"
+      "level": "A1.1",
+      "duration": 115
     },
     {
-      "youtube_id": "J71RxF7qU2o",
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A1_E3_L2_F14_hd.mp4",
       "title": "Nicos Weg A1 · Folge 14: Was trinkst du?",
       "level": "A1.1",
+      "duration": 107,
       "unit_id": "a1-1-u09",
-      "why": "Unit 9 is 'Essen und Trinken' — name everyday food and drink."
+      "why": "Unit 9 is 'Essen und Trinken'."
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A1_E3_L3_F15_hd.mp4",
+      "title": "Nicos Weg A1 · Folge 15: Eine Pizza bitte!",
+      "level": "A1.1",
+      "duration": 114
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A1_E3_L4_F16_hd.mp4",
+      "title": "Nicos Weg A1 · Folge 16: Zahlen bitte!",
+      "level": "A1.1",
+      "duration": 84
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A1_E4_L1_F17_hd.mp4",
+      "title": "Nicos Weg A1 · Folge 17: Ich war schon in Berlin",
+      "level": "A1.1",
+      "duration": 113
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A1_E4_L2_F18_hd.mp4",
+      "title": "Nicos Weg A1 · Folge 18: Wo liegt das?",
+      "level": "A1.1",
+      "duration": 114
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A1_E4_L3_F19_hd.mp4",
+      "title": "Nicos Weg A1 · Folge 19: In Europa",
+      "level": "A1.1",
+      "duration": 95
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A1_E4_L4_F20_hd.mp4",
+      "title": "Nicos Weg A1 · Folge 20: Andere Länder",
+      "level": "A1.1",
+      "duration": 98
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A1_E5_L1_F21_hd.mp4",
+      "title": "Nicos Weg A1 · Folge 21: Was ist das?",
+      "level": "A1.1",
+      "duration": 78
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A1_E5_L2_F22_hd.mp4",
+      "title": "Nicos Weg A1 · Folge 22: Wem gehört das?",
+      "level": "A1.1",
+      "duration": 69
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A1_E5_L3_F23_hd.mp4",
+      "title": "Nicos Weg A1 · Folge 23: Ich habe kein …",
+      "level": "A1.1",
+      "duration": 114
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A1_E5_L4_F24_hd.mp4",
+      "title": "Nicos Weg A1 · Folge 24: Das Auto ist rot",
+      "level": "A1.1",
+      "duration": 99
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A1_E6_L1_F25_hd.mp4",
+      "title": "Nicos Weg A1 · Folge 25: So wohne ich",
+      "level": "A1.1",
+      "duration": 71
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A1_E6_L2_F26_hd.mp4",
+      "title": "Nicos Weg A1 · Folge 26: Meine Wohnung",
+      "level": "A1.1",
+      "duration": 118
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A1_E6_L3_F27_hd.mp4",
+      "title": "Nicos Weg A1 · Folge 27: Sofa, Sessel und Tisch",
+      "level": "A1.1",
+      "duration": 67
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A1_E6_L4_F28_hd.mp4",
+      "title": "Nicos Weg A1 · Folge 28: Unser Haus",
+      "level": "A1.1",
+      "duration": 95
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A1_E7_L1_F29_hd.mp4",
+      "title": "Nicos Weg A1 · Folge 29: Emmas Tag",
+      "level": "A1.1",
+      "duration": 82
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A1_E7_L2_F30_hd.mp4",
+      "title": "Nicos Weg A1 · Folge 30: Tageszeiten",
+      "level": "A1.1",
+      "duration": 66
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A1_E7_L3_F31_hd.mp4",
+      "title": "Nicos Weg A1 · Folge 31: Am Sonntag koche ich",
+      "level": "A1.1",
+      "duration": 89
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A1_E7_L4_F32_hd.mp4",
+      "title": "Nicos Weg A1 · Folge 32: Emmas Wochenende",
+      "level": "A1.1",
+      "duration": 89
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A1_E8_L2_F34_hd.mp4",
+      "title": "Nicos Weg A1 · Folge 34: Hast du morgen Zeit?",
+      "level": "A1.1",
+      "duration": 88
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A1_E8_L3_F35_hd.mp4",
+      "title": "Nicos Weg A1 · Folge 35: Wann spielen wir?",
+      "level": "A1.1",
+      "duration": 88
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A1_E8_L4_F36_hd.mp4",
+      "title": "Nicos Weg A1 · Folge 36: Zu spät!?",
+      "level": "A1.1",
+      "duration": 77
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A1_E9_L1_F37_hd.mp4",
+      "title": "Nicos Weg A1 · Folge 37: Ich bin Lehrerin",
+      "level": "A1.1",
+      "duration": 89
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A1_E9_L2_F38_hd.mp4",
+      "title": "Nicos Weg A1 · Folge 38: Mein Beruf",
+      "level": "A1.1",
+      "duration": 100
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A1_E9_L3_F39_hd.mp4",
+      "title": "Nicos Weg A1 · Folge 39: Wo ist der Aufzug?",
+      "level": "A1.1",
+      "duration": 94
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A1_E9_L4_F40_hd.mp4",
+      "title": "Nicos Weg A1 · Folge 40: Traumberufe",
+      "level": "A1.1",
+      "duration": 90
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A1_E10_L1_F41_hd.mp4",
+      "title": "Nicos Weg A1 · Folge 41: Wo ist der Bahnhof?",
+      "level": "A1.2",
+      "duration": 115
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A1_E10_L2_F42_hd.mp4",
+      "title": "Nicos Weg A1 · Folge 42: An der Ampel links",
+      "level": "A1.2",
+      "duration": 101
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A1_E10_L3_F43_hd.mp4",
+      "title": "Nicos Weg A1 · Folge 43: Mit Bus und Bahn",
+      "level": "A1.2",
+      "duration": 57
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A1_E11_L3_F47_hd.mp4",
+      "title": "Nicos Weg A1 · Folge 47: Haushaltsarbeit",
+      "level": "A1.2",
+      "duration": 87
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A1_E11_L4_F48_hd.mp4",
+      "title": "Nicos Weg A1 · Folge 48: Was macht dir Spaß?",
+      "level": "A1.2",
+      "duration": 94
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A1_E12_L1_F49_hd.mp4",
+      "title": "Nicos Weg A1 · Folge 49: Mengen und Preise",
+      "level": "A1.2",
+      "duration": 105
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A1_E12_L2_F50_hd.mp4",
+      "title": "Nicos Weg A1 · Folge 50: Was darf es sein?",
+      "level": "A1.2",
+      "duration": 103
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A1_E12_L3_F51_hd.mp4",
+      "title": "Nicos Weg A1 · Folge 51: Sonst noch etwas?",
+      "level": "A1.2",
+      "duration": 89
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A1_E12_L4_F52_hd.mp4",
+      "title": "Nicos Weg A1 · Folge 52: Wie viel Mehl?",
+      "level": "A1.2",
+      "duration": 79
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A1_E13_L1_F53_hd.mp4",
+      "title": "Nicos Weg A1 · Folge 53: Wie war dein Urlaub?",
+      "level": "A1.2",
+      "duration": 62
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A1_E13_L2_F54_hd.mp4",
+      "title": "Nicos Weg A1 · Folge 54: Jahreszeiten",
+      "level": "A1.2",
+      "duration": 100
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A1_E13_L3_F55_hd.mp4",
+      "title": "Nicos Weg A1 · Folge 55: Der Ausflug",
+      "level": "A1.2",
+      "duration": 68
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A1_E13_L4_F56_hd.mp4",
+      "title": "Nicos Weg A1 · Folge 56: Wie wird das Wetter?",
+      "level": "A1.2",
+      "duration": 71
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A1_E14_L1_F57_hd.mp4",
+      "title": "Nicos Weg A1 · Folge 57: Das ist jetzt modern",
+      "level": "A1.2",
+      "duration": 94
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A1_E14_L2_F58_hd.mp4",
+      "title": "Nicos Weg A1 · Folge 58: Mein Lieblingspulli",
+      "level": "A1.2",
+      "duration": 95
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A1_E14_L3_F59_hd.mp4",
+      "title": "Nicos Weg A1 · Folge 59: Das passt gut!",
+      "level": "A1.2",
+      "duration": 141
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A1_E14_L4_F60_hd.mp4",
+      "title": "Nicos Weg A1 · Folge 60: Schick!",
+      "level": "A1.2",
+      "duration": 85
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A1_E15_L1_F61_hd.mp4",
+      "title": "Nicos Weg A1 · Folge 61: Meine Familie",
+      "level": "A1.2",
+      "duration": 61
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A1_E15_L2_F62_hd.mp4",
+      "title": "Nicos Weg A1 · Folge 62: Meine Eltern",
+      "level": "A1.2",
+      "duration": 86
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A1_E15_L3_F63_hd.mp4",
+      "title": "Nicos Weg A1 · Folge 63: Meine Tante",
+      "level": "A1.2",
+      "duration": 88
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A1_E15_L4_F64_hd.mp4",
+      "title": "Nicos Weg A1 · Folge 64: Mein Bruder",
+      "level": "A1.2",
+      "duration": 63
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A1_E16_L1_F65_hd.mp4",
+      "title": "Nicos Weg A1 · Folge 65: Von Kopf bis Fuß",
+      "level": "A1.2",
+      "duration": 78
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A1_E16_L2_F66_hd.mp4",
+      "title": "Nicos Weg A1 · Folge 66: Bist du fit?",
+      "level": "A1.2",
+      "duration": 60
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A1_E16_L3_F67_hd.mp4",
+      "title": "Nicos Weg A1 · Folge 67: Fitness",
+      "level": "A1.2",
+      "duration": 74
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A1_E16_L4_F68_hd.mp4",
+      "title": "Nicos Weg A1 · Folge 68: Ist das gesund?",
+      "level": "A1.2",
+      "duration": 63
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A1_E17_L1_F69_hd.mp4",
+      "title": "Nicos Weg A1 · Folge 69: Geht es dir gut?",
+      "level": "A1.2",
+      "duration": 60
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A1_E17_L2_F70_hd.mp4",
+      "title": "Nicos Weg A1 · Folge 70: Beim Arzt",
+      "level": "A1.2",
+      "duration": 88
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A1_E17_L3_F71_hd.mp4",
+      "title": "Nicos Weg A1 · Folge 71: Gute Besserung!",
+      "level": "A1.2",
+      "duration": 76
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A1_E17_L4_F72_hd.mp4",
+      "title": "Nicos Weg A1 · Folge 72: Nehmen Sie …",
+      "level": "A1.2",
+      "duration": 93
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A1_E18_L1_F73_hd.mp4",
+      "title": "Nicos Weg A1 · Folge 73: Meine Heimat",
+      "level": "A1.2",
+      "duration": 67
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A1_E18_L2_F74_hd.mp4",
+      "title": "Nicos Weg A1 · Folge 74: Leben in Deutschland",
+      "level": "A1.2",
+      "duration": 85
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A1_E18_L3_F75_hd.mp4",
+      "title": "Nicos Weg A1 · Folge 75: Anders als zu Hause",
+      "level": "A1.2",
+      "duration": 90
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A1_E18_L4_F76_hd.mp4",
+      "title": "Nicos Weg A1 · Folge 76: Ich träume von …",
+      "level": "A1.2",
+      "duration": 91
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A2_E4_L3_F19_hd.mp4",
+      "title": "Nicos Weg A2 · Folge 19: Bahnreisen",
+      "level": "A2.1",
+      "duration": 107
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A2_E0_L1_F1_hd.mp4",
+      "title": "Nicos Weg A2 · Folge 1: Lebenslinien",
+      "level": "A2.1",
+      "duration": 60
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A2_E0_L2_F2_hd.mp4",
+      "title": "Nicos Weg A2 · Folge 2: Angekommen",
+      "level": "A2.1",
+      "duration": 88
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A2_E0_L3_F3_hd.mp4",
+      "title": "Nicos Weg A2 · Folge 3: Pläne machen",
+      "level": "A2.1",
+      "duration": 41
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A2_E0_L4_F4_hd.mp4",
+      "title": "Nicos Weg A2 · Folge 4: Sprichst du Deutsch?",
+      "level": "A2.1",
+      "duration": 102
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A2_E1_L1_F5_hd.mp4",
+      "title": "Nicos Weg A2 · Folge 5: Geld ist für mich …",
+      "level": "A2.1",
+      "duration": 87
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A2_E1_L2_F6_hd.mp4",
+      "title": "Nicos Weg A2 · Folge 6: Mein Bankkonto",
+      "level": "A2.1",
+      "duration": 65
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A2_E1_L3_F7_hd.mp4",
+      "title": "Nicos Weg A2 · Folge 7: Rechnungen",
+      "level": "A2.1",
+      "duration": 68
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A2_E1_L4_F8_hd.mp4",
+      "title": "Nicos Weg A2 · Folge 8: Am Bankautomaten",
+      "level": "A2.1",
+      "duration": 92
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A2_E2_L1_F9_hd.mp4",
+      "title": "Nicos Weg A2 · Folge 9: Familiengeschichten",
+      "level": "A2.1",
+      "duration": 77
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A2_E2_L2_F10_hd.mp4",
+      "title": "Nicos Weg A2 · Folge 10: Personen beschreiben",
+      "level": "A2.1",
+      "duration": 139
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A2_E2_L3_F11_hd.mp4",
+      "title": "Nicos Weg A2 · Folge 11: Generationen",
+      "level": "A2.1",
+      "duration": 82
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A2_E2_L4_F12_hd.mp4",
+      "title": "Nicos Weg A2 · Folge 12: Alten- und Pflegeheim",
+      "level": "A2.1",
+      "duration": 67
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A2_E3_L1_F13_hd.mp4",
+      "title": "Nicos Weg A2 · Folge 13: Wohngemeinschaft",
+      "level": "A2.1",
+      "duration": 86
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A2_E3_L2_F14_hd.mp4",
+      "title": "Nicos Weg A2 · Folge 14: Nachbarschaft",
+      "level": "A2.1",
+      "duration": 97
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A2_E3_L3_F15_hd.mp4",
+      "title": "Nicos Weg A2 · Folge 15: Kinder",
+      "level": "A2.1",
+      "duration": 107
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A2_E3_L4_F16_hd.mp4",
+      "title": "Nicos Weg A2 · Folge 16: Anders als ihr",
+      "level": "A2.1",
+      "duration": 80
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A2_E4_L1_F17_hd.mp4",
+      "title": "Nicos Weg A2 · Folge 17: Unterwegs",
+      "level": "A2.1",
+      "duration": 70
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A2_E4_L2_F18_hd.mp4",
+      "title": "Nicos Weg A2 · Folge 18: Im Hotel",
+      "level": "A2.1",
+      "duration": 103
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A2_E4_L4_F20_hd.mp4",
+      "title": "Nicos Weg A2 · Folge 20: Der Ticketautomat",
+      "level": "A2.1",
+      "duration": 107
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A2_E5_L1_F21_hd.mp4",
+      "title": "Nicos Weg A2 · Folge 21: Alltag und Freizeit",
+      "level": "A2.1",
+      "duration": 76
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A2_E5_L2_F22_hd.mp4",
+      "title": "Nicos Weg A2 · Folge 22: Freizeitstress",
+      "level": "A2.1",
+      "duration": 82
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A2_E5_L3_F23_hd.mp4",
+      "title": "Nicos Weg A2 · Folge 23: Das hört sich gut an!",
+      "level": "A2.1",
+      "duration": 94
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A2_E5_L4_F24_hd.mp4",
+      "title": "Nicos Weg A2 · Folge 24: Das meinen Sie nicht ernst!",
+      "level": "A2.1",
+      "duration": 87
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A2_E6_L1_F25_hd.mp4",
+      "title": "Nicos Weg A2 · Folge 25: Das macht mir Spaß!",
+      "level": "A2.1",
+      "duration": 99
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A2_E6_L2_F26_hd.mp4",
+      "title": "Nicos Weg A2 · Folge 26: Im Verein",
+      "level": "A2.1",
+      "duration": 87
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A2_E6_L3_F27_hd.mp4",
+      "title": "Nicos Weg A2 · Folge 27: Das macht mir Sorgen!",
+      "level": "A2.1",
+      "duration": 87
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A2_E6_L4_F28_hd.mp4",
+      "title": "Nicos Weg A2 · Folge 28: Das ist mir wichtig!",
+      "level": "A2.1",
+      "duration": 76
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A2_E7_L1_F29_hd.mp4",
+      "title": "Nicos Weg A2 · Folge 29: Immer und überall",
+      "level": "A2.1",
+      "duration": 99
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A2_E7_L2_F30_hd.mp4",
+      "title": "Nicos Weg A2 · Folge 30: Das Internet",
+      "level": "A2.1",
+      "duration": 96
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A2_E7_L3_F31_hd.mp4",
+      "title": "Nicos Weg A2 · Folge 31: Mit freundlichen Grüßen",
+      "level": "A2.1",
+      "duration": 130
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A2_E7_L4_F32_hd.mp4",
+      "title": "Nicos Weg A2 · Folge 32: Reklamation",
+      "level": "A2.1",
+      "duration": 87
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A2_E8_L1_F33_hd.mp4",
+      "title": "Nicos Weg A2 · Folge 33: Essen gehen",
+      "level": "A2.1",
+      "duration": 179
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A2_E8_L2_F34_hd.mp4",
+      "title": "Nicos Weg A2 · Folge 34: Die Karte bitte!",
+      "level": "A2.1",
+      "duration": 123
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A2_E8_L3_F35_hd.mp4",
+      "title": "Nicos Weg A2 · Folge 35: Was darf es sein?",
+      "level": "A2.1",
+      "duration": 102
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A2_E8_L4_F36_hd.mp4",
+      "title": "Nicos Weg A2 · Folge 36: Ich bin Koch",
+      "level": "A2.1",
+      "duration": 145
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A2_E9_L2_F38_hd.mp4",
+      "title": "Nicos Weg A2 · Folge 38: Ich bin neu hier",
+      "level": "A2.1",
+      "duration": 99
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A2_E9_L1_F37_hd.mp4",
+      "title": "Nicos Weg A2 · Folge 37: Bei uns oder bei euch?",
+      "level": "A2.1",
+      "duration": 118
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A2_E9_L3_F39_hd.mp4",
+      "title": "Nicos Weg A2 · Folge 39: Mein Traumpartner",
+      "level": "A2.1",
+      "duration": 89
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A2_E9_L4_F40_hd.mp4",
+      "title": "Nicos Weg A2 · Folge 40: Alte und neue Freunde",
+      "level": "A2.1",
+      "duration": 112
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A2_E10_L1_F41_hd.mp4",
+      "title": "Nicos Weg A2 · Folge 41: Stadt oder Land?",
+      "level": "A2.2",
+      "duration": 93
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A2_E10_L2_F42_hd.mp4",
+      "title": "Nicos Weg A2 · Folge 42: Auf Wohnungssuche",
+      "level": "A2.2",
+      "duration": 103
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A2_E10_L3_F43_hd.mp4",
+      "title": "Nicos Weg A2 · Folge 43: Der Umzug",
+      "level": "A2.2",
+      "duration": 84
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A2_E10_L4_F44_hd.mp4",
+      "title": "Nicos Weg A2 · Folge 44: Unfälle im Haushalt",
+      "level": "A2.2",
+      "duration": 76
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A2_E11_L1_F45_hd.mp4",
+      "title": "Nicos Weg A2 · Folge 45: Das Leben heute und damals",
+      "level": "A2.2",
+      "duration": 118
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A2_E11_L2_F46_hd.mp4",
+      "title": "Nicos Weg A2 · Folge 46: Alles anders?",
+      "level": "A2.2",
+      "duration": 124
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A2_E11_L3_F47_hd.mp4",
+      "title": "Nicos Weg A2 · Folge 47: Frauensache?",
+      "level": "A2.2",
+      "duration": 109
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A2_E11_L4_F48_hd.mp4",
+      "title": "Nicos Weg A2 · Folge 48: Damals",
+      "level": "A2.2",
+      "duration": 118
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A2_E12_L1_F49_hd.mp4",
+      "title": "Nicos Weg A2 · Folge 49: Berufswahl",
+      "level": "A2.2",
+      "duration": 132
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A2_E12_L2_F50_hd.mp4",
+      "title": "Nicos Weg A2 · Folge 50: Bewerbung",
+      "level": "A2.2",
+      "duration": 107
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A2_E12_L3_F51_hd.mp4",
+      "title": "Nicos Weg A2 · Folge 51: Ist die Stelle noch frei?",
+      "level": "A2.2",
+      "duration": 111
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A2_E12_L4_F52_hd.mp4",
+      "title": "Nicos Weg A2 · Folge 52: Bewerbungsgespräch",
+      "level": "A2.2",
+      "duration": 89
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A2_E13_L1_F53_hd.mp4",
+      "title": "Nicos Weg A2 · Folge 53: Kulturkalender",
+      "level": "A2.2",
+      "duration": 85
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A2_E13_L2_F54_hd.mp4",
+      "title": "Nicos Weg A2 · Folge 54: Eine Stadtbesichtigung",
+      "level": "A2.2",
+      "duration": 88
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A2_E13_L3_F55_hd.mp4",
+      "title": "Nicos Weg A2 · Folge 55: Ein Bürger dieser Stadt",
+      "level": "A2.2",
+      "duration": 76
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A2_E13_L4_F56_hd.mp4",
+      "title": "Nicos Weg A2 · Folge 56: Theater und Konzerte",
+      "level": "A2.2",
+      "duration": 96
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A2_E14_L1_F57_hd.mp4",
+      "title": "Nicos Weg A2 · Folge 57: Feste und Feiertage",
+      "level": "A2.2",
+      "duration": 118
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A2_E14_L2_F58_hd.mp4",
+      "title": "Nicos Weg A2 · Folge 58: Ein Jahr – viele Feste",
+      "level": "A2.2",
+      "duration": 66
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A2_E14_L3_F59_hd.mp4",
+      "title": "Nicos Weg A2 · Folge 59: Was passiert, wenn …?",
+      "level": "A2.2",
+      "duration": 74
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A2_E14_L4_F60_hd.mp4",
+      "title": "Nicos Weg A2 · Folge 60: So feiern wir!",
+      "level": "A2.2",
+      "duration": 84
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A2_E15_L1_F61_hd.mp4",
+      "title": "Nicos Weg A2 · Folge 61: Herzlichen Glückwunsch!",
+      "level": "A2.2",
+      "duration": 136
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A2_E15_L2_F62_hd.mp4",
+      "title": "Nicos Weg A2 · Folge 62: Passende Geschenke",
+      "level": "A2.2",
+      "duration": 78
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A2_E15_L3_F63_hd.mp4",
+      "title": "Nicos Weg A2 · Folge 63: Was sollen wir schenken?",
+      "level": "A2.2",
+      "duration": 75
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A2_E15_L4_F64_hd.mp4",
+      "title": "Nicos Weg A2 · Folge 64: Lieblingsfeste",
+      "level": "A2.2",
+      "duration": 126
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A2_E16_L1_F65_hd.mp4",
+      "title": "Nicos Weg A2 · Folge 65: Ein Praktikum beim Film",
+      "level": "A2.2",
+      "duration": 105
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A2_E16_L2_F66_hd.mp4",
+      "title": "Nicos Weg A2 · Folge 66: Der Film war toll!",
+      "level": "A2.2",
+      "duration": 69
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A2_E16_L3_F67_hd.mp4",
+      "title": "Nicos Weg A2 · Folge 67: Im Filmstudio",
+      "level": "A2.2",
+      "duration": 94
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A2_E16_L4_F68_hd.mp4",
+      "title": "Nicos Weg A2 · Folge 68: Ich bin Schauspieler",
+      "level": "A2.2",
+      "duration": 80
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A2_E17_L1_F69_hd.mp4",
+      "title": "Nicos Weg A2 · Folge 69: Einfach super!",
+      "level": "A2.2",
+      "duration": 106
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A2_E17_L2_F70_hd.mp4",
+      "title": "Nicos Weg A2 · Folge 70: Das regt mich auf!",
+      "level": "A2.2",
+      "duration": 99
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A2_E17_L3_F71_hd.mp4",
+      "title": "Nicos Weg A2 · Folge 71: Meiner Meinung nach",
+      "level": "A2.2",
+      "duration": 85
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A2_E17_L4_F72_hd.mp4",
+      "title": "Nicos Weg A2 · Folge 72: Ich bin Fußballfan",
+      "level": "A2.2",
+      "duration": 77
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A2_E18_L1_F73_hd.mp4",
+      "title": "Nicos Weg A2 · Folge 73: Praktisch!",
+      "level": "A2.2",
+      "duration": 86
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A2_E18_L2_F74_hd.mp4",
+      "title": "Nicos Weg A2 · Folge 74: Das funktioniert so!",
+      "level": "A2.2",
+      "duration": 83
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A2_E18_L3_F75_hd.mp4",
+      "title": "Nicos Weg A2 · Folge 75: Das brauche ich!",
+      "level": "A2.2",
+      "duration": 89
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/A2_E18_L4_F76_hd.mp4",
+      "title": "Nicos Weg A2 · Folge 76: Wer hat’s erfunden?",
+      "level": "A2.2",
+      "duration": 126
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/B1_E1_L2_F6_sd.mp4",
+      "title": "Nicos Weg B1 · Folge 6: Keine Zeit",
+      "level": "B1.1",
+      "duration": 104
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/B1_E0_L2_F2_sd.mp4",
+      "title": "Nicos Weg B1 · Folge 2: Meine Muttersprache",
+      "level": "B1.1",
+      "duration": 90
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/B1_E0_L3_F3_sd.mp4",
+      "title": "Nicos Weg B1 · Folge 3: Bei der Arbeit",
+      "level": "B1.1",
+      "duration": 113
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/B1_E0_L4_F4_sd.mp4",
+      "title": "Nicos Weg B1 · Folge 4: Zukunftspläne",
+      "level": "B1.1",
+      "duration": 117
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/B1_E1_L1_F5_sd.mp4",
+      "title": "Nicos Weg B1 · Folge 5: Zu wenig Zeit?",
+      "level": "B1.1",
+      "duration": 85
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/B1_E1_L3_F7_sd.mp4",
+      "title": "Nicos Weg B1 · Folge 7: Pünktlichkeit",
+      "level": "B1.1",
+      "duration": 104
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/B1_E1_L4_F8_sd.mp4",
+      "title": "Nicos Weg B1 · Folge 8: Jetzt oder nie",
+      "level": "B1.1",
+      "duration": 70
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/B1_E2_L1_F9_sd.mp4",
+      "title": "Nicos Weg B1 · Folge 9: Heimat",
+      "level": "B1.1",
+      "duration": 86
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/B1_E2_L2_F10_sd.mp4",
+      "title": "Nicos Weg B1 · Folge 10: Krieg und Frieden",
+      "level": "B1.1",
+      "duration": 108
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/B1_E2_L3_F11_sd.mp4",
+      "title": "Nicos Weg B1 · Folge 11: Die Mauer",
+      "level": "B1.1",
+      "duration": 103
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/B1_E2_L4_F12_sd.mp4",
+      "title": "Nicos Weg B1 · Folge 12: Wiedervereinigung",
+      "level": "B1.1",
+      "duration": 88
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/B1_E3_L1_F13_sd.mp4",
+      "title": "Nicos Weg B1 · Folge 13: Alltagsprobleme",
+      "level": "B1.1",
+      "duration": 94
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/B1_E3_L2_F14_sd.mp4",
+      "title": "Nicos Weg B1 · Folge 14: Geldprobleme",
+      "level": "B1.1",
+      "duration": 111
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/B1_E3_L3_F15_sd.mp4",
+      "title": "Nicos Weg B1 · Folge 15: Tipps und Ratschläge",
+      "level": "B1.1",
+      "duration": 81
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/B1_E3_L4_F16_sd.mp4",
+      "title": "Nicos Weg B1 · Folge 16: Alle haben Probleme",
+      "level": "B1.1",
+      "duration": 101
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/B1_E4_L1_F17_sd.mp4",
+      "title": "Nicos Weg B1 · Folge 17: Jobsuche",
+      "level": "B1.1",
+      "duration": 89
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/B1_E4_L2_F18_sd.mp4",
+      "title": "Nicos Weg B1 · Folge 18: Stellenanzeigen",
+      "level": "B1.1",
+      "duration": 97
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/B1_E4_L3_F19_sd.mp4",
+      "title": "Nicos Weg B1 · Folge 19: Bewerbungen",
+      "level": "B1.1",
+      "duration": 125
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/B1_E4_L4_F20_sd.mp4",
+      "title": "Nicos Weg B1 · Folge 20: Der erste Eindruck",
+      "level": "B1.1",
+      "duration": 117
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/B1_E5_L1_F21_sd.mp4",
+      "title": "Nicos Weg B1 · Folge 21: Typisch?",
+      "level": "B1.1",
+      "duration": 102
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/B1_E5_L2_F22_sd.mp4",
+      "title": "Nicos Weg B1 · Folge 22: Anders!",
+      "level": "B1.1",
+      "duration": 80
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/B1_E5_L3_F23_sd.mp4",
+      "title": "Nicos Weg B1 · Folge 23: Jobs und Gender",
+      "level": "B1.1",
+      "duration": 119
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/B1_E5_L4_F24_sd.mp4",
+      "title": "Nicos Weg B1 · Folge 24: Rollenverteilung",
+      "level": "B1.1",
+      "duration": 93
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/B1_E6_L1_F25_sd.mp4",
+      "title": "Nicos Weg B1 · Folge 25: Partnersuche",
+      "level": "B1.1",
+      "duration": 152
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/B1_E6_L2_F26_sd.mp4",
+      "title": "Nicos Weg B1 · Folge 26: Partnerschaft",
+      "level": "B1.1",
+      "duration": 111
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/B1_E6_L3_F27_sd.mp4",
+      "title": "Nicos Weg B1 · Folge 27: Männer und Frauen",
+      "level": "B1.1",
+      "duration": 110
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/B1_E6_L4_F28_sd.mp4",
+      "title": "Nicos Weg B1 · Folge 28: Beziehungsprobleme",
+      "level": "B1.1",
+      "duration": 110
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/B1_E7_L1_F29_sd.mp4",
+      "title": "Nicos Weg B1 · Folge 29: Mein Arbeitsplatz",
+      "level": "B1.1",
+      "duration": 82
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/B1_E7_L2_F30_sd.mp4",
+      "title": "Nicos Weg B1 · Folge 30: Mein Gehalt?",
+      "level": "B1.1",
+      "duration": 81
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/B1_E7_L3_F31_sd.mp4",
+      "title": "Nicos Weg B1 · Folge 31: 112",
+      "level": "B1.1",
+      "duration": 50
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/B1_E7_L4_F32_sd.mp4",
+      "title": "Nicos Weg B1 · Folge 32: Gut versichert",
+      "level": "B1.1",
+      "duration": 78
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/B1_E8_L1_F33_sd.mp4",
+      "title": "Nicos Weg B1 · Folge 33: Schule",
+      "level": "B1.1",
+      "duration": 84
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/B1_E8_L2_F34_sd.mp4",
+      "title": "Nicos Weg B1 · Folge 34: Schulalltag",
+      "level": "B1.1",
+      "duration": 89
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/B1_E8_L3_F35_sd.mp4",
+      "title": "Nicos Weg B1 · Folge 35: Lernen",
+      "level": "B1.1",
+      "duration": 67
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/B1_E8_L4_F36_sd.mp4",
+      "title": "Nicos Weg B1 · Folge 36: Berufe an der Schule",
+      "level": "B1.1",
+      "duration": 77
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/B1_E9_L1_F37_sd.mp4",
+      "title": "Nicos Weg B1 · Folge 37: Die Berufswahl",
+      "level": "B1.1",
+      "duration": 88
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/B1_E9_L2_F38_sd.mp4",
+      "title": "Nicos Weg B1 · Folge 38: Weiterbildung",
+      "level": "B1.1",
+      "duration": 90
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/B1_E9_L3_F39_sd.mp4",
+      "title": "Nicos Weg B1 · Folge 39: Praktikum",
+      "level": "B1.1",
+      "duration": 77
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/B1_E9_L4_F40_sd.mp4",
+      "title": "Nicos Weg B1 · Folge 40: Studium und Beruf",
+      "level": "B1.1",
+      "duration": 98
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/B1_E10_L1_F41_sd.mp4",
+      "title": "Nicos Weg B1 · Folge 41: Wetter und Klima",
+      "level": "B1.2",
+      "duration": 80
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/B1_E10_L2_F42_sd.mp4",
+      "title": "Nicos Weg B1 · Folge 42: Wieder so ein Wetter",
+      "level": "B1.2",
+      "duration": 101
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/B1_E10_L3_F43_sd.mp4",
+      "title": "Nicos Weg B1 · Folge 43: Wegen des Wetters",
+      "level": "B1.2",
+      "duration": 83
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/B1_E10_L4_F44_sd.mp4",
+      "title": "Nicos Weg B1 · Folge 44: Es wird wärmer",
+      "level": "B1.2",
+      "duration": 75
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/B1_E11_L1_F45_sd.mp4",
+      "title": "Nicos Weg B1 · Folge 45: Mensch und Umwelt",
+      "level": "B1.2",
+      "duration": 134
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/B1_E11_L2_F46_sd.mp4",
+      "title": "Nicos Weg B1 · Folge 46: Umweltbelastungen",
+      "level": "B1.2",
+      "duration": 62
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/B1_E11_L3_F47_sd.mp4",
+      "title": "Nicos Weg B1 · Folge 47: Umweltschutz",
+      "level": "B1.2",
+      "duration": 105
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/B1_E11_L4_F48_sd.mp4",
+      "title": "Nicos Weg B1 · Folge 48: Wertstoffe",
+      "level": "B1.2",
+      "duration": 56
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/B1_E12_L1_F49_sd.mp4",
+      "title": "Nicos Weg B1 · Folge 49: In der Zeitung steht",
+      "level": "B1.2",
+      "duration": 109
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/B1_E12_L2_F50_sd.mp4",
+      "title": "Nicos Weg B1 · Folge 50: In der Redaktion",
+      "level": "B1.2",
+      "duration": 77
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/B1_E12_L3_F51_sd.mp4",
+      "title": "Nicos Weg B1 · Folge 51: Analog oder digital?",
+      "level": "B1.2",
+      "duration": 103
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/B1_E12_L4_F52_sd.mp4",
+      "title": "Nicos Weg B1 · Folge 52: Kontaktanzeigen",
+      "level": "B1.2",
+      "duration": 114
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/B1_E13_L1_F53_sd.mp4",
+      "title": "Nicos Weg B1 · Folge 53: Peinlich?!",
+      "level": "B1.2",
+      "duration": 65
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/B1_E13_L2_F54_sd.mp4",
+      "title": "Nicos Weg B1 · Folge 54: Richtiges Benehmen",
+      "level": "B1.2",
+      "duration": 72
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/B1_E13_L3_F55_sd.mp4",
+      "title": "Nicos Weg B1 · Folge 55: Benimmregeln",
+      "level": "B1.2",
+      "duration": 121
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/B1_E13_L4_F56_sd.mp4",
+      "title": "Nicos Weg B1 · Folge 56: Was tun, wenn …?",
+      "level": "B1.2",
+      "duration": 86
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/B1_E14_L1_F57_sd.mp4",
+      "title": "Nicos Weg B1 · Folge 57: Endlich erwachsen",
+      "level": "B1.2",
+      "duration": 84
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/B1_E14_L2_F58_sd.mp4",
+      "title": "Nicos Weg B1 · Folge 58: Was Eltern erwarten",
+      "level": "B1.2",
+      "duration": 98
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/B1_E14_L3_F59_sd.mp4",
+      "title": "Nicos Weg B1 · Folge 59: Lebenswege",
+      "level": "B1.2",
+      "duration": 113
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/B1_E14_L4_F60_sd.mp4",
+      "title": "Nicos Weg B1 · Folge 60: Noch mal anfangen",
+      "level": "B1.2",
+      "duration": 108
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/B1_E15_L1_F61_sd.mp4",
+      "title": "Nicos Weg B1 · Folge 61: Bund und Länder",
+      "level": "B1.2",
+      "duration": 85
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/B1_E15_L2_F62_sd.mp4",
+      "title": "Nicos Weg B1 · Folge 62: Die EU",
+      "level": "B1.2",
+      "duration": 84
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/B1_E15_L3_F63_sd.mp4",
+      "title": "Nicos Weg B1 · Folge 63: Gerechtigkeit?",
+      "level": "B1.2",
+      "duration": 104
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/B1_E15_L4_F64_sd.mp4",
+      "title": "Nicos Weg B1 · Folge 64: Wir haben die Wahl",
+      "level": "B1.2",
+      "duration": 105
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/B1_E16_L1_F65_sd.mp4",
+      "title": "Nicos Weg B1 · Folge 65: Das Ruhrgebiet",
+      "level": "B1.2",
+      "duration": 112
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/B1_E16_L2_F66_sd.mp4",
+      "title": "Nicos Weg B1 · Folge 66: Industrie",
+      "level": "B1.2",
+      "duration": 107
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/B1_E16_L3_F67_sd.mp4",
+      "title": "Nicos Weg B1 · Folge 67: Strukturwandel",
+      "level": "B1.2",
+      "duration": 132
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/B1_E16_L4_F68_sd.mp4",
+      "title": "Nicos Weg B1 · Folge 68: Kultur",
+      "level": "B1.2",
+      "duration": 85
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/B1_E17_L1_F69_sd.mp4",
+      "title": "Nicos Weg B1 · Folge 69: Nach Deutschland",
+      "level": "B1.2",
+      "duration": 108
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/B1_E17_L2_F70_sd.mp4",
+      "title": "Nicos Weg B1 · Folge 70: Migrationsgründe",
+      "level": "B1.2",
+      "duration": 54
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/B1_E17_L3_F71_sd.mp4",
+      "title": "Nicos Weg B1 · Folge 71: Hin und zurück?",
+      "level": "B1.2",
+      "duration": 111
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/B1_E17_L4_F72_sd.mp4",
+      "title": "Nicos Weg B1 · Folge 72: Existenzgründung",
+      "level": "B1.2",
+      "duration": 103
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/B1_E18_L1_F73_sd.mp4",
+      "title": "Nicos Weg B1 · Folge 73: Neue Heimat",
+      "level": "B1.2",
+      "duration": 109
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/B1_E18_L2_F74_sd.mp4",
+      "title": "Nicos Weg B1 · Folge 74: So geht’s!",
+      "level": "B1.2",
+      "duration": 117
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/B1_E18_L3_F75_sd.mp4",
+      "title": "Nicos Weg B1 · Folge 75: Zukunftspläne",
+      "level": "B1.2",
+      "duration": 76
+    },
+    {
+      "src_url": "https://tvdownloaddw-a.akamaihd.net/Events/mp4/nicosweg/B1_E18_L4_F76_sd.mp4",
+      "title": "Nicos Weg B1 · Folge 76: Wünsche und Träume",
+      "level": "B1.2",
+      "duration": 208
     },
     {
       "youtube_id": "4-eDoThe6qo",
@@ -142,12 +1427,6 @@
       "youtube_id": "oT9pMWCHNuU",
       "title": "Nicos Weg · Rückblick A1 & A2",
       "level": "A2.2"
-    },
-    {
-      "youtube_id": "3P7t_K9vH4g",
-      "title": "Nicos Weg B1 · Folge 11: Die Mauer",
-      "level": "B1.1",
-      "why": "The one B1 episode whose id surfaced without the consent wall. Kept because the Wall is worth a lesson."
     }
   ]
 }

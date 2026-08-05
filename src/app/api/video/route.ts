@@ -69,7 +69,8 @@ export async function POST(req: Request) {
 
   const body = (await req.json()) as {
     id?: string;
-    youtubeId: string;
+    youtubeId?: string;
+    srcUrl?: string | null;
     title: string;
     level: string;
     channel?: string;
@@ -77,11 +78,25 @@ export async function POST(req: Request) {
     segments: Segment[];
   };
 
-  if (!body.youtubeId || !body.title) {
-    return NextResponse.json({ error: "youtubeId and title required" }, { status: 400 });
+  /* Either source is fine, but one of them has to be there — a row with
+     neither is a title with nothing behind it, which renders as an empty
+     black box inside a lesson. */
+  const src = (body.srcUrl ?? "").trim();
+  if (src && !/^https:\/\/\S+$/i.test(src)) {
+    return NextResponse.json({ error: "srcUrl must be an https url" }, { status: 400 });
+  }
+  if ((!body.youtubeId && !src) || !body.title) {
+    return NextResponse.json(
+      { error: "a youtubeId or srcUrl, plus a title, are required" },
+      { status: 400 },
+    );
   }
 
-  const id = body.id || `v-${body.youtubeId}`;
+  /* Same id shape the seeder uses, so marking up a DW episode by hand updates
+     that row rather than creating a second one beside it. */
+  const id =
+    body.id ||
+    (src ? `dw-${src.split("/").pop()!.replace(/\.mp4$/i, "")}` : `yt-${body.youtubeId}`);
   const clean = (body.segments ?? [])
     .filter((s) => s.de?.trim() && s.t_end > s.t_start)
     .sort((a, b) => a.t_start - b.t_start)
@@ -93,13 +108,15 @@ export async function POST(req: Request) {
     }));
 
   run(
-    `INSERT INTO video (id, youtube_id, title, level, channel, unit_id, segments_json)
-     VALUES (?, ?, ?, ?, ?, ?, ?)
+    `INSERT INTO video (id, youtube_id, src_url, title, level, channel, unit_id, segments_json)
+     VALUES (?, ?, ?, ?, ?, ?, ?, ?)
      ON CONFLICT(id) DO UPDATE SET
-       youtube_id=excluded.youtube_id, title=excluded.title, level=excluded.level,
+       youtube_id=excluded.youtube_id, src_url=excluded.src_url,
+       title=excluded.title, level=excluded.level,
        channel=excluded.channel, unit_id=excluded.unit_id, segments_json=excluded.segments_json`,
     id,
-    body.youtubeId,
+    body.youtubeId ?? "",
+    src || null,
     body.title,
     body.level,
     body.channel ?? null,

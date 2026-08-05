@@ -1,30 +1,36 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { loadYouTubeApi, type YTPlayer } from "@/lib/youtube";
+import { mount, sourceOf, type Playable } from "@/lib/player";
 import { Card, Eyebrow, SkipLink, type BlockProps } from "./shared";
 
 type Segment = { t_start: number; t_end: number; de: string; en: string };
 type Payload = {
   id: string;
   youtubeId: string;
+  /** Direct mp4 from Deutsche Welle. Wins over youtubeId when present. */
+  srcUrl?: string | null;
   title: string;
   channel: string | null;
   segments: Segment[];
 };
 
 /**
- * Video via the YouTube IFrame Player API.
+ * Video, from whichever source the row carries.
  *
- * Embedding is the legitimate path and also the better one: it's what lets us
- * seek, loop a single sentence and change rate from our own code — which is
- * the entire feature. Nothing is ever downloaded or re-hosted.
+ * Most of the course is Deutsche Welle's "Nicos Weg" served as mp4s from DW's
+ * own CDN, which means a plain <video> element and no third-party script on the
+ * page. A few extras are YouTube embeds. lib/player.ts hides the difference —
+ * everything below drives the same six operations either way.
+ *
+ * Seeking, looping one sentence and changing rate from our own code is the
+ * entire feature; nothing is downloaded or re-hosted in either case.
  */
 const SPEEDS = [0.75, 1];
 
 export default function VideoBlock({ payload, onDone, onSkip }: BlockProps<Payload>) {
   const holder = useRef<HTMLDivElement>(null);
-  const player = useRef<YTPlayer | null>(null);
+  const player = useRef<Playable | null>(null);
   const loopUntil = useRef<number | null>(null);
   const [ready, setReady] = useState(false);
   const [active, setActive] = useState<number | null>(null);
@@ -36,31 +42,37 @@ export default function VideoBlock({ payload, onDone, onSkip }: BlockProps<Paylo
   // would restart the playback-tracking interval on each one.
   const segments = useMemo(() => payload.segments ?? [], [payload.segments]);
 
+  const source = useMemo(
+    () => sourceOf({ youtube_id: payload.youtubeId, src_url: payload.srcUrl }),
+    [payload.youtubeId, payload.srcUrl],
+  );
+
   useEffect(() => {
     let dead = false;
-    void loadYouTubeApi().then(() => {
-      if (dead || !holder.current || !window.YT) return;
-      player.current = new window.YT.Player(holder.current, {
-        videoId: payload.youtubeId,
-        playerVars: { rel: 0, modestbranding: 1, cc_lang_pref: "de" },
-        events: { onReady: () => setReady(true) },
-      });
+    if (!holder.current || !source) return;
+    void mount(holder.current, source, () => {
+      if (!dead) setReady(true);
+    }).then((p) => {
+      // Mounting the YouTube API is async; the block can be gone by then.
+      if (dead) p?.destroy();
+      else player.current = p;
     });
     return () => {
       dead = true;
       player.current?.destroy();
       player.current = null;
+      setReady(false);
     };
-  }, [payload.youtubeId]);
+  }, [source]);
 
   useEffect(() => {
     if (!ready) return;
     const id = setInterval(() => {
       const p = player.current;
       if (!p) return;
-      const t = p.getCurrentTime();
+      const t = p.currentTime();
       if (loopUntil.current !== null && t >= loopUntil.current) {
-        p.pauseVideo();
+        p.pause();
         loopUntil.current = null;
         return;
       }
@@ -75,8 +87,8 @@ export default function VideoBlock({ payload, onDone, onSkip }: BlockProps<Paylo
     if (!p) return;
     setActive(i);
     loopUntil.current = s.t_end;
-    p.seekTo(s.t_start, true);
-    p.playVideo();
+    p.seek(s.t_start);
+    p.play();
   }, []);
 
   async function lookup(raw: string) {
@@ -113,7 +125,7 @@ export default function VideoBlock({ payload, onDone, onSkip }: BlockProps<Paylo
                     key={s}
                     onClick={() => {
                       setSpeed(s);
-                      player.current?.setPlaybackRate(s);
+                      player.current?.rate(s);
                     }}
                     className={`font-mono rounded-full px-3 py-1 text-[11.5px] transition-colors ${
                       speed === s ? "bg-line-strong text-fg" : "text-muted hover:bg-raised"

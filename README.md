@@ -552,10 +552,11 @@ offline tier depends on them.
   see `public/audio/ATTRIBUTION.md`.
 - **News** — Deutsche Welle, streamed from their public feed. Nothing copied or
   stored.
-- **Video** — Deutsche Welle, *Nicos Weg*, embedded via the standard YouTube
-  player. Nothing downloaded, no captions scraped; the video is served by
-  YouTube on their terms and the transcripts in `segments_json` are typed by
-  whoever marked the video up.
+- **Video** — Deutsche Welle, *Nicos Weg*, streamed from DW's own CDN via the
+  three official video podcast feeds, the same way a podcast client would.
+  Nothing is downloaded or re-hosted and no captions are scraped; the
+  transcripts in `segments_json` are typed by whoever marked the video up. A few
+  extras that are not in the podcasts stay as YouTube embeds.
 - **Scheduling** — [ts-fsrs](https://github.com/open-spaced-repetition/ts-fsrs), MIT.
 
 Practice tests are built from this app's own content. They are **not** the
@@ -566,31 +567,33 @@ the [Goethe-Institut](https://www.goethe.de/de/spr/kup/prf.html).
 
 ## Known gaps
 
-- **Videos are chosen but not yet segmented.** Twenty Deutsche Welle *Nicos Weg*
-  episodes are in `data/videos.json`, verified and seeded; six are linked to the
-  unit their title matches. **None has segments, so the video block still never
-  appears** — that is correct, not broken: an unsegmented embed is a YouTube
-  link, not a lesson, and `session.ts` will not offer one.
+- **All 231 videos are in; none is segmented yet.** The complete Deutsche Welle
+  *Nicos Weg* course — 226 episodes across A1, A2 and B1 — plus 5 YouTube extras
+  DW does not publish in its podcasts. Six are linked to the unit their title
+  matches. **None has segments, so the video block still never appears** — that
+  is correct, not broken: an unsegmented video is a file, not a lesson, and
+  `session.ts` will not offer one.
 
   The remaining work is deliberately human. A segment is a timestamp plus the
   line actually spoken, and the only way to know the line is to listen to it —
   generated "transcripts" would be subtitles that disagree with the audio, which
-  is worse than no video because a learner would believe them. Typing them by
-  hand also keeps the app to embedding rather than scraping captions. Roughly
-  ten minutes each, at `/admin/video` with `DEUTSCHMATE_ADMIN=1`, which now
-  shows a work queue: unsegmented first, in episode order, with the unit each
-  belongs to.
+  is worse than no video because a learner would believe them. Roughly ten
+  minutes each at `/admin/video` with `DEUTSCHMATE_ADMIN=1`, which shows a work
+  queue: unsegmented first, in episode order, with the unit each belongs to.
 
   ```bash
-  npm run videos                          # verify every id, then seed
-  npm run videos -- --check               # verify only, write nothing
-  npm run videos -- --from-playlist <ID>  # append more from a DW playlist
+  npm run videos                # verify the catalogue, then seed
+  npm run videos -- --check     # verify only, write nothing
+  npm run videos -- --refresh   # re-pull DW's feeds, rewrite the catalogue
+  npm run videos -- --prune     # drop db rows the catalogue dropped —
+                                # only ones with no segments, never your work
   ```
 
-  Coverage stops at A1 episode 14 of ~76. YouTube's playlist pages redirect to a
-  consent banner, and its RSS feeds return only the newest 15 entries per
-  playlist — so the rest need either more playlist ids or pasting them in by
-  hand.
+  Unit assignment is also left to a person. DW's "Einheit" is DW's course
+  structure, not this app's twenty-units-per-level one, and mapping 226 episodes
+  onto 120 units by arithmetic would put the wrong video in a lesson silently.
+  Level is set, which is what the queue sorts by; the unit is chosen while
+  watching, which is when you are segmenting it anyway.
 - **Speech recognition needs Chrome, Edge or Safari.** Firefox has never shipped
   the Web Speech API. Speaking and voice mode degrade to listen-and-repeat there
   and say which browsers work. This is feature-detected, so the day Firefox

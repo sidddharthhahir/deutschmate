@@ -82,9 +82,20 @@ CREATE TABLE IF NOT EXISTS unit (
 );
 CREATE UNIQUE INDEX IF NOT EXISTS idx_unit_level_ord ON unit(level, ord);
 
+/* A video is either a YouTube embed or a direct media file.
+   The course videos are Deutsche Welle's "Nicos Weg", and DW publishes all 226
+   episodes as mp4s on their own CDN through an official podcast feed — YouTube
+   only exposed 14 of them without a consent wall. So src_url is the main path
+   now and youtube_id is kept for the handful DW does not put in the feed (the
+   full-length films, the Rückblick recaps).
+   youtube_id is '' rather than NULL for a file-backed row: the column is NOT
+   NULL and was there first, and rewriting a table to relax that is not worth
+   it. lib/player.ts decides which to use. */
 CREATE TABLE IF NOT EXISTS video (
   id            TEXT PRIMARY KEY,
   youtube_id    TEXT NOT NULL,
+  src_url       TEXT,                       -- direct mp4; wins over youtube_id
+  duration      INTEGER,                    -- seconds, from the feed
   title         TEXT NOT NULL,
   level         TEXT NOT NULL,
   channel       TEXT,

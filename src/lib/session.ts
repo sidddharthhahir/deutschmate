@@ -607,13 +607,17 @@ export function buildSession(
     ? get<{
         id: string;
         youtube_id: string;
+        src_url: string | null;
         title: string;
         channel: string | null;
         segments_json: string;
-      }>("SELECT id, youtube_id, title, channel, segments_json FROM video WHERE id = ?", unit.video_id)
+      }>(
+        "SELECT id, youtube_id, src_url, title, channel, segments_json FROM video WHERE id = ?",
+        unit.video_id,
+      )
     : undefined;
   // Only offer a video once it actually has hand-marked segments — an
-  // unsegmented embed is just a YouTube link, not a lesson.
+  // unsegmented file or embed is a video, not a lesson.
   const videoReady = Boolean(
     video && (JSON.parse(video.segments_json) as unknown[]).length > 0,
   );
@@ -650,6 +654,7 @@ export function buildSession(
       payload: {
         id: video!.id,
         youtubeId: video!.youtube_id,
+        srcUrl: video!.src_url,
         title: video!.title,
         channel: video!.channel,
         segments: JSON.parse(video!.segments_json),

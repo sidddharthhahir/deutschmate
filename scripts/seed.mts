@@ -365,7 +365,8 @@ if (existsSync(SENTENCE_FILE)) {
 
 // ---------------------------------------------------------------- videos
 type RawVideo = {
-  id: string; youtube_id: string; title: string; level: string;
+  id: string; youtube_id: string; src_url: string | null; duration: number | null;
+  title: string; level: string;
   channel: string; unit_id: string | null; segments: unknown[];
 };
 const videoPath = path.join(ROOT, "data/videos.json");
@@ -379,12 +380,24 @@ if (existsSync(videoPath)) {
     Array.isArray(parsed) ? parsed : ((parsed as { videos?: unknown[] }).videos ?? [])
   ) as Partial<RawVideo>[];
 
+  /* A video is a direct mp4 (Deutsche Welle's CDN, the main source) OR a
+     YouTube id (the handful DW does not publish in its podcasts). Filtering on
+     an 11-character youtube_id dropped all 226 DW episodes on the floor and
+     left a fresh clone with five videos — the shape of the catalogue changed
+     and this did not. Ids match scripts/videos.mts so the two agree about which
+     row is which. */
   const videos: RawVideo[] = raw
-    .filter((v) => typeof v.youtube_id === "string" && v.youtube_id.length === 11)
+    .filter((v) => Boolean(v.src_url) || (typeof v.youtube_id === "string" && v.youtube_id.length === 11))
     .map((v) => ({
-      id: v.id ?? `dw-${v.youtube_id}`,
-      youtube_id: v.youtube_id!,
-      title: v.title ?? v.youtube_id!,
+      id:
+        v.id ??
+        (v.src_url
+          ? `dw-${v.src_url.split("/").pop()!.replace(/\.mp4$/i, "")}`
+          : `yt-${v.youtube_id}`),
+      youtube_id: v.youtube_id ?? "",
+      src_url: v.src_url ?? null,
+      duration: v.duration ?? null,
+      title: v.title ?? v.youtube_id ?? "—",
       level: v.level ?? "A1.1",
       channel: v.channel ?? "Deutsche Welle",
       unit_id: v.unit_id ?? null,
@@ -406,17 +419,18 @@ if (existsSync(videoPath)) {
    * committing marked-up videos to the repo later.
    */
   const upV = db.prepare(`
-    INSERT INTO video (id, youtube_id, title, level, channel, unit_id, segments_json)
-    VALUES (?, ?, ?, ?, ?, ?, ?)
+    INSERT INTO video (id, youtube_id, src_url, duration, title, level, channel, unit_id, segments_json)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
     ON CONFLICT(id) DO UPDATE SET
-      youtube_id=excluded.youtube_id, title=excluded.title, level=excluded.level,
+      youtube_id=excluded.youtube_id, src_url=excluded.src_url,
+      duration=excluded.duration, title=excluded.title, level=excluded.level,
       channel=excluded.channel, unit_id=excluded.unit_id,
       segments_json=CASE WHEN excluded.segments_json IN ('[]', '')
                          THEN video.segments_json ELSE excluded.segments_json END
   `);
   db.exec("BEGIN");
   for (const v of videos) {
-    upV.run(v.id, v.youtube_id, v.title, v.level, v.channel, v.unit_id,
+    upV.run(v.id, v.youtube_id, v.src_url, v.duration, v.title, v.level, v.channel, v.unit_id,
       JSON.stringify(v.segments ?? []));
     if (v.unit_id) db.prepare("UPDATE unit SET video_id = ? WHERE id = ?").run(v.id, v.unit_id);
   }

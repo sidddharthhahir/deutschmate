@@ -3,13 +3,15 @@
 import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { modalIsOpen } from "@/lib/keys";
-import { loadYouTubeApi, extractVideoId, PLAYING, type YTPlayer } from "@/lib/youtube";
+import { extractVideoId } from "@/lib/youtube";
+import { mount, sourceOf, type Playable, type Source } from "@/lib/player";
 
 type Segment = { t_start: number; t_end: number; de: string; en: string };
 type Unit = { id: string; ord: number; title: string; level: string };
 type Video = {
   id: string;
   youtube_id: string;
+  src_url: string | null;
   title: string;
   level: string;
   channel: string | null;
@@ -27,7 +29,7 @@ type Video = {
  */
 export default function VideoAdmin() {
   const holder = useRef<HTMLDivElement>(null);
-  const player = useRef<YTPlayer | null>(null);
+  const player = useRef<Playable | null>(null);
 
   const [videos, setVideos] = useState<Video[]>([]);
   const [units, setUnits] = useState<Unit[]>([]);
@@ -36,7 +38,8 @@ export default function VideoAdmin() {
   const [canWrite, setCanWrite] = useState(true);
 
   const [ytId, setYtId] = useState("");
-  const [loaded, setLoaded] = useState("");
+  /** What is on screen: a YouTube id or a DW mp4. Null when nothing is loaded. */
+  const [loaded, setLoaded] = useState<Source | null>(null);
   const [title, setTitle] = useState("");
   const [channel, setChannel] = useState("");
   const [level, setLevel] = useState("A1.1");
@@ -59,20 +62,49 @@ export default function VideoAdmin() {
       });
   }, []);
 
-  const load = useCallback(async (id: string) => {
-    const clean = extractVideoId(id);
-    if (!clean) return;
-    setLoaded(clean);
-    await loadYouTubeApi();
-    if (!holder.current || !window.YT) return;
-    player.current?.destroy();
-    player.current = new window.YT.Player(holder.current, {
-      videoId: clean,
-      playerVars: { rel: 0, modestbranding: 1 },
-    });
-  }, []);
+  /* Takes either kind. Typing a YouTube URL into the box still works — that is
+     how a video outside the DW catalogue gets added — but clicking a row in the
+     queue below usually hands over a DW mp4 instead. */
+  const load = useCallback((source: Source) => setLoaded(source), []);
 
-  const now = () => player.current?.getCurrentTime() ?? 0;
+  /*
+   * Mounting happens in an effect, not inside load().
+   *
+   * The player's container is rendered under `{loaded && …}`, so it does not
+   * exist until after the state change has painted. Doing it imperatively meant
+   * reading `holder.current` in the same tick it was set — null, silent return,
+   * no player. The old code got away with it only because it awaited the
+   * YouTube API first, which handed React a frame by accident; a <video>
+   * element needs no await and the accident stopped happening.
+   */
+  useEffect(() => {
+    if (!loaded || !holder.current) return;
+    let dead = false;
+    void mount(holder.current, loaded, () => {}).then((p) => {
+      if (dead) p?.destroy();
+      else player.current = p;
+    });
+    return () => {
+      dead = true;
+      player.current?.destroy();
+      player.current = null;
+    };
+  }, [loaded]);
+
+  const loadTyped = useCallback(
+    (raw: string) => {
+      const id = extractVideoId(raw);
+      if (id) return void load({ kind: "youtube", youtubeId: id });
+      /* Not a YouTube URL — accept a direct media URL, which is what makes
+         pasting a DW link work at all. */
+      if (/^https:\/\/\S+\.(mp4|webm|m4v)(\?|$)/i.test(raw.trim())) {
+        void load({ kind: "file", src: raw.trim() });
+      }
+    },
+    [load],
+  );
+
+  const now = () => player.current?.currentTime() ?? 0;
 
   /* Unsegmented first, then level, then title — with `numeric` so "Folge 2"
      comes before "Folge 10" instead of after "Folge 14". A queue you work
@@ -122,10 +154,10 @@ export default function VideoAdmin() {
         e.preventDefault();
         const p = player.current;
         if (!p) return;
-        // getCurrentTime() > 0 is not "is playing" — a paused video mid-way
-        // still reports a positive time. Ask the player for its actual state.
-        if (p.getPlayerState() === PLAYING) p.pauseVideo();
-        else p.playVideo();
+        // Ask the player whether it is playing; a positive currentTime only
+        // means the video is somewhere in the middle, paused or not.
+        if (p.playing()) p.pause();
+        else p.play();
       }
     }
     window.addEventListener("keydown", onKey);
@@ -137,7 +169,8 @@ export default function VideoAdmin() {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        youtubeId: loaded,
+        youtubeId: loaded?.kind === "youtube" ? loaded.youtubeId : "",
+        srcUrl: loaded?.kind === "file" ? loaded.src : null,
         title,
         level,
         channel,
@@ -161,13 +194,15 @@ export default function VideoAdmin() {
   }
 
   function edit(v: Video) {
-    setYtId(v.youtube_id);
+    const source = sourceOf(v);
+    if (!source) return; // a row with neither a file nor an id is not editable
+    setYtId(v.src_url ?? v.youtube_id);
     setTitle(v.title);
     setChannel(v.channel ?? "");
     setLevel(v.level);
     setUnitId(v.unit_id ?? "");
     setSegments(v.segments);
-    void load(v.youtube_id);
+    void load(source);
   }
 
   return (
@@ -210,7 +245,7 @@ export default function VideoAdmin() {
             className="flex-1 rounded-lg border border-neutral-800 bg-neutral-900 px-3 py-2 text-sm outline-none focus:border-neutral-600"
           />
           <button
-            onClick={() => void load(ytId)}
+            onClick={() => loadTyped(ytId)}
             className="rounded-lg bg-neutral-100 px-5 text-sm font-medium text-neutral-900"
           >
             Laden
@@ -308,8 +343,8 @@ export default function VideoAdmin() {
                   <div key={i} className="group flex gap-2 rounded-lg bg-neutral-900 px-3 py-2">
                     <button
                       onClick={() => {
-                        player.current?.seekTo(s.t_start, true);
-                        player.current?.playVideo();
+                        player.current?.seek(s.t_start);
+                        player.current?.play();
                       }}
                       className="font-mono text-[10px] text-neutral-600 hover:text-neutral-300"
                     >
