@@ -7,6 +7,9 @@ import { send } from "@/lib/outbox";
 import Noun, { ArticleWord } from "@/components/Article";
 import type { BlockProps } from "./shared";
 import { UNDO_MS } from "@/lib/config";
+/* Aliased: a card also has a `plural` field, and two different `plural`s in one
+   file is a reading trap even where TypeScript can tell them apart. */
+import { plural as pluralise } from "@/lib/plural";
 
 type DueCard = {
   cardId: number;
@@ -93,8 +96,16 @@ export default function ReviewBlock({ payload, onDone }: BlockProps<Payload>) {
   const done = total - queue.length;
   const card = queue[0];
 
-  // Minutes left, from cards remaining. This is the number people actually
-  // want ("how much longer"), which a segment rail alone never answers.
+  /*
+   * Minutes left IN THIS BLOCK, from cards remaining — the number people
+   * actually want, which a segment rail alone never answers.
+   *
+   * The label has to say which "longer" it means. This block takes the whole
+   * screen and replaces the session chrome, which shows "72 min übrig" for the
+   * whole session; landing here and reading "≈ 2 min übrig" in the same corner,
+   * in the same words, reads as the session having collapsed to two minutes.
+   * Both numbers were right and one of them was lying by placement.
+   */
   const minutesLeft = Math.max(1, Math.round((queue.length * 9) / 60));
 
   const play = useCallback(() => {
@@ -287,8 +298,11 @@ export default function ReviewBlock({ payload, onDone }: BlockProps<Payload>) {
               />
             </span>
           </div>
-          <span className="font-mono text-secondary w-[110px] text-right text-[12.5px] md:w-[160px]">
-            ≈ {minutesLeft} min übrig
+          {/* Wider than the old w-[110px] because the label now names what it
+              counts, and there is room: "Esc Beenden" opposite is hidden on
+              mobile. */}
+          <span className="font-mono text-secondary w-[136px] text-right text-[12.5px] md:w-[176px]">
+            {pluralise(queue.length, "Karte", "Karten")} · ≈ {minutesLeft} min
           </span>
         </div>
         {/* `gap` arrives on the payload of a Wiedereinstieg — the recovery
