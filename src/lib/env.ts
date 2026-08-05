@@ -23,7 +23,12 @@ import { secretsAvailable } from "./secrets.ts";
 import { anyStoredKeys } from "./apikey.ts";
 import { orphanedRows } from "./shared-cache.ts";
 import { get } from "./db.ts";
-import { from as mailFrom, mailReady, transport as mailTransport } from "./mail.ts";
+import {
+  from as mailFrom,
+  fromWillBeRewritten,
+  mailReady,
+  transport as mailTransport,
+} from "./mail.ts";
 
 export type Issue = { name: string; level: "error" | "warn"; message: string };
 
@@ -123,7 +128,17 @@ export function check(): Issue[] {
   const mail = mailReady();
   if (!mail.ok) {
     issues.push({ name: "DEUTSCHMATE_MAIL", level: "error", message: mail.why! });
-  } else if (mailTransport() !== "console" && url.startsWith("http://localhost")) {
+  }
+
+  /* Separate checks, not an else-if chain: a Gmail From mismatch and links
+     pointing at localhost are unrelated, and reporting only the first would
+     send somebody to fix one and hit the other. */
+  const rewritten = fromWillBeRewritten();
+  if (rewritten) {
+    issues.push({ name: "DEUTSCHMATE_MAIL_FROM", level: "warn", message: rewritten });
+  }
+
+  if (mailTransport() !== "console" && url.startsWith("http://localhost")) {
     issues.push({
       name: "DEUTSCHMATE_MAIL",
       level: "error",

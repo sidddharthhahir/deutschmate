@@ -63,6 +63,30 @@ export function from(): string {
   return str("DEUTSCHMATE_MAIL_FROM") || "DeutschMate <no-reply@localhost>";
 }
 
+/** Just the address out of `Name <a@b.c>`, lowercased. */
+export function fromAddress(): string {
+  const f = from();
+  return (f.match(/<([^>]+)>/)?.[1] ?? f).trim().toLowerCase();
+}
+
+/**
+ * Providers that silently rewrite a From they did not authenticate.
+ *
+ * Gmail and Microsoft 365 do not reject a mismatched From — they replace it
+ * with the account you logged in as. So the mail arrives, the app reports
+ * success, and the address the learner sees is not the one configured. Nothing
+ * anywhere says why. Worth one check, because the fix is one line and the
+ * symptom is "my colleague got an email from a stranger".
+ */
+export function fromWillBeRewritten(): string | null {
+  const host = str("SMTP_HOST").toLowerCase();
+  const user = str("SMTP_USER").trim().toLowerCase();
+  if (!user || !/gmail|googlemail|office365|outlook/.test(host)) return null;
+  const addr = fromAddress();
+  if (addr === user) return null;
+  return `${host.includes("gmail") ? "Gmail" : "Microsoft"} sends as the account you authenticate as. DEUTSCHMATE_MAIL_FROM is ${addr} but SMTP_USER is ${user}, so the From will be rewritten to ${user}`;
+}
+
 /**
  * Is the chosen transport actually usable? No network call — this only checks
  * that the settings it needs are present, so it is safe to call per request.

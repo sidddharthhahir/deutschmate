@@ -10,7 +10,7 @@
  * needs: nothing
  */
 import { ok, eq, section, done } from "./harness.mts";
-import { from, mailReady, transport } from "../src/lib/mail.ts";
+import { from, fromWillBeRewritten, mailReady, transport } from "../src/lib/mail.ts";
 import { signInEmail, testEmail } from "../src/lib/mail-templates.ts";
 
 /* The process environment is the input to every function here, so it is saved
@@ -115,6 +115,53 @@ eq(
   2,
   "exactly two URLs, both the sign-in link — the button and the copyable one",
 );
+
+section("Gmail and Microsoft rewrite a From they did not authenticate");
+/*
+ * Neither rejects a mismatched From — they replace it with the account you
+ * logged in as. The mail arrives, the app reports success, and the address the
+ * recipient sees is not the configured one. No error anywhere, so the only
+ * place this can be caught is before it is sent.
+ */
+clear();
+const rewrite = (host: string, user: string, fromAddr: string) => {
+  process.env.SMTP_HOST = host;
+  process.env.SMTP_USER = user;
+  process.env.DEUTSCHMATE_MAIL_FROM = fromAddr;
+  return fromWillBeRewritten();
+};
+
+eq(
+  rewrite("smtp.gmail.com", "me@gmail.com", "DeutschMate <me@gmail.com>"),
+  null,
+  "silent when the From is the authenticated account",
+);
+ok(
+  rewrite("smtp.gmail.com", "me@gmail.com", "DeutschMate <no-reply@firmway.eu>") !== null,
+  "warns when it is a different address",
+);
+eq(
+  rewrite("SMTP.GMAIL.COM", "  Me@Gmail.com ", "me@gmail.com"),
+  null,
+  "case and stray spaces are not a mismatch — that would be a warning nobody could act on",
+);
+ok(
+  rewrite("smtp.office365.com", "me@firm.com", "other@firm.com") !== null,
+  "Microsoft 365 too",
+);
+eq(
+  rewrite("smtp.fastmail.com", "me@fastmail.com", "no-reply@mydomain.de"),
+  null,
+  "a provider that honours the From is left alone — sending as your own domain is the normal case",
+);
+process.env.SMTP_HOST = "smtp.gmail.com";
+delete process.env.SMTP_USER;
+eq(
+  fromWillBeRewritten(),
+  null,
+  "and an unauthenticated relay has nothing to rewrite to",
+);
+clear();
 
 section("the test message says which transport it proves, and nothing else");
 const t = testEmail("me@example.com", "smtp");
