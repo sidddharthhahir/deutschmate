@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { playAudio } from "@/lib/speech";
 import AppHeader from "@/components/AppHeader";
 import { ArticleWord } from "@/components/Article";
+import { getJson, arr, num } from "@/lib/api";
 
 type Row = {
   id: string;
@@ -36,6 +37,9 @@ export default function WortschatzPage() {
   const [q, setQ] = useState("");
   const [seen, setSeen] = useState(0);
   const [loading, setLoading] = useState(true);
+  const [failed, setFailed] = useState(false);
+  /** Bumped by "neu laden". A no-op setState would not re-run the effect. */
+  const [reload, setReload] = useState(0);
 
   /** Every state write sits behind the `stale` guard. */
   useEffect(() => {
@@ -49,24 +53,22 @@ export default function WortschatzPage() {
       if (topic) p.set("topic", topic);
       if (q.trim()) p.set("q", q.trim());
 
-      try {
-        const data = await (await fetch(`/api/wortschatz?${p}`)).json();
-        if (stale) return;
-        setRows(data.words);
-        setTotal(data.total);
-        setTopics(data.topics);
-        setSeen(data.seen);
-      } catch {
-        if (!stale) setRows([]);
-      } finally {
-        if (!stale) setLoading(false);
-      }
+      // Shape-guarded, not trusted: a 401 body parses cleanly with every field
+      // undefined, and `topics.map` on undefined took the whole page down.
+      const data = await getJson(`/api/wortschatz?${p}`);
+      if (stale) return;
+      setRows(arr<Row>(data?.words));
+      setTotal(num(data?.total));
+      setTopics(arr<{ topic: string; n: number }>(data?.topics));
+      setSeen(num(data?.seen));
+      setFailed(data === null);
+      setLoading(false);
     })();
 
     return () => {
       stale = true;
     };
-  }, [size, offset, topic, q]);
+  }, [size, offset, topic, q, reload]);
 
   async function markSeen() {
     // The ids, not the count: the server deduplicates, so paging back and
@@ -106,8 +108,12 @@ export default function WortschatzPage() {
           <h1 className="font-serif text-[32px] font-semibold tracking-[-0.015em]">
             Wortschatz
           </h1>
+          {/* Not "0 gesamt" when the request failed — the deck is not empty,
+              we just do not know. Principle 4 cuts both ways. */}
           <span className="font-mono text-muted text-[12.5px]">
-            {seen} gesehen · {total} gesamt
+            {failed
+              ? "— gesehen · — gesamt"
+              : `${seen} gesehen · ${total} gesamt`}
           </span>
         </div>
 
@@ -163,6 +169,22 @@ export default function WortschatzPage() {
         {loading ? (
           <p className="font-mono text-muted py-20 text-center text-sm">
             Lade…
+          </p>
+        ) : failed ? (
+          /* "Keine Wörter gefunden" for a failed request would be a lie about
+             the deck — the words are there, the server did not answer. */
+          <p className="font-serif text-muted py-20 text-center text-[19px]">
+            Der Server hat nicht geantwortet.
+            <br />
+            <button
+              onClick={() => {
+                setLoading(true);
+                setReload((n) => n + 1);
+              }}
+              className="font-mono text-accent mt-3 text-[13px] hover:underline"
+            >
+              neu laden
+            </button>
           </p>
         ) : rows.length === 0 ? (
           <p className="font-serif text-muted py-20 text-center text-[19px]">
@@ -223,7 +245,11 @@ export default function WortschatzPage() {
           </div>
         )}
 
-        <div className="mt-6 flex items-center justify-between">
+        {/* No pager over a failed load: "Seite 1 / 1" is a claim about a list
+            that never arrived. */}
+        <div
+          className={`mt-6 flex items-center justify-between ${failed ? "hidden" : ""}`}
+        >
           <button
             onClick={() => setOffset((o) => Math.max(0, o - size))}
             disabled={offset === 0}

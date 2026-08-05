@@ -7,6 +7,7 @@ import { extractVideoId } from "@/lib/youtube";
 import { mount, sourceOf, type Playable, type Source } from "@/lib/player";
 import { TAP } from "@/lib/ui";
 import { plural } from "@/lib/plural";
+import { getJson, arr } from "@/lib/api";
 
 type Segment = { t_start: number; t_end: number; de: string; en: string };
 type Unit = { id: string; ord: number; title: string; level: string };
@@ -51,13 +52,13 @@ export default function VideoAdmin() {
   const deRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    fetch("/api/video")
-      .then((r) => r.json())
-      .then((d) => {
-        setVideos(d.videos);
-        setUnits(d.units);
-        setCanWrite(d.canWrite !== false);
-      });
+    // Guarded like everywhere else: a 401 or a 500 parses fine with every field
+    // undefined, and this used to hand `undefined` straight to videos.map().
+    void getJson("/api/video").then((d) => {
+      setVideos(arr<Video>(d?.videos));
+      setUnits(arr<Unit>(d?.units));
+      setCanWrite(d?.canWrite !== false);
+    });
   }, []);
 
   /* Takes either kind. Typing a YouTube URL into the box still works — that is
@@ -192,8 +193,10 @@ export default function VideoAdmin() {
     setSaved(
       `Gespeichert: ${d.segments} ${d.segments === 1 ? "Satz" : "Sätze"}`,
     );
-    const fresh = await (await fetch("/api/video")).json();
-    setVideos(fresh.videos);
+    const fresh = await getJson("/api/video");
+    // Only replace the list if the refetch actually returned one — clearing it
+    // after a successful save would read as "the save deleted everything".
+    if (Array.isArray(fresh?.videos)) setVideos(fresh.videos as Video[]);
     setTimeout(() => setSaved(null), 3000);
   }
 

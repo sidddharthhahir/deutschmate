@@ -821,6 +821,15 @@ the [Goethe-Institut](https://www.goethe.de/de/spr/kup/prf.html).
 - ~~"1 NEUE WÖRTER".~~ `lib/plural.ts` already existed and `/woche` was using it
   properly; the recap and the home screen were not. An app teaching German
   should not print broken German.
+- ~~An expired session crashed `/wortschatz`.~~ `fetch` does not throw on 401,
+  so the body parsed with every field undefined and `topics.map` took the page
+  down. The route had been returning `signIn: "/anmelden"` for the client to
+  follow since multi-user shipped, and nothing read it. `src/lib/api.ts` is the
+  client half of `lib/http.ts`: `getJson()` follows the 401, returns null for
+  any other failure, and `arr()`/`num()` guard the shape. The failure state is
+  honest as well — "Der Server hat nicht geantwortet" with a retry that really
+  refetches, not "Keine Wörter gefunden", which would be a claim about your deck.
+  `/admin/video` had the same hole and now doesn't.
 - ~~"Nebenkostenabrechnung" scrolled the page sideways on a phone.~~ 356px of
   heading in a 327px box. `globals.css` has had a `.break-de` class for this
   since before the bug — it is on every heading that renders content now.

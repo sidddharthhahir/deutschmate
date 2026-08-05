@@ -1485,6 +1485,39 @@ visible if you check. `lib/ui.ts` exports both shapes — `TAP` for a link on it
 own line, `TAP_BLOCK` for a flex child where `inline-block` would break the
 layout, which is what the tour's 4px step rail needed.
 
+### A 401 took a page down
+
+`/wortschatz` died with `Cannot read properties of undefined (reading 'map')`.
+
+`fetch` does not throw on 401. The body parses cleanly, every field is
+`undefined`, `setTopics(undefined)` lands, and the next render calls
+`topics.map`. The route was already answering
+`{"error":"not signed in","signIn":"/anmelden"}` — it had been telling the client
+where to go since §23, and nothing was reading it.
+
+Two things this is. It is §21's shape again: **valid JSON, wrong shape**, which
+already took out `/fortschritt` once via an exam row. And it is a seam that only
+opens on an expired session — the proxy redirects a signed-out *page* load, so
+the only way to reach it is to be on the page when the session dies, which is
+the fourteenth day and nobody's test.
+
+`lib/http.ts` already had `arr()`, commented *"Guards `.map`/`.reduce` on a value
+that isn't a list"* — the exact guard needed, unusable here because that file
+imports `next/server`. So `lib/api.ts` is the client half: `getJson()` returns
+null for a 401 (after following `signIn`), a non-ok status, a dead socket or a
+body that is not an object, plus `arr()` and `num()`.
+
+The failure state had to be honest too. "Keine Wörter gefunden" over a failed
+request is a claim about the deck; the words are there and the server did not
+answer. It says so, offers a retry that really refetches — a no-op `setState`
+would not have re-run the effect — and shows "— gesehen · — gesamt" with no
+pager rather than "0 gesamt · Seite 1 / 1", which are numbers about a list that
+never arrived.
+
+Swept the other eleven client fetches. Most already check `res.ok` or guard the
+field. `/admin/video` did neither — no `.catch`, no status check, `d.videos`
+straight into state — so the video editor would have gone down the same way.
+
 ### The dev server ran out of memory, and the app did not
 
 It aborted at a **15.6 GB heap** after 5.7 hours, having served 88,969 requests
