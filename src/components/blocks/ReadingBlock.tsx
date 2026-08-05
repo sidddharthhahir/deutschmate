@@ -149,7 +149,7 @@ export default function ReadingBlock({
       </Card>
       <button
         onClick={() => setPhase("read")}
-        className="font-mono text-muted hover:text-secondary mt-4 w-full text-center text-[11.5px] transition-colors"
+        className="font-mono text-muted hover:text-secondary mt-2 w-full py-3 text-center text-[11.5px] transition-colors"
       >
         ← Text nochmal lesen
       </button>

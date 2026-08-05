@@ -3,6 +3,7 @@ import { SESSION_TTL_DAYS, TOKEN_TTL_MIN } from "@/lib/auth";
 import { anyUsers } from "@/lib/accounts";
 import { transport } from "@/lib/mail";
 import SignInForm from "./SignInForm";
+import { TAP } from "@/lib/ui";
 
 export const dynamic = "force-dynamic";
 
@@ -60,7 +61,7 @@ export default async function SignInPage({
           )}
           <Link
             href="/anmelden"
-            className="text-accent mt-8 inline-block text-[14px] hover:underline"
+            className={`text-accent mt-8 inline-block text-[14px] hover:underline ${TAP}`}
           >
             ← Try a different address
           </Link>

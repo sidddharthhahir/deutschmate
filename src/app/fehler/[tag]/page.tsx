@@ -4,6 +4,7 @@ import AppHeader from "@/components/AppHeader";
 import { all, get } from "@/lib/db";
 import { requireUser } from "@/lib/user";
 import { de } from "@/lib/tags";
+import { TAP } from "@/lib/ui";
 
 export const dynamic = "force-dynamic";
 
@@ -104,7 +105,7 @@ export default async function TagPage({
       <div className="mx-auto w-full max-w-[760px] flex-1 px-6 py-10 md:px-10">
         <Link
           href="/fortschritt"
-          className="font-mono text-muted hover:text-secondary text-[12px] transition-colors"
+          className={`font-mono text-muted hover:text-secondary text-[12px] transition-colors ${TAP}`}
         >
           ← Fortschritt
         </Link>

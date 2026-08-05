@@ -1,6 +1,7 @@
 import Link from "next/link";
 import AppHeader from "@/components/AppHeader";
 import Tour from "./Tour";
+import { TAP } from "@/lib/ui";
 
 export const dynamic = "force-dynamic";
 
@@ -21,7 +22,7 @@ export default async function WelcomePage({
         {!firstRun && (
           <Link
             href="/"
-            className="font-mono text-muted hover:text-secondary mb-6 inline-block text-[12px] transition-colors"
+            className={`font-mono text-muted hover:text-secondary mb-6 inline-block text-[12px] transition-colors ${TAP}`}
           >
             ← Home
           </Link>

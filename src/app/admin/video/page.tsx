@@ -5,6 +5,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { modalIsOpen } from "@/lib/keys";
 import { extractVideoId } from "@/lib/youtube";
 import { mount, sourceOf, type Playable, type Source } from "@/lib/player";
+import { TAP } from "@/lib/ui";
 
 type Segment = { t_start: number; t_end: number; de: string; en: string };
 type Unit = { id: string; ord: number; title: string; level: string };
@@ -217,7 +218,7 @@ export default function VideoAdmin() {
       <div className="mx-auto max-w-4xl px-5 py-10">
         <Link
           href="/"
-          className="text-sm text-neutral-600 hover:text-neutral-400"
+          className={`text-sm text-neutral-600 hover:text-neutral-400 ${TAP}`}
         >
           ← zurück
         </Link>

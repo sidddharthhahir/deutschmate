@@ -5,6 +5,7 @@ import { requireUser } from "@/lib/user";
 import AppHeader from "@/components/AppHeader";
 import Noun, { ArticleWord } from "@/components/Article";
 import WordAudio from "./WordAudio";
+import { TAP } from "@/lib/ui";
 
 export const dynamic = "force-dynamic";
 
@@ -127,7 +128,7 @@ export default async function WordPage({
       <div className="mx-auto w-full max-w-[880px] flex-1 px-6 py-10 md:px-10">
         <Link
           href="/wortschatz"
-          className="font-mono text-muted hover:text-secondary text-[12.5px] transition-colors"
+          className={`font-mono text-muted hover:text-secondary text-[12.5px] transition-colors ${TAP}`}
         >
           ← Wortschatz
         </Link>

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 import AppHeader from "@/components/AppHeader";
+import { TAP } from "@/lib/ui";
 
 /** The shell every secondary page shares. */
 export default function Page({
@@ -33,7 +34,7 @@ export default function Page({
         {back && (
           <Link
             href={back}
-            className="font-mono text-muted hover:text-secondary inline-block text-[12px] transition-colors"
+            className={`font-mono text-muted hover:text-secondary inline-block text-[12px] transition-colors ${TAP}`}
           >
             ← {backLabel ?? "Zurück"}
           </Link>

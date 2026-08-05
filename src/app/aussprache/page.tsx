@@ -4,6 +4,7 @@ import { all } from "@/lib/db";
 import { requireUser } from "@/lib/user";
 import { pairsFor, SOUNDS, SOUND_SPELLING } from "@/lib/pairs";
 import PairDrill from "./PairDrill";
+import { TAP } from "@/lib/ui";
 
 export const dynamic = "force-dynamic";
 
@@ -78,7 +79,7 @@ export default async function PronunciationPage({
       <div className="mx-auto w-full max-w-[700px] flex-1 px-6 py-10 md:px-10">
         <Link
           href="/ueben"
-          className="font-mono text-muted hover:text-secondary text-[12px] transition-colors"
+          className={`font-mono text-muted hover:text-secondary text-[12px] transition-colors ${TAP}`}
         >
           ← Üben
         </Link>

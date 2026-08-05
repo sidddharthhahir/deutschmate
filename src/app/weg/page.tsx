@@ -226,16 +226,18 @@ export default async function WegPage() {
         </p>
       </Section>
 
-      <div className="border-line-sub mt-10 flex flex-wrap gap-x-6 gap-y-2 border-t pt-6">
+      {/* Real padding, not the TAP overlay: these two wrap onto separate lines on
+          a phone, and two overlays 8px apart would fight over the same taps. */}
+      <div className="border-line-sub mt-10 flex flex-wrap gap-x-6 border-t pt-4">
         <Link
           href="/fortschritt"
-          className="font-mono text-muted hover:text-fg text-[12.5px] transition-colors"
+          className="font-mono text-muted hover:text-fg py-3 text-[12.5px] transition-colors"
         >
           Fortschritt · die letzten 30 Tage
         </Link>
         <Link
           href="/woche"
-          className="font-mono text-muted hover:text-fg text-[12.5px] transition-colors"
+          className="font-mono text-muted hover:text-fg py-3 text-[12.5px] transition-colors"
         >
           Woche · was diese Woche passiert ist
         </Link>

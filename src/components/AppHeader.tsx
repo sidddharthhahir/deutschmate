@@ -2,9 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-
-const TAP =
-  "relative after:absolute after:inset-x-0 after:-inset-y-[11px] after:content-['']";
+import { TAP } from "@/lib/ui";
 
 /** Window header — four text links, active one underlined. */
 const NAV = [
@@ -21,9 +19,6 @@ export default function AppHeader() {
     <header className="border-line-sub bg-bg/90 sticky top-0 z-30 flex h-[60px] flex-none items-center justify-between gap-4 border-b px-4 backdrop-blur-sm md:h-[68px] md:px-10">
       {/* The wordmark is the least useful thing on a 375px screen — the "DM"
           keeps the home link without eating the space the nav needs. */}
-      {/* TAP is an invisible ::after that stretches the hit area to the full header
-          height without moving the text or the underline. These links were 23px
-          tall, which is a miss on a phone. */}
       <Link
         href="/"
         className={`font-serif flex-none text-[19px] font-semibold tracking-[0.01em] ${TAP}`}

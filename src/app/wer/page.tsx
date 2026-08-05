@@ -19,6 +19,7 @@ import {
 } from "@/lib/auth";
 import { transport } from "@/lib/mail";
 import { baseUrl } from "@/lib/env";
+import { TAP } from "@/lib/ui";
 
 export const dynamic = "force-dynamic";
 
@@ -69,7 +70,7 @@ export default async function WhoPage({
       <div className="mx-auto w-full max-w-[560px] flex-1 px-6 py-10 md:px-10">
         <Link
           href="/"
-          className="font-mono text-muted hover:text-secondary text-[12px] transition-colors"
+          className={`font-mono text-muted hover:text-secondary text-[12px] transition-colors ${TAP}`}
         >
           ← Startseite
         </Link>

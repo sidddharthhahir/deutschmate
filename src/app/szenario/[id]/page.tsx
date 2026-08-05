@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { get } from "@/lib/db";
 import AppHeader from "@/components/AppHeader";
 import ScenarioRunner from "./ScenarioRunner";
+import { TAP } from "@/lib/ui";
 
 export const dynamic = "force-dynamic";
 
@@ -34,7 +35,7 @@ export default async function ScenarioPage({
       <div className="mx-auto w-full max-w-[760px] flex-1 px-6 py-10 md:px-10">
         <Link
           href="/ueben"
-          className="font-mono text-muted hover:text-secondary text-[12.5px] transition-colors"
+          className={`font-mono text-muted hover:text-secondary text-[12.5px] transition-colors ${TAP}`}
         >
           ← Üben
         </Link>

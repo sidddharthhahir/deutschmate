@@ -7,6 +7,7 @@ import { spendThisMonth } from "@/lib/cost";
 import { contributions } from "@/lib/shared-cache";
 import KeyForm from "./KeyForm";
 import CacheSection from "./CacheSection";
+import { TAP } from "@/lib/ui";
 
 export const dynamic = "force-dynamic";
 
@@ -25,7 +26,7 @@ export default async function SettingsPage() {
       <div className="mx-auto w-full max-w-[620px] flex-1 px-6 py-10 md:px-10">
         <Link
           href="/"
-          className="font-mono text-muted hover:text-secondary text-[12px] transition-colors"
+          className={`font-mono text-muted hover:text-secondary text-[12px] transition-colors ${TAP}`}
         >
           ← Startseite
         </Link>

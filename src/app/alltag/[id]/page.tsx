@@ -4,6 +4,7 @@ import AppHeader from "@/components/AppHeader";
 import ScenarioRunner from "@/app/szenario/[id]/ScenarioRunner";
 import { survivalById } from "@/lib/survival";
 import Phrases from "../Phrases";
+import { TAP } from "@/lib/ui";
 
 export const dynamic = "force-dynamic";
 
@@ -27,7 +28,7 @@ export default async function SurvivalScenario({
       <div className="mx-auto w-full max-w-[760px] flex-1 px-6 py-10 md:px-10">
         <Link
           href="/alltag"
-          className="font-mono text-muted hover:text-secondary text-[12px] transition-colors"
+          className={`font-mono text-muted hover:text-secondary text-[12px] transition-colors ${TAP}`}
         >
           ← Alltag
         </Link>
