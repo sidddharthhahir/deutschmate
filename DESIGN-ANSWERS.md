@@ -158,7 +158,7 @@ Home is the screen where "can't start" is fatal, so it's the one worth proving.
 | `vocabulary.csv` | all 2,400 words: article, plural, POS, gloss, level, example |
 | `units.csv` | all 120 units with can-do statements |
 | `samples.json` | real review cards, real Wortschatz rows, real error labels, real offline messages, **and the longest string in every field** |
-| `routes.md` | all 22 pages and the 14 block types |
+| `routes.md` | all 24 pages and the 14 block types |
 
 The longest-strings block is the one to design against:
 - longest German word: **Vorstellungsgespräch** (20 chars)

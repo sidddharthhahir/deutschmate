@@ -28,8 +28,9 @@ npm run setup
 
 `setup` checks your Node version, builds the whole database from the files in
 `data/` — 2,400 words, 120 units, 36 grammar points, 38 readings, 1,827 levelled
-sentences — and generates the two secrets the app needs into `.env.local`. No
-network, no downloads, no API key required.
+sentences, 955 prebuilt explanations and 231 Deutsche Welle video episodes — and
+generates the two secrets the app needs into `.env.local`. No network, no
+downloads, no API key required.
 
 ```bash
 npm run dev
@@ -37,9 +38,10 @@ npm run invite you@example.com     # prints your sign-in link
 ```
 
 Follow the link and press Enter. There is no password: sign-in is a single-use
-link, and email delivery is deliberately not configured, so the link is printed
-in the terminal for you to hand over. `npm run config` shows every setting the
-server is actually using.
+link, and with no mail provider configured the link is printed in the terminal
+for you to hand over — configure one and it is emailed instead. `npm run config`
+shows every setting the server is actually using, and says when one of them is
+wrong in a way that would only show up later.
 
 Add your own Anthropic key later, in **Einstellungen** — see below for exactly
 what it buys and what works without it.
@@ -277,6 +279,20 @@ name was never read. `env.ts` names each variable once and `npm run config`
 prints what the server actually thinks — including that a wrong
 `DEUTSCHMATE_URL` sends every sign-in link somewhere nobody can follow.
 
+**And then five of those constants controlled nothing.** `GAP_DAYS`,
+`GAP_BACKLOG`, `GAP_CARDS`, `PACE_CUT_ACCURACY` and `CLOZE_PER_SESSION` sat in
+`config.ts` documenting decisions still hardcoded in `session.ts` — editing them
+changed nothing, nothing errored, and the constant looked authoritative. Moving
+a number into one place only helps if the call site was rewired too.
+`tests/config.test.mts` asserts the connection itself now: every exported
+constant must be imported by something.
+
+`env.ts` had also grown a second copy of three rules that already lived
+elsewhere — `budgetCeiling` beside `pricing.ceiling()`, `adminEnabled` beside
+`trust.ts`, `serverApiKey` beside `apikey.ts` — which is the same failure this
+file was created to end, one layer up and harder to see because both copies look
+canonical. One implementation each; `env.ts` re-exports.
+
 ---
 
 ## Commands
@@ -285,6 +301,10 @@ prints what the server actually thinks — including that a wrong
 npm run setup            # build the database from data/
 npm run dev              # start (localhost)
 npm run dev:lan          # start (reachable from your phone)
+npm run config           # every effective setting, and what looks wrong
+npm run invite <email>   # a sign-in link; no argument lists the accounts
+npm run mail:test        # what mail is configured; add an address to send one
+npm run videos           # verify the video catalogue and seed it
 npm run backup           # snapshot + JSON export of your progress
 npm run restore <file>   # put a backup back
 npm run export-deck      # Anki-ready TSV + full JSON
@@ -388,7 +408,7 @@ database, so a stale deck makes it ask for the wrong number.
 ```
 data/          content, committed — words, units, grammar, readings, sentences
 src/lib/       the engine — scheduling, session builder, error tagging, AI
-src/app/       22 pages and 17 API routes
+src/app/       24 pages and 20 API routes
 src/components/blocks/   the 14 block types a session is made of
 scripts/       content generation and maintenance
 tests/         25 suites, run with `npm test`
@@ -475,6 +495,20 @@ Three things the sending path is careful about:
   link-wrapping redirect; the plain-text part carries the URL too, because some
   clients render that one and a link that exists only in the HTML is a sign-in
   that works for most people and mysteriously doesn't for one.
+
+**One link per address per minute.** Without it, anyone who knows a colleague's
+address can post it in a loop and fill their inbox from your server — harmless
+while links printed to a terminal, real the moment mail is on. Keyed on the
+address, because that is what is being harmed and an IP is trivially changed.
+The refusal is deliberately indistinguishable from a send: "too soon" would
+confirm the address has an account, which is exactly what the identical-answer
+rule above exists to prevent. `npm run invite` bypasses it, which is also the
+documented way out of a lockout.
+
+**The session cookie honours `x-forwarded-proto`.** It used to decide `Secure`
+from the request URL, which reads `http:` behind nginx, Caddy or any platform
+router terminating TLS — so on a real https deployment the cookie would go out
+unprotected and nothing would look wrong.
 
 `deliver()` in [src/lib/auth.ts](src/lib/auth.ts) is still the single seam —
 everything above it is unchanged, and `console` is still one of the options.
@@ -633,13 +667,15 @@ tracker that could never be true, an offline queue for written texts that stored
 nothing, and a sentence rotation reaching 6% of the corpus behind a comment
 claiming it covered all of it.
 
-Three passes, each finding what the one before it structurally could not:
+Five passes, each finding what the one before it structurally could not:
 
 | | |
 |---|---|
 | reading the code | disconnected mechanisms, dead columns, drifted duplicates |
 | reading the rendered HTML | a button printing `&apos;` — the source looked like the working case |
 | **doing an hour of German** | a recap that reported the session had not happened |
+| asking what reads each constant | five config values that documented a decision they no longer controlled |
+| walking a session end to end | two numbers, both correct, one lying by placement |
 
 That last one is worth the detail. The recap counters animate up from zero with
 `requestAnimationFrame`, browsers do not run rAF in a background tab, and there
@@ -651,4 +687,15 @@ The same pass caught the conversation tracker still broken one commit after
 being fixed: the fix had gone into the live path, which needs an API key, while
 the scripted fallback — the only path that runs without one — was untouched.
 
-If you are reading this repo to judge it, read §21 and §22 first.
+The fourth pass is the cheapest and the one most worth stealing: for every
+constant in `config.ts`, ask what imports it. Five imported nothing. They looked
+authoritative, the app behaved exactly as documented, and changing them did
+nothing — the file had quietly become a comment. `tests/config.test.mts` asserts
+the connection now, because the failure leaves no other trace.
+
+The fifth was a full session in a browser, and what it found was not a broken
+number but a **misplaced** one: the session chrome says "72 min übrig", the
+review block replaces that chrome and said "≈ 2 min übrig" in the same corner
+about the eleven cards in front of you. Both true. Together, a lie.
+
+If you are reading this repo to judge it, read §21 and §24 first.

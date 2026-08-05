@@ -1266,3 +1266,115 @@ The migration that adds the column sorts what already exists: rows whose
 sentence is app content are kept and marked shared, and the rest are deleted.
 That is deliberate rather than tidy-up — they have no owner, the new lookup
 cannot reach them, and they are the exact thing the column exists to prevent.
+
+---
+
+## 24. Email, video, and an audit of the above
+
+### Sign-in links can be emailed
+
+Console stays the **default** — §17's clone-and-run promise means the app has to
+work with no account, no domain and no network — and becomes one of three
+transports beside SMTP and Resend. Filling in `SMTP_HOST` or `RESEND_API_KEY`
+switches it on; there is deliberately no second switch, because a switch without
+credentials and credentials without a switch are two ways to have mail silently
+not send.
+
+One dependency, nodemailer, for SMTP. Hand-rolling it over `node:net` is a few
+commands, and the parts that go wrong fail *silently*: STARTTLS upgrade, AUTH
+negotiation, RFC 2047 encoding of a subject with an umlaut, dot-stuffing a body
+line that starts with a period. Each produces mail that vanishes or arrives
+mangled while the app reports success. Resend needs no dependency, so it has none.
+
+Three properties the send path holds:
+
+- **A dead provider does not lose the link.** The failure is logged and the link
+  still prints, so it can be handed over.
+- **A dead provider does not leak who has an account.** Mail health is checked
+  *before* the address lookup, so the 503 is true regardless of who asked. A
+  failure *after* the lookup returns the ordinary success — "sending failed"
+  would otherwise mean "this address has an account here".
+- **The message does not phone home.** No image, no tracking pixel, no
+  link-wrapping redirect, and the plain-text part carries the URL too: some
+  clients render that one, and a link that exists only in the HTML is a sign-in
+  that works for most people and mysteriously does not for one.
+
+Sign-in links are throttled to one per address per minute, and the refusal is
+indistinguishable from a send — "too soon" would confirm the address has an
+account, which is exactly what the identical-answer rule above protects.
+
+### Video: 231 episodes, and why they are not YouTube
+
+Deutsche Welle's *Nicos Weg* is a free A1–B1 drama course from a public
+broadcaster, already cut into ninety-second lesson-sized episodes.
+
+YouTube reached 14 of them: playlist pages redirect to a consent banner from an
+EU address, and the RSS feeds return only the newest 15 entries per playlist. DW
+publishes the whole course as three official video podcasts — 226 episodes with
+direct mp4s on their own CDN, episode and unit numbers in the filenames,
+durations included. That is the source.
+
+Better than YouTube on more than coverage: no Google script on a page a learner
+opens daily, nothing reporting back what they watched, and less code — half of
+`youtube.ts` exists to load an external API a `<video>` element does not need.
+`lib/player.ts` puts one six-operation interface over both, because the handful
+of extras DW does not put in the podcasts (the full films, the recaps) are still
+YouTube embeds.
+
+**Nothing is segmented, so the video block still never appears.** That is
+correct, not broken: `session.ts` will not offer a video without hand-marked
+segments, and an unsegmented file is a video rather than a lesson. A segment is
+a timestamp plus the line actually spoken, and the only way to know the line is
+to listen — generated transcripts would be subtitles that disagree with the
+audio, which is worse than no video because a learner would believe them. The
+editor takes a pasted DW manuscript and reduces the job to two keypresses per
+line, which is the honest way to make it faster.
+
+Unit assignment is left to a person too, beyond six exact title matches. DW's
+"Einheit" is DW's course structure, not this app's twenty-per-level one, and
+mapping 226 episodes onto 120 units by arithmetic puts the wrong video in a
+lesson silently.
+
+### The audit that followed
+
+**§12's config file was lying.** Five of eighteen constants — `GAP_DAYS`,
+`GAP_BACKLOG`, `GAP_CARDS`, `PACE_CUT_ACCURACY`, `CLOZE_PER_SESSION` —
+documented decisions that were still hardcoded in `session.ts`. Editing config
+changed nothing, and nothing errored. `tests/config.test.mts` now asserts the
+connection itself: every exported constant must be imported by something.
+
+`PACE_CUT_ACCURACY` needed care rather than a rewire. It is a fraction and the
+code compares a percentage, so the obvious fix compares 74 to 0.8 and throttles
+every learner permanently. It multiplies at the call site and the test pins that.
+
+**Three rules had grown a second implementation**, all in `env.ts` — the file
+created to stop exactly that. `budgetCeiling` duplicated `pricing.ceiling()`,
+whose own docstring says the guard must not be able to disagree with the bar the
+progress page draws; `adminEnabled` duplicated `trust.ts`; `serverApiKey`
+duplicated an inline fallback in `apikey.ts`. Worse, `DEUTSCHMATE_URL` was read
+in two places with *different* fallbacks, so the same account got links pointing
+at different hosts depending on which screen asked.
+
+**Two auth gaps.** The throttle above, and the session cookie deciding `secure`
+from `url.protocol` — which reads "http:" behind any TLS-terminating proxy, so
+the cookie ships without Secure on a site the browser reached over https. It
+honours `x-forwarded-proto` now.
+
+**Dead code.** `sameSecret`, a constant-time compare nothing called, deleted
+rather than kept: an unused constant-time helper in an auth file implies the
+comparisons there are constant-time, and a reader checking would find tokens are
+looked up with `WHERE hash = ?`. Dead security code is worse than none.
+
+### What the fourth pass found
+
+§21 recorded three passes, each finding what the one before structurally could
+not. A fourth — walking a full session in a browser — found one more:
+
+The review block takes the whole screen and replaces the session chrome. The
+chrome says "72 min übrig" for the session; the block said "≈ 2 min übrig" in
+the same corner, in the same words, for the eleven cards in front of you. Both
+numbers were right and one was **lying by placement**. It names what it counts
+now.
+
+The recap reconciles row by row — 9 Minuten, 12 neue Wörter, 20% richtig, 11
+morgen — which is the same screen §21 caught reporting zeros.

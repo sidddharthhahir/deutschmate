@@ -3,7 +3,7 @@
 ---
 
 I need you to design the frontend for **DeutschMate**, a German learning app that
-already exists and works. The logic, data and all 22 pages are built in
+already exists and works. The logic, data and all 24 pages are built in
 Next.js 16 + Tailwind + TypeScript. What it has is a *functional* interface, not
 a designed one. I want you to design it properly, then I'll build it.
 
@@ -47,7 +47,8 @@ seven months. Two users right now: me and my flatmate — same install, a name a
 | Reviews due on a normal day | 40–90, hard-capped at 60 |
 | A session | 4–10 blocks, up to ~92 minutes. A full day is 8–9. |
 | Block types | 14 |
-| Routes | 22 pages, 17 API |
+| Routes | 24 pages, 20 API |
+| Video | 231 Deutsche Welle episodes, none segmented yet — the block stays hidden until one is |
 
 ---
 
