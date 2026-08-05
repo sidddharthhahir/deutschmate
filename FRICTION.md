@@ -29,6 +29,12 @@ tab. It was found by finishing a session and locking a phone.
 
 Three reviews of this project have proposed features. Zero of them found that.
 
+The second most valuable pass was deleting the comments — 5,677 lines down to
+1,810. It was not looking for bugs. It found two, including a cookie every
+learner shared, because reading a line against what the comment above it claims
+is a code review nobody schedules. Neither is a feature. Both are the kind of
+thing this file exists to keep ahead of.
+
 ## Ideas that are waiting for evidence
 
 Good ideas with nobody behind them yet. They move up only when a line appears
@@ -41,9 +47,11 @@ above, or three people ask.
 - **A voice for the app** — the home screen and recap speaking in sentences
   built from the actual plan. Allowed only if every sentence is derived from the
   session that was really built; see principle 4.
-- **More Alltag** — the six existing scenarios are the strongest thing here per
-  hour spent, and six is not many. Kita place, Ausländerbehörde extension,
-  Handwerker, Steuererklärung, Jobcenter.
+- ~~**More Alltag**~~ — done. Twelve now: the Ausländerbehörde extension and
+  Handwerker from this list, plus Apotheke, Krankenkasse, Paket abholen and
+  Nebenkostenabrechnung. Still waiting on evidence: **Kita-Platz**,
+  **Steuererklärung**, **Jobcenter** — all three are real, none has anybody
+  behind it yet.
 - **Hosted AI** — for the day the audience is people who will never create an
   Anthropic account. Deliberately not solved now; bring-your-own-key is right
   while the users are you, a flatmate and some colleagues.

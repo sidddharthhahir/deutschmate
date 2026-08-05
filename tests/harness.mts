@@ -37,11 +37,29 @@ export function section(title: string) {
   console.log(`\n--- ${title} ---`);
 }
 
+/**
+ * Node's fetch keeps sockets alive after the response. Calling process.exit() on
+ * top of one trips a libuv assertion on Windows (UV_HANDLE_CLOSING, src\win\async.c)
+ * and the runner reports exit 3221226505 for a file whose checks all passed — a
+ * red that means nothing, which is the kind that teaches you to ignore reds.
+ */
+function closeSockets() {
+  const pool = (globalThis as Record<symbol, unknown>)[
+    Symbol.for("undici.globalDispatcher.1")
+  ] as { destroy?: () => unknown } | undefined;
+  try {
+    pool?.destroy?.();
+  } catch {
+    /* nothing open, or a Node that keeps its dispatcher somewhere else */
+  }
+}
+
 /** Exit with the right code and a one-line verdict. Every test file ends here. */
 export function done(): never {
   console.log(
     `\n${failures === 0 ? `ALL PASS  (${checks} checks)` : `${failures} FAILURES of ${checks}`}`,
   );
+  closeSockets();
   process.exit(failures ? 1 : 0);
 }
 

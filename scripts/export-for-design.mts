@@ -171,6 +171,12 @@ const grammarCount = (
   db.prepare("SELECT COUNT(*) AS n FROM grammar").get() as { n: number }
 ).n;
 
+// From data/, not the database: scenarios are content, and a stale local db
+// would report the wrong number for the file everyone else reads.
+const survivalCount = JSON.parse(
+  readFileSync(path.join(ROOT, "data/scenarios-survival.json"), "utf8"),
+).length as number;
+
 /** The four grade buttons, parsed out of the component that renders them. */
 function readGrades() {
   const src = readFileSync(
@@ -210,7 +216,10 @@ const NOTE: Record<string, string> = {
   "/woche": "Weekly digest",
   "/text": "Paste any German",
   "/nachrichten": "DW news, slowly spoken",
-  "/alltag": "Survival scenarios",
+  "/alltag": `Survival scenarios (${survivalCount})`,
+  "/anmelden": "Sign in — an address, a link, no password",
+  "/einstellungen":
+    "Your Anthropic key, your budget, your cached contributions",
   "/unterwegs": "Hands-free listening",
   "/aussprache": "Minimal pairs",
   "/problemwoerter": "Leeches — words fighting back",

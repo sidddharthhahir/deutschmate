@@ -114,9 +114,9 @@ would otherwise have shipped.
    appearing in [FRICTION.md](FRICTION.md) — written down while it was actually
    annoying somebody — not by sounding good in a planning session.
 
-Five and six are newer than the rest and one of them is honest about being a
-direction rather than a description: today this is a 120-unit German course with
-a six-scenario living-in-Germany corner. Principle 5 says which half grows next.
+Five and six are newer than the rest, and five is still more direction than
+description: today this is a 120-unit German course with a twelve-scenario
+living-in-Germany corner. It was six. Principle 5 says which half grows next.
 
 Principle 4 does most of the work. It is why the recap counts rows instead of
 animating, why an unsegmented video does not appear, why `config.ts` has a test
@@ -144,10 +144,12 @@ And the parts that aren't a course:
 - **Dein Text** — paste any German. It tells you what you already know, what it
   can teach you next, and turns sentences into cards.
 - **Nachrichten** — today's news, slowly spoken, from Deutsche Welle.
-- **Alltag** — six conversations you will actually have: Bürgeramt,
-  WG-Besichtigung, Arzt, Bank, Vertrag kündigen, Prüfungsamt. Each with what
-  to bring, what to say, and **what they will say back** — the half that
-  decides whether the appointment works.
+- **Alltag** — twelve conversations you will actually have, A1.2 to B1.2:
+  Bürgeramt, WG-Besichtigung, Arzt, Apotheke, Krankenkasse, Konto eröffnen,
+  Paket abholen, Ausländerbehörde, Handwerker anrufen, Nebenkostenabrechnung,
+  Vertrag kündigen, Prüfungsamt. Each with what to bring, what to say, and
+  **what they will say back** — the half that decides whether the appointment
+  works. All twelve run offline from a scripted branching dialogue.
 - **Unterwegs** — hands-free listening for the walk to uni.
 - **Minimalpaare** — pronunciation drills aimed at the sound you actually miss.
 
@@ -316,6 +318,45 @@ canonical. One implementation each; `env.ts` re-exports.
 
 ---
 
+## The comments, and what was under them
+
+This codebase used to be **19% comment** — 5,140 lines against 21,807 of code
+across `src/`, `scripts/` and `tests/`, with 478 blocks of four lines or more,
+several of them essays. It is **6% now**: 1,810 lines, 190 blocks. Every block is
+one or two lines — its first sentence, plus the one sentence in the block that
+carried a warning.
+
+That was done with a script, because 174 files is not a job for judgement
+applied 478 times, and then read back over the files where the judgement
+mattered. Four notes went back in by hand afterwards, because each documents a
+bug already fixed once and deleting it invites the bug back:
+
+| | |
+|---|---|
+| `shared-cache.ts` | `instr`, not `LIKE` — a `%` or `_` in a sentence is a wildcard and would match content it does not appear in, which publishes a private letter |
+| `shared-cache.ts` | the 12-character, 3-word floor — *"der"* occurs in every text the app ships |
+| `error-key.ts` | a pattern explanation must be true **without seeing the sentence** — *"'Mann' is masculine"* is a lie the moment the same key fires on a Frau |
+| `config.ts` | `PACE_CUT_ACCURACY` is a fraction and the call site compares a percentage; simplifying the `×100` throttles every learner permanently |
+
+One thing the script had to be taught. Each test file's header carries a
+`needs:` line, and [tests/run.mts](tests/run.mts) *parses it* to decide whether
+to start a dev server. Stripping it as prose would have run eight suites against
+nothing and reported green — a comment that is load-bearing to a machine, not
+just to a reader, which is the category worth checking for before any sweep like
+this.
+
+The same pass deleted what was genuinely unused: `unitMastery`, `unitStatus`,
+`tags.en`, and the compatibility re-export barrels in `cloze`, `cost`, `errors`,
+`exam`, `accounts` and `user` that nothing had imported in months. `db.ts` lost
+three `eslint-disable` lines too — `as never[]` says what `as any[]` said,
+without the escape hatch.
+
+And one constant was decorative in the way §12's five were. `TUTOR_CACHE_TTL`'s
+comment read *"the TTL the tutor prompt is cached with, named once"*, and the
+call site four lines below it hardcoded `"1h"`. Named twice is named zero times.
+
+---
+
 ## Commands
 
 ```bash
@@ -331,7 +372,24 @@ npm run backup           # snapshot + JSON export of your progress
 npm run restore <file>   # put a backup back
 npm run export-deck      # Anki-ready TSV + full JSON
 npm test                 # the checks below
+npm run lint             # eslint
+npx tsc --noEmit         # typecheck
+npx knip                 # unused files, exports and dependencies
 ```
+
+`knip` is not a dependency — [knip.json](knip.json) tells it that
+`src/app/**/{page,layout,route}`, `scripts/` and `tests/` are entry points, which
+is the difference between a report of 56 findings that are all noise and one that
+is empty when the code is clean.
+
+Two small things that stop the checks lying to you on Windows.
+[.gitattributes](.gitattributes) normalises the repo to LF, because otherwise
+every `git add` prints a wall of *"LF will be replaced by CRLF"* and
+`prettier --check` fails on all 130 files over line endings alone — real failures
+buried in noise. [.prettierrc.json](.prettierrc.json) sets `endOfLine: "auto"`
+so a Windows clone and a Linux one agree. The tree was also only partly
+formatted before this — no config existed, so it had been prettier'd wherever
+somebody's editor did it and nowhere else.
 
 ### Tests
 
@@ -345,6 +403,19 @@ listening and are **skipped with a message** if it isn't — never quietly
 passed. They use throwaway user ids in the real database, which is how the app
 separates two flatmates, and clean up after themselves.
 
+The suite used to fail about **two runs in five**, always on `undo.test.mts`,
+always with exit 3221226505 — and its ten checks passed every time. The crash was
+libuv's `UV_HANDLE_CLOSING` assertion on Windows: Node's fetch keeps a socket
+alive and `process.exit()` was landing on one mid-close. The harness closes the
+connection pool first now.
+
+**Reduced, not proven gone.** 19 full runs since: one failure early on, then 18
+clean. That is a different order of magnitude from 2-in-5 and it is not zero, so
+if you see exit 3221226505 on a file whose checks all printed PASS, that is this
+and not your change. Worth the paragraph because an intermittent red on a file
+that passed is worse than a real failure — the only sustainable response is to
+stop reading reds, and after that a genuine one looks the same.
+
 | | |
 |---|---|
 | `content` | every word belongs to a unit, every reference resolves, every noun has an article |
@@ -357,11 +428,11 @@ separates two flatmates, and clean up after themselves.
 | `progression` | walks a new learner through all 120 units and checks every word gets taught |
 | `unit-carryover` | an oversized unit comes back tomorrow instead of losing its remainder |
 | `mastery` | finishing ≠ retaining, retention never blocks progression, and bad prerequisite data can't strand anyone |
-| `scene` | the tutor gets the brief the page is showing — the Alltag six included |
+| `scene` | the tutor gets the brief the page is showing — all twelve Alltag scenarios included, each with enough to say, enough to hear, and enough to bring |
 | `recycle` | old scenarios and readings come back, and say where they came from |
 | `grammar` | a taught rule returns when due, with a different drill |
 | `why` | every wrong answer comes back with a reason, on every path, with or without a key |
-| `who` | two flatmates on one browser get separate keys, and a queued answer replays to whoever gave it |
+| `who` | two flatmates on one browser get separate keys, the cookie read is the cookie sign-in writes, and a queued answer replays to whoever gave it |
 | `corpus` | the sentence rotation covers the corpus over a course, not just over a month |
 | `error-key` | 41 mistakes a beginner really makes, each one reaching a specific prebuilt explanation |
 | `strings` | no HTML entity survives into a string literal, where JSX will not decode it |
@@ -431,11 +502,19 @@ database, so a stale deck makes it ask for the wrong number.
 data/          content, committed — words, units, grammar, readings, sentences
 src/lib/       the engine — scheduling, session builder, error tagging, AI
 src/app/       24 pages and 20 API routes
+src/proxy.ts   the signed-out redirect, in the edge runtime
 src/components/blocks/   the 14 block types a session is made of
 scripts/       content generation and maintenance
 tests/         25 suites, run with `npm test`
 public/audio/  2,381 native recordings from Wikimedia Commons (37 MB)
 ```
+
+`src/proxy.ts` is `middleware.ts` renamed: Next 16 deprecated that convention
+and warned on every boot. It runs in the **edge runtime**, so it imports from
+`who.ts` — which imports nothing — rather than from `auth.ts`, which reaches
+`node:sqlite` and does not exist there. All it asks is whether a session cookie
+is present; who that cookie belongs to is a database question and is answered
+per page.
 
 **Everything a clone needs is committed** — including the audio, which is why
 the repo is not small. `npm run setup` rebuilds the database from `data/` with
@@ -577,6 +656,16 @@ including unsent grades, which then replayed into the wrong deck. Everything
 client-side is keyed by learner now, and a replay carries the name of whoever
 answered rather than trusting the cookie at the time it lands.
 
+**That was true of the scoping and false of the lookup for one release.**
+`userFromCookie()` read `dm_user`, the pre-sign-in name cookie, which sign-in
+stopped writing the day it moved to `dm_uid`. So the scoping worked perfectly
+and every learner scoped to the same fallback name — one shared plan, one shared
+resume offer, one shared tour flag, one shared queue. Nothing looked wrong,
+because on the install where it was written the signed-in id *is* the fallback.
+It reads `dm_uid` first now and still accepts `dm_user` alone, so a tab left open
+across the upgrade keeps its buckets. Four assertions in `tests/who.test.mts`
+pin the cookie sign-in actually sets, which is the part that had no test.
+
 A link can target someone explicitly with `?user=alex`, which is how the tests
 drive a throwaway learner without touching yours.
 
@@ -694,11 +783,22 @@ the [Goethe-Institut](https://www.goethe.de/de/spr/kup/prf.html).
   *Was kannst du · Wie läuft es · Was hakt · Nebenbei* — each showing the
   question it answers. Named after questions rather than after data, so anything
   answering no question a learner actually asks sits at the bottom.
-- ~~`/alltag` needs the network.~~ All six now carry a scripted branching
+- ~~`/alltag` needs the network.~~ All of them now carry a scripted branching
   dialogue, so they run with no key, no budget and no signal. They were the last
-  scenarios in the app without one, and the worst six to be missing it: these
+  scenarios in the app without one, and the worst ones to be missing it: these
   are what you rehearse the night before, often on a phone. The live model
   conversation is still the better path when it is available.
+- ~~Six scenarios is a corner, not a section.~~ Twelve now, and the six added
+  are the ones that actually recur: the Apotheke, the Krankenkasse, collecting a
+  parcel, the Ausländerbehörde, phoning a Handwerker, and reading a
+  Nebenkostenabrechnung. `tests/content.test.mts` and `tests/scene.test.mts`
+  both asserted `=== 6`, so adding any would have turned them red — they check a
+  floor and a duplicate-id rule now, which is what they meant all along.
+- ~~Tap targets are desktop-sized.~~ The header links were 23px tall and the
+  "← back" links 19px, against a 44px guideline. `TAP` in `src/lib/ui.ts` is an
+  invisible `::after` that widens the hit area without moving the text; the two
+  places where two links sit close enough for overlays to collide got real
+  padding instead. Measured at 375px, not assumed: 48px and 44px.
 
 ### A note on how these were found
 
@@ -708,7 +808,7 @@ tracker that could never be true, an offline queue for written texts that stored
 nothing, and a sentence rotation reaching 6% of the corpus behind a comment
 claiming it covered all of it.
 
-Five passes, each finding what the one before it structurally could not:
+Eight passes, each finding what the one before it structurally could not:
 
 | | |
 |---|---|
@@ -717,8 +817,11 @@ Five passes, each finding what the one before it structurally could not:
 | **doing an hour of German** | a recap that reported the session had not happened |
 | asking what reads each constant | five config values that documented a decision they no longer controlled |
 | walking a session end to end | two numbers, both correct, one lying by placement |
+| **deleting the comments** | a cookie nothing writes, and a constant named twice |
+| **reading the server log** | one deprecation warning in 6,272 lines, for a convention that will stop working |
+| **running the suite four times** | a 40% flake whose checks always passed — a red that meant nothing |
 
-That last one is worth the detail. The recap counters animate up from zero with
+The third is worth the detail. The recap counters animate up from zero with
 `requestAnimationFrame`, browsers do not run rAF in a background tab, and there
 was no fallback — so finishing a session and locking your phone left **0 Minuten
 · 0 neue Wörter · 0 %** on the screen the code itself calls "the screen that
@@ -739,4 +842,24 @@ number but a **misplaced** one: the session chrome says "72 min übrig", the
 review block replaces that chrome and said "≈ 2 min übrig" in the same corner
 about the eleven cards in front of you. Both true. Together, a lie.
 
-If you are reading this repo to judge it, read §21 and §24 first.
+The sixth was an accident and is the best argument for the whole exercise.
+Deleting a comment means reading the line under it against what the comment
+claims, one line at a time, over every file — which is a code review nobody
+would schedule and everybody would benefit from. It found `who.ts` reading a
+cookie nothing writes and `TUTOR_CACHE_TTL` named twice. Both had a comment
+sitting directly above them, confidently describing the intended behaviour, and
+in both cases the comment was the reason nobody looked at the line.
+
+The seventh cost nothing and should be a habit: read the server log. Six
+thousand lines of it, and the only thing in there was one deprecation warning
+for a file convention Next will eventually stop supporting. Warnings scroll past
+during development and get read as noise; the one that matters looks exactly
+like the ones that don't until you grep the whole log at once.
+
+The eighth is the same idea applied to the tests: run them **more than once**.
+One run is a sample of one, and a suite that fails two runs in five looks
+perfectly healthy the three times you happen to look. Both the flake and the
+line-ending problem above were found this way — by re-running something that had
+already said it was fine.
+
+If you are reading this repo to judge it, read §21, §24 and §25 first.

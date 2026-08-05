@@ -1,13 +1,13 @@
 id,level,ord,title,can_do_json,grammar_id,reading_id,video_id,word_count
-a1-1-u01,A1.1,1,Hallo!,"[""greet someone at any time of day"",""say thank you and please"",""say yes and no""]",,,,13
-a1-1-u02,A1.1,2,Ich heiße …,"[""say your name"",""ask someone their name"",""use ich, du and Sie correctly""]",g-pronouns,r-u02,,13
-a1-1-u03,A1.1,3,"Ich bin, du bist","[""say what you are"",""describe someone with sein"",""use all six forms of sein""]",g-sein,,,13
-a1-1-u04,A1.1,4,Woher kommst du?,"[""say where you're from"",""say where you live"",""ask both questions""]",g-praesens,r-u04,,13
-a1-1-u05,A1.1,5,Zahlen,"[""count to twenty"",""give your phone number"",""ask what something costs""]",,,,16
+a1-1-u01,A1.1,1,Hallo!,"[""greet someone at any time of day"",""say thank you and please"",""say yes and no""]",,,dw-A1_E0_L1_F1_hd,13
+a1-1-u02,A1.1,2,Ich heiße …,"[""say your name"",""ask someone their name"",""use ich, du and Sie correctly""]",g-pronouns,r-u02,dw-A1_E1_L1_F5_hd,13
+a1-1-u03,A1.1,3,"Ich bin, du bist","[""say what you are"",""describe someone with sein"",""use all six forms of sein""]",g-sein,,dw-A1_E1_L2_F6_hd,13
+a1-1-u04,A1.1,4,Woher kommst du?,"[""say where you're from"",""say where you live"",""ask both questions""]",g-praesens,r-u04,dw-A1_E1_L3_F7_hd,13
+a1-1-u05,A1.1,5,Zahlen,"[""count to twenty"",""give your phone number"",""ask what something costs""]",,,dw-A1_E2_L1_F9_hd,16
 a1-1-u06,A1.1,6,"Der, die, das","[""use the right article for common nouns"",""recognise -ung and -chen patterns""]",g-articles-nom,,,13
 a1-1-u07,A1.1,7,Meine Familie,"[""name your family members"",""say how many siblings you have"",""use haben""]",g-haben,r-u07,,13
 a1-1-u08,A1.1,8,Verb an zweiter Stelle,"[""put the verb in position 2"",""start a sentence with a time word"",""flip the subject correctly""]",g-wordorder,,,13
-a1-1-u09,A1.1,9,Essen und Trinken,"[""name everyday food and drink"",""say what you eat and drink"",""order in a café""]",,r-u09,,14
+a1-1-u09,A1.1,9,Essen und Trinken,"[""name everyday food and drink"",""say what you eat and drink"",""order in a café""]",,r-u09,dw-A1_E3_L2_F14_hd,14
 a1-1-u10,A1.1,10,Fragen stellen,"[""ask a W-question"",""ask a yes/no question"",""ask why and when""]",g-questions,,,13
 a1-1-u11,A1.1,11,Nein sagen,"[""negate a verb with nicht"",""negate a noun with kein"",""choose between them""]",g-negation,,,13
 a1-1-u12,A1.1,12,Die Woche,"[""name the days of the week"",""say when something happens"",""make an appointment""]",,r-u12,,16

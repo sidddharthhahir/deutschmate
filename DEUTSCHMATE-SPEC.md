@@ -1142,8 +1142,9 @@ requires the token to be unused and marks it used, so two clicks on the same
 link cannot both win — the check and the claim are one statement rather than a
 read followed by a write.
 
-Middleware redirects page requests with no session cookie to `/anmelden`. It
-runs in the edge runtime, which cannot load `node:sqlite`, so the cookie names
+`src/proxy.ts` redirects page requests with no session cookie to `/anmelden`.
+(It was `src/middleware.ts` until Next 16 deprecated that convention — see §25.)
+It runs in the edge runtime, which cannot load `node:sqlite`, so the cookie names
 live in `lib/who.ts` — a module the edge can import — rather than in `lib/auth.ts`.
 
 `npm run invite <email>` mints a link from the command line. It is also the way
@@ -1378,3 +1379,146 @@ now.
 
 The recap reconciles row by row — 9 Minuten, 12 neue Wörter, 20% richtig, 11
 morgen — which is the same screen §21 caught reporting zeros.
+
+---
+
+## 25. Twelve scenarios, and what deleting the comments found
+
+### Alltag doubles
+
+§19 rejected a "Real Life" navigation tab and principle 5 later argued the
+opposite about *content*: teach German through situations people actually face.
+Six scenarios was the smallest thing that could test that. Twelve is the answer
+to whether it was worth continuing, and the six added are chosen by recurrence
+rather than by drama — **In der Apotheke**, **Krankenkasse anmelden**, **Paket
+abholen**, **Aufenthaltstitel verlängern**, **Handwerker anrufen**,
+**Nebenkostenabrechnung**. A1.2 through B1.2, each with phrases, the lines that
+come *back*, and what to bring, and each with the scripted branching dialogue
+that makes it work with no key and no signal.
+
+Both content tests asserted `survival.length === 6`. Adding a scenario would
+have failed them — a test that fails on the change it should be indifferent to
+is measuring the wrong thing. They assert a floor and a duplicate-id rule now.
+`surv-paket` also shipped with two items in `bring` where the test wants three,
+which is the check doing its job.
+
+### The comments came out
+
+**19% of this codebase was comment**: 5,140 lines against 21,807 of code across
+`src/`, `scripts/` and `tests/`, in 478 blocks of four lines or more. It is 6%
+now — 1,810 lines in 190 blocks. Every block is its first sentence plus the one
+sentence in the block that carried a warning.
+
+Done with a script, then read back. 174 files is not a job for judgement applied
+478 times, and a mechanical rule applied uniformly is auditable in a way that 478
+individual decisions are not. Four notes went back by hand, each documenting a
+bug already fixed once: `instr`-not-`LIKE` and the 12-character floor in
+`shared-cache.ts`, the without-seeing-the-sentence rule in `error-key.ts`, and
+the `×100` in `config.ts` that §24 already had to reason about.
+
+One category of comment is load-bearing to a **machine**. Every test file's
+header carries a `needs:` line and `tests/run.mts` parses it to decide whether to
+start a dev server. Treating it as prose would have run eight suites against
+nothing and reported green. Before any sweep like this: grep for code that reads
+comments.
+
+**What the sweep found, which is the point.** Deleting a comment means reading
+the line beneath it against what the comment claims, one line at a time, across
+every file. That is a code review nobody schedules. It found:
+
+- **`who.ts` read a cookie nothing writes.** `userFromCookie()` looked for
+  `dm_user`; sign-in moved to `dm_uid` in §23 and the reader was never updated.
+  So the per-learner localStorage scoping §23 describes worked exactly as
+  specified and scoped every learner to the same fallback name — one shared
+  cached plan, one shared resume offer, one shared tour flag, and one shared
+  queue of answers given offline, which is the one that corrupts a deck.
+  Invisible on the install where it was written, because there the signed-in id
+  *is* the fallback. `tests/who.test.mts` pins the cookie sign-in actually sets.
+- **`TUTOR_CACHE_TTL` was named twice.** Its comment said "named once"; the call
+  site four lines below hardcoded `"1h"`. The same failure as §24's five
+  constants, in a file that had just been audited for it.
+
+Both had a confident comment sitting directly above them. In both cases the
+comment is *why* nobody looked at the line.
+
+### Dead code, with the tool configured
+
+`npx knip` reported 56 unused exports and 30 unused files, all of it noise: it
+did not know `tests/` and `scripts/` are entry points, or that `tailwindcss`
+arrives through a CSS `@import`. An analysis tool nobody has configured produces
+a report nobody reads, which is indistinguishable from not running it.
+
+[knip.json](knip.json) fixes that, and the real report was 20 findings. Deleted:
+`unitMastery`, `unitStatus`, `tags.en`, and the compatibility re-export barrels
+in `cloze`, `cost`, `errors`, `exam`, `accounts` and `user` that nothing had
+imported. `db.ts` also lost three `eslint-disable` comments — `as never[]`
+expresses what `as any[]` did without the escape hatch. Knip is empty now, which
+is what makes the next finding meaningful.
+
+### Read the log
+
+Six thousand two hundred lines of dev-server output contained exactly one thing
+worth acting on: Next 16 deprecating the `middleware` file convention. It had
+printed on every boot for weeks and read as noise, which is what a warning looks
+like right up until the version that removes it.
+
+`src/middleware.ts` is `src/proxy.ts` exporting `proxy()`. Everything else about
+it is unchanged, including the reason it imports from `who.ts` and not `auth.ts`:
+it runs in the edge runtime, where `node:sqlite` does not exist.
+
+### Tap targets
+
+Measured at 375px rather than eyeballed: header links were **23px** tall, the
+"← back" links **19px**, against the 44px both platforms recommend. `TAP` in
+`src/lib/ui.ts` is an invisible `::after` that stretches the hit area without
+moving the text — 48px and 44px now, with no layout change at any width.
+
+Two places could not use it. The pair of links at the foot of Der Weg wrap onto
+separate lines on a phone, so two overlays 13px deep would have overlapped and
+one would have taken the other's taps; they have real padding. So does
+`ReadingBlock`'s full-width button, where padding costs nothing. Verified across
+twenty pages that no overlay covers another control.
+
+The general rule: an invisible overlay is right for a link that is alone on its
+line and wrong the moment two of them are close, and the difference is only
+visible if you check.
+
+### Two things found while checking the numbers above
+
+Writing the "19% → 6%" line meant measuring both trees with the same script over
+the same directories, which is the only honest way to state a ratio. Doing that
+turned up two things nobody was looking for.
+
+**131 of 179 source files were not prettier-formatted.** There was no config
+file, so `prettier --write` had never been run over the whole tree — it was
+formatted where somebody's editor happened to do it. The tree is uniform now,
+and `.prettierrc.json` pins it so it stays a decision rather than a side effect
+of whose editor last saved the file.
+
+**Every `git add` printed a wall of "LF will be replaced by CRLF".** Harmless
+until you run `prettier --check` on Windows, where every file then fails on line
+endings alone and the real failures are invisible in the noise — which is exactly
+what happened here for one confusing pass. `.gitattributes` normalises the repo
+to LF and marks the binaries, and prettier's `endOfLine: "auto"` accepts either,
+so a Windows and a Linux clone agree.
+
+Neither is a feature. Both were sitting in plain output that had been scrolling
+past for weeks, which is the same lesson as reading the log.
+
+**And `npm test` was failing about 40% of the time.** `undo.test.mts` exited
+3221226505 — `Assertion failed: !(handle->flags & UV_HANDLE_CLOSING)` from
+libuv's `src\win\async.c`. Its ten checks passed on every single run; the crash
+came *after*, on process teardown, because Node's fetch keeps a socket alive and
+`process.exit()` landed on top of one closing.
+
+Worth naming as a bug rather than an environment quirk. A suite that goes red at
+random on a file that passed is worse than one that is red for a reason: the only
+sustainable response to an intermittent red is to stop reading them, and after
+that a real failure looks identical. The harness closes the connection pool
+before exiting now.
+
+Measured, and stated as measured: 8/8 on the file that flaked, and 19 full-suite
+runs since the change of which 18 passed. Against a baseline of 2 failures in 5,
+that is a large improvement and not a proof. The honest claim is "rare", and the
+symptom is documented so the next person who hits it recognises it instead of
+bisecting their own commit.

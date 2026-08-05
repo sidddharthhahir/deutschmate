@@ -1,0 +1,13 @@
+# Everything is stored LF in the repo. Without this, a Windows checkout with
+# core.autocrlf=true writes CRLF, git prints a "LF will be replaced by CRLF"
+# warning on every add, and prettier --check fails on files nobody touched.
+* text=auto eol=lf
+
+# Binary, so git must not go near the line endings.
+*.ogg  binary
+*.mp3  binary
+*.png  binary
+*.jpg  binary
+*.ico  binary
+*.woff2 binary
+*.db   binary
