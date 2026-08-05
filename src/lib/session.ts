@@ -4,7 +4,17 @@ import { topErrorTags } from "./errors";
 import { dueCloze, mineFromErrors } from "./cloze";
 import { rhythmFor, today } from "./rhythm";
 import { dueGrammar } from "./grammar-srs";
-import { NEW_WORDS_PER_DAY, NEW_WORDS_REDUCED, REVIEW_CAP } from "@/lib/config";
+import {
+  CLOZE_PER_SESSION,
+  GAP_BACKLOG,
+  GAP_CARDS,
+  GAP_DAYS,
+  NEW_WORDS_PER_DAY,
+  NEW_WORDS_REDUCED,
+  PACE_CUT_ACCURACY,
+  PACE_MIN_REVIEWS,
+  REVIEW_CAP,
+} from "@/lib/config";
 
 /**
  * The session runner (spec §3).
@@ -103,10 +113,18 @@ export function newWordBudget(userId: string) {
   );
 
   const n = row?.n ?? 0;
-  if (n < 20) return { words: NEW_WORDS_PER_DAY, accuracy: null as number | null, reduced: false };
+  if (n < PACE_MIN_REVIEWS) {
+    return { words: NEW_WORDS_PER_DAY, accuracy: null as number | null, reduced: false };
+  }
 
+  /* `accuracy` is a percentage because that is what the recap prints; the
+     config threshold is a fraction because every other ratio in that file is.
+     Converting here rather than storing 80 in config keeps the file internally
+     consistent — and this mismatch is exactly why the constant sat unused: the
+     obvious rewire, `accuracy < PACE_CUT_ACCURACY`, would have compared 74 to
+     0.8 and cut the intake for everybody, forever. */
   const accuracy = Math.round(((row?.correct ?? 0) / n) * 100);
-  const reduced = accuracy < 80;
+  const reduced = accuracy < PACE_CUT_ACCURACY * 100;
   return { words: reduced ? NEW_WORDS_REDUCED : NEW_WORDS_PER_DAY, accuracy, reduced };
 }
 
@@ -454,7 +472,7 @@ export function buildSession(
       ) ?? null)
     : null;
 
-  if (gap >= 3 && total > 40) {
+  if (gap >= GAP_DAYS && total > GAP_BACKLOG) {
     return {
       unit,
       canDo: [],
@@ -472,7 +490,7 @@ export function buildSession(
           minutes: 15,
           offline: true,
           skippable: false,
-          payload: { cards: dueCards(userId, 20), capped: true, backlog: total, gap },
+          payload: { cards: dueCards(userId, GAP_CARDS), capped: true, backlog: total, gap },
         },
       ],
     };
@@ -526,7 +544,7 @@ export function buildSession(
   //     from lines they tapped while reading. Mining runs here, on every build,
   //     so yesterday's mistake is today's card with nobody having to ask.
   mineFromErrors(userId);
-  const gaps = dueCloze(userId, 8);
+  const gaps = dueCloze(userId, CLOZE_PER_SESSION);
   if (gaps.length) {
     blocks.push({
       kind: "cloze",

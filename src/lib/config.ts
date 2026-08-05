@@ -32,8 +32,21 @@
 export const NEW_WORDS_PER_DAY = 12;
 export const NEW_WORDS_REDUCED = 6;
 
-/** Below this weekly accuracy, the intake drops to NEW_WORDS_REDUCED. */
+/**
+ * Below this weekly accuracy, the intake drops to NEW_WORDS_REDUCED.
+ *
+ * A FRACTION, like every other ratio here. `newWordBudget` compares it against
+ * a percentage and multiplies by 100 at the call site — do not "simplify" that
+ * to 80 here, and do not drop the conversion there.
+ */
 export const PACE_CUT_ACCURACY = 0.8;
+/**
+ * Reviews needed in the last week before the cut may fire at all.
+ *
+ * Without a floor, three reviews and one slip reads as 67% and throttles the
+ * course on no evidence. One bad morning must not slow the week.
+ */
+export const PACE_MIN_REVIEWS = 20;
 
 /**
  * Reviews offered in one session.

@@ -298,7 +298,7 @@ npm test                 # all of them
 npm test text outbox     # only files matching these names
 ```
 
-Twenty-four suites, no framework. Sixteen run anywhere; eight need `npm run dev`
+Twenty-five suites, no framework. Seventeen run anywhere; eight need `npm run dev`
 listening and are **skipped with a message** if it isn't — never quietly
 passed. They use throwaway user ids in the real database, which is how the app
 separates two flatmates, and clean up after themselves.
@@ -329,6 +329,7 @@ separates two flatmates, and clean up after themselves.
 | `apikey` | a stored key is never in the row, never in the response, and never another learner's |
 | `shared-cache` | course sentences are cached for everyone, pasted text only for you, and both are deletable |
 | `mail` | half-configured mail is caught, the link is in both parts of the message, and nothing in it phones home |
+| `config` | every constant in `config.ts` is actually read by something — five were not |
 
 `corpus` and `error-key` are worth a note on how they are written, because both
 guard the same kind of failure.
@@ -390,7 +391,7 @@ src/lib/       the engine — scheduling, session builder, error tagging, AI
 src/app/       22 pages and 17 API routes
 src/components/blocks/   the 14 block types a session is made of
 scripts/       content generation and maintenance
-tests/         24 suites, run with `npm test`
+tests/         25 suites, run with `npm test`
 public/audio/  2,381 native recordings from Wikimedia Commons (37 MB)
 ```
 

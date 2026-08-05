@@ -84,8 +84,21 @@ export function keyFor(userId: string): string | null {
   );
   const own = decrypt(row?.api_key_enc);
   if (own) return own;
-  const server = (process.env.ANTHROPIC_API_KEY ?? process.env.ANTHROPIC_AUTH_TOKEN ?? "").trim();
-  return server || null;
+  return serverApiKey() || null;
+}
+
+/**
+ * The app's own credential, if the operator set one.
+ *
+ * Lives here rather than in env.ts because env.ts imports this file, so the
+ * dependency only runs one way. env.ts re-exports it, and `npm run config`
+ * reports its presence — never its value.
+ *
+ * Two variable names because the Anthropic SDK honours both, and a key in the
+ * one this app did not read is indistinguishable from no key at all.
+ */
+export function serverApiKey(): string {
+  return (process.env.ANTHROPIC_API_KEY ?? process.env.ANTHROPIC_AUTH_TOKEN ?? "").trim();
 }
 
 /** Whether any account on this install is holding an encrypted key. */

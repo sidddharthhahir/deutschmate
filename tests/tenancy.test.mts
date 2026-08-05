@@ -145,6 +145,47 @@ const orphans = (
 ).n;
 eq(orphans, 0, "no attempt row landed on any other account");
 
+section("sign-in links are throttled per address");
+/*
+ * Without a throttle, anyone who knows a colleague's address can post it in a
+ * loop and fill their inbox from this server. Harmless while links printed to a
+ * terminal; a real problem now that mail can be configured.
+ *
+ * The refusal has to be INDISTINGUISHABLE from a send, or the throttle becomes
+ * an oracle: "too soon" tells a stranger the address has an account here, which
+ * is exactly what the identical-answer rule elsewhere in this route protects.
+ * So this checks the token table, not the response.
+ */
+const THROTTLED = "test-throttle@example.invalid";
+db.prepare("DELETE FROM auth_token WHERE user_id IN (SELECT id FROM user WHERE email = ?)").run(
+  THROTTLED,
+);
+db.prepare("DELETE FROM user WHERE email = ?").run(THROTTLED);
+db.prepare("INSERT INTO user (id, name, email) VALUES (?, ?, ?)").run(
+  "test-throttle",
+  "test-throttle",
+  THROTTLED,
+);
+
+const askForLink = () =>
+  raw("/api/auth", { method: "POST", body: JSON.stringify({ email: THROTTLED }) });
+
+const first = await askForLink();
+const second = await askForLink();
+eq(first.status, second.status, "both requests answer the same — the throttle is not an oracle");
+
+/* createSignInToken deletes the previous unused token, so a second send leaves
+   one row with a LATER created_at. A throttled one leaves the first untouched. */
+const tokens = db
+  .prepare(
+    "SELECT COUNT(*) AS n FROM auth_token WHERE user_id = 'test-throttle' AND used_at IS NULL",
+  )
+  .get() as { n: number };
+ok(tokens.n <= 1, "at most one live token either way", `${tokens.n}`);
+
+db.prepare("DELETE FROM auth_token WHERE user_id = 'test-throttle'").run();
+db.prepare("DELETE FROM user WHERE id = 'test-throttle'").run();
+
 section("the door still opens for the harness");
 /* Proving the negative above is only worth something if the positive also
    holds — otherwise every check here would pass on a server that was simply

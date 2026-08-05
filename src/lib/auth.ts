@@ -1,5 +1,5 @@
-﻿import { randomBytes, createHash, timingSafeEqual } from "node:crypto";
-import { all, get, run } from "./db.ts";
+﻿import { randomBytes, createHash } from "node:crypto";
+import { get, run } from "./db.ts";
 
 /**
  * Sign-in, without passwords and without a dependency.
@@ -50,12 +50,19 @@ export { SESSION_COOKIE, UID_COOKIE } from "./who.ts";
 const sha = (s: string) => createHash("sha256").update(s).digest("hex");
 const secret = () => randomBytes(TOKEN_BYTES).toString("base64url");
 
-/** Constant-time compare, for anything derived from user input. */
-export function sameSecret(a: string, b: string): boolean {
-  const x = Buffer.from(sha(a), "hex");
-  const y = Buffer.from(sha(b), "hex");
-  return x.length === y.length && timingSafeEqual(x, y);
-}
+/*
+ * `sameSecret`, a constant-time compare, used to sit here. Nothing called it.
+ *
+ * Deleted rather than kept "in case": an unused constant-time helper in an auth
+ * file implies the comparisons in this file are constant-time, and a reader
+ * checking that claim would find they are not — tokens and sessions are looked
+ * up by `WHERE hash = ?`, so SQLite does the comparison and the timing question
+ * belongs to the index, not to us. Dead security code is worse than none,
+ * because it answers a question nobody then asks again.
+ *
+ * `sessionsFor(userId)` went the same way: an admin listing for a screen that
+ * was never built.
+ */
 
 // ------------------------------------------------------------------- email
 /**
@@ -237,10 +244,3 @@ export async function deliver(
   return { sent: false, via, error: res.error };
 }
 
-// ------------------------------------------------------------------ admin
-export function sessionsFor(userId: string) {
-  return all<{ created_at: string; seen_at: string; expires_at: string }>(
-    "SELECT created_at, seen_at, expires_at FROM session WHERE user_id = ? ORDER BY seen_at DESC",
-    userId,
-  );
-}

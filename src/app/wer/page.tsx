@@ -13,6 +13,7 @@ import {
   TOKEN_TTL_MIN,
 } from "@/lib/auth";
 import { transport } from "@/lib/mail";
+import { baseUrl } from "@/lib/env";
 
 export const dynamic = "force-dynamic";
 
@@ -49,8 +50,8 @@ export default async function WhoPage({
        behind a signed-in session, so it is not open sign-up. */
     const user = userByEmail(email) ?? createUserByEmail(email);
     if (user) {
-      const base = process.env.DEUTSCHMATE_URL || "http://localhost:3000";
-      const t = createSignInToken(user.id, base);
+      // baseUrl() — one answer for where links point, the one config reports.
+      const t = createSignInToken(user.id, baseUrl());
       /* Awaited. redirect() throws to unwind the action, so a floating send
          would be racing a thrown control-flow exception — fine when deliver()
          only wrote to the console, a dropped email now. */

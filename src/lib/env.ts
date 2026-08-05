@@ -34,23 +34,30 @@ export function baseUrl(): string {
   return str("DEUTSCHMATE_URL").replace(/\/$/, "") || "http://localhost:3000";
 }
 
-/** Dollars per learner per rolling 30 days. 0 is a real setting: no AI spend. */
-export function budgetCeiling(): number {
-  const raw = str("DEUTSCHMATE_BUDGET");
-  if (!raw) return 5;
-  const n = Number(raw);
-  return Number.isFinite(n) && n >= 0 ? n : 5;
-}
-
-/** Whether the operator tools may write to shared content. */
-export function adminEnabled(): boolean {
-  return process.env.DEUTSCHMATE_ADMIN === "1";
-}
-
-/** A credential for the app's own Anthropic account, if there is one. */
-export function serverApiKey(): string {
-  return str("ANTHROPIC_API_KEY") || str("ANTHROPIC_AUTH_TOKEN");
-}
+/*
+ * THE THREE BELOW ARE RE-EXPORTS, NOT COPIES.
+ *
+ * This file exists because `process.env.X` was read in five places with a
+ * different fallback each time. Adding it created three second copies of rules
+ * that already lived elsewhere — the same failure, one layer up, and the worst
+ * kind because both copies look canonical:
+ *
+ *   budgetCeiling  pricing.ceiling() already owned it, and its own docstring
+ *                  says the guard that enforces the budget must not be able to
+ *                  disagree with the bar the progress page draws. cost.ts read
+ *                  one, Einstellungen read the other.
+ *   adminEnabled   trust.ts already owned it, and /api/video uses that one.
+ *   serverApiKey   apikey.ts already inlined the same two-variable fallback.
+ *
+ * One implementation each, named here so `describe()` and `check()` can report
+ * on them without a fourth.
+ */
+/* Imported as well as re-exported: `export … from` forwards the name without
+   binding it locally, and check()/describe() below call all three. */
+import { ceiling as budgetCeiling } from "./pricing.ts";
+import { adminEnabled } from "./trust.ts";
+import { serverApiKey } from "./apikey.ts";
+export { budgetCeiling, adminEnabled, serverApiKey };
 
 /**
  * Everything wrong or worth knowing about the current environment.

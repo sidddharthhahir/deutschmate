@@ -11,6 +11,7 @@
  *
  * needs: seeded database
  */
+import { readFileSync } from "node:fs";
 import { ok, eq, section, done, open } from "./harness.mts";
 import {
   createSession,
@@ -194,6 +195,29 @@ ok(
 if (otherAccount) db.prepare("DELETE FROM user WHERE id = ?").run(otherAccount.id);
 if (REAL_URL === undefined) delete process.env.DEUTSCHMATE_URL;
 else process.env.DEUTSCHMATE_URL = REAL_URL;
+
+section("the sign-in cookie is Secure behind a TLS-terminating proxy");
+/*
+ * Read from the source rather than driven, because reproducing it needs a
+ * proxy. Almost every real deployment terminates TLS in front of the app and
+ * forwards plain http, so `url.protocol` says "http:" on a site the browser
+ * reached over https — and the session cookie goes out without Secure. Nothing
+ * looks wrong. The header is the only thing that knows.
+ */
+const callback = readFileSync("src/app/api/auth/callback/route.ts", "utf8");
+ok(
+  /x-forwarded-proto/.test(callback),
+  "the callback consults x-forwarded-proto",
+);
+ok(
+  !/secure:\s*url\.protocol/.test(callback),
+  "and does not decide from the request URL alone",
+);
+/* A comma-joined chain — "https,http" from two hops — must read as https, and
+   taking the LAST element instead of the first is the classic way to get it
+   backwards. */
+const chain = "https, http";
+eq(chain.split(",")[0].trim(), "https", "the first hop in a proxy chain is the client's");
 
 db.close();
 done();

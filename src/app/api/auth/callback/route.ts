@@ -40,13 +40,27 @@ export async function GET(req: Request) {
   const { value, expiresAt } = createSession(user.id);
   const res = NextResponse.redirect(new URL("/", url.origin));
 
-  /* httpOnly so no script can read it; sameSite=lax so arriving from a mail
-     client or a chat app still carries it; secure only when the deployment is
-     actually https, or a laptop on plain http would silently drop it. */
+  /*
+   * httpOnly so no script can read it; sameSite=lax so arriving from a mail
+   * client or a chat app still carries it; secure only on a real https
+   * deployment, because a laptop on plain http would silently drop it.
+   *
+   * `x-forwarded-proto` is checked FIRST and it matters. Almost any real
+   * deployment puts nginx, Caddy or a platform router in front, terminating TLS
+   * and forwarding plain http — so `url.protocol` reads "http:" on a site the
+   * browser reached over https, and the session cookie would go out without the
+   * Secure flag. Everything looks fine; the cookie is just no longer protected
+   * from being sent over a downgraded connection.
+   */
+  const https = (req.headers.get("x-forwarded-proto") ?? url.protocol.replace(":", ""))
+    .split(",")[0]
+    .trim()
+    .toLowerCase() === "https";
+
   res.cookies.set(SESSION_COOKIE, value, {
     httpOnly: true,
     sameSite: "lax",
-    secure: url.protocol === "https:",
+    secure: https,
     expires: expiresAt,
     path: "/",
   });
@@ -55,7 +69,7 @@ export async function GET(req: Request) {
   res.cookies.set(UID_COOKIE, user.id, {
     httpOnly: false,
     sameSite: "lax",
-    secure: url.protocol === "https:",
+    secure: https,
     expires: expiresAt,
     path: "/",
   });

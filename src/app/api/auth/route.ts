@@ -13,9 +13,14 @@ import {
 } from "@/lib/auth";
 import { anyUsers, createUserByEmail, userByEmail } from "@/lib/user";
 import { mailReady, transport } from "@/lib/mail";
+import { baseUrl } from "@/lib/env";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
+
+/** When each address was last sent a link. See the throttle in POST. */
+const recent = new Map<string, number>();
+const LINK_INTERVAL_MS = 60_000;
 
 /**
  * Ask for a sign-in link, or sign out.
@@ -45,6 +50,33 @@ export async function POST(req: Request) {
   const email = normaliseEmail(str(raw.email, 254));
   if (!email) return badRequest("an email address is required");
 
+  /*
+   * One link per address per minute.
+   *
+   * Without this, anyone who knows a colleague's address can post it in a loop
+   * and fill their inbox from this server — the app becomes the abuse, and the
+   * sending domain pays for it in reputation. Harmless while links printed to a
+   * terminal; a real problem the moment mail is configured, which it now can be.
+   *
+   * Keyed on the address rather than the IP, because the address is the thing
+   * being harmed and an IP is trivially changed. That means someone can still
+   * flood many DIFFERENT addresses slowly; the answer to that is a provider's
+   * own rate limit, not something this app can honestly claim to solve.
+   *
+   * In memory on purpose: a restart clearing it costs one extra email, and a
+   * table would need sweeping. The refusal is deliberately indistinguishable
+   * from success — saying "too soon" to an address confirms it has an account.
+   */
+  const now = Date.now();
+  const last = recent.get(email);
+  if (last && now - last < LINK_INTERVAL_MS) {
+    return NextResponse.json({ ok: true, ttlMinutes: TOKEN_TTL_MIN, via: transport() });
+  }
+  recent.set(email, now);
+  if (recent.size > 500) {
+    for (const [k, t] of recent) if (now - t > LINK_INTERVAL_MS) recent.delete(k);
+  }
+
   sweepExpired();
 
   /* First run: nobody has an account, so the first address to ask gets one and
@@ -73,8 +105,12 @@ export async function POST(req: Request) {
   }
 
   if (user) {
-    const base = process.env.DEUTSCHMATE_URL || new URL(req.url).origin;
-    const t = createSignInToken(user.id, base);
+    /* baseUrl(), not a third reading of DEUTSCHMATE_URL. This said
+       `|| new URL(req.url).origin` and /wer said `|| "http://localhost:3000"`,
+       so with the variable unset the same account got links pointing at
+       different hosts depending on which screen asked — and neither matched
+       what `npm run config` reported. */
+    const t = createSignInToken(user.id, baseUrl());
     await deliver(email, t.url, t.expiresAt);
   }
 
