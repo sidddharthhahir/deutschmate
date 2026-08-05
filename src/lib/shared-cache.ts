@@ -1,30 +1,13 @@
-// Explicit .ts extensions: env.ts imports this, and `npm run config` loads
-// env.ts in plain Node, where the @/ alias and extensionless paths do not
-// resolve. Same reason as apikey.ts.
+// Explicit .ts extensions: env.ts imports this and `npm run config` loads env.ts in
+// plain Node, where the @/ alias does not resolve. Same reason as apikey.ts.
 import { get, run, all } from "./db.ts";
 import { norm } from "./error-key.ts";
 
 /**
- * What one learner's API key is allowed to pay into, on behalf of everyone.
- *
- * Three tables are written from live model calls and read by every account on
- * the install: `error_pattern`, `explanation`, and `word.mnemonic`. That
- * sharing is the point — spec §12's whole argument is that German learners make
- * a finite set of mistakes and read the same texts, so the table converges and
- * the cost of the second person to ask is zero. It was also written when one
- * person paid for everything, and it needs two things it never had now that
- * people bring their own keys and paste their own German:
- *
- *   1. A row must not contain text the learner did not expect to publish.
- *   2. A row must have an author, so it can be taken back.
- *
- * This module owns both. `error_pattern` and mnemonics stay global — their
- * inputs are the app's own words and short answer fragments, and an explanation
- * of "der → den" is the right answer for everyone. Sentence explanations are
- * shared only when the sentence is demonstrably the app's own content.
+ * What one learner's key may pay into on everyone's behalf. Mistake patterns and
+ * mnemonics stay global — their inputs are the app's own words. Sentence
+ * explanations are shared only when the sentence is demonstrably app content.
  */
-
-/** The tables that hold German the app itself put on screen, and the column. */
 const CONTENT: [table: string, column: string][] = [
   ["sentence", "de"],
   ["reading", "body"],
@@ -35,36 +18,14 @@ const CONTENT: [table: string, column: string][] = [
 ];
 
 /**
- * Did this sentence come from the curriculum?
- *
- * Asked of the database rather than taken from the request. A client can say
- * "this one is fine to share" and be wrong — or be a page I write next month
- * that forgets to say anything — and the cost of believing it is somebody's
- * private letter in a table their flatmate reads.
- *
- * `instr`, not LIKE: a sentence containing % or _ is a wildcard under LIKE and
- * could match content it does not appear in. This must not produce false
- * positives; false negatives are free, because they only mean an explanation is
- * cached privately instead of shared.
- *
- * The scan is over content, which is tens of rows per table and read-only after
- * seeding, and it runs on the miss path only — the path that is about to spend
- * a second or two on a model call anyway.
+ * Asked of the database, never taken from the request — a client claiming "this one
+ * is fine to share" can be wrong, and the cost is somebody's private letter in a
+ * table their flatmate reads. `instr`, not LIKE: a % or _ in the sentence is a
+ * wildcard and could match content it does not appear in. The length floor is the
+ * same rule — "der" occurs in every text the app ships.
  */
 export function isAppContent(sentence: string): boolean {
   const needle = norm(sentence);
-  /*
-   * Too short to be evidence of anything.
-   *
-   * The check is a substring match, so a short string matches by accident:
-   * "der" occurs in every text the app ships, and "im Haus" probably does too.
-   * Treating those as app content would share them — the wrong direction to be
-   * wrong in, since the whole point is deciding what may be published.
-   *
-   * Three words and a dozen characters. Below that it is cached per learner
-   * instead, which costs a duplicate model call on a very short sentence and
-   * nothing else.
-   */
   if (needle.length < 12 || needle.split(" ").length < 3) return false;
   for (const [table, column] of CONTENT) {
     const hit = get<{ n: number }>(
@@ -77,13 +38,9 @@ export function isAppContent(sentence: string): boolean {
 }
 
 /**
- * The cache key.
- *
- * A shared row is keyed by level and sentence, so everyone lands on the same
- * one. A private row carries its owner in the key, because `signature` is
- * UNIQUE: without the owner, the second person to ask about the same private
- * sentence would collide with the first person's row, be unable to read it, and
- * pay for a fresh answer on every single ask, forever.
+ * A private row carries its owner in the key because `signature` is UNIQUE — without
+ * it the second person to ask about the same private sentence collides with the
+ * first, cannot read it, and pays for a fresh answer on every ask forever.
  */
 export function explanationKey(sentence: string, level: string, owner: string | null): string {
   const base = `${level}|${norm(sentence)}`;
@@ -92,12 +49,6 @@ export function explanationKey(sentence: string, level: string, owner: string | 
 
 export type CachedExplanation = { body_md: string; shared: boolean };
 
-/**
- * Look up an explanation this user is allowed to see.
- *
- * Whether the sentence is app content is decided first and decides which key to
- * look under, so the two kinds of row never shadow each other.
- */
 export function findExplanation(
   sentence: string,
   level: string,
@@ -110,21 +61,14 @@ export function findExplanation(
     sig,
   );
   if (!row) return null;
-  // Belt and braces. The key already separates the two, but a row that is not
-  // shared and not this learner's must never be served, whatever the key says.
+  // Belt and braces: a row that is not shared and not this learner's is never
+  // served, whatever the key says.
   if (!row.shared && row.created_by !== userId) return null;
   run("UPDATE explanation SET hits = hits + 1 WHERE signature = ?", sig);
   return { body_md: row.body_md, shared: Boolean(row.shared) };
 }
 
-/**
- * Write one back. Returns whether it went into the shared pool.
- *
- * The ON CONFLICT branch also adopts the row — it rewrites body, owner and
- * shared flag rather than only bumping hits. That is what upgrades a row left
- * by an older version of this app, which has no owner and no flag, the first
- * time somebody asks about the same sentence again.
- */
+/** The conflict branch adopts the row, which gives an ownerless one from an older version an author. */
 export function saveExplanation(
   sentence: string,
   level: string,
@@ -173,23 +117,13 @@ export function contributions(userId: string): CacheContribution {
 }
 
 /**
- * Delete what this learner contributed.
- *
- * `scope: "private"` removes only their own unshared explanations — the ones
- * with their pasted German in them. `scope: "all"` also withdraws what they
- * contributed to the shared pool, which makes the app poorer for everybody and
- * is still their call: they paid for it and it is their text that seeded it.
- *
- * Prebuilt rows are never touched. They came with the app, cost nobody
- * anything, and deleting them would quietly break the offline explanation tier
- * for every account — the one thing that must keep working without a key.
+ * "private" drops their own unshared rows; "all" also withdraws what they gave the
+ * shared pool. Prebuilt rows are never touched — the offline explanation tier
+ * depends on them and they cost nobody anything.
  */
 export function forgetContributions(userId: string, scope: "private" | "all"): number {
-  let removed = 0;
-  removed += run(
-    "DELETE FROM explanation WHERE created_by = ? AND shared = 0",
-    userId,
-  ).changes as number;
+  let removed = run("DELETE FROM explanation WHERE created_by = ? AND shared = 0", userId)
+    .changes as number;
   if (scope === "all") {
     removed += run("DELETE FROM explanation WHERE created_by = ? AND shared = 1", userId)
       .changes as number;
@@ -201,13 +135,7 @@ export function forgetContributions(userId: string, scope: "private" | "all"): n
   return removed;
 }
 
-/**
- * Rows nobody owns and nobody can reach.
- *
- * Only ever produced by a database that predates the `created_by` column and
- * escaped the migration. Reported by `npm run config` rather than deleted
- * behind the operator's back.
- */
+/** Only from a database predating created_by. Reported by `npm run config`, never auto-deleted. */
 export function orphanedRows(): number {
   return (
     all<{ n: number }>(

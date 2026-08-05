@@ -1,48 +1,22 @@
 import { createCipheriv, createDecipheriv, randomBytes, scryptSync } from "node:crypto";
 
 /**
- * Encrypting things this server is holding on somebody else's behalf.
- *
- * Right now that is one thing: each learner's Anthropic API key. That is a live
- * credential belonging to a colleague, and losing it is a different order of
- * incident from losing a flashcard deck — so it is never written to the
- * database in a form the database can be read for.
- *
- * AES-256-GCM. Authenticated, so a tampered ciphertext fails to decrypt rather
- * than decrypting to something else. A fresh 12-byte IV per encryption, which
- * for GCM is not optional: reusing one with the same key breaks the cipher
- * outright.
- *
- * WHAT THIS DOES AND DOES NOT BUY YOU
- *
- * It protects a database that leaves the machine — a backup on a laptop, a file
- * copied off a box, a stolen disk. It does NOT protect against someone who can
- * already read the server's environment, because the key to decrypt is there.
- * That is the honest limit and it is worth stating rather than implying more:
- * the realistic threat for a five-person install is a mislaid backup, and this
- * is the thing that fixes it.
- *
- * `node:crypto`, so no dependency — the same reasoning that chose node:sqlite.
+ * AES-256-GCM for things this server holds on somebody else's behalf — today,
+ * each learner's Anthropic key. Protects a database that leaves the machine: a
+ * mislaid backup, a copied file. NOT someone who can read the environment, since
+ * the key to decrypt is there. That is the honest limit.
  */
 
-/** Fixed, because there is one key and it is not a password. */
+/** Fixed: there is one key and it is not a password. */
 const SALT = "deutschmate:secrets:v1";
 const ALGO = "aes-256-gcm";
+/** GCM: a fresh IV per encryption is not optional — reuse breaks the cipher. */
 const IV_BYTES = 12;
-
-/** Shortest master secret that is not a false sense of safety. */
 export const MIN_SECRET = 32;
 
 let _key: Buffer | null = null;
 
-/**
- * The master key, derived from DEUTSCHMATE_SECRET.
- *
- * Accepts any string of at least 32 characters and stretches it with scrypt, so
- * `npm run setup` can generate 64 hex characters and a human can paste a long
- * passphrase, and both end up as 32 bytes. Cached: scrypt is deliberately slow
- * and this runs on every decrypt.
- */
+/** scrypt-stretched so a hex string or a passphrase both work. Cached — scrypt is slow by design. */
 function masterKey(): Buffer | null {
   if (_key) return _key;
   const raw = (process.env.DEUTSCHMATE_SECRET ?? "").trim();
@@ -51,18 +25,11 @@ function masterKey(): Buffer | null {
   return _key;
 }
 
-/** Whether this server can store a secret at all. */
 export function secretsAvailable(): boolean {
   return masterKey() !== null;
 }
 
-/**
- * Encrypt. Returns one string, because one column is one thing to migrate and
- * one thing to get wrong.
- *
- * `v1.<iv>.<tag>.<ciphertext>`, all base64url. The version prefix is there so a
- * future change of algorithm can be detected rather than mis-decrypted.
- */
+/** `v1.<iv>.<tag>.<ciphertext>`, base64url. Versioned so a future algorithm is detectable. */
 export function encrypt(plain: string): string {
   const key = masterKey();
   if (!key) throw new Error("DEUTSCHMATE_SECRET is not set — refusing to store a secret");
@@ -78,14 +45,9 @@ export function encrypt(plain: string): string {
 }
 
 /**
- * Decrypt, or null.
- *
- * Null for every failure, deliberately, and the caller treats all of them the
- * same: no master key, a rotated one, a corrupt row, a tampered ciphertext. The
- * learner's experience is identical in each case — the app says it cannot read
- * their stored key and asks them to paste it again — and that is the correct
- * answer to all four. Distinguishing them would only tell an attacker which of
- * their guesses was closer.
+ * Null for every failure — no key, a rotated one, a corrupt row, a tampered tag.
+ * The learner sees one sentence in all four cases; telling them apart would only
+ * say which guess was closer.
  */
 export function decrypt(packed: string | null | undefined): string | null {
   const key = masterKey();
@@ -101,18 +63,12 @@ export function decrypt(packed: string | null | undefined): string | null {
   }
 }
 
-/**
- * The last four characters, for showing a learner which key is stored.
- *
- * Not a secret and not enough to be one. It exists so the settings page can say
- * "…4f2a" rather than either printing the key or showing nothing and leaving
- * somebody unsure whether they ever saved it.
- */
+/** Last four characters, so Einstellungen can say which key is stored without showing it. */
 export function hintOf(key: string): string {
   return key.trim().slice(-4);
 }
 
-/** Reset the cached key. Tests rotate the secret; nothing else should. */
+/** Tests rotate the secret; nothing else should. */
 export function forgetMasterKey() {
   _key = null;
 }

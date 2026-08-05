@@ -181,7 +181,13 @@ const survival = JSON.parse(
   }[];
 }[];
 
-ok(survival.length === 6, "six of them", survival.length);
+/* A floor, not a count. Principle 5 says this set grows, and a test that
+   pins it at six turns adding a scenario into a failing build. */
+ok(survival.length >= 6, "the pack is not shrinking", `${survival.length} scenarios`);
+ok(
+  new Set(survival.map((s) => s.id)).size === survival.length,
+  "and no two share an id — the second would be unreachable at /alltag/<id>",
+);
 
 for (const s of survival) {
   const d = s.dialogue;

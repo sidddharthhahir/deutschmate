@@ -1,50 +1,20 @@
 /**
- * Which learner this browser is, on the client side.
- *
- * THE BUG THIS FIXES
- *
- * /wer tells both flatmates, in as many words: "nothing is shared between
- * learners except the course itself." Three things were.
- *
- *   dm.outbox.v1    grades answered offline and not yet sent
- *   dm.session.v2   the half-finished session offered as "Weiter?"
- *   dm.plan.v1      today's block list, cached so a session starts offline
- *
- * All three were stored under one global name. Switch user on /wer and the
- * saved session, the cached plan and — worst — the queue of ungraded answers
- * came along. Nothing errors: the resume offer looks right, the plan looks
- * right, and the replay lands on whoever happens to hold the cookie when the
- * network returns. One person's reviews, scheduled into the other person's
- * deck, silently.
- *
- * The server has been keyed by user since the schema was written. Only the
- * browser half was not.
- *
- * The cookie is deliberately not httpOnly (see lib/user.ts) precisely so the
- * client can read it — this is not auth, it is a name.
+ * Which learner this browser is, client-side, so localStorage is namespaced per
+ * person. The cached plan, the resume offer, the tour flag and the offline grade
+ * queue were once global: switching learner carried all four across, and the
+ * queue replayed one person's answers into the other's deck.
  */
 
-/** Must match DEFAULT_USER in lib/user.ts. */
+/** Only a fallback now. A signed-out browser has no learner and no buckets worth keeping. */
 export const DEFAULT_USER = "sid";
 
+/** Pre-sign-in identity. Read for one release so an open tab keeps its buckets; never written. */
 export const USER_COOKIE = "dm_user";
 
-/**
- * The session token. httpOnly — the browser cannot read it, and neither can
- * this module; it is named here only so the middleware can check the cookie
- * EXISTS without importing lib/auth.ts, which pulls in node:sqlite and cannot
- * run in the edge runtime.
- */
+/** httpOnly. Named here only so the edge middleware can test for it without importing node:sqlite. */
 export const SESSION_COOKIE = "dm_session";
 
-/**
- * The learner id, readable by the browser on purpose.
- *
- * Not a credential — it proves nothing and grants nothing. The session cookie
- * is httpOnly, so the client cannot see who it is, and every localStorage key
- * below is namespaced per learner. This is how the browser knows which bucket
- * is its own without being told a secret.
- */
+/** The learner id, readable on purpose. Proves nothing — it just says which bucket is yours. */
 export const UID_COOKIE = "dm_uid";
 
 /** Same normalisation as the server, so a key never disagrees with a row. */
@@ -52,21 +22,29 @@ export function normalise(name: string): string {
   return name.trim().toLowerCase().replace(/[^a-z0-9_-]/g, "").slice(0, 32) || DEFAULT_USER;
 }
 
-/** Pure so the scoping rule can be tested without a browser. */
+/** Pure, so the scoping rule can be tested without a browser. */
 export function scoped(base: string, user: string): string {
   return `${base}:${normalise(user)}`;
 }
 
-/** Read the name out of a cookie string. Exported for the test. */
+/**
+ * dm_uid FIRST. Sign-in replaced the old name cookie with dm_uid and this kept
+ * reading dm_user, which nothing writes — so every learner fell back to
+ * DEFAULT_USER and shared one set of buckets again. Invisible wherever the
+ * signed-in id happens to equal the fallback.
+ */
 export function userFromCookie(cookie: string): string {
+  let legacy: string | null = null;
   for (const part of cookie.split(";")) {
     const [k, ...v] = part.trim().split("=");
-    if (k === USER_COOKIE) return normalise(decodeURIComponent(v.join("=")));
+    const value = decodeURIComponent(v.join("="));
+    if (k === UID_COOKIE && value) return normalise(value);
+    if (k === USER_COOKIE && value) legacy = value;
   }
-  return DEFAULT_USER;
+  return legacy ? normalise(legacy) : DEFAULT_USER;
 }
 
-/** Who this browser currently is. Falls back rather than throwing on the server. */
+/** Who this browser is. Falls back rather than throwing on the server. */
 export function whoami(): string {
   if (typeof document === "undefined") return DEFAULT_USER;
   return userFromCookie(document.cookie);
