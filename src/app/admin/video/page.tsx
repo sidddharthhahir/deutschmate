@@ -74,6 +74,18 @@ export default function VideoAdmin() {
 
   const now = () => player.current?.getCurrentTime() ?? 0;
 
+  /* Unsegmented first, then level, then title — with `numeric` so "Folge 2"
+     comes before "Folge 10" instead of after "Folge 14". A queue you work
+     through in order has to be IN order. Sorting a copy, because mutating the
+     state array in place is a render-order bug waiting to happen. */
+  const todo = videos.filter((v) => !v.segments.length).length;
+  const queue = [...videos].sort(
+    (a, b) =>
+      Number(a.segments.length > 0) - Number(b.segments.length > 0) ||
+      a.level.localeCompare(b.level) ||
+      a.title.localeCompare(b.title, "de", { numeric: true }),
+  );
+
   const mark = useCallback(() => {
     if (markStart === null) {
       setMarkStart(now());
@@ -323,35 +335,55 @@ export default function VideoAdmin() {
           </div>
         )}
 
+        {/*
+          A WORK QUEUE, NOT A LIST.
+          `npm run videos` seeds twenty candidates and none of them has
+          segments, because segmenting is the part a person has to do. Sorted
+          alphabetically they were twenty identical-looking rows; what the
+          person sitting down to do this needs is "which one is next" and "how
+          many are left". Unsegmented first, and the unit each one is for.
+        */}
         <section className="mt-12">
-          <h2 className="mb-3 text-xs uppercase tracking-widest text-neutral-600">
-            Gespeicherte Videos ({videos.length})
+          <h2 className="mb-3 flex flex-wrap items-baseline justify-between gap-2 text-xs uppercase tracking-widest text-neutral-600">
+            <span>Gespeicherte Videos ({videos.length})</span>
+            {videos.length > 0 && (
+              <span className={todo === 0 ? "text-emerald-600" : "text-amber-600"}>
+                {todo === 0 ? "alle segmentiert" : `${todo} noch zu segmentieren`}
+              </span>
+            )}
           </h2>
           <div className="space-y-1.5">
-            {videos.map((v) => (
-              <button
-                key={v.id}
-                onClick={() => edit(v)}
-                className="flex w-full items-center justify-between rounded-lg border border-neutral-900 px-3 py-2.5 text-left hover:bg-neutral-900"
-              >
-                <span>
-                  <span className="text-sm">{v.title}</span>
-                  <span className="ml-2 text-xs text-neutral-600">
-                    {v.level} {v.channel && `· ${v.channel}`}
-                  </span>
-                </span>
-                <span
-                  className={`text-xs ${
-                    v.segments.length ? "text-emerald-600" : "text-amber-600"
-                  }`}
+            {queue.map((v) => {
+              const unit = units.find((u) => u.id === v.unit_id);
+              return (
+                <button
+                  key={v.id}
+                  onClick={() => edit(v)}
+                  className="flex w-full items-center justify-between gap-4 rounded-lg border border-neutral-900 px-3 py-2.5 text-left hover:bg-neutral-900"
                 >
-                  {v.segments.length || "keine"} Sätze
-                </span>
-              </button>
-            ))}
+                  <span className="min-w-0">
+                    <span className="block truncate text-sm">{v.title}</span>
+                    <span className="text-xs text-neutral-600">
+                      {v.level}
+                      {unit
+                        ? ` · Unit ${unit.ord}: ${unit.title}`
+                        : " · keiner Unit zugeordnet"}
+                    </span>
+                  </span>
+                  <span
+                    className={`flex-none text-xs ${
+                      v.segments.length ? "text-emerald-600" : "text-amber-600"
+                    }`}
+                  >
+                    {v.segments.length || "keine"} Sätze
+                  </span>
+                </button>
+              );
+            })}
             {!videos.length && (
               <p className="py-6 text-center text-sm text-neutral-700">
-                Noch keine Videos. Oben eine YouTube-URL einfügen.
+                Noch keine Videos. <code className="text-neutral-500">npm run videos</code> lädt
+                die geprüfte Liste — oder oben eine YouTube-URL einfügen.
               </p>
             )}
           </div>

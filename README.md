@@ -552,6 +552,10 @@ offline tier depends on them.
   see `public/audio/ATTRIBUTION.md`.
 - **News** — Deutsche Welle, streamed from their public feed. Nothing copied or
   stored.
+- **Video** — Deutsche Welle, *Nicos Weg*, embedded via the standard YouTube
+  player. Nothing downloaded, no captions scraped; the video is served by
+  YouTube on their terms and the transcripts in `segments_json` are typed by
+  whoever marked the video up.
 - **Scheduling** — [ts-fsrs](https://github.com/open-spaced-repetition/ts-fsrs), MIT.
 
 Practice tests are built from this app's own content. They are **not** the
@@ -562,13 +566,31 @@ the [Goethe-Institut](https://www.goethe.de/de/spr/kup/prf.html).
 
 ## Known gaps
 
-- **No video has been imported at all** — the `video` table is empty and no unit
-  carries a `video_id`, so the video block never appears and the input slot
-  alternates between listening and reading. The editor is at `/admin/video` and
-  takes about ten minutes per video. This is the one gap that is content work
-  rather than code: somebody has to choose the videos and type what they hear.
-  Transcribing by hand is deliberate — it keeps the app to embedding rather than
-  scraping captions, and typing the line is a listening exercise in itself.
+- **Videos are chosen but not yet segmented.** Twenty Deutsche Welle *Nicos Weg*
+  episodes are in `data/videos.json`, verified and seeded; six are linked to the
+  unit their title matches. **None has segments, so the video block still never
+  appears** — that is correct, not broken: an unsegmented embed is a YouTube
+  link, not a lesson, and `session.ts` will not offer one.
+
+  The remaining work is deliberately human. A segment is a timestamp plus the
+  line actually spoken, and the only way to know the line is to listen to it —
+  generated "transcripts" would be subtitles that disagree with the audio, which
+  is worse than no video because a learner would believe them. Typing them by
+  hand also keeps the app to embedding rather than scraping captions. Roughly
+  ten minutes each, at `/admin/video` with `DEUTSCHMATE_ADMIN=1`, which now
+  shows a work queue: unsegmented first, in episode order, with the unit each
+  belongs to.
+
+  ```bash
+  npm run videos                          # verify every id, then seed
+  npm run videos -- --check               # verify only, write nothing
+  npm run videos -- --from-playlist <ID>  # append more from a DW playlist
+  ```
+
+  Coverage stops at A1 episode 14 of ~76. YouTube's playlist pages redirect to a
+  consent banner, and its RSS feeds return only the newest 15 entries per
+  playlist — so the rest need either more playlist ids or pasting them in by
+  hand.
 - **Speech recognition needs Chrome, Edge or Safari.** Firefox has never shipped
   the Web Speech API. Speaking and voice mode degrade to listen-and-repeat there
   and say which browsers work. This is feature-detected, so the day Firefox

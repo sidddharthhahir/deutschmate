@@ -28,7 +28,8 @@
     "export-design": "node scripts/export-for-design.mts",
     "invite": "node scripts/invite.mts",
     "config": "node scripts/config.mts",
-    "mail:test": "node scripts/mail-test.mts"
+    "mail:test": "node scripts/mail-test.mts",
+    "videos": "node scripts/videos.mts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.115.0",

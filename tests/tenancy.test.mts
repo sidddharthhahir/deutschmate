@@ -96,6 +96,20 @@ ok(!userExists(INVENTED), "and still does not after being named by two routes");
 section("the shared curriculum is not anonymously writable");
 /* /api/video had no user resolution and no check, and runs
    `UPDATE unit SET video_id` — a write to content every learner reads. */
+const videoIdOf = (unitId: string) =>
+  (
+    db.prepare("SELECT video_id FROM unit WHERE id = ?").get(unitId) as
+      | { video_id: string | null }
+      | undefined
+  )?.video_id ?? null;
+
+/* Read before, compare after. This used to assert the column was null, which
+   was a stand-in for "unchanged" and only true while no video had ever been
+   seeded — `npm run videos` legitimately links a video to unit 1, and the
+   check went red without anything being wrong. What the test means is that the
+   refused request changed nothing, so that is what it now measures. */
+const linkedBefore = videoIdOf("a1-1-u01");
+
 const res = await raw("/api/video", {
   method: "POST",
   body: JSON.stringify({
@@ -107,10 +121,8 @@ const res = await raw("/api/video", {
   }),
 });
 eq(res.status, 403, "refused");
-const unit = db.prepare("SELECT video_id FROM unit WHERE id = 'a1-1-u01'").get() as
-  | { video_id: string | null }
-  | undefined;
-eq(unit?.video_id ?? null, null, "and the unit was not touched");
+eq(videoIdOf("a1-1-u01"), linkedBefore, "and the unit still points where it did");
+ok(videoIdOf("a1-1-u01") !== "v-dQw4w9WgXcQ", "certainly not at the injected one");
 eq(
   (db.prepare("SELECT COUNT(*) AS n FROM video WHERE id = 'v-dQw4w9WgXcQ'").get() as { n: number })
     .n,

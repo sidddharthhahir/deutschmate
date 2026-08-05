@@ -370,13 +370,49 @@ type RawVideo = {
 };
 const videoPath = path.join(ROOT, "data/videos.json");
 if (existsSync(videoPath)) {
-  const videos: RawVideo[] = JSON.parse(readFileSync(videoPath, "utf8"));
+  /* Two shapes. The file was a bare array; it is now an object with the
+     curation notes beside the list, because where these came from and why they
+     are unassigned is worth keeping next to them. Both are accepted, so an
+     older file still seeds. */
+  const parsed: unknown = JSON.parse(readFileSync(videoPath, "utf8"));
+  const raw = (
+    Array.isArray(parsed) ? parsed : ((parsed as { videos?: unknown[] }).videos ?? [])
+  ) as Partial<RawVideo>[];
+
+  const videos: RawVideo[] = raw
+    .filter((v) => typeof v.youtube_id === "string" && v.youtube_id.length === 11)
+    .map((v) => ({
+      id: v.id ?? `dw-${v.youtube_id}`,
+      youtube_id: v.youtube_id!,
+      title: v.title ?? v.youtube_id!,
+      level: v.level ?? "A1.1",
+      channel: v.channel ?? "Deutsche Welle",
+      unit_id: v.unit_id ?? null,
+      segments: v.segments ?? [],
+    }));
+
+  /*
+   * SEGMENTS ARE NEVER CLOBBERED BY AN EMPTY LIST.
+   *
+   * This used to be a plain `segments_json=excluded.segments_json`, which meant
+   * `npm run seed` wrote whatever the file said — and the file carries no
+   * segments, because marking them up is a human job done in /admin/video and
+   * saved to the database. So a reseed would have silently deleted every
+   * hand-marked video in the install: about twelve minutes of work each, with
+   * no error and nothing on screen to say it had happened. Re-seeding content
+   * must never destroy the one kind of content a person made by hand.
+   *
+   * A file that DOES carry segments still updates them — that is the path for
+   * committing marked-up videos to the repo later.
+   */
   const upV = db.prepare(`
     INSERT INTO video (id, youtube_id, title, level, channel, unit_id, segments_json)
     VALUES (?, ?, ?, ?, ?, ?, ?)
     ON CONFLICT(id) DO UPDATE SET
       youtube_id=excluded.youtube_id, title=excluded.title, level=excluded.level,
-      channel=excluded.channel, unit_id=excluded.unit_id, segments_json=excluded.segments_json
+      channel=excluded.channel, unit_id=excluded.unit_id,
+      segments_json=CASE WHEN excluded.segments_json IN ('[]', '')
+                         THEN video.segments_json ELSE excluded.segments_json END
   `);
   db.exec("BEGIN");
   for (const v of videos) {

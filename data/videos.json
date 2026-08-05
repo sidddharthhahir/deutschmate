@@ -1,0 +1,153 @@
+{
+  "_comment": [
+    "Video candidates for the video block. Curated, not scraped.",
+    "",
+    "Every id here came out of Deutsche Welle's own YouTube playlist feeds and is",
+    "re-verified against YouTube's oEmbed endpoint by `npm run videos`, which",
+    "refuses to seed an id that has been deleted or made unembeddable.",
+    "",
+    "SEGMENTS ARE DELIBERATELY EMPTY. A video only reaches a learner once it has",
+    "hand-marked segments (session.ts checks that), so nothing here shows up in a",
+    "session yet. Marking them is ~10 minutes each in /admin/video, and it is the",
+    "part that has to be done by a person: you have to hear the line to timestamp",
+    "it. Generated 'transcripts' would be subtitles that do not match the audio.",
+    "",
+    "unit_id is set ONLY where the episode title and the unit's can-do statement",
+    "say the same thing. Everything else is level-tagged and unassigned — placing",
+    "it is a judgement best made while watching, which is when you are segmenting",
+    "it anyway."
+  ],
+  "source": {
+    "channel": "Deutsche Welle — Deutsch lernen mit der DW",
+    "series": "Nicos Weg",
+    "why": "A free A1-B1 drama course from a public broadcaster, already cut into short lesson-sized episodes with the syllabus DeutschMate follows. Embedding is what the YouTube player is for; nothing is downloaded and no captions are scraped.",
+    "licence": "Standard YouTube embed. DW permits embedding; the video is served by YouTube and stays on their terms.",
+    "playlists": [
+      "PLs7zUO7VPyJ6eoN6SmB1UcwvPUagK87ix",
+      "PLs7zUO7VPyJ5DV1iBRgSw2uDl832n0bLg",
+      "PLs7zUO7VPyJ7n29SeiN1tK4Z-Alh1WHyM",
+      "PLn4GkF3M9WXcP6sEk9myOJwUHB-d3yJvk"
+    ],
+    "coverage_note": "YouTube's playlist pages are behind a consent wall, and its RSS feeds return only the newest 15 entries per playlist. That is why this stops at A1 episode 14 rather than covering all ~76. Add more with: npm run videos -- --from-playlist <PLAYLIST_ID>"
+  },
+  "videos": [
+    {
+      "youtube_id": "dC6ZGLzdaTs",
+      "title": "Nicos Weg A1 · Folge 1: Hallo!",
+      "level": "A1.1",
+      "unit_id": "a1-1-u01",
+      "why": "Unit 1 is 'Hallo!' and its can-do is greeting someone at any time of day."
+    },
+    {
+      "youtube_id": "upvuC9FR-xU",
+      "title": "Nicos Weg A1 · Folge 2: Kein Problem!",
+      "level": "A1.1"
+    },
+    {
+      "youtube_id": "idFrq0H1Af0",
+      "title": "Nicos Weg A1 · Folge 3: Tschüss!",
+      "level": "A1.1"
+    },
+    {
+      "youtube_id": "-qAuGimugds",
+      "title": "Nicos Weg A1 · Folge 4: Von A bis Z",
+      "level": "A1.1"
+    },
+    {
+      "youtube_id": "FoYSUfsLcjA",
+      "title": "Nicos Weg A1 · Folge 5: Ich heiße Emma",
+      "level": "A1.1",
+      "unit_id": "a1-1-u02",
+      "why": "Unit 2 is 'Ich heiße …' — say your name."
+    },
+    {
+      "youtube_id": "fZr-eVZ3YOs",
+      "title": "Nicos Weg A1 · Folge 6: Das ist Nico",
+      "level": "A1.1",
+      "unit_id": "a1-1-u03",
+      "why": "Unit 3 is 'Ich bin, du bist' — say what you are, and introduce someone."
+    },
+    {
+      "youtube_id": "Q7ECRAQrzFc",
+      "title": "Nicos Weg A1 · Folge 7: Woher kommst du?",
+      "level": "A1.1",
+      "unit_id": "a1-1-u04",
+      "why": "Same title as unit 4, word for word."
+    },
+    {
+      "youtube_id": "T89sIATrpBc",
+      "title": "Nicos Weg A1 · Folge 8: Nico hat ein Problem",
+      "level": "A1.1"
+    },
+    {
+      "youtube_id": "p1dci7nBJRo",
+      "title": "Nicos Weg A1 · Folge 9: Zahlen von 1 bis 100",
+      "level": "A1.1",
+      "unit_id": "a1-1-u05",
+      "why": "Unit 5 is 'Zahlen' — count to twenty. The episode goes further, which is fine for an input block."
+    },
+    {
+      "youtube_id": "5wyalwdmpzk",
+      "title": "Nicos Weg A1 · Folge 10: Wichtige Nummern",
+      "level": "A1.1"
+    },
+    {
+      "youtube_id": "AI9EmNzxXGE",
+      "title": "Nicos Weg A1 · Folge 11: Adressen",
+      "level": "A1.1"
+    },
+    {
+      "youtube_id": "IhLqeX8QjSg",
+      "title": "Nicos Weg A1 · Folge 12: Auf dem Amt",
+      "level": "A1.2",
+      "why": "No A1.1 unit covers the Amt. Pairs with the Alltag scenario 'Anmeldung beim Bürgeramt' rather than with a unit."
+    },
+    {
+      "youtube_id": "VWDtpIIAgAI",
+      "title": "Nicos Weg A1 · Folge 13: Was machst du hier?",
+      "level": "A1.1"
+    },
+    {
+      "youtube_id": "J71RxF7qU2o",
+      "title": "Nicos Weg A1 · Folge 14: Was trinkst du?",
+      "level": "A1.1",
+      "unit_id": "a1-1-u09",
+      "why": "Unit 9 is 'Essen und Trinken' — name everyday food and drink."
+    },
+    {
+      "youtube_id": "4-eDoThe6qo",
+      "title": "Nicos Weg A1 · ganzer Film",
+      "level": "A1.2",
+      "why": "The whole A1 story in one piece, with subtitles. Too long for a session block — kept as a milestone watch for the end of A1.2."
+    },
+    {
+      "youtube_id": "Lg5P2w_Ro1c",
+      "title": "Nicos Weg A2 · ganzer Film",
+      "level": "A2.2",
+      "why": "Milestone watch for the end of A2."
+    },
+    {
+      "youtube_id": "LkufozluseI",
+      "title": "Nicos Weg B1 · ganzer Film",
+      "level": "B1.2",
+      "why": "Milestone watch for the end of the course."
+    },
+    {
+      "youtube_id": "S_haCcudQZk",
+      "title": "Nicos Weg · Rückblick A1",
+      "level": "A1.2",
+      "why": "A recap of the A1 story. Useful as revision input rather than as a lesson."
+    },
+    {
+      "youtube_id": "oT9pMWCHNuU",
+      "title": "Nicos Weg · Rückblick A1 & A2",
+      "level": "A2.2"
+    },
+    {
+      "youtube_id": "3P7t_K9vH4g",
+      "title": "Nicos Weg B1 · Folge 11: Die Mauer",
+      "level": "B1.1",
+      "why": "The one B1 episode whose id surfaced without the consent wall. Kept because the Wall is worth a lesson."
+    }
+  ]
+}
