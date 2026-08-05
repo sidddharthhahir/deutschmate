@@ -577,9 +577,22 @@ the [Goethe-Institut](https://www.goethe.de/de/spr/kup/prf.html).
   The remaining work is deliberately human. A segment is a timestamp plus the
   line actually spoken, and the only way to know the line is to listen to it —
   generated "transcripts" would be subtitles that disagree with the audio, which
-  is worse than no video because a learner would believe them. Roughly ten
-  minutes each at `/admin/video` with `DEUTSCHMATE_ADMIN=1`, which shows a work
-  queue: unsegmented first, in episode order, with the unit each belongs to.
+  is worse than no video because a learner would believe them.
+
+  **Paste the manuscript first.** DW publishes one for every Nicos Weg lesson on
+  learngerman.dw.com. With it in the box at `/admin/video`, the words are
+  already there and marking a line is two keypresses — `[` at the start, `]` at
+  the end, next line loads itself. Without it you are transcribing and listening
+  at the same time, which is what makes it slow. The timings still come from a
+  person either way; that is the part that has to match the audio.
+
+  There is no shortcut past that. Checked: the mp4s carry no subtitle track,
+  DW's CDN serves no sidecar `.vtt`/`.srt`, and their GraphQL exposes a
+  `subtitles.subtitleUrl` field whose Nicos Weg nodes could not be reached
+  through the public search.
+
+  The editor is a work queue: unsegmented first, in episode order, with the unit
+  each belongs to and a count of what is left.
 
   ```bash
   npm run videos                # verify the catalogue, then seed

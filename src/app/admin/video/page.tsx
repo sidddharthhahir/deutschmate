@@ -47,6 +47,9 @@ export default function VideoAdmin() {
   const [segments, setSegments] = useState<Segment[]>([]);
 
   const [markStart, setMarkStart] = useState<number | null>(null);
+  /** A pasted transcript, one sentence per line, consumed as you mark. */
+  const [script, setScript] = useState<string[]>([]);
+  const [scriptAt, setScriptAt] = useState(0);
   const [draft, setDraft] = useState("");
   const [draftEn, setDraftEn] = useState("");
   const [saved, setSaved] = useState<string | null>(null);
@@ -118,20 +121,43 @@ export default function VideoAdmin() {
       a.title.localeCompare(b.title, "de", { numeric: true }),
   );
 
+  /*
+   * TWO WAYS TO MARK A LINE, AND THE SECOND IS THE FAST ONE.
+   *
+   * Typing is the original: [ at the start, type what you hear, Enter at the
+   * end. It is slow for a reason that has nothing to do with typing speed —
+   * you are transcribing and listening at the same time, so you pause, rewind,
+   * and go again. About ten minutes for a ninety-second clip.
+   *
+   * With a transcript pasted in, the words are already there. [ and ] are all
+   * that is left, the next line loads itself, and the job becomes tapping twice
+   * per sentence while the video plays at 0.75×. DW publishes the manuscript
+   * for every Nicos Weg lesson on learngerman.dw.com — one copy, one paste.
+   *
+   * The timings still come from a person, because they are the part that has to
+   * match the audio and nothing here can hear it.
+   */
   const mark = useCallback(() => {
     if (markStart === null) {
       setMarkStart(now());
-      setTimeout(() => deRef.current?.focus(), 0);
+      // With a script loaded the text is already in the box; focusing it would
+      // swallow the ] keypress that ends the line.
+      if (!script.length) setTimeout(() => deRef.current?.focus(), 0);
     } else {
       const end = now();
-      if (draft.trim() && end > markStart) {
-        setSegments((s) => [...s, { t_start: markStart, t_end: end, de: draft.trim(), en: draftEn.trim() }]);
+      const line = script.length ? (script[scriptAt] ?? "") : draft;
+      if (line.trim() && end > markStart) {
+        setSegments((s) => [
+          ...s,
+          { t_start: markStart, t_end: end, de: line.trim(), en: draftEn.trim() },
+        ]);
+        if (script.length) setScriptAt((i) => i + 1);
       }
       setMarkStart(null);
       setDraft("");
       setDraftEn("");
     }
-  }, [markStart, draft, draftEn]);
+  }, [markStart, draft, draftEn, script, scriptAt]);
 
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
@@ -202,6 +228,11 @@ export default function VideoAdmin() {
     setLevel(v.level);
     setUnitId(v.unit_id ?? "");
     setSegments(v.segments);
+    // A transcript belongs to one episode. Carrying it into the next would
+    // caption the wrong video with a straight face.
+    setScript([]);
+    setScriptAt(0);
+    setMarkStart(null);
     void load(source);
   }
 
@@ -297,6 +328,66 @@ export default function VideoAdmin() {
                 </select>
               </div>
 
+              {/* Paste the manuscript once and stop typing.
+                  DW publishes one for every Nicos Weg lesson; with it loaded,
+                  marking a line is two keypresses instead of a transcription. */}
+              {script.length === 0 ? (
+                <details className="mt-3 rounded-xl border border-neutral-800 p-3">
+                  <summary className="cursor-pointer text-xs text-neutral-500">
+                    Transkript einfügen — dann nur noch [ und ] drücken
+                  </summary>
+                  <textarea
+                    rows={5}
+                    placeholder={
+                      "Ein Satz pro Zeile.\nAuf learngerman.dw.com steht das Manuskript zu jeder Lektion."
+                    }
+                    onChange={(e) => {
+                      const lines = e.target.value
+                        .split("\n")
+                        .map((l) => l.replace(/^\s*[-–•]\s*/, "").trim())
+                        .filter(Boolean);
+                      if (lines.length > 1) {
+                        setScript(lines);
+                        setScriptAt(0);
+                      }
+                    }}
+                    className="mt-2 w-full rounded-lg border border-neutral-800 bg-neutral-950 px-3 py-2 text-sm"
+                  />
+                </details>
+              ) : (
+                <div className="mt-3 rounded-xl border border-neutral-800 p-3">
+                  <div className="mb-2 flex items-baseline justify-between text-xs text-neutral-500">
+                    <span>
+                      Transkript · Zeile {Math.min(scriptAt + 1, script.length)} von{" "}
+                      {script.length}
+                    </span>
+                    <button
+                      onClick={() => {
+                        setScript([]);
+                        setScriptAt(0);
+                      }}
+                      className="text-neutral-600 hover:text-neutral-300"
+                    >
+                      verwerfen
+                    </button>
+                  </div>
+                  {scriptAt < script.length ? (
+                    <>
+                      <p className="text-base text-neutral-100">{script[scriptAt]}</p>
+                      {script[scriptAt + 1] && (
+                        <p className="mt-1 truncate text-xs text-neutral-600">
+                          danach: {script[scriptAt + 1]}
+                        </p>
+                      )}
+                    </>
+                  ) : (
+                    <p className="text-sm text-emerald-500">
+                      Transkript durch — {segments.length} Sätze markiert.
+                    </p>
+                  )}
+                </div>
+              )}
+
               <div
                 className={`mt-3 rounded-xl border p-3 ${
                   markStart !== null ? "border-emerald-700 bg-emerald-950/20" : "border-neutral-800"
@@ -304,23 +395,25 @@ export default function VideoAdmin() {
               >
                 <p className="mb-2 text-xs text-neutral-500">
                   {markStart !== null
-                    ? `Aufnahme läuft ab ${markStart.toFixed(1)}s — Enter beendet`
+                    ? `Aufnahme läuft ab ${markStart.toFixed(1)}s — ${script.length ? "] beendet" : "Enter beendet"}`
                     : "[ drücken, um einen Satz zu beginnen"}
                 </p>
-                <input
-                  ref={deRef}
-                  value={draft}
-                  onChange={(e) => setDraft(e.target.value)}
-                  placeholder="Deutscher Satz…"
-                  disabled={markStart === null}
-                  className="w-full rounded-lg border border-neutral-700 bg-neutral-950 px-3 py-2 text-sm disabled:opacity-40"
-                />
+                {script.length === 0 && (
+                  <input
+                    ref={deRef}
+                    value={draft}
+                    onChange={(e) => setDraft(e.target.value)}
+                    placeholder="Deutscher Satz…"
+                    disabled={markStart === null}
+                    className="w-full rounded-lg border border-neutral-700 bg-neutral-950 px-3 py-2 text-sm disabled:opacity-40"
+                  />
+                )}
                 <input
                   value={draftEn}
                   onChange={(e) => setDraftEn(e.target.value)}
                   placeholder="Englisch (optional)"
                   disabled={markStart === null}
-                  className="mt-2 w-full rounded-lg border border-neutral-800 bg-neutral-950 px-3 py-2 text-sm disabled:opacity-40"
+                  className={`w-full rounded-lg border border-neutral-800 bg-neutral-950 px-3 py-2 text-sm disabled:opacity-40 ${script.length === 0 ? "mt-2" : ""}`}
                 />
               </div>
 
