@@ -1,7 +1,7 @@
 {
   "name": "DeutschMate",
   "short_name": "DeutschMate",
-  "description": "A1.1 → B1.2 German, one hour a day.",
+  "description": "Learn German the way you'll actually use it in Germany. A1.1 → B1.2, one hour a day.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",

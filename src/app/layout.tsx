@@ -35,7 +35,7 @@ const mono = IBM_Plex_Mono({
 
 export const metadata: Metadata = {
   title: "DeutschMate",
-  description: "A1.1 → B1.2 German, one hour a day.",
+  description: "Learn German the way you'll actually use it in Germany. A1.1 → B1.2, one hour a day.",
   manifest: "/manifest.webmanifest",
   appleWebApp: { capable: true, title: "DeutschMate", statusBarStyle: "black-translucent" },
 };

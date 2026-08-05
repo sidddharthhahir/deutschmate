@@ -1,8 +1,10 @@
 ﻿# DeutschMate
 
-**DeutschMate is a German teacher.**
+**Learn German the way you'll actually use it in Germany.**
 
-Not a chatbot. Not a flashcard app. Not a grammar reference.
+A teacher, not a chatbot, a flashcard app or a grammar reference. It decides
+what you do today, and what it teaches is aimed at the conversations you cannot
+avoid — the Bürgeramt, the WG viewing, the doctor, cancelling a contract.
 
 A1.1 → B1.2 in about seven months of self-study, one hour a day. Runs on a
 laptop or a small box, and costs the person hosting it nothing: the course is
@@ -90,7 +92,10 @@ which is what stops hot reload dying silently from another device.
 
 ---
 
-## The four principles
+## The principles
+
+Design constraints, not vibes. Every one of them has killed a feature that
+would otherwise have shipped.
 
 1. **One button.** The app decides what you study. Never make the user choose a
    lesson, a skill, or a difficulty.
@@ -102,6 +107,22 @@ which is what stops hot reload dying silently from another device.
    teacher from a chatbot.
 4. **Never fake progress.** If you can't point at the database row that produced
    a number, don't show the number.
+5. **Life in Germany first.** Teach German through situations people actually
+   face. Between two features that both teach equally well, the one that gets
+   somebody through an appointment wins.
+6. **Reality beats speculation.** An idea earns a place on the roadmap by
+   appearing in [FRICTION.md](FRICTION.md) — written down while it was actually
+   annoying somebody — not by sounding good in a planning session.
+
+Five and six are newer than the rest and one of them is honest about being a
+direction rather than a description: today this is a 120-unit German course with
+a six-scenario living-in-Germany corner. Principle 5 says which half grows next.
+
+Principle 4 does most of the work. It is why the recap counts rows instead of
+animating, why an unsegmented video does not appear, why `config.ts` has a test
+asserting every constant is actually read, and why the mascot idea below is not
+built: a friendly line saying *"today you'll learn shopping words"* over a
+session teaching *ich bin, du bist* is a lie with a nice voice.
 
 ---
 

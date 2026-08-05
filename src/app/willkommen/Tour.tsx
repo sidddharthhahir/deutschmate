@@ -42,12 +42,17 @@ function De({ de, en }: { de: string; en: string }) {
 const STEPS: Step[] = [
   {
     eyebrow: "What this is",
-    title: "A German teacher, not a flashcard app.",
+    title: "Learn German the way you'll actually use it in Germany.",
     body: (
       <>
         <p>
           DeutschMate takes you from A1.1 to B1.2 — 120 units, 2,400 words, 36 grammar
           points. Built for about an hour a day, roughly seven months.
+        </p>
+        <p>
+          It is a teacher, not a flashcard app. And what it teaches points at the
+          conversations you cannot avoid here: the Bürgeramt, the WG viewing, the
+          doctor, cancelling a contract.
         </p>
         <p>
           The difference from a vocabulary app: <strong className="text-fg">it decides
