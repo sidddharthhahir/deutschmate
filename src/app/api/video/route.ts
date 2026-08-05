@@ -36,6 +36,10 @@ export async function GET(req: Request) {
       segments: JSON.parse(v.segments_json) as Segment[],
     })),
     units,
+    /* So the editor can say up front that it cannot save. Reading the list is
+       harmless and stays open; the POST below is the thing that is gated, and
+       finding that out only after hand-marking a video is the worst moment. */
+    canWrite: adminEnabled(),
   });
 }
 

@@ -168,21 +168,8 @@ export function sweepExpired() {
 }
 
 // ---------------------------------------------------------------- delivery
-/**
- * Where a sign-in link goes.
- *
- * One seam, on purpose. Today: the server console, because the people using
- * this are in the same flat or the same office and whoever runs the server can
- * paste the link into a chat. Later: an adapter here that calls a mail
- * provider, with nothing above it changing.
- *
- * It never returns the link to the caller. `POST /api/auth/request` answers the
- * same way whether or not the address exists, so the response cannot be used to
- * discover who has an account — and could not carry the link even if it wanted
- * to, because it does not have it.
- */
-export function deliver(email: string, url: string, expiresAt: string) {
-  const mins = Math.round((Date.parse(expiresAt) - Date.now()) / 60_000);
+/** The terminal box. Also the rescue path when a real send fails. */
+function printLink(email: string, url: string, mins: number, note?: string) {
   console.log(
     [
       "",
@@ -191,10 +178,63 @@ export function deliver(email: string, url: string, expiresAt: string) {
       `  │  expires: in ${mins} minutes, and on first use`,
       "  │",
       `  │  ${url}`,
+      ...(note ? ["  │", `  │  ${note}`] : []),
       "  └" + "─".repeat(58),
       "",
     ].join("\n"),
   );
+}
+
+/**
+ * Where a sign-in link goes.
+ *
+ * One seam, and now it has two sides. With no mail configured this still prints
+ * to the server terminal, which keeps `npm run setup` working with no account,
+ * no domain and no network (spec §17) — that is the default and stays it. With
+ * SMTP or Resend configured, the link goes to the address instead.
+ *
+ * IT NEVER RETURNS THE LINK TO THE CALLER, and that is the whole reason this is
+ * a function rather than something the route does inline. `POST /api/auth`
+ * answers the same way whether or not the address exists, so the response
+ * cannot be used to discover who has an account — and could not carry the link
+ * even if somebody tried, because it does not have it.
+ *
+ * IT NEVER THROWS. A dead SMTP host must not turn into a 500 that says "this
+ * address exists, and our mail is broken". It returns what happened so the
+ * caller can log it, and on failure it falls back to printing the link — losing
+ * the link entirely would strand a real person mid-sign-in for no benefit.
+ */
+export async function deliver(
+  email: string,
+  url: string,
+  expiresAt: string,
+): Promise<{ sent: boolean; via: string; error?: string }> {
+  const mins = Math.round((Date.parse(expiresAt) - Date.now()) / 60_000);
+  /* Imported here rather than at the top so that nodemailer is not in the
+     module graph of everything that touches auth.ts. Almost every request in
+     the app calls userIdForSession() from this file; none of them should pay to
+     load an SMTP library to read a cookie. */
+  const { sendMail, transport } = await import("./mail.ts");
+  const { signInEmail } = await import("./mail-templates.ts");
+
+  const via = transport();
+  if (via === "console") {
+    printLink(email, url, mins);
+    return { sent: true, via };
+  }
+
+  const res = await sendMail(signInEmail(email, url, mins));
+  if (res.ok) {
+    // The address, not the link: a server log is not a secure place for a live
+    // credential, and anyone who can read this log can already read the box
+    // above — but there is no reason to put it there when nothing needs it.
+    console.log(`  ✓ sign-in link sent to ${email} via ${via}`);
+    return { sent: true, via };
+  }
+
+  console.error(`  ✗ could not send to ${email} via ${via}: ${res.error}`);
+  printLink(email, url, mins, "mail failed — paste this to them by hand");
+  return { sent: false, via, error: res.error };
 }
 
 // ------------------------------------------------------------------ admin

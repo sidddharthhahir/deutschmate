@@ -10,7 +10,9 @@ import {
   deliver,
   destroySession,
   normaliseEmail,
+  TOKEN_TTL_MIN,
 } from "@/lib/auth";
+import { transport } from "@/lib/mail";
 
 export const dynamic = "force-dynamic";
 
@@ -35,6 +37,7 @@ export default async function WhoPage({
   const { sent, error } = await searchParams;
   const me = await requireUser();
   const users = allUsers();
+  const postal = transport();
 
   /** Invite somebody, or send yourself a link for another device. */
   async function sendLink(formData: FormData) {
@@ -48,7 +51,10 @@ export default async function WhoPage({
     if (user) {
       const base = process.env.DEUTSCHMATE_URL || "http://localhost:3000";
       const t = createSignInToken(user.id, base);
-      deliver(email, t.url, t.expiresAt);
+      /* Awaited. redirect() throws to unwind the action, so a floating send
+         would be racing a thrown control-flow exception — fine when deliver()
+         only wrote to the console, a dropped email now. */
+      await deliver(email, t.url, t.expiresAt);
     }
     redirect("/wer?sent=1");
   }
@@ -169,18 +175,29 @@ export default async function WhoPage({
           )}
           <p className="text-muted mt-3 text-[12.5px] leading-relaxed">
             An address with no account gets one, with an empty deck. The link works once
-            and expires in 20 minutes.
+            and expires in {TOKEN_TTL_MIN} minutes.
           </p>
         </form>
 
-        <p className="text-muted/70 mt-10 text-[12px] leading-relaxed">
-          Email delivery is not configured yet, on purpose — so this still runs with no
-          network and no provider account. The link is printed in the terminal running{" "}
-          <code className="bg-raised text-der rounded px-1 py-0.5 font-mono text-[11.5px]">
-            npm run dev
-          </code>
-          ; paste it to whoever it is for.
-        </p>
+        {/* Where the link goes, read from the server rather than asserted.
+            This said flatly that email was not configured — true when there was
+            no way to configure it, and a lie the day there was. */}
+        {postal === "console" ? (
+          <p className="text-muted/70 mt-10 text-[12px] leading-relaxed">
+            No mail provider is configured on this install, on purpose — so it still runs
+            with no network and no account anywhere. The link is printed in the terminal
+            running{" "}
+            <code className="bg-raised text-der rounded px-1 py-0.5 font-mono text-[11.5px]">
+              npm run dev
+            </code>
+            ; paste it to whoever it is for.
+          </p>
+        ) : (
+          <p className="text-muted/70 mt-10 text-[12px] leading-relaxed">
+            The link is emailed. If it does not arrive within a minute or two, the spam
+            folder is the first place to look.
+          </p>
+        )}
       </div>
     </main>
   );

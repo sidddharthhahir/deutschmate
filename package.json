@@ -27,11 +27,13 @@
     "export-deck": "node scripts/export-deck.mts",
     "export-design": "node scripts/export-for-design.mts",
     "invite": "node scripts/invite.mts",
-    "config": "node scripts/config.mts"
+    "config": "node scripts/config.mts",
+    "mail:test": "node scripts/mail-test.mts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.115.0",
     "next": "16.2.12",
+    "nodemailer": "^9.0.4",
     "react": "19.2.4",
     "react-dom": "19.2.4",
     "ts-fsrs": "^5.4.1"
@@ -39,6 +41,7 @@
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
     "@types/node": "^26.1.2",
+    "@types/nodemailer": "^8.0.1",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",

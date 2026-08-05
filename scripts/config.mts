@@ -12,16 +12,9 @@
  *
  * Prints no secrets — only whether each one is present.
  */
+import "./load-env.mts";
 import { check, describe, baseUrl } from "../src/lib/env.ts";
 import { priceList } from "../src/lib/models.ts";
-
-/* .env.local is loaded by Next for the server but not by a plain script, so
-   this would otherwise report a different configuration than the app has. */
-try {
-  process.loadEnvFile(".env.local");
-} catch {
-  /* no .env.local — the ambient environment is the answer */
-}
 
 const dim = (s: string) => `\x1b[2m${s}\x1b[0m`;
 const red = (s: string) => `\x1b[31m${s}\x1b[0m`;

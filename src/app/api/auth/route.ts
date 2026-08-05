@@ -12,6 +12,7 @@ import {
   TOKEN_TTL_MIN,
 } from "@/lib/auth";
 import { anyUsers, createUserByEmail, userByEmail } from "@/lib/user";
+import { mailReady, transport } from "@/lib/mail";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -52,11 +53,30 @@ export async function POST(req: Request) {
      day the app is public, not a side effect of the sign-in route. */
   const user = anyUsers() ? userByEmail(email) : createUserByEmail(email);
 
+  /*
+   * Mail being broken is a fact about this server, not about the address, so it
+   * can be reported without leaking anything: the answer is identical whether
+   * or not an account exists. Checked BEFORE the lookup for that reason.
+   *
+   * A send that fails *after* the lookup cannot be reported the same way —
+   * "sending failed" would then mean "this address has an account". Those fall
+   * back to the terminal and a loud server log, and the caller still sees the
+   * same success. Someone waiting on an email they will not get is bad; handing
+   * a stranger a list of who works here is worse.
+   */
+  const ready = mailReady();
+  if (!ready.ok) {
+    return NextResponse.json(
+      { ok: false, error: `this server cannot send email: ${ready.why}` },
+      { status: 503 },
+    );
+  }
+
   if (user) {
     const base = process.env.DEUTSCHMATE_URL || new URL(req.url).origin;
     const t = createSignInToken(user.id, base);
-    deliver(email, t.url, t.expiresAt);
+    await deliver(email, t.url, t.expiresAt);
   }
 
-  return NextResponse.json({ ok: true, ttlMinutes: TOKEN_TTL_MIN });
+  return NextResponse.json({ ok: true, ttlMinutes: TOKEN_TTL_MIN, via: transport() });
 }

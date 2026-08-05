@@ -31,6 +31,9 @@ export default function VideoAdmin() {
 
   const [videos, setVideos] = useState<Video[]>([]);
   const [units, setUnits] = useState<Unit[]>([]);
+  /* Starts true so the warning cannot flash on a working install during the
+     first paint. The save button is the honest gate either way. */
+  const [canWrite, setCanWrite] = useState(true);
 
   const [ytId, setYtId] = useState("");
   const [loaded, setLoaded] = useState("");
@@ -52,6 +55,7 @@ export default function VideoAdmin() {
       .then((d) => {
         setVideos(d.videos);
         setUnits(d.units);
+        setCanWrite(d.canWrite !== false);
       });
   }, []);
 
@@ -167,6 +171,25 @@ export default function VideoAdmin() {
           <kbd className="ml-2 rounded bg-neutral-800 px-1.5">Leertaste</kbd> = Play/Pause.
         </p>
 
+        {/* Said before the work, not after it.
+            Segmenting a video by hand is the ~12 minutes this page exists to
+            make bearable. Letting someone spend that and then refusing at the
+            save button — which is what happened — is the worst possible order
+            to deliver the news in. The POST is still the real gate; this is
+            just the surface telling the truth about it. */}
+        {!canWrite && (
+          <div className="mt-5 rounded-xl border border-amber-800/60 bg-amber-950/30 p-3.5">
+            <p className="text-sm text-amber-200">Speichern ist aus.</p>
+            <p className="mt-1 text-[13px] leading-relaxed text-amber-200/70">
+              Dieser Editor schreibt in den Lehrplan, den alle hier lesen, also ist er
+              standardmäßig zu. Zum Einschalten{" "}
+              <code className="rounded bg-black/30 px-1.5">DEUTSCHMATE_ADMIN=1</code> in{" "}
+              <code className="rounded bg-black/30 px-1.5">.env.local</code> setzen und den
+              Server neu starten. Anschauen kannst du alles auch so.
+            </p>
+          </div>
+        )}
+
         <div className="mt-6 flex gap-2">
           <input
             value={ytId}
@@ -256,10 +279,11 @@ export default function VideoAdmin() {
 
               <button
                 onClick={() => void save()}
-                disabled={!title || !segments.length}
+                disabled={!canWrite || !title || !segments.length}
+                title={canWrite ? undefined : "DEUTSCHMATE_ADMIN=1 setzen"}
                 className="mt-3 w-full rounded-lg bg-neutral-100 py-2.5 text-sm font-medium text-neutral-900 disabled:bg-neutral-800 disabled:text-neutral-600"
               >
-                {saved ?? `Speichern (${segments.length} Sätze)`}
+                {saved ?? (canWrite ? `Speichern (${segments.length} Sätze)` : "Speichern ist aus")}
               </button>
             </div>
 

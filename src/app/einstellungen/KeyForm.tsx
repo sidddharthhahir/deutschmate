@@ -138,6 +138,12 @@ export default function KeyForm({
 
         <form onSubmit={save} className="mt-3">
           <div className="flex gap-2">
+            {/* min-w-0 is load-bearing.
+                A flex item defaults to min-width:auto, so `flex-1` alone will
+                not let this shrink below the intrinsic width of its own
+                placeholder. At 375px that pushed "Speichern" nine pixels past
+                the right edge of the phone — and nothing looks broken from the
+                inside, the button is simply not reachable. */}
             <input
               type="password"
               value={key}
@@ -145,12 +151,12 @@ export default function KeyForm({
               placeholder={state.state === "set" ? "Neuen Schlüssel einfügen" : "sk-ant-…"}
               autoComplete="off"
               spellCheck={false}
-              className="border-line bg-bg text-fg focus:border-line-strong placeholder:text-muted font-mono flex-1 rounded-xl border px-4 py-3 text-[14px] outline-none"
+              className="border-line bg-bg text-fg focus:border-line-strong placeholder:text-muted font-mono min-w-0 flex-1 rounded-xl border px-4 py-3 text-[14px] outline-none"
             />
             <button
               type="submit"
               disabled={busy || !key.trim()}
-              className="bg-fg rounded-xl px-6 font-medium text-[#16211E] transition-colors hover:bg-white disabled:opacity-40"
+              className="bg-fg shrink-0 rounded-xl px-6 font-medium text-[#16211E] transition-colors hover:bg-white disabled:opacity-40"
             >
               {state.state === "set" ? "Ersetzen" : "Speichern"}
             </button>

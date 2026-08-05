@@ -243,7 +243,7 @@ Conflating these is how a setting ends up in the wrong place and stays there.
 
 | Kind | Lives in | Examples | Changes when |
 |---|---|---|---|
-| **Deployment** | env, read via `src/lib/env.ts` | URL, budget, admin switch, DB path | you move machines |
+| **Deployment** | env, read via `src/lib/env.ts` | URL, mail transport, budget, admin switch, DB path | you move machines |
 | **Provider catalogue** | `data/models.json` | model ids, prices, cache multipliers | Anthropic changes something |
 | **Product constants** | `src/lib/config.ts` | new words per day, review cap, leech threshold | you change the course |
 | **Per learner** | the `user` table | their API key (encrypted), their spend cap | any learner, any time |
@@ -298,7 +298,7 @@ npm test                 # all of them
 npm test text outbox     # only files matching these names
 ```
 
-Twenty-three suites, no framework. Fifteen run anywhere; eight need `npm run dev`
+Twenty-four suites, no framework. Sixteen run anywhere; eight need `npm run dev`
 listening and are **skipped with a message** if it isn't — never quietly
 passed. They use throwaway user ids in the real database, which is how the app
 separates two flatmates, and clean up after themselves.
@@ -328,6 +328,7 @@ separates two flatmates, and clean up after themselves.
 | `auth` | tokens work once, sessions are stored hashed, deleting an account takes its credentials |
 | `apikey` | a stored key is never in the row, never in the response, and never another learner's |
 | `shared-cache` | course sentences are cached for everyone, pasted text only for you, and both are deletable |
+| `mail` | half-configured mail is caught, the link is in both parts of the message, and nothing in it phones home |
 
 `corpus` and `error-key` are worth a note on how they are written, because both
 guard the same kind of failure.
@@ -389,7 +390,7 @@ src/lib/       the engine — scheduling, session builder, error tagging, AI
 src/app/       22 pages and 17 API routes
 src/components/blocks/   the 14 block types a session is made of
 scripts/       content generation and maintenance
-tests/         23 suites, run with `npm test`
+tests/         24 suites, run with `npm test`
 public/audio/  2,381 native recordings from Wikimedia Commons (37 MB)
 ```
 
@@ -436,12 +437,46 @@ npm run invite anna@example.de        # new account, or a link for an existing o
 npm run invite                        # list the accounts on this install
 ```
 
-**Email delivery is deliberately not configured.** A provider means an account,
-an API key, a domain with SPF and DKIM, and a network — and this repo has kept
-`npm run setup` working with none of those. So the link is printed in the
-terminal running the server, and you paste it to whoever it is for. `deliver()`
-in `src/lib/auth.ts` is the one seam a mail adapter drops into later; nothing
-above it changes.
+**The link is emailed if you configure a provider, and printed if you don't.**
+Printing is the default and stays it: a provider means an account, a verified
+domain and a network, and `npm run setup` still works with none of those.
+
+```bash
+npm run mail:test                    # what is configured, and whether it can send
+npm run mail:test you@example.com    # send one, and say what came back
+```
+
+Two transports, both switched on by filling in credentials — there is no second
+switch to forget:
+
+| | Set | Notes |
+|---|---|---|
+| **SMTP** | `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASS` | Any provider, including a company mailbox. Gmail and Microsoft 365 want an **app password**, not your account password. |
+| **Resend** | `RESEND_API_KEY` | One HTTP call, no dependency. The sending domain must be verified there first. |
+
+Both also need `DEUTSCHMATE_MAIL_FROM`, on a domain the provider will accept.
+
+Port and TLS is where SMTP setups actually break: **587 is STARTTLS**, **465 is
+TLS from the first byte**, and getting them the wrong way round produces a hang
+rather than an error. The port picks the mode on its own; `SMTP_SECURE` is only
+there for a provider that disagrees.
+
+Three things the sending path is careful about:
+
+- **A dead provider does not lose the link.** The send failure is logged loudly
+  and the link still prints to the terminal, so you can hand it over. Losing it
+  would strand a real person mid-sign-in for no benefit.
+- **A dead provider does not leak who has an account.** Mail being broken is
+  checked *before* the address is looked up, so that 503 is true regardless of
+  who asked. A failure *after* the lookup still returns the ordinary success —
+  "sending failed" would otherwise mean "this address has an account here".
+- **The message does not phone home.** No image, so no tracking pixel; no
+  link-wrapping redirect; the plain-text part carries the URL too, because some
+  clients render that one and a link that exists only in the HTML is a sign-in
+  that works for most people and mysteriously doesn't for one.
+
+`deliver()` in [src/lib/auth.ts](src/lib/auth.ts) is still the single seam —
+everything above it is unchanged, and `console` is still one of the options.
 
 Identity used to be a name in a readable cookie, `dm_user=sid`, settable from
 the browser console — plus `?user=alex` on eight GET routes and a `"user"` field

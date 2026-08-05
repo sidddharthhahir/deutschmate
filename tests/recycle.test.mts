@@ -14,6 +14,23 @@
  * needs: server, seeded database
  */
 import { get, ok, section, done, scratchUser, open } from "./harness.mts";
+import { rhythmFor, today } from "../src/lib/rhythm.ts";
+
+/* The input rotation has two slots without video and three with, which shifts
+   which day is a reading day. Read it rather than assuming, so importing a
+   segmented video does not quietly make this test wrong. */
+function hasSegmentedVideo(): boolean {
+  const d = open();
+  const rows = d.prepare("SELECT segments_json FROM video").all() as { segments_json: string }[];
+  d.close();
+  return rows.some((r) => {
+    try {
+      return (JSON.parse(r.segments_json) as unknown[]).length > 0;
+    } catch {
+      return false;
+    }
+  });
+}
 
 const U = scratchUser("test-recycle");
 await get(`/api/session?user=${U}`); // create the user
@@ -59,17 +76,52 @@ const many = db2
 for (const u of many) mark2.run(U, u.id);
 db2.close();
 
-/* Which slot fires today is fixed by the calendar, and the day index comes
-   from the wall clock — so a request can only ever observe today. Whether the
-   rotation is *correctly proportioned* is rhythm.test.mts's job, walking a
-   month of pure day indices. What this can check, and what that cannot, is
-   that the wiring behind whichever slot fires today actually resolves a real
-   past unit and labels it. */
+/*
+ * Which slot fires today is fixed by the calendar, and the day index comes from
+ * the wall clock — a request can only ever observe today. Whether the rotation
+ * is correctly *proportioned* is rhythm.test.mts's job, walking a month of pure
+ * day indices. What this checks is that the wiring behind whichever slot fires
+ * today resolves a real past unit and labels it.
+ *
+ * THE EXPECTATION IS COMPUTED, NOT ASSUMED. This used to assert that today
+ * revisits something, full stop — which is true on a bit over half of days and
+ * false on the rest, so the suite passed or failed depending on the date. It
+ * had been green by luck; day 20670 is a listening-and-speaking day with
+ * neither recycle slot set, and that is correct behaviour rather than a
+ * regression. Asking the same function the app asks makes this deterministic
+ * and, on a quiet day, still a real check: nothing may be labelled a revisit
+ * when the rotation did not call for one.
+ */
+const expected = rhythmFor(today(), { video: hasSegmentedVideo(), reading: true });
+const shouldRecycle = expected.recycleReading || expected.recycleScenario;
+
 const plan = await get(`/api/session?user=${U}`);
 const recycled = plan.blocks.filter((b: any) => b.payload?.from);
 const titles = plan.blocks.map((b: any) => b.title).join(" ");
 
-ok(recycled.length > 0, "today's session revisits something", titles);
+ok(
+  shouldRecycle ? recycled.length > 0 : recycled.length === 0,
+  shouldRecycle
+    ? "today is a revisit day, and today's session revisits something"
+    : "today is not a revisit day, and nothing is dressed up as one",
+  `day ${today()} · reading=${expected.recycleReading} scenario=${expected.recycleScenario} · ${titles}`,
+);
+
+/* The block checks below only run on a revisit day. These two run every day, so
+   the suite is never reduced to asserting an absence: the plan the server built
+   has to match the rotation the pure function describes, or one of them has
+   drifted from the other. */
+const kinds = plan.blocks.map((b: any) => b.kind);
+ok(
+  kinds.includes(expected.input),
+  "the input block is the one the rotation asked for",
+  `expected ${expected.input}, got ${kinds.join(" ")}`,
+);
+ok(
+  kinds.includes(expected.output),
+  "and so is the output block",
+  `expected ${expected.output}, got ${kinds.join(" ")}`,
+);
 for (const b of recycled) {
   ok(
     /^Unit \d+ · .+/.test(b.payload.from),

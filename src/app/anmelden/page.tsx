@@ -1,6 +1,7 @@
 import Link from "next/link";
-import { SESSION_TTL_DAYS } from "@/lib/auth";
+import { SESSION_TTL_DAYS, TOKEN_TTL_MIN } from "@/lib/auth";
 import { anyUsers } from "@/lib/accounts";
+import { transport } from "@/lib/mail";
 import SignInForm from "./SignInForm";
 
 export const dynamic = "force-dynamic";
@@ -34,6 +35,7 @@ export default async function SignInPage({
   }
 
   const first = !anyUsers();
+  const postal = transport();
 
   return (
     <Shell>
@@ -44,16 +46,28 @@ export default async function SignInPage({
           </h1>
           <p className="text-secondary mt-3 text-[15px] leading-relaxed">
             If <span className="text-fg">{e || "that address"}</span> has an account, a
-            sign-in link is on its way. It works once and expires in 20 minutes.
+            sign-in link is on its way. It works once and expires in {TOKEN_TTL_MIN}{" "}
+            minutes.
           </p>
-          <p className="text-muted mt-6 text-[13px] leading-relaxed">
-            Running this yourself? The link is printed in the terminal where{" "}
-            <code className="bg-raised text-der rounded px-1.5 py-0.5 font-mono text-[12px]">
-              npm run dev
-            </code>{" "}
-            is running — email delivery is not configured yet, on purpose, so the app still
-            works with no network and no provider account.
-          </p>
+          {/* Read from the server, not written in. This paragraph used to say
+              flatly that email was not configured, which was true when there
+              was no way to configure it and became a lie the day there was —
+              on a screen whose entire job is telling you where to look. */}
+          {postal === "console" ? (
+            <p className="text-muted mt-6 text-[13px] leading-relaxed">
+              Running this yourself? The link is printed in the terminal where{" "}
+              <code className="bg-raised text-der rounded px-1.5 py-0.5 font-mono text-[12px]">
+                npm run dev
+              </code>{" "}
+              is running — no provider is configured on this install, so the app still works
+              with no network and no account anywhere.
+            </p>
+          ) : (
+            <p className="text-muted mt-6 text-[13px] leading-relaxed">
+              Nothing after a minute or two? Check the spam folder — that is where mail from
+              a new sending domain usually lands.
+            </p>
+          )}
           <Link
             href="/anmelden"
             className="text-accent mt-8 inline-block text-[14px] hover:underline"
@@ -91,8 +105,8 @@ function Expired() {
         That link no longer works
       </h1>
       <p className="text-secondary mt-3 max-w-[46ch] text-[15px] leading-relaxed">
-        Sign-in links work once and expire after 20 minutes. Asking for a new one also
-        cancels the old — so if you requested two, only the newer works.
+        Sign-in links work once and expire after {TOKEN_TTL_MIN} minutes. Asking for a new
+        one also cancels the old — so if you requested two, only the newer works.
       </p>
       <Link
         href="/anmelden"
