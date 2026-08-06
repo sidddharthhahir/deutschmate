@@ -123,4 +123,81 @@ ok(
   `${words} words`,
 );
 
+// ------------------------------------------------------------- vocabulary
+
+type Word = {
+  id: string;
+  lemma: string;
+  article?: string;
+  plural?: string;
+  pos: string;
+  en: string;
+  topic: string;
+  unit: number;
+};
+
+const { words: vocab } = JSON.parse(
+  readFileSync(join(ROOT, "data/vocab-a1.json"), "utf8"),
+) as { words: Word[] };
+
+const written = [...new Set(vocab.map((w) => w.unit))].sort((a, b) => a - b);
+
+section("the vocabulary written so far");
+ok(vocab.length > 0, "there is some", `${vocab.length} words`);
+eq(new Set(vocab.map((w) => w.id)).size, vocab.length, "no duplicate ids");
+eq(
+  new Set(vocab.map((w) => w.lemma)).size,
+  vocab.length,
+  "and no word is taught twice",
+);
+ok(
+  written.every((u, i) => u === i + 1),
+  "units are written in order with no gaps",
+  `1..${written[written.length - 1]}`,
+);
+
+section("every noun carries its article and plural");
+/*
+ * A German noun without its gender is half a word, and the old deck taught
+ * 2,255 of them that way. Proper nouns are the only exception — Deutschland has
+ * no plural anybody uses.
+ */
+const nouns = vocab.filter((w) => w.pos === "noun");
+ok(nouns.length > 0, "there are nouns", String(nouns.length));
+for (const n of nouns) {
+  ok(
+    n.article === "der" || n.article === "die" || n.article === "das",
+    `${n.lemma}: has an article`,
+    String(n.article),
+  );
+}
+const countable = nouns.filter(
+  (n) => !["deutschland", "oesterreich", "die-schweiz"].includes(n.id),
+);
+ok(
+  countable.every((n) => Boolean(n.plural)),
+  "every countable noun has a plural",
+  countable.find((n) => !n.plural)?.lemma ?? "all present",
+);
+
+section("every word is filed, so the null-topic problem cannot come back");
+ok(
+  vocab.every((w) => Boolean(w.topic)),
+  "every word has a topic",
+);
+ok(
+  vocab.every((w) => Boolean(w.en) && Boolean(w.pos)),
+  "and a gloss and a part of speech",
+);
+
+section("the vocabulary matches the plan it was written against");
+for (const u of written) {
+  const unit = units.find((x) => x.ord === u)!;
+  const got = vocab.filter((w) => w.unit === u).length;
+  ok(
+    Math.abs(got - unit.words) <= 2,
+    `unit ${u} ${unit.title}: ${got} words, plan says ${unit.words}`,
+  );
+}
+
 done();
