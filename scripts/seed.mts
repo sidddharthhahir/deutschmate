@@ -395,6 +395,42 @@ for (const u of units) {
 }
 
 /*
+ * Even out the generated levels.
+ *
+ * Two static inputs decide how many words a unit ends up with — the pool
+ * build-units.mts spreads, and the frozen map in unit-additions.json — and they
+ * were computed at different times against different distributions. The result
+ * was B1.2 with 38 words in unit 1 and 3 in unit 20: one unit that is three
+ * days of vocabulary and another that teaches almost nothing, with the reading
+ * and scenario sitting stale in between.
+ *
+ * Balanced at seed time instead of re-freezing the map, so this cannot drift
+ * again the next time either input is regenerated. A1 is hand-written and
+ * exempt — those sizes are the curriculum's decision, not arithmetic.
+ */
+const MIN_WORDS = 6;
+const MAX_WORDS = 30; // inside the 5..32 tests/content.test.mts asserts
+let moved = 0;
+for (const level of new Set(units.map((u) => u.level))) {
+  if (level.startsWith("A1")) continue;
+  const inLevel = units.filter((u) => u.level === level);
+  if (inLevel.length < 2) continue;
+  /* Bounded: every pass moves one word from the fullest unit to the emptiest,
+     and stops as soon as both ends are in range or the gap closes. */
+  for (let guard = 0; guard < 2000; guard++) {
+    const bySize = [...inLevel].sort((a, b) => a.words.length - b.words.length);
+    const low = bySize[0];
+    const high = bySize[bySize.length - 1];
+    if (low.words.length >= MIN_WORDS && high.words.length <= MAX_WORDS) break;
+    if (high.words.length - low.words.length < 2) break;
+    low.words.push(high.words.pop()!);
+    moved++;
+  }
+}
+if (moved)
+  console.log(`OK${moved} words rebalanced across the generated units`);
+
+/*
  * A unit with no scenario stores SQL NULL, not the four characters "null".
  *
  * JSON.stringify(null) is the string "null", which is perfectly truthy, so

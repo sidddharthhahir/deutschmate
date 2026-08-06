@@ -10,18 +10,27 @@
       "pay at a counter"
     ],
     "words": [
-      "kaufen",
-      "schoen",
-      "teuer",
-      "billig",
-      "in",
-      "auf",
-      "mit",
-      "aus",
-      "zu",
-      "fuer"
+      "ein",
+      "dass",
+      "so",
+      "wenn",
+      "nur",
+      "da",
+      "als",
+      "mal",
+      "um",
+      "man",
+      "werden",
+      "oh",
+      "also",
+      "los",
+      "denn",
+      "tun",
+      "einer",
+      "okay",
+      "wirklich"
     ],
-    "grammar_id": "g-pronouns",
+    "grammar_id": null,
     "scenario": {
       "role": "a cashier at a bakery",
       "goal": "buy two things and pay",
@@ -55,7 +64,9 @@
         ]
       }
     ],
-    "prereq": ["a1-1-u12"]
+    "prereq": [
+      "a1-1-u12"
+    ]
   },
   {
     "id": "a1-1-u14",
@@ -68,18 +79,27 @@
       "say what belongs to you"
     ],
     "words": [
-      "ohne",
-      "bei",
-      "person",
-      "leute",
-      "herr",
-      "junge",
-      "maedchen",
-      "sohn",
-      "tochter",
-      "oma"
+      "wuerde",
+      "des",
+      "zeit",
+      "damit",
+      "ganz",
+      "nun",
+      "leid",
+      "na",
+      "gott",
+      "ab",
+      "gerade",
+      "wohl",
+      "durch",
+      "ob",
+      "raus",
+      "paar",
+      "wieso",
+      "selbst",
+      "her"
     ],
-    "grammar_id": "g-sein",
+    "grammar_id": null,
     "scenario": {
       "role": "someone who found your bag",
       "goal": "describe your bag so you get it back",
@@ -112,7 +132,9 @@
         ]
       }
     ],
-    "prereq": ["a1-1-u13"]
+    "prereq": [
+      "a1-1-u13"
+    ]
   },
   {
     "id": "a1-1-u15",
@@ -125,18 +147,27 @@
       "say left, right and straight on"
     ],
     "words": [
-      "opa",
-      "tante",
-      "onkel",
+      "ach",
+      "gar",
+      "davon",
+      "dafuer",
+      "wegen",
+      "hin",
+      "tot",
+      "rein",
+      "stimmt",
+      "sonst",
+      "dabei",
+      "vielleicht",
       "krankenhaus",
-      "nachbar",
       "leben",
-      "kollege",
-      "chef",
-      "lehrer",
-      "student"
+      "reise",
+      "termin",
+      "wetter",
+      "denken",
+      "erklaeren"
     ],
-    "grammar_id": "g-haben",
+    "grammar_id": null,
     "scenario": {
       "role": "a passer-by on the street",
       "goal": "ask the way to the station",
@@ -169,7 +200,9 @@
         ]
       }
     ],
-    "prereq": ["a1-1-u14"]
+    "prereq": [
+      "a1-1-u14"
+    ]
   },
   {
     "id": "a1-1-u16",
@@ -182,18 +215,27 @@
       "say when something happens"
     ],
     "words": [
-      "schueler",
-      "kellner",
-      "reise",
-      "verkaeufer",
-      "termin",
-      "jung",
-      "wetter",
-      "freundlich",
-      "nett",
-      "lustig"
+      "arm",
+      "glauben",
+      "treffen",
+      "wissen",
+      "markt",
+      "ueben",
+      "verkaufen",
+      "holen",
+      "schicken",
+      "vergessen",
+      "person",
+      "leute",
+      "herr",
+      "junge",
+      "maedchen",
+      "sohn",
+      "tochter",
+      "oma",
+      "opa"
     ],
-    "grammar_id": "g-praesens",
+    "grammar_id": null,
     "scenario": {
       "role": "a curious classmate",
       "goal": "describe your normal day",
@@ -226,7 +268,9 @@
         ]
       }
     ],
-    "prereq": ["a1-1-u15"]
+    "prereq": [
+      "a1-1-u15"
+    ]
   },
   {
     "id": "a1-1-u17",
@@ -239,18 +283,27 @@
       "say it's too expensive"
     ],
     "words": [
+      "tante",
+      "onkel",
+      "nachbar",
+      "kollege",
+      "chef",
+      "lehrer",
+      "student",
+      "schueler",
+      "kellner",
+      "verkaeufer",
+      "freundlich",
+      "nett",
+      "lustig",
       "traurig",
-      "antworten",
       "gluecklich",
-      "beginnen",
-      "krank",
       "gesund",
       "ledig",
-      "besuchen",
       "verheiratet",
-      "bezahlen"
+      "kopf"
     ],
-    "grammar_id": "g-articles-nom",
+    "grammar_id": null,
     "scenario": {
       "role": "a market stall holder",
       "goal": "buy fruit and ask the price",
@@ -283,7 +336,9 @@
         ]
       }
     ],
-    "prereq": ["a1-1-u16"]
+    "prereq": [
+      "a1-1-u16"
+    ]
   },
   {
     "id": "a1-1-u18",
@@ -296,18 +351,27 @@
       "ask someone to repeat"
     ],
     "words": [
-      "kopf",
-      "bleiben",
       "auge",
-      "brauchen",
       "ohr",
-      "bringen",
       "nase",
-      "denken",
       "mund",
-      "erklaeren"
+      "hand",
+      "bein",
+      "fuss",
+      "bauch",
+      "ruecken",
+      "zahn",
+      "haar",
+      "schmerz",
+      "fieber",
+      "apotheke",
+      "medikament",
+      "weh",
+      "wohnzimmer",
+      "schlafzimmer",
+      "badezimmer"
     ],
-    "grammar_id": "g-wordorder",
+    "grammar_id": null,
     "scenario": {
       "role": "a neighbour in the lift",
       "goal": "have a 30-second friendly chat",
@@ -341,7 +405,9 @@
         ]
       }
     ],
-    "prereq": ["a1-1-u17"]
+    "prereq": [
+      "a1-1-u17"
+    ]
   },
   {
     "id": "a1-1-u19",
@@ -354,18 +420,27 @@
       "name a day and a time"
     ],
     "words": [
-      "hand",
-      "fahren",
-      "arm",
-      "finden",
-      "bein",
-      "geben",
-      "fuss",
-      "glauben",
-      "bauch",
-      "helfen"
+      "balkon",
+      "garten",
+      "keller",
+      "treppe",
+      "schrank",
+      "sofa",
+      "lampe",
+      "teppich",
+      "spiegel",
+      "kuehlschrank",
+      "herd",
+      "waschmaschine",
+      "handy",
+      "computer",
+      "fernseher",
+      "uhr",
+      "schluessel",
+      "tasche",
+      "brille"
     ],
-    "grammar_id": "g-questions",
+    "grammar_id": null,
     "scenario": {
       "role": "a friend making plans",
       "goal": "agree on a day to meet",
@@ -398,7 +473,9 @@
         ]
       }
     ],
-    "prereq": ["a1-1-u18"]
+    "prereq": [
+      "a1-1-u18"
+    ]
   },
   {
     "id": "a1-1-u20",
@@ -411,18 +488,27 @@
       "ask three useful questions"
     ],
     "words": [
-      "ruecken",
-      "hoeren",
-      "zahn",
-      "haar",
-      "lesen",
-      "schmerz",
-      "liegen",
-      "fieber",
-      "nehmen",
-      "apotheke"
+      "foto",
+      "papier",
+      "stift",
+      "zettel",
+      "fruehstueck",
+      "mittagessen",
+      "abendessen",
+      "suppe",
+      "salat",
+      "reis",
+      "kartoffel",
+      "tomate",
+      "zwiebel",
+      "butter",
+      "zucker",
+      "salz",
+      "pfeffer",
+      "oel",
+      "kuchen"
     ],
-    "grammar_id": "g-negation",
+    "grammar_id": null,
     "scenario": {
       "role": "a new colleague on your first day",
       "goal": "introduce yourself and ask about them",
@@ -455,7 +541,9 @@
         ]
       }
     ],
-    "prereq": ["a1-1-u19"]
+    "prereq": [
+      "a1-1-u19"
+    ]
   },
   {
     "id": "a1-2-u01",
@@ -468,18 +556,27 @@
       "describe a person briefly"
     ],
     "words": [
-      "schreiben",
-      "medikament",
-      "sehen",
-      "weh",
-      "suchen",
-      "wohnzimmer",
-      "treffen",
-      "schlafzimmer",
-      "warten",
-      "badezimmer"
+      "schokolade",
+      "eis",
+      "saft",
+      "wein",
+      "flasche",
+      "glas",
+      "teller",
+      "messer",
+      "gabel",
+      "loeffel",
+      "tasse",
+      "suess",
+      "sauer",
+      "kleidung",
+      "hose",
+      "hemd",
+      "kleid",
+      "rock",
+      "jacke"
     ],
-    "grammar_id": "g-akkusativ",
+    "grammar_id": null,
     "scenario": {
       "role": "a friend looking at your photos",
       "goal": "say who the people are",
@@ -513,7 +610,9 @@
         ]
       }
     ],
-    "prereq": ["a1-1-u20"]
+    "prereq": [
+      "a1-1-u20"
+    ]
   },
   {
     "id": "a1-2-u02",
@@ -526,16 +625,25 @@
       "say what you like about them"
     ],
     "words": [
-      "wissen",
-      "balkon",
-      "garten",
-      "keller",
-      "treppe",
-      "schrank",
-      "sofa",
-      "lampe",
-      "teppich",
-      "spiegel"
+      "mantel",
+      "pullover",
+      "schuh",
+      "socke",
+      "hut",
+      "anziehen",
+      "dorf",
+      "platz",
+      "park",
+      "geschaeft",
+      "supermarkt",
+      "baeckerei",
+      "restaurant",
+      "hotel",
+      "kino",
+      "museum",
+      "kirche",
+      "post",
+      "bank"
     ],
     "grammar_id": null,
     "scenario": {
@@ -570,7 +678,9 @@
         ]
       }
     ],
-    "prereq": ["a1-2-u01"]
+    "prereq": [
+      "a1-2-u01"
+    ]
   },
   {
     "id": "a1-2-u03",
@@ -583,16 +693,25 @@
       "name common jobs"
     ],
     "words": [
-      "kuehlschrank",
-      "herd",
-      "waschmaschine",
-      "handy",
-      "computer",
-      "fernseher",
-      "uhr",
-      "schluessel",
-      "tasche",
-      "brille"
+      "polizei",
+      "flughafen",
+      "haltestelle",
+      "bus",
+      "zug",
+      "fahrrad",
+      "taxi",
+      "ticket",
+      "koffer",
+      "urlaub",
+      "fliegen",
+      "laufen",
+      "minute",
+      "sekunde",
+      "uhrzeit",
+      "morgen",
+      "mittag",
+      "nachmittag",
+      "abend"
     ],
     "grammar_id": null,
     "scenario": {
@@ -627,7 +746,9 @@
         ]
       }
     ],
-    "prereq": ["a1-2-u02"]
+    "prereq": [
+      "a1-2-u02"
+    ]
   },
   {
     "id": "a1-2-u04",
@@ -640,16 +761,25 @@
       "understand a doctor's question"
     ],
     "words": [
-      "foto",
-      "papier",
-      "stift",
-      "zettel",
-      "fruehstueck",
-      "mittagessen",
-      "abendessen",
-      "suppe",
-      "salat",
-      "reis"
+      "nacht",
+      "wochenende",
+      "geburtstag",
+      "datum",
+      "fruehling",
+      "sommer",
+      "herbst",
+      "winter",
+      "lange",
+      "kurz",
+      "uebermorgen",
+      "sonne",
+      "regen",
+      "schnee",
+      "wind",
+      "wolke",
+      "himmel",
+      "baum",
+      "blume"
     ],
     "grammar_id": null,
     "scenario": {
@@ -685,7 +815,9 @@
         ]
       }
     ],
-    "prereq": ["a1-2-u03"]
+    "prereq": [
+      "a1-2-u03"
+    ]
   },
   {
     "id": "a1-2-u05",
@@ -698,16 +830,25 @@
       "understand simple instructions"
     ],
     "words": [
-      "kartoffel",
-      "tomate",
-      "zwiebel",
-      "butter",
-      "zucker",
-      "salz",
-      "pfeffer",
-      "oel",
-      "kuchen",
-      "schokolade"
+      "wasser",
+      "meer",
+      "berg",
+      "tier",
+      "hund",
+      "katze",
+      "vogel",
+      "nass",
+      "trocken",
+      "schauen",
+      "singen",
+      "tanzen",
+      "backen",
+      "waschen",
+      "oeffnen",
+      "schliessen",
+      "lieben",
+      "sitzen",
+      "telefonieren"
     ],
     "grammar_id": null,
     "scenario": {
@@ -742,27 +883,42 @@
         ]
       }
     ],
-    "prereq": ["a1-2-u04"]
+    "prereq": [
+      "a1-2-u04"
+    ]
   },
   {
     "id": "a1-2-u06",
     "level": "A1.2",
     "ord": 6,
     "title": "Meine Wohnung",
-    "can_do": ["describe your home", "name the rooms", "say what's in a room"],
-    "words": [
-      "eis",
-      "saft",
-      "wein",
-      "flasche",
-      "glas",
-      "teller",
-      "messer",
-      "gabel",
-      "loeffel",
-      "tasse"
+    "can_do": [
+      "describe your home",
+      "name the rooms",
+      "say what's in a room"
     ],
-    "grammar_id": "g-modalverben",
+    "words": [
+      "erinnern",
+      "oben",
+      "unten",
+      "vorne",
+      "hinten",
+      "vor",
+      "nach",
+      "seit",
+      "bis",
+      "von",
+      "gegen",
+      "noch",
+      "erst",
+      "wieder",
+      "allein",
+      "mehr",
+      "genug",
+      "einmal",
+      "halt"
+    ],
+    "grammar_id": null,
     "scenario": {
       "role": "a friend who's never visited",
       "goal": "describe your flat",
@@ -795,7 +951,9 @@
         ]
       }
     ],
-    "prereq": ["a1-2-u05"]
+    "prereq": [
+      "a1-2-u05"
+    ]
   },
   {
     "id": "a1-2-u07",
@@ -808,16 +966,25 @@
       "say something is broken"
     ],
     "words": [
-      "hungrig",
-      "durstig",
-      "lecker",
-      "suess",
-      "sauer",
-      "kleidung",
-      "hose",
-      "hemd",
-      "kleid",
-      "rock"
+      "darueber",
+      "dazu",
+      "daran",
+      "dank",
+      "fall",
+      "egal",
+      "echt",
+      "dad",
+      "baby",
+      "hi",
+      "all",
+      "darauf",
+      "toeten",
+      "toll",
+      "ahnung",
+      "bisschen",
+      "draussen",
+      "fast",
+      "runter"
     ],
     "grammar_id": null,
     "scenario": {
@@ -852,7 +1019,9 @@
         ]
       }
     ],
-    "prereq": ["a1-2-u06"]
+    "prereq": [
+      "a1-2-u06"
+    ]
   },
   {
     "id": "a1-2-u08",
@@ -865,16 +1034,25 @@
       "ask where something is in a shop"
     ],
     "words": [
-      "jacke",
-      "mantel",
-      "pullover",
-      "schuh",
-      "socke",
-      "hut",
-      "tragen",
-      "anziehen",
-      "dorf",
-      "platz"
+      "vorbei",
+      "gerne",
+      "dran",
+      "mom",
+      "darum",
+      "drin",
+      "ziemlich",
+      "sogar",
+      "kerl",
+      "je",
+      "job",
+      "ueberhaupt",
+      "teufel",
+      "mama",
+      "tod",
+      "art",
+      "schatz",
+      "he",
+      "etwa"
     ],
     "grammar_id": null,
     "scenario": {
@@ -909,7 +1087,9 @@
         ]
       }
     ],
-    "prereq": ["a1-2-u07"]
+    "prereq": [
+      "a1-2-u07"
+    ]
   },
   {
     "id": "a1-2-u09",
@@ -922,16 +1102,25 @@
       "say you're hungry or full"
     ],
     "words": [
-      "park",
-      "markt",
-      "geschaeft",
-      "supermarkt",
-      "baeckerei",
-      "restaurant",
-      "hotel",
-      "kino",
-      "museum",
-      "kirche"
+      "anders",
+      "miss",
+      "erste",
+      "alter",
+      "wagen",
+      "niemals",
+      "eben",
+      "chance",
+      "krieg",
+      "wort",
+      "typ",
+      "aeh",
+      "gesicht",
+      "falls",
+      "bloss",
+      "ding",
+      "kriegen",
+      "blut",
+      "wiedersehen"
     ],
     "grammar_id": null,
     "scenario": {
@@ -966,7 +1155,9 @@
         ]
       }
     ],
-    "prereq": ["a1-2-u08"]
+    "prereq": [
+      "a1-2-u08"
+    ]
   },
   {
     "id": "a1-2-u10",
@@ -979,16 +1170,25 @@
       "ask for a different size"
     ],
     "words": [
-      "post",
-      "bank",
-      "polizei",
-      "flughafen",
-      "haltestelle",
-      "bus",
-      "zug",
-      "fahrrad",
-      "taxi",
-      "ticket"
+      "irgendwie",
+      "waffe",
+      "kaum",
+      "papa",
+      "sondern",
+      "nummer",
+      "ausser",
+      "willkommen",
+      "hierher",
+      "dollar",
+      "pass",
+      "bereits",
+      "schaffen",
+      "hoelle",
+      "doktor",
+      "tja",
+      "film",
+      "ueberall",
+      "direkt"
     ],
     "grammar_id": null,
     "scenario": {
@@ -1024,7 +1224,9 @@
         ]
       }
     ],
-    "prereq": ["a1-2-u09"]
+    "prereq": [
+      "a1-2-u09"
+    ]
   },
   {
     "id": "a1-2-u11",
@@ -1037,18 +1239,27 @@
       "ask if something is nearby"
     ],
     "words": [
-      "koffer",
-      "urlaub",
-      "fliegen",
-      "laufen",
-      "ankommen",
-      "abfahren",
-      "minute",
-      "sekunde",
-      "uhrzeit",
-      "mittag"
+      "tat",
+      "schiff",
+      "koenig",
+      "nennen",
+      "feuer",
+      "voellig",
+      "kumpel",
+      "luft",
+      "verschwinden",
+      "zwar",
+      "super",
+      "total",
+      "party",
+      "damals",
+      "tagen",
+      "irgendwo",
+      "genauso",
+      "cool",
+      "licht"
     ],
-    "grammar_id": "g-possessiv",
+    "grammar_id": null,
     "scenario": {
       "role": "a hotel receptionist",
       "goal": "ask what's worth seeing nearby",
@@ -1081,25 +1292,40 @@
         ]
       }
     ],
-    "prereq": ["a1-2-u10"]
+    "prereq": [
+      "a1-2-u10"
+    ]
   },
   {
     "id": "a1-2-u12",
     "level": "A1.2",
     "ord": 12,
     "title": "Verkehrsmittel",
-    "can_do": ["say how you travel", "buy a ticket", "ask which platform"],
+    "can_do": [
+      "say how you travel",
+      "buy a ticket",
+      "ask which platform"
+    ],
     "words": [
-      "nachmittag",
-      "abend",
-      "nacht",
-      "wochenende",
-      "geburtstag",
-      "datum",
-      "fruehling",
-      "sommer",
-      "herbst",
-      "winter"
+      "drueben",
+      "kuemmern",
+      "erde",
+      "rest",
+      "gefaengnis",
+      "koerper",
+      "mist",
+      "boese",
+      "vorstellen",
+      "wovon",
+      "nochmal",
+      "sex",
+      "klasse",
+      "hart",
+      "wenigstens",
+      "grossartig",
+      "stand",
+      "boden",
+      "kaempfen"
     ],
     "grammar_id": null,
     "scenario": {
@@ -1135,7 +1361,9 @@
         ]
       }
     ],
-    "prereq": ["a1-2-u11"]
+    "prereq": [
+      "a1-2-u11"
+    ]
   },
   {
     "id": "a1-2-u13",
@@ -1148,16 +1376,25 @@
       "pack and describe your luggage"
     ],
     "words": [
-      "frueh",
-      "spaet",
-      "lange",
-      "kurz",
-      "vorgestern",
-      "uebermorgen",
-      "sonne",
-      "regen",
-      "schnee",
-      "wind"
+      "zeug",
+      "umbringen",
+      "hasse",
+      "schlimm",
+      "unglaublich",
+      "laden",
+      "aehm",
+      "verzeihung",
+      "team",
+      "general",
+      "perfekt",
+      "mord",
+      "liebling",
+      "tatsaechlich",
+      "jemals",
+      "ha",
+      "meister",
+      "kampf",
+      "komisch"
     ],
     "grammar_id": null,
     "scenario": {
@@ -1192,7 +1429,9 @@
         ]
       }
     ],
-    "prereq": ["a1-2-u12"]
+    "prereq": [
+      "a1-2-u12"
+    ]
   },
   {
     "id": "a1-2-u14",
@@ -1205,16 +1444,25 @@
       "arrange a precise time"
     ],
     "words": [
-      "wolke",
-      "himmel",
-      "baum",
-      "blume",
-      "meer",
-      "berg",
-      "tier",
-      "hund",
-      "katze",
-      "vogel"
+      "voller",
+      "unterwegs",
+      "dagegen",
+      "leiche",
+      "schlimmer",
+      "fangen",
+      "fort",
+      "staendig",
+      "absolut",
+      "augenblick",
+      "bescheid",
+      "rum",
+      "partner",
+      "herum",
+      "finger",
+      "rolle",
+      "gleiche",
+      "hochzeit",
+      "wozu"
     ],
     "grammar_id": null,
     "scenario": {
@@ -1249,7 +1497,9 @@
         ]
       }
     ],
-    "prereq": ["a1-2-u13"]
+    "prereq": [
+      "a1-2-u13"
+    ]
   },
   {
     "id": "a1-2-u15",
@@ -1262,16 +1512,25 @@
       "say what you do in each season"
     ],
     "words": [
-      "warm",
-      "kalt",
-      "heiss",
-      "nass",
-      "trocken",
-      "sagen",
-      "fragen",
-      "schauen",
-      "ueben",
-      "spielen"
+      "hoffentlich",
+      "ansehen",
+      "zuhause",
+      "wunderbar",
+      "dame",
+      "irgendwann",
+      "jedenfalls",
+      "tolle",
+      "rueber",
+      "land",
+      "bahnhof",
+      "antwort",
+      "arzt",
+      "bahn",
+      "bild",
+      "brief",
+      "ende",
+      "frage",
+      "geschichte"
     ],
     "grammar_id": null,
     "scenario": {
@@ -1306,7 +1565,9 @@
         ]
       }
     ],
-    "prereq": ["a1-2-u14"]
+    "prereq": [
+      "a1-2-u14"
+    ]
   },
   {
     "id": "a1-2-u16",
@@ -1319,18 +1580,27 @@
       "say what you'll do if it rains"
     ],
     "words": [
-      "singen",
-      "tanzen",
-      "kochen",
-      "backen",
-      "putzen",
-      "waschen",
-      "verkaufen",
-      "holen",
-      "oeffnen",
-      "schliessen"
+      "gespraech",
+      "gesundheit",
+      "meinung",
+      "mensch",
+      "moeglichkeit",
+      "nachricht",
+      "problem",
+      "zeitung",
+      "zukunft",
+      "ausflug",
+      "beispiel",
+      "bereich",
+      "beruf",
+      "besuch",
+      "betrieb",
+      "bewegung",
+      "beziehung",
+      "bibliothek",
+      "buehne"
     ],
-    "grammar_id": "g-plural",
+    "grammar_id": null,
     "scenario": {
       "role": "a neighbour outside",
       "goal": "talk about today's weather",
@@ -1363,7 +1633,9 @@
         ]
       }
     ],
-    "prereq": ["a1-2-u15"]
+    "prereq": [
+      "a1-2-u15"
+    ]
   },
   {
     "id": "a1-2-u17",
@@ -1376,16 +1648,25 @@
       "say whether you have a pet"
     ],
     "words": [
-      "anfangen",
-      "aufhoeren",
-      "danken",
-      "lieben",
-      "moegen",
-      "wollen",
-      "koennen",
-      "muessen",
-      "duerfen",
-      "sollen"
+      "ecke",
+      "eingang",
+      "ausgang",
+      "einladung",
+      "eintritt",
+      "entscheidung",
+      "erfahrung",
+      "erfolg",
+      "erlebnis",
+      "fahrt",
+      "feier",
+      "ferien",
+      "freizeit",
+      "gebaeude",
+      "gefahr",
+      "gegend",
+      "gruppe",
+      "hilfe",
+      "hobby"
     ],
     "grammar_id": null,
     "scenario": {
@@ -1420,7 +1701,9 @@
         ]
       }
     ],
-    "prereq": ["a1-2-u16"]
+    "prereq": [
+      "a1-2-u16"
+    ]
   },
   {
     "id": "a1-2-u18",
@@ -1433,16 +1716,25 @@
       "say what you can and can't do"
     ],
     "words": [
-      "schlafen",
-      "aufstehen",
-      "sitzen",
-      "stehen",
-      "telefonieren",
-      "schicken",
-      "vergessen",
-      "erinnern",
-      "zeigen",
-      "enden"
+      "kenntnis",
+      "kleinigkeit",
+      "kunde",
+      "laerm",
+      "leistung",
+      "liebe",
+      "lust",
+      "mannschaft",
+      "mitte",
+      "muehe",
+      "naehe",
+      "not",
+      "ordnung",
+      "ort",
+      "pause",
+      "plan",
+      "punkt",
+      "rat",
+      "raum"
     ],
     "grammar_id": null,
     "scenario": {
@@ -1477,7 +1769,9 @@
         ]
       }
     ],
-    "prereq": ["a1-2-u17"]
+    "prereq": [
+      "a1-2-u17"
+    ]
   },
   {
     "id": "a1-2-u19",
@@ -1490,16 +1784,25 @@
       "use left, right, above, below"
     ],
     "words": [
-      "hier",
-      "dort",
-      "oben",
-      "unten",
-      "links",
-      "rechts",
-      "vorne",
-      "hinten",
-      "neben",
-      "zwischen"
+      "rede",
+      "regel",
+      "ruhe",
+      "sache",
+      "schluss",
+      "schritt",
+      "seite",
+      "sinn",
+      "sorge",
+      "spiel",
+      "sprache",
+      "stelle",
+      "stimme",
+      "stueck",
+      "teil",
+      "tipp",
+      "traum",
+      "uebung",
+      "umgebung"
     ],
     "grammar_id": null,
     "scenario": {
@@ -1534,7 +1837,9 @@
         ]
       }
     ],
-    "prereq": ["a1-2-u18"]
+    "prereq": [
+      "a1-2-u18"
+    ]
   },
   {
     "id": "a1-2-u20",
@@ -1547,16 +1852,25 @@
       "ask for help when stuck"
     ],
     "words": [
-      "ueber",
-      "unter",
-      "vor",
-      "hinter",
-      "nach",
-      "seit",
-      "bis",
-      "von",
-      "gegen",
-      "schon"
+      "ursache",
+      "verkehr",
+      "versuch",
+      "vorschlag",
+      "wahl",
+      "wechsel",
+      "weise",
+      "welt",
+      "werkstatt",
+      "wert",
+      "wille",
+      "wunsch",
+      "zahl",
+      "zeichen",
+      "ziel",
+      "zustand",
+      "zweck",
+      "achten",
+      "aendern"
     ],
     "grammar_id": null,
     "scenario": {
@@ -1591,7 +1905,9 @@
         ]
       }
     ],
-    "prereq": ["a1-2-u19"]
+    "prereq": [
+      "a1-2-u19"
+    ]
   },
   {
     "id": "a2-1-u01",
@@ -1604,16 +1920,25 @@
       "ask what someone did"
     ],
     "words": [
-      "noch",
-      "erst",
-      "wieder",
-      "sicher",
-      "natuerlich",
-      "leider",
-      "gern",
-      "zusammen",
-      "allein",
-      "alle"
+      "anbieten",
+      "ausmachen",
+      "aussehen",
+      "bedeuten",
+      "beeilen",
+      "behalten",
+      "bemerken",
+      "benutzen",
+      "beschreiben",
+      "besitzen",
+      "bestimmen",
+      "beweisen",
+      "bewegen",
+      "bieten",
+      "dauern",
+      "druecken",
+      "eignen",
+      "entdecken",
+      "entwickeln"
     ],
     "grammar_id": "g-perfekt",
     "scenario": {
@@ -1649,7 +1974,9 @@
         ]
       }
     ],
-    "prereq": ["a1-2-u20"]
+    "prereq": [
+      "a1-2-u20"
+    ]
   },
   {
     "id": "a2-1-u02",
@@ -1662,18 +1989,27 @@
       "tell a short travel story"
     ],
     "words": [
-      "viel",
-      "wenig",
-      "mehr",
-      "genug",
-      "etwas",
-      "nichts",
-      "jemand",
-      "niemand",
-      "antwort",
-      "arzt"
+      "erfahren",
+      "erhalten",
+      "erkennen",
+      "erlauben",
+      "erreichen",
+      "erwarten",
+      "fallen",
+      "fehlen",
+      "feiern",
+      "folgen",
+      "freuen",
+      "fuehlen",
+      "fuehren",
+      "gelingen",
+      "geniessen",
+      "geschehen",
+      "gewinnen",
+      "halten",
+      "haengen"
     ],
-    "grammar_id": null,
+    "grammar_id": "g-perfekt-sein",
     "scenario": {
       "role": "a friend who missed you",
       "goal": "explain where you were last week",
@@ -1706,7 +2042,9 @@
         ]
       }
     ],
-    "prereq": ["a2-1-u01"]
+    "prereq": [
+      "a2-1-u01"
+    ]
   },
   {
     "id": "a2-1-u03",
@@ -1719,18 +2057,27 @@
       "ask for help"
     ],
     "words": [
-      "bahn",
-      "bild",
-      "brief",
-      "ende",
-      "frage",
-      "geschichte",
-      "gespraech",
-      "gesundheit",
-      "meinung",
-      "mensch"
+      "heben",
+      "hoffen",
+      "interessieren",
+      "klingen",
+      "lachen",
+      "lassen",
+      "merken",
+      "messen",
+      "nutzen",
+      "pruefen",
+      "raten",
+      "rechnen",
+      "reden",
+      "retten",
+      "riechen",
+      "rufen",
+      "scheinen",
+      "schenken",
+      "schneiden"
     ],
-    "grammar_id": null,
+    "grammar_id": "g-dativ",
     "scenario": {
       "role": "a colleague you owe a favour",
       "goal": "ask them for help with something",
@@ -1763,7 +2110,9 @@
         ]
       }
     ],
-    "prereq": ["a2-1-u02"]
+    "prereq": [
+      "a2-1-u02"
+    ]
   },
   {
     "id": "a2-1-u04",
@@ -1776,18 +2125,27 @@
       "confirm details"
     ],
     "words": [
-      "moeglichkeit",
-      "nachricht",
-      "problem",
-      "zeitung",
-      "zukunft",
-      "bekommen",
-      "bestellen",
-      "kennen",
-      "ausflug",
-      "beispiel"
+      "setzen",
+      "sorgen",
+      "sparen",
+      "spueren",
+      "sterben",
+      "stoeren",
+      "traeumen",
+      "trennen",
+      "ueberlegen",
+      "unterscheiden",
+      "verbinden",
+      "verbringen",
+      "vergleichen",
+      "verlassen",
+      "verlieren",
+      "vermeiden",
+      "verpassen",
+      "versprechen",
+      "versuchen"
     ],
-    "grammar_id": "g-dativ",
+    "grammar_id": "g-zeitpraepositionen",
     "scenario": {
       "role": "a receptionist at an office",
       "goal": "book an appointment and confirm it",
@@ -1820,7 +2178,9 @@
         ]
       }
     ],
-    "prereq": ["a2-1-u03"]
+    "prereq": [
+      "a2-1-u03"
+    ]
   },
   {
     "id": "a2-1-u05",
@@ -1833,18 +2193,27 @@
       "describe a route"
     ],
     "words": [
-      "bereich",
-      "beruf",
-      "besuch",
-      "betrieb",
-      "bewegung",
-      "beziehung",
-      "bibliothek",
-      "buehne",
-      "ecke",
-      "eingang"
+      "verwenden",
+      "vorbereiten",
+      "vorschlagen",
+      "wachsen",
+      "waehlen",
+      "wechseln",
+      "weinen",
+      "werfen",
+      "wundern",
+      "ziehen",
+      "zuhoeren",
+      "angenehm",
+      "bequem",
+      "beruehmt",
+      "bereit",
+      "bekannt",
+      "deutlich",
+      "dick",
+      "duenn"
     ],
-    "grammar_id": null,
+    "grammar_id": "g-wechselpraep",
     "scenario": {
       "role": "a friend you're meeting in town",
       "goal": "explain on the phone where you are and where you're going",
@@ -1877,7 +2246,9 @@
         ]
       }
     ],
-    "prereq": ["a2-1-u04"]
+    "prereq": [
+      "a2-1-u04"
+    ]
   },
   {
     "id": "a2-1-u06",
@@ -1890,18 +2261,27 @@
       "use als and wie correctly"
     ],
     "words": [
-      "ausgang",
-      "einladung",
-      "eintritt",
-      "entscheidung",
-      "erfahrung",
-      "erfolg",
-      "erlebnis",
-      "fahrt",
-      "feier",
-      "ferien"
+      "dumm",
+      "eng",
+      "ernst",
+      "fertig",
+      "fremd",
+      "frisch",
+      "froh",
+      "gefaehrlich",
+      "gemeinsam",
+      "genau",
+      "gleich",
+      "hell",
+      "dunkel",
+      "hoch",
+      "niedrig",
+      "klar",
+      "klug",
+      "lang",
+      "laut"
     ],
-    "grammar_id": null,
+    "grammar_id": "g-komparativ",
     "scenario": {
       "role": "a friend choosing between two flats",
       "goal": "compare them and give advice",
@@ -1935,7 +2315,9 @@
         ]
       }
     ],
-    "prereq": ["a2-1-u05"]
+    "prereq": [
+      "a2-1-u05"
+    ]
   },
   {
     "id": "a2-1-u07",
@@ -1948,18 +2330,27 @@
       "understand a recipe or sign"
     ],
     "words": [
-      "freizeit",
-      "gebaeude",
-      "gefahr",
-      "gegend",
-      "gruppe",
-      "hilfe",
-      "hobby",
-      "kenntnis",
-      "kleinigkeit",
-      "kunde"
+      "leise",
+      "lieb",
+      "nah",
+      "offen",
+      "privat",
+      "reich",
+      "sauber",
+      "schmutzig",
+      "schwach",
+      "stark",
+      "still",
+      "typisch",
+      "voll",
+      "leer",
+      "wahr",
+      "zufrieden",
+      "bisher",
+      "unbedingt",
+      "wofuer"
     ],
-    "grammar_id": "g-wechselpraep",
+    "grammar_id": "g-imperativ",
     "scenario": {
       "role": "someone lost in your building",
       "goal": "direct them to the right floor",
@@ -1992,7 +2383,9 @@
         ]
       }
     ],
-    "prereq": ["a2-1-u06"]
+    "prereq": [
+      "a2-1-u06"
+    ]
   },
   {
     "id": "a2-1-u08",
@@ -2005,18 +2398,27 @@
       "say when things start and end"
     ],
     "words": [
-      "laerm",
-      "leistung",
-      "liebe",
-      "lust",
-      "mannschaft",
-      "mitte",
-      "muehe",
-      "naehe",
-      "not",
-      "ordnung"
+      "seele",
+      "schiessen",
+      "unfall",
+      "dahin",
+      "kontrolle",
+      "lady",
+      "herzen",
+      "schlagen",
+      "darin",
+      "suesse",
+      "vorsicht",
+      "zumindest",
+      "huebsch",
+      "verbindung",
+      "tief",
+      "lage",
+      "sowieso",
+      "kraft",
+      "normal"
     ],
-    "grammar_id": null,
+    "grammar_id": "g-trennbare",
     "scenario": {
       "role": "a flatmate",
       "goal": "explain your daily schedule so you don't clash",
@@ -2049,7 +2451,9 @@
         ]
       }
     ],
-    "prereq": ["a2-1-u07"]
+    "prereq": [
+      "a2-1-u07"
+    ]
   },
   {
     "id": "a2-1-u09",
@@ -2062,18 +2466,27 @@
       "ask for the bill and tip"
     ],
     "words": [
-      "ort",
-      "pause",
-      "plan",
-      "punkt",
-      "rat",
-      "raum",
-      "rede",
-      "regel",
-      "ruhe",
-      "sache"
+      "lauf",
+      "ehre",
+      "geschenk",
+      "bar",
+      "hunger",
+      "liste",
+      "geist",
+      "schrecklich",
+      "boot",
+      "seltsam",
+      "pferd",
+      "wunder",
+      "vermutlich",
+      "major",
+      "majestaet",
+      "beschuetzen",
+      "verraten",
+      "befehl",
+      "colonel"
     ],
-    "grammar_id": null,
+    "grammar_id": "g-moechten",
     "scenario": {
       "role": "a waiter in a busy restaurant",
       "goal": "order, ask a question, and pay",
@@ -2117,27 +2530,42 @@
         ]
       }
     ],
-    "prereq": ["a2-1-u08"]
+    "prereq": [
+      "a2-1-u08"
+    ]
   },
   {
     "id": "a2-1-u10",
     "level": "A2.1",
     "ord": 10,
     "title": "Einkaufen und Geld",
-    "can_do": ["compare prices", "ask for a discount", "return something"],
-    "words": [
-      "schluss",
-      "schritt",
-      "seite",
-      "sinn",
-      "sorge",
-      "spiel",
-      "sprache",
-      "stelle",
-      "stimme",
-      "stueck"
+    "can_do": [
+      "compare prices",
+      "ask for a discount",
+      "return something"
     ],
-    "grammar_id": "g-komparativ",
+    "words": [
+      "haut",
+      "wette",
+      "madame",
+      "frieden",
+      "guete",
+      "diesmal",
+      "schade",
+      "professor",
+      "ewig",
+      "weihnachten",
+      "naja",
+      "henry",
+      "show",
+      "kontakt",
+      "gold",
+      "ran",
+      "wunderschoen",
+      "witzig",
+      "uebrigens"
+    ],
+    "grammar_id": null,
     "scenario": {
       "role": "a shop assistant",
       "goal": "return an item and explain why",
@@ -2170,7 +2598,9 @@
         ]
       }
     ],
-    "prereq": ["a2-1-u09"]
+    "prereq": [
+      "a2-1-u09"
+    ]
   },
   {
     "id": "a2-1-u11",
@@ -2183,16 +2613,25 @@
       "arrange a viewing"
     ],
     "words": [
-      "teil",
-      "tipp",
-      "traum",
-      "uebung",
-      "umgebung",
-      "ursache",
-      "verkehr",
-      "versuch",
-      "vorschlag",
-      "wahl"
+      "heim",
+      "namens",
+      "blick",
+      "stecken",
+      "zimmer",
+      "buch",
+      "arbeitsplatz",
+      "firma",
+      "buero",
+      "abteilung",
+      "praktikum",
+      "bewerbung",
+      "lebenslauf",
+      "vorstellungsgespraech",
+      "gehalt",
+      "vertrag",
+      "kollegin",
+      "ausbildung",
+      "studium"
     ],
     "grammar_id": null,
     "scenario": {
@@ -2227,7 +2666,9 @@
         ]
       }
     ],
-    "prereq": ["a2-1-u10"]
+    "prereq": [
+      "a2-1-u10"
+    ]
   },
   {
     "id": "a2-1-u12",
@@ -2240,18 +2681,27 @@
       "explain why you're here"
     ],
     "words": [
-      "wechsel",
-      "weise",
-      "welt",
-      "werkstatt",
-      "wert",
-      "wille",
-      "wunsch",
-      "zahl",
-      "zeichen",
-      "ziel"
+      "universitaet",
+      "pruefung",
+      "note",
+      "zeugnis",
+      "kurs",
+      "unterricht",
+      "hausaufgabe",
+      "fehler",
+      "loesung",
+      "ergebnis",
+      "bewerben",
+      "verdienen",
+      "kuendigen",
+      "bestehen",
+      "korrigieren",
+      "gefuehl",
+      "idee",
+      "grund",
+      "angst"
     ],
-    "grammar_id": null,
+    "grammar_id": "g-perfekt",
     "scenario": {
       "role": "someone at a language-school welcome evening",
       "goal": "explain your background",
@@ -2284,27 +2734,42 @@
         ]
       }
     ],
-    "prereq": ["a2-1-u11"]
+    "prereq": [
+      "a2-1-u11"
+    ]
   },
   {
     "id": "a2-1-u13",
     "level": "A2.1",
     "ord": 13,
     "title": "Telefonieren",
-    "can_do": ["make a phone call", "ask for someone", "leave a message"],
-    "words": [
-      "zustand",
-      "zweck",
-      "achten",
-      "aendern",
-      "anbieten",
-      "aufmachen",
-      "aufpassen",
-      "ausmachen",
-      "aussehen",
-      "bedeuten"
+    "can_do": [
+      "make a phone call",
+      "ask for someone",
+      "leave a message"
     ],
-    "grammar_id": "g-imperativ",
+    "words": [
+      "freude",
+      "aerger",
+      "hoffnung",
+      "interesse",
+      "spass",
+      "glueck",
+      "pech",
+      "unzufrieden",
+      "stolz",
+      "nervoes",
+      "aufgeregt",
+      "enttaeuscht",
+      "ueberrascht",
+      "wach",
+      "langweilig",
+      "unwichtig",
+      "unmoeglich",
+      "einfach",
+      "schwierig"
+    ],
+    "grammar_id": null,
     "scenario": {
       "role": "an office receptionist on the phone",
       "goal": "reach a colleague or leave a message",
@@ -2337,7 +2802,9 @@
         ]
       }
     ],
-    "prereq": ["a2-1-u12"]
+    "prereq": [
+      "a2-1-u12"
+    ]
   },
   {
     "id": "a2-1-u14",
@@ -2350,16 +2817,25 @@
       "ask what documents you need"
     ],
     "words": [
-      "beeilen",
-      "behalten",
-      "bemerken",
-      "benutzen",
-      "beschreiben",
-      "besitzen",
-      "bestimmen",
-      "beweisen",
-      "bewegen",
-      "bieten"
+      "meinen",
+      "wuenschen",
+      "aergern",
+      "entscheiden",
+      "diskutieren",
+      "streiten",
+      "anruf",
+      "telefon",
+      "e-mail",
+      "adresse",
+      "internet",
+      "zeitschrift",
+      "roman",
+      "artikel",
+      "bericht",
+      "werbung",
+      "information",
+      "erklaerung",
+      "zurueckrufen"
     ],
     "grammar_id": null,
     "scenario": {
@@ -2394,7 +2870,9 @@
         ]
       }
     ],
-    "prereq": ["a2-1-u13"]
+    "prereq": [
+      "a2-1-u13"
+    ]
   },
   {
     "id": "a2-1-u15",
@@ -2407,18 +2885,27 @@
       "collect a prescription"
     ],
     "words": [
-      "bitten",
-      "dauern",
-      "druecken",
-      "eignen",
-      "einladen",
-      "entdecken",
-      "entwickeln",
-      "erfahren",
-      "erhalten",
-      "erkennen"
+      "mitteilen",
+      "berichten",
+      "unterschreiben",
+      "preis",
+      "rechnung",
+      "quittung",
+      "kasse",
+      "angebot",
+      "rabatt",
+      "kredit",
+      "konto",
+      "miete",
+      "steuer",
+      "versicherung",
+      "guenstig",
+      "kostenlos",
+      "ausgeben",
+      "leihen",
+      "tauschen"
     ],
-    "grammar_id": null,
+    "grammar_id": "g-dativ",
     "scenario": {
       "role": "a pharmacist",
       "goal": "describe a problem and get something for it",
@@ -2451,27 +2938,42 @@
         ]
       }
     ],
-    "prereq": ["a2-1-u14"]
+    "prereq": [
+      "a2-1-u14"
+    ]
   },
   {
     "id": "a2-1-u16",
     "level": "A2.1",
     "ord": 16,
     "title": "Feste und Feiern",
-    "can_do": ["invite someone", "accept or decline", "congratulate someone"],
-    "words": [
-      "erlauben",
-      "erreichen",
-      "erwarten",
-      "fallen",
-      "fehlen",
-      "feiern",
-      "folgen",
-      "freuen",
-      "fuehlen",
-      "fuehren"
+    "can_do": [
+      "invite someone",
+      "accept or decline",
+      "congratulate someone"
     ],
-    "grammar_id": "g-trennbare",
+    "words": [
+      "zurueckgeben",
+      "fahrkarte",
+      "fahrplan",
+      "gleis",
+      "verspaetung",
+      "abfahrt",
+      "ankunft",
+      "reisefuehrer",
+      "unterkunft",
+      "rezeption",
+      "grenze",
+      "ausland",
+      "ausweis",
+      "reisepass",
+      "gepaeck",
+      "richtung",
+      "weg",
+      "karte",
+      "stau"
+    ],
+    "grammar_id": null,
     "scenario": {
       "role": "a friend inviting you to a birthday",
       "goal": "accept and ask the details",
@@ -2504,7 +3006,9 @@
         ]
       }
     ],
-    "prereq": ["a2-1-u15"]
+    "prereq": [
+      "a2-1-u15"
+    ]
   },
   {
     "id": "a2-1-u17",
@@ -2517,16 +3021,25 @@
       "invite someone to join"
     ],
     "words": [
-      "gefallen",
-      "gehoeren",
-      "gelingen",
-      "geniessen",
-      "geschehen",
-      "gewinnen",
-      "halten",
-      "haengen",
-      "heben",
-      "hoffen"
+      "reservieren",
+      "buchen",
+      "packen",
+      "mitnehmen",
+      "haushalt",
+      "muell",
+      "waesche",
+      "reparatur",
+      "werkzeug",
+      "nachbarschaft",
+      "umzug",
+      "mieten",
+      "reparieren",
+      "aufraeumen",
+      "saubermachen",
+      "funktionieren",
+      "kaputt",
+      "ordentlich",
+      "vergangenheit"
     ],
     "grammar_id": null,
     "scenario": {
@@ -2561,7 +3074,9 @@
         ]
       }
     ],
-    "prereq": ["a2-1-u16"]
+    "prereq": [
+      "a2-1-u16"
+    ]
   },
   {
     "id": "a2-1-u18",
@@ -2574,16 +3089,25 @@
       "give a short opinion"
     ],
     "words": [
-      "interessieren",
-      "klingen",
-      "lachen",
-      "lassen",
-      "legen",
-      "merken",
-      "messen",
-      "mitbringen",
-      "nutzen",
-      "passen"
+      "gegenwart",
+      "moment",
+      "weile",
+      "anfang",
+      "verabredung",
+      "gewohnheit",
+      "ploetzlich",
+      "sofort",
+      "bald",
+      "endlich",
+      "schliesslich",
+      "selten",
+      "meistens",
+      "regelmaessig",
+      "dauernd",
+      "gesellschaft",
+      "regierung",
+      "politik",
+      "gesetz"
     ],
     "grammar_id": null,
     "scenario": {
@@ -2618,7 +3142,9 @@
         ]
       }
     ],
-    "prereq": ["a2-1-u17"]
+    "prereq": [
+      "a2-1-u17"
+    ]
   },
   {
     "id": "a2-1-u19",
@@ -2631,16 +3157,25 @@
       "complain politely"
     ],
     "words": [
-      "passieren",
-      "pruefen",
-      "raten",
-      "rechnen",
-      "reden",
-      "retten",
-      "riechen",
-      "rufen",
-      "scheinen",
-      "schenken"
+      "recht",
+      "pflicht",
+      "freiheit",
+      "kultur",
+      "religion",
+      "umwelt",
+      "natur",
+      "energie",
+      "sicherheit",
+      "unterschied",
+      "situation",
+      "vorteil",
+      "nachteil",
+      "entwicklung",
+      "verbessern",
+      "stattfinden",
+      "teilnehmen",
+      "miteinander",
+      "indem"
     ],
     "grammar_id": null,
     "scenario": {
@@ -2675,7 +3210,9 @@
         ]
       }
     ],
-    "prereq": ["a2-1-u18"]
+    "prereq": [
+      "a2-1-u18"
+    ]
   },
   {
     "id": "a2-1-u20",
@@ -2688,16 +3225,25 @@
       "compare and choose"
     ],
     "words": [
-      "schneiden",
-      "setzen",
-      "sorgen",
-      "sparen",
-      "spueren",
-      "stellen",
-      "sterben",
-      "stoeren",
-      "traeumen",
-      "trennen"
+      "weder",
+      "flugzeug",
+      "anderer",
+      "zweite",
+      "entweder",
+      "aufhalten",
+      "mark",
+      "schlag",
+      "sheriff",
+      "untertitel",
+      "verstecken",
+      "schuldig",
+      "hals",
+      "ueberleben",
+      "teilen",
+      "richter",
+      "vergnuegen",
+      "volk",
+      "herausfinden"
     ],
     "grammar_id": null,
     "scenario": {
@@ -2732,7 +3278,9 @@
         ]
       }
     ],
-    "prereq": ["a2-1-u19"]
+    "prereq": [
+      "a2-1-u19"
+    ]
   },
   {
     "id": "a2-2-u01",
@@ -2745,16 +3293,25 @@
       "explain a decision"
     ],
     "words": [
-      "ueberlegen",
-      "unterscheiden",
-      "verbinden",
-      "verbringen",
-      "vergleichen",
-      "verlassen",
-      "verlieren",
-      "vermeiden",
-      "verpassen",
-      "versprechen"
+      "koenigin",
+      "lag",
+      "soweit",
+      "verstand",
+      "bord",
+      "bob",
+      "kamera",
+      "achtung",
+      "glueckwunsch",
+      "statt",
+      "uebernehmen",
+      "herein",
+      "zerstoeren",
+      "jawohl",
+      "nahe",
+      "band",
+      "furchtbar",
+      "drinnen",
+      "zuvor"
     ],
     "grammar_id": "g-nebensatz",
     "scenario": {
@@ -2790,7 +3347,9 @@
         ]
       }
     ],
-    "prereq": ["a2-1-u20"]
+    "prereq": [
+      "a2-1-u20"
+    ]
   },
   {
     "id": "a2-2-u02",
@@ -2803,18 +3362,27 @@
       "look forward to something"
     ],
     "words": [
-      "versuchen",
-      "verwenden",
-      "vorbereiten",
-      "vorschlagen",
-      "wachsen",
-      "waehlen",
-      "wechseln",
-      "weinen",
-      "werfen",
-      "wiederholen"
+      "uebrig",
+      "spur",
+      "melden",
+      "ehemann",
+      "verzeihen",
+      "monster",
+      "mission",
+      "stopp",
+      "uebel",
+      "unsinn",
+      "pro",
+      "leisten",
+      "davor",
+      "ball",
+      "haelfte",
+      "schwanger",
+      "deal",
+      "drehen",
+      "worueber"
     ],
-    "grammar_id": null,
+    "grammar_id": "g-reflexiv",
     "scenario": {
       "role": "a friend before a big trip",
       "goal": "say what you're looking forward to",
@@ -2847,7 +3415,9 @@
         ]
       }
     ],
-    "prereq": ["a2-2-u01"]
+    "prereq": [
+      "a2-2-u01"
+    ]
   },
   {
     "id": "a2-2-u03",
@@ -2860,16 +3430,25 @@
       "react to someone else's news"
     ],
     "words": [
-      "wundern",
-      "zahlen",
-      "ziehen",
-      "zuhoeren",
-      "angenehm",
-      "bequem",
-      "beruehmt",
-      "bereit",
-      "bekannt",
-      "deutlich"
+      "verbrechen",
+      "nachts",
+      "position",
+      "gleichen",
+      "schaetzchen",
+      "ring",
+      "rennen",
+      "lied",
+      "sorry",
+      "fantastisch",
+      "insel",
+      "daher",
+      "zufaellig",
+      "feind",
+      "einverstanden",
+      "bauen",
+      "unternehmen",
+      "entlang",
+      "aha"
     ],
     "grammar_id": null,
     "scenario": {
@@ -2904,7 +3483,9 @@
         ]
       }
     ],
-    "prereq": ["a2-2-u02"]
+    "prereq": [
+      "a2-2-u02"
+    ]
   },
   {
     "id": "a2-2-u04",
@@ -2917,18 +3498,27 @@
       "identify something in a group"
     ],
     "words": [
-      "dick",
-      "duenn",
-      "dumm",
-      "eng",
-      "ernst",
-      "fertig",
-      "frei",
-      "fremd",
-      "frisch",
-      "froh"
+      "unterhalten",
+      "schaden",
+      "beenden",
+      "laecherlich",
+      "schaetzen",
+      "ehren",
+      "reichen",
+      "worum",
+      "see",
+      "schreien",
+      "wand",
+      "angriff",
+      "loch",
+      "treten",
+      "quatsch",
+      "polizist",
+      "schuss",
+      "fassen",
+      "maschine"
     ],
-    "grammar_id": "g-reflexiv",
+    "grammar_id": "g-adjektivendung",
     "scenario": {
       "role": "someone at a lost-property desk",
       "goal": "describe your lost item well enough to get it back",
@@ -2961,7 +3551,9 @@
         ]
       }
     ],
-    "prereq": ["a2-2-u03"]
+    "prereq": [
+      "a2-2-u03"
+    ]
   },
   {
     "id": "a2-2-u05",
@@ -2974,18 +3566,27 @@
       "compare then and now"
     ],
     "words": [
-      "gefaehrlich",
-      "gemeinsam",
-      "genau",
-      "gleich",
-      "hell",
-      "dunkel",
-      "hoch",
-      "niedrig",
-      "klar",
-      "klug"
+      "bloed",
+      "tommy",
+      "engel",
+      "offenbar",
+      "gelegenheit",
+      "fang",
+      "brechen",
+      "zeitpunkt",
+      "bruecke",
+      "date",
+      "haufen",
+      "entkommen",
+      "weissen",
+      "irre",
+      "schloss",
+      "laecheln",
+      "grad",
+      "hinaus",
+      "ernsthaft"
     ],
-    "grammar_id": null,
+    "grammar_id": "g-praeteritum",
     "scenario": {
       "role": "an older neighbour",
       "goal": "talk about how things used to be",
@@ -3018,7 +3619,9 @@
         ]
       }
     ],
-    "prereq": ["a2-2-u04"]
+    "prereq": [
+      "a2-2-u04"
+    ]
   },
   {
     "id": "a2-2-u06",
@@ -3031,18 +3634,27 @@
       "make a prediction"
     ],
     "words": [
-      "lang",
-      "langsam",
-      "schnell",
-      "laut",
-      "leise",
-      "leicht",
-      "schwer",
-      "lieb",
-      "moeglich",
-      "nah"
+      "bombe",
+      "dach",
+      "dankbar",
+      "gehirn",
+      "mut",
+      "system",
+      "wahnsinn",
+      "rose",
+      "club",
+      "hintern",
+      "thema",
+      "dorthin",
+      "vorwaerts",
+      "ueberpruefen",
+      "risiko",
+      "knast",
+      "held",
+      "daraus",
+      "fraeulein"
     ],
-    "grammar_id": null,
+    "grammar_id": "g-futur",
     "scenario": {
       "role": "a careers adviser",
       "goal": "explain your plans for the next year",
@@ -3075,7 +3687,9 @@
         ]
       }
     ],
-    "prereq": ["a2-2-u05"]
+    "prereq": [
+      "a2-2-u05"
+    ]
   },
   {
     "id": "a2-2-u07",
@@ -3088,18 +3702,27 @@
       "use von + dative instead"
     ],
     "words": [
-      "weit",
-      "noetig",
-      "offen",
-      "privat",
-      "reich",
-      "ruhig",
-      "sauber",
-      "schmutzig",
-      "schwach",
-      "stark"
+      "prima",
+      "gewalt",
+      "nachdenken",
+      "jagen",
+      "runde",
+      "lord",
+      "grossvater",
+      "hinterlassen",
+      "gewissen",
+      "kate",
+      "zeugen",
+      "stein",
+      "atmen",
+      "weisse",
+      "city",
+      "prinz",
+      "gedanke",
+      "absicht",
+      "vorstellung"
     ],
-    "grammar_id": "g-adjektivendung",
+    "grammar_id": "g-genitiv",
     "scenario": {
       "role": "a friend helping you tidy",
       "goal": "sort out whose things are whose",
@@ -3132,7 +3755,9 @@
         ]
       }
     ],
-    "prereq": ["a2-2-u06"]
+    "prereq": [
+      "a2-2-u06"
+    ]
   },
   {
     "id": "a2-2-u08",
@@ -3145,18 +3770,27 @@
       "give a reason"
     ],
     "words": [
-      "still",
-      "typisch",
-      "voll",
-      "leer",
-      "wahr",
-      "wichtig",
-      "zufrieden",
-      "arbeitsplatz",
-      "firma",
-      "buero"
+      "ansicht",
+      "standpunkt",
+      "argument",
+      "behauptung",
+      "beweis",
+      "zweifel",
+      "vermutung",
+      "annahme",
+      "schlussfolgerung",
+      "zusammenhang",
+      "folge",
+      "wirkung",
+      "bedingung",
+      "ausnahme",
+      "vergleich",
+      "gegenteil",
+      "behaupten",
+      "bezweifeln",
+      "vermuten"
     ],
-    "grammar_id": null,
+    "grammar_id": "g-nebensatz",
     "scenario": {
       "role": "a colleague discussing a decision",
       "goal": "state your opinion and back it up",
@@ -3189,7 +3823,9 @@
         ]
       }
     ],
-    "prereq": ["a2-2-u07"]
+    "prereq": [
+      "a2-2-u07"
+    ]
   },
   {
     "id": "a2-2-u09",
@@ -3202,16 +3838,25 @@
       "reach a compromise"
     ],
     "words": [
-      "abteilung",
-      "praktikum",
-      "bewerbung",
-      "lebenslauf",
-      "vorstellungsgespraech",
-      "gehalt",
-      "vertrag",
-      "kollegin",
-      "ausbildung",
-      "studium"
+      "annehmen",
+      "begruenden",
+      "zugeben",
+      "bestreiten",
+      "betonen",
+      "erwaehnen",
+      "hinweisen",
+      "zustimmen",
+      "ablehnen",
+      "kritisieren",
+      "loben",
+      "empfehlen",
+      "warnen",
+      "arbeitgeber",
+      "arbeitnehmer",
+      "arbeitslosigkeit",
+      "gewerkschaft",
+      "bewerber",
+      "faehigkeit"
     ],
     "grammar_id": null,
     "scenario": {
@@ -3246,7 +3891,9 @@
         ]
       }
     ],
-    "prereq": ["a2-2-u08"]
+    "prereq": [
+      "a2-2-u08"
+    ]
   },
   {
     "id": "a2-2-u10",
@@ -3259,18 +3906,27 @@
       "explain a delay"
     ],
     "words": [
-      "universitaet",
-      "pruefung",
-      "note",
-      "zeugnis",
-      "kurs",
-      "unterricht",
-      "hausaufgabe",
-      "fehler",
-      "loesung",
-      "ergebnis"
+      "verantwortung",
+      "aufgabe",
+      "misserfolg",
+      "karriere",
+      "teilzeit",
+      "vollzeit",
+      "schicht",
+      "ueberstunde",
+      "krankenschein",
+      "branche",
+      "konkurrenz",
+      "auftrag",
+      "projekt",
+      "sitzung",
+      "protokoll",
+      "leiten",
+      "organisieren",
+      "verwalten",
+      "planen"
     ],
-    "grammar_id": "g-praeteritum",
+    "grammar_id": null,
     "scenario": {
       "role": "your manager",
       "goal": "explain that a task will be late and why",
@@ -3303,7 +3959,9 @@
         ]
       }
     ],
-    "prereq": ["a2-2-u09"]
+    "prereq": [
+      "a2-2-u09"
+    ]
   },
   {
     "id": "a2-2-u11",
@@ -3316,16 +3974,25 @@
       "answer a simple interview question"
     ],
     "words": [
-      "bewerben",
-      "verdienen",
-      "kuendigen",
-      "studieren",
-      "bestehen",
-      "korrigieren",
-      "gefuehl",
-      "idee",
-      "grund",
-      "angst"
+      "durchfuehren",
+      "erledigen",
+      "verhandeln",
+      "einstellen",
+      "entlassen",
+      "medien",
+      "fernsehen",
+      "rundfunk",
+      "sendung",
+      "beitrag",
+      "interview",
+      "schlagzeile",
+      "quelle",
+      "datei",
+      "programm",
+      "anwendung",
+      "bildschirm",
+      "tastatur",
+      "drucker"
     ],
     "grammar_id": null,
     "scenario": {
@@ -3360,7 +4027,9 @@
         ]
       }
     ],
-    "prereq": ["a2-2-u10"]
+    "prereq": [
+      "a2-2-u10"
+    ]
   },
   {
     "id": "a2-2-u12",
@@ -3373,16 +4042,25 @@
       "ask about a payment"
     ],
     "words": [
-      "freude",
-      "aerger",
-      "hoffnung",
-      "interesse",
-      "spass",
-      "glueck",
-      "pech",
-      "unzufrieden",
-      "stolz",
-      "nervoes"
+      "netzwerk",
+      "passwort",
+      "benutzer",
+      "datenschutz",
+      "herunterladen",
+      "hochladen",
+      "speichern",
+      "loeschen",
+      "installieren",
+      "klicken",
+      "tippen",
+      "krankheit",
+      "behandlung",
+      "untersuchung",
+      "diagnose",
+      "rezept",
+      "operation",
+      "verletzung",
+      "erkaeltung"
     ],
     "grammar_id": null,
     "scenario": {
@@ -3417,7 +4095,9 @@
         ]
       }
     ],
-    "prereq": ["a2-2-u11"]
+    "prereq": [
+      "a2-2-u11"
+    ]
   },
   {
     "id": "a2-2-u13",
@@ -3430,18 +4110,27 @@
       "register your new address"
     ],
     "words": [
-      "aufgeregt",
-      "enttaeuscht",
-      "ueberrascht",
-      "wach",
-      "langweilig",
-      "interessant",
-      "unwichtig",
-      "unmoeglich",
-      "einfach",
-      "schwierig"
+      "grippe",
+      "allergie",
+      "ernaehrung",
+      "sport",
+      "stress",
+      "erholung",
+      "schlaf",
+      "gewicht",
+      "behandeln",
+      "untersuchen",
+      "verschreiben",
+      "heilen",
+      "verletzen",
+      "erholen",
+      "abnehmen",
+      "zunehmen",
+      "leiden",
+      "klima",
+      "klimawandel"
     ],
-    "grammar_id": "g-futur",
+    "grammar_id": null,
     "scenario": {
       "role": "a clerk at the registration office",
       "goal": "register your new address",
@@ -3474,7 +4163,9 @@
         ]
       }
     ],
-    "prereq": ["a2-2-u12"]
+    "prereq": [
+      "a2-2-u12"
+    ]
   },
   {
     "id": "a2-2-u14",
@@ -3487,16 +4178,25 @@
       "understand a cost estimate"
     ],
     "words": [
-      "meinen",
-      "wuenschen",
-      "aergern",
-      "entscheiden",
-      "diskutieren",
-      "streiten",
-      "anruf",
-      "telefon",
-      "e-mail",
-      "adresse"
+      "verschmutzung",
+      "abfall",
+      "recycling",
+      "strom",
+      "heizung",
+      "rohstoff",
+      "landwirtschaft",
+      "industrie",
+      "wirtschaft",
+      "handel",
+      "bevoelkerung",
+      "stadtteil",
+      "landschaft",
+      "kueste",
+      "fluss",
+      "wald",
+      "wueste",
+      "schuetzen",
+      "verschmutzen"
     ],
     "grammar_id": null,
     "scenario": {
@@ -3531,7 +4231,9 @@
         ]
       }
     ],
-    "prereq": ["a2-2-u13"]
+    "prereq": [
+      "a2-2-u13"
+    ]
   },
   {
     "id": "a2-2-u15",
@@ -3544,18 +4246,27 @@
       "ask permission"
     ],
     "words": [
-      "internet",
-      "zeitschrift",
-      "roman",
-      "artikel",
-      "bericht",
-      "werbung",
-      "information",
-      "erklaerung",
-      "anrufen",
-      "zurueckrufen"
+      "verbrauchen",
+      "sinken",
+      "steigen",
+      "freundschaft",
+      "partnerschaft",
+      "ehe",
+      "trennung",
+      "scheidung",
+      "vertrauen",
+      "respekt",
+      "konflikt",
+      "kompromiss",
+      "verstaendnis",
+      "ruecksicht",
+      "unterstuetzung",
+      "respektieren",
+      "unterstuetzen",
+      "heiraten",
+      "verzichten"
     ],
-    "grammar_id": null,
+    "grammar_id": "g-modalverben",
     "scenario": {
       "role": "a caretaker in your building",
       "goal": "ask what's allowed in the shared areas",
@@ -3588,7 +4299,9 @@
         ]
       }
     ],
-    "prereq": ["a2-2-u14"]
+    "prereq": [
+      "a2-2-u14"
+    ]
   },
   {
     "id": "a2-2-u16",
@@ -3601,18 +4314,27 @@
       "suggest an alternative"
     ],
     "words": [
-      "mitteilen",
-      "berichten",
-      "erzaehlen",
-      "buchstabieren",
-      "unterschreiben",
-      "preis",
-      "rechnung",
-      "quittung",
-      "kasse",
-      "angebot"
+      "ungefaehr",
+      "ausreichend",
+      "zusaetzlich",
+      "persoenlich",
+      "oeffentlich",
+      "allgemein",
+      "besonders",
+      "ueblich",
+      "selbstverstaendlich",
+      "notwendig",
+      "nuetzlich",
+      "schaedlich",
+      "harmlos",
+      "zuverlaessig",
+      "verantwortlich",
+      "erfolgreich",
+      "begabt",
+      "neugierig",
+      "geduldig"
     ],
-    "grammar_id": "g-genitiv",
+    "grammar_id": null,
     "scenario": {
       "role": "a friend you have to cancel on",
       "goal": "cancel politely and rearrange",
@@ -3646,7 +4368,9 @@
         ]
       }
     ],
-    "prereq": ["a2-2-u15"]
+    "prereq": [
+      "a2-2-u15"
+    ]
   },
   {
     "id": "a2-2-u17",
@@ -3659,18 +4383,27 @@
       "keep a listener interested"
     ],
     "words": [
-      "rabatt",
-      "kredit",
-      "konto",
-      "miete",
-      "steuer",
-      "versicherung",
-      "guenstig",
-      "kostenlos",
-      "ausgeben",
-      "leihen"
+      "ehrlich",
+      "hoeflich",
+      "mami",
+      "kuessen",
+      "laengst",
+      "bad",
+      "kugel",
+      "normalerweise",
+      "rauf",
+      "flug",
+      "beruhigen",
+      "vollkommen",
+      "eh",
+      "schwert",
+      "labor",
+      "mindestens",
+      "fisch",
+      "erschiessen",
+      "farbe"
     ],
-    "grammar_id": null,
+    "grammar_id": "g-als-wenn",
     "scenario": {
       "role": "friends over dinner",
       "goal": "tell the story of something that happened to you",
@@ -3703,7 +4436,9 @@
         ]
       }
     ],
-    "prereq": ["a2-2-u16"]
+    "prereq": [
+      "a2-2-u16"
+    ]
   },
   {
     "id": "a2-2-u18",
@@ -3716,16 +4451,25 @@
       "ask for compensation"
     ],
     "words": [
-      "tauschen",
-      "zurueckgeben",
-      "umtauschen",
-      "fahrkarte",
-      "fahrplan",
-      "gleis",
-      "verspaetung",
-      "abfahrt",
-      "ankunft",
-      "reisefuehrer"
+      "van",
+      "einigen",
+      "fair",
+      "wahnsinnig",
+      "aehnlich",
+      "aufgeben",
+      "lager",
+      "reihe",
+      "strand",
+      "amerikaner",
+      "fern",
+      "scherz",
+      "womit",
+      "my",
+      "soldat",
+      "gang",
+      "stehlen",
+      "rache",
+      "radio"
     ],
     "grammar_id": null,
     "scenario": {
@@ -3760,7 +4504,9 @@
         ]
       }
     ],
-    "prereq": ["a2-2-u17"]
+    "prereq": [
+      "a2-2-u17"
+    ]
   },
   {
     "id": "a2-2-u19",
@@ -3773,16 +4519,25 @@
       "compare two countries"
     ],
     "words": [
-      "unterkunft",
-      "rezeption",
-      "grenze",
-      "ausland",
-      "ausweis",
-      "reisepass",
-      "gepaeck",
-      "richtung",
-      "weg",
-      "karte"
+      "dienst",
+      "wesen",
+      "buergermeister",
+      "woran",
+      "durcheinander",
+      "test",
+      "dadurch",
+      "direktor",
+      "akte",
+      "grossmutter",
+      "loesen",
+      "griff",
+      "verfolgen",
+      "nerven",
+      "zweimal",
+      "abholen",
+      "fass",
+      "szene",
+      "wache"
     ],
     "grammar_id": null,
     "scenario": {
@@ -3817,7 +4572,9 @@
         ]
       }
     ],
-    "prereq": ["a2-2-u18"]
+    "prereq": [
+      "a2-2-u18"
+    ]
   },
   {
     "id": "a2-2-u20",
@@ -3830,16 +4587,25 @@
       "talk about past and future"
     ],
     "words": [
-      "stau",
-      "umsteigen",
-      "reservieren",
-      "buchen",
-      "packen",
-      "mitnehmen",
-      "haushalt",
-      "muell",
-      "waesche",
-      "reparatur"
+      "neulich",
+      "knie",
+      "unschuldig",
+      "schutz",
+      "weshalb",
+      "woanders",
+      "kuss",
+      "verhindern",
+      "video",
+      "rom",
+      "verlangen",
+      "ausserhalb",
+      "hassen",
+      "gebrauchen",
+      "hinein",
+      "braut",
+      "peinlich",
+      "aufmerksamkeit",
+      "form"
     ],
     "grammar_id": null,
     "scenario": {
@@ -3874,7 +4640,9 @@
         ]
       }
     ],
-    "prereq": ["a2-2-u19"]
+    "prereq": [
+      "a2-2-u19"
+    ]
   },
   {
     "id": "b1-1-u01",
@@ -3887,16 +4655,25 @@
       "add detail without a new sentence"
     ],
     "words": [
-      "werkzeug",
-      "nachbarschaft",
-      "umzug",
-      "mieten",
-      "umziehen",
-      "reparieren",
-      "aufraeumen",
-      "saubermachen",
-      "funktionieren",
-      "kaputt"
+      "umsonst",
+      "nirgendwo",
+      "mond",
+      "schande",
+      "fuck",
+      "sieg",
+      "satt",
+      "bloedsinn",
+      "pfund",
+      "handeln",
+      "kapitaen",
+      "desto",
+      "einsatz",
+      "schweigen",
+      "schatten",
+      "wachen",
+      "tatsache",
+      "stock",
+      "hingehen"
     ],
     "grammar_id": "g-relativsatz",
     "scenario": {
@@ -3932,7 +4709,9 @@
         ]
       }
     ],
-    "prereq": ["a2-2-u20"]
+    "prereq": [
+      "a2-2-u20"
+    ]
   },
   {
     "id": "b1-1-u02",
@@ -3945,18 +4724,27 @@
       "soften a refusal"
     ],
     "words": [
-      "ordentlich",
-      "vergangenheit",
-      "gegenwart",
-      "moment",
-      "weile",
-      "anfang",
-      "verabredung",
-      "gewohnheit",
-      "ploetzlich",
-      "sofort"
+      "anzug",
+      "high",
+      "million",
+      "klopfen",
+      "spuren",
+      "dreck",
+      "kontrollieren",
+      "knochen",
+      "schick",
+      "grab",
+      "ebenso",
+      "dreh",
+      "vergeben",
+      "ausgehen",
+      "trotz",
+      "gast",
+      "toilette",
+      "erwachsen",
+      "pistole"
     ],
-    "grammar_id": null,
+    "grammar_id": "g-konjunktiv2",
     "scenario": {
       "role": "a stranger you need a favour from",
       "goal": "ask politely and thank them",
@@ -3990,7 +4778,9 @@
         ]
       }
     ],
-    "prereq": ["b1-1-u01"]
+    "prereq": [
+      "b1-1-u01"
+    ]
   },
   {
     "id": "b1-1-u03",
@@ -4003,18 +4793,27 @@
       "express a wish"
     ],
     "words": [
-      "bald",
-      "endlich",
-      "zuerst",
-      "danach",
-      "schliesslich",
-      "manchmal",
-      "selten",
-      "meistens",
-      "regelmaessig",
-      "dauernd"
+      "aussage",
+      "eifersuechtig",
+      "leo",
+      "zulassen",
+      "schnappen",
+      "komplett",
+      "panik",
+      "bewusst",
+      "voraus",
+      "begleiten",
+      "weiterhin",
+      "konzentrieren",
+      "ueberzeugen",
+      "alkohol",
+      "weitermachen",
+      "botschaft",
+      "selbstmord",
+      "zurueckkommen",
+      "magie"
     ],
-    "grammar_id": null,
+    "grammar_id": "g-irreal",
     "scenario": {
       "role": "a friend playing 'what if'",
       "goal": "say what you'd do with more time or money",
@@ -4047,7 +4846,9 @@
         ]
       }
     ],
-    "prereq": ["b1-1-u02"]
+    "prereq": [
+      "b1-1-u02"
+    ]
   },
   {
     "id": "b1-1-u04",
@@ -4060,18 +4861,27 @@
       "read instructions and notices"
     ],
     "words": [
-      "gesellschaft",
-      "regierung",
-      "politik",
-      "gesetz",
-      "recht",
-      "pflicht",
-      "freiheit",
-      "kultur",
-      "religion",
-      "umwelt"
+      "flucht",
+      "scharf",
+      "trottel",
+      "immerhin",
+      "schwimmen",
+      "zaehlen",
+      "innerhalb",
+      "matt",
+      "blind",
+      "code",
+      "schlau",
+      "zuletzt",
+      "englisch",
+      "song",
+      "merkwuerdig",
+      "groesse",
+      "tritt",
+      "trauen",
+      "trick"
     ],
-    "grammar_id": "g-konjunktiv2",
+    "grammar_id": "g-passiv",
     "scenario": {
       "role": "a colleague explaining a workflow",
       "goal": "understand and repeat back how something is done",
@@ -4104,7 +4914,9 @@
         ]
       }
     ],
-    "prereq": ["b1-1-u03"]
+    "prereq": [
+      "b1-1-u03"
+    ]
   },
   {
     "id": "b1-1-u05",
@@ -4117,18 +4929,27 @@
       "express purpose"
     ],
     "words": [
-      "natur",
-      "energie",
-      "sicherheit",
-      "unterschied",
-      "situation",
-      "vorteil",
-      "nachteil",
-      "entwicklung",
-      "verbessern",
-      "stattfinden"
+      "reinkommen",
+      "antun",
+      "veraendern",
+      "moeglicherweise",
+      "definitiv",
+      "locker",
+      "kohle",
+      "cousin",
+      "einsam",
+      "lebendig",
+      "heiligen",
+      "knapp",
+      "ebenfalls",
+      "jederzeit",
+      "signal",
+      "stich",
+      "probieren",
+      "wundervoll",
+      "tanz"
     ],
-    "grammar_id": null,
+    "grammar_id": "g-infinitiv-zu",
     "scenario": {
       "role": "a course adviser",
       "goal": "explain what you want to achieve and why",
@@ -4161,7 +4982,9 @@
         ]
       }
     ],
-    "prereq": ["b1-1-u04"]
+    "prereq": [
+      "b1-1-u04"
+    ]
   },
   {
     "id": "b1-1-u06",
@@ -4174,18 +4997,27 @@
       "describe a journey precisely"
     ],
     "words": [
-      "teilnehmen",
-      "gedanke",
-      "absicht",
-      "vorstellung",
-      "ansicht",
-      "standpunkt",
-      "argument",
-      "behauptung",
-      "beweis",
-      "zweifel"
+      "begraben",
+      "prozent",
+      "stoppen",
+      "hoheit",
+      "rote",
+      "zugang",
+      "vorn",
+      "sexy",
+      "story",
+      "leichter",
+      "priester",
+      "dritte",
+      "presse",
+      "geduld",
+      "hae",
+      "gerechtigkeit",
+      "luegner",
+      "medizin",
+      "prozess"
     ],
-    "grammar_id": null,
+    "grammar_id": "g-praeposition-kasus",
     "scenario": {
       "role": "someone asking for detailed directions",
       "goal": "describe a route with several steps",
@@ -4218,7 +5050,9 @@
         ]
       }
     ],
-    "prereq": ["b1-1-u05"]
+    "prereq": [
+      "b1-1-u05"
+    ]
   },
   {
     "id": "b1-1-u07",
@@ -4231,18 +5065,27 @@
       "use ob correctly"
     ],
     "words": [
-      "vermutung",
-      "annahme",
-      "schlussfolgerung",
-      "zusammenhang",
-      "folge",
-      "wirkung",
-      "bedingung",
-      "ausnahme",
-      "vergleich",
-      "gegenteil"
+      "amen",
+      "motor",
+      "abhauen",
+      "chaos",
+      "schoenheit",
+      "beinahe",
+      "anhalten",
+      "hof",
+      "norden",
+      "dingen",
+      "umgehen",
+      "kiste",
+      "deckung",
+      "landen",
+      "alarm",
+      "extra",
+      "beobachten",
+      "herrgott",
+      "springen"
     ],
-    "grammar_id": "g-passiv",
+    "grammar_id": "g-indirekte-frage",
     "scenario": {
       "role": "an information desk clerk",
       "goal": "ask three things politely",
@@ -4275,7 +5118,9 @@
         ]
       }
     ],
-    "prereq": ["b1-1-u06"]
+    "prereq": [
+      "b1-1-u06"
+    ]
   },
   {
     "id": "b1-1-u08",
@@ -4288,16 +5133,25 @@
       "discuss career plans"
     ],
     "words": [
-      "behaupten",
-      "bezweifeln",
-      "vermuten",
-      "annehmen",
-      "begruenden",
-      "zugeben",
-      "bestreiten",
-      "betonen",
-      "erwaehnen",
-      "hinweisen"
+      "nackt",
+      "befreien",
+      "geraet",
+      "fliehen",
+      "gebiet",
+      "beten",
+      "verraeter",
+      "brust",
+      "herkommen",
+      "wild",
+      "gift",
+      "ton",
+      "vermissen",
+      "beantworten",
+      "riskieren",
+      "beerdigung",
+      "erleben",
+      "geburt",
+      "decke"
     ],
     "grammar_id": null,
     "scenario": {
@@ -4332,7 +5186,9 @@
         ]
       }
     ],
-    "prereq": ["b1-1-u07"]
+    "prereq": [
+      "b1-1-u07"
+    ]
   },
   {
     "id": "b1-1-u09",
@@ -4345,16 +5201,25 @@
       "disagree without being rude"
     ],
     "words": [
-      "zustimmen",
-      "ablehnen",
-      "kritisieren",
-      "loben",
-      "empfehlen",
-      "warnen",
-      "arbeitgeber",
-      "arbeitnehmer",
-      "arbeitslosigkeit",
-      "gewerkschaft"
+      "vernichten",
+      "gewehr",
+      "hauen",
+      "geraten",
+      "einheit",
+      "german",
+      "gucken",
+      "anstatt",
+      "champagner",
+      "zelle",
+      "langen",
+      "gras",
+      "rechten",
+      "station",
+      "hinterher",
+      "praktisch",
+      "zunge",
+      "notfall",
+      "dahinter"
     ],
     "grammar_id": null,
     "scenario": {
@@ -4389,7 +5254,9 @@
         ]
       }
     ],
-    "prereq": ["b1-1-u08"]
+    "prereq": [
+      "b1-1-u08"
+    ]
   },
   {
     "id": "b1-1-u10",
@@ -4402,18 +5269,27 @@
       "explain how something works"
     ],
     "words": [
-      "bewerber",
-      "faehigkeit",
-      "verantwortung",
-      "aufgabe",
-      "misserfolg",
-      "karriere",
-      "teilzeit",
-      "vollzeit",
-      "schicht",
-      "ueberstunde"
+      "schwere",
+      "feuern",
+      "anfuehrer",
+      "schief",
+      "bestens",
+      "unrecht",
+      "leck",
+      "wonach",
+      "krebs",
+      "gemein",
+      "talent",
+      "spitze",
+      "tatort",
+      "cop",
+      "taeter",
+      "wahren",
+      "dieb",
+      "offiziell",
+      "dienen"
     ],
-    "grammar_id": "g-infinitiv-zu",
+    "grammar_id": "g-passiv",
     "scenario": {
       "role": "tech support on the phone",
       "goal": "describe a problem and follow instructions",
@@ -4446,7 +5322,9 @@
         ]
       }
     ],
-    "prereq": ["b1-1-u09"]
+    "prereq": [
+      "b1-1-u09"
+    ]
   },
   {
     "id": "b1-1-u11",
@@ -4459,16 +5337,25 @@
       "give and take advice"
     ],
     "words": [
-      "krankenschein",
-      "branche",
-      "konkurrenz",
-      "auftrag",
-      "projekt",
-      "sitzung",
-      "protokoll",
-      "leiten",
-      "organisieren",
-      "verwalten"
+      "westen",
+      "geschmack",
+      "gegenseitig",
+      "verteidigen",
+      "schauspieler",
+      "ueberlassen",
+      "loswerden",
+      "melde",
+      "gas",
+      "sturm",
+      "penny",
+      "wirken",
+      "starten",
+      "festhalten",
+      "geheim",
+      "uebergeben",
+      "wetten",
+      "genie",
+      "inspektor"
     ],
     "grammar_id": null,
     "scenario": {
@@ -4503,7 +5390,9 @@
         ]
       }
     ],
-    "prereq": ["b1-1-u10"]
+    "prereq": [
+      "b1-1-u10"
+    ]
   },
   {
     "id": "b1-1-u12",
@@ -4516,16 +5405,25 @@
       "state a problem and a solution"
     ],
     "words": [
-      "planen",
-      "durchfuehren",
-      "erledigen",
-      "verhandeln",
-      "einstellen",
-      "entlassen",
-      "medien",
-      "fernsehen",
-      "rundfunk",
-      "sendung"
+      "zwingen",
+      "kuh",
+      "sueden",
+      "pater",
+      "menschheit",
+      "versteck",
+      "rechtzeitig",
+      "streng",
+      "aufnehmen",
+      "wolf",
+      "daemon",
+      "wut",
+      "anfassen",
+      "pizza",
+      "huette",
+      "beeilung",
+      "angeblich",
+      "reiten",
+      "dunkelheit"
     ],
     "grammar_id": null,
     "scenario": {
@@ -4560,7 +5458,9 @@
         ]
       }
     ],
-    "prereq": ["b1-1-u11"]
+    "prereq": [
+      "b1-1-u11"
+    ]
   },
   {
     "id": "b1-1-u13",
@@ -4573,18 +5473,27 @@
       "say what you value in people"
     ],
     "words": [
-      "beitrag",
-      "interview",
-      "schlagzeile",
-      "quelle",
-      "datei",
-      "programm",
-      "anwendung",
-      "bildschirm",
-      "tastatur",
-      "drucker"
+      "spazieren",
+      "angel",
+      "hiermit",
+      "tausend",
+      "unterhaltung",
+      "gruenden",
+      "mittel",
+      "explosion",
+      "frische",
+      "verdaechtigen",
+      "leitung",
+      "kennenlernen",
+      "auseinander",
+      "stoff",
+      "eilig",
+      "gnade",
+      "entspannen",
+      "virus",
+      "krieger"
     ],
-    "grammar_id": "g-praeposition-kasus",
+    "grammar_id": null,
     "scenario": {
       "role": "a close friend",
       "goal": "talk through a disagreement you had with someone",
@@ -4617,7 +5526,9 @@
         ]
       }
     ],
-    "prereq": ["b1-1-u12"]
+    "prereq": [
+      "b1-1-u12"
+    ]
   },
   {
     "id": "b1-1-u14",
@@ -4630,16 +5541,25 @@
       "describe housing problems"
     ],
     "words": [
-      "netzwerk",
-      "passwort",
-      "benutzer",
-      "datenschutz",
-      "herunterladen",
-      "hochladen",
-      "speichern",
-      "loeschen",
-      "installieren",
-      "klicken"
+      "vernuenftig",
+      "fein",
+      "greifen",
+      "per",
+      "mitglied",
+      "zurueckkehren",
+      "feld",
+      "erschaffen",
+      "staerke",
+      "vermoegen",
+      "schrei",
+      "mitternacht",
+      "klinik",
+      "dicht",
+      "befinden",
+      "hammer",
+      "klang",
+      "irren",
+      "kommando"
     ],
     "grammar_id": null,
     "scenario": {
@@ -4674,7 +5594,9 @@
         ]
       }
     ],
-    "prereq": ["b1-1-u13"]
+    "prereq": [
+      "b1-1-u13"
+    ]
   },
   {
     "id": "b1-1-u15",
@@ -4687,16 +5609,25 @@
       "describe an itinerary"
     ],
     "words": [
-      "tippen",
-      "krankheit",
-      "behandlung",
-      "untersuchung",
-      "diagnose",
-      "rezept",
-      "operation",
-      "verletzung",
-      "erkaeltung",
-      "grippe"
+      "krankenwagen",
+      "richten",
+      "entfernen",
+      "traenen",
+      "happy",
+      "leiter",
+      "kauf",
+      "werk",
+      "cent",
+      "schlacht",
+      "empfangen",
+      "ergeben",
+      "schnitt",
+      "real",
+      "holz",
+      "kaiser",
+      "bart",
+      "klo",
+      "nieder"
     ],
     "grammar_id": null,
     "scenario": {
@@ -4731,7 +5662,9 @@
         ]
       }
     ],
-    "prereq": ["b1-1-u14"]
+    "prereq": [
+      "b1-1-u14"
+    ]
   },
   {
     "id": "b1-1-u16",
@@ -4744,18 +5677,27 @@
       "structure a longer answer"
     ],
     "words": [
-      "allergie",
-      "ernaehrung",
-      "sport",
-      "stress",
-      "erholung",
-      "schlaf",
-      "gewicht",
-      "behandeln",
-      "untersuchen",
-      "verschreiben"
+      "momentan",
+      "soviel",
+      "stattdessen",
+      "stimmung",
+      "bulle",
+      "geraeusch",
+      "eindruck",
+      "wahrnehmung",
+      "bewusstsein",
+      "erinnerung",
+      "fantasie",
+      "kreativitaet",
+      "begabung",
+      "charakter",
+      "eigenschaft",
+      "verhalten",
+      "einstellung",
+      "haltung",
+      "vorurteil"
     ],
-    "grammar_id": "g-indirekte-frage",
+    "grammar_id": "g-plusquamperfekt",
     "scenario": {
       "role": "someone genuinely curious about your life",
       "goal": "tell a longer story with a point",
@@ -4788,7 +5730,9 @@
         ]
       }
     ],
-    "prereq": ["b1-1-u15"]
+    "prereq": [
+      "b1-1-u15"
+    ]
   },
   {
     "id": "b1-1-u17",
@@ -4801,16 +5745,25 @@
       "talk about learning strategies"
     ],
     "words": [
-      "heilen",
-      "verletzen",
-      "erholen",
-      "abnehmen",
-      "zunehmen",
-      "leiden",
-      "klima",
-      "klimawandel",
-      "verschmutzung",
-      "abfall"
+      "missverstaendnis",
+      "verwirrung",
+      "klarheit",
+      "bedeutung",
+      "wirklichkeit",
+      "wahrheit",
+      "luege",
+      "geheimnis",
+      "ueberraschung",
+      "zufall",
+      "schicksal",
+      "wahrnehmen",
+      "begreifen",
+      "verwechseln",
+      "verwirren",
+      "klaeren",
+      "beurteilen",
+      "einschaetzen",
+      "beruecksichtigen"
     ],
     "grammar_id": null,
     "scenario": {
@@ -4845,7 +5798,9 @@
         ]
       }
     ],
-    "prereq": ["b1-1-u16"]
+    "prereq": [
+      "b1-1-u16"
+    ]
   },
   {
     "id": "b1-1-u18",
@@ -4858,16 +5813,25 @@
       "understand a bill or contract"
     ],
     "words": [
-      "recycling",
-      "strom",
-      "heizung",
-      "rohstoff",
-      "landwirtschaft",
-      "industrie",
-      "wirtschaft",
-      "handel",
-      "bevoelkerung",
-      "stadtteil"
+      "zusammenfassen",
+      "behoerde",
+      "amt",
+      "antrag",
+      "formular",
+      "genehmigung",
+      "bescheinigung",
+      "anmeldung",
+      "frist",
+      "gebuehr",
+      "beschwerde",
+      "stempel",
+      "beamter",
+      "buerger",
+      "staat",
+      "verwaltung",
+      "gericht",
+      "anwalt",
+      "urteil"
     ],
     "grammar_id": null,
     "scenario": {
@@ -4902,7 +5866,9 @@
         ]
       }
     ],
-    "prereq": ["b1-1-u17"]
+    "prereq": [
+      "b1-1-u17"
+    ]
   },
   {
     "id": "b1-1-u19",
@@ -4915,18 +5881,27 @@
       "describe conditions"
     ],
     "words": [
-      "landschaft",
-      "kueste",
-      "fluss",
-      "wald",
-      "wueste",
-      "schuetzen",
-      "verschmutzen",
-      "verbrauchen",
-      "sinken",
-      "steigen"
+      "strafe",
+      "vorschrift",
+      "verbot",
+      "erlaubnis",
+      "beantragen",
+      "genehmigen",
+      "bestaetigen",
+      "verlaengern",
+      "anmelden",
+      "abmelden",
+      "beschweren",
+      "verpflichten",
+      "verbieten",
+      "einkommen",
+      "ausgabe",
+      "gewinn",
+      "verlust",
+      "investition",
+      "schulden"
     ],
-    "grammar_id": null,
+    "grammar_id": "g-irreal",
     "scenario": {
       "role": "a mentor",
       "goal": "describe where you want to be in five years",
@@ -4959,7 +5934,9 @@
         ]
       }
     ],
-    "prereq": ["b1-1-u18"]
+    "prereq": [
+      "b1-1-u18"
+    ]
   },
   {
     "id": "b1-1-u20",
@@ -4972,16 +5949,25 @@
       "handle an unexpected question"
     ],
     "words": [
-      "freundschaft",
-      "partnerschaft",
-      "ehe",
-      "trennung",
-      "scheidung",
-      "vertrauen",
-      "respekt",
-      "konflikt",
-      "kompromiss",
-      "verstaendnis"
+      "ersparnis",
+      "rente",
+      "sozialleistung",
+      "arbeitsmarkt",
+      "nachfrage",
+      "inflation",
+      "qualitaet",
+      "menge",
+      "anteil",
+      "durchschnitt",
+      "statistik",
+      "umfrage",
+      "tendenz",
+      "wachstum",
+      "rueckgang",
+      "finanzieren",
+      "investieren",
+      "konsumieren",
+      "produzieren"
     ],
     "grammar_id": null,
     "scenario": {
@@ -5016,7 +6002,9 @@
         ]
       }
     ],
-    "prereq": ["b1-1-u19"]
+    "prereq": [
+      "b1-1-u19"
+    ]
   },
   {
     "id": "b1-2-u01",
@@ -5029,16 +6017,25 @@
       "avoid English interference"
     ],
     "words": [
-      "ruecksicht",
-      "unterstuetzung",
-      "respektieren",
-      "unterstuetzen",
-      "heiraten",
-      "verzichten",
-      "ungefaehr",
-      "ausreichend",
-      "zusaetzlich",
-      "persoenlich"
+      "liefern",
+      "reklamieren",
+      "bildung",
+      "wissenschaft",
+      "forschung",
+      "erkenntnis",
+      "theorie",
+      "methode",
+      "fachbereich",
+      "vortrag",
+      "diskussion",
+      "debatte",
+      "literatur",
+      "dichter",
+      "kunst",
+      "musik",
+      "konzert",
+      "ausstellung",
+      "theater"
     ],
     "grammar_id": "g-verben-praeposition",
     "scenario": {
@@ -5074,7 +6071,9 @@
         ]
       }
     ],
-    "prereq": ["b1-1-u20"]
+    "prereq": [
+      "b1-1-u20"
+    ]
   },
   {
     "id": "b1-2-u02",
@@ -5087,18 +6086,27 @@
       "build a longer argument"
     ],
     "words": [
-      "oeffentlich",
-      "allgemein",
-      "besonders",
-      "ueblich",
-      "selbstverstaendlich",
-      "notwendig",
-      "nuetzlich",
-      "schaedlich",
-      "harmlos",
-      "zuverlaessig"
+      "publikum",
+      "tradition",
+      "brauch",
+      "feiertag",
+      "herkunft",
+      "heimat",
+      "integration",
+      "migration",
+      "dialekt",
+      "uebersetzung",
+      "forschen",
+      "veroeffentlichen",
+      "uebersetzen",
+      "verlauf",
+      "fortschritt",
+      "veraenderung",
+      "wandel",
+      "phase",
+      "zeitraum"
     ],
-    "grammar_id": null,
+    "grammar_id": "g-konnektoren",
     "scenario": {
       "role": "a colleague you're persuading",
       "goal": "argue for a change and handle objections",
@@ -5131,7 +6139,9 @@
         ]
       }
     ],
-    "prereq": ["b1-2-u01"]
+    "prereq": [
+      "b1-2-u01"
+    ]
   },
   {
     "id": "b1-2-u03",
@@ -5144,18 +6154,27 @@
       "avoid a common B1 error"
     ],
     "words": [
-      "verantwortlich",
-      "erfolgreich",
-      "begabt",
-      "neugierig",
-      "vorsichtig",
-      "geduldig",
-      "ehrlich",
-      "hoeflich",
-      "eindruck",
-      "wahrnehmung"
+      "verzoegerung",
+      "beschleunigung",
+      "wiederholung",
+      "unterbrechung",
+      "abschluss",
+      "allmaehlich",
+      "zunehmend",
+      "voruebergehend",
+      "dauerhaft",
+      "gleichzeitig",
+      "inzwischen",
+      "mittlerweile",
+      "letztlich",
+      "vorher",
+      "nachher",
+      "seitdem",
+      "solange",
+      "sobald",
+      "waehrend"
     ],
-    "grammar_id": null,
+    "grammar_id": "g-nomen-verb",
     "scenario": {
       "role": "a colleague discussing a new hire",
       "goal": "describe the new colleague",
@@ -5188,7 +6207,9 @@
         ]
       }
     ],
-    "prereq": ["b1-2-u02"]
+    "prereq": [
+      "b1-2-u02"
+    ]
   },
   {
     "id": "b1-2-u04",
@@ -5201,18 +6222,27 @@
       "describe a state versus an action"
     ],
     "words": [
-      "bewusstsein",
-      "erinnerung",
-      "fantasie",
-      "kreativitaet",
-      "begabung",
-      "charakter",
-      "eigenschaft",
-      "verhalten",
-      "einstellung",
-      "haltung"
+      "bevor",
+      "nachdem",
+      "obwohl",
+      "trotzdem",
+      "dennoch",
+      "ausserdem",
+      "jedoch",
+      "allerdings",
+      "deshalb",
+      "deswegen",
+      "folglich",
+      "beziehungsweise",
+      "einerseits",
+      "andererseits",
+      "angemessen",
+      "ausgezeichnet",
+      "hervorragend",
+      "mangelhaft",
+      "umfangreich"
     ],
-    "grammar_id": "g-konnektoren",
+    "grammar_id": "g-partizip-adjektiv",
     "scenario": {
       "role": "a friend reading the news with you",
       "goal": "explain a headline in simpler words",
@@ -5245,7 +6275,9 @@
         ]
       }
     ],
-    "prereq": ["b1-2-u03"]
+    "prereq": [
+      "b1-2-u03"
+    ]
   },
   {
     "id": "b1-2-u05",
@@ -5258,18 +6290,27 @@
       "repeat what someone said"
     ],
     "words": [
-      "vorurteil",
-      "missverstaendnis",
-      "verwirrung",
-      "klarheit",
-      "bedeutung",
-      "wirklichkeit",
-      "wahrheit",
-      "luege",
-      "geheimnis",
-      "ueberraschung"
+      "begrenzt",
+      "erheblich",
+      "gering",
+      "enorm",
+      "wesentlich",
+      "ueberfluessig",
+      "verfuegbar",
+      "zugaenglich",
+      "wahrscheinlich",
+      "unwahrscheinlich",
+      "offensichtlich",
+      "umstritten",
+      "komplex",
+      "kompliziert",
+      "eindeutig",
+      "mehrdeutig",
+      "vorlaeufig",
+      "endgueltig",
+      "freiwillig"
     ],
-    "grammar_id": null,
+    "grammar_id": "g-konjunktiv1",
     "scenario": {
       "role": "a friend who missed a meeting",
       "goal": "report what was said without claiming it yourself",
@@ -5302,7 +6343,9 @@
         ]
       }
     ],
-    "prereq": ["b1-2-u04"]
+    "prereq": [
+      "b1-2-u04"
+    ]
   },
   {
     "id": "b1-2-u06",
@@ -5315,18 +6358,27 @@
       "expand vocabulary without memorising"
     ],
     "words": [
-      "zufall",
-      "schicksal",
-      "wahrnehmen",
-      "begreifen",
-      "verwechseln",
-      "verwirren",
-      "klaeren",
-      "beurteilen",
-      "einschaetzen",
-      "beruecksichtigen"
+      "kuenstler",
+      "house",
+      "schulter",
+      "fluch",
+      "anklage",
+      "tollen",
+      "fett",
+      "feigling",
+      "aeusserst",
+      "aufwachen",
+      "verfuegung",
+      "zusehen",
+      "abenteuer",
+      "scheck",
+      "taeglich",
+      "universum",
+      "west",
+      "faehig",
+      "revier"
     ],
-    "grammar_id": null,
+    "grammar_id": "g-wortbildung",
     "scenario": {
       "role": "a teacher testing your word sense",
       "goal": "work out unknown words from their parts",
@@ -5359,7 +6411,9 @@
         ]
       }
     ],
-    "prereq": ["b1-2-u05"]
+    "prereq": [
+      "b1-2-u05"
+    ]
   },
   {
     "id": "b1-2-u07",
@@ -5372,18 +6426,27 @@
       "ask what happens next"
     ],
     "words": [
-      "zusammenfassen",
-      "behoerde",
-      "amt",
-      "antrag",
-      "formular",
-      "genehmigung",
-      "bescheinigung",
-      "anmeldung",
-      "frist",
-      "gebuehr"
+      "reifen",
+      "mum",
+      "schaedel",
+      "realitaet",
+      "april",
+      "albern",
+      "brav",
+      "jagd",
+      "truck",
+      "sicherlich",
+      "oeffentlichkeit",
+      "verbrecher",
+      "maske",
+      "verstaerkung",
+      "jo",
+      "fuehrer",
+      "ciao",
+      "loslassen",
+      "verabschieden"
     ],
-    "grammar_id": "g-nomen-verb",
+    "grammar_id": "g-passiv-modal",
     "scenario": {
       "role": "an official at the Ausländerbehörde",
       "goal": "submit an application and understand the next steps",
@@ -5416,7 +6479,9 @@
         ]
       }
     ],
-    "prereq": ["b1-2-u06"]
+    "prereq": [
+      "b1-2-u06"
+    ]
   },
   {
     "id": "b1-2-u08",
@@ -5429,18 +6494,27 @@
       "cancel something formally"
     ],
     "words": [
-      "beschwerde",
-      "stempel",
-      "beamter",
-      "buerger",
-      "staat",
-      "verwaltung",
-      "gericht",
-      "anwalt",
-      "urteil",
-      "strafe"
+      "benehmen",
+      "verdacht",
+      "vampir",
+      "probe",
+      "schaff",
+      "patient",
+      "heil",
+      "hinweis",
+      "verteidigung",
+      "magen",
+      "tunnel",
+      "einst",
+      "applaus",
+      "korrekt",
+      "bewahren",
+      "pack",
+      "angreifen",
+      "kommandant",
+      "osten"
     ],
-    "grammar_id": null,
+    "grammar_id": "g-passiv-modal",
     "scenario": {
       "role": "a customer-service agent",
       "goal": "cancel a contract and confirm it in writing",
@@ -5473,7 +6547,9 @@
         ]
       }
     ],
-    "prereq": ["b1-2-u07"]
+    "prereq": [
+      "b1-2-u07"
+    ]
   },
   {
     "id": "b1-2-u09",
@@ -5486,16 +6562,25 @@
       "describe a workplace conflict"
     ],
     "words": [
-      "vorschrift",
-      "verbot",
-      "erlaubnis",
-      "beantragen",
-      "genehmigen",
-      "bestaetigen",
-      "verlaengern",
-      "anmelden",
-      "abmelden",
-      "beschweren"
+      "clever",
+      "freien",
+      "hass",
+      "sammeln",
+      "gewiss",
+      "meinetwegen",
+      "ausziehen",
+      "stets",
+      "ritter",
+      "puenktlich",
+      "erfuellen",
+      "basis",
+      "schock",
+      "empfang",
+      "besondere",
+      "titel",
+      "stil",
+      "einfluss",
+      "opfern"
     ],
     "grammar_id": null,
     "scenario": {
@@ -5530,27 +6615,42 @@
         ]
       }
     ],
-    "prereq": ["b1-2-u08"]
+    "prereq": [
+      "b1-2-u08"
+    ]
   },
   {
     "id": "b1-2-u10",
     "level": "B1.2",
     "ord": 10,
     "title": "Statistik und Zahlen",
-    "can_do": ["describe a trend", "read a chart out loud", "compare figures"],
-    "words": [
-      "verpflichten",
-      "verbieten",
-      "einkommen",
-      "ausgabe",
-      "gewinn",
-      "verlust",
-      "investition",
-      "schulden",
-      "ersparnis",
-      "rente"
+    "can_do": [
+      "describe a trend",
+      "read a chart out loud",
+      "compare figures"
     ],
-    "grammar_id": "g-partizip-adjektiv",
+    "words": [
+      "farm",
+      "schwachsinn",
+      "daneben",
+      "klaus",
+      "bereiten",
+      "gabe",
+      "erscheinen",
+      "besiegen",
+      "angelegenheit",
+      "fuerchten",
+      "training",
+      "rauskommen",
+      "planet",
+      "erwischen",
+      "rosa",
+      "franzoesisch",
+      "gouverneur",
+      "stern",
+      "gedaechtnis"
+    ],
+    "grammar_id": "g-komparativ",
     "scenario": {
       "role": "a colleague reviewing a report with you",
       "goal": "describe what the numbers show",
@@ -5583,7 +6683,9 @@
         ]
       }
     ],
-    "prereq": ["b1-2-u09"]
+    "prereq": [
+      "b1-2-u09"
+    ]
   },
   {
     "id": "b1-2-u11",
@@ -5596,16 +6698,25 @@
       "describe an event you attended"
     ],
     "words": [
-      "sozialleistung",
-      "arbeitsmarkt",
-      "nachfrage",
-      "inflation",
-      "qualitaet",
-      "menge",
-      "anteil",
-      "durchschnitt",
-      "statistik",
-      "umfrage"
+      "kreis",
+      "staatsanwalt",
+      "ewigkeit",
+      "stoerung",
+      "haesslich",
+      "tiger",
+      "zigarette",
+      "mutig",
+      "ausruhen",
+      "linken",
+      "unglueck",
+      "wissenschaftler",
+      "reaktion",
+      "dusche",
+      "mitarbeiter",
+      "identitaet",
+      "rund",
+      "hirn",
+      "unheimlich"
     ],
     "grammar_id": null,
     "scenario": {
@@ -5640,7 +6751,9 @@
         ]
       }
     ],
-    "prereq": ["b1-2-u10"]
+    "prereq": [
+      "b1-2-u10"
+    ]
   },
   {
     "id": "b1-2-u12",
@@ -5653,16 +6766,25 @@
       "discuss belonging"
     ],
     "words": [
-      "tendenz",
-      "wachstum",
-      "rueckgang",
-      "finanzieren",
-      "investieren",
-      "konsumieren",
-      "produzieren",
-      "liefern",
-      "reklamieren",
-      "bildung"
+      "jahrhundert",
+      "irgend",
+      "extrem",
+      "sicht",
+      "text",
+      "nebenan",
+      "lektion",
+      "staub",
+      "kugeln",
+      "dutzend",
+      "ratte",
+      "mitleid",
+      "testen",
+      "auftritt",
+      "gegner",
+      "wunde",
+      "linie",
+      "bedrohung",
+      "kreuz"
     ],
     "grammar_id": null,
     "scenario": {
@@ -5697,7 +6819,9 @@
         ]
       }
     ],
-    "prereq": ["b1-2-u11"]
+    "prereq": [
+      "b1-2-u11"
+    ]
   },
   {
     "id": "b1-2-u13",
@@ -5710,18 +6834,27 @@
       "summarise what you understood"
     ],
     "words": [
-      "wissenschaft",
-      "forschung",
-      "erkenntnis",
-      "theorie",
-      "methode",
-      "fachbereich",
-      "vortrag",
-      "diskussion",
-      "debatte",
-      "literatur"
+      "nachsehen",
+      "junior",
+      "leidenschaft",
+      "bereuen",
+      "steuern",
+      "voran",
+      "graf",
+      "ueberfallen",
+      "umdrehen",
+      "kilo",
+      "negativ",
+      "schild",
+      "verbrennen",
+      "identifizieren",
+      "zentrale",
+      "jaeger",
+      "wayne",
+      "wenden",
+      "start"
     ],
-    "grammar_id": "g-konjunktiv1",
+    "grammar_id": null,
     "scenario": {
       "role": "a friend who works in research",
       "goal": "understand their work and ask good questions",
@@ -5754,7 +6887,9 @@
         ]
       }
     ],
-    "prereq": ["b1-2-u12"]
+    "prereq": [
+      "b1-2-u12"
+    ]
   },
   {
     "id": "b1-2-u14",
@@ -5767,18 +6902,27 @@
       "distinguish fact from opinion"
     ],
     "words": [
-      "dichter",
-      "kunst",
-      "musik",
-      "konzert",
-      "ausstellung",
-      "theater",
-      "publikum",
-      "tradition",
-      "brauch",
-      "feiertag"
+      "ungluecklich",
+      "sand",
+      "pfarrer",
+      "plus",
+      "zauber",
+      "beruehren",
+      "rueckkehr",
+      "hafen",
+      "indianer",
+      "verschwenden",
+      "stahl",
+      "kindheit",
+      "fabrik",
+      "aussagen",
+      "jungfrau",
+      "daheim",
+      "klauen",
+      "geruch",
+      "naechster"
     ],
-    "grammar_id": null,
+    "grammar_id": "g-konjunktiv1",
     "scenario": {
       "role": "a colleague discussing the news",
       "goal": "summarise a story and give your view",
@@ -5811,7 +6955,9 @@
         ]
       }
     ],
-    "prereq": ["b1-2-u13"]
+    "prereq": [
+      "b1-2-u13"
+    ]
   },
   {
     "id": "b1-2-u15",
@@ -5824,16 +6970,25 @@
       "propose a compromise"
     ],
     "words": [
-      "herkunft",
-      "heimat",
-      "integration",
-      "migration",
-      "dialekt",
-      "uebersetzung",
-      "forschen",
-      "veroeffentlichen",
-      "uebersetzen",
-      "verlauf"
+      "erstens",
+      "abmachung",
+      "appetit",
+      "hoechstens",
+      "fan",
+      "uebersehen",
+      "sms",
+      "darunter",
+      "verkauf",
+      "aussen",
+      "verbergen",
+      "einzig",
+      "nutte",
+      "reingehen",
+      "rauch",
+      "korrektur",
+      "pool",
+      "betreten",
+      "hubschrauber"
     ],
     "grammar_id": null,
     "scenario": {
@@ -5868,7 +7023,9 @@
         ]
       }
     ],
-    "prereq": ["b1-2-u14"]
+    "prereq": [
+      "b1-2-u14"
+    ]
   },
   {
     "id": "b1-2-u16",
@@ -5881,18 +7038,27 @@
       "weigh up options"
     ],
     "words": [
-      "fortschritt",
-      "veraenderung",
-      "wandel",
-      "phase",
-      "zeitraum",
-      "verzoegerung",
-      "beschleunigung",
-      "wiederholung",
-      "unterbrechung",
-      "abschluss"
+      "doctor",
+      "erstmal",
+      "aufnahme",
+      "freie",
+      "stellung",
+      "haken",
+      "hoehle",
+      "munition",
+      "suende",
+      "militaer",
+      "anzeichen",
+      "beibringen",
+      "hintergrund",
+      "ex",
+      "reissen",
+      "belohnung",
+      "genial",
+      "garage",
+      "zunaechst"
     ],
-    "grammar_id": "g-wortbildung",
+    "grammar_id": "g-konjunktiv2",
     "scenario": {
       "role": "a friend facing a big decision",
       "goal": "help them think it through",
@@ -5925,7 +7091,9 @@
         ]
       }
     ],
-    "prereq": ["b1-2-u15"]
+    "prereq": [
+      "b1-2-u15"
+    ]
   },
   {
     "id": "b1-2-u17",
@@ -5938,16 +7106,25 @@
       "answer a question afterwards"
     ],
     "words": [
-      "allmaehlich",
-      "zunehmend",
-      "voruebergehend",
-      "dauerhaft",
-      "gleichzeitig",
-      "inzwischen",
-      "mittlerweile",
-      "letztlich",
-      "vorher",
-      "nachher"
+      "ruhen",
+      "keinerlei",
+      "funk",
+      "technologie",
+      "uni",
+      "ruinieren",
+      "scheinbar",
+      "juenger",
+      "informieren",
+      "umso",
+      "jugend",
+      "unhoeflich",
+      "benzin",
+      "safe",
+      "nix",
+      "mai",
+      "mauer",
+      "koch",
+      "erneut"
     ],
     "grammar_id": null,
     "scenario": {
@@ -5982,7 +7159,9 @@
         ]
       }
     ],
-    "prereq": ["b1-2-u16"]
+    "prereq": [
+      "b1-2-u16"
+    ]
   },
   {
     "id": "b1-2-u18",
@@ -5995,16 +7174,25 @@
       "make a clear request in writing"
     ],
     "words": [
-      "seitdem",
-      "solange",
-      "sobald",
-      "waehrend",
-      "bevor",
-      "nachdem",
-      "obwohl",
-      "trotzdem",
-      "dennoch",
-      "ausserdem"
+      "katastrophe",
+      "fluegel",
+      "ehefrau",
+      "schluck",
+      "mitmachen",
+      "hierbleiben",
+      "reagieren",
+      "verwandeln",
+      "weitergehen",
+      "senden",
+      "technik",
+      "reporter",
+      "anzeige",
+      "abgeben",
+      "eile",
+      "anhoeren",
+      "innen",
+      "hinsetzen",
+      "einig"
     ],
     "grammar_id": null,
     "scenario": {
@@ -6039,7 +7227,9 @@
         ]
       }
     ],
-    "prereq": ["b1-2-u17"]
+    "prereq": [
+      "b1-2-u17"
+    ]
   },
   {
     "id": "b1-2-u19",
@@ -6052,16 +7242,25 @@
       "correct yourself naturally"
     ],
     "words": [
-      "jedoch",
-      "allerdings",
-      "deshalb",
-      "deswegen",
-      "folglich",
-      "beziehungsweise",
-      "einerseits",
-      "andererseits",
-      "angemessen",
-      "ausgezeichnet"
+      "motiv",
+      "weswegen",
+      "schalten",
+      "gentleman",
+      "gewoehnen",
+      "warnung",
+      "schieben",
+      "gemeinde",
+      "dreimal",
+      "diamanten",
+      "weich",
+      "gewoehnlich",
+      "zweitens",
+      "seil",
+      "spanisch",
+      "verrat",
+      "euro",
+      "hexen",
+      "ware"
     ],
     "grammar_id": null,
     "scenario": {
@@ -6096,7 +7295,9 @@
         ]
       }
     ],
-    "prereq": ["b1-2-u18"]
+    "prereq": [
+      "b1-2-u18"
+    ]
   },
   {
     "id": "b1-2-u20",
@@ -6109,28 +7310,100 @@
       "express nuance and doubt"
     ],
     "words": [
-      "hervorragend",
-      "mangelhaft",
-      "umfangreich",
-      "begrenzt",
-      "erheblich",
-      "gering",
-      "enorm",
-      "wesentlich",
-      "ueberfluessig",
-      "verfuegbar",
-      "zugaenglich",
-      "wahrscheinlich",
-      "unwahrscheinlich",
-      "offensichtlich",
-      "umstritten",
-      "komplex",
-      "kompliziert",
-      "eindeutig",
-      "mehrdeutig",
-      "vorlaeufig",
-      "endgueltig",
-      "freiwillig"
+      "live",
+      "figur",
+      "legende",
+      "roboter",
+      "taub",
+      "anschauen",
+      "doppelt",
+      "kuerzlich",
+      "last",
+      "material",
+      "herzlich",
+      "einfallen",
+      "besucher",
+      "kaefig",
+      "grosszuegig",
+      "brach",
+      "scheiden",
+      "satz",
+      "koestlich",
+      "kommissar",
+      "laune",
+      "raechen",
+      "stille",
+      "womoeglich",
+      "asche",
+      "begruessen",
+      "spion",
+      "ueberraschen",
+      "puppe",
+      "fuehrung",
+      "ueberfall",
+      "schwaeche",
+      "filmen",
+      "couch",
+      "palast",
+      "cousine",
+      "graben",
+      "grant",
+      "kette",
+      "ausdruck",
+      "auftauchen",
+      "pleite",
+      "wovor",
+      "knopf",
+      "bekaempfen",
+      "leere",
+      "humor",
+      "heimlich",
+      "betrachten",
+      "eingehen",
+      "be",
+      "rad",
+      "organisation",
+      "maechtig",
+      "widerstand",
+      "sinnlos",
+      "bergen",
+      "netz",
+      "studio",
+      "atem",
+      "weggehen",
+      "anstellen",
+      "original",
+      "flotte",
+      "revolution",
+      "dunkeln",
+      "maedel",
+      "schaemen",
+      "raetsel",
+      "durchsuchen",
+      "sender",
+      "bibel",
+      "verlass",
+      "raeumen",
+      "lieferung",
+      "kopie",
+      "ausreden",
+      "ungewoehnlich",
+      "dna",
+      "knarre",
+      "hoehe",
+      "romantisch",
+      "sekretaerin",
+      "ignorieren",
+      "bedanken",
+      "versehen",
+      "pilot",
+      "bande",
+      "deck",
+      "leib",
+      "treu",
+      "narr",
+      "aerztin",
+      "positiv"
     ],
     "grammar_id": null,
     "scenario": {
@@ -6165,6 +7438,8 @@
         ]
       }
     ],
-    "prereq": ["b1-2-u19"]
+    "prereq": [
+      "b1-2-u19"
+    ]
   }
 ]

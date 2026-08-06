@@ -17,7 +17,11 @@
       {
         "them": "Wie hieß nochmal der Typ von der Party?",
         "options": [
-          { "say": "Der Mann, der neben dir saß?", "ok": true, "next": 1 },
+          {
+            "say": "Der Mann, der neben dir saß?",
+            "ok": true,
+            "next": 1
+          },
           {
             "say": "Der Mann, der saß neben dir?",
             "ok": false,
@@ -28,9 +32,16 @@
       },
       {
         "them": "Genau der! Wie hieß er?",
-        "options": [{ "say": "Ich glaube, Tobias.", "ok": true, "next": -1 }]
+        "options": [
+          {
+            "say": "Ich glaube, Tobias.",
+            "ok": true,
+            "next": -1
+          }
+        ]
       }
-    ]
+    ],
+    "grammar": "g-relativsatz"
   },
   {
     "level": "B1.1",
@@ -50,7 +61,11 @@
       {
         "them": "Ja bitte?",
         "options": [
-          { "say": "Könnten Sie mir kurz helfen?", "ok": true, "next": 1 },
+          {
+            "say": "Könnten Sie mir kurz helfen?",
+            "ok": true,
+            "next": 1
+          },
           {
             "say": "Können Sie mir helfen!",
             "ok": false,
@@ -62,10 +77,15 @@
       {
         "them": "Natürlich, gern.",
         "options": [
-          { "say": "Das wäre sehr nett, danke.", "ok": true, "next": -1 }
+          {
+            "say": "Das wäre sehr nett, danke.",
+            "ok": true,
+            "next": -1
+          }
         ]
       }
-    ]
+    ],
+    "grammar": "g-konjunktiv2"
   },
   {
     "level": "B1.1",
@@ -80,7 +100,8 @@
       "role": "a friend playing 'what if'",
       "goal": "say what you'd do with more time or money",
       "opener": "Was würdest du machen, wenn du ein Jahr frei hättest?"
-    }
+    },
+    "grammar": "g-irreal"
   },
   {
     "level": "B1.1",
@@ -95,7 +116,8 @@
       "role": "a colleague explaining a workflow",
       "goal": "understand and repeat back how something is done",
       "opener": "Ich erkläre dir kurz, wie das hier läuft."
-    }
+    },
+    "grammar": "g-passiv"
   },
   {
     "level": "B1.1",
@@ -110,7 +132,8 @@
       "role": "a course adviser",
       "goal": "explain what you want to achieve and why",
       "opener": "Und warum möchten Sie diesen Kurs machen?"
-    }
+    },
+    "grammar": "g-infinitiv-zu"
   },
   {
     "level": "B1.1",
@@ -125,7 +148,8 @@
       "role": "someone asking for detailed directions",
       "goal": "describe a route with several steps",
       "opener": "Wie komme ich am besten zum Museum?"
-    }
+    },
+    "grammar": "g-praeposition-kasus"
   },
   {
     "level": "B1.1",
@@ -140,7 +164,8 @@
       "role": "an information desk clerk",
       "goal": "ask three things politely",
       "opener": "Guten Tag, wie kann ich helfen?"
-    }
+    },
+    "grammar": "g-indirekte-frage"
   },
   {
     "level": "B1.1",
@@ -155,7 +180,8 @@
       "role": "an interviewer for a job you want",
       "goal": "describe your experience convincingly",
       "opener": "Was sind Ihre Stärken?"
-    }
+    },
+    "grammar": null
   },
   {
     "level": "B1.1",
@@ -170,7 +196,8 @@
       "role": "a friend who disagrees with you",
       "goal": "argue your side and find common ground",
       "opener": "Ich sehe das ganz anders, ehrlich gesagt."
-    }
+    },
+    "grammar": null
   },
   {
     "level": "B1.1",
@@ -185,7 +212,8 @@
       "role": "tech support on the phone",
       "goal": "describe a problem and follow instructions",
       "opener": "Beschreiben Sie mir bitte das Problem."
-    }
+    },
+    "grammar": "g-passiv"
   },
   {
     "level": "B1.1",
@@ -200,7 +228,8 @@
       "role": "a doctor discussing lifestyle",
       "goal": "describe your habits and understand the advice",
       "opener": "Erzählen Sie mir mal von Ihrem Alltag."
-    }
+    },
+    "grammar": null
   },
   {
     "level": "B1.1",
@@ -215,7 +244,8 @@
       "role": "someone doing a street survey",
       "goal": "answer questions about your habits",
       "opener": "Hätten Sie zwei Minuten für eine Umfrage?"
-    }
+    },
+    "grammar": null
   },
   {
     "level": "B1.1",
@@ -230,7 +260,8 @@
       "role": "a close friend",
       "goal": "talk through a disagreement you had with someone",
       "opener": "Und, habt ihr euch wieder vertragen?"
-    }
+    },
+    "grammar": null
   },
   {
     "level": "B1.1",
@@ -245,7 +276,8 @@
       "role": "a landlord discussing the contract",
       "goal": "ask about the terms before signing",
       "opener": "Haben Sie noch Fragen zum Vertrag?"
-    }
+    },
+    "grammar": null
   },
   {
     "level": "B1.1",
@@ -260,7 +292,8 @@
       "role": "a travel agent",
       "goal": "plan a trip and handle a complication",
       "opener": "Wohin soll es denn gehen?"
-    }
+    },
+    "grammar": null
   },
   {
     "level": "B1.1",
@@ -275,7 +308,8 @@
       "role": "someone genuinely curious about your life",
       "goal": "tell a longer story with a point",
       "opener": "Was war die größte Veränderung in deinem Leben?"
-    }
+    },
+    "grammar": "g-plusquamperfekt"
   },
   {
     "level": "B1.1",
@@ -290,7 +324,8 @@
       "role": "a German student curious about your country",
       "goal": "compare the two education systems",
       "opener": "Wie läuft die Schule bei euch eigentlich ab?"
-    }
+    },
+    "grammar": null
   },
   {
     "level": "B1.1",
@@ -305,7 +340,8 @@
       "role": "a bank adviser",
       "goal": "discuss a financial decision and ask the right questions",
       "opener": "Was kann ich für Sie tun?"
-    }
+    },
+    "grammar": null
   },
   {
     "level": "B1.1",
@@ -320,7 +356,8 @@
       "role": "a mentor",
       "goal": "describe where you want to be in five years",
       "opener": "Wo sehen Sie sich in fünf Jahren?"
-    }
+    },
+    "grammar": "g-irreal"
   },
   {
     "level": "B1.1",
@@ -335,9 +372,9 @@
       "role": "a friendly examiner",
       "goal": "speak for five minutes on a topic you're given",
       "opener": "Erzählen Sie mir von einem wichtigen Tag in Ihrem Leben."
-    }
+    },
+    "grammar": null
   },
-
   {
     "level": "B1.2",
     "ord": 1,
@@ -356,7 +393,11 @@
       {
         "them": "Worauf wartest du eigentlich?",
         "options": [
-          { "say": "Ich warte auf den Bus.", "ok": true, "next": 1 },
+          {
+            "say": "Ich warte auf den Bus.",
+            "ok": true,
+            "next": 1
+          },
           {
             "say": "Ich warte für den Bus.",
             "ok": false,
@@ -367,9 +408,16 @@
       },
       {
         "them": "Der kommt gleich. Freust du dich auf das Wochenende?",
-        "options": [{ "say": "Ja, sehr!", "ok": true, "next": -1 }]
+        "options": [
+          {
+            "say": "Ja, sehr!",
+            "ok": true,
+            "next": -1
+          }
+        ]
       }
-    ]
+    ],
+    "grammar": "g-verben-praeposition"
   },
   {
     "level": "B1.2",
@@ -384,7 +432,8 @@
       "role": "a colleague you're persuading",
       "goal": "argue for a change and handle objections",
       "opener": "Ich bin da noch nicht überzeugt."
-    }
+    },
+    "grammar": "g-konnektoren"
   },
   {
     "level": "B1.2",
@@ -399,7 +448,8 @@
       "role": "a colleague discussing a new hire",
       "goal": "describe the new colleague",
       "opener": "Und wie ist der Neue so?"
-    }
+    },
+    "grammar": "g-nomen-verb"
   },
   {
     "level": "B1.2",
@@ -414,7 +464,8 @@
       "role": "a friend reading the news with you",
       "goal": "explain a headline in simpler words",
       "opener": "Was steht denn da? Ich versteh's nicht ganz."
-    }
+    },
+    "grammar": "g-partizip-adjektiv"
   },
   {
     "level": "B1.2",
@@ -429,7 +480,8 @@
       "role": "a friend who missed a meeting",
       "goal": "report what was said without claiming it yourself",
       "opener": "Was wurde denn besprochen?"
-    }
+    },
+    "grammar": "g-konjunktiv1"
   },
   {
     "level": "B1.2",
@@ -444,7 +496,8 @@
       "role": "a teacher testing your word sense",
       "goal": "work out unknown words from their parts",
       "opener": "Was könnte 'Arbeitslosigkeit' bedeuten?"
-    }
+    },
+    "grammar": "g-wortbildung"
   },
   {
     "level": "B1.2",
@@ -459,7 +512,8 @@
       "role": "an official at the Ausländerbehörde",
       "goal": "submit an application and understand the next steps",
       "opener": "Ihre Unterlagen bitte."
-    }
+    },
+    "grammar": "g-passiv-modal"
   },
   {
     "level": "B1.2",
@@ -474,7 +528,8 @@
       "role": "a customer-service agent",
       "goal": "cancel a contract and confirm it in writing",
       "opener": "Sie möchten kündigen?"
-    }
+    },
+    "grammar": "g-passiv-modal"
   },
   {
     "level": "B1.2",
@@ -489,18 +544,24 @@
       "role": "your manager in a review meeting",
       "goal": "discuss your role and ask for a change",
       "opener": "Wie zufrieden sind Sie mit Ihrer aktuellen Rolle?"
-    }
+    },
+    "grammar": null
   },
   {
     "level": "B1.2",
     "ord": 10,
     "title": "Statistik und Zahlen",
-    "can_do": ["describe a trend", "read a chart out loud", "compare figures"],
+    "can_do": [
+      "describe a trend",
+      "read a chart out loud",
+      "compare figures"
+    ],
     "scenario": {
       "role": "a colleague reviewing a report with you",
       "goal": "describe what the numbers show",
       "opener": "Was sagen die Zahlen denn?"
-    }
+    },
+    "grammar": "g-komparativ"
   },
   {
     "level": "B1.2",
@@ -515,7 +576,8 @@
       "role": "someone at an exhibition",
       "goal": "discuss what you've both seen",
       "opener": "Und, wie finden Sie die Ausstellung?"
-    }
+    },
+    "grammar": null
   },
   {
     "level": "B1.2",
@@ -530,7 +592,8 @@
       "role": "someone who also moved to Germany",
       "goal": "compare your experiences of settling in",
       "opener": "Wie lange hat es bei dir gedauert, bis du dich wohlgefühlt hast?"
-    }
+    },
+    "grammar": null
   },
   {
     "level": "B1.2",
@@ -545,7 +608,8 @@
       "role": "a friend who works in research",
       "goal": "understand their work and ask good questions",
       "opener": "Willst du wissen, woran ich gerade arbeite?"
-    }
+    },
+    "grammar": null
   },
   {
     "level": "B1.2",
@@ -560,7 +624,8 @@
       "role": "a colleague discussing the news",
       "goal": "summarise a story and give your view",
       "opener": "Hast du das heute Morgen gehört?"
-    }
+    },
+    "grammar": "g-konjunktiv1"
   },
   {
     "level": "B1.2",
@@ -575,7 +640,8 @@
       "role": "a flatmate you have a problem with",
       "goal": "raise the issue calmly and agree a solution",
       "opener": "Du wolltest mit mir reden?"
-    }
+    },
+    "grammar": null
   },
   {
     "level": "B1.2",
@@ -590,7 +656,8 @@
       "role": "a friend facing a big decision",
       "goal": "help them think it through",
       "opener": "Ich weiß echt nicht, was ich machen soll."
-    }
+    },
+    "grammar": "g-konjunktiv2"
   },
   {
     "level": "B1.2",
@@ -605,7 +672,8 @@
       "role": "an audience at a small meeting",
       "goal": "present something for two minutes and take a question",
       "opener": "Sie haben das Wort."
-    }
+    },
+    "grammar": null
   },
   {
     "level": "B1.2",
@@ -620,7 +688,8 @@
       "role": "someone you must write to formally",
       "goal": "draft the message out loud before writing it",
       "opener": "An wen schreiben Sie denn?"
-    }
+    },
+    "grammar": null
   },
   {
     "level": "B1.2",
@@ -635,7 +704,8 @@
       "role": "an exam partner in a paired task",
       "goal": "plan something together and reach a decision",
       "opener": "Also, wir sollen zusammen etwas organisieren."
-    }
+    },
+    "grammar": null
   },
   {
     "level": "B1.2",
@@ -650,6 +720,7 @@
       "role": "a German friend on a long walk",
       "goal": "hold a real, unstructured conversation",
       "opener": "Erzähl mal — wie war dein Weg hierher, von ganz am Anfang?"
-    }
+    },
+    "grammar": null
   }
 ]

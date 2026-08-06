@@ -29,7 +29,7 @@ npm run setup
 ```
 
 `setup` checks your Node version, builds the whole database from the files in
-`data/` — 2,604 words, 120 units, 46 grammar points, 38 readings, 1,827 levelled
+`data/` — 2,604 words, 120 units, 50 grammar points, 38 readings, 1,827 levelled
 sentences, 955 prebuilt explanations and 231 Deutsche Welle video episodes — and
 generates the two secrets the app needs into `.env.local`. No network, no
 downloads, no API key required.
@@ -66,7 +66,7 @@ run on **each learner's own Anthropic key**, added in **Einstellungen**:
 | Eselsbrücken | unavailable, and says so |
 
 Everything else costs nothing and needs nothing: 2,604 words, 120
-units, 46 grammar points, 38 readings, the FSRS engine, cloze mining, practice
+units, 50 grammar points, 38 readings, the FSRS engine, cloze mining, practice
 exams, minimal pairs, walk mode — and **955 prebuilt explanations**, so a wrong
 answer still comes back with a reason. No feature invents an answer.
 
@@ -801,12 +801,21 @@ the [Goethe-Institut](https://www.goethe.de/de/spr/kup/prf.html).
   the Web Speech API. Speaking and voice mode degrade to listen-and-repeat there
   and say which browsers work. This is feature-detected, so the day Firefox
   ships it, it turns on with no code change.
-- **Past A1, most units teach vocabulary and no rule.** All 40 A1 units are
-  hand-written and 36 of them name a grammar point. A2.1, A2.2, B1.1 and B1.2
-  have six each — 24 of the 46 written points cover 80 units, so 56 of them
-  introduce words and nothing else. The units are real and the vocabulary is
-  real; the syllabus behind them is A1-deep and A2-shallow. Counted by
-  `tests/docs.test.mts`, so this line cannot quietly stop being true.
+- **39 of the 80 units past A1 teach vocabulary and no rule** — down from 56,
+  and the remaining ones are thematic on purpose. *Im Restaurant* teaches how to
+  order, not a new rule, and forcing one onto it would be padding.
+
+  The 56 was not a content gap. `build-units.mts` spaced each level's grammar
+  points evenly across its twenty units — `floor(20 / 6)`, so units 1, 4, 7, 10,
+  13, 16 — which is fair-sounding arithmetic that put every point on the wrong
+  unit. B1.1 unit 2 is *"Höflich bitten · use Konjunktiv II to be polite"* and
+  taught no rule; unit 4, about the passive, taught Konjunktiv II. The
+  blueprints name their own point now, and `tests/grammar-map.test.mts` checks
+  the database agrees with them.
+
+  Four points genuinely had nothing written and were added: **als/wenn/wann**,
+  **Plusquamperfekt**, **irreale Bedingungssätze**, and **the passive with a
+  modal** — the sentence shape every contract and form is written in.
 - **A1 has no conversation scenarios.** `Gespräch` is slot 7 of the daily
   rhythm and never fires below A2.1, which has all twenty. A unit with no
   scenario now produces no block rather than a broken one — it used to store

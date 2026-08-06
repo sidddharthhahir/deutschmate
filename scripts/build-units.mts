@@ -19,6 +19,13 @@ type Blueprint = {
   ord: number;
   title: string;
   can_do: string[];
+  /**
+   * The grammar point this unit teaches, or null when it teaches vocabulary.
+   *
+   * Null is an answer, not a gap: a unit about ordering in a restaurant has no
+   * new rule in it, and inventing one would be padding.
+   */
+  grammar?: string | null;
   scenario: { role: string; goal: string; opener: string };
   dialogue?: {
     them: string;
@@ -40,25 +47,41 @@ const blueprints: Blueprint[] = BLUEPRINT_FILES.filter((f) =>
 
 console.log(`${blueprints.length} blueprints loaded`);
 
-// Units 1-12 of A1.1 are hand-written in data/units-a1-1.json with their own
-// curated word sets. Don't regenerate them; start A1.1 at 13.
+/*
+ * Words that a hand-written unit already teaches, and which must therefore stay
+ * out of the pool this script spreads across the generated ones.
+ *
+ * This read units-a1-1.json alone. Then the A1 rewrite made all forty A1 units
+ * hand-written and nobody added the second file, so A1.2's 238 words went into
+ * the pool as well — taught once in their own A1.2 unit and again in whichever
+ * A2 or B1 unit the cursor handed them to. It also skewed every unit size: the
+ * last generated unit sweeps up the remainder, and the remainder was 238 words
+ * too big.
+ */
 const HANDWRITTEN = new Set(
-  (
-    JSON.parse(
-      readFileSync(path.join(ROOT, "data/units-a1-1.json"), "utf8"),
-    ) as {
-      id: string;
-      word_ids?: string[];
-      words: string[];
-    }[]
-  ).flatMap((u) => u.words),
+  ["data/units-a1-1.json", "data/units-a1-2.json"]
+    .filter((f) => existsSync(path.join(ROOT, f)))
+    .flatMap(
+      (f) =>
+        JSON.parse(readFileSync(path.join(ROOT, f), "utf8")) as {
+          words: string[];
+        }[],
+    )
+    .flatMap((u) => u.words),
 );
 
 type Word = { id: string; level: string };
-type Grammar = { id: string; level: string; ord: number };
 
 const out: unknown[] = [];
 let missingBlueprints = 0;
+let danglingGrammar = 0;
+
+/** Every grammar id that exists, so a blueprint naming a typo is caught here. */
+const grammarIds = new Set(
+  (db.prepare("SELECT id FROM grammar").all() as { id: string }[]).map(
+    (g) => g.id,
+  ),
+);
 
 /**
  * ONE global pool, ordered by level then frequency, minus anything the hand-written A1.1 units
@@ -85,20 +108,8 @@ for (const level of LEVELS) {
     .filter((b) => b.level === level)
     .sort((a, b) => a.ord - b.ord);
 
-  const grammar = db
-    .prepare("SELECT id, level, ord FROM grammar WHERE level = ? ORDER BY ord")
-    .all(level) as Grammar[];
-
   const firstOrd = level === "A1.1" ? 13 : 1;
-  const slots = UNITS_PER_LEVEL - firstOrd + 1;
 
-  // Space the grammar points evenly across the level's units rather than
-  // front-loading them — a learner should not meet six new rules in week one.
-  const grammarEvery = grammar.length
-    ? Math.max(1, Math.floor(slots / grammar.length))
-    : 0;
-
-  let grammarUsed = 0;
   let placedHere = 0;
 
   for (let ord = firstOrd; ord <= UNITS_PER_LEVEL; ord++) {
@@ -117,15 +128,24 @@ for (const level of LEVELS) {
     globalCursor += take;
     placedHere += words.length;
 
-    const idx = ord - firstOrd;
-    let grammarId: string | null = null;
-    if (
-      grammarEvery &&
-      idx % grammarEvery === 0 &&
-      grammarUsed < grammar.length
-    ) {
-      grammarId = grammar[grammarUsed].id;
-      grammarUsed++;
+    /*
+     * The point the blueprint names, not the next one off a shelf.
+     *
+     * This used to space the level's grammar points evenly — `floor(slots /
+     * grammar.length)`, so units 1, 4, 7, 10, 13, 16 — which sounds fair and
+     * put every single one on the wrong unit. B1.1 unit 2 is titled "Höflich
+     * bitten · use Konjunktiv II to be polite" and got nothing; unit 4, about
+     * the passive, got Konjunktiv II. Nobody saw it, because the blocks it fed
+     * read their title from the unit and their content from the grammar row.
+     *
+     * A missing point is now silent by design and a wrong id is loud.
+     */
+    const grammarId = bp.grammar ?? null;
+    if (grammarId && !grammarIds.has(grammarId)) {
+      console.log(
+        `  ! ${level} u${ord} "${bp.title}" names ${grammarId}, which nobody wrote`,
+      );
+      danglingGrammar++;
     }
 
     const levelSlug = level.toLowerCase().replace(".", "-");
@@ -151,9 +171,10 @@ for (const level of LEVELS) {
     });
   }
 
+  const teaching = bps.filter((b) => b.grammar).length;
   console.log(
     `${level}: ${bps.length} units, ${placedHere} words, ` +
-      `${grammarUsed}/${grammar.length} grammar points`,
+      `${teaching} teach a rule and ${bps.length - teaching} teach vocabulary`,
   );
 }
 
@@ -182,3 +203,7 @@ writeFileSync(
 console.log(`\nOK ${out.length} units -> data/units-generated.json`);
 if (missingBlueprints)
   console.log(`  ${missingBlueprints} slots have no blueprint yet`);
+if (danglingGrammar)
+  console.log(
+    `  ${danglingGrammar} unit(s) name a grammar point nobody wrote — those teach no rule`,
+  );

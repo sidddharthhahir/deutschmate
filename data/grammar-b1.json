@@ -23,36 +23,59 @@
     "drills": [
       {
         "q": "Der Mann, ___ dort steht, ist mein Chef.",
-        "options": ["der", "den", "dem"],
+        "options": [
+          "der",
+          "den",
+          "dem"
+        ],
         "a": 0,
         "why": "He stands → subject → nominative."
       },
       {
         "q": "Der Film, ___ ich gesehen habe, war gut.",
-        "options": ["der", "den", "dem"],
+        "options": [
+          "der",
+          "den",
+          "dem"
+        ],
         "a": 1,
         "why": "I saw him/it → object → accusative masculine → den."
       },
       {
         "q": "Die Frau, ___ ich geholfen habe.",
-        "options": ["die", "der", "den"],
+        "options": [
+          "die",
+          "der",
+          "den"
+        ],
         "a": 1,
         "why": "helfen takes dative; feminine dative = der."
       },
       {
         "q": "Die Kinder, ___ ich danke.",
-        "options": ["die", "denen", "der"],
+        "options": [
+          "die",
+          "denen",
+          "der"
+        ],
         "a": 1,
         "why": "danken takes dative; plural dative = denen."
       },
       {
         "q": "Das Haus, ___ wir kaufen.",
-        "options": ["das", "dem", "der"],
+        "options": [
+          "das",
+          "dem",
+          "der"
+        ],
         "a": 0,
         "why": "Neuter accusative is unchanged → das."
       }
     ],
-    "prereq": ["g-nebensatz", "g-dativ"]
+    "prereq": [
+      "g-nebensatz",
+      "g-dativ"
+    ]
   },
   {
     "id": "g-konjunktiv2",
@@ -62,7 +85,10 @@
     "ord": 26,
     "explain_md": "The form for hypotheticals, wishes, and — most usefully — **being polite**.\n\n**The six you actually need:**\n\n| | |\n|---|---|\n| sein | **wäre** |\n| haben | **hätte** |\n| können | **könnte** |\n| müssen | **müsste** |\n| werden | **würde** |\n| mögen | **möchte** |\n\n```\nIch hätte gern einen Kaffee.       (ordering — the polite standard)\nKönnten Sie mir helfen?            (asking a favour)\nDas wäre schön.                    (that would be nice)\n```\n\n**For every other verb, use würde + infinitive:**\n```\nIch würde gern nach Berlin fahren.\n```\nDon't build Konjunktiv forms of ordinary verbs — natives don't either.\n\n**Conditionals** put it in both halves:\n```\nWenn ich Zeit hätte,  würde ich kommen.\nWenn ich reich wäre,  würde ich reisen.\n```\n\nThis is the single most useful B1 structure for daily life. *Könnten Sie…* opens almost every request.",
     "examples": [
-      { "de": "Ich hätte gern ein Bier.", "en": "I'd like a beer." },
+      {
+        "de": "Ich hätte gern ein Bier.",
+        "en": "I'd like a beer."
+      },
       {
         "de": "Könnten Sie mir bitte helfen?",
         "en": "Could you help me please?"
@@ -75,36 +101,57 @@
     "drills": [
       {
         "q": "Politest way to order?",
-        "options": ["Ich will einen Kaffee.", "Ich hätte gern einen Kaffee."],
+        "options": [
+          "Ich will einen Kaffee.",
+          "Ich hätte gern einen Kaffee."
+        ],
         "a": 1,
         "why": "hätte gern is the standard polite form."
       },
       {
         "q": "___ Sie mir helfen?",
-        "options": ["Können", "Könnten"],
+        "options": [
+          "Können",
+          "Könnten"
+        ],
         "a": 1,
         "why": "Könnten is softer and more polite."
       },
       {
         "q": "Wenn ich reich ___, würde ich reisen.",
-        "options": ["war", "wäre", "bin"],
+        "options": [
+          "war",
+          "wäre",
+          "bin"
+        ],
         "a": 1,
         "why": "Hypothetical → wäre."
       },
       {
         "q": "Ich ___ gern nach Italien fahren.",
-        "options": ["würde", "wäre", "hätte"],
+        "options": [
+          "würde",
+          "wäre",
+          "hätte"
+        ],
         "a": 0,
         "why": "Ordinary verb → würde + infinitive."
       },
       {
         "q": "Das ___ toll!",
-        "options": ["wäre", "hätte", "würde"],
+        "options": [
+          "wäre",
+          "hätte",
+          "würde"
+        ],
         "a": 0,
         "why": "sein → wäre."
       }
     ],
-    "prereq": ["g-modalverben", "g-nebensatz"]
+    "prereq": [
+      "g-modalverben",
+      "g-nebensatz"
+    ]
   },
   {
     "id": "g-passiv",
@@ -114,8 +161,14 @@
     "ord": 27,
     "explain_md": "Used when **what happened matters more than who did it** — instructions, news, processes, rules.\n\n**werden + participle:**\n```\nDas Haus  wird   gebaut.        The house is being built.\nDas Haus  wurde  gebaut.        The house was built.\n```\n\n```\nAktiv:   Der Mann  baut  das Haus.\nPassiv:  Das Haus  wird  gebaut.\n```\n\nThe object becomes the subject; the original subject usually disappears. If you must name it, use **von**:\n```\nDas Haus wird von dem Mann gebaut.\n```\n\n**Where you'll actually meet it:**\n```\nHier wird nicht geraucht.        (rules)\nDas Formular muss ausgefüllt werden.   (with a modal)\nDeutsch wird in Österreich gesprochen. (facts)\n```\n\n⚠️ Don't confuse it with *sein + participle*, which describes a **state**, not an action:\n```\nDie Tür wird geöffnet.   ← someone is opening it\nDie Tür ist geöffnet.    ← it stands open\n```",
     "examples": [
-      { "de": "Das Haus wird gebaut.", "en": "The house is being built." },
-      { "de": "Hier wird nicht geraucht.", "en": "No smoking here." },
+      {
+        "de": "Das Haus wird gebaut.",
+        "en": "The house is being built."
+      },
+      {
+        "de": "Hier wird nicht geraucht.",
+        "en": "No smoking here."
+      },
       {
         "de": "Der Brief wurde gestern geschrieben.",
         "en": "The letter was written yesterday."
@@ -124,36 +177,55 @@
     "drills": [
       {
         "q": "Passive of 'Man baut das Haus'?",
-        "options": ["Das Haus wird gebaut.", "Das Haus ist gebaut."],
+        "options": [
+          "Das Haus wird gebaut.",
+          "Das Haus ist gebaut."
+        ],
         "a": 0,
         "why": "werden + participle = action."
       },
       {
         "q": "Das Auto ___ repariert.",
-        "options": ["wird", "ist geworden"],
+        "options": [
+          "wird",
+          "ist geworden"
+        ],
         "a": 0,
         "why": "Present passive → wird."
       },
       {
         "q": "Past passive: Der Brief ___ geschrieben.",
-        "options": ["wird", "wurde", "war"],
+        "options": [
+          "wird",
+          "wurde",
+          "war"
+        ],
         "a": 1,
         "why": "wurde = past passive."
       },
       {
         "q": "'The door stands open' =",
-        "options": ["Die Tür wird geöffnet.", "Die Tür ist geöffnet."],
+        "options": [
+          "Die Tür wird geöffnet.",
+          "Die Tür ist geöffnet."
+        ],
         "a": 1,
         "why": "sein + participle = state."
       },
       {
         "q": "Das Formular muss ___ werden.",
-        "options": ["ausfüllen", "ausgefüllt"],
+        "options": [
+          "ausfüllen",
+          "ausgefüllt"
+        ],
         "a": 1,
         "why": "Participle + werden after a modal."
       }
     ],
-    "prereq": ["g-perfekt", "g-praeteritum"]
+    "prereq": [
+      "g-perfekt",
+      "g-praeteritum"
+    ]
   },
   {
     "id": "g-infinitiv-zu",
@@ -179,36 +251,55 @@
     "drills": [
       {
         "q": "Ich versuche, pünktlich ___.",
-        "options": ["sein", "zu sein"],
+        "options": [
+          "sein",
+          "zu sein"
+        ],
         "a": 1,
         "why": "versuchen takes zu + infinitive."
       },
       {
         "q": "Ich muss ___.",
-        "options": ["arbeiten", "zu arbeiten"],
+        "options": [
+          "arbeiten",
+          "zu arbeiten"
+        ],
         "a": 0,
         "why": "No zu after a modal verb."
       },
       {
         "q": "Es ist schwer, früh ___.",
-        "options": ["aufzustehen", "zu aufstehen"],
+        "options": [
+          "aufzustehen",
+          "zu aufstehen"
+        ],
         "a": 0,
         "why": "zu goes inside a separable verb."
       },
       {
         "q": "Ich spare, ___ ein Auto zu kaufen.",
-        "options": ["um", "ohne", "statt"],
+        "options": [
+          "um",
+          "ohne",
+          "statt"
+        ],
         "a": 0,
         "why": "Purpose → um … zu."
       },
       {
         "q": "Er ging, ___ zu grüßen.",
-        "options": ["um", "ohne"],
+        "options": [
+          "um",
+          "ohne"
+        ],
         "a": 1,
         "why": "'without greeting' → ohne … zu."
       }
     ],
-    "prereq": ["g-nebensatz", "g-trennbare"]
+    "prereq": [
+      "g-nebensatz",
+      "g-trennbare"
+    ]
   },
   {
     "id": "g-praeposition-kasus",
@@ -218,7 +309,10 @@
     "ord": 29,
     "explain_md": "Every preposition locks its noun into one case. There are three groups, and the only way through is memorising the short lists.\n\n**Always ACCUSATIVE — five:**\n**durch · für · gegen · ohne · um**\n```\nIch gehe durch den Park.\nDas ist für dich.\n```\n\n**Always DATIVE — eight:**\n**aus · bei · mit · nach · seit · von · zu · gegenüber**\n```\nIch fahre mit dem Bus.\nNach der Arbeit gehe ich nach Hause.\n```\n\n**Two-way (acc for movement, dat for location) — nine:**\n**in · an · auf · über · unter · vor · hinter · neben · zwischen**\n\n**Common contractions** — use these, they're standard, not lazy:\n\n| | |\n|---|---|\n| in dem | **im** |\n| in das | **ins** |\n| an dem | **am** |\n| zu dem | **zum** |\n| zu der | **zur** |\n| bei dem | **beim** |\n| von dem | **vom** |\n\nLearn the accusative five as a chant — it's the shortest list and it removes a quarter of the problem.",
     "examples": [
-      { "de": "Ich fahre mit dem Zug.", "en": "I travel by train." },
+      {
+        "de": "Ich fahre mit dem Zug.",
+        "en": "I travel by train."
+      },
       {
         "de": "Das Geschenk ist für meine Mutter.",
         "en": "The present is for my mother."
@@ -231,42 +325,64 @@
     "drills": [
       {
         "q": "Ich gehe durch ___ Park.",
-        "options": ["den", "dem"],
+        "options": [
+          "den",
+          "dem"
+        ],
         "a": 0,
         "why": "durch is always accusative."
       },
       {
         "q": "Ich fahre mit ___ Bus.",
-        "options": ["den", "dem"],
+        "options": [
+          "den",
+          "dem"
+        ],
         "a": 1,
         "why": "mit is always dative."
       },
       {
         "q": "Das ist für ___ Freund.",
-        "options": ["meinen", "meinem"],
+        "options": [
+          "meinen",
+          "meinem"
+        ],
         "a": 0,
         "why": "für → accusative."
       },
       {
         "q": "Nach ___ Arbeit.",
-        "options": ["die", "der"],
+        "options": [
+          "die",
+          "der"
+        ],
         "a": 1,
         "why": "nach → dative; feminine dative = der."
       },
       {
         "q": "'zu dem' contracts to…",
-        "options": ["zum", "zur", "zud"],
+        "options": [
+          "zum",
+          "zur",
+          "zud"
+        ],
         "a": 0,
         "why": "zu dem → zum."
       },
       {
         "q": "Which is ALWAYS accusative?",
-        "options": ["mit", "ohne", "seit"],
+        "options": [
+          "mit",
+          "ohne",
+          "seit"
+        ],
         "a": 1,
         "why": "ohne is in the accusative five."
       }
     ],
-    "prereq": ["g-wechselpraep"]
+    "prereq": [
+      "g-wechselpraep"
+    ]
   },
   {
     "id": "g-verben-praeposition",
@@ -276,46 +392,75 @@
     "ord": 30,
     "explain_md": "Many verbs are welded to a specific preposition, and it rarely matches English. **Learn the verb and its preposition as one unit.**\n\n| | | |\n|---|---|---|\n| warten | **auf** + acc | to wait for |\n| denken | **an** + acc | to think of |\n| sich freuen | **auf** + acc | to look forward to |\n| sich freuen | **über** + acc | to be glad about |\n| sich interessieren | **für** + acc | to be interested in |\n| sprechen | **über/von** | to talk about |\n| sich erinnern | **an** + acc | to remember |\n| Angst haben | **vor** + dat | to be afraid of |\n| helfen | **bei** + dat | to help with |\n| gehören | **zu** + dat | to belong to |\n| abhängen | **von** + dat | to depend on |\n| teilnehmen | **an** + dat | to take part in |\n\n```\nIch warte auf den Bus.        (not: für)\nIch denke an dich.            (not: über)\n```\n\n**Asking about them:** things use **wo(r)+prep**, people use **prep + wen/wem**:\n```\nWorauf wartest du?      → Auf den Bus.\nAuf wen wartest du?     → Auf meinen Freund.\n```\n\nThe **-r-** appears when the preposition starts with a vowel: *wo**r**auf, wo**r**an, wo**r**über* — but *wo**mit**, wo**von***.",
     "examples": [
-      { "de": "Ich warte auf den Bus.", "en": "I'm waiting for the bus." },
+      {
+        "de": "Ich warte auf den Bus.",
+        "en": "I'm waiting for the bus."
+      },
       {
         "de": "Ich freue mich auf das Wochenende.",
         "en": "I'm looking forward to the weekend."
       },
-      { "de": "Worüber sprecht ihr?", "en": "What are you talking about?" }
+      {
+        "de": "Worüber sprecht ihr?",
+        "en": "What are you talking about?"
+      }
     ],
     "drills": [
       {
         "q": "Ich warte ___ den Bus.",
-        "options": ["für", "auf", "an"],
+        "options": [
+          "für",
+          "auf",
+          "an"
+        ],
         "a": 1,
         "why": "warten auf — fixed."
       },
       {
         "q": "Ich denke ___ dich.",
-        "options": ["an", "über", "auf"],
+        "options": [
+          "an",
+          "über",
+          "auf"
+        ],
         "a": 0,
         "why": "denken an — fixed."
       },
       {
         "q": "Ich interessiere mich ___ Musik.",
-        "options": ["für", "an", "auf"],
+        "options": [
+          "für",
+          "an",
+          "auf"
+        ],
         "a": 0,
         "why": "sich interessieren für."
       },
       {
         "q": "Ich habe Angst ___ Hunden.",
-        "options": ["von", "vor", "für"],
+        "options": [
+          "von",
+          "vor",
+          "für"
+        ],
         "a": 1,
         "why": "Angst haben vor + dative."
       },
       {
         "q": "Asking about a thing: ___ wartest du?",
-        "options": ["Worauf", "Auf was", "Wofür"],
+        "options": [
+          "Worauf",
+          "Auf was",
+          "Wofür"
+        ],
         "a": 0,
         "why": "wo + r + auf = worauf."
       }
     ],
-    "prereq": ["g-praeposition-kasus", "g-reflexiv"]
+    "prereq": [
+      "g-praeposition-kasus",
+      "g-reflexiv"
+    ]
   },
   {
     "id": "g-indirekte-frage",
@@ -341,13 +486,20 @@
     "drills": [
       {
         "q": "Ich weiß nicht, wo er ___.",
-        "options": ["wohnt", "wohnt er"],
+        "options": [
+          "wohnt",
+          "wohnt er"
+        ],
         "a": 0,
         "why": "Verb to the end, subject before it."
       },
       {
         "q": "Ich frage mich, ___ sie kommt.",
-        "options": ["dass", "ob", "wenn"],
+        "options": [
+          "dass",
+          "ob",
+          "wenn"
+        ],
         "a": 1,
         "why": "Yes/no question → ob."
       },
@@ -370,7 +522,10 @@
         "why": "Indirect framing is more polite."
       }
     ],
-    "prereq": ["g-nebensatz", "g-questions"]
+    "prereq": [
+      "g-nebensatz",
+      "g-questions"
+    ]
   },
   {
     "id": "g-konnektoren",
@@ -396,36 +551,54 @@
     "drills": [
       {
         "q": "Ich bin müde, deshalb ___ ich früh ins Bett.",
-        "options": ["gehe", "ich gehe"],
+        "options": [
+          "gehe",
+          "ich gehe"
+        ],
         "a": 0,
         "why": "deshalb is slot 1 → verb second."
       },
       {
         "q": "Ich bleibe hier, ___ ich krank bin.",
-        "options": ["denn", "weil"],
+        "options": [
+          "denn",
+          "weil"
+        ],
         "a": 1,
         "why": "Both work, but with verb-last order it must be weil."
       },
       {
         "q": "___ ich ein Kind war, …",
-        "options": ["Wenn", "Als"],
+        "options": [
+          "Wenn",
+          "Als"
+        ],
         "a": 1,
         "why": "A single past event → als."
       },
       {
         "q": "___ ich Zeit habe, lese ich.",
-        "options": ["Wenn", "Als"],
+        "options": [
+          "Wenn",
+          "Als"
+        ],
         "a": 0,
         "why": "Repeated / general → wenn."
       },
       {
         "q": "Which keeps normal word order?",
-        "options": ["obwohl", "sondern", "damit"],
+        "options": [
+          "obwohl",
+          "sondern",
+          "damit"
+        ],
         "a": 1,
         "why": "sondern is in group 1."
       }
     ],
-    "prereq": ["g-nebensatz"]
+    "prereq": [
+      "g-nebensatz"
+    ]
   },
   {
     "id": "g-nomen-verb",
@@ -435,8 +608,14 @@
     "ord": 33,
     "explain_md": "A small group of masculine nouns adds **-n** or **-en** in every case except nominative singular. Getting these right is a clear B1 marker.\n\n```\nnom:  der Student\nacc:  den Student en\ndat:  dem Student en\ngen:  des Student en\n```\n\n**Which nouns?** Masculine nouns that:\n- end in **-e** for people or animals: *der Junge, der Kunde, der Kollege, der Löwe*\n- end in **-ent, -ant, -ist, -ist, -og**: *Student, Praktikant, Polizist, Journalist*\n- a short irregular set: *der Mensch, der Herr, der Nachbar, der Bauer*\n\n```\nIch sehe den Jungen.          (not: den Junge)\nIch helfe dem Kollegen.\nDas ist das Auto des Studenten.\n```\n\n**der Herr** is doubly odd: *-n* in the singular, *-en* in the plural.\n```\nIch sehe den Herrn.  /  die Herren\n```\n\nIf a masculine noun ends in **-e** and refers to a person, assume it declines.",
     "examples": [
-      { "de": "Ich kenne den Studenten.", "en": "I know the student." },
-      { "de": "Er hilft seinem Kollegen.", "en": "He helps his colleague." },
+      {
+        "de": "Ich kenne den Studenten.",
+        "en": "I know the student."
+      },
+      {
+        "de": "Er hilft seinem Kollegen.",
+        "en": "He helps his colleague."
+      },
       {
         "de": "Das ist die Meinung des Menschen.",
         "en": "That's the person's opinion."
@@ -445,36 +624,55 @@
     "drills": [
       {
         "q": "Ich sehe den ___.",
-        "options": ["Student", "Studenten"],
+        "options": [
+          "Student",
+          "Studenten"
+        ],
         "a": 1,
         "why": "Accusative adds -en."
       },
       {
         "q": "Ich helfe dem ___.",
-        "options": ["Junge", "Jungen"],
+        "options": [
+          "Junge",
+          "Jungen"
+        ],
         "a": 1,
         "why": "Dative adds -n."
       },
       {
         "q": "Der ___ ist nett. (nominative)",
-        "options": ["Kollege", "Kollegen"],
+        "options": [
+          "Kollege",
+          "Kollegen"
+        ],
         "a": 0,
         "why": "Nominative singular is the one bare form."
       },
       {
         "q": "Ich frage den ___.",
-        "options": ["Herr", "Herrn"],
+        "options": [
+          "Herr",
+          "Herrn"
+        ],
         "a": 1,
         "why": "Herr takes -n in the singular."
       },
       {
         "q": "Which declines?",
-        "options": ["der Tisch", "der Mensch", "der Baum"],
+        "options": [
+          "der Tisch",
+          "der Mensch",
+          "der Baum"
+        ],
         "a": 1,
         "why": "Mensch is in the irregular set."
       }
     ],
-    "prereq": ["g-genitiv", "g-adjektivendung"]
+    "prereq": [
+      "g-genitiv",
+      "g-adjektivendung"
+    ]
   },
   {
     "id": "g-partizip-adjektiv",
@@ -488,7 +686,10 @@
         "de": "Das schlafende Kind ist süß.",
         "en": "The sleeping child is sweet."
       },
-      { "de": "Ich esse ein gekochtes Ei.", "en": "I'm eating a boiled egg." },
+      {
+        "de": "Ich esse ein gekochtes Ei.",
+        "en": "I'm eating a boiled egg."
+      },
       {
         "de": "Die geöffnete Tür stand im Wind.",
         "en": "The opened door stood in the wind."
@@ -497,30 +698,45 @@
     "drills": [
       {
         "q": "'the sleeping child' =",
-        "options": ["das geschlafene Kind", "das schlafende Kind"],
+        "options": [
+          "das geschlafene Kind",
+          "das schlafende Kind"
+        ],
         "a": 1,
         "why": "Active, ongoing → present participle."
       },
       {
         "q": "'the boiled egg' =",
-        "options": ["das kochende Ei", "das gekochte Ei"],
+        "options": [
+          "das kochende Ei",
+          "das gekochte Ei"
+        ],
         "a": 1,
         "why": "Finished, done to it → past participle."
       },
       {
         "q": "Present participle of 'lachen'?",
-        "options": ["gelacht", "lachend"],
+        "options": [
+          "gelacht",
+          "lachend"
+        ],
         "a": 1,
         "why": "Infinitive + d."
       },
       {
         "q": "die ___ Leute (laughing)",
-        "options": ["lachenden", "gelachten"],
+        "options": [
+          "lachenden",
+          "gelachten"
+        ],
         "a": 0,
         "why": "lachend + plural ending -en."
       }
     ],
-    "prereq": ["g-adjektivendung", "g-passiv"]
+    "prereq": [
+      "g-adjektivendung",
+      "g-passiv"
+    ]
   },
   {
     "id": "g-konjunktiv1",
@@ -530,7 +746,10 @@
     "ord": 35,
     "explain_md": "Newspapers report what someone said using **Konjunktiv I**, which signals \"these are their words, not my claim\".\n\n```\nEr sagt:  \"Ich bin krank.\"\nEr sagt,  er  sei  krank.\n```\n\n**Formed from the infinitive stem + -e:**\n\n| | Konjunktiv I |\n|---|---|\n| sein | **sei** (the irregular one) |\n| haben | habe |\n| können | könne |\n| werden | werde |\n| gehen | gehe |\n\n```\nDer Minister sagte, die Lage sei ernst.\nSie erklärte, sie habe keine Zeit.\n```\n\n**When the form looks identical to the present tense, switch to Konjunktiv II** so the reporting is still visible:\n```\nSie sagen, sie haben Zeit.   ← ambiguous\nSie sagen, sie hätten Zeit.  ← clearly reported\n```\n\nIn conversation nobody does this — people just use *dass* + normal tense. **This is a reading skill**: recognise it in news and understand that the writer isn't endorsing the claim.",
     "examples": [
-      { "de": "Er sagt, er sei krank.", "en": "He says he's ill." },
+      {
+        "de": "Er sagt, er sei krank.",
+        "en": "He says he's ill."
+      },
       {
         "de": "Sie erklärte, sie habe keine Zeit.",
         "en": "She explained she had no time."
@@ -543,30 +762,46 @@
     "drills": [
       {
         "q": "Er sagt, er ___ krank.",
-        "options": ["ist", "sei"],
+        "options": [
+          "ist",
+          "sei"
+        ],
         "a": 1,
         "why": "Reported speech → sei."
       },
       {
         "q": "Konjunktiv I of 'haben' (er)?",
-        "options": ["habe", "hat", "hätte"],
+        "options": [
+          "habe",
+          "hat",
+          "hätte"
+        ],
         "a": 0,
         "why": "Stem + e → habe."
       },
       {
         "q": "Where do you meet this most?",
-        "options": ["in conversation", "in the news"],
+        "options": [
+          "in conversation",
+          "in the news"
+        ],
         "a": 1,
         "why": "It's essentially a written/journalistic form."
       },
       {
         "q": "If Konjunktiv I looks like the present, you…",
-        "options": ["use Konjunktiv II", "leave it"],
+        "options": [
+          "use Konjunktiv II",
+          "leave it"
+        ],
         "a": 0,
         "why": "Switch to hätten/wären so it stays visible."
       }
     ],
-    "prereq": ["g-konjunktiv2", "g-nebensatz"]
+    "prereq": [
+      "g-konjunktiv2",
+      "g-nebensatz"
+    ]
   },
   {
     "id": "g-wortbildung",
@@ -576,7 +811,10 @@
     "ord": 36,
     "explain_md": "German builds long words from small ones. Once you see the pattern, your reading vocabulary multiplies without memorising anything new.\n\n**Compounds — the LAST word decides the gender:**\n```\ndie Hand + der Schuh  →  der Handschuh   (glove)\ndas Haus + die Tür    →  die Haustür\nder Zug  + die Fahrt  →  die Zugfahrt\n```\nRead them backwards: *Haustür* is a **Tür**, and *Haus* just says which kind.\n\n**Suffixes that fix the gender for you:**\n\n| ending | gender | means |\n|---|---|---|\n| -ung | die | the act of (Wohnung, Zeitung) |\n| -heit / -keit | die | quality (Gesundheit, Möglichkeit) |\n| -schaft | die | collective (Freundschaft) |\n| -er | der | doer (Lehrer, Fahrer) |\n| -chen / -lein | das | small (Mädchen) |\n| -ismus | der | -ism |\n\n**Prefixes that flip meaning:**\n```\nun-   →  unmöglich, unfreundlich   (not)\nmiss- →  Missverständnis           (wrong)\n```\n\nSo *Arbeitslosigkeit* = Arbeit + los (without) + igkeit (quality) = unemployment. You can decode it without ever having seen it.",
     "examples": [
-      { "de": "Die Haustür ist offen.", "en": "The front door is open." },
+      {
+        "de": "Die Haustür ist offen.",
+        "en": "The front door is open."
+      },
       {
         "de": "Das ist eine gute Möglichkeit.",
         "en": "That's a good opportunity."
@@ -589,35 +827,229 @@
     "drills": [
       {
         "q": "Gender of 'Handschuh' (die Hand + der Schuh)?",
-        "options": ["die", "der", "das"],
+        "options": [
+          "die",
+          "der",
+          "das"
+        ],
         "a": 1,
         "why": "The last word wins: der Schuh → der Handschuh."
       },
       {
         "q": "'Wohnung' is…",
-        "options": ["der", "die", "das"],
+        "options": [
+          "der",
+          "die",
+          "das"
+        ],
         "a": 1,
         "why": "-ung is always feminine."
       },
       {
         "q": "'Mädchen' is…",
-        "options": ["die", "das"],
+        "options": [
+          "die",
+          "das"
+        ],
         "a": 1,
         "why": "-chen is always neuter, regardless of meaning."
       },
       {
         "q": "'Freundschaft' is…",
-        "options": ["der", "die", "das"],
+        "options": [
+          "der",
+          "die",
+          "das"
+        ],
         "a": 1,
         "why": "-schaft → die."
       },
       {
         "q": "What does un- do?",
-        "options": ["makes it small", "negates it"],
+        "options": [
+          "makes it small",
+          "negates it"
+        ],
         "a": 1,
         "why": "unmöglich = not possible."
       }
     ],
-    "prereq": ["g-articles-nom", "g-plural"]
+    "prereq": [
+      "g-articles-nom",
+      "g-plural"
+    ]
+  },
+  {
+    "id": "g-plusquamperfekt",
+    "slug": "plusquamperfekt",
+    "title": "Plusquamperfekt — the past before the past",
+    "level": "B1.1",
+    "ord": 38,
+    "explain_md": "One step further back. You are already telling a story in the past, and you need something that happened **before that**.\n\n```\nPerfekt / Präteritum   ich habe gegessen   ·   ich ging\nPlusquamperfekt        ich hatte gegessen  ·   ich war gegangen\n```\n\nSame helper choice as the Perfekt — **hatte** for most verbs, **war** for movement and change of state — but the helper is in the **Präteritum**.\n\n**Where you actually need it: after *nachdem*.**\n\n```\nNachdem ich gegessen hatte,  ging ich spazieren.\n        └── happened first ──┘  └── happened after ──┘\n```\n\nThe two halves must sit one step apart. *Nachdem ich gegessen habe, ging ich* is wrong — that is the mistake to avoid.\n\n**bevor** works the other way round and needs no Plusquamperfekt: *Bevor ich ging, habe ich gegessen.*",
+    "examples": [
+      {
+        "de": "Nachdem wir angekommen waren, haben wir sofort angerufen.",
+        "en": "After we had arrived, we called straight away."
+      },
+      {
+        "de": "Er hatte den Vertrag schon unterschrieben, als er den Fehler sah.",
+        "en": "He had already signed the contract when he saw the mistake."
+      },
+      {
+        "de": "Nachdem sie die Prüfung bestanden hatte, suchte sie eine Arbeit.",
+        "en": "After she had passed the exam, she looked for a job."
+      }
+    ],
+    "drills": [
+      {
+        "q": "Nachdem er gegessen ___, ging er ins Bett.",
+        "options": [
+          "hatte",
+          "hat",
+          "war"
+        ],
+        "a": 0,
+        "why": "nachdem takes the Plusquamperfekt, and essen takes haben."
+      },
+      {
+        "q": "Nachdem wir angekommen ___, riefen wir dich an.",
+        "options": [
+          "hatten",
+          "waren",
+          "sind"
+        ],
+        "a": 1,
+        "why": "ankommen is movement → sein, in the Präteritum: waren."
+      },
+      {
+        "q": "___ ich ging, hatte ich schon gegessen.",
+        "options": [
+          "Bevor",
+          "Nachdem"
+        ],
+        "a": 0,
+        "why": "The eating came first, so the going is introduced by bevor."
+      }
+    ],
+    "prereq": [
+      "g-perfekt",
+      "g-praeteritum",
+      "g-nebensatz"
+    ]
+  },
+  {
+    "id": "g-irreal",
+    "slug": "irreale-bedingung",
+    "title": "Wenn ich Zeit hätte — things that are not true",
+    "level": "B1.1",
+    "ord": 39,
+    "explain_md": "Konjunktiv II is used for politeness. This is the other job: saying what **would** happen if something were the case — and it is not.\n\n**Now, hypothetically**\n\n```\nWenn ich Zeit hätte,        würde ich mitkommen.\nWenn ich reich wäre,        würde ich nicht arbeiten.\n    └── not true ──┘        └── so this does not happen ──┘\n```\n\nBoth halves are Konjunktiv II. Use **würde + infinitive** in the main clause for almost every verb; use the real form for **hätte, wäre, könnte, müsste, wüsste**, which sound wrong with würde.\n\n**In the past — the regret form**\n\n```\nWenn ich das gewusst hätte,  wäre ich nicht gekommen.\nWenn du angerufen hättest,   hätte ich gewartet.\n```\n\nhätte / wäre **+ participle**, in both halves. This is how you say \"if only I had known\".\n\n**Drop the *wenn*** and the verb moves to the front — common in writing:\n*Hätte ich das gewusst, wäre ich nicht gekommen.*",
+    "examples": [
+      {
+        "de": "Wenn ich mehr Zeit hätte, würde ich einen Kurs machen.",
+        "en": "If I had more time, I would take a course."
+      },
+      {
+        "de": "Wenn ich das gewusst hätte, wäre ich früher gegangen.",
+        "en": "If I had known that, I would have left earlier."
+      },
+      {
+        "de": "An deiner Stelle würde ich mit dem Vermieter sprechen.",
+        "en": "In your position I would speak to the landlord."
+      }
+    ],
+    "drills": [
+      {
+        "q": "Wenn ich reich ___, würde ich viel reisen.",
+        "options": [
+          "wäre",
+          "war",
+          "bin"
+        ],
+        "a": 0,
+        "why": "sein in Konjunktiv II is wäre. „war“ is the ordinary past."
+      },
+      {
+        "q": "Wenn du mir geholfen ___, wären wir schon fertig.",
+        "options": [
+          "hättest",
+          "hast",
+          "würdest"
+        ],
+        "a": 0,
+        "why": "Past and hypothetical: hätte + participle in both halves."
+      },
+      {
+        "q": "Wenn es nicht regnen würde, ___ wir spazieren gehen.",
+        "options": [
+          "würden",
+          "werden",
+          "wurden"
+        ],
+        "a": 0,
+        "why": "würden — Konjunktiv II. werden is the plain future, wurden the past."
+      }
+    ],
+    "prereq": [
+      "g-konjunktiv2",
+      "g-nebensatz"
+    ]
+  },
+  {
+    "id": "g-passiv-modal",
+    "slug": "passiv-modal",
+    "title": "muss gemacht werden — the passive with a modal",
+    "level": "B1.2",
+    "ord": 40,
+    "explain_md": "The sentence shape that every contract, form and official letter is written in. Once you can read it, German bureaucracy gets noticeably quieter.\n\n```\nDas Formular  muss   unterschrieben werden.\n              modal   participle    werden\n              ↑ position 2          ↑ both at the end\n```\n\nThe modal is conjugated, the participle and **werden** go to the end, in that order. Nothing else changes.\n\n| | |\n|---|---|\n| Der Vertrag **kann** gekündigt **werden**. | can be cancelled |\n| Der Antrag **muss** bis Freitag gestellt **werden**. | must be submitted |\n| Hier **darf** nicht geparkt **werden**. | parking is not allowed |\n\n**Two different sentences worth telling apart**\n\n```\nDie Tür wird geschlossen.   somebody is closing it — an action\nDie Tür ist geschlossen.    it is shut — a state\n```\n\n**wird** = it is happening. **ist** = it is already done. A sign saying *Geschlossen* is the second one.",
+    "examples": [
+      {
+        "de": "Das Formular muss vollständig ausgefüllt werden.",
+        "en": "The form must be filled in completely."
+      },
+      {
+        "de": "Der Vertrag kann jederzeit gekündigt werden.",
+        "en": "The contract can be cancelled at any time."
+      },
+      {
+        "de": "Die Rechnung ist schon bezahlt.",
+        "en": "The bill is already paid."
+      }
+    ],
+    "drills": [
+      {
+        "q": "Das Formular muss ___ werden.",
+        "options": [
+          "unterschrieben",
+          "unterschreiben",
+          "unterschreibt"
+        ],
+        "a": 0,
+        "why": "Participle before werden — muss unterschrieben werden."
+      },
+      {
+        "q": "Hier ___ nicht geraucht werden.",
+        "options": [
+          "darf",
+          "darfst",
+          "dürfen"
+        ],
+        "a": 0,
+        "why": "Impersonal passive takes es/nothing as subject → third person singular."
+      },
+      {
+        "q": "Das Geschäft ___ geschlossen — wir kommen zu spät.",
+        "options": [
+          "ist",
+          "wird"
+        ],
+        "a": 0,
+        "why": "A finished state, not an action in progress → ist."
+      }
+    ],
+    "prereq": [
+      "g-passiv",
+      "g-modalverben"
+    ]
   }
 ]

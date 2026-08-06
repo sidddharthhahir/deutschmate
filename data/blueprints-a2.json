@@ -17,7 +17,11 @@
       {
         "them": "Was hast du am Wochenende gemacht?",
         "options": [
-          { "say": "Ich habe viel gearbeitet.", "ok": true, "next": 1 },
+          {
+            "say": "Ich habe viel gearbeitet.",
+            "ok": true,
+            "next": 1
+          },
           {
             "say": "Ich habe viel arbeiten.",
             "ok": false,
@@ -29,10 +33,15 @@
       {
         "them": "Oh, das klingt anstrengend.",
         "options": [
-          { "say": "Ja, aber jetzt geht es.", "ok": true, "next": -1 }
+          {
+            "say": "Ja, aber jetzt geht es.",
+            "ok": true,
+            "next": -1
+          }
         ]
       }
-    ]
+    ],
+    "grammar": "g-perfekt"
   },
   {
     "level": "A2.1",
@@ -47,7 +56,8 @@
       "role": "a friend who missed you",
       "goal": "explain where you were last week",
       "opener": "Wo warst du denn letzte Woche?"
-    }
+    },
+    "grammar": "g-perfekt-sein"
   },
   {
     "level": "A2.1",
@@ -62,7 +72,8 @@
       "role": "a colleague you owe a favour",
       "goal": "ask them for help with something",
       "opener": "Du siehst gestresst aus — brauchst du was?"
-    }
+    },
+    "grammar": "g-dativ"
   },
   {
     "level": "A2.1",
@@ -77,7 +88,8 @@
       "role": "a receptionist at an office",
       "goal": "book an appointment and confirm it",
       "opener": "Guten Tag, was kann ich für Sie tun?"
-    }
+    },
+    "grammar": "g-zeitpraepositionen"
   },
   {
     "level": "A2.1",
@@ -92,7 +104,8 @@
       "role": "a friend you're meeting in town",
       "goal": "explain on the phone where you are and where you're going",
       "opener": "Wo bist du gerade?"
-    }
+    },
+    "grammar": "g-wechselpraep"
   },
   {
     "level": "A2.1",
@@ -128,10 +141,15 @@
       {
         "them": "Stimmt. Aber sie ist auch teurer.",
         "options": [
-          { "say": "Ja, das ist ein Nachteil.", "ok": true, "next": -1 }
+          {
+            "say": "Ja, das ist ein Nachteil.",
+            "ok": true,
+            "next": -1
+          }
         ]
       }
-    ]
+    ],
+    "grammar": "g-komparativ"
   },
   {
     "level": "A2.1",
@@ -146,7 +164,8 @@
       "role": "someone lost in your building",
       "goal": "direct them to the right floor",
       "opener": "Entschuldigung, wo ist Büro 204?"
-    }
+    },
+    "grammar": "g-imperativ"
   },
   {
     "level": "A2.1",
@@ -161,7 +180,8 @@
       "role": "a flatmate",
       "goal": "explain your daily schedule so you don't clash",
       "opener": "Wann stehst du normalerweise auf?"
-    }
+    },
+    "grammar": "g-trennbare"
   },
   {
     "level": "A2.1",
@@ -181,7 +201,11 @@
       {
         "them": "Haben Sie schon gewählt?",
         "options": [
-          { "say": "Ja, ich nehme die Suppe.", "ok": true, "next": 1 },
+          {
+            "say": "Ja, ich nehme die Suppe.",
+            "ok": true,
+            "next": 1
+          },
           {
             "say": "Ja, ich nehme der Suppe.",
             "ok": false,
@@ -192,7 +216,13 @@
       },
       {
         "them": "Und zu trinken?",
-        "options": [{ "say": "Ein Wasser, bitte.", "ok": true, "next": 2 }]
+        "options": [
+          {
+            "say": "Ein Wasser, bitte.",
+            "ok": true,
+            "next": 2
+          }
+        ]
       },
       {
         "them": "Kommt sofort.",
@@ -204,18 +234,24 @@
           }
         ]
       }
-    ]
+    ],
+    "grammar": "g-moechten"
   },
   {
     "level": "A2.1",
     "ord": 10,
     "title": "Einkaufen und Geld",
-    "can_do": ["compare prices", "ask for a discount", "return something"],
+    "can_do": [
+      "compare prices",
+      "ask for a discount",
+      "return something"
+    ],
     "scenario": {
       "role": "a shop assistant",
       "goal": "return an item and explain why",
       "opener": "Was kann ich für Sie tun?"
-    }
+    },
+    "grammar": null
   },
   {
     "level": "A2.1",
@@ -230,7 +266,8 @@
       "role": "a landlord on the phone",
       "goal": "ask about the flat and arrange a viewing",
       "opener": "Sie haben wegen der Wohnung angerufen?"
-    }
+    },
+    "grammar": null
   },
   {
     "level": "A2.1",
@@ -245,18 +282,24 @@
       "role": "someone at a language-school welcome evening",
       "goal": "explain your background",
       "opener": "Und was führt dich nach Deutschland?"
-    }
+    },
+    "grammar": "g-perfekt"
   },
   {
     "level": "A2.1",
     "ord": 13,
     "title": "Telefonieren",
-    "can_do": ["make a phone call", "ask for someone", "leave a message"],
+    "can_do": [
+      "make a phone call",
+      "ask for someone",
+      "leave a message"
+    ],
     "scenario": {
       "role": "an office receptionist on the phone",
       "goal": "reach a colleague or leave a message",
       "opener": "Firma Meyer, guten Tag."
-    }
+    },
+    "grammar": null
   },
   {
     "level": "A2.1",
@@ -271,7 +314,8 @@
       "role": "a clerk at the post office",
       "goal": "send a parcel abroad",
       "opener": "Der Nächste, bitte!"
-    }
+    },
+    "grammar": null
   },
   {
     "level": "A2.1",
@@ -286,18 +330,24 @@
       "role": "a pharmacist",
       "goal": "describe a problem and get something for it",
       "opener": "Guten Tag, womit kann ich helfen?"
-    }
+    },
+    "grammar": "g-dativ"
   },
   {
     "level": "A2.1",
     "ord": 16,
     "title": "Feste und Feiern",
-    "can_do": ["invite someone", "accept or decline", "congratulate someone"],
+    "can_do": [
+      "invite someone",
+      "accept or decline",
+      "congratulate someone"
+    ],
     "scenario": {
       "role": "a friend inviting you to a birthday",
       "goal": "accept and ask the details",
       "opener": "Ich feiere am Samstag — kommst du?"
-    }
+    },
+    "grammar": null
   },
   {
     "level": "A2.1",
@@ -312,7 +362,8 @@
       "role": "someone at a sports club",
       "goal": "ask about joining",
       "opener": "Warst du schon mal hier?"
-    }
+    },
+    "grammar": null
   },
   {
     "level": "A2.1",
@@ -327,7 +378,8 @@
       "role": "a friend looking for something to watch",
       "goal": "recommend a film and say why",
       "opener": "Kennst du einen guten Film?"
-    }
+    },
+    "grammar": null
   },
   {
     "level": "A2.1",
@@ -342,7 +394,8 @@
       "role": "a hotel receptionist",
       "goal": "report a problem with your room",
       "opener": "Ist alles in Ordnung mit dem Zimmer?"
-    }
+    },
+    "grammar": null
   },
   {
     "level": "A2.1",
@@ -357,9 +410,9 @@
       "role": "an old friend you haven't seen in a year",
       "goal": "catch up on what's happened",
       "opener": "Erzähl mal, was ist alles passiert?"
-    }
+    },
+    "grammar": null
   },
-
   {
     "level": "A2.2",
     "ord": 1,
@@ -393,9 +446,16 @@
       },
       {
         "them": "Ah, verstehe. Viel Erfolg!",
-        "options": [{ "say": "Danke!", "ok": true, "next": -1 }]
+        "options": [
+          {
+            "say": "Danke!",
+            "ok": true,
+            "next": -1
+          }
+        ]
       }
-    ]
+    ],
+    "grammar": "g-nebensatz"
   },
   {
     "level": "A2.2",
@@ -410,7 +470,8 @@
       "role": "a friend before a big trip",
       "goal": "say what you're looking forward to",
       "opener": "Freust du dich schon?"
-    }
+    },
+    "grammar": "g-reflexiv"
   },
   {
     "level": "A2.2",
@@ -425,7 +486,8 @@
       "role": "a friend having a hard week",
       "goal": "listen and respond kindly",
       "opener": "Ehrlich gesagt geht's mir gerade nicht so gut."
-    }
+    },
+    "grammar": null
   },
   {
     "level": "A2.2",
@@ -440,7 +502,8 @@
       "role": "someone at a lost-property desk",
       "goal": "describe your lost item well enough to get it back",
       "opener": "Was haben Sie denn verloren?"
-    }
+    },
+    "grammar": "g-adjektivendung"
   },
   {
     "level": "A2.2",
@@ -455,7 +518,8 @@
       "role": "an older neighbour",
       "goal": "talk about how things used to be",
       "opener": "Früher war hier alles ganz anders, wissen Sie."
-    }
+    },
+    "grammar": "g-praeteritum"
   },
   {
     "level": "A2.2",
@@ -470,7 +534,8 @@
       "role": "a careers adviser",
       "goal": "explain your plans for the next year",
       "opener": "Was sind Ihre Pläne für das nächste Jahr?"
-    }
+    },
+    "grammar": "g-futur"
   },
   {
     "level": "A2.2",
@@ -485,7 +550,8 @@
       "role": "a friend helping you tidy",
       "goal": "sort out whose things are whose",
       "opener": "Wem gehört das alles?"
-    }
+    },
+    "grammar": "g-genitiv"
   },
   {
     "level": "A2.2",
@@ -500,7 +566,8 @@
       "role": "a colleague discussing a decision",
       "goal": "state your opinion and back it up",
       "opener": "Was hältst du davon?"
-    }
+    },
+    "grammar": "g-nebensatz"
   },
   {
     "level": "A2.2",
@@ -515,7 +582,8 @@
       "role": "a friend planning a trip with you",
       "goal": "agree on where to go",
       "opener": "Wohin sollen wir fahren?"
-    }
+    },
+    "grammar": null
   },
   {
     "level": "A2.2",
@@ -530,7 +598,8 @@
       "role": "your manager",
       "goal": "explain that a task will be late and why",
       "opener": "Wie sieht es mit dem Bericht aus?"
-    }
+    },
+    "grammar": null
   },
   {
     "level": "A2.2",
@@ -545,7 +614,8 @@
       "role": "an interviewer",
       "goal": "answer three questions about yourself",
       "opener": "Erzählen Sie mir ein bisschen über sich."
-    }
+    },
+    "grammar": null
   },
   {
     "level": "A2.2",
@@ -560,7 +630,8 @@
       "role": "a bank employee",
       "goal": "ask about opening an account",
       "opener": "Wie kann ich Ihnen helfen?"
-    }
+    },
+    "grammar": null
   },
   {
     "level": "A2.2",
@@ -575,7 +646,8 @@
       "role": "a clerk at the registration office",
       "goal": "register your new address",
       "opener": "Sie möchten sich anmelden?"
-    }
+    },
+    "grammar": null
   },
   {
     "level": "A2.2",
@@ -590,7 +662,8 @@
       "role": "a repair shop assistant",
       "goal": "explain what's broken and ask the price",
       "opener": "Was ist denn kaputt?"
-    }
+    },
+    "grammar": null
   },
   {
     "level": "A2.2",
@@ -605,7 +678,8 @@
       "role": "a caretaker in your building",
       "goal": "ask what's allowed in the shared areas",
       "opener": "Darf ich Ihnen kurz die Hausordnung erklären?"
-    }
+    },
+    "grammar": "g-modalverben"
   },
   {
     "level": "A2.2",
@@ -641,10 +715,15 @@
       {
         "them": "Schade! Wann passt es dir denn?",
         "options": [
-          { "say": "Geht Donnerstag bei dir?", "ok": true, "next": -1 }
+          {
+            "say": "Geht Donnerstag bei dir?",
+            "ok": true,
+            "next": -1
+          }
         ]
       }
-    ]
+    ],
+    "grammar": null
   },
   {
     "level": "A2.2",
@@ -659,7 +738,8 @@
       "role": "friends over dinner",
       "goal": "tell the story of something that happened to you",
       "opener": "Erzähl mal die Geschichte von neulich!"
-    }
+    },
+    "grammar": "g-als-wenn"
   },
   {
     "level": "A2.2",
@@ -674,7 +754,8 @@
       "role": "customer service on the phone",
       "goal": "complain about a late delivery",
       "opener": "Kundenservice, was kann ich für Sie tun?"
-    }
+    },
+    "grammar": null
   },
   {
     "level": "A2.2",
@@ -689,7 +770,8 @@
       "role": "a curious German friend",
       "goal": "explain a custom from your home country",
       "opener": "Wie macht ihr das eigentlich bei euch?"
-    }
+    },
+    "grammar": null
   },
   {
     "level": "A2.2",
@@ -704,6 +786,7 @@
       "role": "an examiner in a friendly mock exam",
       "goal": "talk for three minutes about yourself and your plans",
       "opener": "Stellen Sie sich bitte kurz vor."
-    }
+    },
+    "grammar": null
   }
 ]
