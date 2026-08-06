@@ -23,14 +23,14 @@ minutes; a quiet one is four. Titles exactly as they appear:
 
 | # | Title | Notes |
 |---|---|---|
-| 1 | **Aufwärmen** *or* **Nur Hören** | never skippable, but **not always present** — a learner with nothing due has no block 1, which is every day of their first week. Every third day the word is hidden until you answer. |
+| 1 | **Aufwärmen** *or* **Aufwärmen (Hören)** | never skippable, but **not always present** — a learner with nothing due has no block 1, which is every day of their first week. Every third day the word is hidden until you answer. The audio day was called *Nur Hören* until it turned out to sit directly above the listening block, *Hören*. |
 | 2 | **Fix** · **Lücken** | **only if the learner has recent errors** — either or both can be absent |
 | 2b | **Grammatik-Wdh.** | due grammar cards. On the FSRS curve, so it can appear on a day with no mistakes at all |
 | 3 | **Neue Wörter** *or* **Grammatik** | never both on the same day |
 | 4 | **Hören** *or* **Lesen** *or* **Wiederlesen** *or* **Video** | rotates daily |
 | 5 | **Sätze bauen** | |
 | 6 | **Sprechen** *or* **Schreiben** | rotates — speaking two days in three |
-| 7 | **Gespräch** *or* **Nochmal sprechen** | every third one is an old scene |
+| 7 | **Gespräch** *or* **Nochmal sprechen** | every third one is an old scene. Absent throughout A1: no scenarios are written for those forty units, and a block with nothing behind it is worse than no block |
 | 8 | **Abschluss** | always last |
 
 A real 8-block day: `Aufwärmen · Fix · Neue Wörter · Wiederlesen · Sätze bauen

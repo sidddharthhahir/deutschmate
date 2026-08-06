@@ -25,6 +25,13 @@ import VideoBlock from "@/components/blocks/VideoBlock";
 import ClozeBlock from "@/components/blocks/ClozeBlock";
 import GrammarReviewBlock from "@/components/blocks/GrammarReviewBlock";
 import SessionRecap, { type Recap } from "@/components/SessionRecap";
+import BlockIntro from "@/components/BlockIntro";
+import {
+  INTRO,
+  introKey,
+  loadSeenIntros,
+  markIntroSeen,
+} from "@/lib/block-intro";
 import { useOnline } from "@/lib/hooks";
 import {
   cachePlan,
@@ -142,6 +149,18 @@ function SessionRunner() {
   const [pending, setPending] = useState(0);
   /** Words still unintroduced in today's unit — it continues tomorrow. */
   const [carryOver, setCarryOver] = useState(0);
+  /*
+   * Which block doorways this learner has already been through.
+   *
+   * Read once, lazily, rather than in an effect — setting state from an effect
+   * on every change of block cascades a second render through the whole runner.
+   * Safe to touch localStorage in the initialiser here because nothing below
+   * renders until the plan has been fetched, so there is no server paint to
+   * disagree with. Null means it could not be read; then nothing is shown.
+   */
+  const [seenIntros, setSeenIntros] = useState<Set<string> | null>(() =>
+    loadSeenIntros(),
+  );
 
   const legStart = useRef(0);
   const spentMs = useRef(0);
@@ -213,6 +232,23 @@ function SessionRunner() {
 
   const blocks = useMemo(() => plan?.blocks ?? [], [plan]);
   const block = blocks[i];
+
+  /*
+   * The doorway for the block on screen, or null if this learner has been
+   * through it before. Derived, not stored, so resuming at block 4 still shows
+   * block 4's doorway when that is a kind they have never done.
+   */
+  const introFor = block ? introKey(block.kind, block.payload) : null;
+  const intro =
+    introFor && INTRO[introFor] && seenIntros && !seenIntros.has(introFor)
+      ? introFor
+      : null;
+
+  const startBlock = useCallback(() => {
+    if (!intro) return;
+    markIntroSeen(intro);
+    setSeenIntros((s) => new Set(s).add(intro));
+  }, [intro]);
 
   const finish = useCallback(async () => {
     const elapsed = Math.max(
@@ -398,7 +434,24 @@ function SessionRunner() {
     );
   }
 
+  /* A block this learner has never done says what it is before it starts. */
+  if (intro && INTRO[intro]) {
+    return (
+      <BlockIntro
+        title={block.title}
+        intro={INTRO[intro]}
+        index={i + 1}
+        total={blocks.length}
+        onStart={startBlock}
+      />
+    );
+  }
+
   const skip = block.skippable ? advance : undefined;
+  /* The one-line version stays for good. The card is shown once; this is what
+     is there on the day you come back after a fortnight and blank on what
+     „Lücken“ was. */
+  const line = INTRO[introKey(block.kind, block.payload)]?.line;
 
   // The review block owns its own full-height chrome (progress rail, keyboard
   // legend, minutes remaining) because its layout is the whole screen. Every
@@ -438,11 +491,18 @@ function SessionRunner() {
             {blocks.slice(i).reduce((n, b) => n + b.minutes, 0)} min übrig
           </span>
         </div>
-        <div className="font-mono text-muted text-center text-[12.5px]">
-          {block.title} · Block {i + 1} von {blocks.length}
-          {offline && " · offline"}
-          {pending > 0 &&
-            ` · ${plural(pending, "Antwort wartet", "Antworten warten")} auf Sync`}
+        <div className="flex flex-col items-center gap-1">
+          <div className="font-mono text-muted text-center text-[12.5px]">
+            {block.title} · Block {i + 1} von {blocks.length}
+            {offline && " · offline"}
+            {pending > 0 &&
+              ` · ${plural(pending, "Antwort wartet", "Antworten warten")} auf Sync`}
+          </div>
+          {line && (
+            <div className="text-muted/70 max-w-[560px] text-center text-[12.5px]">
+              {line}
+            </div>
+          )}
         </div>
       </div>
 

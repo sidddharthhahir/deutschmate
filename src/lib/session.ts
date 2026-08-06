@@ -446,7 +446,11 @@ export function buildSession(
   if (due.length) {
     blocks.push({
       kind: "review",
-      title: dayIndex % 3 === 1 ? "Nur Hören" : "Aufwärmen",
+      /* "Nur Hören" collided with the listening block, "Hören", which follows
+         it on exactly the days it appears — two adjacent blocks with almost
+         the same name doing different things. It is still the warm-up; the
+         bracket says how it is done today. */
+      title: dayIndex % 3 === 1 ? "Aufwärmen (Hören)" : "Aufwärmen",
       minutes: 12,
       offline: true,
       skippable: false,
@@ -710,7 +714,14 @@ export function buildSession(
     : undefined;
   const talkUnit = oldScenarioUnit ?? unit;
 
-  if (talkUnit?.scenario_json) {
+  /*
+   * Parse before deciding, not after. `scenario_json` holding the four
+   * characters "null" is truthy, so this pushed a Gespräch block for every unit
+   * that has no scenario — all forty of A1 — and the block then read .role off
+   * the parsed null and took the whole session down with it.
+   */
+  const scenario = safeJson<{ role?: string }>(talkUnit?.scenario_json);
+  if (scenario?.role) {
     blocks.push({
       kind: "conversation",
       title: oldScenarioUnit ? "Nochmal sprechen" : "Gespräch",
@@ -718,11 +729,9 @@ export function buildSession(
       offline: false, // falls back to the scripted dialogue below
       skippable: true,
       payload: {
-        scenario: JSON.parse(talkUnit.scenario_json),
-        dialogue: talkUnit.dialogue_json
-          ? JSON.parse(talkUnit.dialogue_json)
-          : null,
-        unitId: talkUnit.id,
+        scenario,
+        dialogue: safeJson(talkUnit!.dialogue_json),
+        unitId: talkUnit!.id,
         from: oldScenarioUnit
           ? `Unit ${oldScenarioUnit.ord} · ${oldScenarioUnit.title}`
           : null,
@@ -755,6 +764,22 @@ export function buildSession(
 }
 
 // ---------------------------------------------------------------- generators
+
+/**
+ * Parse a content column that may be absent, empty, the four characters "null",
+ * or — these files are hand-written — malformed. Anything that is not an object
+ * comes back as null, so callers can test the thing itself rather than testing
+ * whether some string was non-empty.
+ */
+function safeJson<T>(raw: string | null | undefined): T | null {
+  if (!raw) return null;
+  try {
+    const v: unknown = JSON.parse(raw);
+    return v && typeof v === "object" ? (v as T) : null;
+  } catch {
+    return null;
+  }
+}
 
 /**
  * Extra sentences from the corpus, at or below the learner's level AND inside

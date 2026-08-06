@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { markTourSeen } from "@/lib/tour";
+import { resetIntros } from "@/lib/block-intro";
 import { TAP, TAP_BLOCK } from "@/lib/ui";
 
 /** What this app is, for someone who has never seen it. IN ENGLISH, deliberately. */
@@ -256,7 +257,11 @@ export default function Tour({ firstRun }: { firstRun: boolean }) {
   // shouldn't mean being redirected here again tomorrow.
   useEffect(() => {
     markTourSeen();
-  }, []);
+    /* Coming back here on purpose is a request to be told how this works, so
+       the per-block doorways come back with it. Not on the first run: those
+       have never been shown, and clearing an empty list would be theatre. */
+    if (!firstRun) resetIntros();
+  }, [firstRun]);
 
   useEffect(() => {
     function onKey(e: KeyboardEvent) {

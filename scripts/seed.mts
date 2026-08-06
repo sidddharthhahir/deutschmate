@@ -394,6 +394,16 @@ for (const u of units) {
   });
 }
 
+/*
+ * A unit with no scenario stores SQL NULL, not the four characters "null".
+ *
+ * JSON.stringify(null) is the string "null", which is perfectly truthy, so
+ * session.ts pushed a Gespräch block for all forty A1 units and the block read
+ * `payload.scenario.role` off the parsed null. That is a white screen at block
+ * five or six — before the recap, which is the screen that saves the session.
+ */
+const orNull = (v: unknown) => (v == null ? null : JSON.stringify(v));
+
 db.exec("BEGIN");
 for (const u of units) {
   upU.run(
@@ -404,8 +414,8 @@ for (const u of units) {
     JSON.stringify(u.can_do),
     JSON.stringify(u.words),
     u.grammar_id,
-    JSON.stringify(u.scenario),
-    JSON.stringify(u.dialogue),
+    orNull(u.scenario),
+    orNull(u.dialogue),
     JSON.stringify(u.prereq),
   );
 }

@@ -8,6 +8,7 @@ import { send } from "@/lib/outbox";
 import Noun, { ArticleWord } from "@/components/Article";
 import type { BlockProps } from "./shared";
 import { UNDO_MS } from "@/lib/config";
+import { INTRO } from "@/lib/block-intro";
 /* Aliased: a card also has a `plural` field, and two different `plural`s in one
    file is a reading trap even where TypeScript can tell them apart. */
 import { plural as pluralise } from "@/lib/plural";
@@ -289,7 +290,7 @@ export default function ReviewBlock({ payload, onDone }: BlockProps<Payload>) {
           {payload.gap
             ? "Wiedereinstieg"
             : audioFirst
-              ? "Nur Hören"
+              ? "Aufwärmen (Hören)"
               : "Aufwärmen"}{" "}
           · Karte {done + 1} von {total}
           {payload.capped && ` · ${payload.backlog} fällig, Rest morgen`}
@@ -300,7 +301,14 @@ export default function ReviewBlock({ payload, onDone }: BlockProps<Payload>) {
             die wichtigsten {total} — der Rest kommt zurück, wenn du wieder drin
             bist.
           </p>
-        ) : null}
+        ) : (
+          /* This block owns its own chrome, so the standing one-liner that
+             every other block gets from the session header has to be repeated
+             here. Read from the same table, so the two cannot drift. */
+          <div className="text-muted/70 text-center text-[12.5px]">
+            {INTRO[audioFirst ? "review-audio" : "review"].line}
+          </div>
+        )}
       </div>
 
       {/* ------------------------------------------------------------ card */}

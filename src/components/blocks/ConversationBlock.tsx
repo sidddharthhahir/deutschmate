@@ -4,7 +4,14 @@ import { useEffect, useRef, useState } from "react";
 import { speak, listenOnce } from "@/lib/speech";
 import { useSpeechSupported } from "@/lib/hooks";
 import { GermanInput, UmlautBar } from "@/components/GermanInput";
-import { Card, Eyebrow, SkipLink, record, type BlockProps } from "./shared";
+import {
+  Card,
+  Eyebrow,
+  SkipLink,
+  SkipToNext,
+  record,
+  type BlockProps,
+} from "./shared";
 
 type Scenario = { role: string; goal: string; opener: string };
 type DialogueOption = { say: string; ok: boolean; why?: string; next: number };
@@ -53,10 +60,18 @@ export default function ConversationBlock({
   const micAvailable = useSpeechSupported();
 
   const dialogue = payload.dialogue ?? [];
+  /*
+   * A unit with no scenario must bow out, not crash. session.ts no longer sends
+   * one, but this block reads payload.scenario.role in two places and a null
+   * there took down the whole session runner — a white screen at block five,
+   * before the recap that saves the session. Spec §17: never a dead end.
+   */
+  const noScenario = !payload.scenario?.role;
 
   useEffect(() => {
     let cancelled = false;
     (async () => {
+      if (noScenario) return; // nothing to open a conversation about
       if (!navigator.onLine) {
         setMode("scripted");
         startScript();
@@ -98,6 +113,9 @@ export default function ConversationBlock({
   useEffect(() => {
     endRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [turns, scriptLog]);
+
+  /* Placed with the other hooks, so the early return below breaks no rule. */
+  if (noScenario) return <SkipToNext onDone={onDone} />;
 
   function startScript() {
     if (dialogue[0]) {

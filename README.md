@@ -170,18 +170,25 @@ a different one.
 
 | Slot | | |
 |---|---|---|
-| 1 | **Aufwärmen** *or* **Nur Hören** | due cards, capped at 60. Every third day the word is hidden until you answer. Absent if nothing is due — which is every day of your first week. |
+| 1 | **Aufwärmen** *or* **Aufwärmen (Hören)** | due cards, capped at 60. Every third day the word is played and hidden until you answer. Absent if nothing is due — which is every day of your first week. |
 | 2 | **Fix** · **Lücken** | your own recent mistakes. Absent when you have none. |
 | 2b | **Grammatik-Wdh.** | rules that are due back. On the FSRS curve, so it appears whether or not you got anything wrong. |
 | 3 | **Neue Wörter** *or* **Grammatik** | never both in a day — two novel loads halve retention of each. |
 | 4 | **Hören** · **Lesen** · **Wiederlesen** · **Video** | rotates. Every other reading day it is an *old* text. |
 | 5 | **Sätze bauen** | |
 | 6 | **Sprechen** *or* **Schreiben** | speaking two days in three. |
-| 7 | **Gespräch** *or* **Nochmal sprechen** | every third one is a scene you did weeks ago. |
+| 7 | **Gespräch** *or* **Nochmal sprechen** | every third one is a scene you did weeks ago. Absent for the whole of A1, which has no scenarios written yet. |
 | 8 | **Abschluss** | the closing quiz, then the recap. |
 
 A full day is eight or nine blocks and about ninety minutes; a quiet one is
 four. Nothing is padded to reach a number.
+
+**Each block says what it is.** The first time you ever meet a block, it opens
+with a card naming it, saying what you are about to do and which keys matter,
+and then never appears again. A one-line version stays in the header for good.
+The tour on `/willkommen` explains the whole app once, before the first
+session — which is the single moment none of it is needed yet. Coming back to
+the tour on purpose brings the per-block cards back with it.
 
 Three things that follow from this and are easy to miss:
 
