@@ -99,6 +99,33 @@ li {
   }
 }
 
+/*
+ * Naming a key that the device does not have.
+ *
+ * Every control in the session is a real button, so touch has always worked —
+ * but each one was labelled with its shortcut, and the tour opened with "Press
+ * Enter. That is the whole daily decision." On a phone that is the one sentence
+ * defining the product, naming a key that is not there.
+ *
+ * Done in CSS rather than with a hook wherever the difference is only a hint:
+ * no JavaScript, no hydration mismatch, and no frame where a phone shows the
+ * keyboard version before React notices. `.touch-hint` is the mirror, for the
+ * tap wording that should appear only on a phone.
+ */
+.touch-hint {
+  display: none;
+}
+@media (pointer: coarse) {
+  .kbd-hint {
+    display: none;
+  }
+  /* `revert`, not a fixed value: the same pair wraps a <span> inside a
+     sentence and a <div> holding a list, and each needs its own display. */
+  .touch-hint {
+    display: revert;
+  }
+}
+
 /* The grade row and the session footer sit at the very bottom of the screen,
    which on a notched phone is where the home indicator lives. */
 .safe-bottom {
@@ -165,8 +192,13 @@ li {
 /* Loading placeholders. A slow, low-contrast breath — "this is coming" without
    the strobing that a fast shimmer produces on a screen you stare at daily. */
 @keyframes dm-pulse {
-  0%, 100% { opacity: 0.5; }
-  50%      { opacity: 0.8; }
+  0%,
+  100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 0.8;
+  }
 }
 
 .dm-skeleton {
@@ -178,9 +210,16 @@ li {
 /* Wrong answers get a short horizontal nudge — the one place a bit of physical
    feedback is worth it, because it registers before you've read the text. */
 @keyframes dm-nudge {
-  0%, 100% { transform: translateX(0); }
-  25%      { transform: translateX(-4px); }
-  75%      { transform: translateX(4px); }
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-4px);
+  }
+  75% {
+    transform: translateX(4px);
+  }
 }
 
 .dm-rise {
@@ -199,11 +238,21 @@ li {
 .dm-stagger > * {
   animation: dm-rise 260ms cubic-bezier(0.22, 0.61, 0.36, 1) both;
 }
-.dm-stagger > *:nth-child(1) { animation-delay: 0ms; }
-.dm-stagger > *:nth-child(2) { animation-delay: 60ms; }
-.dm-stagger > *:nth-child(3) { animation-delay: 120ms; }
-.dm-stagger > *:nth-child(4) { animation-delay: 180ms; }
-.dm-stagger > *:nth-child(5) { animation-delay: 240ms; }
+.dm-stagger > *:nth-child(1) {
+  animation-delay: 0ms;
+}
+.dm-stagger > *:nth-child(2) {
+  animation-delay: 60ms;
+}
+.dm-stagger > *:nth-child(3) {
+  animation-delay: 120ms;
+}
+.dm-stagger > *:nth-child(4) {
+  animation-delay: 180ms;
+}
+.dm-stagger > *:nth-child(5) {
+  animation-delay: 240ms;
+}
 
 @media (prefers-reduced-motion: reduce) {
   *,

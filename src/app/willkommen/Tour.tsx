@@ -10,7 +10,10 @@ import { TAP, TAP_BLOCK } from "@/lib/ui";
 
 type Step = {
   eyebrow: string;
-  title: string;
+  /* A node, not a string: the reviewing step needs a different headline on a
+     phone, and swapping it in CSS beats branching on a hook that answers
+     "keyboard" for the first frame. */
+  title: React.ReactNode;
   body: React.ReactNode;
   aside?: React.ReactNode;
 };
@@ -58,7 +61,12 @@ const STEPS: Step[] = [
         <p className="font-mono text-muted text-[11px] tracking-[0.14em] uppercase">
           The entire interface
         </p>
-        <p className="font-serif mt-2 text-[26px]">Press Enter.</p>
+        {/* Two words that define the product, and on a phone one of them was a
+            key that is not there. */}
+        <p className="font-serif mt-2 text-[26px]">
+          <span className="kbd-hint">Press Enter.</span>
+          <span className="touch-hint">Tap the one button.</span>
+        </p>
         <p className="text-muted mt-2 text-[13px]">
           That is the whole daily decision.
         </p>
@@ -110,42 +118,81 @@ const STEPS: Step[] = [
   },
   {
     eyebrow: "Reviewing",
-    title: "Your hand never leaves the number row.",
+    title: (
+      <>
+        <span className="kbd-hint">Your hand never leaves the number row.</span>
+        <span className="touch-hint">Four buttons decide the schedule.</span>
+      </>
+    ),
     body: (
       <>
-        <p>
+        <p className="kbd-hint">
           You see a word. <span className="kbd">Space</span> reveals the
           meaning, then <span className="kbd">1</span>–
           <span className="kbd">4</span> says how well you knew it. Each button
           shows what it costs you: “Gut → 10 min”, “Einfach → 8 d”.
         </p>
+        <p className="touch-hint">
+          You see a word. Tap <strong className="text-fg">Aufdecken</strong> to
+          see the meaning, then one of four buttons for how well you knew it.
+          Each shows what it costs you: “Gut → 10 min”, “Einfach → 8 d”.
+        </p>
         <p>
           Be honest with the grades. The schedule is only as good as what you
           tell it, and nobody is watching.
         </p>
-        <p className="text-muted text-[14px]">
+        <p className="text-muted kbd-hint text-[14px]">
           Mis-hit a key? <span className="kbd">Z</span> undoes the last grade
           for five seconds.
+        </p>
+        <p className="text-muted touch-hint text-[14px]">
+          Fat-fingered it? <strong className="text-fg">Zurücknehmen</strong>{" "}
+          takes the last grade back, for five seconds.
         </p>
       </>
     ),
     aside: (
-      <div className="border-line-sub bg-raised space-y-2 rounded-xl border p-4">
-        {[
-          ["Space", "reveal the answer"],
-          ["1 2 3 4", "again · hard · good · easy"],
-          ["R", "hear it again"],
-          ["Z", "undo that grade"],
-          ["Alt + a o u s", "type ä ö ü ß"],
-          ["Cmd / Ctrl + K", "search everything"],
-          ["?", "this list, any time"],
-        ].map(([k, v]) => (
-          <div key={k} className="flex items-baseline justify-between gap-3">
-            <span className="kbd flex-none">{k}</span>
-            <span className="text-secondary text-right text-[12.5px]">{v}</span>
-          </div>
-        ))}
-      </div>
+      <>
+        <div className="border-line-sub bg-raised kbd-hint space-y-2 rounded-xl border p-4">
+          {[
+            ["Space", "reveal the answer"],
+            ["1 2 3 4", "again · hard · good · easy"],
+            ["R", "hear it again"],
+            ["Z", "undo that grade"],
+            ["Alt + a o u s", "type ä ö ü ß"],
+            ["Cmd / Ctrl + K", "search everything"],
+            ["?", "this list, any time"],
+          ].map(([k, v]) => (
+            <div key={k} className="flex items-baseline justify-between gap-3">
+              <span className="kbd flex-none">{k}</span>
+              <span className="text-secondary text-right text-[12.5px]">
+                {v}
+              </span>
+            </div>
+          ))}
+        </div>
+        {/* The same list, as things you touch. Every one of these is a real
+            button and always was — only the labels named keys. */}
+        <div className="border-line-sub bg-raised touch-hint space-y-2 rounded-xl border p-4">
+          {[
+            ["Aufdecken", "show the meaning"],
+            ["Nochmal · Schwer · Gut · Einfach", "how well you knew it"],
+            ["▶", "hear it again"],
+            ["Zurücknehmen", "undo that grade, for 5 s"],
+            ["ä ö ü ß", "the bar above the keyboard"],
+            ["Beenden", "stop, top left"],
+          ].map(([k, v]) => (
+            <div key={k} className="flex items-baseline justify-between gap-3">
+              <span className="font-serif text-fg flex-none text-[14px]">
+                {k}
+              </span>
+              <span className="text-secondary text-right text-[12.5px]">
+                {v}
+              </span>
+            </div>
+          ))}
+        </div>
+      </>
     ),
   },
   {

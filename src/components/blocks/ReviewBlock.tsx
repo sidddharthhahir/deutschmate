@@ -393,7 +393,7 @@ export default function ReviewBlock({ payload, onDone }: BlockProps<Payload>) {
             onClick={() => setRevealed(true)}
             className="border-line bg-raised text-fg flex w-full max-w-[760px] items-center justify-center gap-3.5 rounded-xl border py-5 text-[17px] font-medium transition-colors hover:bg-[#243330]"
           >
-            Aufdecken <span className="kbd">Leertaste</span>
+            Aufdecken <span className="kbd kbd-hint">Leertaste</span>
           </button>
         ) : (
           <div
@@ -462,7 +462,13 @@ export default function ReviewBlock({ payload, onDone }: BlockProps<Payload>) {
           >
             Z&nbsp;&nbsp;zurücknehmen{undo ? " (5 s)" : ""}
           </button>
-          <span>Esc&nbsp;&nbsp;beenden</span>
+          {/* A Link, not a span. It sat next to "Z zurücknehmen", which IS a
+              button, looked identical, and did nothing when clicked — a
+              plausible reading of "esc with mouse click is not working". The
+              whole row is hidden below md, so this is the desktop half. */}
+          <Link href="/" className="hover:text-fg transition-colors">
+            Esc&nbsp;&nbsp;beenden
+          </Link>
         </div>
       </div>
     </div>

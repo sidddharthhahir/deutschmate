@@ -3,6 +3,7 @@
 import { useEffect } from "react";
 import Link from "next/link";
 import { shouldIgnoreKey } from "@/lib/keys";
+import { useCoarsePointer } from "@/lib/hooks";
 import type { Intro } from "@/lib/block-intro";
 
 /**
@@ -27,6 +28,9 @@ export default function BlockIntro({
   total: number;
   onStart: () => void;
 }) {
+  const touch = useCoarsePointer();
+  const keys = (touch && intro.touchKeys) || intro.keys;
+
   /* Enter starts it, the same key that started the session. */
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -60,12 +64,22 @@ export default function BlockIntro({
           ))}
         </div>
 
-        {intro.keys && (
+        {/* The touch list where there is one and the pointer is a finger:
+            "Leertaste  show the answer" is not advice on a phone. Read from a
+            hook rather than CSS because the two lists differ in length, and
+            rendering both would leave a gap the width of the hidden one. */}
+        {keys && (
           <dl className="border-line-sub mt-6 flex flex-col gap-2 border-t pt-5">
-            {intro.keys.map(([k, what]) => (
+            {keys.map(([k, what]) => (
               <div key={k} className="flex items-baseline gap-3">
                 <dt className="w-[104px] flex-none">
-                  <span className="kbd text-fg">{k}</span>
+                  <span
+                    className={
+                      touch ? "font-serif text-fg text-[14px]" : "kbd text-fg"
+                    }
+                  >
+                    {k}
+                  </span>
                 </dt>
                 <dd className="font-mono text-muted text-[12px]">{what}</dd>
               </div>
@@ -78,7 +92,7 @@ export default function BlockIntro({
           className="bg-fg mt-7 w-full rounded-xl py-4 font-medium text-[#16211E] transition-colors hover:bg-white"
         >
           Los geht&rsquo;s
-          <span className="kbd ml-2.5 text-[#43574F]">Enter</span>
+          <span className="kbd kbd-hint ml-2.5 text-[#43574F]">Enter</span>
         </button>
 
         {/* Only ever shown once, so the way out has to be on the card itself
@@ -87,7 +101,7 @@ export default function BlockIntro({
           href="/"
           className="font-mono text-muted hover:text-secondary mt-4 block w-full text-center text-[11.5px] transition-colors"
         >
-          Esc&nbsp;&nbsp;Beenden
+          <span className="kbd-hint">Esc&nbsp;&nbsp;</span>Beenden
         </Link>
       </div>
     </main>

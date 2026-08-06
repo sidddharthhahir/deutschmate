@@ -46,6 +46,39 @@ for (const [key, intro] of Object.entries(INTRO)) {
   );
 }
 
+section("nothing tells a phone to press a key it does not have");
+/*
+ * Every control in the session is a real button, so touch always worked — but
+ * the labels named shortcuts, and the tour opened with "Press Enter", which on
+ * a phone is the one sentence defining the product naming a key that is not
+ * there. Inline hints are swapped in CSS (`.kbd-hint` / `.touch-hint`); these
+ * strings are the ones no stylesheet can reach.
+ */
+const KEYBOARD =
+  /\b(Leertaste|Enter|Esc|Alt ?\+|Cmd|Ctrl|number row|1 ?[–-] ?4|1 2 3 4|keypress|press [A-Z]\b)/;
+for (const [key, intro] of Object.entries(INTRO)) {
+  const prose = [intro.line, ...intro.body].join(" ");
+  ok(
+    !KEYBOARD.test(prose),
+    `${key}: the line and body name no key`,
+    KEYBOARD.exec(prose)?.[0] ?? "",
+  );
+  /* The legend may name keys — that is its job — but only if there is a touch
+     list beside it saying what to tap instead. */
+  if (intro.keys)
+    ok(
+      Array.isArray(intro.touchKeys) && intro.touchKeys.length > 0,
+      `${key}: its key legend has a touch counterpart`,
+      `${intro.keys.length} keys, ${intro.touchKeys?.length ?? 0} taps`,
+    );
+  for (const [label] of intro.touchKeys ?? [])
+    ok(
+      !KEYBOARD.test(label),
+      `${key}: the touch legend names a control, not a key`,
+      label,
+    );
+}
+
 section("the audio review day gets its own words");
 /* The same intro for both would promise "you see a word" on the screen whose
    whole point is that the word is hidden. */

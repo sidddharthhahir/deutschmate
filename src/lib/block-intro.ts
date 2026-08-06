@@ -24,6 +24,12 @@ export type Intro = {
   body: string[];
   /** Keys worth knowing here, as [key, what it does]. */
   keys?: [string, string][];
+  /**
+   * The same list for a finger. Shown instead of `keys` on a coarse pointer,
+   * because a phone has no Leertaste and telling somebody to press one is
+   * worse than saying nothing. Every control named here is a real button.
+   */
+  touchKeys?: [string, string][];
 };
 
 /*
@@ -36,7 +42,10 @@ export const INTRO: Record<string, Intro> = {
     line: "Cards that are due back today",
     body: [
       "Words and rules you have met before, returning on the schedule that decides when you were about to forget them.",
-      "You see the German. Space shows the meaning, then 1–4 says how well you actually knew it. Grade honestly — the schedule is built out of what you tell it, and nobody else ever sees these numbers.",
+      /* Device-neutral on purpose. The legend below carries the key or the
+         button; saying "Space" up here would be wrong on a phone, and keeping
+         two copies of the same paragraph in step is a losing game. */
+      "You see the German, reveal the meaning, then say how well you actually knew it — four grades, from no idea to instant. Grade honestly: the schedule is built out of what you tell it, and nobody else ever sees these numbers.",
     ],
     keys: [
       ["Leertaste", "show the answer"],
@@ -44,17 +53,28 @@ export const INTRO: Record<string, Intro> = {
       ["R", "hear it again"],
       ["Z", "undo that grade, for five seconds"],
     ],
+    touchKeys: [
+      ["Aufdecken", "show the answer"],
+      ["Four buttons", "again · hard · good · easy"],
+      ["▶", "hear it again"],
+      ["Zurücknehmen", "undo that grade, for five seconds"],
+    ],
   },
   "review-audio": {
     line: "The same due cards, heard before they are seen",
     body: [
       "The same cards as Aufwärmen, but the word is played first and stays hidden. Catch it by ear if you can — recognising German spoken at speed is the part that a written deck never trains.",
-      "No sound, or you would rather just read it? „Wort zeigen“ shows the word. It costs you nothing: you still give your own 1–4.",
+      "No sound, or you would rather just read it? „Wort zeigen“ shows the word. It costs you nothing — the grade is still yours to give.",
     ],
     keys: [
       ["R", "play it again"],
       ["Leertaste", "show the word"],
       ["1 – 4", "again · hard · good · easy"],
+    ],
+    touchKeys: [
+      ["▶", "play it again"],
+      ["Aufdecken", "show the word"],
+      ["Four buttons", "again · hard · good · easy"],
     ],
   },
   fix: {
@@ -75,7 +95,7 @@ export const INTRO: Record<string, Intro> = {
     line: "Rules coming back on the same curve as words",
     body: [
       "A grammar point you have already been taught, due back. Rules are forgotten the same way vocabulary is, so they are scheduled the same way.",
-      "Same grading as Aufwärmen: 1–4 for how well you knew it.",
+      "Graded the same way as Aufwärmen — four grades, from no idea to instant.",
     ],
   },
   "new-vocab": {
@@ -97,11 +117,15 @@ export const INTRO: Record<string, Intro> = {
     line: "Hear a sentence, type what you heard",
     body: [
       "Listen and write it down. You can replay as often as you like; nothing is counted until you answer.",
-      "For umlauts, hold Alt and press a, o, u or s.",
+      "The umlauts are one tap or one shortcut away — whichever your device has, it is below.",
     ],
     keys: [
       ["R", "play it again"],
       ["Alt + a o u s", "ä ö ü ß"],
+    ],
+    touchKeys: [
+      ["▶", "play it again"],
+      ["ä ö ü ß", "the bar above the keyboard"],
     ],
   },
   reading: {

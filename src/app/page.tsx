@@ -349,7 +349,11 @@ export default function Home() {
                           </span>
                         </Link>
 
-                        <div className="font-mono text-muted flex items-center gap-2.5 pt-1 text-[12px]">
+                        {/* Nothing in its place on a phone: the button above
+                            is the largest thing on the screen and obviously
+                            tappable, so the honest touch version of this line
+                            is no line. */}
+                        <div className="font-mono text-muted kbd-hint items-center gap-2.5 pt-1 text-[12px] md:flex">
                           <span className="kbd text-fg">Enter</span> startet die
                           Sitzung
                         </div>

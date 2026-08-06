@@ -472,7 +472,7 @@ function SessionRunner() {
             href="/"
             className="font-mono text-muted hover:text-secondary w-[100px] text-[12.5px] transition-colors md:w-[160px]"
           >
-            Esc&nbsp;&nbsp;Beenden
+            <span className="kbd-hint">Esc&nbsp;&nbsp;</span>Beenden
           </Link>
           {/* Rail: filled = done, current shows position, rest empty.
               No block is clickable — it reports, it isn't a menu. */}

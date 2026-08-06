@@ -95,6 +95,18 @@ Serves on your LAN or tailnet. Open the address it prints; add to home screen an
 it installs as an app. `next.config.ts` already allows private address ranges,
 which is what stops hot reload dying silently from another device.
 
+**It says different words on a phone.** Every control in the session has always
+been a real button, but each was labelled with its shortcut and the tour opened
+with *"Press Enter. That is the whole daily decision"* — the one sentence
+defining the product, naming a key that is not there. On a coarse pointer the
+tour says *"Tap the one button"*, the reviewing page swaps its keyboard legend
+for **Aufdecken · Nochmal · Schwer · Gut · Einfach · Zurücknehmen**, and the
+`Esc`, `Enter` and `Leertaste` chips disappear. Inline hints switch in CSS
+(`.kbd-hint` / `.touch-hint` in `globals.css`) so there is no frame where a
+phone shows the keyboard version; only the two places that need genuinely
+different copy use `useCoarsePointer()`. `tests/blocks.test.mts` fails if any
+doorway card names a key in its prose.
+
 ---
 
 ## The principles
