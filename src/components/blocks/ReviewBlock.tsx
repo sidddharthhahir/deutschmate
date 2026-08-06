@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { playAudio } from "@/lib/speech";
 import { shouldIgnoreKey } from "@/lib/keys";
@@ -187,9 +188,15 @@ export default function ReviewBlock({ payload, onDone }: BlockProps<Payload>) {
       <main className="bg-bg flex min-h-screen flex-col">
         <div className="flex flex-none flex-col gap-3.5 px-6 pt-6 md:px-10">
           <div className="flex items-center gap-4 md:gap-8">
-            <span className="font-mono text-muted hidden w-[160px] text-[12.5px] md:block">
+            {/* A link, not a span. This block replaces the session chrome, where
+                "Esc Beenden" IS clickable — so it looked identical and silently
+                did nothing on the one screen you spend the most time on. */}
+            <Link
+              href="/"
+              className="font-mono text-muted hover:text-secondary hidden w-[160px] text-[12.5px] transition-colors md:block"
+            >
               Esc&nbsp;&nbsp;Beenden
-            </span>
+            </Link>
             <div className="flex flex-1 gap-1">
               <span className="bg-line h-1 flex-1 overflow-hidden rounded-[2px]">
                 <span className="bg-fg block h-1" style={{ width: "100%" }} />
@@ -251,9 +258,12 @@ export default function ReviewBlock({ payload, onDone }: BlockProps<Payload>) {
       {/* ------------------------------------------------------------ head */}
       <div className="flex flex-none flex-col gap-3.5 px-6 pt-6 md:px-10">
         <div className="flex items-center gap-4 md:gap-8">
-          <span className="font-mono text-muted hidden w-[160px] text-[12.5px] md:block">
+          <Link
+            href="/"
+            className="font-mono text-muted hover:text-secondary hidden w-[160px] text-[12.5px] transition-colors md:block"
+          >
             Esc&nbsp;&nbsp;Beenden
-          </span>
+          </Link>
           <div className="flex flex-1 gap-1">
             <span className="bg-line h-1 flex-1 overflow-hidden rounded-[2px]">
               <span
