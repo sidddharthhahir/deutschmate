@@ -29,7 +29,8 @@
     "config": "node scripts/config.mts",
     "videos": "node scripts/videos.mts",
     "export-content": "node scripts/export-content.mts",
-    "passwd": "node scripts/passwd.mts"
+    "passwd": "node scripts/passwd.mts",
+    "build-a1": "node scripts/build-a1.mts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.115.0",

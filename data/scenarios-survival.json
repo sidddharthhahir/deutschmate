@@ -610,11 +610,7 @@
     "ord": 5,
     "title": "Vertrag kündigen",
     "why": "Gym, phone, insurance — German contracts renew themselves unless you cancel in writing and on time.",
-    "bring": [
-      "Kundennummer",
-      "Kündigungsfrist",
-      "Schriftform"
-    ],
+    "bring": ["Kundennummer", "Kündigungsfrist", "Schriftform"],
     "scenario": {
       "role": "a call-centre agent who would much rather you stayed and keeps offering alternatives",
       "goal": "Cancel, get it confirmed in writing, and not be talked into an upgrade",
@@ -761,11 +757,7 @@
     "ord": 6,
     "title": "Im Prüfungsamt",
     "why": "Deadlines, registrations and Attests are all handled by one office that assumes you know the rules.",
-    "bring": [
-      "Matrikelnummer",
-      "Modulnummer",
-      "Attest bei Krankheit"
-    ],
+    "bring": ["Matrikelnummer", "Modulnummer", "Attest bei Krankheit"],
     "scenario": {
       "role": "a Prüfungsamt clerk, precise about deadlines and forms",
       "goal": "Sort out an exam registration problem and get a clear answer about the deadline",

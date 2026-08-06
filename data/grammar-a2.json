@@ -8,16 +8,52 @@
     "explain_md": "In spoken German the past is **almost always Perfekt**, not Präteritum. Two pieces: a helper verb in position 2, and a participle at the very end.\n\n```\nIch  habe   gestern  gearbeitet.\nIch  bin    nach Hause  gegangen.\n     └─ 2 ─┘             └─ end ─┘\n```\n\n**Which helper?**\n- **sein** for movement or a change of state: *gehen, kommen, fahren, fliegen, aufstehen, bleiben, sein, werden*\n- **haben** for everything else — roughly 80% of verbs\n\n**Building the participle:**\n\n| type | pattern | example |\n|---|---|---|\n| regular | **ge**-stem-**t** | machen → **ge**mach**t** |\n| irregular | **ge**-stem-**en** | gehen → **ge**gang**en** |\n| starts with be-, ver-, er-, ent- | **no ge-** | besuchen → besucht |\n| ends in -ieren | **no ge-** | studieren → studiert |\n\nThe irregular ones have to be memorised. There are about 60 that matter.",
     "examples": [
       { "de": "Ich habe gestern gearbeitet.", "en": "I worked yesterday." },
-      { "de": "Wir sind nach Berlin gefahren.", "en": "We travelled to Berlin." },
+      {
+        "de": "Wir sind nach Berlin gefahren.",
+        "en": "We travelled to Berlin."
+      },
       { "de": "Sie hat das Buch gelesen.", "en": "She read the book." }
     ],
     "drills": [
-      { "q": "Ich ___ einen Film gesehen.", "options": ["habe", "bin"], "a": 0, "why": "sehen is not movement → haben." },
-      { "q": "Er ___ nach Hause gegangen.", "options": ["hat", "ist"], "a": 1, "why": "gehen is movement → sein." },
-      { "q": "Participle of 'machen'?", "options": ["gemacht", "gemachen", "macht"], "a": 0, "why": "Regular: ge + mach + t." },
-      { "q": "Participle of 'besuchen'?", "options": ["gebesucht", "besucht"], "a": 1, "why": "be- prefix means no ge-." },
-      { "q": "Participle of 'studieren'?", "options": ["gestudiert", "studiert"], "a": 1, "why": "-ieren verbs take no ge-." },
-      { "q": "Correct order?", "options": ["Ich habe gearbeitet gestern.", "Ich habe gestern gearbeitet."], "a": 1, "why": "The participle goes last, always." }
+      {
+        "q": "Ich ___ einen Film gesehen.",
+        "options": ["habe", "bin"],
+        "a": 0,
+        "why": "sehen is not movement → haben."
+      },
+      {
+        "q": "Er ___ nach Hause gegangen.",
+        "options": ["hat", "ist"],
+        "a": 1,
+        "why": "gehen is movement → sein."
+      },
+      {
+        "q": "Participle of 'machen'?",
+        "options": ["gemacht", "gemachen", "macht"],
+        "a": 0,
+        "why": "Regular: ge + mach + t."
+      },
+      {
+        "q": "Participle of 'besuchen'?",
+        "options": ["gebesucht", "besucht"],
+        "a": 1,
+        "why": "be- prefix means no ge-."
+      },
+      {
+        "q": "Participle of 'studieren'?",
+        "options": ["gestudiert", "studiert"],
+        "a": 1,
+        "why": "-ieren verbs take no ge-."
+      },
+      {
+        "q": "Correct order?",
+        "options": [
+          "Ich habe gearbeitet gestern.",
+          "Ich habe gestern gearbeitet."
+        ],
+        "a": 1,
+        "why": "The participle goes last, always."
+      }
     ],
     "prereq": ["g-praesens", "g-wordorder"]
   },
@@ -31,14 +67,42 @@
     "examples": [
       { "de": "Ich gebe dem Kind ein Buch.", "en": "I give the child a book." },
       { "de": "Kannst du mir helfen?", "en": "Can you help me?" },
-      { "de": "Das Auto gehört meinem Bruder.", "en": "The car belongs to my brother." }
+      {
+        "de": "Das Auto gehört meinem Bruder.",
+        "en": "The car belongs to my brother."
+      }
     ],
     "drills": [
-      { "q": "Ich helfe ___ Mann.", "options": ["der", "den", "dem"], "a": 2, "why": "helfen takes dative; masculine dative = dem." },
-      { "q": "Das gefällt ___.", "options": ["mich", "mir"], "a": 1, "why": "gefallen takes dative → mir." },
-      { "q": "Ich gebe ___ Frau das Buch.", "options": ["die", "der", "den"], "a": 1, "why": "Feminine dative = der." },
-      { "q": "Er dankt ___ Kindern.", "options": ["die", "der", "den"], "a": 2, "why": "Plural dative = den, and the noun adds -n." },
-      { "q": "Which needs dative?", "options": ["sehen", "kaufen", "helfen"], "a": 2, "why": "helfen is one of the six dative verbs." }
+      {
+        "q": "Ich helfe ___ Mann.",
+        "options": ["der", "den", "dem"],
+        "a": 2,
+        "why": "helfen takes dative; masculine dative = dem."
+      },
+      {
+        "q": "Das gefällt ___.",
+        "options": ["mich", "mir"],
+        "a": 1,
+        "why": "gefallen takes dative → mir."
+      },
+      {
+        "q": "Ich gebe ___ Frau das Buch.",
+        "options": ["die", "der", "den"],
+        "a": 1,
+        "why": "Feminine dative = der."
+      },
+      {
+        "q": "Er dankt ___ Kindern.",
+        "options": ["die", "der", "den"],
+        "a": 2,
+        "why": "Plural dative = den, and the noun adds -n."
+      },
+      {
+        "q": "Which needs dative?",
+        "options": ["sehen", "kaufen", "helfen"],
+        "a": 2,
+        "why": "helfen is one of the six dative verbs."
+      }
     ],
     "prereq": ["g-akkusativ"]
   },
@@ -52,14 +116,42 @@
     "examples": [
       { "de": "Ich gehe in den Park.", "en": "I'm going into the park." },
       { "de": "Ich bin im Park.", "en": "I'm in the park." },
-      { "de": "Stell die Flasche auf den Tisch.", "en": "Put the bottle on the table." }
+      {
+        "de": "Stell die Flasche auf den Tisch.",
+        "en": "Put the bottle on the table."
+      }
     ],
     "drills": [
-      { "q": "Ich gehe in ___ Schule.", "options": ["die", "der"], "a": 0, "why": "Movement (wohin?) → accusative → die." },
-      { "q": "Ich bin in ___ Schule.", "options": ["die", "der"], "a": 1, "why": "Location (wo?) → dative → der." },
-      { "q": "Das Bild hängt an ___ Wand.", "options": ["die", "der"], "a": 1, "why": "hängen (be hanging) = location → dative." },
-      { "q": "Er legt das Buch auf ___ Tisch.", "options": ["den", "dem"], "a": 0, "why": "legen = putting = movement → accusative." },
-      { "q": "Wir warten vor ___ Kino.", "options": ["das", "dem"], "a": 1, "why": "warten is not movement → dative." }
+      {
+        "q": "Ich gehe in ___ Schule.",
+        "options": ["die", "der"],
+        "a": 0,
+        "why": "Movement (wohin?) → accusative → die."
+      },
+      {
+        "q": "Ich bin in ___ Schule.",
+        "options": ["die", "der"],
+        "a": 1,
+        "why": "Location (wo?) → dative → der."
+      },
+      {
+        "q": "Das Bild hängt an ___ Wand.",
+        "options": ["die", "der"],
+        "a": 1,
+        "why": "hängen (be hanging) = location → dative."
+      },
+      {
+        "q": "Er legt das Buch auf ___ Tisch.",
+        "options": ["den", "dem"],
+        "a": 0,
+        "why": "legen = putting = movement → accusative."
+      },
+      {
+        "q": "Wir warten vor ___ Kino.",
+        "options": ["das", "dem"],
+        "a": 1,
+        "why": "warten is not movement → dative."
+      }
     ],
     "prereq": ["g-dativ"]
   },
@@ -71,16 +163,44 @@
     "ord": 16,
     "explain_md": "Add **-er** to compare, **am …-sten** for the best.\n\n```\nklein  →  kleiner  →  am kleinsten\nschnell → schneller → am schnellsten\n```\n\nShort adjectives usually add an **umlaut**:\n\n```\nalt  → älter  → am ältesten\ngroß → größer → am größten\njung → jünger → am jüngsten\n```\n\n**Three irregulars, very common:**\n\n| | | |\n|---|---|---|\n| gut | besser | am besten |\n| viel | mehr | am meisten |\n| gern | lieber | am liebsten |\n\n**als** vs **wie** — the mistake everyone makes:\n```\ngrößer  ALS  ich   (different — comparison)\nso groß WIE  ich   (the same — equality)\n```",
     "examples": [
-      { "de": "Berlin ist größer als Köln.", "en": "Berlin is bigger than Cologne." },
+      {
+        "de": "Berlin ist größer als Köln.",
+        "en": "Berlin is bigger than Cologne."
+      },
       { "de": "Ich trinke lieber Tee.", "en": "I prefer to drink tea." },
       { "de": "Das ist am besten.", "en": "That's the best." }
     ],
     "drills": [
-      { "q": "Mein Bruder ist ___ als ich.", "options": ["alt", "älter", "am ältesten"], "a": 1, "why": "Comparing two → comparative, with umlaut." },
-      { "q": "Sie ist so groß ___ ich.", "options": ["als", "wie"], "a": 1, "why": "Equality → wie." },
-      { "q": "Berlin ist größer ___ Köln.", "options": ["als", "wie"], "a": 0, "why": "Difference → als." },
-      { "q": "Comparative of 'gut'?", "options": ["guter", "besser", "gutter"], "a": 1, "why": "Irregular: gut → besser." },
-      { "q": "Ich trinke ___ Kaffee als Tee.", "options": ["gern", "lieber"], "a": 1, "why": "gern → lieber when comparing." }
+      {
+        "q": "Mein Bruder ist ___ als ich.",
+        "options": ["alt", "älter", "am ältesten"],
+        "a": 1,
+        "why": "Comparing two → comparative, with umlaut."
+      },
+      {
+        "q": "Sie ist so groß ___ ich.",
+        "options": ["als", "wie"],
+        "a": 1,
+        "why": "Equality → wie."
+      },
+      {
+        "q": "Berlin ist größer ___ Köln.",
+        "options": ["als", "wie"],
+        "a": 0,
+        "why": "Difference → als."
+      },
+      {
+        "q": "Comparative of 'gut'?",
+        "options": ["guter", "besser", "gutter"],
+        "a": 1,
+        "why": "Irregular: gut → besser."
+      },
+      {
+        "q": "Ich trinke ___ Kaffee als Tee.",
+        "options": ["gern", "lieber"],
+        "a": 1,
+        "why": "gern → lieber when comparing."
+      }
     ],
     "prereq": ["g-articles-nom"]
   },
@@ -92,16 +212,50 @@
     "ord": 17,
     "explain_md": "After certain connectors, **the verb moves to the very end**. This is the second big word-order rule in German.\n\n```\nIch bleibe zu Hause,  weil ich müde  bin.\n                                     └─ end ─┘\nIch weiß,  dass er morgen  kommt.\n```\n\n**Connectors that send the verb to the end:**\n**weil · dass · wenn · ob · obwohl · damit · bevor · nachdem · während · als**\n\n**Careful — these do NOT:** *und, oder, aber, denn, sondern*. After those, normal word order.\n\n```\nIch bleibe zu Hause, denn ich bin müde.   ← denn: normal\nIch bleibe zu Hause, weil ich müde bin.   ← weil: verb last\n```\n\nSame meaning, different grammar. *denn* is the easy way out when you're not sure.\n\nIf the subordinate clause comes **first**, the whole clause is slot 1, so the main verb still comes second:\n```\nWeil ich müde bin,  bleibe  ich zu Hause.\n```",
     "examples": [
-      { "de": "Ich lerne Deutsch, weil ich in Berlin wohne.", "en": "I'm learning German because I live in Berlin." },
-      { "de": "Ich weiß nicht, ob er kommt.", "en": "I don't know whether he's coming." },
-      { "de": "Wenn ich Zeit habe, lese ich.", "en": "When I have time, I read." }
+      {
+        "de": "Ich lerne Deutsch, weil ich in Berlin wohne.",
+        "en": "I'm learning German because I live in Berlin."
+      },
+      {
+        "de": "Ich weiß nicht, ob er kommt.",
+        "en": "I don't know whether he's coming."
+      },
+      {
+        "de": "Wenn ich Zeit habe, lese ich.",
+        "en": "When I have time, I read."
+      }
     ],
     "drills": [
-      { "q": "Ich komme nicht, weil ich krank ___.", "options": ["bin", "ist"], "a": 0, "why": "ich → bin, and it goes to the end." },
-      { "q": "Correct?", "options": ["Ich glaube, dass er kommt.", "Ich glaube, dass kommt er."], "a": 0, "why": "After dass the verb goes last." },
-      { "q": "Which does NOT send the verb to the end?", "options": ["weil", "denn", "obwohl"], "a": 1, "why": "denn keeps normal order." },
-      { "q": "Weil ich müde bin, ___ ich zu Hause.", "options": ["bleibe", "ich bleibe"], "a": 0, "why": "The clause is slot 1, so the verb is slot 2." },
-      { "q": "Ich frage, ___ er Zeit hat.", "options": ["dass", "ob", "weil"], "a": 1, "why": "ob = whether, for yes/no uncertainty." }
+      {
+        "q": "Ich komme nicht, weil ich krank ___.",
+        "options": ["bin", "ist"],
+        "a": 0,
+        "why": "ich → bin, and it goes to the end."
+      },
+      {
+        "q": "Correct?",
+        "options": ["Ich glaube, dass er kommt.", "Ich glaube, dass kommt er."],
+        "a": 0,
+        "why": "After dass the verb goes last."
+      },
+      {
+        "q": "Which does NOT send the verb to the end?",
+        "options": ["weil", "denn", "obwohl"],
+        "a": 1,
+        "why": "denn keeps normal order."
+      },
+      {
+        "q": "Weil ich müde bin, ___ ich zu Hause.",
+        "options": ["bleibe", "ich bleibe"],
+        "a": 0,
+        "why": "The clause is slot 1, so the verb is slot 2."
+      },
+      {
+        "q": "Ich frage, ___ er Zeit hat.",
+        "options": ["dass", "ob", "weil"],
+        "a": 1,
+        "why": "ob = whether, for yes/no uncertainty."
+      }
     ],
     "prereq": ["g-wordorder", "g-modalverben"]
   },
@@ -113,15 +267,38 @@
     "ord": 18,
     "explain_md": "Some German verbs need a **reflexive pronoun** where English uses none. *Ich freue mich* = \"I'm happy\", not \"I please myself\".\n\n```\nich   freue   mich\ndu    freust  dich\ner    freut   sich\nwir   freuen  uns\nihr   freut   euch\nsie   freuen  sich\n```\n\nOnly **mich/dich** change; from *er* onwards it's **sich** everywhere except *uns* and *euch*.\n\n**Common ones:**\n\n| | |\n|---|---|\n| sich freuen | to be happy |\n| sich interessieren für | to be interested in |\n| sich erinnern an | to remember |\n| sich treffen | to meet |\n| sich setzen | to sit down |\n| sich fühlen | to feel |\n| sich beeilen | to hurry |\n| sich vorstellen | to introduce oneself |\n\nThe pronoun sits right after the verb in a normal sentence, and after the subject if something else is fronted:\n```\nIch freue mich.\nHeute freue ich mich.\n```",
     "examples": [
-      { "de": "Ich freue mich auf das Wochenende.", "en": "I'm looking forward to the weekend." },
+      {
+        "de": "Ich freue mich auf das Wochenende.",
+        "en": "I'm looking forward to the weekend."
+      },
       { "de": "Wir treffen uns um acht.", "en": "We're meeting at eight." },
       { "de": "Beeil dich!", "en": "Hurry up!" }
     ],
     "drills": [
-      { "q": "Ich interessiere ___ für Musik.", "options": ["mich", "dich", "sich"], "a": 0, "why": "ich → mich." },
-      { "q": "Er fühlt ___ nicht gut.", "options": ["mich", "sich", "ihn"], "a": 1, "why": "er → sich." },
-      { "q": "Wir treffen ___ morgen.", "options": ["sich", "uns", "euch"], "a": 1, "why": "wir → uns." },
-      { "q": "___ du dich an mich?", "options": ["Erinnerst", "Erinnere"], "a": 0, "why": "du → erinnerst." }
+      {
+        "q": "Ich interessiere ___ für Musik.",
+        "options": ["mich", "dich", "sich"],
+        "a": 0,
+        "why": "ich → mich."
+      },
+      {
+        "q": "Er fühlt ___ nicht gut.",
+        "options": ["mich", "sich", "ihn"],
+        "a": 1,
+        "why": "er → sich."
+      },
+      {
+        "q": "Wir treffen ___ morgen.",
+        "options": ["sich", "uns", "euch"],
+        "a": 1,
+        "why": "wir → uns."
+      },
+      {
+        "q": "___ du dich an mich?",
+        "options": ["Erinnerst", "Erinnere"],
+        "a": 0,
+        "why": "du → erinnerst."
+      }
     ],
     "prereq": ["g-praesens"]
   },
@@ -134,15 +311,43 @@
     "explain_md": "An adjective **before a noun** takes an ending. After the verb it takes none.\n\n```\nDas Haus ist  groß.        ← no ending\ndas große Haus              ← ending\n```\n\nThe practical shortcut: **the article and the adjective share the work.** If the article already shows the gender clearly, the adjective just takes **-e** or **-en**.\n\n**After der/die/das (article does the work):**\n\n| | nom | acc |\n|---|---|---|\n| masc | der gut**e** | den gut**en** |\n| fem | die gut**e** | die gut**e** |\n| neut | das gut**e** | das gut**e** |\n| plural | die gut**en** | die gut**en** |\n\nSo: **-e** in the singular, **-en** for masculine accusative and all plurals.\n\n**After ein/kein/mein (article is vaguer, adjective works harder):**\n\n```\nein gut er  Mann    ← -er shows masculine\nein gut es  Kind    ← -es shows neuter\neine gut e  Frau\n```\n\nDon't try to memorise the full table at once. Learn the *der/die/das* row first — it covers most of what you say.",
     "examples": [
       { "de": "Das ist ein guter Film.", "en": "That's a good film." },
-      { "de": "Ich kaufe den roten Pullover.", "en": "I'm buying the red jumper." },
+      {
+        "de": "Ich kaufe den roten Pullover.",
+        "en": "I'm buying the red jumper."
+      },
       { "de": "Die kleine Wohnung ist schön.", "en": "The small flat is nice." }
     ],
     "drills": [
-      { "q": "der ___ Mann", "options": ["gute", "guten", "guter"], "a": 0, "why": "Masculine nominative after der → -e." },
-      { "q": "Ich sehe den ___ Mann.", "options": ["gute", "guten"], "a": 1, "why": "Masculine accusative → -en." },
-      { "q": "ein ___ Kind", "options": ["gute", "gutes", "guten"], "a": 1, "why": "After ein, neuter needs -es." },
-      { "q": "die ___ Kinder", "options": ["gute", "guten"], "a": 1, "why": "Plural after die → -en." },
-      { "q": "Das Haus ist ___.", "options": ["groß", "große", "großes"], "a": 0, "why": "After the verb, no ending." }
+      {
+        "q": "der ___ Mann",
+        "options": ["gute", "guten", "guter"],
+        "a": 0,
+        "why": "Masculine nominative after der → -e."
+      },
+      {
+        "q": "Ich sehe den ___ Mann.",
+        "options": ["gute", "guten"],
+        "a": 1,
+        "why": "Masculine accusative → -en."
+      },
+      {
+        "q": "ein ___ Kind",
+        "options": ["gute", "gutes", "guten"],
+        "a": 1,
+        "why": "After ein, neuter needs -es."
+      },
+      {
+        "q": "die ___ Kinder",
+        "options": ["gute", "guten"],
+        "a": 1,
+        "why": "Plural after die → -en."
+      },
+      {
+        "q": "Das Haus ist ___.",
+        "options": ["groß", "große", "großes"],
+        "a": 0,
+        "why": "After the verb, no ending."
+      }
     ],
     "prereq": ["g-akkusativ", "g-dativ"]
   },
@@ -159,10 +364,30 @@
       { "de": "Er konnte nicht kommen.", "en": "He couldn't come." }
     ],
     "drills": [
-      { "q": "Ich ___ gestern krank.", "options": ["war", "bin", "gewesen"], "a": 0, "why": "sein prefers Präteritum: war." },
-      { "q": "Wir ___ keine Zeit.", "options": ["haben gehabt", "hatten"], "a": 1, "why": "haben prefers hatten." },
-      { "q": "Präteritum of 'können' (ich)?", "options": ["konnte", "könnte", "gekonnt"], "a": 0, "why": "ich konnte." },
-      { "q": "Präteritum of 'machen' (ich)?", "options": ["machte", "gemacht", "machen"], "a": 0, "why": "Regular: mach + te." }
+      {
+        "q": "Ich ___ gestern krank.",
+        "options": ["war", "bin", "gewesen"],
+        "a": 0,
+        "why": "sein prefers Präteritum: war."
+      },
+      {
+        "q": "Wir ___ keine Zeit.",
+        "options": ["haben gehabt", "hatten"],
+        "a": 1,
+        "why": "haben prefers hatten."
+      },
+      {
+        "q": "Präteritum of 'können' (ich)?",
+        "options": ["konnte", "könnte", "gekonnt"],
+        "a": 0,
+        "why": "ich konnte."
+      },
+      {
+        "q": "Präteritum of 'machen' (ich)?",
+        "options": ["machte", "gemacht", "machen"],
+        "a": 0,
+        "why": "Regular: mach + te."
+      }
     ],
     "prereq": ["g-perfekt"]
   },
@@ -179,10 +404,30 @@
       { "de": "Seid vorsichtig!", "en": "Be careful!" }
     ],
     "drills": [
-      { "q": "du-imperative of 'kommen'?", "options": ["Komm!", "Kommst!", "Kommen!"], "a": 0, "why": "Drop -st and drop du." },
-      { "q": "Sie-imperative of 'warten'?", "options": ["Warten!", "Warten Sie!", "Wartet!"], "a": 1, "why": "Verb first, Sie stays." },
-      { "q": "ihr-imperative of 'gehen'?", "options": ["Geh!", "Geht!", "Gehen Sie!"], "a": 1, "why": "The ihr form without ihr." },
-      { "q": "du-imperative of 'sein'?", "options": ["Sei!", "Bist!", "Sein!"], "a": 0, "why": "Irregular: Sei!" }
+      {
+        "q": "du-imperative of 'kommen'?",
+        "options": ["Komm!", "Kommst!", "Kommen!"],
+        "a": 0,
+        "why": "Drop -st and drop du."
+      },
+      {
+        "q": "Sie-imperative of 'warten'?",
+        "options": ["Warten!", "Warten Sie!", "Wartet!"],
+        "a": 1,
+        "why": "Verb first, Sie stays."
+      },
+      {
+        "q": "ihr-imperative of 'gehen'?",
+        "options": ["Geh!", "Geht!", "Gehen Sie!"],
+        "a": 1,
+        "why": "The ihr form without ihr."
+      },
+      {
+        "q": "du-imperative of 'sein'?",
+        "options": ["Sei!", "Bist!", "Sein!"],
+        "a": 0,
+        "why": "Irregular: Sei!"
+      }
     ],
     "prereq": ["g-praesens", "g-pronouns"]
   },
@@ -194,15 +439,38 @@
     "ord": 22,
     "explain_md": "German usually uses the **present tense** for the future, with a time word doing the work:\n\n```\nMorgen fahre ich nach Berlin.\nNächste Woche fängt der Kurs an.\n```\n\nThat is the normal, everyday way. Using *werden* everywhere sounds heavy.\n\n**werden + infinitive** exists and is used for predictions, promises, or when there's no time word:\n\n```\nich   werde        wir  werden\ndu    wirst        ihr  werdet\ner    wird         sie  werden\n```\n\n```\nEs wird morgen regnen.        (prediction)\nIch werde dir helfen.         (promise)\n```\n\nThe infinitive goes to the end, like a modal verb.",
     "examples": [
-      { "de": "Morgen fahre ich nach Hamburg.", "en": "Tomorrow I'm going to Hamburg." },
+      {
+        "de": "Morgen fahre ich nach Hamburg.",
+        "en": "Tomorrow I'm going to Hamburg."
+      },
       { "de": "Es wird bald regnen.", "en": "It's going to rain soon." },
       { "de": "Ich werde dir helfen.", "en": "I'll help you." }
     ],
     "drills": [
-      { "q": "Most natural for 'Tomorrow I'm working'?", "options": ["Morgen arbeite ich.", "Morgen werde ich arbeiten."], "a": 0, "why": "With a time word, present tense is normal." },
-      { "q": "Es ___ morgen regnen.", "options": ["wird", "werdet", "werden"], "a": 0, "why": "es → wird." },
-      { "q": "Correct order?", "options": ["Ich werde helfen dir.", "Ich werde dir helfen."], "a": 1, "why": "Infinitive goes last." },
-      { "q": "Du ___ das schaffen.", "options": ["wird", "wirst", "werde"], "a": 1, "why": "du → wirst." }
+      {
+        "q": "Most natural for 'Tomorrow I'm working'?",
+        "options": ["Morgen arbeite ich.", "Morgen werde ich arbeiten."],
+        "a": 0,
+        "why": "With a time word, present tense is normal."
+      },
+      {
+        "q": "Es ___ morgen regnen.",
+        "options": ["wird", "werdet", "werden"],
+        "a": 0,
+        "why": "es → wird."
+      },
+      {
+        "q": "Correct order?",
+        "options": ["Ich werde helfen dir.", "Ich werde dir helfen."],
+        "a": 1,
+        "why": "Infinitive goes last."
+      },
+      {
+        "q": "Du ___ das schaffen.",
+        "options": ["wird", "wirst", "werde"],
+        "a": 1,
+        "why": "du → wirst."
+      }
     ],
     "prereq": ["g-modalverben"]
   },
@@ -214,15 +482,41 @@
     "ord": 23,
     "explain_md": "Genitive is the \"of\" case. In writing it's everywhere; in speech people often use **von + dative** instead.\n\n| | genitive |\n|---|---|\n| masc | **des** Mannes |\n| fem | **der** Frau |\n| neut | **des** Kindes |\n| plural | **der** Kinder |\n\nMasculine and neuter nouns add **-s** or **-es**.\n\n```\ndas Auto des Mannes      = the man's car\ndie Farbe der Blume      = the colour of the flower\n```\n\n**In speech, this is more common:**\n```\ndas Auto von dem Mann  →  das Auto vom Mann\n```\n\nWith names, German uses **-s** with no apostrophe:\n```\nAnnas Buch      (not Anna's)\n```",
     "examples": [
-      { "de": "Das ist das Auto meines Vaters.", "en": "That's my father's car." },
-      { "de": "Die Farbe der Blume ist schön.", "en": "The colour of the flower is lovely." },
+      {
+        "de": "Das ist das Auto meines Vaters.",
+        "en": "That's my father's car."
+      },
+      {
+        "de": "Die Farbe der Blume ist schön.",
+        "en": "The colour of the flower is lovely."
+      },
       { "de": "Das ist Annas Tasche.", "en": "That's Anna's bag." }
     ],
     "drills": [
-      { "q": "das Auto ___ Mannes", "options": ["der", "des", "dem"], "a": 1, "why": "Masculine genitive = des." },
-      { "q": "die Tasche ___ Frau", "options": ["der", "des", "den"], "a": 0, "why": "Feminine genitive = der." },
-      { "q": "Spoken alternative to 'das Buch des Kindes'?", "options": ["das Buch vom Kind", "das Buch dem Kind"], "a": 0, "why": "von + dative, contracted to vom." },
-      { "q": "Correct?", "options": ["Anna's Buch", "Annas Buch"], "a": 1, "why": "German uses no apostrophe." }
+      {
+        "q": "das Auto ___ Mannes",
+        "options": ["der", "des", "dem"],
+        "a": 1,
+        "why": "Masculine genitive = des."
+      },
+      {
+        "q": "die Tasche ___ Frau",
+        "options": ["der", "des", "den"],
+        "a": 0,
+        "why": "Feminine genitive = der."
+      },
+      {
+        "q": "Spoken alternative to 'das Buch des Kindes'?",
+        "options": ["das Buch vom Kind", "das Buch dem Kind"],
+        "a": 0,
+        "why": "von + dative, contracted to vom."
+      },
+      {
+        "q": "Correct?",
+        "options": ["Anna's Buch", "Annas Buch"],
+        "a": 1,
+        "why": "German uses no apostrophe."
+      }
     ],
     "prereq": ["g-dativ"]
   },
@@ -239,10 +533,30 @@
       { "de": "Ich muss früh aufstehen.", "en": "I have to get up early." }
     ],
     "drills": [
-      { "q": "Ich ___ um acht ___. (aufstehen)", "options": ["stehe … auf", "aufstehe … —"], "a": 0, "why": "The prefix goes to the end." },
-      { "q": "Ich muss früh ___.", "options": ["auf stehen", "aufstehen"], "a": 1, "why": "After a modal it stays joined." },
-      { "q": "Which is inseparable?", "options": ["anrufen", "besuchen", "einkaufen"], "a": 1, "why": "be- never separates." },
-      { "q": "Participle of 'aufstehen'?", "options": ["aufgestanden", "geaufstanden"], "a": 0, "why": "-ge- goes in the middle: auf-ge-standen." }
+      {
+        "q": "Ich ___ um acht ___. (aufstehen)",
+        "options": ["stehe … auf", "aufstehe … —"],
+        "a": 0,
+        "why": "The prefix goes to the end."
+      },
+      {
+        "q": "Ich muss früh ___.",
+        "options": ["auf stehen", "aufstehen"],
+        "a": 1,
+        "why": "After a modal it stays joined."
+      },
+      {
+        "q": "Which is inseparable?",
+        "options": ["anrufen", "besuchen", "einkaufen"],
+        "a": 1,
+        "why": "be- never separates."
+      },
+      {
+        "q": "Participle of 'aufstehen'?",
+        "options": ["aufgestanden", "geaufstanden"],
+        "a": 0,
+        "why": "-ge- goes in the middle: auf-ge-standen."
+      }
     ],
     "prereq": ["g-praesens", "g-modalverben"]
   }

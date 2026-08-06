@@ -1,129 +1,525 @@
 [
-  { "level": "A1.1", "ord": 13, "title": "Zahlen und Preise",
-    "can_do": ["count above twenty", "ask and understand a price", "pay at a counter"],
-    "scenario": { "role": "a cashier at a bakery", "goal": "buy two things and pay", "opener": "Guten Tag, was darf's sein?" },
+  {
+    "level": "A1.1",
+    "ord": 13,
+    "title": "Zahlen und Preise",
+    "can_do": [
+      "count above twenty",
+      "ask and understand a price",
+      "pay at a counter"
+    ],
+    "scenario": {
+      "role": "a cashier at a bakery",
+      "goal": "buy two things and pay",
+      "opener": "Guten Tag, was darf's sein?"
+    },
     "dialogue": [
-      { "them": "Guten Tag, was darf's sein?", "options": [
-        { "say": "Ein Brot, bitte.", "ok": true, "next": 1 },
-        { "say": "Ich bin ein Brot.", "ok": false, "why": "You are not a bread. Just name the item: Ein Brot, bitte.", "next": 1 }]},
-      { "them": "Das macht drei Euro fünfzig.", "options": [
-        { "say": "Hier, bitte.", "ok": true, "next": -1 }]}
-    ]},
-  { "level": "A1.1", "ord": 14, "title": "Farben und Sachen",
-    "can_do": ["name everyday objects", "describe something with an adjective", "say what belongs to you"],
-    "scenario": { "role": "someone who found your bag", "goal": "describe your bag so you get it back", "opener": "Ist das Ihre Tasche?" }},
-  { "level": "A1.1", "ord": 15, "title": "Wo ist das?",
-    "can_do": ["ask where something is", "understand simple directions", "say left, right and straight on"],
-    "scenario": { "role": "a passer-by on the street", "goal": "ask the way to the station", "opener": "Kann ich Ihnen helfen?" }},
-  { "level": "A1.1", "ord": 16, "title": "Mein Tag",
-    "can_do": ["say what you do each day", "tell the time roughly", "say when something happens"],
-    "scenario": { "role": "a curious classmate", "goal": "describe your normal day", "opener": "Was machst du morgens?" }},
-  { "level": "A1.1", "ord": 17, "title": "Einkaufen",
-    "can_do": ["ask for something in a shop", "say how much you want", "say it's too expensive"],
-    "scenario": { "role": "a market stall holder", "goal": "buy fruit and ask the price", "opener": "Was möchten Sie?" }},
-  { "level": "A1.1", "ord": 18, "title": "Kleine Gespräche",
-    "can_do": ["make small talk", "say you don't understand", "ask someone to repeat"],
-    "scenario": { "role": "a neighbour in the lift", "goal": "have a 30-second friendly chat", "opener": "Na, alles gut bei Ihnen?" },
+      {
+        "them": "Guten Tag, was darf's sein?",
+        "options": [
+          { "say": "Ein Brot, bitte.", "ok": true, "next": 1 },
+          {
+            "say": "Ich bin ein Brot.",
+            "ok": false,
+            "why": "You are not a bread. Just name the item: Ein Brot, bitte.",
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Das macht drei Euro fünfzig.",
+        "options": [{ "say": "Hier, bitte.", "ok": true, "next": -1 }]
+      }
+    ]
+  },
+  {
+    "level": "A1.1",
+    "ord": 14,
+    "title": "Farben und Sachen",
+    "can_do": [
+      "name everyday objects",
+      "describe something with an adjective",
+      "say what belongs to you"
+    ],
+    "scenario": {
+      "role": "someone who found your bag",
+      "goal": "describe your bag so you get it back",
+      "opener": "Ist das Ihre Tasche?"
+    }
+  },
+  {
+    "level": "A1.1",
+    "ord": 15,
+    "title": "Wo ist das?",
+    "can_do": [
+      "ask where something is",
+      "understand simple directions",
+      "say left, right and straight on"
+    ],
+    "scenario": {
+      "role": "a passer-by on the street",
+      "goal": "ask the way to the station",
+      "opener": "Kann ich Ihnen helfen?"
+    }
+  },
+  {
+    "level": "A1.1",
+    "ord": 16,
+    "title": "Mein Tag",
+    "can_do": [
+      "say what you do each day",
+      "tell the time roughly",
+      "say when something happens"
+    ],
+    "scenario": {
+      "role": "a curious classmate",
+      "goal": "describe your normal day",
+      "opener": "Was machst du morgens?"
+    }
+  },
+  {
+    "level": "A1.1",
+    "ord": 17,
+    "title": "Einkaufen",
+    "can_do": [
+      "ask for something in a shop",
+      "say how much you want",
+      "say it's too expensive"
+    ],
+    "scenario": {
+      "role": "a market stall holder",
+      "goal": "buy fruit and ask the price",
+      "opener": "Was möchten Sie?"
+    }
+  },
+  {
+    "level": "A1.1",
+    "ord": 18,
+    "title": "Kleine Gespräche",
+    "can_do": [
+      "make small talk",
+      "say you don't understand",
+      "ask someone to repeat"
+    ],
+    "scenario": {
+      "role": "a neighbour in the lift",
+      "goal": "have a 30-second friendly chat",
+      "opener": "Na, alles gut bei Ihnen?"
+    },
     "dialogue": [
-      { "them": "Na, alles gut bei Ihnen?", "options": [
-        { "say": "Ja, danke. Und bei Ihnen?", "ok": true, "next": 1 },
-        { "say": "Ja, danke. Und bei dich?", "ok": false, "why": "After bei you need dative: bei Ihnen / bei dir.", "next": 1 }]},
-      { "them": "Auch gut. Schönen Tag noch!", "options": [
-        { "say": "Danke, gleichfalls!", "ok": true, "next": -1 }]}
-    ]},
-  { "level": "A1.1", "ord": 19, "title": "Verabredungen",
-    "can_do": ["suggest meeting up", "agree or say no politely", "name a day and a time"],
-    "scenario": { "role": "a friend making plans", "goal": "agree on a day to meet", "opener": "Hast du am Samstag Zeit?" }},
-  { "level": "A1.1", "ord": 20, "title": "A1.1 zusammen",
-    "can_do": ["introduce yourself fully", "order something", "ask three useful questions"],
-    "scenario": { "role": "a new colleague on your first day", "goal": "introduce yourself and ask about them", "opener": "Hallo! Du bist neu hier, oder?" }},
+      {
+        "them": "Na, alles gut bei Ihnen?",
+        "options": [
+          { "say": "Ja, danke. Und bei Ihnen?", "ok": true, "next": 1 },
+          {
+            "say": "Ja, danke. Und bei dich?",
+            "ok": false,
+            "why": "After bei you need dative: bei Ihnen / bei dir.",
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Auch gut. Schönen Tag noch!",
+        "options": [{ "say": "Danke, gleichfalls!", "ok": true, "next": -1 }]
+      }
+    ]
+  },
+  {
+    "level": "A1.1",
+    "ord": 19,
+    "title": "Verabredungen",
+    "can_do": [
+      "suggest meeting up",
+      "agree or say no politely",
+      "name a day and a time"
+    ],
+    "scenario": {
+      "role": "a friend making plans",
+      "goal": "agree on a day to meet",
+      "opener": "Hast du am Samstag Zeit?"
+    }
+  },
+  {
+    "level": "A1.1",
+    "ord": 20,
+    "title": "A1.1 zusammen",
+    "can_do": [
+      "introduce yourself fully",
+      "order something",
+      "ask three useful questions"
+    ],
+    "scenario": {
+      "role": "a new colleague on your first day",
+      "goal": "introduce yourself and ask about them",
+      "opener": "Hallo! Du bist neu hier, oder?"
+    }
+  },
 
-  { "level": "A1.2", "ord": 1, "title": "Menschen um mich",
-    "can_do": ["name people around you", "say who someone is", "describe a person briefly"],
-    "scenario": { "role": "a friend looking at your photos", "goal": "say who the people are", "opener": "Wer ist das auf dem Foto?" },
+  {
+    "level": "A1.2",
+    "ord": 1,
+    "title": "Menschen um mich",
+    "can_do": [
+      "name people around you",
+      "say who someone is",
+      "describe a person briefly"
+    ],
+    "scenario": {
+      "role": "a friend looking at your photos",
+      "goal": "say who the people are",
+      "opener": "Wer ist das auf dem Foto?"
+    },
     "dialogue": [
-      { "them": "Wer ist das auf dem Foto?", "options": [
-        { "say": "Das ist meine Schwester.", "ok": true, "next": 1 },
-        { "say": "Das ist mein Schwester.", "ok": false, "why": "Schwester is feminine → meine.", "next": 1 }]},
-      { "them": "Und der Mann daneben?", "options": [
-        { "say": "Das ist mein Vater.", "ok": true, "next": -1 }]}
-    ]},
-  { "level": "A1.2", "ord": 2, "title": "Wie ist er?",
-    "can_do": ["describe someone's character", "say how someone looks", "say what you like about them"],
-    "scenario": { "role": "a friend asking about your new flatmate", "goal": "describe them in a few sentences", "opener": "Und wie ist dein neuer Mitbewohner?" }},
-  { "level": "A1.2", "ord": 3, "title": "Berufe",
-    "can_do": ["say what you do for a living", "ask what someone does", "name common jobs"],
-    "scenario": { "role": "someone at a party", "goal": "exchange what you both do", "opener": "Und was machst du beruflich?" }},
-  { "level": "A1.2", "ord": 4, "title": "Der Körper",
-    "can_do": ["name parts of the body", "say where it hurts", "understand a doctor's question"],
-    "scenario": { "role": "a doctor", "goal": "explain what hurts", "opener": "Guten Tag. Was fehlt Ihnen denn?" },
+      {
+        "them": "Wer ist das auf dem Foto?",
+        "options": [
+          { "say": "Das ist meine Schwester.", "ok": true, "next": 1 },
+          {
+            "say": "Das ist mein Schwester.",
+            "ok": false,
+            "why": "Schwester is feminine → meine.",
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Und der Mann daneben?",
+        "options": [{ "say": "Das ist mein Vater.", "ok": true, "next": -1 }]
+      }
+    ]
+  },
+  {
+    "level": "A1.2",
+    "ord": 2,
+    "title": "Wie ist er?",
+    "can_do": [
+      "describe someone's character",
+      "say how someone looks",
+      "say what you like about them"
+    ],
+    "scenario": {
+      "role": "a friend asking about your new flatmate",
+      "goal": "describe them in a few sentences",
+      "opener": "Und wie ist dein neuer Mitbewohner?"
+    }
+  },
+  {
+    "level": "A1.2",
+    "ord": 3,
+    "title": "Berufe",
+    "can_do": [
+      "say what you do for a living",
+      "ask what someone does",
+      "name common jobs"
+    ],
+    "scenario": {
+      "role": "someone at a party",
+      "goal": "exchange what you both do",
+      "opener": "Und was machst du beruflich?"
+    }
+  },
+  {
+    "level": "A1.2",
+    "ord": 4,
+    "title": "Der Körper",
+    "can_do": [
+      "name parts of the body",
+      "say where it hurts",
+      "understand a doctor's question"
+    ],
+    "scenario": {
+      "role": "a doctor",
+      "goal": "explain what hurts",
+      "opener": "Guten Tag. Was fehlt Ihnen denn?"
+    },
     "dialogue": [
-      { "them": "Was fehlt Ihnen denn?", "options": [
-        { "say": "Mein Kopf tut weh.", "ok": true, "next": 1 },
-        { "say": "Ich habe Kopf.", "ok": false, "why": "Say what hurts: Mein Kopf tut weh, or Ich habe Kopfschmerzen.", "next": 1 }]},
-      { "them": "Seit wann denn?", "options": [
-        { "say": "Seit zwei Tagen.", "ok": true, "next": -1 }]}
-    ]},
-  { "level": "A1.2", "ord": 5, "title": "Beim Arzt",
-    "can_do": ["make a doctor's appointment", "say you feel ill", "understand simple instructions"],
-    "scenario": { "role": "a doctor's receptionist", "goal": "get an appointment this week", "opener": "Praxis Dr. Klein, guten Tag." }},
-  { "level": "A1.2", "ord": 6, "title": "Meine Wohnung",
+      {
+        "them": "Was fehlt Ihnen denn?",
+        "options": [
+          { "say": "Mein Kopf tut weh.", "ok": true, "next": 1 },
+          {
+            "say": "Ich habe Kopf.",
+            "ok": false,
+            "why": "Say what hurts: Mein Kopf tut weh, or Ich habe Kopfschmerzen.",
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Seit wann denn?",
+        "options": [{ "say": "Seit zwei Tagen.", "ok": true, "next": -1 }]
+      }
+    ]
+  },
+  {
+    "level": "A1.2",
+    "ord": 5,
+    "title": "Beim Arzt",
+    "can_do": [
+      "make a doctor's appointment",
+      "say you feel ill",
+      "understand simple instructions"
+    ],
+    "scenario": {
+      "role": "a doctor's receptionist",
+      "goal": "get an appointment this week",
+      "opener": "Praxis Dr. Klein, guten Tag."
+    }
+  },
+  {
+    "level": "A1.2",
+    "ord": 6,
+    "title": "Meine Wohnung",
     "can_do": ["describe your home", "name the rooms", "say what's in a room"],
-    "scenario": { "role": "a friend who's never visited", "goal": "describe your flat", "opener": "Erzähl mal, wie wohnst du?" }},
-  { "level": "A1.2", "ord": 7, "title": "Möbel und Dinge",
-    "can_do": ["name furniture and household things", "say where something is", "say something is broken"],
-    "scenario": { "role": "your landlord", "goal": "report that something in the flat is broken", "opener": "Sie wollten mich sprechen?" }},
-  { "level": "A1.2", "ord": 8, "title": "Essen kaufen",
-    "can_do": ["shop for food", "say how much you need", "ask where something is in a shop"],
-    "scenario": { "role": "a supermarket employee", "goal": "find three items", "opener": "Suchen Sie etwas Bestimmtes?" }},
-  { "level": "A1.2", "ord": 9, "title": "Kochen und Essen",
-    "can_do": ["say what you're cooking", "say what you like and don't like", "say you're hungry or full"],
-    "scenario": { "role": "a friend cooking dinner for you", "goal": "say what you like and thank them", "opener": "Ich koche heute. Isst du alles?" }},
-  { "level": "A1.2", "ord": 10, "title": "Kleidung",
-    "can_do": ["name clothes", "say what you're wearing", "ask for a different size"],
-    "scenario": { "role": "a shop assistant in a clothes shop", "goal": "try something on and ask for another size", "opener": "Kann ich Ihnen helfen?" },
+    "scenario": {
+      "role": "a friend who's never visited",
+      "goal": "describe your flat",
+      "opener": "Erzähl mal, wie wohnst du?"
+    }
+  },
+  {
+    "level": "A1.2",
+    "ord": 7,
+    "title": "Möbel und Dinge",
+    "can_do": [
+      "name furniture and household things",
+      "say where something is",
+      "say something is broken"
+    ],
+    "scenario": {
+      "role": "your landlord",
+      "goal": "report that something in the flat is broken",
+      "opener": "Sie wollten mich sprechen?"
+    }
+  },
+  {
+    "level": "A1.2",
+    "ord": 8,
+    "title": "Essen kaufen",
+    "can_do": [
+      "shop for food",
+      "say how much you need",
+      "ask where something is in a shop"
+    ],
+    "scenario": {
+      "role": "a supermarket employee",
+      "goal": "find three items",
+      "opener": "Suchen Sie etwas Bestimmtes?"
+    }
+  },
+  {
+    "level": "A1.2",
+    "ord": 9,
+    "title": "Kochen und Essen",
+    "can_do": [
+      "say what you're cooking",
+      "say what you like and don't like",
+      "say you're hungry or full"
+    ],
+    "scenario": {
+      "role": "a friend cooking dinner for you",
+      "goal": "say what you like and thank them",
+      "opener": "Ich koche heute. Isst du alles?"
+    }
+  },
+  {
+    "level": "A1.2",
+    "ord": 10,
+    "title": "Kleidung",
+    "can_do": [
+      "name clothes",
+      "say what you're wearing",
+      "ask for a different size"
+    ],
+    "scenario": {
+      "role": "a shop assistant in a clothes shop",
+      "goal": "try something on and ask for another size",
+      "opener": "Kann ich Ihnen helfen?"
+    },
     "dialogue": [
-      { "them": "Kann ich Ihnen helfen?", "options": [
-        { "say": "Ja, ich suche eine Jacke.", "ok": true, "next": 1 },
-        { "say": "Ja, ich suche einen Jacke.", "ok": false, "why": "Jacke is feminine → eine Jacke.", "next": 1 }]},
-      { "them": "Welche Größe brauchen Sie?", "options": [
-        { "say": "Größe achtunddreißig, bitte.", "ok": true, "next": -1 }]}
-    ]},
-  { "level": "A1.2", "ord": 11, "title": "In der Stadt",
-    "can_do": ["name places in a town", "say where you're going", "ask if something is nearby"],
-    "scenario": { "role": "a hotel receptionist", "goal": "ask what's worth seeing nearby", "opener": "Kann ich Ihnen etwas empfehlen?" }},
-  { "level": "A1.2", "ord": 12, "title": "Verkehrsmittel",
+      {
+        "them": "Kann ich Ihnen helfen?",
+        "options": [
+          { "say": "Ja, ich suche eine Jacke.", "ok": true, "next": 1 },
+          {
+            "say": "Ja, ich suche einen Jacke.",
+            "ok": false,
+            "why": "Jacke is feminine → eine Jacke.",
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Welche Größe brauchen Sie?",
+        "options": [
+          { "say": "Größe achtunddreißig, bitte.", "ok": true, "next": -1 }
+        ]
+      }
+    ]
+  },
+  {
+    "level": "A1.2",
+    "ord": 11,
+    "title": "In der Stadt",
+    "can_do": [
+      "name places in a town",
+      "say where you're going",
+      "ask if something is nearby"
+    ],
+    "scenario": {
+      "role": "a hotel receptionist",
+      "goal": "ask what's worth seeing nearby",
+      "opener": "Kann ich Ihnen etwas empfehlen?"
+    }
+  },
+  {
+    "level": "A1.2",
+    "ord": 12,
+    "title": "Verkehrsmittel",
     "can_do": ["say how you travel", "buy a ticket", "ask which platform"],
-    "scenario": { "role": "a ticket clerk at the station", "goal": "buy a ticket to Hamburg", "opener": "Wohin möchten Sie?" },
+    "scenario": {
+      "role": "a ticket clerk at the station",
+      "goal": "buy a ticket to Hamburg",
+      "opener": "Wohin möchten Sie?"
+    },
     "dialogue": [
-      { "them": "Wohin möchten Sie?", "options": [
-        { "say": "Nach Hamburg, bitte.", "ok": true, "next": 1 },
-        { "say": "Zu Hamburg, bitte.", "ok": false, "why": "Cities take nach, not zu.", "next": 1 }]},
-      { "them": "Einfach oder hin und zurück?", "options": [
-        { "say": "Hin und zurück, bitte.", "ok": true, "next": -1 }]}
-    ]},
-  { "level": "A1.2", "ord": 13, "title": "Reisen",
-    "can_do": ["talk about a trip", "say where you've been", "pack and describe your luggage"],
-    "scenario": { "role": "a friend back from holiday", "goal": "ask about their trip and tell them about yours", "opener": "Ich war letzte Woche in Wien!" }},
-  { "level": "A1.2", "ord": 14, "title": "Die Uhrzeit",
-    "can_do": ["tell the time", "say when something starts", "arrange a precise time"],
-    "scenario": { "role": "a friend arranging the cinema", "goal": "agree on a film and a time", "opener": "Wann fängt der Film an?" }},
-  { "level": "A1.2", "ord": 15, "title": "Jahreszeiten",
-    "can_do": ["name the seasons and months", "say when your birthday is", "say what you do in each season"],
-    "scenario": { "role": "a colleague making small talk", "goal": "talk about your favourite season", "opener": "Was ist deine Lieblingsjahreszeit?" }},
-  { "level": "A1.2", "ord": 16, "title": "Wetter",
-    "can_do": ["describe the weather", "understand a forecast", "say what you'll do if it rains"],
-    "scenario": { "role": "a neighbour outside", "goal": "talk about today's weather", "opener": "Schönes Wetter heute, oder?" }},
-  { "level": "A1.2", "ord": 17, "title": "Natur und Tiere",
-    "can_do": ["name common animals", "talk about nature", "say whether you have a pet"],
-    "scenario": { "role": "a child at the park", "goal": "talk about animals", "opener": "Hast du ein Haustier?" }},
-  { "level": "A1.2", "ord": 18, "title": "Freizeit",
-    "can_do": ["say what you do in your free time", "suggest an activity", "say what you can and can't do"],
-    "scenario": { "role": "a friend planning the weekend", "goal": "agree on something to do", "opener": "Was machen wir am Wochenende?" }},
-  { "level": "A1.2", "ord": 19, "title": "Wo und wohin",
-    "can_do": ["say where things are", "say where you're going", "use left, right, above, below"],
-    "scenario": { "role": "someone helping you move furniture", "goal": "tell them where to put things", "opener": "Wo soll der Tisch hin?" }},
-  { "level": "A1.2", "ord": 20, "title": "A1 zusammen",
-    "can_do": ["hold a simple conversation about yourself", "handle a shop or a doctor", "ask for help when stuck"],
-    "scenario": { "role": "a friendly stranger on a long train ride", "goal": "hold a five-minute conversation", "opener": "Ist der Platz noch frei?" }}
+      {
+        "them": "Wohin möchten Sie?",
+        "options": [
+          { "say": "Nach Hamburg, bitte.", "ok": true, "next": 1 },
+          {
+            "say": "Zu Hamburg, bitte.",
+            "ok": false,
+            "why": "Cities take nach, not zu.",
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Einfach oder hin und zurück?",
+        "options": [{ "say": "Hin und zurück, bitte.", "ok": true, "next": -1 }]
+      }
+    ]
+  },
+  {
+    "level": "A1.2",
+    "ord": 13,
+    "title": "Reisen",
+    "can_do": [
+      "talk about a trip",
+      "say where you've been",
+      "pack and describe your luggage"
+    ],
+    "scenario": {
+      "role": "a friend back from holiday",
+      "goal": "ask about their trip and tell them about yours",
+      "opener": "Ich war letzte Woche in Wien!"
+    }
+  },
+  {
+    "level": "A1.2",
+    "ord": 14,
+    "title": "Die Uhrzeit",
+    "can_do": [
+      "tell the time",
+      "say when something starts",
+      "arrange a precise time"
+    ],
+    "scenario": {
+      "role": "a friend arranging the cinema",
+      "goal": "agree on a film and a time",
+      "opener": "Wann fängt der Film an?"
+    }
+  },
+  {
+    "level": "A1.2",
+    "ord": 15,
+    "title": "Jahreszeiten",
+    "can_do": [
+      "name the seasons and months",
+      "say when your birthday is",
+      "say what you do in each season"
+    ],
+    "scenario": {
+      "role": "a colleague making small talk",
+      "goal": "talk about your favourite season",
+      "opener": "Was ist deine Lieblingsjahreszeit?"
+    }
+  },
+  {
+    "level": "A1.2",
+    "ord": 16,
+    "title": "Wetter",
+    "can_do": [
+      "describe the weather",
+      "understand a forecast",
+      "say what you'll do if it rains"
+    ],
+    "scenario": {
+      "role": "a neighbour outside",
+      "goal": "talk about today's weather",
+      "opener": "Schönes Wetter heute, oder?"
+    }
+  },
+  {
+    "level": "A1.2",
+    "ord": 17,
+    "title": "Natur und Tiere",
+    "can_do": [
+      "name common animals",
+      "talk about nature",
+      "say whether you have a pet"
+    ],
+    "scenario": {
+      "role": "a child at the park",
+      "goal": "talk about animals",
+      "opener": "Hast du ein Haustier?"
+    }
+  },
+  {
+    "level": "A1.2",
+    "ord": 18,
+    "title": "Freizeit",
+    "can_do": [
+      "say what you do in your free time",
+      "suggest an activity",
+      "say what you can and can't do"
+    ],
+    "scenario": {
+      "role": "a friend planning the weekend",
+      "goal": "agree on something to do",
+      "opener": "Was machen wir am Wochenende?"
+    }
+  },
+  {
+    "level": "A1.2",
+    "ord": 19,
+    "title": "Wo und wohin",
+    "can_do": [
+      "say where things are",
+      "say where you're going",
+      "use left, right, above, below"
+    ],
+    "scenario": {
+      "role": "someone helping you move furniture",
+      "goal": "tell them where to put things",
+      "opener": "Wo soll der Tisch hin?"
+    }
+  },
+  {
+    "level": "A1.2",
+    "ord": 20,
+    "title": "A1 zusammen",
+    "can_do": [
+      "hold a simple conversation about yourself",
+      "handle a shop or a doctor",
+      "ask for help when stuck"
+    ],
+    "scenario": {
+      "role": "a friendly stranger on a long train ride",
+      "goal": "hold a five-minute conversation",
+      "opener": "Ist der Platz noch frei?"
+    }
+  }
 ]

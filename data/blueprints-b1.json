@@ -1,144 +1,655 @@
 [
-  { "level": "B1.1", "ord": 1, "title": "Der Mann, der…",
-    "can_do": ["use relative clauses", "define a person or thing", "add detail without a new sentence"],
-    "scenario": { "role": "a friend who can't remember someone", "goal": "identify a person by describing them", "opener": "Wie hieß nochmal der Typ von der Party?" },
+  {
+    "level": "B1.1",
+    "ord": 1,
+    "title": "Der Mann, der…",
+    "can_do": [
+      "use relative clauses",
+      "define a person or thing",
+      "add detail without a new sentence"
+    ],
+    "scenario": {
+      "role": "a friend who can't remember someone",
+      "goal": "identify a person by describing them",
+      "opener": "Wie hieß nochmal der Typ von der Party?"
+    },
     "dialogue": [
-      { "them": "Wie hieß nochmal der Typ von der Party?", "options": [
-        { "say": "Der Mann, der neben dir saß?", "ok": true, "next": 1 },
-        { "say": "Der Mann, der saß neben dir?", "ok": false, "why": "In a relative clause the verb goes to the end.", "next": 1 }]},
-      { "them": "Genau der! Wie hieß er?", "options": [
-        { "say": "Ich glaube, Tobias.", "ok": true, "next": -1 }]}
-    ]},
-  { "level": "B1.1", "ord": 2, "title": "Höflich bitten",
-    "can_do": ["use Konjunktiv II to be polite", "make a request that doesn't sound blunt", "soften a refusal"],
-    "scenario": { "role": "a stranger you need a favour from", "goal": "ask politely and thank them", "opener": "Ja bitte?" },
+      {
+        "them": "Wie hieß nochmal der Typ von der Party?",
+        "options": [
+          { "say": "Der Mann, der neben dir saß?", "ok": true, "next": 1 },
+          {
+            "say": "Der Mann, der saß neben dir?",
+            "ok": false,
+            "why": "In a relative clause the verb goes to the end.",
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Genau der! Wie hieß er?",
+        "options": [{ "say": "Ich glaube, Tobias.", "ok": true, "next": -1 }]
+      }
+    ]
+  },
+  {
+    "level": "B1.1",
+    "ord": 2,
+    "title": "Höflich bitten",
+    "can_do": [
+      "use Konjunktiv II to be polite",
+      "make a request that doesn't sound blunt",
+      "soften a refusal"
+    ],
+    "scenario": {
+      "role": "a stranger you need a favour from",
+      "goal": "ask politely and thank them",
+      "opener": "Ja bitte?"
+    },
     "dialogue": [
-      { "them": "Ja bitte?", "options": [
-        { "say": "Könnten Sie mir kurz helfen?", "ok": true, "next": 1 },
-        { "say": "Können Sie mir helfen!", "ok": false, "why": "Könnten is noticeably softer than können here.", "next": 1 }]},
-      { "them": "Natürlich, gern.", "options": [
-        { "say": "Das wäre sehr nett, danke.", "ok": true, "next": -1 }]}
-    ]},
-  { "level": "B1.1", "ord": 3, "title": "Wenn ich könnte…",
-    "can_do": ["form conditional sentences", "talk about hypotheticals", "express a wish"],
-    "scenario": { "role": "a friend playing 'what if'", "goal": "say what you'd do with more time or money", "opener": "Was würdest du machen, wenn du ein Jahr frei hättest?" }},
-  { "level": "B1.1", "ord": 4, "title": "Es wird gemacht",
-    "can_do": ["understand the passive", "describe a process", "read instructions and notices"],
-    "scenario": { "role": "a colleague explaining a workflow", "goal": "understand and repeat back how something is done", "opener": "Ich erkläre dir kurz, wie das hier läuft." }},
-  { "level": "B1.1", "ord": 5, "title": "Um … zu",
-    "can_do": ["say why you're doing something", "use zu + infinitive", "express purpose"],
-    "scenario": { "role": "a course adviser", "goal": "explain what you want to achieve and why", "opener": "Und warum möchten Sie diesen Kurs machen?" }},
-  { "level": "B1.1", "ord": 6, "title": "Präpositionen sicher",
-    "can_do": ["choose the right case after a preposition", "use contractions naturally", "describe a journey precisely"],
-    "scenario": { "role": "someone asking for detailed directions", "goal": "describe a route with several steps", "opener": "Wie komme ich am besten zum Museum?" }},
-  { "level": "B1.1", "ord": 7, "title": "Indirekt fragen",
-    "can_do": ["ask indirect questions", "be polite with strangers", "use ob correctly"],
-    "scenario": { "role": "an information desk clerk", "goal": "ask three things politely", "opener": "Guten Tag, wie kann ich helfen?" }},
-  { "level": "B1.1", "ord": 8, "title": "Arbeit und Karriere",
-    "can_do": ["describe your responsibilities", "talk about strengths and weaknesses", "discuss career plans"],
-    "scenario": { "role": "an interviewer for a job you want", "goal": "describe your experience convincingly", "opener": "Was sind Ihre Stärken?" }},
-  { "level": "B1.1", "ord": 9, "title": "Diskutieren",
-    "can_do": ["state and defend an opinion", "concede a point", "disagree without being rude"],
-    "scenario": { "role": "a friend who disagrees with you", "goal": "argue your side and find common ground", "opener": "Ich sehe das ganz anders, ehrlich gesagt." }},
-  { "level": "B1.1", "ord": 10, "title": "Medien und Technik",
-    "can_do": ["talk about technology you use", "describe a problem with a device", "explain how something works"],
-    "scenario": { "role": "tech support on the phone", "goal": "describe a problem and follow instructions", "opener": "Beschreiben Sie mir bitte das Problem." }},
-  { "level": "B1.1", "ord": 11, "title": "Gesundheit und Ernährung",
-    "can_do": ["talk about a healthy lifestyle", "describe symptoms in detail", "give and take advice"],
-    "scenario": { "role": "a doctor discussing lifestyle", "goal": "describe your habits and understand the advice", "opener": "Erzählen Sie mir mal von Ihrem Alltag." }},
-  { "level": "B1.1", "ord": 12, "title": "Umwelt",
-    "can_do": ["talk about environmental issues", "describe what you do personally", "state a problem and a solution"],
-    "scenario": { "role": "someone doing a street survey", "goal": "answer questions about your habits", "opener": "Hätten Sie zwei Minuten für eine Umfrage?" }},
-  { "level": "B1.1", "ord": 13, "title": "Beziehungen",
-    "can_do": ["describe a relationship", "talk about a disagreement", "say what you value in people"],
-    "scenario": { "role": "a close friend", "goal": "talk through a disagreement you had with someone", "opener": "Und, habt ihr euch wieder vertragen?" }},
-  { "level": "B1.1", "ord": 14, "title": "Wohnen in Deutschland",
-    "can_do": ["understand a rental contract", "deal with a landlord", "describe housing problems"],
-    "scenario": { "role": "a landlord discussing the contract", "goal": "ask about the terms before signing", "opener": "Haben Sie noch Fragen zum Vertrag?" }},
-  { "level": "B1.1", "ord": 15, "title": "Reisen planen",
-    "can_do": ["plan a trip in detail", "handle a booking problem", "describe an itinerary"],
-    "scenario": { "role": "a travel agent", "goal": "plan a trip and handle a complication", "opener": "Wohin soll es denn gehen?" }},
-  { "level": "B1.1", "ord": 16, "title": "Erfahrungen",
-    "can_do": ["describe a past experience in detail", "say what you learned", "structure a longer answer"],
-    "scenario": { "role": "someone genuinely curious about your life", "goal": "tell a longer story with a point", "opener": "Was war die größte Veränderung in deinem Leben?" }},
-  { "level": "B1.1", "ord": 17, "title": "Bildung",
-    "can_do": ["describe your education", "compare school systems", "talk about learning strategies"],
-    "scenario": { "role": "a German student curious about your country", "goal": "compare the two education systems", "opener": "Wie läuft die Schule bei euch eigentlich ab?" }},
-  { "level": "B1.1", "ord": 18, "title": "Geld und Wirtschaft",
-    "can_do": ["talk about costs of living", "describe a financial decision", "understand a bill or contract"],
-    "scenario": { "role": "a bank adviser", "goal": "discuss a financial decision and ask the right questions", "opener": "Was kann ich für Sie tun?" }},
-  { "level": "B1.1", "ord": 19, "title": "Zukunftspläne",
-    "can_do": ["talk about long-term plans", "express hopes and doubts", "describe conditions"],
-    "scenario": { "role": "a mentor", "goal": "describe where you want to be in five years", "opener": "Wo sehen Sie sich in fünf Jahren?" }},
-  { "level": "B1.1", "ord": 20, "title": "B1.1 zusammen",
-    "can_do": ["hold a real conversation on a familiar topic", "give reasons and examples", "handle an unexpected question"],
-    "scenario": { "role": "a friendly examiner", "goal": "speak for five minutes on a topic you're given", "opener": "Erzählen Sie mir von einem wichtigen Tag in Ihrem Leben." }},
+      {
+        "them": "Ja bitte?",
+        "options": [
+          { "say": "Könnten Sie mir kurz helfen?", "ok": true, "next": 1 },
+          {
+            "say": "Können Sie mir helfen!",
+            "ok": false,
+            "why": "Könnten is noticeably softer than können here.",
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Natürlich, gern.",
+        "options": [
+          { "say": "Das wäre sehr nett, danke.", "ok": true, "next": -1 }
+        ]
+      }
+    ]
+  },
+  {
+    "level": "B1.1",
+    "ord": 3,
+    "title": "Wenn ich könnte…",
+    "can_do": [
+      "form conditional sentences",
+      "talk about hypotheticals",
+      "express a wish"
+    ],
+    "scenario": {
+      "role": "a friend playing 'what if'",
+      "goal": "say what you'd do with more time or money",
+      "opener": "Was würdest du machen, wenn du ein Jahr frei hättest?"
+    }
+  },
+  {
+    "level": "B1.1",
+    "ord": 4,
+    "title": "Es wird gemacht",
+    "can_do": [
+      "understand the passive",
+      "describe a process",
+      "read instructions and notices"
+    ],
+    "scenario": {
+      "role": "a colleague explaining a workflow",
+      "goal": "understand and repeat back how something is done",
+      "opener": "Ich erkläre dir kurz, wie das hier läuft."
+    }
+  },
+  {
+    "level": "B1.1",
+    "ord": 5,
+    "title": "Um … zu",
+    "can_do": [
+      "say why you're doing something",
+      "use zu + infinitive",
+      "express purpose"
+    ],
+    "scenario": {
+      "role": "a course adviser",
+      "goal": "explain what you want to achieve and why",
+      "opener": "Und warum möchten Sie diesen Kurs machen?"
+    }
+  },
+  {
+    "level": "B1.1",
+    "ord": 6,
+    "title": "Präpositionen sicher",
+    "can_do": [
+      "choose the right case after a preposition",
+      "use contractions naturally",
+      "describe a journey precisely"
+    ],
+    "scenario": {
+      "role": "someone asking for detailed directions",
+      "goal": "describe a route with several steps",
+      "opener": "Wie komme ich am besten zum Museum?"
+    }
+  },
+  {
+    "level": "B1.1",
+    "ord": 7,
+    "title": "Indirekt fragen",
+    "can_do": [
+      "ask indirect questions",
+      "be polite with strangers",
+      "use ob correctly"
+    ],
+    "scenario": {
+      "role": "an information desk clerk",
+      "goal": "ask three things politely",
+      "opener": "Guten Tag, wie kann ich helfen?"
+    }
+  },
+  {
+    "level": "B1.1",
+    "ord": 8,
+    "title": "Arbeit und Karriere",
+    "can_do": [
+      "describe your responsibilities",
+      "talk about strengths and weaknesses",
+      "discuss career plans"
+    ],
+    "scenario": {
+      "role": "an interviewer for a job you want",
+      "goal": "describe your experience convincingly",
+      "opener": "Was sind Ihre Stärken?"
+    }
+  },
+  {
+    "level": "B1.1",
+    "ord": 9,
+    "title": "Diskutieren",
+    "can_do": [
+      "state and defend an opinion",
+      "concede a point",
+      "disagree without being rude"
+    ],
+    "scenario": {
+      "role": "a friend who disagrees with you",
+      "goal": "argue your side and find common ground",
+      "opener": "Ich sehe das ganz anders, ehrlich gesagt."
+    }
+  },
+  {
+    "level": "B1.1",
+    "ord": 10,
+    "title": "Medien und Technik",
+    "can_do": [
+      "talk about technology you use",
+      "describe a problem with a device",
+      "explain how something works"
+    ],
+    "scenario": {
+      "role": "tech support on the phone",
+      "goal": "describe a problem and follow instructions",
+      "opener": "Beschreiben Sie mir bitte das Problem."
+    }
+  },
+  {
+    "level": "B1.1",
+    "ord": 11,
+    "title": "Gesundheit und Ernährung",
+    "can_do": [
+      "talk about a healthy lifestyle",
+      "describe symptoms in detail",
+      "give and take advice"
+    ],
+    "scenario": {
+      "role": "a doctor discussing lifestyle",
+      "goal": "describe your habits and understand the advice",
+      "opener": "Erzählen Sie mir mal von Ihrem Alltag."
+    }
+  },
+  {
+    "level": "B1.1",
+    "ord": 12,
+    "title": "Umwelt",
+    "can_do": [
+      "talk about environmental issues",
+      "describe what you do personally",
+      "state a problem and a solution"
+    ],
+    "scenario": {
+      "role": "someone doing a street survey",
+      "goal": "answer questions about your habits",
+      "opener": "Hätten Sie zwei Minuten für eine Umfrage?"
+    }
+  },
+  {
+    "level": "B1.1",
+    "ord": 13,
+    "title": "Beziehungen",
+    "can_do": [
+      "describe a relationship",
+      "talk about a disagreement",
+      "say what you value in people"
+    ],
+    "scenario": {
+      "role": "a close friend",
+      "goal": "talk through a disagreement you had with someone",
+      "opener": "Und, habt ihr euch wieder vertragen?"
+    }
+  },
+  {
+    "level": "B1.1",
+    "ord": 14,
+    "title": "Wohnen in Deutschland",
+    "can_do": [
+      "understand a rental contract",
+      "deal with a landlord",
+      "describe housing problems"
+    ],
+    "scenario": {
+      "role": "a landlord discussing the contract",
+      "goal": "ask about the terms before signing",
+      "opener": "Haben Sie noch Fragen zum Vertrag?"
+    }
+  },
+  {
+    "level": "B1.1",
+    "ord": 15,
+    "title": "Reisen planen",
+    "can_do": [
+      "plan a trip in detail",
+      "handle a booking problem",
+      "describe an itinerary"
+    ],
+    "scenario": {
+      "role": "a travel agent",
+      "goal": "plan a trip and handle a complication",
+      "opener": "Wohin soll es denn gehen?"
+    }
+  },
+  {
+    "level": "B1.1",
+    "ord": 16,
+    "title": "Erfahrungen",
+    "can_do": [
+      "describe a past experience in detail",
+      "say what you learned",
+      "structure a longer answer"
+    ],
+    "scenario": {
+      "role": "someone genuinely curious about your life",
+      "goal": "tell a longer story with a point",
+      "opener": "Was war die größte Veränderung in deinem Leben?"
+    }
+  },
+  {
+    "level": "B1.1",
+    "ord": 17,
+    "title": "Bildung",
+    "can_do": [
+      "describe your education",
+      "compare school systems",
+      "talk about learning strategies"
+    ],
+    "scenario": {
+      "role": "a German student curious about your country",
+      "goal": "compare the two education systems",
+      "opener": "Wie läuft die Schule bei euch eigentlich ab?"
+    }
+  },
+  {
+    "level": "B1.1",
+    "ord": 18,
+    "title": "Geld und Wirtschaft",
+    "can_do": [
+      "talk about costs of living",
+      "describe a financial decision",
+      "understand a bill or contract"
+    ],
+    "scenario": {
+      "role": "a bank adviser",
+      "goal": "discuss a financial decision and ask the right questions",
+      "opener": "Was kann ich für Sie tun?"
+    }
+  },
+  {
+    "level": "B1.1",
+    "ord": 19,
+    "title": "Zukunftspläne",
+    "can_do": [
+      "talk about long-term plans",
+      "express hopes and doubts",
+      "describe conditions"
+    ],
+    "scenario": {
+      "role": "a mentor",
+      "goal": "describe where you want to be in five years",
+      "opener": "Wo sehen Sie sich in fünf Jahren?"
+    }
+  },
+  {
+    "level": "B1.1",
+    "ord": 20,
+    "title": "B1.1 zusammen",
+    "can_do": [
+      "hold a real conversation on a familiar topic",
+      "give reasons and examples",
+      "handle an unexpected question"
+    ],
+    "scenario": {
+      "role": "a friendly examiner",
+      "goal": "speak for five minutes on a topic you're given",
+      "opener": "Erzählen Sie mir von einem wichtigen Tag in Ihrem Leben."
+    }
+  },
 
-  { "level": "B1.2", "ord": 1, "title": "Feste Präpositionen",
-    "can_do": ["use verbs with their fixed prepositions", "ask worauf / worüber questions", "avoid English interference"],
-    "scenario": { "role": "a friend waiting with you", "goal": "talk about what you're both waiting for and looking forward to", "opener": "Worauf wartest du eigentlich?" },
+  {
+    "level": "B1.2",
+    "ord": 1,
+    "title": "Feste Präpositionen",
+    "can_do": [
+      "use verbs with their fixed prepositions",
+      "ask worauf / worüber questions",
+      "avoid English interference"
+    ],
+    "scenario": {
+      "role": "a friend waiting with you",
+      "goal": "talk about what you're both waiting for and looking forward to",
+      "opener": "Worauf wartest du eigentlich?"
+    },
     "dialogue": [
-      { "them": "Worauf wartest du eigentlich?", "options": [
-        { "say": "Ich warte auf den Bus.", "ok": true, "next": 1 },
-        { "say": "Ich warte für den Bus.", "ok": false, "why": "warten takes auf, not für.", "next": 1 }]},
-      { "them": "Der kommt gleich. Freust du dich auf das Wochenende?", "options": [
-        { "say": "Ja, sehr!", "ok": true, "next": -1 }]}
-    ]},
-  { "level": "B1.2", "ord": 2, "title": "Verbinden und begründen",
-    "can_do": ["use deshalb, trotzdem and obwohl", "keep word order right after each", "build a longer argument"],
-    "scenario": { "role": "a colleague you're persuading", "goal": "argue for a change and handle objections", "opener": "Ich bin da noch nicht überzeugt." }},
-  { "level": "B1.2", "ord": 3, "title": "Der Mensch, den…",
-    "can_do": ["use N-declension nouns", "talk about people precisely", "avoid a common B1 error"],
-    "scenario": { "role": "a colleague discussing a new hire", "goal": "describe the new colleague", "opener": "Und wie ist der Neue so?" }},
-  { "level": "B1.2", "ord": 4, "title": "Beschreiben mit Partizipien",
-    "can_do": ["understand participles used as adjectives", "read a news sentence", "describe a state versus an action"],
-    "scenario": { "role": "a friend reading the news with you", "goal": "explain a headline in simpler words", "opener": "Was steht denn da? Ich versteh's nicht ganz." }},
-  { "level": "B1.2", "ord": 5, "title": "Was gesagt wurde",
-    "can_do": ["recognise reported speech", "read a news report critically", "repeat what someone said"],
-    "scenario": { "role": "a friend who missed a meeting", "goal": "report what was said without claiming it yourself", "opener": "Was wurde denn besprochen?" }},
-  { "level": "B1.2", "ord": 6, "title": "Wörter bauen",
-    "can_do": ["decode long compound words", "guess gender from an ending", "expand vocabulary without memorising"],
-    "scenario": { "role": "a teacher testing your word sense", "goal": "work out unknown words from their parts", "opener": "Was könnte 'Arbeitslosigkeit' bedeuten?" }},
-  { "level": "B1.2", "ord": 7, "title": "Behörden und Formulare",
-    "can_do": ["deal with an official office", "fill in a complex form", "ask what happens next"],
-    "scenario": { "role": "an official at the Ausländerbehörde", "goal": "submit an application and understand the next steps", "opener": "Ihre Unterlagen bitte." }},
-  { "level": "B1.2", "ord": 8, "title": "Verträge und Rechte",
-    "can_do": ["understand contract basics", "ask about obligations", "cancel something formally"],
-    "scenario": { "role": "a customer-service agent", "goal": "cancel a contract and confirm it in writing", "opener": "Sie möchten kündigen?" }},
-  { "level": "B1.2", "ord": 9, "title": "Arbeitswelt",
-    "can_do": ["discuss working conditions", "negotiate", "describe a workplace conflict"],
-    "scenario": { "role": "your manager in a review meeting", "goal": "discuss your role and ask for a change", "opener": "Wie zufrieden sind Sie mit Ihrer aktuellen Rolle?" }},
-  { "level": "B1.2", "ord": 10, "title": "Statistik und Zahlen",
+      {
+        "them": "Worauf wartest du eigentlich?",
+        "options": [
+          { "say": "Ich warte auf den Bus.", "ok": true, "next": 1 },
+          {
+            "say": "Ich warte für den Bus.",
+            "ok": false,
+            "why": "warten takes auf, not für.",
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Der kommt gleich. Freust du dich auf das Wochenende?",
+        "options": [{ "say": "Ja, sehr!", "ok": true, "next": -1 }]
+      }
+    ]
+  },
+  {
+    "level": "B1.2",
+    "ord": 2,
+    "title": "Verbinden und begründen",
+    "can_do": [
+      "use deshalb, trotzdem and obwohl",
+      "keep word order right after each",
+      "build a longer argument"
+    ],
+    "scenario": {
+      "role": "a colleague you're persuading",
+      "goal": "argue for a change and handle objections",
+      "opener": "Ich bin da noch nicht überzeugt."
+    }
+  },
+  {
+    "level": "B1.2",
+    "ord": 3,
+    "title": "Der Mensch, den…",
+    "can_do": [
+      "use N-declension nouns",
+      "talk about people precisely",
+      "avoid a common B1 error"
+    ],
+    "scenario": {
+      "role": "a colleague discussing a new hire",
+      "goal": "describe the new colleague",
+      "opener": "Und wie ist der Neue so?"
+    }
+  },
+  {
+    "level": "B1.2",
+    "ord": 4,
+    "title": "Beschreiben mit Partizipien",
+    "can_do": [
+      "understand participles used as adjectives",
+      "read a news sentence",
+      "describe a state versus an action"
+    ],
+    "scenario": {
+      "role": "a friend reading the news with you",
+      "goal": "explain a headline in simpler words",
+      "opener": "Was steht denn da? Ich versteh's nicht ganz."
+    }
+  },
+  {
+    "level": "B1.2",
+    "ord": 5,
+    "title": "Was gesagt wurde",
+    "can_do": [
+      "recognise reported speech",
+      "read a news report critically",
+      "repeat what someone said"
+    ],
+    "scenario": {
+      "role": "a friend who missed a meeting",
+      "goal": "report what was said without claiming it yourself",
+      "opener": "Was wurde denn besprochen?"
+    }
+  },
+  {
+    "level": "B1.2",
+    "ord": 6,
+    "title": "Wörter bauen",
+    "can_do": [
+      "decode long compound words",
+      "guess gender from an ending",
+      "expand vocabulary without memorising"
+    ],
+    "scenario": {
+      "role": "a teacher testing your word sense",
+      "goal": "work out unknown words from their parts",
+      "opener": "Was könnte 'Arbeitslosigkeit' bedeuten?"
+    }
+  },
+  {
+    "level": "B1.2",
+    "ord": 7,
+    "title": "Behörden und Formulare",
+    "can_do": [
+      "deal with an official office",
+      "fill in a complex form",
+      "ask what happens next"
+    ],
+    "scenario": {
+      "role": "an official at the Ausländerbehörde",
+      "goal": "submit an application and understand the next steps",
+      "opener": "Ihre Unterlagen bitte."
+    }
+  },
+  {
+    "level": "B1.2",
+    "ord": 8,
+    "title": "Verträge und Rechte",
+    "can_do": [
+      "understand contract basics",
+      "ask about obligations",
+      "cancel something formally"
+    ],
+    "scenario": {
+      "role": "a customer-service agent",
+      "goal": "cancel a contract and confirm it in writing",
+      "opener": "Sie möchten kündigen?"
+    }
+  },
+  {
+    "level": "B1.2",
+    "ord": 9,
+    "title": "Arbeitswelt",
+    "can_do": [
+      "discuss working conditions",
+      "negotiate",
+      "describe a workplace conflict"
+    ],
+    "scenario": {
+      "role": "your manager in a review meeting",
+      "goal": "discuss your role and ask for a change",
+      "opener": "Wie zufrieden sind Sie mit Ihrer aktuellen Rolle?"
+    }
+  },
+  {
+    "level": "B1.2",
+    "ord": 10,
+    "title": "Statistik und Zahlen",
     "can_do": ["describe a trend", "read a chart out loud", "compare figures"],
-    "scenario": { "role": "a colleague reviewing a report with you", "goal": "describe what the numbers show", "opener": "Was sagen die Zahlen denn?" }},
-  { "level": "B1.2", "ord": 11, "title": "Kultur",
-    "can_do": ["talk about art, music or literature", "give a considered opinion", "describe an event you attended"],
-    "scenario": { "role": "someone at an exhibition", "goal": "discuss what you've both seen", "opener": "Und, wie finden Sie die Ausstellung?" }},
-  { "level": "B1.2", "ord": 12, "title": "Migration und Integration",
-    "can_do": ["talk about living in another country", "describe culture shock", "discuss belonging"],
-    "scenario": { "role": "someone who also moved to Germany", "goal": "compare your experiences of settling in", "opener": "Wie lange hat es bei dir gedauert, bis du dich wohlgefühlt hast?" }},
-  { "level": "B1.2", "ord": 13, "title": "Wissenschaft",
-    "can_do": ["follow a popular-science explanation", "ask clarifying questions", "summarise what you understood"],
-    "scenario": { "role": "a friend who works in research", "goal": "understand their work and ask good questions", "opener": "Willst du wissen, woran ich gerade arbeite?" }},
-  { "level": "B1.2", "ord": 14, "title": "Nachrichten verstehen",
-    "can_do": ["follow a slow news report", "identify the main point", "distinguish fact from opinion"],
-    "scenario": { "role": "a colleague discussing the news", "goal": "summarise a story and give your view", "opener": "Hast du das heute Morgen gehört?" }},
-  { "level": "B1.2", "ord": 15, "title": "Konflikte lösen",
-    "can_do": ["raise a difficult subject", "stay polite under pressure", "propose a compromise"],
-    "scenario": { "role": "a flatmate you have a problem with", "goal": "raise the issue calmly and agree a solution", "opener": "Du wolltest mit mir reden?" }},
-  { "level": "B1.2", "ord": 16, "title": "Ratschläge geben",
-    "can_do": ["give advice without being bossy", "use Konjunktiv II for suggestions", "weigh up options"],
-    "scenario": { "role": "a friend facing a big decision", "goal": "help them think it through", "opener": "Ich weiß echt nicht, was ich machen soll." }},
-  { "level": "B1.2", "ord": 17, "title": "Präsentieren",
-    "can_do": ["structure a short talk", "signal what comes next", "answer a question afterwards"],
-    "scenario": { "role": "an audience at a small meeting", "goal": "present something for two minutes and take a question", "opener": "Sie haben das Wort." }},
-  { "level": "B1.2", "ord": 18, "title": "Schreiben, das ankommt",
-    "can_do": ["write a formal email", "use the right greeting and sign-off", "make a clear request in writing"],
-    "scenario": { "role": "someone you must write to formally", "goal": "draft the message out loud before writing it", "opener": "An wen schreiben Sie denn?" }},
-  { "level": "B1.2", "ord": 19, "title": "Prüfungstraining",
-    "can_do": ["handle a typical exam task", "keep talking when you don't know a word", "correct yourself naturally"],
-    "scenario": { "role": "an exam partner in a paired task", "goal": "plan something together and reach a decision", "opener": "Also, wir sollen zusammen etwas organisieren." }},
-  { "level": "B1.2", "ord": 20, "title": "B1.2 — angekommen",
-    "can_do": ["talk fluently about familiar topics", "handle unexpected turns", "express nuance and doubt"],
-    "scenario": { "role": "a German friend on a long walk", "goal": "hold a real, unstructured conversation", "opener": "Erzähl mal — wie war dein Weg hierher, von ganz am Anfang?" }}
+    "scenario": {
+      "role": "a colleague reviewing a report with you",
+      "goal": "describe what the numbers show",
+      "opener": "Was sagen die Zahlen denn?"
+    }
+  },
+  {
+    "level": "B1.2",
+    "ord": 11,
+    "title": "Kultur",
+    "can_do": [
+      "talk about art, music or literature",
+      "give a considered opinion",
+      "describe an event you attended"
+    ],
+    "scenario": {
+      "role": "someone at an exhibition",
+      "goal": "discuss what you've both seen",
+      "opener": "Und, wie finden Sie die Ausstellung?"
+    }
+  },
+  {
+    "level": "B1.2",
+    "ord": 12,
+    "title": "Migration und Integration",
+    "can_do": [
+      "talk about living in another country",
+      "describe culture shock",
+      "discuss belonging"
+    ],
+    "scenario": {
+      "role": "someone who also moved to Germany",
+      "goal": "compare your experiences of settling in",
+      "opener": "Wie lange hat es bei dir gedauert, bis du dich wohlgefühlt hast?"
+    }
+  },
+  {
+    "level": "B1.2",
+    "ord": 13,
+    "title": "Wissenschaft",
+    "can_do": [
+      "follow a popular-science explanation",
+      "ask clarifying questions",
+      "summarise what you understood"
+    ],
+    "scenario": {
+      "role": "a friend who works in research",
+      "goal": "understand their work and ask good questions",
+      "opener": "Willst du wissen, woran ich gerade arbeite?"
+    }
+  },
+  {
+    "level": "B1.2",
+    "ord": 14,
+    "title": "Nachrichten verstehen",
+    "can_do": [
+      "follow a slow news report",
+      "identify the main point",
+      "distinguish fact from opinion"
+    ],
+    "scenario": {
+      "role": "a colleague discussing the news",
+      "goal": "summarise a story and give your view",
+      "opener": "Hast du das heute Morgen gehört?"
+    }
+  },
+  {
+    "level": "B1.2",
+    "ord": 15,
+    "title": "Konflikte lösen",
+    "can_do": [
+      "raise a difficult subject",
+      "stay polite under pressure",
+      "propose a compromise"
+    ],
+    "scenario": {
+      "role": "a flatmate you have a problem with",
+      "goal": "raise the issue calmly and agree a solution",
+      "opener": "Du wolltest mit mir reden?"
+    }
+  },
+  {
+    "level": "B1.2",
+    "ord": 16,
+    "title": "Ratschläge geben",
+    "can_do": [
+      "give advice without being bossy",
+      "use Konjunktiv II for suggestions",
+      "weigh up options"
+    ],
+    "scenario": {
+      "role": "a friend facing a big decision",
+      "goal": "help them think it through",
+      "opener": "Ich weiß echt nicht, was ich machen soll."
+    }
+  },
+  {
+    "level": "B1.2",
+    "ord": 17,
+    "title": "Präsentieren",
+    "can_do": [
+      "structure a short talk",
+      "signal what comes next",
+      "answer a question afterwards"
+    ],
+    "scenario": {
+      "role": "an audience at a small meeting",
+      "goal": "present something for two minutes and take a question",
+      "opener": "Sie haben das Wort."
+    }
+  },
+  {
+    "level": "B1.2",
+    "ord": 18,
+    "title": "Schreiben, das ankommt",
+    "can_do": [
+      "write a formal email",
+      "use the right greeting and sign-off",
+      "make a clear request in writing"
+    ],
+    "scenario": {
+      "role": "someone you must write to formally",
+      "goal": "draft the message out loud before writing it",
+      "opener": "An wen schreiben Sie denn?"
+    }
+  },
+  {
+    "level": "B1.2",
+    "ord": 19,
+    "title": "Prüfungstraining",
+    "can_do": [
+      "handle a typical exam task",
+      "keep talking when you don't know a word",
+      "correct yourself naturally"
+    ],
+    "scenario": {
+      "role": "an exam partner in a paired task",
+      "goal": "plan something together and reach a decision",
+      "opener": "Also, wir sollen zusammen etwas organisieren."
+    }
+  },
+  {
+    "level": "B1.2",
+    "ord": 20,
+    "title": "B1.2 — angekommen",
+    "can_do": [
+      "talk fluently about familiar topics",
+      "handle unexpected turns",
+      "express nuance and doubt"
+    ],
+    "scenario": {
+      "role": "a German friend on a long walk",
+      "goal": "hold a real, unstructured conversation",
+      "opener": "Erzähl mal — wie war dein Weg hierher, von ganz am Anfang?"
+    }
+  }
 ]

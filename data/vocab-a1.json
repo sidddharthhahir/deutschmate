@@ -1,5 +1,5 @@
 {
-  "note": "A1 vocabulary in teaching order, keyed to data/curriculum-a1.json. Every noun carries its article and plural — a German noun without them is half a word. Units 1-12 written; 13-40 to follow.",
+  "note": "A1 vocabulary in teaching order, keyed to data/curriculum-a1.json. Every noun carries its article and plural — a German noun without them is half a word. A1.1 (units 1-20) written; A1.2 (21-40) to follow.",
   "words": [
     {
       "id": "hallo",
@@ -99,7 +99,6 @@
       "topic": "greetings",
       "unit": 1
     },
-
     {
       "id": "alphabet",
       "lemma": "Alphabet",
@@ -190,7 +189,6 @@
       "topic": "alphabet",
       "unit": 2
     },
-
     {
       "id": "null",
       "lemma": "null",
@@ -289,7 +287,6 @@
       "topic": "numbers",
       "unit": 3
     },
-
     {
       "id": "heissen",
       "lemma": "heißen",
@@ -388,7 +385,6 @@
       "topic": "connectors",
       "unit": 4
     },
-
     {
       "id": "kommen",
       "lemma": "kommen",
@@ -492,7 +488,6 @@
       "topic": "places",
       "unit": 5
     },
-
     {
       "id": "art-der",
       "lemma": "der",
@@ -607,7 +602,6 @@
       "topic": "articles",
       "unit": 6
     },
-
     {
       "id": "das-buch",
       "lemma": "Buch",
@@ -724,7 +718,6 @@
       "topic": "places",
       "unit": 7
     },
-
     {
       "id": "sein-verb",
       "lemma": "sein",
@@ -807,7 +800,6 @@
       "topic": "adjectives",
       "unit": 8
     },
-
     {
       "id": "elf",
       "lemma": "elf",
@@ -906,7 +898,6 @@
       "topic": "adjectives",
       "unit": 9
     },
-
     {
       "id": "die-uhr",
       "lemma": "Uhr",
@@ -1013,7 +1004,6 @@
       "topic": "time",
       "unit": 10
     },
-
     {
       "id": "der-montag",
       "lemma": "Montag",
@@ -1128,7 +1118,6 @@
       "topic": "time",
       "unit": 11
     },
-
     {
       "id": "machen",
       "lemma": "machen",
@@ -1224,6 +1213,838 @@
       "en": "to need",
       "topic": "core-verbs",
       "unit": 12
+    },
+    {
+      "id": "die-familie",
+      "lemma": "Familie",
+      "article": "die",
+      "plural": "Familien",
+      "pos": "noun",
+      "en": "family",
+      "topic": "family",
+      "unit": 13
+    },
+    {
+      "id": "der-vater",
+      "lemma": "Vater",
+      "article": "der",
+      "plural": "Väter",
+      "pos": "noun",
+      "en": "father",
+      "topic": "family",
+      "unit": 13
+    },
+    {
+      "id": "die-mutter",
+      "lemma": "Mutter",
+      "article": "die",
+      "plural": "Mütter",
+      "pos": "noun",
+      "en": "mother",
+      "topic": "family",
+      "unit": 13
+    },
+    {
+      "id": "die-eltern",
+      "lemma": "Eltern",
+      "article": "die",
+      "plural": "Eltern",
+      "pos": "noun",
+      "en": "parents — plural only, there is no singular",
+      "topic": "family",
+      "unit": 13
+    },
+    {
+      "id": "der-sohn",
+      "lemma": "Sohn",
+      "article": "der",
+      "plural": "Söhne",
+      "pos": "noun",
+      "en": "son",
+      "topic": "family",
+      "unit": 13
+    },
+    {
+      "id": "die-tochter",
+      "lemma": "Tochter",
+      "article": "die",
+      "plural": "Töchter",
+      "pos": "noun",
+      "en": "daughter",
+      "topic": "family",
+      "unit": 13
+    },
+    {
+      "id": "der-bruder",
+      "lemma": "Bruder",
+      "article": "der",
+      "plural": "Brüder",
+      "pos": "noun",
+      "en": "brother",
+      "topic": "family",
+      "unit": 13
+    },
+    {
+      "id": "die-schwester",
+      "lemma": "Schwester",
+      "article": "die",
+      "plural": "Schwestern",
+      "pos": "noun",
+      "en": "sister",
+      "topic": "family",
+      "unit": 13
+    },
+    {
+      "id": "der-freund",
+      "lemma": "Freund",
+      "article": "der",
+      "plural": "Freunde",
+      "pos": "noun",
+      "en": "friend (m) / boyfriend",
+      "topic": "family",
+      "unit": 13
+    },
+    {
+      "id": "die-freundin",
+      "lemma": "Freundin",
+      "article": "die",
+      "plural": "Freundinnen",
+      "pos": "noun",
+      "en": "friend (f) / girlfriend",
+      "topic": "family",
+      "unit": 13
+    },
+    {
+      "id": "sein-poss",
+      "lemma": "sein",
+      "pos": "pronoun",
+      "en": "his — same word as the verb sein, told apart by position",
+      "topic": "pronouns",
+      "unit": 13
+    },
+    {
+      "id": "ihr-poss",
+      "lemma": "ihr",
+      "pos": "pronoun",
+      "en": "her / their",
+      "topic": "pronouns",
+      "unit": 13
+    },
+    {
+      "id": "das-auto",
+      "lemma": "Auto",
+      "article": "das",
+      "plural": "Autos",
+      "pos": "noun",
+      "en": "car — -s plural, mostly on loanwords",
+      "topic": "objects",
+      "unit": 14
+    },
+    {
+      "id": "das-haus",
+      "lemma": "Haus",
+      "article": "das",
+      "plural": "Häuser",
+      "pos": "noun",
+      "en": "house — -er plural with an umlaut",
+      "topic": "home",
+      "unit": 14
+    },
+    {
+      "id": "der-apfel",
+      "lemma": "Apfel",
+      "article": "der",
+      "plural": "Äpfel",
+      "pos": "noun",
+      "en": "apple — umlaut only, no ending",
+      "topic": "food",
+      "unit": 14
+    },
+    {
+      "id": "die-blume",
+      "lemma": "Blume",
+      "article": "die",
+      "plural": "Blumen",
+      "pos": "noun",
+      "en": "flower — -n, which almost every die word takes",
+      "topic": "objects",
+      "unit": 14
+    },
+    {
+      "id": "der-baum",
+      "lemma": "Baum",
+      "article": "der",
+      "plural": "Bäume",
+      "pos": "noun",
+      "en": "tree — -e with an umlaut",
+      "topic": "objects",
+      "unit": 14
+    },
+    {
+      "id": "das-bild",
+      "lemma": "Bild",
+      "article": "das",
+      "plural": "Bilder",
+      "pos": "noun",
+      "en": "picture",
+      "topic": "objects",
+      "unit": 14
+    },
+    {
+      "id": "die-karte",
+      "lemma": "Karte",
+      "article": "die",
+      "plural": "Karten",
+      "pos": "noun",
+      "en": "card / ticket / map",
+      "topic": "objects",
+      "unit": 14
+    },
+    {
+      "id": "der-computer",
+      "lemma": "Computer",
+      "article": "der",
+      "plural": "Computer",
+      "pos": "noun",
+      "en": "computer — no ending at all",
+      "topic": "objects",
+      "unit": 14
+    },
+    {
+      "id": "die-sache",
+      "lemma": "Sache",
+      "article": "die",
+      "plural": "Sachen",
+      "pos": "noun",
+      "en": "thing",
+      "topic": "objects",
+      "unit": 14
+    },
+    {
+      "id": "alle",
+      "lemma": "alle",
+      "pos": "pronoun",
+      "en": "all / everybody",
+      "topic": "connectors",
+      "unit": 14
+    },
+    {
+      "id": "das-brot",
+      "lemma": "Brot",
+      "article": "das",
+      "plural": "Brote",
+      "pos": "noun",
+      "en": "bread",
+      "topic": "food",
+      "unit": 15
+    },
+    {
+      "id": "das-wasser",
+      "lemma": "Wasser",
+      "article": "das",
+      "plural": "Wässer",
+      "pos": "noun",
+      "en": "water",
+      "topic": "food",
+      "unit": 15
+    },
+    {
+      "id": "der-kaffee",
+      "lemma": "Kaffee",
+      "article": "der",
+      "plural": "Kaffees",
+      "pos": "noun",
+      "en": "coffee",
+      "topic": "food",
+      "unit": 15
+    },
+    {
+      "id": "der-tee",
+      "lemma": "Tee",
+      "article": "der",
+      "plural": "Tees",
+      "pos": "noun",
+      "en": "tea",
+      "topic": "food",
+      "unit": 15
+    },
+    {
+      "id": "die-milch",
+      "lemma": "Milch",
+      "article": "die",
+      "plural": "Milch",
+      "pos": "noun",
+      "en": "milk",
+      "topic": "food",
+      "unit": 15
+    },
+    {
+      "id": "der-kaese",
+      "lemma": "Käse",
+      "article": "der",
+      "plural": "Käse",
+      "pos": "noun",
+      "en": "cheese",
+      "topic": "food",
+      "unit": 15
+    },
+    {
+      "id": "das-ei",
+      "lemma": "Ei",
+      "article": "das",
+      "plural": "Eier",
+      "pos": "noun",
+      "en": "egg",
+      "topic": "food",
+      "unit": 15
+    },
+    {
+      "id": "die-butter",
+      "lemma": "Butter",
+      "article": "die",
+      "plural": "Butter",
+      "pos": "noun",
+      "en": "butter",
+      "topic": "food",
+      "unit": 15
+    },
+    {
+      "id": "das-fleisch",
+      "lemma": "Fleisch",
+      "article": "das",
+      "plural": "Fleischsorten",
+      "pos": "noun",
+      "en": "meat",
+      "topic": "food",
+      "unit": 15
+    },
+    {
+      "id": "der-fisch",
+      "lemma": "Fisch",
+      "article": "der",
+      "plural": "Fische",
+      "pos": "noun",
+      "en": "fish",
+      "topic": "food",
+      "unit": 15
+    },
+    {
+      "id": "das-gemuese",
+      "lemma": "Gemüse",
+      "article": "das",
+      "plural": "Gemüse",
+      "pos": "noun",
+      "en": "vegetables",
+      "topic": "food",
+      "unit": 15
+    },
+    {
+      "id": "das-obst",
+      "lemma": "Obst",
+      "article": "das",
+      "plural": "Obst",
+      "pos": "noun",
+      "en": "fruit — singular in German, always",
+      "topic": "food",
+      "unit": 15
+    },
+    {
+      "id": "moegen",
+      "lemma": "mögen",
+      "pos": "verb",
+      "en": "to like",
+      "topic": "core-verbs",
+      "unit": 15
+    },
+    {
+      "id": "moechten",
+      "lemma": "möchten",
+      "pos": "verb",
+      "en": "would like — the politest thing you can say",
+      "topic": "core-verbs",
+      "unit": 15
+    },
+    {
+      "id": "das-cafe",
+      "lemma": "Café",
+      "article": "das",
+      "plural": "Cafés",
+      "pos": "noun",
+      "en": "café",
+      "topic": "places",
+      "unit": 16
+    },
+    {
+      "id": "die-rechnung",
+      "lemma": "Rechnung",
+      "article": "die",
+      "plural": "Rechnungen",
+      "pos": "noun",
+      "en": "bill",
+      "topic": "food",
+      "unit": 16
+    },
+    {
+      "id": "die-speisekarte",
+      "lemma": "Speisekarte",
+      "article": "die",
+      "plural": "Speisekarten",
+      "pos": "noun",
+      "en": "menu",
+      "topic": "food",
+      "unit": 16
+    },
+    {
+      "id": "das-glas",
+      "lemma": "Glas",
+      "article": "das",
+      "plural": "Gläser",
+      "pos": "noun",
+      "en": "glass",
+      "topic": "food",
+      "unit": 16
+    },
+    {
+      "id": "die-tasse",
+      "lemma": "Tasse",
+      "article": "die",
+      "plural": "Tassen",
+      "pos": "noun",
+      "en": "cup",
+      "topic": "food",
+      "unit": 16
+    },
+    {
+      "id": "der-teller",
+      "lemma": "Teller",
+      "article": "der",
+      "plural": "Teller",
+      "pos": "noun",
+      "en": "plate",
+      "topic": "food",
+      "unit": 16
+    },
+    {
+      "id": "bestellen",
+      "lemma": "bestellen",
+      "pos": "verb",
+      "en": "to order",
+      "topic": "core-verbs",
+      "unit": 16
+    },
+    {
+      "id": "zahlen",
+      "lemma": "zahlen",
+      "pos": "verb",
+      "en": "to pay",
+      "topic": "core-verbs",
+      "unit": 16
+    },
+    {
+      "id": "bringen",
+      "lemma": "bringen",
+      "pos": "verb",
+      "en": "to bring",
+      "topic": "core-verbs",
+      "unit": 16
+    },
+    {
+      "id": "zusammen",
+      "lemma": "zusammen",
+      "pos": "adverb",
+      "en": "together — as in paying for all of it",
+      "topic": "food",
+      "unit": 16
+    },
+    {
+      "id": "getrennt",
+      "lemma": "getrennt",
+      "pos": "adverb",
+      "en": "separately — the other answer to that question",
+      "topic": "food",
+      "unit": 16
+    },
+    {
+      "id": "lecker",
+      "lemma": "lecker",
+      "pos": "adjective",
+      "en": "tasty",
+      "topic": "adjectives",
+      "unit": 16
+    },
+    {
+      "id": "nicht",
+      "lemma": "nicht",
+      "pos": "adverb",
+      "en": "not — negates verbs, adjectives, everything but a noun",
+      "topic": "negation",
+      "unit": 17
+    },
+    {
+      "id": "kein",
+      "lemma": "kein",
+      "pos": "article",
+      "en": "no / not a — the one that negates a noun",
+      "topic": "negation",
+      "unit": 17
+    },
+    {
+      "id": "nichts",
+      "lemma": "nichts",
+      "pos": "pronoun",
+      "en": "nothing",
+      "topic": "negation",
+      "unit": 17
+    },
+    {
+      "id": "niemand",
+      "lemma": "niemand",
+      "pos": "pronoun",
+      "en": "nobody",
+      "topic": "negation",
+      "unit": 17
+    },
+    {
+      "id": "nie",
+      "lemma": "nie",
+      "pos": "adverb",
+      "en": "never",
+      "topic": "negation",
+      "unit": 17
+    },
+    {
+      "id": "auch",
+      "lemma": "auch",
+      "pos": "adverb",
+      "en": "also / too",
+      "topic": "connectors",
+      "unit": 17
+    },
+    {
+      "id": "aber",
+      "lemma": "aber",
+      "pos": "conjunction",
+      "en": "but",
+      "topic": "connectors",
+      "unit": 17
+    },
+    {
+      "id": "oder",
+      "lemma": "oder",
+      "pos": "conjunction",
+      "en": "or",
+      "topic": "connectors",
+      "unit": 17
+    },
+    {
+      "id": "doch",
+      "lemma": "doch",
+      "pos": "adverb",
+      "en": "yes it is — contradicts a negative question",
+      "topic": "negation",
+      "unit": 17
+    },
+    {
+      "id": "leider",
+      "lemma": "leider",
+      "pos": "adverb",
+      "en": "unfortunately",
+      "topic": "connectors",
+      "unit": 17
+    },
+    {
+      "id": "die-farbe",
+      "lemma": "Farbe",
+      "article": "die",
+      "plural": "Farben",
+      "pos": "noun",
+      "en": "colour",
+      "topic": "adjectives",
+      "unit": 18
+    },
+    {
+      "id": "rot",
+      "lemma": "rot",
+      "pos": "adjective",
+      "en": "red",
+      "topic": "adjectives",
+      "unit": 18
+    },
+    {
+      "id": "blau",
+      "lemma": "blau",
+      "pos": "adjective",
+      "en": "blue",
+      "topic": "adjectives",
+      "unit": 18
+    },
+    {
+      "id": "gruen",
+      "lemma": "grün",
+      "pos": "adjective",
+      "en": "green",
+      "topic": "adjectives",
+      "unit": 18
+    },
+    {
+      "id": "gelb",
+      "lemma": "gelb",
+      "pos": "adjective",
+      "en": "yellow",
+      "topic": "adjectives",
+      "unit": 18
+    },
+    {
+      "id": "schwarz",
+      "lemma": "schwarz",
+      "pos": "adjective",
+      "en": "black",
+      "topic": "adjectives",
+      "unit": 18
+    },
+    {
+      "id": "weiss",
+      "lemma": "weiß",
+      "pos": "adjective",
+      "en": "white",
+      "topic": "adjectives",
+      "unit": 18
+    },
+    {
+      "id": "braun",
+      "lemma": "braun",
+      "pos": "adjective",
+      "en": "brown",
+      "topic": "adjectives",
+      "unit": 18
+    },
+    {
+      "id": "grau",
+      "lemma": "grau",
+      "pos": "adjective",
+      "en": "grey",
+      "topic": "adjectives",
+      "unit": 18
+    },
+    {
+      "id": "neu",
+      "lemma": "neu",
+      "pos": "adjective",
+      "en": "new",
+      "topic": "adjectives",
+      "unit": 18
+    },
+    {
+      "id": "schoen",
+      "lemma": "schön",
+      "pos": "adjective",
+      "en": "beautiful / nice",
+      "topic": "adjectives",
+      "unit": 18
+    },
+    {
+      "id": "teuer",
+      "lemma": "teuer",
+      "pos": "adjective",
+      "en": "expensive",
+      "topic": "adjectives",
+      "unit": 18
+    },
+    {
+      "id": "was",
+      "lemma": "was",
+      "pos": "pronoun",
+      "en": "what",
+      "topic": "questions",
+      "unit": 19
+    },
+    {
+      "id": "wann",
+      "lemma": "wann",
+      "pos": "adverb",
+      "en": "when",
+      "topic": "questions",
+      "unit": 19
+    },
+    {
+      "id": "warum",
+      "lemma": "warum",
+      "pos": "adverb",
+      "en": "why",
+      "topic": "questions",
+      "unit": 19
+    },
+    {
+      "id": "welcher",
+      "lemma": "welcher",
+      "pos": "pronoun",
+      "en": "which",
+      "topic": "questions",
+      "unit": 19
+    },
+    {
+      "id": "wie-viel",
+      "lemma": "wie viel",
+      "pos": "phrase",
+      "en": "how much",
+      "topic": "questions",
+      "unit": 19
+    },
+    {
+      "id": "wie-viele",
+      "lemma": "wie viele",
+      "pos": "phrase",
+      "en": "how many",
+      "topic": "questions",
+      "unit": 19
+    },
+    {
+      "id": "die-frage",
+      "lemma": "Frage",
+      "article": "die",
+      "plural": "Fragen",
+      "pos": "noun",
+      "en": "question",
+      "topic": "questions",
+      "unit": 19
+    },
+    {
+      "id": "die-antwort",
+      "lemma": "Antwort",
+      "article": "die",
+      "plural": "Antworten",
+      "pos": "noun",
+      "en": "answer",
+      "topic": "questions",
+      "unit": 19
+    },
+    {
+      "id": "fragen",
+      "lemma": "fragen",
+      "pos": "verb",
+      "en": "to ask",
+      "topic": "core-verbs",
+      "unit": 19
+    },
+    {
+      "id": "antworten",
+      "lemma": "antworten",
+      "pos": "verb",
+      "en": "to answer",
+      "topic": "core-verbs",
+      "unit": 19
+    },
+    {
+      "id": "verstehen",
+      "lemma": "verstehen",
+      "pos": "verb",
+      "en": "to understand",
+      "topic": "core-verbs",
+      "unit": 19
+    },
+    {
+      "id": "wiederholen",
+      "lemma": "wiederholen",
+      "pos": "verb",
+      "en": "to repeat — the verb that rescues a conversation",
+      "topic": "core-verbs",
+      "unit": 19
+    },
+    {
+      "id": "schlafen",
+      "lemma": "schlafen",
+      "pos": "verb",
+      "en": "to sleep — strong: du schläfst",
+      "topic": "core-verbs",
+      "unit": 20
+    },
+    {
+      "id": "kochen",
+      "lemma": "kochen",
+      "pos": "verb",
+      "en": "to cook",
+      "topic": "core-verbs",
+      "unit": 20
+    },
+    {
+      "id": "putzen",
+      "lemma": "putzen",
+      "pos": "verb",
+      "en": "to clean",
+      "topic": "core-verbs",
+      "unit": 20
+    },
+    {
+      "id": "duschen",
+      "lemma": "duschen",
+      "pos": "verb",
+      "en": "to shower",
+      "topic": "core-verbs",
+      "unit": 20
+    },
+    {
+      "id": "fruehstuecken",
+      "lemma": "frühstücken",
+      "pos": "verb",
+      "en": "to have breakfast",
+      "topic": "core-verbs",
+      "unit": 20
+    },
+    {
+      "id": "enden",
+      "lemma": "enden",
+      "pos": "verb",
+      "en": "to end",
+      "topic": "core-verbs",
+      "unit": 20
+    },
+    {
+      "id": "zuerst",
+      "lemma": "zuerst",
+      "pos": "adverb",
+      "en": "first of all",
+      "topic": "time",
+      "unit": 20
+    },
+    {
+      "id": "dann",
+      "lemma": "dann",
+      "pos": "adverb",
+      "en": "then",
+      "topic": "time",
+      "unit": 20
+    },
+    {
+      "id": "danach",
+      "lemma": "danach",
+      "pos": "adverb",
+      "en": "after that",
+      "topic": "time",
+      "unit": 20
+    },
+    {
+      "id": "immer",
+      "lemma": "immer",
+      "pos": "adverb",
+      "en": "always",
+      "topic": "time",
+      "unit": 20
+    },
+    {
+      "id": "oft",
+      "lemma": "oft",
+      "pos": "adverb",
+      "en": "often",
+      "topic": "time",
+      "unit": 20
+    },
+    {
+      "id": "manchmal",
+      "lemma": "manchmal",
+      "pos": "adverb",
+      "en": "sometimes",
+      "topic": "time",
+      "unit": 20
     }
   ]
 }

@@ -1,136 +1,558 @@
 [
   {
-    "id": "r-a21-u01", "unit_id": "a2-1-u01", "level": "A2.1", "title": "Ein langes Wochenende", "words": 138,
+    "id": "r-a21-u01",
+    "unit_id": "a2-1-u01",
+    "level": "A2.1",
+    "title": "Ein langes Wochenende",
+    "words": 138,
     "text": "Am Montagmorgen fragt Sabine ihren Kollegen: „Und, was hast du am Wochenende gemacht?\"\n\n„Ziemlich viel\", sagt Nikhil. „Am Samstag bin ich früh aufgestanden und habe die Wohnung geputzt. Danach habe ich eingekauft.\"\n\n„Klingt anstrengend.\"\n\n„Warte, es wird besser. Am Nachmittag habe ich einen alten Freund getroffen. Wir haben zusammen gekocht und bis Mitternacht geredet.\"\n\n„Und am Sonntag?\"\n\n„Am Sonntag bin ich mit dem Fahrrad an den See gefahren. Das Wetter war perfekt. Ich habe drei Stunden dort gesessen und ein Buch gelesen.\"\n\n„Das klingt schön. Ich habe leider nur gearbeitet.\"\n\n„Am Wochenende? Warum denn?\"\n\n„Ein Projekt. Aber nächstes Wochenende mache ich nichts. Gar nichts.\"",
     "questions": [
-      { "q": "Was hat Nikhil am Samstagvormittag gemacht?", "options": ["geschlafen", "die Wohnung geputzt", "einen Freund getroffen"], "a": 1 },
-      { "q": "Wen hat er am Samstagnachmittag getroffen?", "options": ["seine Schwester", "einen alten Freund", "einen Kollegen"], "a": 1 },
-      { "q": "Wie ist er am Sonntag zum See gekommen?", "options": ["mit dem Auto", "zu Fuß", "mit dem Fahrrad"], "a": 2 },
-      { "q": "Was hat Sabine am Wochenende gemacht?", "options": ["gearbeitet", "gelesen", "Sport gemacht"], "a": 0 }
+      {
+        "q": "Was hat Nikhil am Samstagvormittag gemacht?",
+        "options": [
+          "geschlafen",
+          "die Wohnung geputzt",
+          "einen Freund getroffen"
+        ],
+        "a": 1
+      },
+      {
+        "q": "Wen hat er am Samstagnachmittag getroffen?",
+        "options": ["seine Schwester", "einen alten Freund", "einen Kollegen"],
+        "a": 1
+      },
+      {
+        "q": "Wie ist er am Sonntag zum See gekommen?",
+        "options": ["mit dem Auto", "zu Fuß", "mit dem Fahrrad"],
+        "a": 2
+      },
+      {
+        "q": "Was hat Sabine am Wochenende gemacht?",
+        "options": ["gearbeitet", "gelesen", "Sport gemacht"],
+        "a": 0
+      }
     ],
-    "glossary": { "ziemlich": "quite", "anstrengend": "exhausting", "die Mitternacht": "midnight", "der See": "lake", "gar nichts": "nothing at all" }
+    "glossary": {
+      "ziemlich": "quite",
+      "anstrengend": "exhausting",
+      "die Mitternacht": "midnight",
+      "der See": "lake",
+      "gar nichts": "nothing at all"
+    }
   },
   {
-    "id": "r-a21-u05", "unit_id": "a2-1-u05", "level": "A2.1", "title": "Wo bist du gerade?", "words": 144,
+    "id": "r-a21-u05",
+    "unit_id": "a2-1-u05",
+    "level": "A2.1",
+    "title": "Wo bist du gerade?",
+    "words": 144,
     "text": "Meera ruft ihre Freundin an.\n\n„Wo bist du gerade? Ich warte schon zwanzig Minuten im Café.\"\n\n„Tut mir wirklich leid! Ich bin noch in der U-Bahn. In zehn Minuten bin ich da.\"\n\n„Kein Problem. Ich sitze am Fenster, hinten links.\"\n\nZehn Minuten später kommt Lena ins Café. Sie sieht Meera sofort.\n\n„Entschuldigung nochmal. Ich war beim Arzt und der Termin hat länger gedauert.\"\n\n„Alles gut. Ist alles in Ordnung?\"\n\n„Ja, nichts Schlimmes. Nur eine Kontrolle.\"\n\nSie bestellen zwei Kaffee. Draußen fängt es an zu regnen.\n\n„Gut, dass wir drinnen sitzen\", sagt Lena.\n\n„Ja. Und ich habe meinen Schirm natürlich zu Hause gelassen.\"",
     "questions": [
-      { "q": "Wie lange wartet Meera schon?", "options": ["zehn Minuten", "zwanzig Minuten", "eine Stunde"], "a": 1 },
-      { "q": "Wo ist Lena, als sie anruft?", "options": ["zu Hause", "in der U-Bahn", "beim Arzt"], "a": 1 },
-      { "q": "Warum kommt Lena zu spät?", "options": ["Der Arzttermin hat länger gedauert", "Sie hat verschlafen", "Der Bus war weg"], "a": 0 },
-      { "q": "Wie ist das Wetter am Ende?", "options": ["sonnig", "es regnet", "es schneit"], "a": 1 }
+      {
+        "q": "Wie lange wartet Meera schon?",
+        "options": ["zehn Minuten", "zwanzig Minuten", "eine Stunde"],
+        "a": 1
+      },
+      {
+        "q": "Wo ist Lena, als sie anruft?",
+        "options": ["zu Hause", "in der U-Bahn", "beim Arzt"],
+        "a": 1
+      },
+      {
+        "q": "Warum kommt Lena zu spät?",
+        "options": [
+          "Der Arzttermin hat länger gedauert",
+          "Sie hat verschlafen",
+          "Der Bus war weg"
+        ],
+        "a": 0
+      },
+      {
+        "q": "Wie ist das Wetter am Ende?",
+        "options": ["sonnig", "es regnet", "es schneit"],
+        "a": 1
+      }
     ],
-    "glossary": { "gerade": "right now", "die U-Bahn": "underground", "hat gedauert": "took (time)", "nichts Schlimmes": "nothing serious", "die Kontrolle": "check-up", "drinnen": "inside", "der Schirm": "umbrella" }
+    "glossary": {
+      "gerade": "right now",
+      "die U-Bahn": "underground",
+      "hat gedauert": "took (time)",
+      "nichts Schlimmes": "nothing serious",
+      "die Kontrolle": "check-up",
+      "drinnen": "inside",
+      "der Schirm": "umbrella"
+    }
   },
   {
-    "id": "r-a21-u09", "unit_id": "a2-1-u09", "level": "A2.1", "title": "Ein Tisch für zwei", "words": 156,
+    "id": "r-a21-u09",
+    "unit_id": "a2-1-u09",
+    "level": "A2.1",
+    "title": "Ein Tisch für zwei",
+    "words": 156,
     "text": "„Guten Abend. Haben Sie reserviert?\"\n\n„Nein, leider nicht. Haben Sie einen Tisch für zwei Personen?\"\n\n„Einen Moment... ja, dort am Fenster. Bitte kommen Sie mit.\"\n\nDer Kellner bringt die Karte. Nach fünf Minuten kommt er zurück.\n\n„Haben Sie schon gewählt?\"\n\n„Ich hätte gern die Suppe und danach den Fisch\", sagt Anna.\n\n„Und für mich bitte den Salat. Ist da Fleisch drin?\"\n\n„Nein, der Salat ist vegetarisch.\"\n\n„Perfekt. Dann nehme ich den.\"\n\n„Und zu trinken?\"\n\n„Zweimal Wasser, bitte. Ohne Gas.\"\n\nDas Essen kommt schnell und schmeckt gut. Am Ende fragt Anna: „Können wir bitte zahlen?\"\n\n„Zusammen oder getrennt?\"\n\n„Getrennt, bitte.\"\n\nDer Kellner rechnet. „Einmal zweiundzwanzig, einmal achtzehn Euro.\"",
     "questions": [
-      { "q": "Haben die Gäste reserviert?", "options": ["ja", "nein", "das steht nicht da"], "a": 1 },
-      { "q": "Was bestellt Anna?", "options": ["Salat und Fisch", "Suppe und Fisch", "nur Suppe"], "a": 1 },
-      { "q": "Warum fragt der andere Gast nach dem Salat?", "options": ["Er ist zu teuer", "Er will wissen, ob Fleisch drin ist", "Er mag keinen Salat"], "a": 1 },
-      { "q": "Wie zahlen sie?", "options": ["zusammen", "getrennt", "mit Karte"], "a": 1 }
+      {
+        "q": "Haben die Gäste reserviert?",
+        "options": ["ja", "nein", "das steht nicht da"],
+        "a": 1
+      },
+      {
+        "q": "Was bestellt Anna?",
+        "options": ["Salat und Fisch", "Suppe und Fisch", "nur Suppe"],
+        "a": 1
+      },
+      {
+        "q": "Warum fragt der andere Gast nach dem Salat?",
+        "options": [
+          "Er ist zu teuer",
+          "Er will wissen, ob Fleisch drin ist",
+          "Er mag keinen Salat"
+        ],
+        "a": 1
+      },
+      {
+        "q": "Wie zahlen sie?",
+        "options": ["zusammen", "getrennt", "mit Karte"],
+        "a": 1
+      }
     ],
-    "glossary": { "reserviert": "reserved", "die Karte": "menu", "gewählt": "chosen", "drin": "in it", "ohne Gas": "still (water)", "getrennt": "separately", "rechnet": "calculates" }
+    "glossary": {
+      "reserviert": "reserved",
+      "die Karte": "menu",
+      "gewählt": "chosen",
+      "drin": "in it",
+      "ohne Gas": "still (water)",
+      "getrennt": "separately",
+      "rechnet": "calculates"
+    }
   },
   {
-    "id": "r-a21-u13", "unit_id": "a2-1-u13", "level": "A2.1", "title": "Ein Anruf im Büro", "words": 149,
+    "id": "r-a21-u13",
+    "unit_id": "a2-1-u13",
+    "level": "A2.1",
+    "title": "Ein Anruf im Büro",
+    "words": 149,
     "text": "„Firma Meyer, Schneider am Apparat, guten Tag.\"\n\n„Guten Tag. Könnte ich bitte Herrn Braun sprechen?\"\n\n„Herr Braun ist gerade in einer Besprechung. Kann ich etwas ausrichten?\"\n\n„Ja, gern. Mein Name ist Kumar. Es geht um den Termin am Donnerstag.\"\n\n„Einen Moment, ich notiere das. Herr Kumar, Termin Donnerstag. Und worum genau geht es?\"\n\n„Ich kann leider nicht kommen. Ich würde den Termin gern verschieben.\"\n\n„Auf wann denn?\"\n\n„Freitag oder nächste Woche Montag wäre gut.\"\n\n„Gut, ich sage ihm Bescheid. Er ruft Sie dann zurück. Haben Sie eine Nummer?\"\n\n„Ja: null eins fünf eins, zwei drei vier...\"\n\n„Danke. Und wie schreibt man Ihren Namen?\"\n\n„K-U-M-A-R.\"\n\n„Alles klar, Herr Kumar. Schönen Tag noch.\"",
     "questions": [
-      { "q": "Wen möchte Herr Kumar sprechen?", "options": ["Frau Schneider", "Herrn Braun", "Frau Meyer"], "a": 1 },
-      { "q": "Warum kann er nicht sprechen?", "options": ["Er ist krank", "Er ist in einer Besprechung", "Er ist im Urlaub"], "a": 1 },
-      { "q": "Was möchte Herr Kumar?", "options": ["den Termin absagen", "den Termin verschieben", "einen neuen Vertrag"], "a": 1 },
-      { "q": "Was macht Frau Schneider?", "options": ["Sie notiert die Nachricht", "Sie legt auf", "Sie verbindet ihn"], "a": 0 }
+      {
+        "q": "Wen möchte Herr Kumar sprechen?",
+        "options": ["Frau Schneider", "Herrn Braun", "Frau Meyer"],
+        "a": 1
+      },
+      {
+        "q": "Warum kann er nicht sprechen?",
+        "options": [
+          "Er ist krank",
+          "Er ist in einer Besprechung",
+          "Er ist im Urlaub"
+        ],
+        "a": 1
+      },
+      {
+        "q": "Was möchte Herr Kumar?",
+        "options": [
+          "den Termin absagen",
+          "den Termin verschieben",
+          "einen neuen Vertrag"
+        ],
+        "a": 1
+      },
+      {
+        "q": "Was macht Frau Schneider?",
+        "options": [
+          "Sie notiert die Nachricht",
+          "Sie legt auf",
+          "Sie verbindet ihn"
+        ],
+        "a": 0
+      }
     ],
-    "glossary": { "am Apparat": "speaking (on the phone)", "die Besprechung": "meeting", "ausrichten": "to pass on a message", "notiere": "note down", "verschieben": "to postpone", "Bescheid sagen": "to let someone know", "zurückrufen": "to call back" }
+    "glossary": {
+      "am Apparat": "speaking (on the phone)",
+      "die Besprechung": "meeting",
+      "ausrichten": "to pass on a message",
+      "notiere": "note down",
+      "verschieben": "to postpone",
+      "Bescheid sagen": "to let someone know",
+      "zurückrufen": "to call back"
+    }
   },
   {
-    "id": "r-a21-u17", "unit_id": "a2-1-u17", "level": "A2.1", "title": "Im Sportverein", "words": 152,
+    "id": "r-a21-u17",
+    "unit_id": "a2-1-u17",
+    "level": "A2.1",
+    "title": "Im Sportverein",
+    "words": 152,
     "text": "Nikhil steht vor der Sporthalle. Ein Mann kommt heraus.\n\n„Warst du schon mal hier?\", fragt er.\n\n„Nein, zum ersten Mal. Ich möchte gern mitmachen. Was für Sport macht ihr?\"\n\n„Volleyball, dienstags und donnerstags. Immer um neunzehn Uhr.\"\n\n„Und muss man gut sein?\"\n\nDer Mann lacht. „Nein, gar nicht. Die meisten hier spielen seit zwei oder drei Jahren, aber wir haben auch Anfänger. Wichtig ist nur, dass man regelmäßig kommt.\"\n\n„Was kostet das?\"\n\n„Fünfzehn Euro im Monat. Das erste Mal ist kostenlos — du kannst einfach mitspielen und schauen, ob es dir gefällt.\"\n\n„Das klingt gut. Kann ich heute schon?\"\n\n„Klar. Wir fangen in zehn Minuten an. Hast du Sportschuhe dabei?\"\n\n„Nein, leider nicht.\"\n\n„Dann komm am Donnerstag wieder. Und bring die Schuhe mit.\"",
     "questions": [
-      { "q": "Welchen Sport macht der Verein?", "options": ["Fußball", "Volleyball", "Basketball"], "a": 1 },
-      { "q": "Wann ist das Training?", "options": ["montags und mittwochs", "dienstags und donnerstags", "nur samstags"], "a": 1 },
-      { "q": "Was kostet die Mitgliedschaft?", "options": ["fünfzehn Euro im Monat", "fünfzig Euro im Jahr", "nichts"], "a": 0 },
-      { "q": "Warum kann Nikhil heute nicht mitspielen?", "options": ["Es ist zu spät", "Er hat keine Sportschuhe", "Er muss zahlen"], "a": 1 }
+      {
+        "q": "Welchen Sport macht der Verein?",
+        "options": ["Fußball", "Volleyball", "Basketball"],
+        "a": 1
+      },
+      {
+        "q": "Wann ist das Training?",
+        "options": [
+          "montags und mittwochs",
+          "dienstags und donnerstags",
+          "nur samstags"
+        ],
+        "a": 1
+      },
+      {
+        "q": "Was kostet die Mitgliedschaft?",
+        "options": ["fünfzehn Euro im Monat", "fünfzig Euro im Jahr", "nichts"],
+        "a": 0
+      },
+      {
+        "q": "Warum kann Nikhil heute nicht mitspielen?",
+        "options": [
+          "Es ist zu spät",
+          "Er hat keine Sportschuhe",
+          "Er muss zahlen"
+        ],
+        "a": 1
+      }
     ],
-    "glossary": { "der Sportverein": "sports club", "mitmachen": "to join in", "der Anfänger": "beginner", "regelmäßig": "regularly", "kostenlos": "free of charge", "dabei haben": "to have with you" }
+    "glossary": {
+      "der Sportverein": "sports club",
+      "mitmachen": "to join in",
+      "der Anfänger": "beginner",
+      "regelmäßig": "regularly",
+      "kostenlos": "free of charge",
+      "dabei haben": "to have with you"
+    }
   },
   {
-    "id": "r-a21-u20", "unit_id": "a2-1-u20", "level": "A2.1", "title": "Ein Jahr später", "words": 168,
+    "id": "r-a21-u20",
+    "unit_id": "a2-1-u20",
+    "level": "A2.1",
+    "title": "Ein Jahr später",
+    "words": 168,
     "text": "Meera und Lena haben sich ein Jahr nicht gesehen. Jetzt sitzen sie wieder im gleichen Café.\n\n„Erzähl mal, was ist alles passiert?\", fragt Lena.\n\n„Ziemlich viel. Ich habe die Stelle gewechselt. Jetzt arbeite ich bei einer kleinen Firma in Bonn.\"\n\n„Und gefällt es dir?\"\n\n„Am Anfang war es schwer. Alles war neu und ich habe nicht viel verstanden. Aber jetzt ist es viel besser als vorher. Die Kollegen sind nett und ich lerne jeden Tag etwas.\"\n\n„Das freut mich wirklich.\"\n\n„Und bei dir?\"\n\n„Ich bin umgezogen. Ich wohne jetzt zusammen mit meinem Bruder. Die Wohnung ist kleiner, aber die Miete ist günstiger.\"\n\n„Und funktioniert das? Mit dem Bruder?\"\n\nLena lacht. „Meistens. Er räumt nie auf. Aber er kocht sehr gut, also sage ich nichts.\"",
     "questions": [
-      { "q": "Was hat Meera gemacht?", "options": ["Sie ist umgezogen", "Sie hat die Stelle gewechselt", "Sie hat geheiratet"], "a": 1 },
-      { "q": "Wie war der Anfang bei der neuen Firma?", "options": ["leicht", "schwer", "langweilig"], "a": 1 },
-      { "q": "Mit wem wohnt Lena jetzt?", "options": ["allein", "mit ihrem Bruder", "mit Meera"], "a": 1 },
-      { "q": "Was ist gut an der neuen Wohnung?", "options": ["Sie ist größer", "Die Miete ist günstiger", "Sie ist im Zentrum"], "a": 1 },
-      { "q": "Warum beschwert sich Lena nicht?", "options": ["Ihr Bruder kocht gut", "Er zahlt alles", "Er ist nie da"], "a": 0 }
+      {
+        "q": "Was hat Meera gemacht?",
+        "options": [
+          "Sie ist umgezogen",
+          "Sie hat die Stelle gewechselt",
+          "Sie hat geheiratet"
+        ],
+        "a": 1
+      },
+      {
+        "q": "Wie war der Anfang bei der neuen Firma?",
+        "options": ["leicht", "schwer", "langweilig"],
+        "a": 1
+      },
+      {
+        "q": "Mit wem wohnt Lena jetzt?",
+        "options": ["allein", "mit ihrem Bruder", "mit Meera"],
+        "a": 1
+      },
+      {
+        "q": "Was ist gut an der neuen Wohnung?",
+        "options": [
+          "Sie ist größer",
+          "Die Miete ist günstiger",
+          "Sie ist im Zentrum"
+        ],
+        "a": 1
+      },
+      {
+        "q": "Warum beschwert sich Lena nicht?",
+        "options": ["Ihr Bruder kocht gut", "Er zahlt alles", "Er ist nie da"],
+        "a": 0
+      }
     ],
-    "glossary": { "die Stelle wechseln": "to change jobs", "vorher": "before", "umgezogen": "moved house", "die Miete": "rent", "günstiger": "cheaper", "aufräumen": "to tidy up", "meistens": "mostly" }
+    "glossary": {
+      "die Stelle wechseln": "to change jobs",
+      "vorher": "before",
+      "umgezogen": "moved house",
+      "die Miete": "rent",
+      "günstiger": "cheaper",
+      "aufräumen": "to tidy up",
+      "meistens": "mostly"
+    }
   },
   {
-    "id": "r-a22-u01", "unit_id": "a2-2-u01", "level": "A2.2", "title": "Warum Deutsch?", "words": 175,
+    "id": "r-a22-u01",
+    "unit_id": "a2-2-u01",
+    "level": "A2.2",
+    "title": "Warum Deutsch?",
+    "words": 175,
     "text": "In der Sprachschule fragt die Lehrerin: „Warum lernt ihr eigentlich Deutsch?\"\n\nCarlos antwortet zuerst. „Weil ich hier arbeiten möchte. Ich bin Ingenieur, und in meiner Branche gibt es viele Stellen in Deutschland. Aber ohne Deutsch bekomme ich keinen guten Job.\"\n\n„Und du, Yuki?\"\n\n„Bei mir ist es anders. Ich lerne Deutsch, weil meine Großmutter Deutsche war. Sie ist gestorben, als ich klein war, und ich habe nie mit ihr in ihrer Sprache gesprochen. Das möchte ich jetzt nachholen — auch wenn es zu spät ist.\"\n\nEs wird kurz still.\n\n„Das ist ein schöner Grund\", sagt die Lehrerin leise.\n\n„Und ich lerne Deutsch, weil ich verloren habe\", sagt Amir. Alle lachen. „Wirklich! Mein Freund und ich hatten eine Wette. Er hat gewonnen, und jetzt muss ich einen Kurs machen.\"\n\n„Und, bereust du es?\"\n\n„Nein\", sagt Amir. „Ehrlich gesagt gefällt es mir sogar.\"",
     "questions": [
-      { "q": "Warum lernt Carlos Deutsch?", "options": ["wegen seiner Familie", "weil er hier arbeiten möchte", "wegen einer Wette"], "a": 1 },
-      { "q": "Was verbindet Yuki mit der deutschen Sprache?", "options": ["ihre Arbeit", "ihre Großmutter", "ein Studium"], "a": 1 },
-      { "q": "Warum macht Amir den Kurs?", "options": ["Er hat eine Wette verloren", "Sein Chef will es", "Er zieht nach Berlin"], "a": 0 },
-      { "q": "Wie findet Amir den Kurs jetzt?", "options": ["schrecklich", "es gefällt ihm", "zu schwer"], "a": 1 }
+      {
+        "q": "Warum lernt Carlos Deutsch?",
+        "options": [
+          "wegen seiner Familie",
+          "weil er hier arbeiten möchte",
+          "wegen einer Wette"
+        ],
+        "a": 1
+      },
+      {
+        "q": "Was verbindet Yuki mit der deutschen Sprache?",
+        "options": ["ihre Arbeit", "ihre Großmutter", "ein Studium"],
+        "a": 1
+      },
+      {
+        "q": "Warum macht Amir den Kurs?",
+        "options": [
+          "Er hat eine Wette verloren",
+          "Sein Chef will es",
+          "Er zieht nach Berlin"
+        ],
+        "a": 0
+      },
+      {
+        "q": "Wie findet Amir den Kurs jetzt?",
+        "options": ["schrecklich", "es gefällt ihm", "zu schwer"],
+        "a": 1
+      }
     ],
-    "glossary": { "die Branche": "sector, industry", "gestorben": "died", "nachholen": "to catch up on", "still": "quiet", "der Grund": "reason", "die Wette": "bet", "bereuen": "to regret", "ehrlich gesagt": "honestly" }
+    "glossary": {
+      "die Branche": "sector, industry",
+      "gestorben": "died",
+      "nachholen": "to catch up on",
+      "still": "quiet",
+      "der Grund": "reason",
+      "die Wette": "bet",
+      "bereuen": "to regret",
+      "ehrlich gesagt": "honestly"
+    }
   },
   {
-    "id": "r-a22-u05", "unit_id": "a2-2-u05", "level": "A2.2", "title": "Früher war alles anders", "words": 182,
+    "id": "r-a22-u05",
+    "unit_id": "a2-2-u05",
+    "level": "A2.2",
+    "title": "Früher war alles anders",
+    "words": 182,
     "text": "Herr Ostermann ist achtzig Jahre alt und wohnt seit sechzig Jahren in derselben Straße.\n\n„Früher war hier alles ganz anders\", erzählt er. „Es gab keine Supermärkte. Es gab einen Bäcker, einen Metzger und einen kleinen Laden an der Ecke. Die Frau dort kannte jeden Kunden mit Namen.\"\n\n„Und die Straße?\"\n\n„Da waren fast keine Autos. Die Kinder haben auf der Straße gespielt, den ganzen Tag. Heute traut sich das niemand mehr.\"\n\n„War es besser?\"\n\nEr überlegt lange. „Manches ja, manches nein. Wir hatten weniger Geld und viel weniger Auswahl. Aber wir kannten unsere Nachbarn. Heute wohne ich seit zwei Jahren neben einer Familie und weiß nicht, wie sie heißt.\"\n\n„Das ist traurig.\"\n\n„Ein bisschen. Aber ich will nicht nur klagen. Früher war ich auch jung — vielleicht war deshalb alles schöner.\"",
     "questions": [
-      { "q": "Wie lange wohnt Herr Ostermann in der Straße?", "options": ["zwanzig Jahre", "sechzig Jahre", "achtzig Jahre"], "a": 1 },
-      { "q": "Was gab es früher nicht?", "options": ["einen Bäcker", "Supermärkte", "Kinder"], "a": 1 },
-      { "q": "Was hat sich bei den Nachbarn geändert?", "options": ["Man kennt sich nicht mehr", "Es gibt mehr Nachbarn", "Alle sind älter"], "a": 0 },
-      { "q": "Was sagt er am Ende über früher?", "options": ["Alles war besser", "Vielleicht war er einfach jung", "Er will zurück"], "a": 1 }
+      {
+        "q": "Wie lange wohnt Herr Ostermann in der Straße?",
+        "options": ["zwanzig Jahre", "sechzig Jahre", "achtzig Jahre"],
+        "a": 1
+      },
+      {
+        "q": "Was gab es früher nicht?",
+        "options": ["einen Bäcker", "Supermärkte", "Kinder"],
+        "a": 1
+      },
+      {
+        "q": "Was hat sich bei den Nachbarn geändert?",
+        "options": [
+          "Man kennt sich nicht mehr",
+          "Es gibt mehr Nachbarn",
+          "Alle sind älter"
+        ],
+        "a": 0
+      },
+      {
+        "q": "Was sagt er am Ende über früher?",
+        "options": [
+          "Alles war besser",
+          "Vielleicht war er einfach jung",
+          "Er will zurück"
+        ],
+        "a": 1
+      }
     ],
-    "glossary": { "derselben": "the same", "der Metzger": "butcher", "der Laden": "shop", "sich trauen": "to dare", "überlegt": "thinks it over", "die Auswahl": "choice, selection", "klagen": "to complain" }
+    "glossary": {
+      "derselben": "the same",
+      "der Metzger": "butcher",
+      "der Laden": "shop",
+      "sich trauen": "to dare",
+      "überlegt": "thinks it over",
+      "die Auswahl": "choice, selection",
+      "klagen": "to complain"
+    }
   },
   {
-    "id": "r-a22-u09", "unit_id": "a2-2-u09", "level": "A2.2", "title": "Wohin fahren wir?", "words": 178,
+    "id": "r-a22-u09",
+    "unit_id": "a2-2-u09",
+    "level": "A2.2",
+    "title": "Wohin fahren wir?",
+    "words": 178,
     "text": "„Wohin sollen wir im Sommer fahren?\", fragt Jonas.\n\n„Ich hätte Lust auf Berge\", sagt Meera. „Wandern, frische Luft, ruhig.\"\n\n„Und ich würde lieber ans Meer. Ich sitze das ganze Jahr im Büro. Ich will einfach nur liegen und nichts tun.\"\n\n„Verstehe. Aber am Meer ist es im August total voll. Und teuer.\"\n\n„In den Bergen regnet es dafür ständig.\"\n\nBeide lachen.\n\n„Okay\", sagt Meera. „Wie wäre es mit einem Kompromiss? Wir fahren an einen See. Da kann man schwimmen, aber es gibt auch Berge in der Nähe.\"\n\nJonas überlegt. „Das ist eigentlich keine schlechte Idee. Und billiger als die Küste.\"\n\n„Genau. Ich schaue heute Abend nach Unterkünften.\"\n\n„Gut. Aber eine Bedingung: Wir wandern höchstens zweimal.\"\n\n„Dreimal.\"\n\n„Zweimal.\"\n\n„Abgemacht.\"",
     "questions": [
-      { "q": "Wohin möchte Meera zuerst?", "options": ["ans Meer", "in die Berge", "in eine Stadt"], "a": 1 },
-      { "q": "Warum will Jonas ans Meer?", "options": ["Er will wandern", "Er will sich ausruhen", "Es ist billiger"], "a": 1 },
-      { "q": "Was ist der Kompromiss?", "options": ["ein See", "eine Stadt", "zu Hause bleiben"], "a": 0 },
-      { "q": "Worüber verhandeln sie am Ende?", "options": ["über den Preis", "wie oft sie wandern", "über das Datum"], "a": 1 }
+      {
+        "q": "Wohin möchte Meera zuerst?",
+        "options": ["ans Meer", "in die Berge", "in eine Stadt"],
+        "a": 1
+      },
+      {
+        "q": "Warum will Jonas ans Meer?",
+        "options": [
+          "Er will wandern",
+          "Er will sich ausruhen",
+          "Es ist billiger"
+        ],
+        "a": 1
+      },
+      {
+        "q": "Was ist der Kompromiss?",
+        "options": ["ein See", "eine Stadt", "zu Hause bleiben"],
+        "a": 0
+      },
+      {
+        "q": "Worüber verhandeln sie am Ende?",
+        "options": ["über den Preis", "wie oft sie wandern", "über das Datum"],
+        "a": 1
+      }
     ],
-    "glossary": { "Lust haben auf": "to fancy", "wandern": "to hike", "ständig": "constantly", "der Kompromiss": "compromise", "die Unterkunft": "accommodation", "die Bedingung": "condition", "höchstens": "at most", "abgemacht": "agreed, deal" }
+    "glossary": {
+      "Lust haben auf": "to fancy",
+      "wandern": "to hike",
+      "ständig": "constantly",
+      "der Kompromiss": "compromise",
+      "die Unterkunft": "accommodation",
+      "die Bedingung": "condition",
+      "höchstens": "at most",
+      "abgemacht": "agreed, deal"
+    }
   },
   {
-    "id": "r-a22-u13", "unit_id": "a2-2-u13", "level": "A2.2", "title": "Die Anmeldung", "words": 186,
+    "id": "r-a22-u13",
+    "unit_id": "a2-2-u13",
+    "level": "A2.2",
+    "title": "Die Anmeldung",
+    "words": 186,
     "text": "Nach dem Umzug muss sich Nikhil beim Bürgeramt anmelden. Er hat online einen Termin gebucht — der nächste freie war in drei Wochen.\n\n„Guten Tag. Sie möchten sich anmelden?\"\n\n„Ja. Ich bin letzten Monat umgezogen.\"\n\n„Haben Sie die Wohnungsgeberbestätigung dabei?\"\n\n„Die was, bitte?\"\n\n„Eine Bestätigung von Ihrem Vermieter. Damit wir wissen, dass Sie wirklich dort wohnen.\"\n\nNikhil sucht in seiner Tasche. Zum Glück hat der Vermieter ihm ein Formular gegeben.\n\n„Ist das richtig?\"\n\nDie Frau schaut kurz darauf. „Ja, genau das. Und Ihren Ausweis, bitte.\"\n\nSie tippt ein paar Minuten. Dann druckt sie ein Blatt aus.\n\n„Das ist Ihre Meldebescheinigung. Bewahren Sie die gut auf — Sie brauchen sie für die Bank, für die Steuer, eigentlich für alles.\"\n\n„Danke. War das schon alles?\"\n\n„Das war alles. Willkommen in Bonn.\"",
     "questions": [
-      { "q": "Wann bekam Nikhil einen Termin?", "options": ["sofort", "nach einer Woche", "nach drei Wochen"], "a": 2 },
-      { "q": "Was braucht er außer dem Ausweis?", "options": ["ein Foto", "eine Bestätigung vom Vermieter", "einen Vertrag"], "a": 1 },
-      { "q": "Was bekommt er am Ende?", "options": ["einen Ausweis", "eine Meldebescheinigung", "einen Vertrag"], "a": 1 },
-      { "q": "Wofür braucht er das Papier?", "options": ["nur für die Wohnung", "für Bank und Steuer", "für nichts"], "a": 1 }
+      {
+        "q": "Wann bekam Nikhil einen Termin?",
+        "options": ["sofort", "nach einer Woche", "nach drei Wochen"],
+        "a": 2
+      },
+      {
+        "q": "Was braucht er außer dem Ausweis?",
+        "options": [
+          "ein Foto",
+          "eine Bestätigung vom Vermieter",
+          "einen Vertrag"
+        ],
+        "a": 1
+      },
+      {
+        "q": "Was bekommt er am Ende?",
+        "options": [
+          "einen Ausweis",
+          "eine Meldebescheinigung",
+          "einen Vertrag"
+        ],
+        "a": 1
+      },
+      {
+        "q": "Wofür braucht er das Papier?",
+        "options": ["nur für die Wohnung", "für Bank und Steuer", "für nichts"],
+        "a": 1
+      }
     ],
-    "glossary": { "das Bürgeramt": "citizens' office", "sich anmelden": "to register", "der Vermieter": "landlord", "die Bestätigung": "confirmation", "zum Glück": "luckily", "aufbewahren": "to keep safe", "die Steuer": "tax" }
+    "glossary": {
+      "das Bürgeramt": "citizens' office",
+      "sich anmelden": "to register",
+      "der Vermieter": "landlord",
+      "die Bestätigung": "confirmation",
+      "zum Glück": "luckily",
+      "aufbewahren": "to keep safe",
+      "die Steuer": "tax"
+    }
   },
   {
-    "id": "r-a22-u17", "unit_id": "a2-2-u17", "level": "A2.2", "title": "Die Geschichte mit dem Schlüssel", "words": 195,
+    "id": "r-a22-u17",
+    "unit_id": "a2-2-u17",
+    "level": "A2.2",
+    "title": "Die Geschichte mit dem Schlüssel",
+    "words": 195,
     "text": "„Erzähl mal die Geschichte von neulich!\", sagt Lena.\n\nMeera seufzt. „Also gut. Letzten Dienstag komme ich nach Hause, spät, so gegen elf. Und dann merke ich: Mein Schlüssel ist weg.\"\n\n„Oh nein.\"\n\n„Ich suche in der Tasche, in den Jacken, überall. Nichts. Wahrscheinlich im Büro liegen geblieben.\"\n\n„Und dann?\"\n\n„Dann habe ich bei meiner Nachbarin geklingelt. Sie hat einen Zweitschlüssel. Aber sie war nicht da.\"\n\n„Und was hast du gemacht?\"\n\n„Ich habe eine Stunde vor der Tür gewartet. Es war kalt. Irgendwann kam ein Mann aus dem Haus, und ich bin schnell mit hineingegangen. Wenigstens war ich dann im Treppenhaus.\"\n\n„Und die Wohnung?\"\n\n„Um halb eins kam die Nachbarin endlich nach Hause. Sie hat mich gesehen und gesagt: ‚Sitzt du hier schon lange?' Und ich sage: ‚Nur zwei Stunden.'\"\n\nLena lacht. „Und der Schlüssel?\"\n\n„Lag am nächsten Morgen auf meinem Schreibtisch. Genau da, wo ich ihn hingelegt hatte.\"",
     "questions": [
-      { "q": "Wann kam Meera nach Hause?", "options": ["gegen neun", "gegen elf", "gegen eins"], "a": 1 },
-      { "q": "Wo war der Schlüssel?", "options": ["in der Jacke", "im Büro", "bei der Nachbarin"], "a": 1 },
-      { "q": "Warum konnte die Nachbarin nicht helfen?", "options": ["Sie hatte keinen Schlüssel", "Sie war nicht zu Hause", "Sie hat nicht geöffnet"], "a": 1 },
-      { "q": "Wie lange hat Meera insgesamt gewartet?", "options": ["eine halbe Stunde", "etwa zwei Stunden", "die ganze Nacht"], "a": 1 }
+      {
+        "q": "Wann kam Meera nach Hause?",
+        "options": ["gegen neun", "gegen elf", "gegen eins"],
+        "a": 1
+      },
+      {
+        "q": "Wo war der Schlüssel?",
+        "options": ["in der Jacke", "im Büro", "bei der Nachbarin"],
+        "a": 1
+      },
+      {
+        "q": "Warum konnte die Nachbarin nicht helfen?",
+        "options": [
+          "Sie hatte keinen Schlüssel",
+          "Sie war nicht zu Hause",
+          "Sie hat nicht geöffnet"
+        ],
+        "a": 1
+      },
+      {
+        "q": "Wie lange hat Meera insgesamt gewartet?",
+        "options": [
+          "eine halbe Stunde",
+          "etwa zwei Stunden",
+          "die ganze Nacht"
+        ],
+        "a": 1
+      }
     ],
-    "glossary": { "neulich": "the other day", "seufzt": "sighs", "liegen geblieben": "left behind", "klingeln": "to ring the bell", "der Zweitschlüssel": "spare key", "irgendwann": "at some point", "wenigstens": "at least", "das Treppenhaus": "stairwell" }
+    "glossary": {
+      "neulich": "the other day",
+      "seufzt": "sighs",
+      "liegen geblieben": "left behind",
+      "klingeln": "to ring the bell",
+      "der Zweitschlüssel": "spare key",
+      "irgendwann": "at some point",
+      "wenigstens": "at least",
+      "das Treppenhaus": "stairwell"
+    }
   },
   {
-    "id": "r-a22-u20", "unit_id": "a2-2-u20", "level": "A2.2", "title": "Zwei Jahre Deutschland", "words": 205,
+    "id": "r-a22-u20",
+    "unit_id": "a2-2-u20",
+    "level": "A2.2",
+    "title": "Zwei Jahre Deutschland",
+    "words": 205,
     "text": "Nikhil ist seit zwei Jahren in Deutschland. Ein Freund aus Indien fragt ihn am Telefon: „Und, wie ist es wirklich?\"\n\n„Ehrlich? Am Anfang war es hart. Nicht die Arbeit — die Sprache. Ich konnte lesen und schreiben, aber wenn drei Leute gleichzeitig gesprochen haben, habe ich nichts verstanden. Ich habe monatelang nur genickt.\"\n\n„Und jetzt?\"\n\n„Jetzt ist es viel besser. Nicht perfekt, aber ich kann diskutieren, ich kann Witze verstehen. Letzte Woche habe ich zum ersten Mal auf Deutsch geträumt.\"\n\n„Wirklich? Und was vermisst du?\"\n\n„Das Essen natürlich. Und dass man einfach vorbeikommen kann. Hier verabredet man sich drei Wochen vorher.\"\n\n„Klingt anstrengend.\"\n\n„Ist es manchmal. Aber es hat auch Vorteile. Wenn jemand hier sagt, er kommt um acht, dann kommt er um acht.\"\n\nSein Freund lacht. „Bleibst du?\"\n\nNikhil überlegt kurz. „Ich weiß es noch nicht. Aber ich fühle mich nicht mehr fremd. Das ist schon viel.\"",
     "questions": [
-      { "q": "Was war am Anfang am schwersten?", "options": ["die Arbeit", "die Sprache", "das Wetter"], "a": 1 },
-      { "q": "Was hat er monatelang gemacht?", "options": ["nur genickt", "nur Englisch gesprochen", "nichts gesagt"], "a": 0 },
-      { "q": "Was war für ihn ein wichtiger Moment?", "options": ["ein neuer Job", "ein Traum auf Deutsch", "eine Prüfung"], "a": 1 },
-      { "q": "Was vermisst er?", "options": ["das Wetter", "das Essen und Spontaneität", "seine Arbeit"], "a": 1 },
-      { "q": "Wie fühlt er sich jetzt?", "options": ["nicht mehr fremd", "immer noch fremd", "unglücklich"], "a": 0 }
+      {
+        "q": "Was war am Anfang am schwersten?",
+        "options": ["die Arbeit", "die Sprache", "das Wetter"],
+        "a": 1
+      },
+      {
+        "q": "Was hat er monatelang gemacht?",
+        "options": ["nur genickt", "nur Englisch gesprochen", "nichts gesagt"],
+        "a": 0
+      },
+      {
+        "q": "Was war für ihn ein wichtiger Moment?",
+        "options": ["ein neuer Job", "ein Traum auf Deutsch", "eine Prüfung"],
+        "a": 1
+      },
+      {
+        "q": "Was vermisst er?",
+        "options": ["das Wetter", "das Essen und Spontaneität", "seine Arbeit"],
+        "a": 1
+      },
+      {
+        "q": "Wie fühlt er sich jetzt?",
+        "options": ["nicht mehr fremd", "immer noch fremd", "unglücklich"],
+        "a": 0
+      }
     ],
-    "glossary": { "gleichzeitig": "at the same time", "genickt": "nodded", "der Witz": "joke", "geträumt": "dreamt", "vermissen": "to miss", "vorbeikommen": "to drop by", "sich verabreden": "to arrange to meet", "der Vorteil": "advantage", "fremd": "foreign, a stranger" }
+    "glossary": {
+      "gleichzeitig": "at the same time",
+      "genickt": "nodded",
+      "der Witz": "joke",
+      "geträumt": "dreamt",
+      "vermissen": "to miss",
+      "vorbeikommen": "to drop by",
+      "sich verabreden": "to arrange to meet",
+      "der Vorteil": "advantage",
+      "fremd": "foreign, a stranger"
+    }
   }
 ]

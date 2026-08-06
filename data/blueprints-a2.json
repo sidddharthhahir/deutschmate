@@ -1,160 +1,709 @@
 [
-  { "level": "A2.1", "ord": 1, "title": "Gestern",
-    "can_do": ["say what you did yesterday", "form the Perfekt with haben", "ask what someone did"],
-    "scenario": { "role": "a colleague on Monday morning", "goal": "tell them about your weekend", "opener": "Und, was hast du am Wochenende gemacht?" },
+  {
+    "level": "A2.1",
+    "ord": 1,
+    "title": "Gestern",
+    "can_do": [
+      "say what you did yesterday",
+      "form the Perfekt with haben",
+      "ask what someone did"
+    ],
+    "scenario": {
+      "role": "a colleague on Monday morning",
+      "goal": "tell them about your weekend",
+      "opener": "Und, was hast du am Wochenende gemacht?"
+    },
     "dialogue": [
-      { "them": "Was hast du am Wochenende gemacht?", "options": [
-        { "say": "Ich habe viel gearbeitet.", "ok": true, "next": 1 },
-        { "say": "Ich habe viel arbeiten.", "ok": false, "why": "Perfekt needs the participle: gearbeitet.", "next": 1 }]},
-      { "them": "Oh, das klingt anstrengend.", "options": [
-        { "say": "Ja, aber jetzt geht es.", "ok": true, "next": -1 }]}
-    ]},
-  { "level": "A2.1", "ord": 2, "title": "Unterwegs gewesen",
-    "can_do": ["use sein in the Perfekt", "say where you went", "tell a short travel story"],
-    "scenario": { "role": "a friend who missed you", "goal": "explain where you were last week", "opener": "Wo warst du denn letzte Woche?" }},
-  { "level": "A2.1", "ord": 3, "title": "Geben und bekommen",
-    "can_do": ["say who you gave something to", "use the dative", "ask for help"],
-    "scenario": { "role": "a colleague you owe a favour", "goal": "ask them for help with something", "opener": "Du siehst gestresst aus — brauchst du was?" }},
-  { "level": "A2.1", "ord": 4, "title": "Termine machen",
-    "can_do": ["arrange an appointment on the phone", "suggest and change a time", "confirm details"],
-    "scenario": { "role": "a receptionist at an office", "goal": "book an appointment and confirm it", "opener": "Guten Tag, was kann ich für Sie tun?" }},
-  { "level": "A2.1", "ord": 5, "title": "Zu Hause und unterwegs",
-    "can_do": ["say whether you're going somewhere or already there", "use two-way prepositions", "describe a route"],
-    "scenario": { "role": "a friend you're meeting in town", "goal": "explain on the phone where you are and where you're going", "opener": "Wo bist du gerade?" }},
-  { "level": "A2.1", "ord": 6, "title": "Vergleichen",
-    "can_do": ["compare two things", "say which you prefer", "use als and wie correctly"],
-    "scenario": { "role": "a friend choosing between two flats", "goal": "compare them and give advice", "opener": "Welche Wohnung findest du besser?" },
+      {
+        "them": "Was hast du am Wochenende gemacht?",
+        "options": [
+          { "say": "Ich habe viel gearbeitet.", "ok": true, "next": 1 },
+          {
+            "say": "Ich habe viel arbeiten.",
+            "ok": false,
+            "why": "Perfekt needs the participle: gearbeitet.",
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Oh, das klingt anstrengend.",
+        "options": [
+          { "say": "Ja, aber jetzt geht es.", "ok": true, "next": -1 }
+        ]
+      }
+    ]
+  },
+  {
+    "level": "A2.1",
+    "ord": 2,
+    "title": "Unterwegs gewesen",
+    "can_do": [
+      "use sein in the Perfekt",
+      "say where you went",
+      "tell a short travel story"
+    ],
+    "scenario": {
+      "role": "a friend who missed you",
+      "goal": "explain where you were last week",
+      "opener": "Wo warst du denn letzte Woche?"
+    }
+  },
+  {
+    "level": "A2.1",
+    "ord": 3,
+    "title": "Geben und bekommen",
+    "can_do": [
+      "say who you gave something to",
+      "use the dative",
+      "ask for help"
+    ],
+    "scenario": {
+      "role": "a colleague you owe a favour",
+      "goal": "ask them for help with something",
+      "opener": "Du siehst gestresst aus — brauchst du was?"
+    }
+  },
+  {
+    "level": "A2.1",
+    "ord": 4,
+    "title": "Termine machen",
+    "can_do": [
+      "arrange an appointment on the phone",
+      "suggest and change a time",
+      "confirm details"
+    ],
+    "scenario": {
+      "role": "a receptionist at an office",
+      "goal": "book an appointment and confirm it",
+      "opener": "Guten Tag, was kann ich für Sie tun?"
+    }
+  },
+  {
+    "level": "A2.1",
+    "ord": 5,
+    "title": "Zu Hause und unterwegs",
+    "can_do": [
+      "say whether you're going somewhere or already there",
+      "use two-way prepositions",
+      "describe a route"
+    ],
+    "scenario": {
+      "role": "a friend you're meeting in town",
+      "goal": "explain on the phone where you are and where you're going",
+      "opener": "Wo bist du gerade?"
+    }
+  },
+  {
+    "level": "A2.1",
+    "ord": 6,
+    "title": "Vergleichen",
+    "can_do": [
+      "compare two things",
+      "say which you prefer",
+      "use als and wie correctly"
+    ],
+    "scenario": {
+      "role": "a friend choosing between two flats",
+      "goal": "compare them and give advice",
+      "opener": "Welche Wohnung findest du besser?"
+    },
     "dialogue": [
-      { "them": "Welche Wohnung findest du besser?", "options": [
-        { "say": "Die erste ist größer als die zweite.", "ok": true, "next": 1 },
-        { "say": "Die erste ist größer wie die zweite.", "ok": false, "why": "Difference takes als, not wie.", "next": 1 }]},
-      { "them": "Stimmt. Aber sie ist auch teurer.", "options": [
-        { "say": "Ja, das ist ein Nachteil.", "ok": true, "next": -1 }]}
-    ]},
-  { "level": "A2.1", "ord": 7, "title": "Anweisungen geben",
-    "can_do": ["give an instruction politely", "use the imperative", "understand a recipe or sign"],
-    "scenario": { "role": "someone lost in your building", "goal": "direct them to the right floor", "opener": "Entschuldigung, wo ist Büro 204?" }},
-  { "level": "A2.1", "ord": 8, "title": "Trennbare Verben",
-    "can_do": ["use separable verbs correctly", "describe your morning routine", "say when things start and end"],
-    "scenario": { "role": "a flatmate", "goal": "explain your daily schedule so you don't clash", "opener": "Wann stehst du normalerweise auf?" }},
-  { "level": "A2.1", "ord": 9, "title": "Im Restaurant",
-    "can_do": ["order a full meal", "ask about a dish", "ask for the bill and tip"],
-    "scenario": { "role": "a waiter in a busy restaurant", "goal": "order, ask a question, and pay", "opener": "Haben Sie schon gewählt?" },
+      {
+        "them": "Welche Wohnung findest du besser?",
+        "options": [
+          {
+            "say": "Die erste ist größer als die zweite.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Die erste ist größer wie die zweite.",
+            "ok": false,
+            "why": "Difference takes als, not wie.",
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Stimmt. Aber sie ist auch teurer.",
+        "options": [
+          { "say": "Ja, das ist ein Nachteil.", "ok": true, "next": -1 }
+        ]
+      }
+    ]
+  },
+  {
+    "level": "A2.1",
+    "ord": 7,
+    "title": "Anweisungen geben",
+    "can_do": [
+      "give an instruction politely",
+      "use the imperative",
+      "understand a recipe or sign"
+    ],
+    "scenario": {
+      "role": "someone lost in your building",
+      "goal": "direct them to the right floor",
+      "opener": "Entschuldigung, wo ist Büro 204?"
+    }
+  },
+  {
+    "level": "A2.1",
+    "ord": 8,
+    "title": "Trennbare Verben",
+    "can_do": [
+      "use separable verbs correctly",
+      "describe your morning routine",
+      "say when things start and end"
+    ],
+    "scenario": {
+      "role": "a flatmate",
+      "goal": "explain your daily schedule so you don't clash",
+      "opener": "Wann stehst du normalerweise auf?"
+    }
+  },
+  {
+    "level": "A2.1",
+    "ord": 9,
+    "title": "Im Restaurant",
+    "can_do": [
+      "order a full meal",
+      "ask about a dish",
+      "ask for the bill and tip"
+    ],
+    "scenario": {
+      "role": "a waiter in a busy restaurant",
+      "goal": "order, ask a question, and pay",
+      "opener": "Haben Sie schon gewählt?"
+    },
     "dialogue": [
-      { "them": "Haben Sie schon gewählt?", "options": [
-        { "say": "Ja, ich nehme die Suppe.", "ok": true, "next": 1 },
-        { "say": "Ja, ich nehme der Suppe.", "ok": false, "why": "Object → accusative. Suppe is feminine, so die stays die.", "next": 1 }]},
-      { "them": "Und zu trinken?", "options": [
-        { "say": "Ein Wasser, bitte.", "ok": true, "next": 2 }]},
-      { "them": "Kommt sofort.", "options": [
-        { "say": "Danke. Die Rechnung später, bitte.", "ok": true, "next": -1 }]}
-    ]},
-  { "level": "A2.1", "ord": 10, "title": "Einkaufen und Geld",
+      {
+        "them": "Haben Sie schon gewählt?",
+        "options": [
+          { "say": "Ja, ich nehme die Suppe.", "ok": true, "next": 1 },
+          {
+            "say": "Ja, ich nehme der Suppe.",
+            "ok": false,
+            "why": "Object → accusative. Suppe is feminine, so die stays die.",
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Und zu trinken?",
+        "options": [{ "say": "Ein Wasser, bitte.", "ok": true, "next": 2 }]
+      },
+      {
+        "them": "Kommt sofort.",
+        "options": [
+          {
+            "say": "Danke. Die Rechnung später, bitte.",
+            "ok": true,
+            "next": -1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "level": "A2.1",
+    "ord": 10,
+    "title": "Einkaufen und Geld",
     "can_do": ["compare prices", "ask for a discount", "return something"],
-    "scenario": { "role": "a shop assistant", "goal": "return an item and explain why", "opener": "Was kann ich für Sie tun?" }},
-  { "level": "A2.1", "ord": 11, "title": "Wohnung suchen",
-    "can_do": ["describe what you're looking for", "ask about rent and rooms", "arrange a viewing"],
-    "scenario": { "role": "a landlord on the phone", "goal": "ask about the flat and arrange a viewing", "opener": "Sie haben wegen der Wohnung angerufen?" }},
-  { "level": "A2.1", "ord": 12, "title": "Arbeit und Studium",
-    "can_do": ["talk about your work or studies", "say what you did before", "explain why you're here"],
-    "scenario": { "role": "someone at a language-school welcome evening", "goal": "explain your background", "opener": "Und was führt dich nach Deutschland?" }},
-  { "level": "A2.1", "ord": 13, "title": "Telefonieren",
+    "scenario": {
+      "role": "a shop assistant",
+      "goal": "return an item and explain why",
+      "opener": "Was kann ich für Sie tun?"
+    }
+  },
+  {
+    "level": "A2.1",
+    "ord": 11,
+    "title": "Wohnung suchen",
+    "can_do": [
+      "describe what you're looking for",
+      "ask about rent and rooms",
+      "arrange a viewing"
+    ],
+    "scenario": {
+      "role": "a landlord on the phone",
+      "goal": "ask about the flat and arrange a viewing",
+      "opener": "Sie haben wegen der Wohnung angerufen?"
+    }
+  },
+  {
+    "level": "A2.1",
+    "ord": 12,
+    "title": "Arbeit und Studium",
+    "can_do": [
+      "talk about your work or studies",
+      "say what you did before",
+      "explain why you're here"
+    ],
+    "scenario": {
+      "role": "someone at a language-school welcome evening",
+      "goal": "explain your background",
+      "opener": "Und was führt dich nach Deutschland?"
+    }
+  },
+  {
+    "level": "A2.1",
+    "ord": 13,
+    "title": "Telefonieren",
     "can_do": ["make a phone call", "ask for someone", "leave a message"],
-    "scenario": { "role": "an office receptionist on the phone", "goal": "reach a colleague or leave a message", "opener": "Firma Meyer, guten Tag." }},
-  { "level": "A2.1", "ord": 14, "title": "Post und Behörden",
-    "can_do": ["send a parcel", "fill in a simple form", "ask what documents you need"],
-    "scenario": { "role": "a clerk at the post office", "goal": "send a parcel abroad", "opener": "Der Nächste, bitte!" }},
-  { "level": "A2.1", "ord": 15, "title": "Gesundheit",
-    "can_do": ["describe symptoms in detail", "understand advice", "collect a prescription"],
-    "scenario": { "role": "a pharmacist", "goal": "describe a problem and get something for it", "opener": "Guten Tag, womit kann ich helfen?" }},
-  { "level": "A2.1", "ord": 16, "title": "Feste und Feiern",
+    "scenario": {
+      "role": "an office receptionist on the phone",
+      "goal": "reach a colleague or leave a message",
+      "opener": "Firma Meyer, guten Tag."
+    }
+  },
+  {
+    "level": "A2.1",
+    "ord": 14,
+    "title": "Post und Behörden",
+    "can_do": [
+      "send a parcel",
+      "fill in a simple form",
+      "ask what documents you need"
+    ],
+    "scenario": {
+      "role": "a clerk at the post office",
+      "goal": "send a parcel abroad",
+      "opener": "Der Nächste, bitte!"
+    }
+  },
+  {
+    "level": "A2.1",
+    "ord": 15,
+    "title": "Gesundheit",
+    "can_do": [
+      "describe symptoms in detail",
+      "understand advice",
+      "collect a prescription"
+    ],
+    "scenario": {
+      "role": "a pharmacist",
+      "goal": "describe a problem and get something for it",
+      "opener": "Guten Tag, womit kann ich helfen?"
+    }
+  },
+  {
+    "level": "A2.1",
+    "ord": 16,
+    "title": "Feste und Feiern",
     "can_do": ["invite someone", "accept or decline", "congratulate someone"],
-    "scenario": { "role": "a friend inviting you to a birthday", "goal": "accept and ask the details", "opener": "Ich feiere am Samstag — kommst du?" }},
-  { "level": "A2.1", "ord": 17, "title": "Sport und Hobbys",
-    "can_do": ["talk about a hobby", "say how often you do it", "invite someone to join"],
-    "scenario": { "role": "someone at a sports club", "goal": "ask about joining", "opener": "Warst du schon mal hier?" }},
-  { "level": "A2.1", "ord": 18, "title": "Medien",
-    "can_do": ["say what you read and watch", "recommend something", "give a short opinion"],
-    "scenario": { "role": "a friend looking for something to watch", "goal": "recommend a film and say why", "opener": "Kennst du einen guten Film?" }},
-  { "level": "A2.1", "ord": 19, "title": "Probleme lösen",
-    "can_do": ["explain that something went wrong", "ask for a solution", "complain politely"],
-    "scenario": { "role": "a hotel receptionist", "goal": "report a problem with your room", "opener": "Ist alles in Ordnung mit dem Zimmer?" }},
-  { "level": "A2.1", "ord": 20, "title": "A2.1 zusammen",
-    "can_do": ["talk about the past", "handle an everyday problem", "compare and choose"],
-    "scenario": { "role": "an old friend you haven't seen in a year", "goal": "catch up on what's happened", "opener": "Erzähl mal, was ist alles passiert?" }},
+    "scenario": {
+      "role": "a friend inviting you to a birthday",
+      "goal": "accept and ask the details",
+      "opener": "Ich feiere am Samstag — kommst du?"
+    }
+  },
+  {
+    "level": "A2.1",
+    "ord": 17,
+    "title": "Sport und Hobbys",
+    "can_do": [
+      "talk about a hobby",
+      "say how often you do it",
+      "invite someone to join"
+    ],
+    "scenario": {
+      "role": "someone at a sports club",
+      "goal": "ask about joining",
+      "opener": "Warst du schon mal hier?"
+    }
+  },
+  {
+    "level": "A2.1",
+    "ord": 18,
+    "title": "Medien",
+    "can_do": [
+      "say what you read and watch",
+      "recommend something",
+      "give a short opinion"
+    ],
+    "scenario": {
+      "role": "a friend looking for something to watch",
+      "goal": "recommend a film and say why",
+      "opener": "Kennst du einen guten Film?"
+    }
+  },
+  {
+    "level": "A2.1",
+    "ord": 19,
+    "title": "Probleme lösen",
+    "can_do": [
+      "explain that something went wrong",
+      "ask for a solution",
+      "complain politely"
+    ],
+    "scenario": {
+      "role": "a hotel receptionist",
+      "goal": "report a problem with your room",
+      "opener": "Ist alles in Ordnung mit dem Zimmer?"
+    }
+  },
+  {
+    "level": "A2.1",
+    "ord": 20,
+    "title": "A2.1 zusammen",
+    "can_do": [
+      "talk about the past",
+      "handle an everyday problem",
+      "compare and choose"
+    ],
+    "scenario": {
+      "role": "an old friend you haven't seen in a year",
+      "goal": "catch up on what's happened",
+      "opener": "Erzähl mal, was ist alles passiert?"
+    }
+  },
 
-  { "level": "A2.2", "ord": 1, "title": "Warum? Weil…",
-    "can_do": ["give a reason with weil", "put the verb at the end", "explain a decision"],
-    "scenario": { "role": "a friend who's surprised by your choice", "goal": "explain why you decided something", "opener": "Warum machst du das eigentlich?" },
+  {
+    "level": "A2.2",
+    "ord": 1,
+    "title": "Warum? Weil…",
+    "can_do": [
+      "give a reason with weil",
+      "put the verb at the end",
+      "explain a decision"
+    ],
+    "scenario": {
+      "role": "a friend who's surprised by your choice",
+      "goal": "explain why you decided something",
+      "opener": "Warum machst du das eigentlich?"
+    },
     "dialogue": [
-      { "them": "Warum lernst du Deutsch?", "options": [
-        { "say": "Weil ich in Deutschland arbeiten will.", "ok": true, "next": 1 },
-        { "say": "Weil ich will in Deutschland arbeiten.", "ok": false, "why": "After weil the verb goes to the very end.", "next": 1 }]},
-      { "them": "Ah, verstehe. Viel Erfolg!", "options": [
-        { "say": "Danke!", "ok": true, "next": -1 }]}
-    ]},
-  { "level": "A2.2", "ord": 2, "title": "Ich freue mich",
-    "can_do": ["use reflexive verbs", "say how you feel about something", "look forward to something"],
-    "scenario": { "role": "a friend before a big trip", "goal": "say what you're looking forward to", "opener": "Freust du dich schon?" }},
-  { "level": "A2.2", "ord": 3, "title": "Gefühle",
-    "can_do": ["name feelings", "say why you feel that way", "react to someone else's news"],
-    "scenario": { "role": "a friend having a hard week", "goal": "listen and respond kindly", "opener": "Ehrlich gesagt geht's mir gerade nicht so gut." }},
-  { "level": "A2.2", "ord": 4, "title": "Beschreiben",
-    "can_do": ["use adjective endings before nouns", "describe an object precisely", "identify something in a group"],
-    "scenario": { "role": "someone at a lost-property desk", "goal": "describe your lost item well enough to get it back", "opener": "Was haben Sie denn verloren?" }},
-  { "level": "A2.2", "ord": 5, "title": "Früher war das anders",
-    "can_do": ["use war and hatte", "talk about your childhood", "compare then and now"],
-    "scenario": { "role": "an older neighbour", "goal": "talk about how things used to be", "opener": "Früher war hier alles ganz anders, wissen Sie." }},
-  { "level": "A2.2", "ord": 6, "title": "Pläne",
-    "can_do": ["talk about the future", "say what you're going to do", "make a prediction"],
-    "scenario": { "role": "a careers adviser", "goal": "explain your plans for the next year", "opener": "Was sind Ihre Pläne für das nächste Jahr?" }},
-  { "level": "A2.2", "ord": 7, "title": "Besitz",
-    "can_do": ["use the genitive", "say what belongs to whom", "use von + dative instead"],
-    "scenario": { "role": "a friend helping you tidy", "goal": "sort out whose things are whose", "opener": "Wem gehört das alles?" }},
-  { "level": "A2.2", "ord": 8, "title": "Meinung sagen",
-    "can_do": ["give an opinion", "agree and disagree politely", "give a reason"],
-    "scenario": { "role": "a colleague discussing a decision", "goal": "state your opinion and back it up", "opener": "Was hältst du davon?" }},
-  { "level": "A2.2", "ord": 9, "title": "Vorschläge machen",
-    "can_do": ["suggest something", "respond to a suggestion", "reach a compromise"],
-    "scenario": { "role": "a friend planning a trip with you", "goal": "agree on where to go", "opener": "Wohin sollen wir fahren?" }},
-  { "level": "A2.2", "ord": 10, "title": "Im Büro",
-    "can_do": ["talk about your work day", "ask a colleague for something", "explain a delay"],
-    "scenario": { "role": "your manager", "goal": "explain that a task will be late and why", "opener": "Wie sieht es mit dem Bericht aus?" }},
-  { "level": "A2.2", "ord": 11, "title": "Bewerbung",
-    "can_do": ["talk about your experience", "say what you're good at", "answer a simple interview question"],
-    "scenario": { "role": "an interviewer", "goal": "answer three questions about yourself", "opener": "Erzählen Sie mir ein bisschen über sich." }},
-  { "level": "A2.2", "ord": 12, "title": "Geld und Konten",
-    "can_do": ["open a bank account", "understand costs and fees", "ask about a payment"],
-    "scenario": { "role": "a bank employee", "goal": "ask about opening an account", "opener": "Wie kann ich Ihnen helfen?" }},
-  { "level": "A2.2", "ord": 13, "title": "Umzug",
-    "can_do": ["describe moving house", "arrange help", "register your new address"],
-    "scenario": { "role": "a clerk at the registration office", "goal": "register your new address", "opener": "Sie möchten sich anmelden?" }},
-  { "level": "A2.2", "ord": 14, "title": "Reparaturen",
-    "can_do": ["report something broken", "ask for a repair", "understand a cost estimate"],
-    "scenario": { "role": "a repair shop assistant", "goal": "explain what's broken and ask the price", "opener": "Was ist denn kaputt?" }},
-  { "level": "A2.2", "ord": 15, "title": "Regeln",
-    "can_do": ["understand rules and signs", "say what's allowed and forbidden", "ask permission"],
-    "scenario": { "role": "a caretaker in your building", "goal": "ask what's allowed in the shared areas", "opener": "Darf ich Ihnen kurz die Hausordnung erklären?" }},
-  { "level": "A2.2", "ord": 16, "title": "Verabredungen ändern",
-    "can_do": ["cancel or move an appointment", "apologise", "suggest an alternative"],
-    "scenario": { "role": "a friend you have to cancel on", "goal": "cancel politely and rearrange", "opener": "Wir sehen uns morgen, oder?" },
+      {
+        "them": "Warum lernst du Deutsch?",
+        "options": [
+          {
+            "say": "Weil ich in Deutschland arbeiten will.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Weil ich will in Deutschland arbeiten.",
+            "ok": false,
+            "why": "After weil the verb goes to the very end.",
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Ah, verstehe. Viel Erfolg!",
+        "options": [{ "say": "Danke!", "ok": true, "next": -1 }]
+      }
+    ]
+  },
+  {
+    "level": "A2.2",
+    "ord": 2,
+    "title": "Ich freue mich",
+    "can_do": [
+      "use reflexive verbs",
+      "say how you feel about something",
+      "look forward to something"
+    ],
+    "scenario": {
+      "role": "a friend before a big trip",
+      "goal": "say what you're looking forward to",
+      "opener": "Freust du dich schon?"
+    }
+  },
+  {
+    "level": "A2.2",
+    "ord": 3,
+    "title": "Gefühle",
+    "can_do": [
+      "name feelings",
+      "say why you feel that way",
+      "react to someone else's news"
+    ],
+    "scenario": {
+      "role": "a friend having a hard week",
+      "goal": "listen and respond kindly",
+      "opener": "Ehrlich gesagt geht's mir gerade nicht so gut."
+    }
+  },
+  {
+    "level": "A2.2",
+    "ord": 4,
+    "title": "Beschreiben",
+    "can_do": [
+      "use adjective endings before nouns",
+      "describe an object precisely",
+      "identify something in a group"
+    ],
+    "scenario": {
+      "role": "someone at a lost-property desk",
+      "goal": "describe your lost item well enough to get it back",
+      "opener": "Was haben Sie denn verloren?"
+    }
+  },
+  {
+    "level": "A2.2",
+    "ord": 5,
+    "title": "Früher war das anders",
+    "can_do": [
+      "use war and hatte",
+      "talk about your childhood",
+      "compare then and now"
+    ],
+    "scenario": {
+      "role": "an older neighbour",
+      "goal": "talk about how things used to be",
+      "opener": "Früher war hier alles ganz anders, wissen Sie."
+    }
+  },
+  {
+    "level": "A2.2",
+    "ord": 6,
+    "title": "Pläne",
+    "can_do": [
+      "talk about the future",
+      "say what you're going to do",
+      "make a prediction"
+    ],
+    "scenario": {
+      "role": "a careers adviser",
+      "goal": "explain your plans for the next year",
+      "opener": "Was sind Ihre Pläne für das nächste Jahr?"
+    }
+  },
+  {
+    "level": "A2.2",
+    "ord": 7,
+    "title": "Besitz",
+    "can_do": [
+      "use the genitive",
+      "say what belongs to whom",
+      "use von + dative instead"
+    ],
+    "scenario": {
+      "role": "a friend helping you tidy",
+      "goal": "sort out whose things are whose",
+      "opener": "Wem gehört das alles?"
+    }
+  },
+  {
+    "level": "A2.2",
+    "ord": 8,
+    "title": "Meinung sagen",
+    "can_do": [
+      "give an opinion",
+      "agree and disagree politely",
+      "give a reason"
+    ],
+    "scenario": {
+      "role": "a colleague discussing a decision",
+      "goal": "state your opinion and back it up",
+      "opener": "Was hältst du davon?"
+    }
+  },
+  {
+    "level": "A2.2",
+    "ord": 9,
+    "title": "Vorschläge machen",
+    "can_do": [
+      "suggest something",
+      "respond to a suggestion",
+      "reach a compromise"
+    ],
+    "scenario": {
+      "role": "a friend planning a trip with you",
+      "goal": "agree on where to go",
+      "opener": "Wohin sollen wir fahren?"
+    }
+  },
+  {
+    "level": "A2.2",
+    "ord": 10,
+    "title": "Im Büro",
+    "can_do": [
+      "talk about your work day",
+      "ask a colleague for something",
+      "explain a delay"
+    ],
+    "scenario": {
+      "role": "your manager",
+      "goal": "explain that a task will be late and why",
+      "opener": "Wie sieht es mit dem Bericht aus?"
+    }
+  },
+  {
+    "level": "A2.2",
+    "ord": 11,
+    "title": "Bewerbung",
+    "can_do": [
+      "talk about your experience",
+      "say what you're good at",
+      "answer a simple interview question"
+    ],
+    "scenario": {
+      "role": "an interviewer",
+      "goal": "answer three questions about yourself",
+      "opener": "Erzählen Sie mir ein bisschen über sich."
+    }
+  },
+  {
+    "level": "A2.2",
+    "ord": 12,
+    "title": "Geld und Konten",
+    "can_do": [
+      "open a bank account",
+      "understand costs and fees",
+      "ask about a payment"
+    ],
+    "scenario": {
+      "role": "a bank employee",
+      "goal": "ask about opening an account",
+      "opener": "Wie kann ich Ihnen helfen?"
+    }
+  },
+  {
+    "level": "A2.2",
+    "ord": 13,
+    "title": "Umzug",
+    "can_do": [
+      "describe moving house",
+      "arrange help",
+      "register your new address"
+    ],
+    "scenario": {
+      "role": "a clerk at the registration office",
+      "goal": "register your new address",
+      "opener": "Sie möchten sich anmelden?"
+    }
+  },
+  {
+    "level": "A2.2",
+    "ord": 14,
+    "title": "Reparaturen",
+    "can_do": [
+      "report something broken",
+      "ask for a repair",
+      "understand a cost estimate"
+    ],
+    "scenario": {
+      "role": "a repair shop assistant",
+      "goal": "explain what's broken and ask the price",
+      "opener": "Was ist denn kaputt?"
+    }
+  },
+  {
+    "level": "A2.2",
+    "ord": 15,
+    "title": "Regeln",
+    "can_do": [
+      "understand rules and signs",
+      "say what's allowed and forbidden",
+      "ask permission"
+    ],
+    "scenario": {
+      "role": "a caretaker in your building",
+      "goal": "ask what's allowed in the shared areas",
+      "opener": "Darf ich Ihnen kurz die Hausordnung erklären?"
+    }
+  },
+  {
+    "level": "A2.2",
+    "ord": 16,
+    "title": "Verabredungen ändern",
+    "can_do": [
+      "cancel or move an appointment",
+      "apologise",
+      "suggest an alternative"
+    ],
+    "scenario": {
+      "role": "a friend you have to cancel on",
+      "goal": "cancel politely and rearrange",
+      "opener": "Wir sehen uns morgen, oder?"
+    },
     "dialogue": [
-      { "them": "Wir sehen uns morgen, oder?", "options": [
-        { "say": "Tut mir leid, ich kann leider nicht.", "ok": true, "next": 1 },
-        { "say": "Nein.", "ok": false, "why": "Understandable but blunt — add an apology and a reason.", "next": 1 }]},
-      { "them": "Schade! Wann passt es dir denn?", "options": [
-        { "say": "Geht Donnerstag bei dir?", "ok": true, "next": -1 }]}
-    ]},
-  { "level": "A2.2", "ord": 17, "title": "Erzählen",
-    "can_do": ["tell a short story", "put events in order", "keep a listener interested"],
-    "scenario": { "role": "friends over dinner", "goal": "tell the story of something that happened to you", "opener": "Erzähl mal die Geschichte von neulich!" }},
-  { "level": "A2.2", "ord": 18, "title": "Beschwerden",
-    "can_do": ["complain effectively", "insist politely", "ask for compensation"],
-    "scenario": { "role": "customer service on the phone", "goal": "complain about a late delivery", "opener": "Kundenservice, was kann ich für Sie tun?" }},
-  { "level": "A2.2", "ord": 19, "title": "Gesellschaft",
-    "can_do": ["talk about where you live", "describe a custom", "compare two countries"],
-    "scenario": { "role": "a curious German friend", "goal": "explain a custom from your home country", "opener": "Wie macht ihr das eigentlich bei euch?" }},
-  { "level": "A2.2", "ord": 20, "title": "A2 zusammen",
-    "can_do": ["give reasons and opinions", "handle official situations", "talk about past and future"],
-    "scenario": { "role": "an examiner in a friendly mock exam", "goal": "talk for three minutes about yourself and your plans", "opener": "Stellen Sie sich bitte kurz vor." }}
+      {
+        "them": "Wir sehen uns morgen, oder?",
+        "options": [
+          {
+            "say": "Tut mir leid, ich kann leider nicht.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Nein.",
+            "ok": false,
+            "why": "Understandable but blunt — add an apology and a reason.",
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Schade! Wann passt es dir denn?",
+        "options": [
+          { "say": "Geht Donnerstag bei dir?", "ok": true, "next": -1 }
+        ]
+      }
+    ]
+  },
+  {
+    "level": "A2.2",
+    "ord": 17,
+    "title": "Erzählen",
+    "can_do": [
+      "tell a short story",
+      "put events in order",
+      "keep a listener interested"
+    ],
+    "scenario": {
+      "role": "friends over dinner",
+      "goal": "tell the story of something that happened to you",
+      "opener": "Erzähl mal die Geschichte von neulich!"
+    }
+  },
+  {
+    "level": "A2.2",
+    "ord": 18,
+    "title": "Beschwerden",
+    "can_do": [
+      "complain effectively",
+      "insist politely",
+      "ask for compensation"
+    ],
+    "scenario": {
+      "role": "customer service on the phone",
+      "goal": "complain about a late delivery",
+      "opener": "Kundenservice, was kann ich für Sie tun?"
+    }
+  },
+  {
+    "level": "A2.2",
+    "ord": 19,
+    "title": "Gesellschaft",
+    "can_do": [
+      "talk about where you live",
+      "describe a custom",
+      "compare two countries"
+    ],
+    "scenario": {
+      "role": "a curious German friend",
+      "goal": "explain a custom from your home country",
+      "opener": "Wie macht ihr das eigentlich bei euch?"
+    }
+  },
+  {
+    "level": "A2.2",
+    "ord": 20,
+    "title": "A2 zusammen",
+    "can_do": [
+      "give reasons and opinions",
+      "handle official situations",
+      "talk about past and future"
+    ],
+    "scenario": {
+      "role": "an examiner in a friendly mock exam",
+      "goal": "talk for three minutes about yourself and your plans",
+      "opener": "Stellen Sie sich bitte kurz vor."
+    }
+  }
 ]

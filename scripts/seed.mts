@@ -31,6 +31,8 @@ applySchema(db, readFileSync(path.join(ROOT, "src/lib/schema.sql"), "utf8"));
 
 /** Word files, in level order. */
 const WORD_FILES: [file: string, level: string][] = [
+  /* First, so its gloss, article and plural win over anything else claiming the
+     same id. Generated from the plan by `npm run build-a1`. */
   ["data/words-a1-1.json", "A1.1"],
   ["data/words-a1-2.json", "A1.2"],
   ["data/words-a2-1.json", "A2.1"],
@@ -296,11 +298,24 @@ type RawUnit = {
 };
 // Hand-written A1.1 units first, then everything build-units.mts generated.
 const UNIT_FILES = ["data/units-a1-1.json", "data/units-generated.json"];
-const units: RawUnit[] = UNIT_FILES.filter((f) =>
-  existsSync(path.join(ROOT, f)),
-).flatMap(
-  (f) => JSON.parse(readFileSync(path.join(ROOT, f), "utf8")) as RawUnit[],
-);
+/*
+ * FIRST occurrence wins, the same rule the word files use. The generated file
+ * still contains A1.1 and shares its ids, and the upsert is ON CONFLICT DO
+ * UPDATE — so loading it second silently overwrote the hand-written units with
+ * the generated ones. Twelve units looked right and eight kept their old titles.
+ */
+const units: RawUnit[] = [];
+const seenUnits = new Set<string>();
+for (const f of UNIT_FILES) {
+  if (!existsSync(path.join(ROOT, f))) continue;
+  for (const u of JSON.parse(
+    readFileSync(path.join(ROOT, f), "utf8"),
+  ) as RawUnit[]) {
+    if (seenUnits.has(u.id)) continue;
+    seenUnits.add(u.id);
+    units.push(u);
+  }
+}
 const upU = db.prepare(`
   INSERT INTO unit (id, level, ord, title, can_do_json, word_ids_json, grammar_id,
                     scenario_json, dialogue_json, prereq_json)
@@ -311,7 +326,16 @@ const upU = db.prepare(`
     grammar_id=excluded.grammar_id, scenario_json=excluded.scenario_json,
     dialogue_json=excluded.dialogue_json, prereq_json=excluded.prereq_json
 `);
-/* Extra vocabulary is spread across the EXISTING units of its level rather than given new ones. */
+/*
+ * Extra vocabulary is spread across the EXISTING units of its level rather than
+ * given new ones — EXCEPT in A1.1, which is hand-written now.
+ *
+ * This is where "Leiche" got into a beginner unit. import-vocab.mts pads the
+ * deck from a subtitle frequency list and this loop posted the padding into
+ * units whose can-do statement says something else entirely. A1.1 teaches
+ * exactly what data/curriculum-a1.json says and nothing else; the rest of the
+ * deck stays in the database, browsable, and is never introduced as new.
+ */
 const UNIT_ADDITIONS = path.join(ROOT, "data/unit-additions.json");
 let added = 0;
 if (existsSync(UNIT_ADDITIONS)) {
@@ -320,6 +344,7 @@ if (existsSync(UNIT_ADDITIONS)) {
     string[]
   >;
   for (const u of units) {
+    if (u.level === "A1.1") continue;
     const more = (extra[u.id] ?? []).filter(
       (id) => seenIds.has(id) && !u.words.includes(id),
     );
@@ -328,6 +353,25 @@ if (existsSync(UNIT_ADDITIONS)) {
       added += more.length;
     }
   }
+}
+
+/*
+ * First unit to teach a word keeps it. A1.1 is hand-written and comes first, so
+ * where a later generated unit had padded in the same word it loses it — a word
+ * introduced twice is a second "new word" day for something already learnt, and
+ * the FSRS card would be created against whichever unit got there first.
+ */
+const taughtBy = new Map<string, string>();
+
+for (const u of units) {
+  u.words = u.words.filter((id) => {
+    const owner = taughtBy.get(id);
+    if (owner) {
+      return false;
+    }
+    taughtBy.set(id, u.id);
+    return true;
+  });
 }
 
 db.exec("BEGIN");

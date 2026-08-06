@@ -1,173 +1,2108 @@
 [
-  { "id": "hallo", "lemma": "hallo", "pos": "phrase", "en": "hello", "topic": "greetings" },
-  { "id": "tschuess", "lemma": "tschüss", "pos": "phrase", "en": "bye", "topic": "greetings" },
-  { "id": "guten-morgen", "lemma": "guten Morgen", "pos": "phrase", "en": "good morning", "topic": "greetings" },
-  { "id": "guten-tag", "lemma": "guten Tag", "pos": "phrase", "en": "good day / hello", "topic": "greetings" },
-  { "id": "guten-abend", "lemma": "guten Abend", "pos": "phrase", "en": "good evening", "topic": "greetings" },
-  { "id": "gute-nacht", "lemma": "gute Nacht", "pos": "phrase", "en": "good night", "topic": "greetings" },
-  { "id": "danke", "lemma": "danke", "pos": "phrase", "en": "thank you", "topic": "greetings" },
-  { "id": "bitte", "lemma": "bitte", "pos": "phrase", "en": "please / you're welcome", "topic": "greetings" },
-  { "id": "ja", "lemma": "ja", "pos": "adv", "en": "yes", "topic": "basics" },
-  { "id": "nein", "lemma": "nein", "pos": "adv", "en": "no", "topic": "basics" },
-  { "id": "nicht", "lemma": "nicht", "pos": "adv", "en": "not", "topic": "basics" },
-  { "id": "vielleicht", "lemma": "vielleicht", "pos": "adv", "en": "maybe", "topic": "basics" },
-  { "id": "entschuldigung", "lemma": "Entschuldigung", "article": "die", "plural": "Entschuldigungen", "pos": "noun", "en": "excuse me / apology", "topic": "greetings" },
-
-  { "id": "ich", "lemma": "ich", "pos": "pron", "en": "I", "topic": "pronouns" },
-  { "id": "du", "lemma": "du", "pos": "pron", "en": "you (informal)", "topic": "pronouns" },
-  { "id": "er", "lemma": "er", "pos": "pron", "en": "he", "topic": "pronouns" },
-  { "id": "sie-she", "lemma": "sie", "pos": "pron", "en": "she / they", "topic": "pronouns" },
-  { "id": "es", "lemma": "es", "pos": "pron", "en": "it", "topic": "pronouns" },
-  { "id": "wir", "lemma": "wir", "pos": "pron", "en": "we", "topic": "pronouns" },
-  { "id": "ihr", "lemma": "ihr", "pos": "pron", "en": "you (plural informal)", "topic": "pronouns" },
-  { "id": "sie-formal", "lemma": "Sie", "pos": "pron", "en": "you (formal)", "topic": "pronouns" },
-
-  { "id": "sein", "lemma": "sein", "pos": "verb", "en": "to be", "topic": "core-verbs",
-    "forms": { "ich": "bin", "du": "bist", "er": "ist", "wir": "sind", "ihr": "seid", "sie": "sind" } },
-  { "id": "haben", "lemma": "haben", "pos": "verb", "en": "to have", "topic": "core-verbs",
-    "forms": { "ich": "habe", "du": "hast", "er": "hat", "wir": "haben", "ihr": "habt", "sie": "haben" } },
-  { "id": "heissen", "lemma": "heißen", "pos": "verb", "en": "to be called", "topic": "core-verbs",
-    "forms": { "ich": "heiße", "du": "heißt", "er": "heißt", "wir": "heißen", "ihr": "heißt", "sie": "heißen" } },
-  { "id": "kommen", "lemma": "kommen", "pos": "verb", "en": "to come", "topic": "core-verbs",
-    "forms": { "ich": "komme", "du": "kommst", "er": "kommt", "wir": "kommen", "ihr": "kommt", "sie": "kommen" } },
-  { "id": "wohnen", "lemma": "wohnen", "pos": "verb", "en": "to live / reside", "topic": "core-verbs",
-    "forms": { "ich": "wohne", "du": "wohnst", "er": "wohnt", "wir": "wohnen", "ihr": "wohnt", "sie": "wohnen" } },
-  { "id": "sprechen", "lemma": "sprechen", "pos": "verb", "en": "to speak", "topic": "core-verbs",
-    "forms": { "ich": "spreche", "du": "sprichst", "er": "spricht", "wir": "sprechen", "ihr": "sprecht", "sie": "sprechen" } },
-  { "id": "gehen", "lemma": "gehen", "pos": "verb", "en": "to go", "topic": "core-verbs",
-    "forms": { "ich": "gehe", "du": "gehst", "er": "geht", "wir": "gehen", "ihr": "geht", "sie": "gehen" } },
-  { "id": "machen", "lemma": "machen", "pos": "verb", "en": "to do / make", "topic": "core-verbs",
-    "forms": { "ich": "mache", "du": "machst", "er": "macht", "wir": "machen", "ihr": "macht", "sie": "machen" } },
-  { "id": "arbeiten", "lemma": "arbeiten", "pos": "verb", "en": "to work", "topic": "core-verbs",
-    "forms": { "ich": "arbeite", "du": "arbeitest", "er": "arbeitet", "wir": "arbeiten", "ihr": "arbeitet", "sie": "arbeiten" } },
-  { "id": "lernen", "lemma": "lernen", "pos": "verb", "en": "to learn", "topic": "core-verbs",
-    "forms": { "ich": "lerne", "du": "lernst", "er": "lernt", "wir": "lernen", "ihr": "lernt", "sie": "lernen" } },
-  { "id": "verstehen", "lemma": "verstehen", "pos": "verb", "en": "to understand", "topic": "core-verbs",
-    "forms": { "ich": "verstehe", "du": "verstehst", "er": "versteht", "wir": "verstehen", "ihr": "versteht", "sie": "verstehen" } },
-  { "id": "essen", "lemma": "essen", "pos": "verb", "en": "to eat", "topic": "food",
-    "forms": { "ich": "esse", "du": "isst", "er": "isst", "wir": "essen", "ihr": "esst", "sie": "essen" } },
-  { "id": "trinken", "lemma": "trinken", "pos": "verb", "en": "to drink", "topic": "food",
-    "forms": { "ich": "trinke", "du": "trinkst", "er": "trinkt", "wir": "trinken", "ihr": "trinkt", "sie": "trinken" } },
-  { "id": "kaufen", "lemma": "kaufen", "pos": "verb", "en": "to buy", "topic": "shopping",
-    "forms": { "ich": "kaufe", "du": "kaufst", "er": "kauft", "wir": "kaufen", "ihr": "kauft", "sie": "kaufen" } },
-  { "id": "kosten", "lemma": "kosten", "pos": "verb", "en": "to cost", "topic": "shopping",
-    "forms": { "ich": "koste", "du": "kostest", "er": "kostet", "wir": "kosten", "ihr": "kostet", "sie": "kosten" } },
-
-  { "id": "wer", "lemma": "wer", "pos": "pron", "en": "who", "topic": "questions" },
-  { "id": "was", "lemma": "was", "pos": "pron", "en": "what", "topic": "questions" },
-  { "id": "wo", "lemma": "wo", "pos": "adv", "en": "where", "topic": "questions" },
-  { "id": "wann", "lemma": "wann", "pos": "adv", "en": "when", "topic": "questions" },
-  { "id": "wie", "lemma": "wie", "pos": "adv", "en": "how", "topic": "questions" },
-  { "id": "warum", "lemma": "warum", "pos": "adv", "en": "why", "topic": "questions" },
-  { "id": "woher", "lemma": "woher", "pos": "adv", "en": "from where", "topic": "questions" },
-  { "id": "wohin", "lemma": "wohin", "pos": "adv", "en": "to where", "topic": "questions" },
-  { "id": "wie-viel", "lemma": "wie viel", "pos": "phrase", "en": "how much", "topic": "questions" },
-
-  { "id": "name", "lemma": "Name", "article": "der", "plural": "Namen", "pos": "noun", "en": "name", "topic": "personal" },
-  { "id": "mann", "lemma": "Mann", "article": "der", "plural": "Männer", "pos": "noun", "en": "man", "topic": "family" },
-  { "id": "frau", "lemma": "Frau", "article": "die", "plural": "Frauen", "pos": "noun", "en": "woman / Mrs", "topic": "family" },
-  { "id": "kind", "lemma": "Kind", "article": "das", "plural": "Kinder", "pos": "noun", "en": "child", "topic": "family" },
-  { "id": "mutter", "lemma": "Mutter", "article": "die", "plural": "Mütter", "pos": "noun", "en": "mother", "topic": "family" },
-  { "id": "vater", "lemma": "Vater", "article": "der", "plural": "Väter", "pos": "noun", "en": "father", "topic": "family" },
-  { "id": "eltern", "lemma": "Eltern", "article": "die", "plural": "Eltern", "pos": "noun", "en": "parents", "topic": "family" },
-  { "id": "bruder", "lemma": "Bruder", "article": "der", "plural": "Brüder", "pos": "noun", "en": "brother", "topic": "family" },
-  { "id": "schwester", "lemma": "Schwester", "article": "die", "plural": "Schwestern", "pos": "noun", "en": "sister", "topic": "family" },
-  { "id": "freund", "lemma": "Freund", "article": "der", "plural": "Freunde", "pos": "noun", "en": "friend", "topic": "family" },
-  { "id": "familie", "lemma": "Familie", "article": "die", "plural": "Familien", "pos": "noun", "en": "family", "topic": "family" },
-
-  { "id": "haus", "lemma": "Haus", "article": "das", "plural": "Häuser", "pos": "noun", "en": "house", "topic": "home" },
-  { "id": "wohnung", "lemma": "Wohnung", "article": "die", "plural": "Wohnungen", "pos": "noun", "en": "flat / apartment", "topic": "home" },
-  { "id": "zimmer", "lemma": "Zimmer", "article": "das", "plural": "Zimmer", "pos": "noun", "en": "room", "topic": "home" },
-  { "id": "tisch", "lemma": "Tisch", "article": "der", "plural": "Tische", "pos": "noun", "en": "table", "topic": "home" },
-  { "id": "stuhl", "lemma": "Stuhl", "article": "der", "plural": "Stühle", "pos": "noun", "en": "chair", "topic": "home" },
-  { "id": "tuer", "lemma": "Tür", "article": "die", "plural": "Türen", "pos": "noun", "en": "door", "topic": "home" },
-  { "id": "fenster", "lemma": "Fenster", "article": "das", "plural": "Fenster", "pos": "noun", "en": "window", "topic": "home" },
-  { "id": "bett", "lemma": "Bett", "article": "das", "plural": "Betten", "pos": "noun", "en": "bed", "topic": "home" },
-  { "id": "kueche", "lemma": "Küche", "article": "die", "plural": "Küchen", "pos": "noun", "en": "kitchen", "topic": "home" },
-
-  { "id": "wasser", "lemma": "Wasser", "article": "das", "plural": "Wässer", "pos": "noun", "en": "water", "topic": "food" },
-  { "id": "brot", "lemma": "Brot", "article": "das", "plural": "Brote", "pos": "noun", "en": "bread", "topic": "food" },
-  { "id": "apfel", "lemma": "Apfel", "article": "der", "plural": "Äpfel", "pos": "noun", "en": "apple", "topic": "food" },
-  { "id": "kaffee", "lemma": "Kaffee", "article": "der", "plural": "Kaffees", "pos": "noun", "en": "coffee", "topic": "food" },
-  { "id": "tee", "lemma": "Tee", "article": "der", "plural": "Tees", "pos": "noun", "en": "tea", "topic": "food" },
-  { "id": "milch", "lemma": "Milch", "article": "die", "pos": "noun", "en": "milk", "topic": "food" },
-  { "id": "bier", "lemma": "Bier", "article": "das", "plural": "Biere", "pos": "noun", "en": "beer", "topic": "food" },
-  { "id": "kaese", "lemma": "Käse", "article": "der", "plural": "Käse", "pos": "noun", "en": "cheese", "topic": "food" },
-  { "id": "ei", "lemma": "Ei", "article": "das", "plural": "Eier", "pos": "noun", "en": "egg", "topic": "food" },
-  { "id": "fleisch", "lemma": "Fleisch", "article": "das", "pos": "noun", "en": "meat", "topic": "food" },
-  { "id": "obst", "lemma": "Obst", "article": "das", "pos": "noun", "en": "fruit", "topic": "food" },
-  { "id": "gemuese", "lemma": "Gemüse", "article": "das", "pos": "noun", "en": "vegetables", "topic": "food" },
-
-  { "id": "null", "lemma": "null", "pos": "num", "en": "zero", "topic": "numbers" },
-  { "id": "eins", "lemma": "eins", "pos": "num", "en": "one", "topic": "numbers" },
-  { "id": "zwei", "lemma": "zwei", "pos": "num", "en": "two", "topic": "numbers" },
-  { "id": "drei", "lemma": "drei", "pos": "num", "en": "three", "topic": "numbers" },
-  { "id": "vier", "lemma": "vier", "pos": "num", "en": "four", "topic": "numbers" },
-  { "id": "fuenf", "lemma": "fünf", "pos": "num", "en": "five", "topic": "numbers" },
-  { "id": "sechs", "lemma": "sechs", "pos": "num", "en": "six", "topic": "numbers" },
-  { "id": "sieben", "lemma": "sieben", "pos": "num", "en": "seven", "topic": "numbers" },
-  { "id": "acht", "lemma": "acht", "pos": "num", "en": "eight", "topic": "numbers" },
-  { "id": "neun", "lemma": "neun", "pos": "num", "en": "nine", "topic": "numbers" },
-  { "id": "zehn", "lemma": "zehn", "pos": "num", "en": "ten", "topic": "numbers" },
-  { "id": "zwanzig", "lemma": "zwanzig", "pos": "num", "en": "twenty", "topic": "numbers" },
-  { "id": "hundert", "lemma": "hundert", "pos": "num", "en": "hundred", "topic": "numbers" },
-
-  { "id": "montag", "lemma": "Montag", "article": "der", "plural": "Montage", "pos": "noun", "en": "Monday", "topic": "time" },
-  { "id": "dienstag", "lemma": "Dienstag", "article": "der", "plural": "Dienstage", "pos": "noun", "en": "Tuesday", "topic": "time" },
-  { "id": "mittwoch", "lemma": "Mittwoch", "article": "der", "plural": "Mittwoche", "pos": "noun", "en": "Wednesday", "topic": "time" },
-  { "id": "donnerstag", "lemma": "Donnerstag", "article": "der", "plural": "Donnerstage", "pos": "noun", "en": "Thursday", "topic": "time" },
-  { "id": "freitag", "lemma": "Freitag", "article": "der", "plural": "Freitage", "pos": "noun", "en": "Friday", "topic": "time" },
-  { "id": "samstag", "lemma": "Samstag", "article": "der", "plural": "Samstage", "pos": "noun", "en": "Saturday", "topic": "time" },
-  { "id": "sonntag", "lemma": "Sonntag", "article": "der", "plural": "Sonntage", "pos": "noun", "en": "Sunday", "topic": "time" },
-  { "id": "tag", "lemma": "Tag", "article": "der", "plural": "Tage", "pos": "noun", "en": "day", "topic": "time" },
-  { "id": "woche", "lemma": "Woche", "article": "die", "plural": "Wochen", "pos": "noun", "en": "week", "topic": "time" },
-  { "id": "monat", "lemma": "Monat", "article": "der", "plural": "Monate", "pos": "noun", "en": "month", "topic": "time" },
-  { "id": "jahr", "lemma": "Jahr", "article": "das", "plural": "Jahre", "pos": "noun", "en": "year", "topic": "time" },
-  { "id": "stunde", "lemma": "Stunde", "article": "die", "plural": "Stunden", "pos": "noun", "en": "hour", "topic": "time" },
-  { "id": "heute", "lemma": "heute", "pos": "adv", "en": "today", "topic": "time" },
-  { "id": "morgen", "lemma": "morgen", "pos": "adv", "en": "tomorrow", "topic": "time" },
-  { "id": "gestern", "lemma": "gestern", "pos": "adv", "en": "yesterday", "topic": "time" },
-  { "id": "jetzt", "lemma": "jetzt", "pos": "adv", "en": "now", "topic": "time" },
-  { "id": "immer", "lemma": "immer", "pos": "adv", "en": "always", "topic": "time" },
-  { "id": "oft", "lemma": "oft", "pos": "adv", "en": "often", "topic": "time" },
-  { "id": "nie", "lemma": "nie", "pos": "adv", "en": "never", "topic": "time" },
-
-  { "id": "gut", "lemma": "gut", "pos": "adj", "en": "good", "topic": "adjectives" },
-  { "id": "schlecht", "lemma": "schlecht", "pos": "adj", "en": "bad", "topic": "adjectives" },
-  { "id": "gross", "lemma": "groß", "pos": "adj", "en": "big / tall", "topic": "adjectives" },
-  { "id": "klein", "lemma": "klein", "pos": "adj", "en": "small", "topic": "adjectives" },
-  { "id": "neu", "lemma": "neu", "pos": "adj", "en": "new", "topic": "adjectives" },
-  { "id": "alt", "lemma": "alt", "pos": "adj", "en": "old", "topic": "adjectives" },
-  { "id": "schoen", "lemma": "schön", "pos": "adj", "en": "beautiful / nice", "topic": "adjectives" },
-  { "id": "teuer", "lemma": "teuer", "pos": "adj", "en": "expensive", "topic": "adjectives" },
-  { "id": "billig", "lemma": "billig", "pos": "adj", "en": "cheap", "topic": "adjectives" },
-  { "id": "richtig", "lemma": "richtig", "pos": "adj", "en": "correct", "topic": "adjectives" },
-  { "id": "falsch", "lemma": "falsch", "pos": "adj", "en": "wrong", "topic": "adjectives" },
-  { "id": "muede", "lemma": "müde", "pos": "adj", "en": "tired", "topic": "adjectives" },
-
-  { "id": "deutschland", "lemma": "Deutschland", "article": "das", "pos": "noun", "en": "Germany", "topic": "places" },
-  { "id": "stadt", "lemma": "Stadt", "article": "die", "plural": "Städte", "pos": "noun", "en": "city", "topic": "places" },
-  { "id": "land", "lemma": "Land", "article": "das", "plural": "Länder", "pos": "noun", "en": "country", "topic": "places" },
-  { "id": "strasse", "lemma": "Straße", "article": "die", "plural": "Straßen", "pos": "noun", "en": "street", "topic": "places" },
-  { "id": "bahnhof", "lemma": "Bahnhof", "article": "der", "plural": "Bahnhöfe", "pos": "noun", "en": "train station", "topic": "places" },
-  { "id": "schule", "lemma": "Schule", "article": "die", "plural": "Schulen", "pos": "noun", "en": "school", "topic": "places" },
-  { "id": "arbeit", "lemma": "Arbeit", "article": "die", "plural": "Arbeiten", "pos": "noun", "en": "work", "topic": "places" },
-  { "id": "buch", "lemma": "Buch", "article": "das", "plural": "Bücher", "pos": "noun", "en": "book", "topic": "objects" },
-  { "id": "geld", "lemma": "Geld", "article": "das", "plural": "Gelder", "pos": "noun", "en": "money", "topic": "objects" },
-  { "id": "auto", "lemma": "Auto", "article": "das", "plural": "Autos", "pos": "noun", "en": "car", "topic": "objects" },
-
-  { "id": "und", "lemma": "und", "pos": "conj", "en": "and", "topic": "connectors" },
-  { "id": "oder", "lemma": "oder", "pos": "conj", "en": "or", "topic": "connectors" },
-  { "id": "aber", "lemma": "aber", "pos": "conj", "en": "but", "topic": "connectors" },
-  { "id": "weil", "lemma": "weil", "pos": "conj", "en": "because", "topic": "connectors" },
-  { "id": "auch", "lemma": "auch", "pos": "adv", "en": "also", "topic": "connectors" },
-  { "id": "sehr", "lemma": "sehr", "pos": "adv", "en": "very", "topic": "connectors" },
-  { "id": "in", "lemma": "in", "pos": "prep", "en": "in", "topic": "prepositions" },
-  { "id": "auf", "lemma": "auf", "pos": "prep", "en": "on", "topic": "prepositions" },
-  { "id": "mit", "lemma": "mit", "pos": "prep", "en": "with", "topic": "prepositions" },
-  { "id": "aus", "lemma": "aus", "pos": "prep", "en": "from / out of", "topic": "prepositions" },
-  { "id": "zu", "lemma": "zu", "pos": "prep", "en": "to", "topic": "prepositions" },
-  { "id": "fuer", "lemma": "für", "pos": "prep", "en": "for", "topic": "prepositions" },
-  { "id": "ohne", "lemma": "ohne", "pos": "prep", "en": "without", "topic": "prepositions" },
-  { "id": "bei", "lemma": "bei", "pos": "prep", "en": "at / near", "topic": "prepositions" }
+  {
+    "id": "hallo",
+    "lemma": "hallo",
+    "article": null,
+    "plural": null,
+    "pos": "interjection",
+    "en": "hello",
+    "topic": "greetings"
+  },
+  {
+    "id": "tschuess",
+    "lemma": "tschüss",
+    "article": null,
+    "plural": null,
+    "pos": "interjection",
+    "en": "bye",
+    "topic": "greetings"
+  },
+  {
+    "id": "guten-morgen",
+    "lemma": "guten Morgen",
+    "article": null,
+    "plural": null,
+    "pos": "phrase",
+    "en": "good morning",
+    "topic": "greetings"
+  },
+  {
+    "id": "guten-tag",
+    "lemma": "guten Tag",
+    "article": null,
+    "plural": null,
+    "pos": "phrase",
+    "en": "good day / hello",
+    "topic": "greetings"
+  },
+  {
+    "id": "guten-abend",
+    "lemma": "guten Abend",
+    "article": null,
+    "plural": null,
+    "pos": "phrase",
+    "en": "good evening",
+    "topic": "greetings"
+  },
+  {
+    "id": "gute-nacht",
+    "lemma": "gute Nacht",
+    "article": null,
+    "plural": null,
+    "pos": "phrase",
+    "en": "good night",
+    "topic": "greetings"
+  },
+  {
+    "id": "auf-wiedersehen",
+    "lemma": "auf Wiedersehen",
+    "article": null,
+    "plural": null,
+    "pos": "phrase",
+    "en": "goodbye (formal)",
+    "topic": "greetings"
+  },
+  {
+    "id": "danke",
+    "lemma": "danke",
+    "article": null,
+    "plural": null,
+    "pos": "interjection",
+    "en": "thank you",
+    "topic": "greetings"
+  },
+  {
+    "id": "bitte",
+    "lemma": "bitte",
+    "article": null,
+    "plural": null,
+    "pos": "interjection",
+    "en": "please / you're welcome",
+    "topic": "greetings"
+  },
+  {
+    "id": "entschuldigung",
+    "lemma": "Entschuldigung",
+    "article": "die",
+    "plural": "Entschuldigungen",
+    "pos": "noun",
+    "en": "excuse me / sorry",
+    "topic": "greetings"
+  },
+  {
+    "id": "ja",
+    "lemma": "ja",
+    "article": null,
+    "plural": null,
+    "pos": "adverb",
+    "en": "yes",
+    "topic": "greetings"
+  },
+  {
+    "id": "nein",
+    "lemma": "nein",
+    "article": null,
+    "plural": null,
+    "pos": "adverb",
+    "en": "no",
+    "topic": "greetings"
+  },
+  {
+    "id": "alphabet",
+    "lemma": "Alphabet",
+    "article": "das",
+    "plural": "Alphabete",
+    "pos": "noun",
+    "en": "alphabet",
+    "topic": "alphabet"
+  },
+  {
+    "id": "buchstabe",
+    "lemma": "Buchstabe",
+    "article": "der",
+    "plural": "Buchstaben",
+    "pos": "noun",
+    "en": "letter (of the alphabet)",
+    "topic": "alphabet"
+  },
+  {
+    "id": "buchstabieren",
+    "lemma": "buchstabieren",
+    "article": null,
+    "plural": null,
+    "pos": "verb",
+    "en": "to spell",
+    "topic": "alphabet"
+  },
+  {
+    "id": "umlaut",
+    "lemma": "Umlaut",
+    "article": "der",
+    "plural": "Umlaute",
+    "pos": "noun",
+    "en": "umlaut (ä ö ü)",
+    "topic": "alphabet"
+  },
+  {
+    "id": "eszett",
+    "lemma": "Eszett",
+    "article": "das",
+    "plural": "Eszett",
+    "pos": "noun",
+    "en": "the letter ß",
+    "topic": "alphabet"
+  },
+  {
+    "id": "gross",
+    "lemma": "groß",
+    "article": null,
+    "plural": null,
+    "pos": "adjective",
+    "en": "big / capital (letter)",
+    "topic": "alphabet"
+  },
+  {
+    "id": "klein",
+    "lemma": "klein",
+    "article": null,
+    "plural": null,
+    "pos": "adjective",
+    "en": "small / lower-case",
+    "topic": "alphabet"
+  },
+  {
+    "id": "schreiben",
+    "lemma": "schreiben",
+    "article": null,
+    "plural": null,
+    "pos": "verb",
+    "en": "to write",
+    "topic": "alphabet"
+  },
+  {
+    "id": "das-wort",
+    "lemma": "Wort",
+    "article": "das",
+    "plural": "Wörter",
+    "pos": "noun",
+    "en": "word",
+    "topic": "alphabet"
+  },
+  {
+    "id": "noch-einmal",
+    "lemma": "noch einmal",
+    "article": null,
+    "plural": null,
+    "pos": "phrase",
+    "en": "once more / again",
+    "topic": "alphabet"
+  },
+  {
+    "id": "null",
+    "lemma": "null",
+    "article": null,
+    "plural": null,
+    "pos": "number",
+    "en": "zero",
+    "topic": "numbers"
+  },
+  {
+    "id": "eins",
+    "lemma": "eins",
+    "article": null,
+    "plural": null,
+    "pos": "number",
+    "en": "one",
+    "topic": "numbers"
+  },
+  {
+    "id": "zwei",
+    "lemma": "zwei",
+    "article": null,
+    "plural": null,
+    "pos": "number",
+    "en": "two",
+    "topic": "numbers"
+  },
+  {
+    "id": "drei",
+    "lemma": "drei",
+    "article": null,
+    "plural": null,
+    "pos": "number",
+    "en": "three",
+    "topic": "numbers"
+  },
+  {
+    "id": "vier",
+    "lemma": "vier",
+    "article": null,
+    "plural": null,
+    "pos": "number",
+    "en": "four",
+    "topic": "numbers"
+  },
+  {
+    "id": "fuenf",
+    "lemma": "fünf",
+    "article": null,
+    "plural": null,
+    "pos": "number",
+    "en": "five",
+    "topic": "numbers"
+  },
+  {
+    "id": "sechs",
+    "lemma": "sechs",
+    "article": null,
+    "plural": null,
+    "pos": "number",
+    "en": "six",
+    "topic": "numbers"
+  },
+  {
+    "id": "sieben",
+    "lemma": "sieben",
+    "article": null,
+    "plural": null,
+    "pos": "number",
+    "en": "seven",
+    "topic": "numbers"
+  },
+  {
+    "id": "acht",
+    "lemma": "acht",
+    "article": null,
+    "plural": null,
+    "pos": "number",
+    "en": "eight",
+    "topic": "numbers"
+  },
+  {
+    "id": "neun",
+    "lemma": "neun",
+    "article": null,
+    "plural": null,
+    "pos": "number",
+    "en": "nine",
+    "topic": "numbers"
+  },
+  {
+    "id": "zehn",
+    "lemma": "zehn",
+    "article": null,
+    "plural": null,
+    "pos": "number",
+    "en": "ten",
+    "topic": "numbers"
+  },
+  {
+    "id": "die-nummer",
+    "lemma": "Nummer",
+    "article": "die",
+    "plural": "Nummern",
+    "pos": "noun",
+    "en": "number (phone, house)",
+    "topic": "numbers"
+  },
+  {
+    "id": "heissen",
+    "lemma": "heißen",
+    "article": null,
+    "plural": null,
+    "pos": "verb",
+    "en": "to be called",
+    "topic": "greetings"
+  },
+  {
+    "id": "der-name",
+    "lemma": "Name",
+    "article": "der",
+    "plural": "Namen",
+    "pos": "noun",
+    "en": "name",
+    "topic": "greetings"
+  },
+  {
+    "id": "ich",
+    "lemma": "ich",
+    "article": null,
+    "plural": null,
+    "pos": "pronoun",
+    "en": "I",
+    "topic": "pronouns"
+  },
+  {
+    "id": "du",
+    "lemma": "du",
+    "article": null,
+    "plural": null,
+    "pos": "pronoun",
+    "en": "you (informal)",
+    "topic": "pronouns"
+  },
+  {
+    "id": "sie-formal",
+    "lemma": "Sie",
+    "article": null,
+    "plural": null,
+    "pos": "pronoun",
+    "en": "you (formal)",
+    "topic": "pronouns"
+  },
+  {
+    "id": "mein",
+    "lemma": "mein",
+    "article": null,
+    "plural": null,
+    "pos": "pronoun",
+    "en": "my",
+    "topic": "pronouns"
+  },
+  {
+    "id": "dein",
+    "lemma": "dein",
+    "article": null,
+    "plural": null,
+    "pos": "pronoun",
+    "en": "your (informal)",
+    "topic": "pronouns"
+  },
+  {
+    "id": "wer",
+    "lemma": "wer",
+    "article": null,
+    "plural": null,
+    "pos": "pronoun",
+    "en": "who",
+    "topic": "questions"
+  },
+  {
+    "id": "wie",
+    "lemma": "wie",
+    "article": null,
+    "plural": null,
+    "pos": "adverb",
+    "en": "how",
+    "topic": "questions"
+  },
+  {
+    "id": "gut",
+    "lemma": "gut",
+    "article": null,
+    "plural": null,
+    "pos": "adjective",
+    "en": "good / well",
+    "topic": "adjectives"
+  },
+  {
+    "id": "schlecht",
+    "lemma": "schlecht",
+    "article": null,
+    "plural": null,
+    "pos": "adjective",
+    "en": "bad / badly",
+    "topic": "adjectives"
+  },
+  {
+    "id": "und",
+    "lemma": "und",
+    "article": null,
+    "plural": null,
+    "pos": "conjunction",
+    "en": "and",
+    "topic": "connectors"
+  },
+  {
+    "id": "kommen",
+    "lemma": "kommen",
+    "article": null,
+    "plural": null,
+    "pos": "verb",
+    "en": "to come",
+    "topic": "core-verbs"
+  },
+  {
+    "id": "wohnen",
+    "lemma": "wohnen",
+    "article": null,
+    "plural": null,
+    "pos": "verb",
+    "en": "to live / reside",
+    "topic": "core-verbs"
+  },
+  {
+    "id": "sprechen",
+    "lemma": "sprechen",
+    "article": null,
+    "plural": null,
+    "pos": "verb",
+    "en": "to speak",
+    "topic": "core-verbs"
+  },
+  {
+    "id": "woher",
+    "lemma": "woher",
+    "article": null,
+    "plural": null,
+    "pos": "adverb",
+    "en": "where from",
+    "topic": "questions"
+  },
+  {
+    "id": "wo",
+    "lemma": "wo",
+    "article": null,
+    "plural": null,
+    "pos": "adverb",
+    "en": "where",
+    "topic": "questions"
+  },
+  {
+    "id": "aus",
+    "lemma": "aus",
+    "article": null,
+    "plural": null,
+    "pos": "preposition",
+    "en": "from / out of",
+    "topic": "prepositions"
+  },
+  {
+    "id": "in",
+    "lemma": "in",
+    "article": null,
+    "plural": null,
+    "pos": "preposition",
+    "en": "in",
+    "topic": "prepositions"
+  },
+  {
+    "id": "deutschland",
+    "lemma": "Deutschland",
+    "article": "das",
+    "plural": null,
+    "pos": "noun",
+    "en": "Germany",
+    "topic": "countries"
+  },
+  {
+    "id": "oesterreich",
+    "lemma": "Österreich",
+    "article": "das",
+    "plural": null,
+    "pos": "noun",
+    "en": "Austria",
+    "topic": "countries"
+  },
+  {
+    "id": "die-schweiz",
+    "lemma": "Schweiz",
+    "article": "die",
+    "plural": null,
+    "pos": "noun",
+    "en": "Switzerland",
+    "topic": "countries"
+  },
+  {
+    "id": "das-land",
+    "lemma": "Land",
+    "article": "das",
+    "plural": "Länder",
+    "pos": "noun",
+    "en": "country",
+    "topic": "countries"
+  },
+  {
+    "id": "die-stadt",
+    "lemma": "Stadt",
+    "article": "die",
+    "plural": "Städte",
+    "pos": "noun",
+    "en": "city / town",
+    "topic": "places"
+  },
+  {
+    "id": "art-der",
+    "lemma": "der",
+    "article": null,
+    "plural": null,
+    "pos": "article",
+    "en": "the (masculine)",
+    "topic": "articles"
+  },
+  {
+    "id": "art-die",
+    "lemma": "die",
+    "article": null,
+    "plural": null,
+    "pos": "article",
+    "en": "the (feminine, and all plurals)",
+    "topic": "articles"
+  },
+  {
+    "id": "art-das",
+    "lemma": "das",
+    "article": null,
+    "plural": null,
+    "pos": "article",
+    "en": "the (neuter)",
+    "topic": "articles"
+  },
+  {
+    "id": "der-mann",
+    "lemma": "Mann",
+    "article": "der",
+    "plural": "Männer",
+    "pos": "noun",
+    "en": "man",
+    "topic": "articles"
+  },
+  {
+    "id": "die-frau",
+    "lemma": "Frau",
+    "article": "die",
+    "plural": "Frauen",
+    "pos": "noun",
+    "en": "woman",
+    "topic": "articles"
+  },
+  {
+    "id": "das-kind",
+    "lemma": "Kind",
+    "article": "das",
+    "plural": "Kinder",
+    "pos": "noun",
+    "en": "child",
+    "topic": "articles"
+  },
+  {
+    "id": "das-maedchen",
+    "lemma": "Mädchen",
+    "article": "das",
+    "plural": "Mädchen",
+    "pos": "noun",
+    "en": "girl — -chen is always das, whatever the person",
+    "topic": "articles"
+  },
+  {
+    "id": "die-zeitung",
+    "lemma": "Zeitung",
+    "article": "die",
+    "plural": "Zeitungen",
+    "pos": "noun",
+    "en": "newspaper — -ung is always die",
+    "topic": "articles"
+  },
+  {
+    "id": "der-lehrer",
+    "lemma": "Lehrer",
+    "article": "der",
+    "plural": "Lehrer",
+    "pos": "noun",
+    "en": "teacher (m) — -er doing a job is usually der",
+    "topic": "articles"
+  },
+  {
+    "id": "die-lehrerin",
+    "lemma": "Lehrerin",
+    "article": "die",
+    "plural": "Lehrerinnen",
+    "pos": "noun",
+    "en": "teacher (f) — -in makes it feminine",
+    "topic": "articles"
+  },
+  {
+    "id": "die-freiheit",
+    "lemma": "Freiheit",
+    "article": "die",
+    "plural": "Freiheiten",
+    "pos": "noun",
+    "en": "freedom — -heit is always die",
+    "topic": "articles"
+  },
+  {
+    "id": "die-moeglichkeit",
+    "lemma": "Möglichkeit",
+    "article": "die",
+    "plural": "Möglichkeiten",
+    "pos": "noun",
+    "en": "possibility — -keit is always die",
+    "topic": "articles"
+  },
+  {
+    "id": "das-buch",
+    "lemma": "Buch",
+    "article": "das",
+    "plural": "Bücher",
+    "pos": "noun",
+    "en": "book",
+    "topic": "objects"
+  },
+  {
+    "id": "der-tisch",
+    "lemma": "Tisch",
+    "article": "der",
+    "plural": "Tische",
+    "pos": "noun",
+    "en": "table",
+    "topic": "objects"
+  },
+  {
+    "id": "der-stuhl",
+    "lemma": "Stuhl",
+    "article": "der",
+    "plural": "Stühle",
+    "pos": "noun",
+    "en": "chair",
+    "topic": "objects"
+  },
+  {
+    "id": "die-tuer",
+    "lemma": "Tür",
+    "article": "die",
+    "plural": "Türen",
+    "pos": "noun",
+    "en": "door",
+    "topic": "objects"
+  },
+  {
+    "id": "das-fenster",
+    "lemma": "Fenster",
+    "article": "das",
+    "plural": "Fenster",
+    "pos": "noun",
+    "en": "window",
+    "topic": "objects"
+  },
+  {
+    "id": "die-lampe",
+    "lemma": "Lampe",
+    "article": "die",
+    "plural": "Lampen",
+    "pos": "noun",
+    "en": "lamp",
+    "topic": "objects"
+  },
+  {
+    "id": "das-handy",
+    "lemma": "Handy",
+    "article": "das",
+    "plural": "Handys",
+    "pos": "noun",
+    "en": "mobile phone",
+    "topic": "objects"
+  },
+  {
+    "id": "der-schluessel",
+    "lemma": "Schlüssel",
+    "article": "der",
+    "plural": "Schlüssel",
+    "pos": "noun",
+    "en": "key",
+    "topic": "objects"
+  },
+  {
+    "id": "die-tasche",
+    "lemma": "Tasche",
+    "article": "die",
+    "plural": "Taschen",
+    "pos": "noun",
+    "en": "bag",
+    "topic": "objects"
+  },
+  {
+    "id": "der-stift",
+    "lemma": "Stift",
+    "article": "der",
+    "plural": "Stifte",
+    "pos": "noun",
+    "en": "pen",
+    "topic": "objects"
+  },
+  {
+    "id": "hier",
+    "lemma": "hier",
+    "article": null,
+    "plural": null,
+    "pos": "adverb",
+    "en": "here",
+    "topic": "places"
+  },
+  {
+    "id": "dort",
+    "lemma": "dort",
+    "article": null,
+    "plural": null,
+    "pos": "adverb",
+    "en": "there",
+    "topic": "places"
+  },
+  {
+    "id": "sein-verb",
+    "lemma": "sein",
+    "article": null,
+    "plural": null,
+    "pos": "verb",
+    "en": "to be",
+    "topic": "core-verbs"
+  },
+  {
+    "id": "haben",
+    "lemma": "haben",
+    "article": null,
+    "plural": null,
+    "pos": "verb",
+    "en": "to have",
+    "topic": "core-verbs"
+  },
+  {
+    "id": "das-jahr",
+    "lemma": "Jahr",
+    "article": "das",
+    "plural": "Jahre",
+    "pos": "noun",
+    "en": "year",
+    "topic": "time"
+  },
+  {
+    "id": "alt",
+    "lemma": "alt",
+    "article": null,
+    "plural": null,
+    "pos": "adjective",
+    "en": "old",
+    "topic": "adjectives"
+  },
+  {
+    "id": "jung",
+    "lemma": "jung",
+    "article": null,
+    "plural": null,
+    "pos": "adjective",
+    "en": "young",
+    "topic": "adjectives"
+  },
+  {
+    "id": "muede",
+    "lemma": "müde",
+    "article": null,
+    "plural": null,
+    "pos": "adjective",
+    "en": "tired",
+    "topic": "adjectives"
+  },
+  {
+    "id": "hungrig",
+    "lemma": "hungrig",
+    "article": null,
+    "plural": null,
+    "pos": "adjective",
+    "en": "hungry",
+    "topic": "adjectives"
+  },
+  {
+    "id": "durstig",
+    "lemma": "durstig",
+    "article": null,
+    "plural": null,
+    "pos": "adjective",
+    "en": "thirsty",
+    "topic": "adjectives"
+  },
+  {
+    "id": "krank",
+    "lemma": "krank",
+    "article": null,
+    "plural": null,
+    "pos": "adjective",
+    "en": "ill",
+    "topic": "adjectives"
+  },
+  {
+    "id": "sehr",
+    "lemma": "sehr",
+    "article": null,
+    "plural": null,
+    "pos": "adverb",
+    "en": "very",
+    "topic": "adjectives"
+  },
+  {
+    "id": "elf",
+    "lemma": "elf",
+    "article": null,
+    "plural": null,
+    "pos": "number",
+    "en": "eleven",
+    "topic": "numbers"
+  },
+  {
+    "id": "zwoelf",
+    "lemma": "zwölf",
+    "article": null,
+    "plural": null,
+    "pos": "number",
+    "en": "twelve",
+    "topic": "numbers"
+  },
+  {
+    "id": "zwanzig",
+    "lemma": "zwanzig",
+    "article": null,
+    "plural": null,
+    "pos": "number",
+    "en": "twenty",
+    "topic": "numbers"
+  },
+  {
+    "id": "einundzwanzig",
+    "lemma": "einundzwanzig",
+    "article": null,
+    "plural": null,
+    "pos": "number",
+    "en": "twenty-one — literally one-and-twenty",
+    "topic": "numbers"
+  },
+  {
+    "id": "dreissig",
+    "lemma": "dreißig",
+    "article": null,
+    "plural": null,
+    "pos": "number",
+    "en": "thirty",
+    "topic": "numbers"
+  },
+  {
+    "id": "vierzig",
+    "lemma": "vierzig",
+    "article": null,
+    "plural": null,
+    "pos": "number",
+    "en": "forty",
+    "topic": "numbers"
+  },
+  {
+    "id": "fuenfzig",
+    "lemma": "fünfzig",
+    "article": null,
+    "plural": null,
+    "pos": "number",
+    "en": "fifty",
+    "topic": "numbers"
+  },
+  {
+    "id": "hundert",
+    "lemma": "hundert",
+    "article": null,
+    "plural": null,
+    "pos": "number",
+    "en": "a hundred",
+    "topic": "numbers"
+  },
+  {
+    "id": "der-euro",
+    "lemma": "Euro",
+    "article": "der",
+    "plural": "Euro",
+    "pos": "noun",
+    "en": "euro",
+    "topic": "numbers"
+  },
+  {
+    "id": "kosten",
+    "lemma": "kosten",
+    "article": null,
+    "plural": null,
+    "pos": "verb",
+    "en": "to cost",
+    "topic": "shopping"
+  },
+  {
+    "id": "viel",
+    "lemma": "viel",
+    "article": null,
+    "plural": null,
+    "pos": "adverb",
+    "en": "much / a lot",
+    "topic": "adjectives"
+  },
+  {
+    "id": "wenig",
+    "lemma": "wenig",
+    "article": null,
+    "plural": null,
+    "pos": "adverb",
+    "en": "little / few",
+    "topic": "adjectives"
+  },
+  {
+    "id": "die-uhr",
+    "lemma": "Uhr",
+    "article": "die",
+    "plural": "Uhren",
+    "pos": "noun",
+    "en": "clock / o'clock",
+    "topic": "time"
+  },
+  {
+    "id": "die-stunde",
+    "lemma": "Stunde",
+    "article": "die",
+    "plural": "Stunden",
+    "pos": "noun",
+    "en": "hour",
+    "topic": "time"
+  },
+  {
+    "id": "die-minute",
+    "lemma": "Minute",
+    "article": "die",
+    "plural": "Minuten",
+    "pos": "noun",
+    "en": "minute",
+    "topic": "time"
+  },
+  {
+    "id": "halb",
+    "lemma": "halb",
+    "article": null,
+    "plural": null,
+    "pos": "adjective",
+    "en": "half — halb drei is half past TWO, not three",
+    "topic": "time"
+  },
+  {
+    "id": "viertel",
+    "lemma": "Viertel",
+    "article": "das",
+    "plural": "Viertel",
+    "pos": "noun",
+    "en": "quarter",
+    "topic": "time"
+  },
+  {
+    "id": "vor-zeit",
+    "lemma": "vor",
+    "article": null,
+    "plural": null,
+    "pos": "preposition",
+    "en": "to (before the hour)",
+    "topic": "time"
+  },
+  {
+    "id": "nach-zeit",
+    "lemma": "nach",
+    "article": null,
+    "plural": null,
+    "pos": "preposition",
+    "en": "past (after the hour)",
+    "topic": "time"
+  },
+  {
+    "id": "spaet",
+    "lemma": "spät",
+    "article": null,
+    "plural": null,
+    "pos": "adjective",
+    "en": "late",
+    "topic": "time"
+  },
+  {
+    "id": "frueh",
+    "lemma": "früh",
+    "article": null,
+    "plural": null,
+    "pos": "adjective",
+    "en": "early",
+    "topic": "time"
+  },
+  {
+    "id": "beginnen",
+    "lemma": "beginnen",
+    "article": null,
+    "plural": null,
+    "pos": "verb",
+    "en": "to begin",
+    "topic": "core-verbs"
+  },
+  {
+    "id": "die-zeit",
+    "lemma": "Zeit",
+    "article": "die",
+    "plural": "Zeiten",
+    "pos": "noun",
+    "en": "time",
+    "topic": "time"
+  },
+  {
+    "id": "jetzt",
+    "lemma": "jetzt",
+    "article": null,
+    "plural": null,
+    "pos": "adverb",
+    "en": "now",
+    "topic": "time"
+  },
+  {
+    "id": "der-montag",
+    "lemma": "Montag",
+    "article": "der",
+    "plural": "Montage",
+    "pos": "noun",
+    "en": "Monday",
+    "topic": "time"
+  },
+  {
+    "id": "der-dienstag",
+    "lemma": "Dienstag",
+    "article": "der",
+    "plural": "Dienstage",
+    "pos": "noun",
+    "en": "Tuesday",
+    "topic": "time"
+  },
+  {
+    "id": "der-mittwoch",
+    "lemma": "Mittwoch",
+    "article": "der",
+    "plural": "Mittwoche",
+    "pos": "noun",
+    "en": "Wednesday",
+    "topic": "time"
+  },
+  {
+    "id": "der-donnerstag",
+    "lemma": "Donnerstag",
+    "article": "der",
+    "plural": "Donnerstage",
+    "pos": "noun",
+    "en": "Thursday",
+    "topic": "time"
+  },
+  {
+    "id": "der-freitag",
+    "lemma": "Freitag",
+    "article": "der",
+    "plural": "Freitage",
+    "pos": "noun",
+    "en": "Friday",
+    "topic": "time"
+  },
+  {
+    "id": "der-samstag",
+    "lemma": "Samstag",
+    "article": "der",
+    "plural": "Samstage",
+    "pos": "noun",
+    "en": "Saturday",
+    "topic": "time"
+  },
+  {
+    "id": "der-sonntag",
+    "lemma": "Sonntag",
+    "article": "der",
+    "plural": "Sonntage",
+    "pos": "noun",
+    "en": "Sunday",
+    "topic": "time"
+  },
+  {
+    "id": "die-woche",
+    "lemma": "Woche",
+    "article": "die",
+    "plural": "Wochen",
+    "pos": "noun",
+    "en": "week",
+    "topic": "time"
+  },
+  {
+    "id": "der-tag",
+    "lemma": "Tag",
+    "article": "der",
+    "plural": "Tage",
+    "pos": "noun",
+    "en": "day",
+    "topic": "time"
+  },
+  {
+    "id": "heute",
+    "lemma": "heute",
+    "article": null,
+    "plural": null,
+    "pos": "adverb",
+    "en": "today",
+    "topic": "time"
+  },
+  {
+    "id": "morgen-adv",
+    "lemma": "morgen",
+    "article": null,
+    "plural": null,
+    "pos": "adverb",
+    "en": "tomorrow — lower case; der Morgen is the morning",
+    "topic": "time"
+  },
+  {
+    "id": "gestern",
+    "lemma": "gestern",
+    "article": null,
+    "plural": null,
+    "pos": "adverb",
+    "en": "yesterday",
+    "topic": "time"
+  },
+  {
+    "id": "machen",
+    "lemma": "machen",
+    "article": null,
+    "plural": null,
+    "pos": "verb",
+    "en": "to do / make",
+    "topic": "core-verbs"
+  },
+  {
+    "id": "arbeiten",
+    "lemma": "arbeiten",
+    "article": null,
+    "plural": null,
+    "pos": "verb",
+    "en": "to work — stem ends in -t, so du arbeitest",
+    "topic": "core-verbs"
+  },
+  {
+    "id": "lernen",
+    "lemma": "lernen",
+    "article": null,
+    "plural": null,
+    "pos": "verb",
+    "en": "to learn",
+    "topic": "core-verbs"
+  },
+  {
+    "id": "spielen",
+    "lemma": "spielen",
+    "article": null,
+    "plural": null,
+    "pos": "verb",
+    "en": "to play",
+    "topic": "core-verbs"
+  },
+  {
+    "id": "gehen",
+    "lemma": "gehen",
+    "article": null,
+    "plural": null,
+    "pos": "verb",
+    "en": "to go",
+    "topic": "core-verbs"
+  },
+  {
+    "id": "essen",
+    "lemma": "essen",
+    "article": null,
+    "plural": null,
+    "pos": "verb",
+    "en": "to eat — strong: du isst, er isst",
+    "topic": "core-verbs"
+  },
+  {
+    "id": "trinken",
+    "lemma": "trinken",
+    "article": null,
+    "plural": null,
+    "pos": "verb",
+    "en": "to drink",
+    "topic": "core-verbs"
+  },
+  {
+    "id": "lesen",
+    "lemma": "lesen",
+    "article": null,
+    "plural": null,
+    "pos": "verb",
+    "en": "to read — strong: du liest",
+    "topic": "core-verbs"
+  },
+  {
+    "id": "hoeren",
+    "lemma": "hören",
+    "article": null,
+    "plural": null,
+    "pos": "verb",
+    "en": "to hear / listen",
+    "topic": "core-verbs"
+  },
+  {
+    "id": "fahren",
+    "lemma": "fahren",
+    "article": null,
+    "plural": null,
+    "pos": "verb",
+    "en": "to travel / drive — strong: du fährst",
+    "topic": "core-verbs"
+  },
+  {
+    "id": "kaufen",
+    "lemma": "kaufen",
+    "article": null,
+    "plural": null,
+    "pos": "verb",
+    "en": "to buy",
+    "topic": "core-verbs"
+  },
+  {
+    "id": "brauchen",
+    "lemma": "brauchen",
+    "article": null,
+    "plural": null,
+    "pos": "verb",
+    "en": "to need",
+    "topic": "core-verbs"
+  },
+  {
+    "id": "die-familie",
+    "lemma": "Familie",
+    "article": "die",
+    "plural": "Familien",
+    "pos": "noun",
+    "en": "family",
+    "topic": "family"
+  },
+  {
+    "id": "der-vater",
+    "lemma": "Vater",
+    "article": "der",
+    "plural": "Väter",
+    "pos": "noun",
+    "en": "father",
+    "topic": "family"
+  },
+  {
+    "id": "die-mutter",
+    "lemma": "Mutter",
+    "article": "die",
+    "plural": "Mütter",
+    "pos": "noun",
+    "en": "mother",
+    "topic": "family"
+  },
+  {
+    "id": "die-eltern",
+    "lemma": "Eltern",
+    "article": "die",
+    "plural": "Eltern",
+    "pos": "noun",
+    "en": "parents — plural only, there is no singular",
+    "topic": "family"
+  },
+  {
+    "id": "der-sohn",
+    "lemma": "Sohn",
+    "article": "der",
+    "plural": "Söhne",
+    "pos": "noun",
+    "en": "son",
+    "topic": "family"
+  },
+  {
+    "id": "die-tochter",
+    "lemma": "Tochter",
+    "article": "die",
+    "plural": "Töchter",
+    "pos": "noun",
+    "en": "daughter",
+    "topic": "family"
+  },
+  {
+    "id": "der-bruder",
+    "lemma": "Bruder",
+    "article": "der",
+    "plural": "Brüder",
+    "pos": "noun",
+    "en": "brother",
+    "topic": "family"
+  },
+  {
+    "id": "die-schwester",
+    "lemma": "Schwester",
+    "article": "die",
+    "plural": "Schwestern",
+    "pos": "noun",
+    "en": "sister",
+    "topic": "family"
+  },
+  {
+    "id": "der-freund",
+    "lemma": "Freund",
+    "article": "der",
+    "plural": "Freunde",
+    "pos": "noun",
+    "en": "friend (m) / boyfriend",
+    "topic": "family"
+  },
+  {
+    "id": "die-freundin",
+    "lemma": "Freundin",
+    "article": "die",
+    "plural": "Freundinnen",
+    "pos": "noun",
+    "en": "friend (f) / girlfriend",
+    "topic": "family"
+  },
+  {
+    "id": "sein-poss",
+    "lemma": "sein",
+    "article": null,
+    "plural": null,
+    "pos": "pronoun",
+    "en": "his — same word as the verb sein, told apart by position",
+    "topic": "pronouns"
+  },
+  {
+    "id": "ihr-poss",
+    "lemma": "ihr",
+    "article": null,
+    "plural": null,
+    "pos": "pronoun",
+    "en": "her / their",
+    "topic": "pronouns"
+  },
+  {
+    "id": "das-auto",
+    "lemma": "Auto",
+    "article": "das",
+    "plural": "Autos",
+    "pos": "noun",
+    "en": "car — -s plural, mostly on loanwords",
+    "topic": "objects"
+  },
+  {
+    "id": "das-haus",
+    "lemma": "Haus",
+    "article": "das",
+    "plural": "Häuser",
+    "pos": "noun",
+    "en": "house — -er plural with an umlaut",
+    "topic": "home"
+  },
+  {
+    "id": "der-apfel",
+    "lemma": "Apfel",
+    "article": "der",
+    "plural": "Äpfel",
+    "pos": "noun",
+    "en": "apple — umlaut only, no ending",
+    "topic": "food"
+  },
+  {
+    "id": "die-blume",
+    "lemma": "Blume",
+    "article": "die",
+    "plural": "Blumen",
+    "pos": "noun",
+    "en": "flower — -n, which almost every die word takes",
+    "topic": "objects"
+  },
+  {
+    "id": "der-baum",
+    "lemma": "Baum",
+    "article": "der",
+    "plural": "Bäume",
+    "pos": "noun",
+    "en": "tree — -e with an umlaut",
+    "topic": "objects"
+  },
+  {
+    "id": "das-bild",
+    "lemma": "Bild",
+    "article": "das",
+    "plural": "Bilder",
+    "pos": "noun",
+    "en": "picture",
+    "topic": "objects"
+  },
+  {
+    "id": "die-karte",
+    "lemma": "Karte",
+    "article": "die",
+    "plural": "Karten",
+    "pos": "noun",
+    "en": "card / ticket / map",
+    "topic": "objects"
+  },
+  {
+    "id": "der-computer",
+    "lemma": "Computer",
+    "article": "der",
+    "plural": "Computer",
+    "pos": "noun",
+    "en": "computer — no ending at all",
+    "topic": "objects"
+  },
+  {
+    "id": "die-sache",
+    "lemma": "Sache",
+    "article": "die",
+    "plural": "Sachen",
+    "pos": "noun",
+    "en": "thing",
+    "topic": "objects"
+  },
+  {
+    "id": "alle",
+    "lemma": "alle",
+    "article": null,
+    "plural": null,
+    "pos": "pronoun",
+    "en": "all / everybody",
+    "topic": "connectors"
+  },
+  {
+    "id": "das-brot",
+    "lemma": "Brot",
+    "article": "das",
+    "plural": "Brote",
+    "pos": "noun",
+    "en": "bread",
+    "topic": "food"
+  },
+  {
+    "id": "das-wasser",
+    "lemma": "Wasser",
+    "article": "das",
+    "plural": "Wässer",
+    "pos": "noun",
+    "en": "water",
+    "topic": "food"
+  },
+  {
+    "id": "der-kaffee",
+    "lemma": "Kaffee",
+    "article": "der",
+    "plural": "Kaffees",
+    "pos": "noun",
+    "en": "coffee",
+    "topic": "food"
+  },
+  {
+    "id": "der-tee",
+    "lemma": "Tee",
+    "article": "der",
+    "plural": "Tees",
+    "pos": "noun",
+    "en": "tea",
+    "topic": "food"
+  },
+  {
+    "id": "die-milch",
+    "lemma": "Milch",
+    "article": "die",
+    "plural": "Milch",
+    "pos": "noun",
+    "en": "milk",
+    "topic": "food"
+  },
+  {
+    "id": "der-kaese",
+    "lemma": "Käse",
+    "article": "der",
+    "plural": "Käse",
+    "pos": "noun",
+    "en": "cheese",
+    "topic": "food"
+  },
+  {
+    "id": "das-ei",
+    "lemma": "Ei",
+    "article": "das",
+    "plural": "Eier",
+    "pos": "noun",
+    "en": "egg",
+    "topic": "food"
+  },
+  {
+    "id": "die-butter",
+    "lemma": "Butter",
+    "article": "die",
+    "plural": "Butter",
+    "pos": "noun",
+    "en": "butter",
+    "topic": "food"
+  },
+  {
+    "id": "das-fleisch",
+    "lemma": "Fleisch",
+    "article": "das",
+    "plural": "Fleischsorten",
+    "pos": "noun",
+    "en": "meat",
+    "topic": "food"
+  },
+  {
+    "id": "der-fisch",
+    "lemma": "Fisch",
+    "article": "der",
+    "plural": "Fische",
+    "pos": "noun",
+    "en": "fish",
+    "topic": "food"
+  },
+  {
+    "id": "das-gemuese",
+    "lemma": "Gemüse",
+    "article": "das",
+    "plural": "Gemüse",
+    "pos": "noun",
+    "en": "vegetables",
+    "topic": "food"
+  },
+  {
+    "id": "das-obst",
+    "lemma": "Obst",
+    "article": "das",
+    "plural": "Obst",
+    "pos": "noun",
+    "en": "fruit — singular in German, always",
+    "topic": "food"
+  },
+  {
+    "id": "moegen",
+    "lemma": "mögen",
+    "article": null,
+    "plural": null,
+    "pos": "verb",
+    "en": "to like",
+    "topic": "core-verbs"
+  },
+  {
+    "id": "moechten",
+    "lemma": "möchten",
+    "article": null,
+    "plural": null,
+    "pos": "verb",
+    "en": "would like — the politest thing you can say",
+    "topic": "core-verbs"
+  },
+  {
+    "id": "das-cafe",
+    "lemma": "Café",
+    "article": "das",
+    "plural": "Cafés",
+    "pos": "noun",
+    "en": "café",
+    "topic": "places"
+  },
+  {
+    "id": "die-rechnung",
+    "lemma": "Rechnung",
+    "article": "die",
+    "plural": "Rechnungen",
+    "pos": "noun",
+    "en": "bill",
+    "topic": "food"
+  },
+  {
+    "id": "die-speisekarte",
+    "lemma": "Speisekarte",
+    "article": "die",
+    "plural": "Speisekarten",
+    "pos": "noun",
+    "en": "menu",
+    "topic": "food"
+  },
+  {
+    "id": "das-glas",
+    "lemma": "Glas",
+    "article": "das",
+    "plural": "Gläser",
+    "pos": "noun",
+    "en": "glass",
+    "topic": "food"
+  },
+  {
+    "id": "die-tasse",
+    "lemma": "Tasse",
+    "article": "die",
+    "plural": "Tassen",
+    "pos": "noun",
+    "en": "cup",
+    "topic": "food"
+  },
+  {
+    "id": "der-teller",
+    "lemma": "Teller",
+    "article": "der",
+    "plural": "Teller",
+    "pos": "noun",
+    "en": "plate",
+    "topic": "food"
+  },
+  {
+    "id": "bestellen",
+    "lemma": "bestellen",
+    "article": null,
+    "plural": null,
+    "pos": "verb",
+    "en": "to order",
+    "topic": "core-verbs"
+  },
+  {
+    "id": "zahlen",
+    "lemma": "zahlen",
+    "article": null,
+    "plural": null,
+    "pos": "verb",
+    "en": "to pay",
+    "topic": "core-verbs"
+  },
+  {
+    "id": "bringen",
+    "lemma": "bringen",
+    "article": null,
+    "plural": null,
+    "pos": "verb",
+    "en": "to bring",
+    "topic": "core-verbs"
+  },
+  {
+    "id": "zusammen",
+    "lemma": "zusammen",
+    "article": null,
+    "plural": null,
+    "pos": "adverb",
+    "en": "together — as in paying for all of it",
+    "topic": "food"
+  },
+  {
+    "id": "getrennt",
+    "lemma": "getrennt",
+    "article": null,
+    "plural": null,
+    "pos": "adverb",
+    "en": "separately — the other answer to that question",
+    "topic": "food"
+  },
+  {
+    "id": "lecker",
+    "lemma": "lecker",
+    "article": null,
+    "plural": null,
+    "pos": "adjective",
+    "en": "tasty",
+    "topic": "adjectives"
+  },
+  {
+    "id": "nicht",
+    "lemma": "nicht",
+    "article": null,
+    "plural": null,
+    "pos": "adverb",
+    "en": "not — negates verbs, adjectives, everything but a noun",
+    "topic": "negation"
+  },
+  {
+    "id": "kein",
+    "lemma": "kein",
+    "article": null,
+    "plural": null,
+    "pos": "article",
+    "en": "no / not a — the one that negates a noun",
+    "topic": "negation"
+  },
+  {
+    "id": "nichts",
+    "lemma": "nichts",
+    "article": null,
+    "plural": null,
+    "pos": "pronoun",
+    "en": "nothing",
+    "topic": "negation"
+  },
+  {
+    "id": "niemand",
+    "lemma": "niemand",
+    "article": null,
+    "plural": null,
+    "pos": "pronoun",
+    "en": "nobody",
+    "topic": "negation"
+  },
+  {
+    "id": "nie",
+    "lemma": "nie",
+    "article": null,
+    "plural": null,
+    "pos": "adverb",
+    "en": "never",
+    "topic": "negation"
+  },
+  {
+    "id": "auch",
+    "lemma": "auch",
+    "article": null,
+    "plural": null,
+    "pos": "adverb",
+    "en": "also / too",
+    "topic": "connectors"
+  },
+  {
+    "id": "aber",
+    "lemma": "aber",
+    "article": null,
+    "plural": null,
+    "pos": "conjunction",
+    "en": "but",
+    "topic": "connectors"
+  },
+  {
+    "id": "oder",
+    "lemma": "oder",
+    "article": null,
+    "plural": null,
+    "pos": "conjunction",
+    "en": "or",
+    "topic": "connectors"
+  },
+  {
+    "id": "doch",
+    "lemma": "doch",
+    "article": null,
+    "plural": null,
+    "pos": "adverb",
+    "en": "yes it is — contradicts a negative question",
+    "topic": "negation"
+  },
+  {
+    "id": "leider",
+    "lemma": "leider",
+    "article": null,
+    "plural": null,
+    "pos": "adverb",
+    "en": "unfortunately",
+    "topic": "connectors"
+  },
+  {
+    "id": "die-farbe",
+    "lemma": "Farbe",
+    "article": "die",
+    "plural": "Farben",
+    "pos": "noun",
+    "en": "colour",
+    "topic": "adjectives"
+  },
+  {
+    "id": "rot",
+    "lemma": "rot",
+    "article": null,
+    "plural": null,
+    "pos": "adjective",
+    "en": "red",
+    "topic": "adjectives"
+  },
+  {
+    "id": "blau",
+    "lemma": "blau",
+    "article": null,
+    "plural": null,
+    "pos": "adjective",
+    "en": "blue",
+    "topic": "adjectives"
+  },
+  {
+    "id": "gruen",
+    "lemma": "grün",
+    "article": null,
+    "plural": null,
+    "pos": "adjective",
+    "en": "green",
+    "topic": "adjectives"
+  },
+  {
+    "id": "gelb",
+    "lemma": "gelb",
+    "article": null,
+    "plural": null,
+    "pos": "adjective",
+    "en": "yellow",
+    "topic": "adjectives"
+  },
+  {
+    "id": "schwarz",
+    "lemma": "schwarz",
+    "article": null,
+    "plural": null,
+    "pos": "adjective",
+    "en": "black",
+    "topic": "adjectives"
+  },
+  {
+    "id": "weiss",
+    "lemma": "weiß",
+    "article": null,
+    "plural": null,
+    "pos": "adjective",
+    "en": "white",
+    "topic": "adjectives"
+  },
+  {
+    "id": "braun",
+    "lemma": "braun",
+    "article": null,
+    "plural": null,
+    "pos": "adjective",
+    "en": "brown",
+    "topic": "adjectives"
+  },
+  {
+    "id": "grau",
+    "lemma": "grau",
+    "article": null,
+    "plural": null,
+    "pos": "adjective",
+    "en": "grey",
+    "topic": "adjectives"
+  },
+  {
+    "id": "neu",
+    "lemma": "neu",
+    "article": null,
+    "plural": null,
+    "pos": "adjective",
+    "en": "new",
+    "topic": "adjectives"
+  },
+  {
+    "id": "schoen",
+    "lemma": "schön",
+    "article": null,
+    "plural": null,
+    "pos": "adjective",
+    "en": "beautiful / nice",
+    "topic": "adjectives"
+  },
+  {
+    "id": "teuer",
+    "lemma": "teuer",
+    "article": null,
+    "plural": null,
+    "pos": "adjective",
+    "en": "expensive",
+    "topic": "adjectives"
+  },
+  {
+    "id": "was",
+    "lemma": "was",
+    "article": null,
+    "plural": null,
+    "pos": "pronoun",
+    "en": "what",
+    "topic": "questions"
+  },
+  {
+    "id": "wann",
+    "lemma": "wann",
+    "article": null,
+    "plural": null,
+    "pos": "adverb",
+    "en": "when",
+    "topic": "questions"
+  },
+  {
+    "id": "warum",
+    "lemma": "warum",
+    "article": null,
+    "plural": null,
+    "pos": "adverb",
+    "en": "why",
+    "topic": "questions"
+  },
+  {
+    "id": "welcher",
+    "lemma": "welcher",
+    "article": null,
+    "plural": null,
+    "pos": "pronoun",
+    "en": "which",
+    "topic": "questions"
+  },
+  {
+    "id": "wie-viel",
+    "lemma": "wie viel",
+    "article": null,
+    "plural": null,
+    "pos": "phrase",
+    "en": "how much",
+    "topic": "questions"
+  },
+  {
+    "id": "wie-viele",
+    "lemma": "wie viele",
+    "article": null,
+    "plural": null,
+    "pos": "phrase",
+    "en": "how many",
+    "topic": "questions"
+  },
+  {
+    "id": "die-frage",
+    "lemma": "Frage",
+    "article": "die",
+    "plural": "Fragen",
+    "pos": "noun",
+    "en": "question",
+    "topic": "questions"
+  },
+  {
+    "id": "die-antwort",
+    "lemma": "Antwort",
+    "article": "die",
+    "plural": "Antworten",
+    "pos": "noun",
+    "en": "answer",
+    "topic": "questions"
+  },
+  {
+    "id": "fragen",
+    "lemma": "fragen",
+    "article": null,
+    "plural": null,
+    "pos": "verb",
+    "en": "to ask",
+    "topic": "core-verbs"
+  },
+  {
+    "id": "antworten",
+    "lemma": "antworten",
+    "article": null,
+    "plural": null,
+    "pos": "verb",
+    "en": "to answer",
+    "topic": "core-verbs"
+  },
+  {
+    "id": "verstehen",
+    "lemma": "verstehen",
+    "article": null,
+    "plural": null,
+    "pos": "verb",
+    "en": "to understand",
+    "topic": "core-verbs"
+  },
+  {
+    "id": "wiederholen",
+    "lemma": "wiederholen",
+    "article": null,
+    "plural": null,
+    "pos": "verb",
+    "en": "to repeat — the verb that rescues a conversation",
+    "topic": "core-verbs"
+  },
+  {
+    "id": "schlafen",
+    "lemma": "schlafen",
+    "article": null,
+    "plural": null,
+    "pos": "verb",
+    "en": "to sleep — strong: du schläfst",
+    "topic": "core-verbs"
+  },
+  {
+    "id": "kochen",
+    "lemma": "kochen",
+    "article": null,
+    "plural": null,
+    "pos": "verb",
+    "en": "to cook",
+    "topic": "core-verbs"
+  },
+  {
+    "id": "putzen",
+    "lemma": "putzen",
+    "article": null,
+    "plural": null,
+    "pos": "verb",
+    "en": "to clean",
+    "topic": "core-verbs"
+  },
+  {
+    "id": "duschen",
+    "lemma": "duschen",
+    "article": null,
+    "plural": null,
+    "pos": "verb",
+    "en": "to shower",
+    "topic": "core-verbs"
+  },
+  {
+    "id": "fruehstuecken",
+    "lemma": "frühstücken",
+    "article": null,
+    "plural": null,
+    "pos": "verb",
+    "en": "to have breakfast",
+    "topic": "core-verbs"
+  },
+  {
+    "id": "enden",
+    "lemma": "enden",
+    "article": null,
+    "plural": null,
+    "pos": "verb",
+    "en": "to end",
+    "topic": "core-verbs"
+  },
+  {
+    "id": "zuerst",
+    "lemma": "zuerst",
+    "article": null,
+    "plural": null,
+    "pos": "adverb",
+    "en": "first of all",
+    "topic": "time"
+  },
+  {
+    "id": "dann",
+    "lemma": "dann",
+    "article": null,
+    "plural": null,
+    "pos": "adverb",
+    "en": "then",
+    "topic": "time"
+  },
+  {
+    "id": "danach",
+    "lemma": "danach",
+    "article": null,
+    "plural": null,
+    "pos": "adverb",
+    "en": "after that",
+    "topic": "time"
+  },
+  {
+    "id": "immer",
+    "lemma": "immer",
+    "article": null,
+    "plural": null,
+    "pos": "adverb",
+    "en": "always",
+    "topic": "time"
+  },
+  {
+    "id": "oft",
+    "lemma": "oft",
+    "article": null,
+    "plural": null,
+    "pos": "adverb",
+    "en": "often",
+    "topic": "time"
+  },
+  {
+    "id": "manchmal",
+    "lemma": "manchmal",
+    "article": null,
+    "plural": null,
+    "pos": "adverb",
+    "en": "sometimes",
+    "topic": "time"
+  }
 ]

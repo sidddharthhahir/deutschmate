@@ -1,100 +1,367 @@
 [
   {
-    "id": "r-a11-u15", "unit_id": "a1-1-u15", "level": "A1.1", "title": "Wo ist die Post?", "words": 62,
+    "id": "r-a11-u15",
+    "unit_id": "a1-1-u15",
+    "level": "A1.1",
+    "title": "Wo ist die Post?",
+    "words": 62,
     "text": "Tomasz sucht die Post. Er fragt eine Frau auf der Straße.\n\n„Entschuldigung, wo ist die Post?\"\n\nDie Frau sagt: „Gehen Sie hier geradeaus. Dann links. Die Post ist neben der Bank.\"\n\n„Ist das weit?\"\n\n„Nein, nur fünf Minuten.\"\n\nTomasz sagt danke und geht. Nach fünf Minuten sieht er die Bank. Die Post ist wirklich daneben.",
     "questions": [
-      { "q": "Was sucht Tomasz?", "options": ["die Bank", "die Post", "den Bahnhof"], "a": 1 },
-      { "q": "Wo ist die Post?", "options": ["neben der Bank", "neben der Schule", "im Bahnhof"], "a": 0 },
-      { "q": "Wie lange dauert der Weg?", "options": ["fünf Minuten", "zehn Minuten", "eine Stunde"], "a": 0 }
+      {
+        "q": "Was sucht Tomasz?",
+        "options": ["die Bank", "die Post", "den Bahnhof"],
+        "a": 1
+      },
+      {
+        "q": "Wo ist die Post?",
+        "options": ["neben der Bank", "neben der Schule", "im Bahnhof"],
+        "a": 0
+      },
+      {
+        "q": "Wie lange dauert der Weg?",
+        "options": ["fünf Minuten", "zehn Minuten", "eine Stunde"],
+        "a": 0
+      }
     ],
-    "glossary": { "geradeaus": "straight ahead", "links": "left", "neben": "next to", "weit": "far", "wirklich": "really", "daneben": "next to it" }
+    "glossary": {
+      "geradeaus": "straight ahead",
+      "links": "left",
+      "neben": "next to",
+      "weit": "far",
+      "wirklich": "really",
+      "daneben": "next to it"
+    }
   },
   {
-    "id": "r-a11-u18", "unit_id": "a1-1-u18", "level": "A1.1", "title": "Im Aufzug", "words": 58,
+    "id": "r-a11-u18",
+    "unit_id": "a1-1-u18",
+    "level": "A1.1",
+    "title": "Im Aufzug",
+    "words": 58,
     "text": "Anna wohnt im vierten Stock. Im Aufzug trifft sie ihren Nachbarn.\n\n„Guten Morgen!\", sagt Anna.\n\n„Morgen. Na, alles gut?\"\n\n„Ja, danke. Und bei Ihnen?\"\n\n„Auch gut. Aber das Wetter ist heute schlecht.\"\n\n„Ja, es regnet schon wieder.\"\n\nDer Aufzug hält. „Schönen Tag noch!\", sagt der Nachbar.\n\n„Danke, gleichfalls!\"",
     "questions": [
-      { "q": "Wo wohnt Anna?", "options": ["im ersten Stock", "im vierten Stock", "im Erdgeschoss"], "a": 1 },
-      { "q": "Wie ist das Wetter?", "options": ["schön", "schlecht", "warm"], "a": 1 },
-      { "q": "Wen trifft Anna?", "options": ["ihre Mutter", "ihren Nachbarn", "einen Kollegen"], "a": 1 }
+      {
+        "q": "Wo wohnt Anna?",
+        "options": ["im ersten Stock", "im vierten Stock", "im Erdgeschoss"],
+        "a": 1
+      },
+      {
+        "q": "Wie ist das Wetter?",
+        "options": ["schön", "schlecht", "warm"],
+        "a": 1
+      },
+      {
+        "q": "Wen trifft Anna?",
+        "options": ["ihre Mutter", "ihren Nachbarn", "einen Kollegen"],
+        "a": 1
+      }
     ],
-    "glossary": { "der Stock": "floor, storey", "der Aufzug": "lift", "trifft": "meets", "hält": "stops", "gleichfalls": "likewise, same to you" }
+    "glossary": {
+      "der Stock": "floor, storey",
+      "der Aufzug": "lift",
+      "trifft": "meets",
+      "hält": "stops",
+      "gleichfalls": "likewise, same to you"
+    }
   },
   {
-    "id": "r-a11-u20", "unit_id": "a1-1-u20", "level": "A1.1", "title": "Der neue Kollege", "words": 74,
+    "id": "r-a11-u20",
+    "unit_id": "a1-1-u20",
+    "level": "A1.1",
+    "title": "Der neue Kollege",
+    "words": 74,
     "text": "Heute ist Nikhils erster Tag im Büro. Eine Frau kommt zu ihm.\n\n„Hallo! Du bist neu hier, oder? Ich heiße Sabine.\"\n\n„Ja, ich heiße Nikhil. Freut mich!\"\n\n„Woher kommst du?\"\n\n„Aus Indien. Aber jetzt wohne ich hier in Köln.\"\n\n„Und wie findest du Köln?\"\n\n„Sehr gut! Die Stadt ist groß und die Leute sind nett.\"\n\n„Das freut mich. Möchtest du einen Kaffee?\"\n\n„Ja, gern. Danke!\"",
     "questions": [
-      { "q": "Wie heißt der neue Kollege?", "options": ["Sabine", "Nikhil", "Tomasz"], "a": 1 },
-      { "q": "Woher kommt er?", "options": ["aus Köln", "aus Polen", "aus Indien"], "a": 2 },
-      { "q": "Wie findet er die Stadt?", "options": ["sehr gut", "zu klein", "zu teuer"], "a": 0 },
-      { "q": "Was möchte Sabine ihm geben?", "options": ["ein Buch", "einen Kaffee", "Geld"], "a": 1 }
+      {
+        "q": "Wie heißt der neue Kollege?",
+        "options": ["Sabine", "Nikhil", "Tomasz"],
+        "a": 1
+      },
+      {
+        "q": "Woher kommt er?",
+        "options": ["aus Köln", "aus Polen", "aus Indien"],
+        "a": 2
+      },
+      {
+        "q": "Wie findet er die Stadt?",
+        "options": ["sehr gut", "zu klein", "zu teuer"],
+        "a": 0
+      },
+      {
+        "q": "Was möchte Sabine ihm geben?",
+        "options": ["ein Buch", "einen Kaffee", "Geld"],
+        "a": 1
+      }
     ],
-    "glossary": { "erster Tag": "first day", "das Büro": "office", "Freut mich": "nice to meet you", "die Leute": "people", "gern": "gladly" }
+    "glossary": {
+      "erster Tag": "first day",
+      "das Büro": "office",
+      "Freut mich": "nice to meet you",
+      "die Leute": "people",
+      "gern": "gladly"
+    }
   },
   {
-    "id": "r-a12-u03", "unit_id": "a1-2-u03", "level": "A1.2", "title": "Was machst du beruflich?", "words": 92,
+    "id": "r-a12-u03",
+    "unit_id": "a1-2-u03",
+    "level": "A1.2",
+    "title": "Was machst du beruflich?",
+    "words": 92,
     "text": "Auf einer Party trifft Meera einen Mann. Er heißt Jonas.\n\n„Und was machst du beruflich?\", fragt Jonas.\n\n„Ich bin Lehrerin. Ich arbeite in einer Schule in Bonn.\"\n\n„Interessant! Macht das Spaß?\"\n\n„Ja, sehr. Die Kinder sind manchmal laut, aber ich mag meine Arbeit. Und du?\"\n\n„Ich bin Verkäufer. Ich arbeite in einem großen Geschäft im Zentrum.\"\n\n„Arbeitest du auch am Samstag?\"\n\n„Ja, leider. Aber am Montag habe ich frei.\"\n\n„Das ist auch nicht schlecht\", sagt Meera und lacht.",
     "questions": [
-      { "q": "Was ist Meera von Beruf?", "options": ["Verkäuferin", "Lehrerin", "Ärztin"], "a": 1 },
-      { "q": "Wo arbeitet Jonas?", "options": ["in einer Schule", "in einem Geschäft", "in einem Büro"], "a": 1 },
-      { "q": "Wann hat Jonas frei?", "options": ["am Samstag", "am Sonntag", "am Montag"], "a": 2 },
-      { "q": "Wie findet Meera ihre Arbeit?", "options": ["langweilig", "sie mag sie", "zu schwer"], "a": 1 }
+      {
+        "q": "Was ist Meera von Beruf?",
+        "options": ["Verkäuferin", "Lehrerin", "Ärztin"],
+        "a": 1
+      },
+      {
+        "q": "Wo arbeitet Jonas?",
+        "options": ["in einer Schule", "in einem Geschäft", "in einem Büro"],
+        "a": 1
+      },
+      {
+        "q": "Wann hat Jonas frei?",
+        "options": ["am Samstag", "am Sonntag", "am Montag"],
+        "a": 2
+      },
+      {
+        "q": "Wie findet Meera ihre Arbeit?",
+        "options": ["langweilig", "sie mag sie", "zu schwer"],
+        "a": 1
+      }
     ],
-    "glossary": { "beruflich": "professionally, for a living", "Macht das Spaß?": "Is it fun?", "manchmal": "sometimes", "laut": "loud", "leider": "unfortunately", "frei haben": "to have a day off", "lacht": "laughs" }
+    "glossary": {
+      "beruflich": "professionally, for a living",
+      "Macht das Spaß?": "Is it fun?",
+      "manchmal": "sometimes",
+      "laut": "loud",
+      "leider": "unfortunately",
+      "frei haben": "to have a day off",
+      "lacht": "laughs"
+    }
   },
   {
-    "id": "r-a12-u05", "unit_id": "a1-2-u05", "level": "A1.2", "title": "Beim Arzt", "words": 98,
+    "id": "r-a12-u05",
+    "unit_id": "a1-2-u05",
+    "level": "A1.2",
+    "title": "Beim Arzt",
+    "words": 98,
     "text": "Frau Weber ist krank. Sie ruft beim Arzt an.\n\n„Praxis Dr. Klein, guten Tag.\"\n\n„Guten Tag, hier ist Weber. Ich brauche einen Termin. Ich fühle mich nicht gut.\"\n\n„Was haben Sie denn?\"\n\n„Ich habe Kopfschmerzen und Fieber. Seit drei Tagen.\"\n\n„Können Sie heute um vier Uhr kommen?\"\n\n„Ja, das geht.\"\n\nAm Nachmittag ist Frau Weber in der Praxis. Der Arzt untersucht sie.\n\n„Sie haben eine Erkältung\", sagt er. „Trinken Sie viel Tee und bleiben Sie zwei Tage zu Hause.\"\n\n„Und Medikamente?\"\n\n„Die brauchen Sie nicht. Nur Ruhe.\"",
     "questions": [
-      { "q": "Was hat Frau Weber?", "options": ["Bauchschmerzen", "Kopfschmerzen und Fieber", "Zahnschmerzen"], "a": 1 },
-      { "q": "Seit wann ist sie krank?", "options": ["seit einem Tag", "seit drei Tagen", "seit einer Woche"], "a": 1 },
-      { "q": "Was sagt der Arzt?", "options": ["Sie hat eine Erkältung", "Sie muss ins Krankenhaus", "Sie ist gesund"], "a": 0 },
-      { "q": "Was soll sie machen?", "options": ["arbeiten gehen", "Tee trinken und zu Hause bleiben", "Sport machen"], "a": 1 }
+      {
+        "q": "Was hat Frau Weber?",
+        "options": [
+          "Bauchschmerzen",
+          "Kopfschmerzen und Fieber",
+          "Zahnschmerzen"
+        ],
+        "a": 1
+      },
+      {
+        "q": "Seit wann ist sie krank?",
+        "options": ["seit einem Tag", "seit drei Tagen", "seit einer Woche"],
+        "a": 1
+      },
+      {
+        "q": "Was sagt der Arzt?",
+        "options": [
+          "Sie hat eine Erkältung",
+          "Sie muss ins Krankenhaus",
+          "Sie ist gesund"
+        ],
+        "a": 0
+      },
+      {
+        "q": "Was soll sie machen?",
+        "options": [
+          "arbeiten gehen",
+          "Tee trinken und zu Hause bleiben",
+          "Sport machen"
+        ],
+        "a": 1
+      }
     ],
-    "glossary": { "die Praxis": "doctor's surgery", "der Termin": "appointment", "sich fühlen": "to feel", "das Fieber": "fever", "untersucht": "examines", "die Erkältung": "cold", "die Ruhe": "rest" }
+    "glossary": {
+      "die Praxis": "doctor's surgery",
+      "der Termin": "appointment",
+      "sich fühlen": "to feel",
+      "das Fieber": "fever",
+      "untersucht": "examines",
+      "die Erkältung": "cold",
+      "die Ruhe": "rest"
+    }
   },
   {
-    "id": "r-a12-u08", "unit_id": "a1-2-u08", "level": "A1.2", "title": "Im Supermarkt", "words": 105,
+    "id": "r-a12-u08",
+    "unit_id": "a1-2-u08",
+    "level": "A1.2",
+    "title": "Im Supermarkt",
+    "words": 105,
     "text": "Am Samstag geht Nikhil einkaufen. Er hat eine Liste: Brot, Milch, Eier, Käse und Obst.\n\nDas Brot findet er sofort. Die Milch steht hinten im Kühlregal. Aber wo sind die Eier?\n\nEr fragt eine Verkäuferin: „Entschuldigung, wo finde ich Eier?\"\n\n„Gleich dort, neben der Milch\", sagt sie.\n\nNikhil nimmt zehn Eier, einen Käse und drei Äpfel. An der Kasse kostet alles zusammen achtzehn Euro.\n\n„Möchten Sie eine Tüte?\", fragt die Frau an der Kasse.\n\n„Nein danke, ich habe eine Tasche.\"\n\nZu Hause merkt Nikhil: Er hat das Obst vergessen. Die Äpfel liegen noch im Supermarkt.",
     "questions": [
-      { "q": "Was steht nicht auf der Liste?", "options": ["Brot", "Fleisch", "Käse"], "a": 1 },
-      { "q": "Wo sind die Eier?", "options": ["neben dem Brot", "neben der Milch", "an der Kasse"], "a": 1 },
-      { "q": "Was kostet alles zusammen?", "options": ["achtzehn Euro", "acht Euro", "achtzig Euro"], "a": 0 },
-      { "q": "Was hat Nikhil vergessen?", "options": ["die Milch", "das Obst", "das Brot"], "a": 1 }
+      {
+        "q": "Was steht nicht auf der Liste?",
+        "options": ["Brot", "Fleisch", "Käse"],
+        "a": 1
+      },
+      {
+        "q": "Wo sind die Eier?",
+        "options": ["neben dem Brot", "neben der Milch", "an der Kasse"],
+        "a": 1
+      },
+      {
+        "q": "Was kostet alles zusammen?",
+        "options": ["achtzehn Euro", "acht Euro", "achtzig Euro"],
+        "a": 0
+      },
+      {
+        "q": "Was hat Nikhil vergessen?",
+        "options": ["die Milch", "das Obst", "das Brot"],
+        "a": 1
+      }
     ],
-    "glossary": { "die Liste": "list", "sofort": "immediately", "das Kühlregal": "chilled shelf", "die Kasse": "checkout", "die Tüte": "bag", "merkt": "notices", "vergessen": "forgotten" }
+    "glossary": {
+      "die Liste": "list",
+      "sofort": "immediately",
+      "das Kühlregal": "chilled shelf",
+      "die Kasse": "checkout",
+      "die Tüte": "bag",
+      "merkt": "notices",
+      "vergessen": "forgotten"
+    }
   },
   {
-    "id": "r-a12-u12", "unit_id": "a1-2-u12", "level": "A1.2", "title": "Die Fahrkarte", "words": 112,
+    "id": "r-a12-u12",
+    "unit_id": "a1-2-u12",
+    "level": "A1.2",
+    "title": "Die Fahrkarte",
+    "words": 112,
     "text": "Anna fährt nach Hamburg. Am Bahnhof geht sie zum Schalter.\n\n„Guten Tag. Einmal nach Hamburg, bitte.\"\n\n„Einfach oder hin und zurück?\"\n\n„Hin und zurück. Ich komme am Sonntag wieder.\"\n\n„Das macht neunundfünfzig Euro.\"\n\nAnna bezahlt mit Karte. Dann fragt sie: „Von welchem Gleis fährt der Zug?\"\n\n„Gleis sieben. Er fährt in zwölf Minuten.\"\n\nAnna geht schnell zum Gleis. Aber dort steht kein Zug. Eine Durchsage sagt: „Der Zug nach Hamburg hat zwanzig Minuten Verspätung.\"\n\nAnna setzt sich auf eine Bank und liest ihr Buch. Verspätung ist normal, denkt sie.",
     "questions": [
-      { "q": "Wohin fährt Anna?", "options": ["nach Köln", "nach Hamburg", "nach Berlin"], "a": 1 },
-      { "q": "Was für eine Fahrkarte kauft sie?", "options": ["einfach", "hin und zurück", "eine Monatskarte"], "a": 1 },
-      { "q": "Von welchem Gleis fährt der Zug?", "options": ["Gleis fünf", "Gleis sieben", "Gleis zwölf"], "a": 1 },
-      { "q": "Warum wartet Anna?", "options": ["Der Zug hat Verspätung", "Sie hat die Karte vergessen", "Der Zug ist weg"], "a": 0 }
+      {
+        "q": "Wohin fährt Anna?",
+        "options": ["nach Köln", "nach Hamburg", "nach Berlin"],
+        "a": 1
+      },
+      {
+        "q": "Was für eine Fahrkarte kauft sie?",
+        "options": ["einfach", "hin und zurück", "eine Monatskarte"],
+        "a": 1
+      },
+      {
+        "q": "Von welchem Gleis fährt der Zug?",
+        "options": ["Gleis fünf", "Gleis sieben", "Gleis zwölf"],
+        "a": 1
+      },
+      {
+        "q": "Warum wartet Anna?",
+        "options": [
+          "Der Zug hat Verspätung",
+          "Sie hat die Karte vergessen",
+          "Der Zug ist weg"
+        ],
+        "a": 0
+      }
     ],
-    "glossary": { "der Schalter": "ticket counter", "einfach": "one way", "hin und zurück": "return", "das Gleis": "platform", "die Durchsage": "announcement", "die Verspätung": "delay", "setzt sich": "sits down" }
+    "glossary": {
+      "der Schalter": "ticket counter",
+      "einfach": "one way",
+      "hin und zurück": "return",
+      "das Gleis": "platform",
+      "die Durchsage": "announcement",
+      "die Verspätung": "delay",
+      "setzt sich": "sits down"
+    }
   },
   {
-    "id": "r-a12-u16", "unit_id": "a1-2-u16", "level": "A1.2", "title": "Vier Jahreszeiten", "words": 118,
+    "id": "r-a12-u16",
+    "unit_id": "a1-2-u16",
+    "level": "A1.2",
+    "title": "Vier Jahreszeiten",
+    "words": 118,
     "text": "In Deutschland gibt es vier Jahreszeiten.\n\nIm Frühling wird es wärmer. Die Bäume werden grün und die Blumen kommen. Viele Menschen freuen sich.\n\nDer Sommer ist warm, manchmal sehr heiß. Die Leute sitzen draußen, gehen schwimmen oder fahren in den Urlaub.\n\nIm Herbst wird es kälter. Es regnet oft und der Wind ist stark. Die Blätter sind gelb und rot.\n\nDer Winter ist kalt. Manchmal schneit es. Es wird früh dunkel — um vier Uhr ist die Sonne schon weg.\n\nViele Deutsche mögen den Sommer am liebsten. Aber manche sagen: Der Herbst ist am schönsten.",
     "questions": [
-      { "q": "Was passiert im Frühling?", "options": ["Es schneit", "Die Bäume werden grün", "Es wird dunkel"], "a": 1 },
-      { "q": "Wie ist der Herbst?", "options": ["heiß und trocken", "kälter und windig", "immer sonnig"], "a": 1 },
-      { "q": "Wann wird es früh dunkel?", "options": ["im Sommer", "im Frühling", "im Winter"], "a": 2 },
-      { "q": "Welche Jahreszeit mögen viele Deutsche am liebsten?", "options": ["den Winter", "den Sommer", "den Frühling"], "a": 1 }
+      {
+        "q": "Was passiert im Frühling?",
+        "options": ["Es schneit", "Die Bäume werden grün", "Es wird dunkel"],
+        "a": 1
+      },
+      {
+        "q": "Wie ist der Herbst?",
+        "options": ["heiß und trocken", "kälter und windig", "immer sonnig"],
+        "a": 1
+      },
+      {
+        "q": "Wann wird es früh dunkel?",
+        "options": ["im Sommer", "im Frühling", "im Winter"],
+        "a": 2
+      },
+      {
+        "q": "Welche Jahreszeit mögen viele Deutsche am liebsten?",
+        "options": ["den Winter", "den Sommer", "den Frühling"],
+        "a": 1
+      }
     ],
-    "glossary": { "die Jahreszeit": "season", "die Blätter": "leaves", "draußen": "outside", "schneit": "snows", "dunkel": "dark", "am liebsten": "most of all", "manche": "some people" }
+    "glossary": {
+      "die Jahreszeit": "season",
+      "die Blätter": "leaves",
+      "draußen": "outside",
+      "schneit": "snows",
+      "dunkel": "dark",
+      "am liebsten": "most of all",
+      "manche": "some people"
+    }
   },
   {
-    "id": "r-a12-u20", "unit_id": "a1-2-u20", "level": "A1.2", "title": "Im Zug nach München", "words": 126,
+    "id": "r-a12-u20",
+    "unit_id": "a1-2-u20",
+    "level": "A1.2",
+    "title": "Im Zug nach München",
+    "words": 126,
     "text": "Der Zug nach München ist voll. Meera sucht einen Platz.\n\n„Entschuldigung, ist der Platz noch frei?\"\n\n„Ja, bitte\", sagt ein älterer Mann.\n\nMeera setzt sich. Nach einer Weile fragt der Mann: „Fahren Sie auch nach München?\"\n\n„Ja. Ich besuche meine Schwester. Sie studiert dort.\"\n\n„Schön. Ich fahre zu meinem Sohn. Er hat ein Kind bekommen — mein erstes Enkelkind.\"\n\n„Herzlichen Glückwunsch!\"\n\n„Danke!\", sagt der Mann und lächelt. „Ich habe das Baby noch nie gesehen. Nur Fotos.\"\n\nSie sprechen fast zwei Stunden. Meera versteht nicht jedes Wort, aber das ist kein Problem. Der Mann spricht langsam und erklärt gern.\n\nIn München sagt er: „Ihr Deutsch ist wirklich gut.\"",
     "questions": [
-      { "q": "Warum fährt Meera nach München?", "options": ["zur Arbeit", "sie besucht ihre Schwester", "sie macht Urlaub"], "a": 1 },
-      { "q": "Warum fährt der Mann nach München?", "options": ["zu seinem Sohn", "zu seiner Frau", "zur Arbeit"], "a": 0 },
-      { "q": "Was ist neu in der Familie des Mannes?", "options": ["ein Haus", "ein Enkelkind", "ein Hund"], "a": 1 },
-      { "q": "Wie spricht der Mann?", "options": ["sehr schnell", "langsam", "sehr leise"], "a": 1 },
-      { "q": "Versteht Meera alles?", "options": ["ja, alles", "nein, aber das ist kein Problem", "nein, gar nichts"], "a": 1 }
+      {
+        "q": "Warum fährt Meera nach München?",
+        "options": [
+          "zur Arbeit",
+          "sie besucht ihre Schwester",
+          "sie macht Urlaub"
+        ],
+        "a": 1
+      },
+      {
+        "q": "Warum fährt der Mann nach München?",
+        "options": ["zu seinem Sohn", "zu seiner Frau", "zur Arbeit"],
+        "a": 0
+      },
+      {
+        "q": "Was ist neu in der Familie des Mannes?",
+        "options": ["ein Haus", "ein Enkelkind", "ein Hund"],
+        "a": 1
+      },
+      {
+        "q": "Wie spricht der Mann?",
+        "options": ["sehr schnell", "langsam", "sehr leise"],
+        "a": 1
+      },
+      {
+        "q": "Versteht Meera alles?",
+        "options": [
+          "ja, alles",
+          "nein, aber das ist kein Problem",
+          "nein, gar nichts"
+        ],
+        "a": 1
+      }
     ],
-    "glossary": { "voll": "full", "nach einer Weile": "after a while", "das Enkelkind": "grandchild", "Herzlichen Glückwunsch": "congratulations", "lächelt": "smiles", "fast": "almost", "erklärt": "explains" }
+    "glossary": {
+      "voll": "full",
+      "nach einer Weile": "after a while",
+      "das Enkelkind": "grandchild",
+      "Herzlichen Glückwunsch": "congratulations",
+      "lächelt": "smiles",
+      "fast": "almost",
+      "erklärt": "explains"
+    }
   }
 ]

@@ -7,11 +7,28 @@
     "words": 42,
     "text": "Hallo! Ich heiße Nikhil. Ich komme aus Indien. Jetzt wohne ich in Berlin.\n\nHeute ist mein erster Tag in der Schule. Die Lehrerin heißt Frau Meyer. Sie ist sehr nett.\n\nEin Student fragt: „Wie heißt du?\" Ich sage: „Ich heiße Nikhil. Und du?\" Er sagt: „Ich heiße Tomasz. Ich komme aus Polen.\"",
     "questions": [
-      { "q": "Woher kommt Nikhil?", "options": ["aus Polen", "aus Indien", "aus Berlin"], "a": 1 },
-      { "q": "Wie heißt die Lehrerin?", "options": ["Frau Meyer", "Frau Schmidt", "Tomasz"], "a": 0 },
-      { "q": "Woher kommt Tomasz?", "options": ["aus Indien", "aus Berlin", "aus Polen"], "a": 2 }
+      {
+        "q": "Woher kommt Nikhil?",
+        "options": ["aus Polen", "aus Indien", "aus Berlin"],
+        "a": 1
+      },
+      {
+        "q": "Wie heißt die Lehrerin?",
+        "options": ["Frau Meyer", "Frau Schmidt", "Tomasz"],
+        "a": 0
+      },
+      {
+        "q": "Woher kommt Tomasz?",
+        "options": ["aus Indien", "aus Berlin", "aus Polen"],
+        "a": 2
+      }
     ],
-    "glossary": { "erster": "first", "die Lehrerin": "teacher (f.)", "fragt": "asks", "sagt": "says" }
+    "glossary": {
+      "erster": "first",
+      "die Lehrerin": "teacher (f.)",
+      "fragt": "asks",
+      "sagt": "says"
+    }
   },
   {
     "id": "r-u04",
@@ -21,11 +38,28 @@
     "words": 55,
     "text": "Anna kommt aus Wien. Wien ist eine Stadt in Österreich. Jetzt wohnt Anna in Hamburg.\n\nSie wohnt in der Bergstraße. Die Straße ist sehr lang. Das Haus ist alt, aber schön. Die Wohnung ist klein.\n\n„Wo arbeitest du?\", fragt Tomasz. „Ich arbeite in einer Schule\", sagt Anna. „Die Schule ist nicht weit. Ich gehe immer zu Fuß.\"",
     "questions": [
-      { "q": "Woher kommt Anna?", "options": ["aus Hamburg", "aus Wien", "aus Polen"], "a": 1 },
-      { "q": "Wie ist die Wohnung?", "options": ["groß", "neu", "klein"], "a": 2 },
-      { "q": "Wo arbeitet Anna?", "options": ["in einer Schule", "im Bahnhof", "zu Hause"], "a": 0 }
+      {
+        "q": "Woher kommt Anna?",
+        "options": ["aus Hamburg", "aus Wien", "aus Polen"],
+        "a": 1
+      },
+      {
+        "q": "Wie ist die Wohnung?",
+        "options": ["groß", "neu", "klein"],
+        "a": 2
+      },
+      {
+        "q": "Wo arbeitet Anna?",
+        "options": ["in einer Schule", "im Bahnhof", "zu Hause"],
+        "a": 0
+      }
     ],
-    "glossary": { "Österreich": "Austria", "weit": "far", "zu Fuß": "on foot", "einer": "a (dative)" }
+    "glossary": {
+      "Österreich": "Austria",
+      "weit": "far",
+      "zu Fuß": "on foot",
+      "einer": "a (dative)"
+    }
   },
   {
     "id": "r-u07",
@@ -35,12 +69,38 @@
     "words": 68,
     "text": "Ich habe eine große Familie. Mein Vater heißt Ravi und meine Mutter heißt Priya. Sie wohnen in Indien.\n\nIch habe zwei Brüder und eine Schwester. Mein Bruder Arjun ist sehr alt — er ist dreißig. Mein Bruder Karan ist neunzehn. Meine Schwester Meera ist noch klein.\n\nMeine Eltern arbeiten viel. Mein Vater arbeitet in einem Büro. Meine Mutter ist Lehrerin.\n\nIch habe auch einen Freund hier in Berlin. Er heißt Tomasz.",
     "questions": [
-      { "q": "Wie viele Brüder hat der Autor?", "options": ["einen", "zwei", "drei"], "a": 1 },
-      { "q": "Was macht die Mutter?", "options": ["Sie arbeitet im Büro", "Sie ist Lehrerin", "Sie arbeitet nicht"], "a": 1 },
-      { "q": "Wo wohnen die Eltern?", "options": ["in Berlin", "in Indien", "in Wien"], "a": 1 },
-      { "q": "Wie alt ist Karan?", "options": ["neunzehn", "dreißig", "klein"], "a": 0 }
+      {
+        "q": "Wie viele Brüder hat der Autor?",
+        "options": ["einen", "zwei", "drei"],
+        "a": 1
+      },
+      {
+        "q": "Was macht die Mutter?",
+        "options": [
+          "Sie arbeitet im Büro",
+          "Sie ist Lehrerin",
+          "Sie arbeitet nicht"
+        ],
+        "a": 1
+      },
+      {
+        "q": "Wo wohnen die Eltern?",
+        "options": ["in Berlin", "in Indien", "in Wien"],
+        "a": 1
+      },
+      {
+        "q": "Wie alt ist Karan?",
+        "options": ["neunzehn", "dreißig", "klein"],
+        "a": 0
+      }
     ],
-    "glossary": { "dreißig": "thirty", "neunzehn": "nineteen", "noch": "still", "das Büro": "office", "die Lehrerin": "teacher (f.)" }
+    "glossary": {
+      "dreißig": "thirty",
+      "neunzehn": "nineteen",
+      "noch": "still",
+      "das Büro": "office",
+      "die Lehrerin": "teacher (f.)"
+    }
   },
   {
     "id": "r-u09",
@@ -50,12 +110,32 @@
     "words": 71,
     "text": "Tomasz und Anna gehen in ein Café. Das Café ist klein, aber sehr schön.\n\n„Was trinkst du?\", fragt Anna. „Ich trinke Kaffee\", sagt Tomasz. „Und du?\" — „Ich trinke Tee. Kaffee trinke ich nie.\"\n\nDer Kellner kommt. „Guten Tag! Was darf es sein?\" Anna sagt: „Einen Tee und einen Kaffee, bitte. Und ein Brot mit Käse.\"\n\nDas Brot kostet drei Euro. Der Kaffee kostet zwei Euro. Das ist nicht teuer.",
     "questions": [
-      { "q": "Was trinkt Anna?", "options": ["Kaffee", "Tee", "Wasser"], "a": 1 },
-      { "q": "Was kostet das Brot?", "options": ["zwei Euro", "drei Euro", "fünf Euro"], "a": 1 },
-      { "q": "Wie ist das Café?", "options": ["groß und alt", "klein und schön", "teuer"], "a": 1 },
-      { "q": "Was isst Anna?", "options": ["Brot mit Käse", "einen Apfel", "nichts"], "a": 0 }
+      {
+        "q": "Was trinkt Anna?",
+        "options": ["Kaffee", "Tee", "Wasser"],
+        "a": 1
+      },
+      {
+        "q": "Was kostet das Brot?",
+        "options": ["zwei Euro", "drei Euro", "fünf Euro"],
+        "a": 1
+      },
+      {
+        "q": "Wie ist das Café?",
+        "options": ["groß und alt", "klein und schön", "teuer"],
+        "a": 1
+      },
+      {
+        "q": "Was isst Anna?",
+        "options": ["Brot mit Käse", "einen Apfel", "nichts"],
+        "a": 0
+      }
     ],
-    "glossary": { "der Kellner": "waiter", "Was darf es sein?": "What can I get you?", "nichts": "nothing" }
+    "glossary": {
+      "der Kellner": "waiter",
+      "Was darf es sein?": "What can I get you?",
+      "nichts": "nothing"
+    }
   },
   {
     "id": "r-u12",
@@ -65,12 +145,40 @@
     "words": 84,
     "text": "Am Montag und am Dienstag arbeite ich. Die Arbeit ist manchmal schwer, aber die Leute sind nett.\n\nAm Mittwoch lerne ich Deutsch. Der Kurs ist am Abend. Er dauert zwei Stunden.\n\nAm Donnerstag arbeite ich auch. Am Freitag arbeite ich nicht. Freitag ist mein Lieblingstag!\n\nAm Samstag kaufe ich Obst und Gemüse. Der Markt ist am Bahnhof. Das Obst dort ist billig und sehr gut.\n\nAm Sonntag mache ich nichts. Ich bin müde und bleibe zu Hause. Das ist auch schön.",
     "questions": [
-      { "q": "Wann lernt der Autor Deutsch?", "options": ["am Montag", "am Mittwoch", "am Sonntag"], "a": 1 },
-      { "q": "Welcher Tag ist der Lieblingstag?", "options": ["Freitag", "Samstag", "Sonntag"], "a": 0 },
-      { "q": "Wo ist der Markt?", "options": ["in der Schule", "am Bahnhof", "zu Hause"], "a": 1 },
-      { "q": "Was macht der Autor am Sonntag?", "options": ["Er arbeitet", "Er kauft Obst", "Er bleibt zu Hause"], "a": 2 },
-      { "q": "Wie lange dauert der Kurs?", "options": ["eine Stunde", "zwei Stunden", "drei Stunden"], "a": 1 }
+      {
+        "q": "Wann lernt der Autor Deutsch?",
+        "options": ["am Montag", "am Mittwoch", "am Sonntag"],
+        "a": 1
+      },
+      {
+        "q": "Welcher Tag ist der Lieblingstag?",
+        "options": ["Freitag", "Samstag", "Sonntag"],
+        "a": 0
+      },
+      {
+        "q": "Wo ist der Markt?",
+        "options": ["in der Schule", "am Bahnhof", "zu Hause"],
+        "a": 1
+      },
+      {
+        "q": "Was macht der Autor am Sonntag?",
+        "options": ["Er arbeitet", "Er kauft Obst", "Er bleibt zu Hause"],
+        "a": 2
+      },
+      {
+        "q": "Wie lange dauert der Kurs?",
+        "options": ["eine Stunde", "zwei Stunden", "drei Stunden"],
+        "a": 1
+      }
     ],
-    "glossary": { "manchmal": "sometimes", "schwer": "hard", "die Leute": "people", "dauert": "lasts", "der Lieblingstag": "favourite day", "der Markt": "market", "bleibe": "stay" }
+    "glossary": {
+      "manchmal": "sometimes",
+      "schwer": "hard",
+      "die Leute": "people",
+      "dauert": "lasts",
+      "der Lieblingstag": "favourite day",
+      "der Markt": "market",
+      "bleibe": "stay"
+    }
   }
 ]

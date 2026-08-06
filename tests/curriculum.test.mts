@@ -145,10 +145,16 @@ const written = [...new Set(vocab.map((w) => w.unit))].sort((a, b) => a - b);
 section("the vocabulary written so far");
 ok(vocab.length > 0, "there is some", `${vocab.length} words`);
 eq(new Set(vocab.map((w) => w.id)).size, vocab.length, "no duplicate ids");
+/*
+ * Lemma AND part of speech. German uses one word for two jobs — sein is both
+ * "to be" and "his", ihr is both "her" and "their" — and those are two things
+ * to learn, not a duplicate. Keying on the lemma alone would forbid teaching
+ * the second one.
+ */
 eq(
-  new Set(vocab.map((w) => w.lemma)).size,
+  new Set(vocab.map((w) => `${w.lemma}|${w.pos}`)).size,
   vocab.length,
-  "and no word is taught twice",
+  "no word is taught twice in the same role",
 );
 ok(
   written.every((u, i) => u === i + 1),
