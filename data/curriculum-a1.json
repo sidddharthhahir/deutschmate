@@ -341,7 +341,7 @@
         "understand left, right and straight on",
         "say where something is"
       ],
-      "grammar": "praepositionen-ort",
+      "grammar": "g-praepositionen-ort",
       "grammarNote": "Static place prepositions only. The two-way ones wait for unit 39, after the dative exists.",
       "topics": ["places", "prepositions"],
       "words": 12
@@ -356,7 +356,7 @@
         "say where you are going",
         "say what you do there"
       ],
-      "grammar": "praepositionen-ort",
+      "grammar": "g-praepositionen-ort",
       "grammarNote": "zum/zur as fixed forms. They are contractions of a dative that has not been taught, and pretending otherwise would be a lie a learner catches later.",
       "topics": ["places"],
       "words": 12
@@ -401,7 +401,7 @@
         "put the prefix at the end",
         "recognise which prefixes separate"
       ],
-      "grammar": "trennbare-verben",
+      "grammar": "g-trennbare",
       "grammarNote": "Straight after the modal bracket, because it is the same idea: the meaningful part goes last.",
       "topics": ["core-verbs"],
       "words": 12
@@ -416,7 +416,7 @@
         "describe where you live",
         "say what is in a room"
       ],
-      "grammar": "es-gibt",
+      "grammar": "g-es-gibt",
       "grammarNote": "es gibt takes the accusative, which is unit 21 doing real work.",
       "topics": ["home"],
       "words": 14
@@ -431,7 +431,7 @@
         "say who you give something to",
         "use mir and dir"
       ],
-      "grammar": "dativ",
+      "grammar": "g-dativ",
       "grammarNote": "The second case, eight units after the first. Introduced through people rather than through a table.",
       "topics": ["articles", "pronouns"],
       "words": 12
@@ -446,7 +446,7 @@
         "suggest and refuse a time",
         "cancel politely"
       ],
-      "grammar": "dativ",
+      "grammar": "g-dativ",
       "grammarNote": "The first Alltag-shaped unit. Uses time from unit 10, days from 11, modals from 25.",
       "topics": ["time"],
       "words": 12
@@ -461,7 +461,7 @@
         "say what hurts",
         "understand what the doctor asks"
       ],
-      "grammar": "dativ",
+      "grammar": "g-dativ",
       "grammarNote": "mir tut der Kopf weh — dative where German insists on it and English does not.",
       "topics": ["body", "health"],
       "words": 14
@@ -476,7 +476,7 @@
         "form the participle of a regular verb",
         "put it at the end"
       ],
-      "grammar": "perfekt-haben",
+      "grammar": "g-perfekt-haben",
       "grammarNote": "The spoken past, and the third use of the bracket. ge- -t for regular verbs; the strong ones are learnt as they come.",
       "topics": ["core-verbs"],
       "words": 12
@@ -491,7 +491,7 @@
         "choose between haben and sein",
         "talk about your weekend"
       ],
-      "grammar": "perfekt-sein",
+      "grammar": "g-perfekt-sein",
       "grammarNote": "Movement and change of state take sein. A short closed list, so it is worth learning as a list.",
       "topics": ["core-verbs"],
       "words": 10
@@ -536,7 +536,7 @@
         "say how you travel",
         "understand an announcement"
       ],
-      "grammar": "praepositionen-ort",
+      "grammar": "g-praepositionen-ort",
       "grammarNote": "mit dem Bus — the dative from unit 29 in the phrase you use every day.",
       "topics": ["transport", "places"],
       "words": 12
@@ -551,7 +551,7 @@
         "ask for something politely",
         "understand a written instruction"
       ],
-      "grammar": "imperativ",
+      "grammar": "g-imperativ",
       "grammarNote": "du, ihr and Sie forms. The Sie form is what you meet on signs and in offices, so it comes first here.",
       "topics": ["core-verbs"],
       "words": 10
@@ -581,7 +581,7 @@
         "say where something is and where it goes",
         "ask wo or wohin"
       ],
-      "grammar": "wechselpraepositionen",
+      "grammar": "g-wechselpraep",
       "grammarNote": "The hardest thing in A1 and correctly last: it needs both cases and the wo/wohin distinction. Movement takes the accusative, position the dative.",
       "topics": ["prepositions", "places"],
       "words": 12

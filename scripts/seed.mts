@@ -35,6 +35,13 @@ const WORD_FILES: [file: string, level: string][] = [
      same id. Generated from the plan by `npm run build-a1`. */
   ["data/words-a1-1.json", "A1.1"],
   ["data/words-a1-2.json", "A1.2"],
+  /*
+   * The 301 words A1.2 taught before the rewrite. They are not in the new plan
+   * and are not taught by any unit, but other units still reference some of
+   * them, and deleting a word out from under a reference is how you get a blank
+   * card. They stay in the deck as browse words. See docs: two decks.
+   */
+  ["data/words-a1-2-legacy.json", "A1.2"],
   ["data/words-a2-1.json", "A2.1"],
   ["data/words-a2-2.json", "A2.2"],
   ["data/words-b1-1.json", "B1.1"],
@@ -344,7 +351,7 @@ if (existsSync(UNIT_ADDITIONS)) {
     string[]
   >;
   for (const u of units) {
-    if (u.level === "A1.1") continue;
+    if (u.level === "A1.1" || u.level === "A1.2") continue;
     const more = (extra[u.id] ?? []).filter(
       (id) => seenIds.has(id) && !u.words.includes(id),
     );

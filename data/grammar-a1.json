@@ -923,5 +923,205 @@
       }
     ],
     "prereq": []
+  },
+  {
+    "id": "g-praepositionen-ort",
+    "slug": "praepositionen-ort",
+    "title": "Saying where something is",
+    "level": "A1.2",
+    "ord": 23,
+    "explain_md": "The prepositions that answer **wo?** — and they all take the **dative**.\n\n| | |\n|---|---|\n| **neben** | next to |\n| **zwischen** | between |\n| **gegenüber** | opposite |\n| **bei** | at, near, at the house of |\n\n*Die Bank ist **neben der** Post.*\n*Der Park ist **zwischen dem** Bahnhof und **der** Schule.*\n\n**zum** and **zur** are contractions you will use constantly: **zu dem → zum**, **zu der → zur**. Learn them as whole words for now — the dative underneath arrives in unit 29.\n\n*Ich gehe **zum** Bahnhof.* (der Bahnhof)\n*Ich gehe **zur** Post.* (die Post)\n\nFor directions you mostly need three words: **links**, **rechts**, **geradeaus**.",
+    "examples": [
+      {
+        "de": "Die Apotheke ist neben der Bank.",
+        "en": "The pharmacy is next to the bank."
+      },
+      {
+        "de": "Gehen Sie geradeaus und dann links.",
+        "en": "Go straight on and then left."
+      },
+      {
+        "de": "Ich gehe zum Supermarkt.",
+        "en": "I'm going to the supermarket."
+      },
+      {
+        "de": "Der Park ist gegenüber der Schule.",
+        "en": "The park is opposite the school."
+      }
+    ],
+    "drills": [
+      {
+        "q": "Ich gehe ___ Post. (die Post)",
+        "options": ["zur", "zum", "zu"],
+        "a": 0,
+        "why": "zu + der = zur, for a feminine noun."
+      },
+      {
+        "q": "Ich gehe ___ Bahnhof. (der Bahnhof)",
+        "options": ["zum", "zur", "zu"],
+        "a": 0,
+        "why": "zu + dem = zum."
+      },
+      {
+        "q": "Die Bank ist ___ der Post.",
+        "options": ["neben", "neben die", "nebem"],
+        "a": 0,
+        "why": "neben takes the dative and does not change form itself."
+      }
+    ],
+    "prereq": []
+  },
+  {
+    "id": "g-es-gibt",
+    "slug": "es-gibt",
+    "title": "es gibt — there is, there are",
+    "level": "A1.2",
+    "ord": 28,
+    "explain_md": "**es gibt** means *there is* AND *there are*. It never changes.\n\n*Es gibt **einen** Balkon.*\n*Es gibt **zwei** Zimmer.*\n\nTwo things to notice.\n\n**It takes the accusative.** That is unit 21 doing real work: *es gibt **einen** Supermarkt*, not *ein Supermarkt*.\n\n**It stays singular.** English switches to *there are* for more than one; German does not. *Es gibt drei Zimmer* — still *gibt*.\n\nTo ask: ***Gibt es** hier einen Supermarkt?* — the single most useful question in a strange town.",
+    "examples": [
+      {
+        "de": "Es gibt einen Balkon.",
+        "en": "There is a balcony."
+      },
+      {
+        "de": "Gibt es hier einen Supermarkt?",
+        "en": "Is there a supermarket here?"
+      },
+      {
+        "de": "Es gibt drei Zimmer.",
+        "en": "There are three rooms."
+      },
+      {
+        "de": "Es gibt kein Problem.",
+        "en": "There is no problem."
+      }
+    ],
+    "drills": [
+      {
+        "q": "Es gibt ___ Balkon.",
+        "options": ["einen", "ein", "einem"],
+        "a": 0,
+        "why": "es gibt takes the accusative, so der Balkon becomes einen Balkon."
+      },
+      {
+        "q": "There are two rooms:",
+        "options": [
+          "Es gibt zwei Zimmer.",
+          "Es geben zwei Zimmer.",
+          "Sie gibt zwei Zimmer."
+        ],
+        "a": 0,
+        "why": "es gibt never becomes plural."
+      },
+      {
+        "q": "Asking in a new town:",
+        "options": [
+          "Gibt es hier eine Apotheke?",
+          "Es gibt hier eine Apotheke?",
+          "Hat es hier eine Apotheke?"
+        ],
+        "a": 0,
+        "why": "Verb first for a yes/no question."
+      }
+    ],
+    "prereq": ["g-akkusativ"]
+  },
+  {
+    "id": "g-perfekt-haben",
+    "slug": "perfekt-haben",
+    "title": "The Perfekt with haben — talking about the past",
+    "level": "A1.2",
+    "ord": 32,
+    "explain_md": "This is how Germans talk about the past in conversation. Two pieces: **haben**, conjugated, and a **participle** at the end.\n\n*Ich **habe** Brot **gekauft**.*\n*Was **hast** du gestern **gemacht**?*\n\n**Regular verbs: ge- + stem + -t.**\nmachen → **gemacht** · kaufen → **gekauft** · arbeiten → **gearbeitet**\n\n**Strong verbs end in -en and often change the vowel.** There is no rule; they are learnt one at a time, and the common ones are worth knowing cold:\n\nessen → **gegessen** · trinken → **getrunken** · sehen → **gesehen** · lesen → **gelesen** · schreiben → **geschrieben**\n\n**Verbs ending in -ieren take no ge-**: studieren → *studiert*, telefonieren → *telefoniert*.\n\nThe bracket again: haben second, participle last.",
+    "examples": [
+      {
+        "de": "Ich habe Brot gekauft.",
+        "en": "I bought bread."
+      },
+      {
+        "de": "Was hast du am Wochenende gemacht?",
+        "en": "What did you do at the weekend?"
+      },
+      {
+        "de": "Wir haben schon gegessen.",
+        "en": "We have already eaten."
+      },
+      {
+        "de": "Ich habe das Buch gelesen.",
+        "en": "I read the book."
+      }
+    ],
+    "drills": [
+      {
+        "q": "machen → ich habe …",
+        "options": ["gemacht", "gemachen", "machte"],
+        "a": 0,
+        "why": "Regular: ge- + stem + -t."
+      },
+      {
+        "q": "trinken → ich habe …",
+        "options": ["getrunken", "getrinkt", "trinkte"],
+        "a": 0,
+        "why": "Strong verb: -en ending and a vowel change."
+      },
+      {
+        "q": "Where does the participle go?",
+        "options": [
+          "Ich habe gestern Brot gekauft.",
+          "Ich habe gekauft gestern Brot.",
+          "Ich gekauft habe Brot."
+        ],
+        "a": 0,
+        "why": "Last. Always last."
+      }
+    ],
+    "prereq": ["g-praesens"]
+  },
+  {
+    "id": "g-perfekt-sein",
+    "slug": "perfekt-sein",
+    "title": "The Perfekt with sein — going and becoming",
+    "level": "A1.2",
+    "ord": 33,
+    "explain_md": "Most verbs take **haben**. A short list takes **sein**, and you cannot mix them up without sounding wrong.\n\n**Movement from one place to another:**\ngehen → *ich **bin** gegangen* · fahren → *ich **bin** gefahren* · kommen → *ich **bin** gekommen* · fliegen → *ich **bin** geflogen*\n\n**A change of state:**\naufstehen → *ich **bin** aufgestanden* · einschlafen → *ich **bin** eingeschlafen* · werden → *ich **bin** geworden*\n\n**And three that just do:**\n**sein** → *ich **bin** gewesen* · **bleiben** → *ich **bin** geblieben* · **passieren** → *es **ist** passiert*\n\nThe list is short and closed. Learn these, and use **haben** for everything else.\n\nNote **bleiben** is the odd one — staying is the opposite of moving, and it still takes sein. That is the exception people remember.",
+    "examples": [
+      {
+        "de": "Ich bin nach Hause gegangen.",
+        "en": "I went home."
+      },
+      {
+        "de": "Wir sind nach Berlin gefahren.",
+        "en": "We travelled to Berlin."
+      },
+      {
+        "de": "Ich bin zu Hause geblieben.",
+        "en": "I stayed at home."
+      },
+      {
+        "de": "Was ist passiert?",
+        "en": "What happened?"
+      }
+    ],
+    "drills": [
+      {
+        "q": "Ich ___ nach Hause gegangen.",
+        "options": ["bin", "habe", "war"],
+        "a": 0,
+        "why": "gehen is movement, so it takes sein."
+      },
+      {
+        "q": "Ich ___ Brot gekauft.",
+        "options": ["habe", "bin", "war"],
+        "a": 0,
+        "why": "kaufen is not movement — haben, like most verbs."
+      },
+      {
+        "q": "Which takes sein even though nothing moves?",
+        "options": ["bleiben", "essen", "lesen"],
+        "a": 0,
+        "why": "bleiben is the exception worth memorising."
+      }
+    ],
+    "prereq": ["g-perfekt-haben"]
   }
 ]

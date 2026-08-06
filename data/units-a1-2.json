@@ -1,0 +1,580 @@
+[
+  {
+    "id": "a1-2-u01",
+    "level": "A1.2",
+    "ord": 1,
+    "title": "Der Akkusativ",
+    "can_do": [
+      "use den, die, das and die as objects",
+      "say what you see, have and need",
+      "notice that only masculine changes"
+    ],
+    "words": [
+      "akk-den",
+      "einen",
+      "eine",
+      "ein-art",
+      "sehen",
+      "nehmen",
+      "finden",
+      "suchen",
+      "besuchen",
+      "kennen",
+      "jemand",
+      "etwas"
+    ],
+    "grammar_id": "g-akkusativ",
+    "scenario": null,
+    "dialogue": null,
+    "prereq": []
+  },
+  {
+    "id": "a1-2-u02",
+    "level": "A1.2",
+    "ord": 2,
+    "title": "Einkaufen",
+    "can_do": [
+      "ask for an amount of something",
+      "ask what something costs",
+      "pay and understand the change"
+    ],
+    "words": [
+      "der-supermarkt",
+      "der-markt",
+      "das-kilo",
+      "das-gramm",
+      "das-stueck",
+      "die-flasche",
+      "die-packung",
+      "das-geld",
+      "die-kasse",
+      "die-tuete",
+      "billig",
+      "bezahlen",
+      "bekommen",
+      "das-angebot"
+    ],
+    "grammar_id": "g-akkusativ",
+    "scenario": null,
+    "dialogue": null,
+    "prereq": ["a1-2-u01"]
+  },
+  {
+    "id": "a1-2-u03",
+    "level": "A1.2",
+    "ord": 3,
+    "title": "Wo ist das?",
+    "can_do": [
+      "ask the way",
+      "understand left, right and straight on",
+      "say where something is"
+    ],
+    "words": [
+      "links",
+      "rechts",
+      "geradeaus",
+      "die-ecke",
+      "die-strasse",
+      "neben",
+      "zwischen",
+      "gegenueber",
+      "bei",
+      "der-weg",
+      "zeigen",
+      "weit"
+    ],
+    "grammar_id": "g-praepositionen-ort",
+    "scenario": null,
+    "dialogue": null,
+    "prereq": ["a1-2-u02"]
+  },
+  {
+    "id": "a1-2-u04",
+    "level": "A1.2",
+    "ord": 4,
+    "title": "In der Stadt",
+    "can_do": [
+      "name the places in a town",
+      "say where you are going",
+      "say what you do there"
+    ],
+    "words": [
+      "der-bahnhof",
+      "die-post",
+      "die-bank",
+      "die-apotheke",
+      "das-krankenhaus",
+      "die-schule",
+      "das-rathaus",
+      "der-park",
+      "das-geschaeft",
+      "das-restaurant",
+      "zum",
+      "zur"
+    ],
+    "grammar_id": "g-praepositionen-ort",
+    "scenario": null,
+    "dialogue": null,
+    "prereq": ["a1-2-u03"]
+  },
+  {
+    "id": "a1-2-u05",
+    "level": "A1.2",
+    "ord": 5,
+    "title": "Können und müssen",
+    "can_do": [
+      "say what you can do",
+      "say what you have to do",
+      "put the second verb at the end"
+    ],
+    "words": [
+      "koennen",
+      "muessen",
+      "das-problem",
+      "helfen",
+      "warten",
+      "schwer",
+      "leicht",
+      "moeglich",
+      "noetig",
+      "vielleicht2"
+    ],
+    "grammar_id": "g-modalverben",
+    "scenario": null,
+    "dialogue": null,
+    "prereq": ["a1-2-u04"]
+  },
+  {
+    "id": "a1-2-u06",
+    "level": "A1.2",
+    "ord": 6,
+    "title": "Wollen, möchten, dürfen",
+    "can_do": [
+      "say what you want",
+      "ask permission politely",
+      "tell the difference between wollen and möchten"
+    ],
+    "words": [
+      "wollen",
+      "duerfen",
+      "sollen",
+      "rauchen",
+      "parken",
+      "erlaubt",
+      "verboten",
+      "natuerlich",
+      "sicher",
+      "lieber"
+    ],
+    "grammar_id": "g-modalverben",
+    "scenario": null,
+    "dialogue": null,
+    "prereq": ["a1-2-u05"]
+  },
+  {
+    "id": "a1-2-u07",
+    "level": "A1.2",
+    "ord": 7,
+    "title": "Trennbare Verben",
+    "can_do": [
+      "use a separable verb in a sentence",
+      "put the prefix at the end",
+      "recognise which prefixes separate"
+    ],
+    "words": [
+      "aufstehen",
+      "anfangen",
+      "aufhoeren",
+      "einkaufen",
+      "mitkommen",
+      "ankommen",
+      "abfahren",
+      "anrufen",
+      "zumachen",
+      "aufmachen",
+      "einladen",
+      "mitbringen"
+    ],
+    "grammar_id": null,
+    "scenario": null,
+    "dialogue": null,
+    "prereq": ["a1-2-u06"]
+  },
+  {
+    "id": "a1-2-u08",
+    "level": "A1.2",
+    "ord": 8,
+    "title": "Die Wohnung",
+    "can_do": [
+      "name the rooms and the furniture",
+      "describe where you live",
+      "say what is in a room"
+    ],
+    "words": [
+      "die-wohnung",
+      "das-zimmer",
+      "die-kueche",
+      "das-bad",
+      "das-schlafzimmer",
+      "das-wohnzimmer",
+      "das-bett",
+      "der-schrank",
+      "das-sofa",
+      "der-balkon",
+      "die-miete",
+      "der-vermieter",
+      "umziehen",
+      "es-gibt"
+    ],
+    "grammar_id": "g-es-gibt",
+    "scenario": null,
+    "dialogue": null,
+    "prereq": ["a1-2-u07"]
+  },
+  {
+    "id": "a1-2-u09",
+    "level": "A1.2",
+    "ord": 9,
+    "title": "Der Dativ",
+    "can_do": [
+      "use dem, der and den as indirect objects",
+      "say who you give something to",
+      "use mir and dir"
+    ],
+    "words": [
+      "mir",
+      "dir",
+      "ihm",
+      "ihr-dat",
+      "uns",
+      "ihnen",
+      "geben",
+      "danken",
+      "gehoeren",
+      "gefallen",
+      "schmecken",
+      "passen"
+    ],
+    "grammar_id": null,
+    "scenario": null,
+    "dialogue": null,
+    "prereq": ["a1-2-u08"]
+  },
+  {
+    "id": "a1-2-u10",
+    "level": "A1.2",
+    "ord": 10,
+    "title": "Termine machen",
+    "can_do": [
+      "make an appointment on the phone",
+      "suggest and refuse a time",
+      "cancel politely"
+    ],
+    "words": [
+      "der-termin",
+      "der-arzt",
+      "die-praxis",
+      "absagen",
+      "verschieben",
+      "frei",
+      "besetzt",
+      "dringend",
+      "morgens",
+      "nachmittags",
+      "abends",
+      "das-datum"
+    ],
+    "grammar_id": null,
+    "scenario": null,
+    "dialogue": null,
+    "prereq": ["a1-2-u09"]
+  },
+  {
+    "id": "a1-2-u11",
+    "level": "A1.2",
+    "ord": 11,
+    "title": "Beim Arzt",
+    "can_do": [
+      "name the parts of the body",
+      "say what hurts",
+      "understand what the doctor asks"
+    ],
+    "words": [
+      "der-kopf",
+      "der-bauch",
+      "der-ruecken",
+      "das-bein",
+      "der-arm",
+      "die-hand",
+      "das-auge",
+      "der-hals",
+      "wehtun",
+      "die-schmerzen",
+      "das-fieber",
+      "die-erkaeltung",
+      "die-tablette",
+      "das-rezept"
+    ],
+    "grammar_id": null,
+    "scenario": null,
+    "dialogue": null,
+    "prereq": ["a1-2-u10"]
+  },
+  {
+    "id": "a1-2-u12",
+    "level": "A1.2",
+    "ord": 12,
+    "title": "Perfekt mit haben",
+    "can_do": [
+      "say what you did",
+      "form the participle of a regular verb",
+      "put it at the end"
+    ],
+    "words": [
+      "das-wochenende",
+      "letzte",
+      "gemacht",
+      "gesagt",
+      "gekauft",
+      "gearbeitet",
+      "gegessen",
+      "getrunken",
+      "gesehen",
+      "gelesen",
+      "geschrieben",
+      "schon"
+    ],
+    "grammar_id": "g-perfekt-haben",
+    "scenario": null,
+    "dialogue": null,
+    "prereq": ["a1-2-u11"]
+  },
+  {
+    "id": "a1-2-u13",
+    "level": "A1.2",
+    "ord": 13,
+    "title": "Perfekt mit sein",
+    "can_do": [
+      "say where you went",
+      "choose between haben and sein",
+      "talk about your weekend"
+    ],
+    "words": [
+      "gegangen",
+      "gefahren",
+      "gekommen",
+      "geblieben",
+      "bleiben",
+      "passieren",
+      "nach-hause",
+      "zu-hause",
+      "vorgestern",
+      "zurueck"
+    ],
+    "grammar_id": "g-perfekt-sein",
+    "scenario": null,
+    "dialogue": null,
+    "prereq": ["a1-2-u12"]
+  },
+  {
+    "id": "a1-2-u14",
+    "level": "A1.2",
+    "ord": 14,
+    "title": "Das Wetter",
+    "can_do": [
+      "say what the weather is doing",
+      "name the seasons and months",
+      "understand a forecast"
+    ],
+    "words": [
+      "das-wetter",
+      "die-sonne",
+      "der-regen",
+      "der-schnee",
+      "warm",
+      "kalt",
+      "heiss",
+      "sonnig",
+      "regnen",
+      "schneien",
+      "der-sommer",
+      "der-winter",
+      "der-fruehling",
+      "der-herbst"
+    ],
+    "grammar_id": null,
+    "scenario": null,
+    "dialogue": null,
+    "prereq": ["a1-2-u13"]
+  },
+  {
+    "id": "a1-2-u15",
+    "level": "A1.2",
+    "ord": 15,
+    "title": "Kleidung",
+    "can_do": [
+      "name what you are wearing",
+      "say what suits you",
+      "ask for another size"
+    ],
+    "words": [
+      "die-kleidung",
+      "das-hemd",
+      "die-hose",
+      "der-rock",
+      "das-kleid",
+      "die-jacke",
+      "der-mantel",
+      "der-schuh",
+      "der-pullover",
+      "die-muetze",
+      "die-groesse",
+      "tragen",
+      "anprobieren",
+      "umtauschen"
+    ],
+    "grammar_id": "g-adjektiv-praedikativ",
+    "scenario": null,
+    "dialogue": null,
+    "prereq": ["a1-2-u14"]
+  },
+  {
+    "id": "a1-2-u16",
+    "level": "A1.2",
+    "ord": 16,
+    "title": "Unterwegs",
+    "can_do": [
+      "buy a ticket",
+      "say how you travel",
+      "understand an announcement"
+    ],
+    "words": [
+      "der-bus",
+      "die-bahn",
+      "der-zug",
+      "das-fahrrad",
+      "die-haltestelle",
+      "die-fahrkarte",
+      "einsteigen",
+      "aussteigen",
+      "umsteigen",
+      "die-verspaetung",
+      "das-gleis",
+      "mit"
+    ],
+    "grammar_id": "g-praepositionen-ort",
+    "scenario": null,
+    "dialogue": null,
+    "prereq": ["a1-2-u15"]
+  },
+  {
+    "id": "a1-2-u17",
+    "level": "A1.2",
+    "ord": 17,
+    "title": "Der Imperativ",
+    "can_do": [
+      "tell somebody to do something",
+      "ask for something politely",
+      "understand a written instruction"
+    ],
+    "words": [
+      "langsam",
+      "schnell",
+      "ruhig",
+      "vorsichtig",
+      "das-schild",
+      "die-regel",
+      "aufpassen",
+      "bitten",
+      "sagen",
+      "entschuldigen"
+    ],
+    "grammar_id": null,
+    "scenario": null,
+    "dialogue": null,
+    "prereq": ["a1-2-u16"]
+  },
+  {
+    "id": "a1-2-u18",
+    "level": "A1.2",
+    "ord": 18,
+    "title": "Possessivartikel",
+    "can_do": [
+      "say whose something is in any case",
+      "use mein, dein, sein, ihr, unser correctly",
+      "ask whose something is"
+    ],
+    "words": [
+      "unser",
+      "euer",
+      "die-chefin",
+      "wessen",
+      "der-kollege",
+      "die-kollegin",
+      "der-nachbar",
+      "die-nachbarin",
+      "der-chef",
+      "der-hund"
+    ],
+    "grammar_id": "g-possessiv",
+    "scenario": null,
+    "dialogue": null,
+    "prereq": ["a1-2-u17"]
+  },
+  {
+    "id": "a1-2-u19",
+    "level": "A1.2",
+    "ord": 19,
+    "title": "Wechselpräpositionen",
+    "can_do": [
+      "choose accusative or dative after in, auf, an",
+      "say where something is and where it goes",
+      "ask wo or wohin"
+    ],
+    "words": [
+      "auf",
+      "unter",
+      "ueber",
+      "hinter",
+      "der-garten",
+      "an",
+      "wohin",
+      "stellen",
+      "legen",
+      "stehen",
+      "liegen",
+      "die-wand"
+    ],
+    "grammar_id": null,
+    "scenario": null,
+    "dialogue": null,
+    "prereq": ["a1-2-u18"]
+  },
+  {
+    "id": "a1-2-u20",
+    "level": "A1.2",
+    "ord": 20,
+    "title": "Über mich",
+    "can_do": [
+      "introduce yourself for a minute without stopping",
+      "say what you did and what you are going to do",
+      "ask somebody the same questions back"
+    ],
+    "words": [
+      "der-beruf",
+      "studieren",
+      "der-student",
+      "die-erfahrung",
+      "interessant",
+      "wichtig",
+      "das-hobby",
+      "gern",
+      "am-liebsten",
+      "erzaehlen"
+    ],
+    "grammar_id": null,
+    "scenario": null,
+    "dialogue": null,
+    "prereq": ["a1-2-u19"]
+  }
+]

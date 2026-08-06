@@ -72,12 +72,13 @@ for (const u of units)
  */
 const after: [string, string][] = [
   ["g-akkusativ", "g-articles-nom"],
-  ["dativ", "g-akkusativ"],
-  ["wechselpraepositionen", "dativ"],
+  ["g-dativ", "g-akkusativ"],
+  ["g-wechselpraep", "g-dativ"],
   ["g-praesens", "g-sein"],
-  ["perfekt-haben", "g-praesens"],
-  ["perfekt-sein", "perfekt-haben"],
-  ["trennbare-verben", "g-modalverben"],
+  ["g-perfekt-haben", "g-praesens"],
+  ["g-perfekt-sein", "g-perfekt-haben"],
+  ["g-trennbare", "g-modalverben"],
+  ["g-es-gibt", "g-akkusativ"],
   ["g-uhrzeit", "g-zahlen"],
   ["g-zeitpraepositionen", "g-uhrzeit"],
 ];
@@ -116,27 +117,30 @@ ok(
 );
 
 section("the hardest thing in A1 is last");
-eq(
-  at.get("wechselpraepositionen"),
-  39,
-  "two-way prepositions at 39, not earlier",
-);
+eq(at.get("g-wechselpraep"), 39, "two-way prepositions at 39, not earlier");
 
 section("every grammar point A1.1 names actually exists");
 /* The plan was drafted with working names and several of those points were
    already written under a g- id. A unit pointing at a name nobody wrote teaches
    vocabulary and no rule, silently — so A1.1, which is finished, must be whole. */
-const grammarFile = JSON.parse(
-  readFileSync(join(ROOT, "data/grammar-a1.json"), "utf8"),
-) as { id: string }[];
-const realIds = new Set(grammarFile.map((g) => g.id));
+/* Both files: four A1 points are the ones already written for A2.1 — reused
+   rather than duplicated, because a second explanation of the dative is the
+   duplication this rewrite exists to remove. */
+const realIds = new Set(
+  ["data/grammar-a1.json", "data/grammar-a2.json"]
+    .flatMap(
+      (f) =>
+        JSON.parse(readFileSync(join(ROOT, f), "utf8")) as { id: string }[],
+    )
+    .map((g) => g.id),
+);
 const dangling = units
-  .filter((u) => u.level === "A1.1" && u.grammar && !realIds.has(u.grammar))
+  .filter((u) => u.grammar && !realIds.has(u.grammar))
   .map((u) => `${u.ord}:${u.grammar}`);
 ok(
   dangling.length === 0,
-  "no A1.1 unit points at a grammar point that was never written",
-  dangling.join(", ") || "all present",
+  "no unit points at a grammar point that was never written",
+  dangling.join(", ") || "all 40 present",
 );
 eq(
   units[39].grammar,

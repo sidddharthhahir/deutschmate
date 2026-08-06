@@ -448,8 +448,8 @@
     "en": "That is too expensive."
   },
   "billig": {
-    "de": "Das Brot ist billig.",
-    "en": "The bread is cheap."
+    "de": "Das ist sehr billig.",
+    "en": "That is very cheap."
   },
   "richtig": {
     "de": "Das ist nicht richtig.",
@@ -520,12 +520,12 @@
     "en": "I live in Berlin."
   },
   "auf": {
-    "de": "Das Buch ist auf dem Tisch.",
-    "en": "The book is on the table."
+    "de": "Das Buch liegt auf dem Tisch.",
+    "en": "The book is lying on the table."
   },
   "mit": {
-    "de": "Ich komme mit dem Bus.",
-    "en": "I come by bus."
+    "de": "Ich fahre mit dem Bus.",
+    "en": "I go by bus."
   },
   "aus": {
     "de": "Sie kommt aus Österreich.",
@@ -544,8 +544,8 @@
     "en": "I drink tea without milk."
   },
   "bei": {
-    "de": "Ich wohne bei meinen Eltern.",
-    "en": "I live with my parents."
+    "de": "Bei der Apotheke rechts.",
+    "en": "Right at the pharmacy."
   },
   "auf-wiedersehen": {
     "de": "Auf Wiedersehen und danke!",
@@ -1222,5 +1222,937 @@
   "manchmal": {
     "de": "Manchmal lese ich abends.",
     "en": "Sometimes I read in the evening."
+  },
+  "akk-den": {
+    "de": "Ich sehe den Mann.",
+    "en": "I see the man."
+  },
+  "einen": {
+    "de": "Ich brauche einen Stift.",
+    "en": "I need a pen."
+  },
+  "eine": {
+    "de": "Ich möchte eine Tasse Tee.",
+    "en": "I'd like a cup of tea."
+  },
+  "ein-art": {
+    "de": "Das ist ein Buch.",
+    "en": "That is a book."
+  },
+  "sehen": {
+    "de": "Siehst du das Haus?",
+    "en": "Do you see the house?"
+  },
+  "nehmen": {
+    "de": "Ich nehme den Bus.",
+    "en": "I'll take the bus."
+  },
+  "finden": {
+    "de": "Ich finde meinen Schlüssel nicht.",
+    "en": "I can't find my key."
+  },
+  "suchen": {
+    "de": "Ich suche die Post.",
+    "en": "I'm looking for the post office."
+  },
+  "besuchen": {
+    "de": "Ich besuche meine Eltern.",
+    "en": "I'm visiting my parents."
+  },
+  "kennen": {
+    "de": "Kennst du die Stadt?",
+    "en": "Do you know the city?"
+  },
+  "jemand": {
+    "de": "Jemand hat angerufen.",
+    "en": "Somebody called."
+  },
+  "etwas": {
+    "de": "Ich möchte etwas essen.",
+    "en": "I'd like something to eat."
+  },
+  "der-supermarkt": {
+    "de": "Der Supermarkt ist zu.",
+    "en": "The supermarket is closed."
+  },
+  "der-markt": {
+    "de": "Am Samstag ist Markt.",
+    "en": "There's a market on Saturday."
+  },
+  "das-kilo": {
+    "de": "Ein Kilo Äpfel, bitte.",
+    "en": "A kilo of apples, please."
+  },
+  "das-gramm": {
+    "de": "Zweihundert Gramm Käse.",
+    "en": "Two hundred grams of cheese."
+  },
+  "das-stueck": {
+    "de": "Drei Stück, bitte.",
+    "en": "Three, please."
+  },
+  "die-flasche": {
+    "de": "Eine Flasche Wasser.",
+    "en": "A bottle of water."
+  },
+  "die-packung": {
+    "de": "Eine Packung Butter.",
+    "en": "A packet of butter."
+  },
+  "das-geld": {
+    "de": "Ich habe kein Geld dabei.",
+    "en": "I have no money on me."
+  },
+  "die-kasse": {
+    "de": "Bitte zahlen Sie an der Kasse.",
+    "en": "Please pay at the till."
+  },
+  "die-tuete": {
+    "de": "Brauchen Sie eine Tüte?",
+    "en": "Do you need a bag?"
+  },
+  "bezahlen": {
+    "de": "Ich bezahle mit Karte.",
+    "en": "I'm paying by card."
+  },
+  "bekommen": {
+    "de": "Ich bekomme zwei Euro zurück.",
+    "en": "I get two euros back."
+  },
+  "das-angebot": {
+    "de": "Der Käse ist im Angebot.",
+    "en": "The cheese is on offer."
+  },
+  "links": {
+    "de": "Die Post ist links.",
+    "en": "The post office is on the left."
+  },
+  "rechts": {
+    "de": "Gehen Sie rechts.",
+    "en": "Go right."
+  },
+  "geradeaus": {
+    "de": "Immer geradeaus.",
+    "en": "Straight on all the way."
+  },
+  "die-ecke": {
+    "de": "An der Ecke links.",
+    "en": "Left at the corner."
+  },
+  "die-strasse": {
+    "de": "Die Straße ist lang.",
+    "en": "The street is long."
+  },
+  "neben": {
+    "de": "Die Bank ist neben der Post.",
+    "en": "The bank is next to the post office."
+  },
+  "zwischen": {
+    "de": "Zwischen dem Park und der Schule.",
+    "en": "Between the park and the school."
+  },
+  "gegenueber": {
+    "de": "Gegenüber dem Bahnhof.",
+    "en": "Opposite the station."
+  },
+  "der-weg": {
+    "de": "Ich kenne den Weg.",
+    "en": "I know the way."
+  },
+  "zeigen": {
+    "de": "Können Sie mir das zeigen?",
+    "en": "Can you show me that?"
+  },
+  "weit": {
+    "de": "Ist es weit?",
+    "en": "Is it far?"
+  },
+  "der-bahnhof": {
+    "de": "Der Bahnhof ist dort.",
+    "en": "The station is over there."
+  },
+  "die-post": {
+    "de": "Die Post macht um neun auf.",
+    "en": "The post office opens at nine."
+  },
+  "die-bank": {
+    "de": "Ich gehe zur Bank.",
+    "en": "I'm going to the bank."
+  },
+  "die-apotheke": {
+    "de": "Die Apotheke ist gegenüber.",
+    "en": "The pharmacy is opposite."
+  },
+  "das-krankenhaus": {
+    "de": "Das Krankenhaus ist groß.",
+    "en": "The hospital is big."
+  },
+  "die-schule": {
+    "de": "Meine Tochter geht zur Schule.",
+    "en": "My daughter goes to school."
+  },
+  "das-rathaus": {
+    "de": "Das Bürgeramt ist im Rathaus.",
+    "en": "The registration office is in the town hall."
+  },
+  "der-park": {
+    "de": "Wir gehen in den Park.",
+    "en": "We're going to the park."
+  },
+  "das-geschaeft": {
+    "de": "Die Geschäfte sind sonntags zu.",
+    "en": "The shops are shut on Sundays."
+  },
+  "das-restaurant": {
+    "de": "Das Restaurant ist sehr gut.",
+    "en": "The restaurant is very good."
+  },
+  "zum": {
+    "de": "Ich gehe zum Bahnhof.",
+    "en": "I'm going to the station."
+  },
+  "zur": {
+    "de": "Ich gehe zur Apotheke.",
+    "en": "I'm going to the pharmacy."
+  },
+  "koennen": {
+    "de": "Ich kann nicht kommen.",
+    "en": "I can't come."
+  },
+  "muessen": {
+    "de": "Ich muss arbeiten.",
+    "en": "I have to work."
+  },
+  "das-problem": {
+    "de": "Kein Problem.",
+    "en": "No problem."
+  },
+  "helfen": {
+    "de": "Können Sie mir helfen?",
+    "en": "Can you help me?"
+  },
+  "warten": {
+    "de": "Bitte warten Sie hier.",
+    "en": "Please wait here."
+  },
+  "schwer": {
+    "de": "Deutsch ist nicht schwer.",
+    "en": "German isn't difficult."
+  },
+  "leicht": {
+    "de": "Das ist leicht.",
+    "en": "That's easy."
+  },
+  "moeglich": {
+    "de": "Ist das möglich?",
+    "en": "Is that possible?"
+  },
+  "noetig": {
+    "de": "Das ist nicht nötig.",
+    "en": "That's not necessary."
+  },
+  "vielleicht2": {
+    "de": "Vielleicht morgen.",
+    "en": "Maybe tomorrow."
+  },
+  "wollen": {
+    "de": "Ich will nach Hause.",
+    "en": "I want to go home."
+  },
+  "duerfen": {
+    "de": "Darf ich hier parken?",
+    "en": "May I park here?"
+  },
+  "sollen": {
+    "de": "Soll ich helfen?",
+    "en": "Should I help?"
+  },
+  "rauchen": {
+    "de": "Hier darf man nicht rauchen.",
+    "en": "You may not smoke here."
+  },
+  "parken": {
+    "de": "Darf man hier parken?",
+    "en": "Is parking allowed here?"
+  },
+  "erlaubt": {
+    "de": "Das ist nicht erlaubt.",
+    "en": "That is not allowed."
+  },
+  "verboten": {
+    "de": "Rauchen verboten.",
+    "en": "No smoking."
+  },
+  "natuerlich": {
+    "de": "Natürlich, gern.",
+    "en": "Of course, gladly."
+  },
+  "sicher": {
+    "de": "Bist du sicher?",
+    "en": "Are you sure?"
+  },
+  "lieber": {
+    "de": "Ich möchte lieber Tee.",
+    "en": "I'd rather have tea."
+  },
+  "aufstehen": {
+    "de": "Ich stehe um sechs auf.",
+    "en": "I get up at six."
+  },
+  "anfangen": {
+    "de": "Der Film fängt um acht an.",
+    "en": "The film starts at eight."
+  },
+  "aufhoeren": {
+    "de": "Der Regen hört auf.",
+    "en": "The rain is stopping."
+  },
+  "einkaufen": {
+    "de": "Ich kaufe am Samstag ein.",
+    "en": "I shop on Saturday."
+  },
+  "mitkommen": {
+    "de": "Kommst du mit?",
+    "en": "Are you coming along?"
+  },
+  "ankommen": {
+    "de": "Der Zug kommt um zehn an.",
+    "en": "The train arrives at ten."
+  },
+  "abfahren": {
+    "de": "Der Bus fährt gleich ab.",
+    "en": "The bus leaves shortly."
+  },
+  "anrufen": {
+    "de": "Ich rufe dich morgen an.",
+    "en": "I'll phone you tomorrow."
+  },
+  "zumachen": {
+    "de": "Machen Sie bitte die Tür zu.",
+    "en": "Please close the door."
+  },
+  "aufmachen": {
+    "de": "Der Laden macht um neun auf.",
+    "en": "The shop opens at nine."
+  },
+  "einladen": {
+    "de": "Ich lade dich ein.",
+    "en": "I'm inviting you."
+  },
+  "mitbringen": {
+    "de": "Was soll ich mitbringen?",
+    "en": "What should I bring?"
+  },
+  "die-wohnung": {
+    "de": "Meine Wohnung ist klein.",
+    "en": "My flat is small."
+  },
+  "das-zimmer": {
+    "de": "Die Wohnung hat drei Zimmer.",
+    "en": "The flat has three rooms."
+  },
+  "die-kueche": {
+    "de": "Die Küche ist neu.",
+    "en": "The kitchen is new."
+  },
+  "das-bad": {
+    "de": "Das Bad ist sehr klein.",
+    "en": "The bathroom is very small."
+  },
+  "das-schlafzimmer": {
+    "de": "Das Schlafzimmer ist ruhig.",
+    "en": "The bedroom is quiet."
+  },
+  "das-wohnzimmer": {
+    "de": "Im Wohnzimmer gibt es ein Sofa.",
+    "en": "There's a sofa in the living room."
+  },
+  "das-bett": {
+    "de": "Das Bett ist bequem.",
+    "en": "The bed is comfortable."
+  },
+  "der-schrank": {
+    "de": "Der Schrank ist voll.",
+    "en": "The wardrobe is full."
+  },
+  "das-sofa": {
+    "de": "Das Sofa ist alt.",
+    "en": "The sofa is old."
+  },
+  "der-balkon": {
+    "de": "Die Wohnung hat einen Balkon.",
+    "en": "The flat has a balcony."
+  },
+  "die-miete": {
+    "de": "Die Miete ist zu hoch.",
+    "en": "The rent is too high."
+  },
+  "der-vermieter": {
+    "de": "Der Vermieter wohnt oben.",
+    "en": "The landlord lives upstairs."
+  },
+  "umziehen": {
+    "de": "Ich ziehe im Mai um.",
+    "en": "I'm moving in May."
+  },
+  "es-gibt": {
+    "de": "Es gibt einen Balkon.",
+    "en": "There is a balcony."
+  },
+  "mir": {
+    "de": "Können Sie mir helfen?",
+    "en": "Can you help me?"
+  },
+  "dir": {
+    "de": "Ich gebe dir das Buch.",
+    "en": "I'll give you the book."
+  },
+  "ihm": {
+    "de": "Ich zeige ihm den Weg.",
+    "en": "I'll show him the way."
+  },
+  "ihr-dat": {
+    "de": "Ich danke ihr.",
+    "en": "I thank her."
+  },
+  "uns": {
+    "de": "Das gefällt uns.",
+    "en": "We like that."
+  },
+  "ihnen": {
+    "de": "Wie geht es Ihnen?",
+    "en": "How are you?"
+  },
+  "geben": {
+    "de": "Geben Sie mir bitte die Karte.",
+    "en": "Please give me the card."
+  },
+  "danken": {
+    "de": "Ich danke dir.",
+    "en": "Thank you."
+  },
+  "gehoeren": {
+    "de": "Das Buch gehört mir.",
+    "en": "The book belongs to me."
+  },
+  "gefallen": {
+    "de": "Die Wohnung gefällt mir.",
+    "en": "I like the flat."
+  },
+  "schmecken": {
+    "de": "Das schmeckt mir sehr gut.",
+    "en": "I really like the taste."
+  },
+  "passen": {
+    "de": "Montag passt mir gut.",
+    "en": "Monday suits me."
+  },
+  "der-termin": {
+    "de": "Ich habe einen Termin um zehn.",
+    "en": "I have an appointment at ten."
+  },
+  "der-arzt": {
+    "de": "Ich gehe zum Arzt.",
+    "en": "I'm going to the doctor."
+  },
+  "die-praxis": {
+    "de": "Die Praxis ist heute zu.",
+    "en": "The practice is closed today."
+  },
+  "absagen": {
+    "de": "Ich muss den Termin absagen.",
+    "en": "I have to cancel the appointment."
+  },
+  "verschieben": {
+    "de": "Können wir das verschieben?",
+    "en": "Can we postpone that?"
+  },
+  "frei": {
+    "de": "Am Freitag bin ich frei.",
+    "en": "I'm free on Friday."
+  },
+  "besetzt": {
+    "de": "Die Leitung ist besetzt.",
+    "en": "The line is engaged."
+  },
+  "dringend": {
+    "de": "Es ist dringend.",
+    "en": "It's urgent."
+  },
+  "morgens": {
+    "de": "Morgens habe ich Zeit.",
+    "en": "I have time in the mornings."
+  },
+  "nachmittags": {
+    "de": "Nachmittags arbeite ich.",
+    "en": "I work in the afternoons."
+  },
+  "abends": {
+    "de": "Abends bin ich zu Hause.",
+    "en": "In the evenings I'm at home."
+  },
+  "das-datum": {
+    "de": "Welches Datum ist heute?",
+    "en": "What's the date today?"
+  },
+  "der-kopf": {
+    "de": "Mir tut der Kopf weh.",
+    "en": "I have a headache."
+  },
+  "der-bauch": {
+    "de": "Mein Bauch tut weh.",
+    "en": "My stomach hurts."
+  },
+  "der-ruecken": {
+    "de": "Der Rücken tut mir weh.",
+    "en": "My back hurts."
+  },
+  "das-bein": {
+    "de": "Das Bein ist gebrochen.",
+    "en": "The leg is broken."
+  },
+  "der-arm": {
+    "de": "Mein Arm tut weh.",
+    "en": "My arm hurts."
+  },
+  "die-hand": {
+    "de": "Geben Sie mir die Hand.",
+    "en": "Give me your hand."
+  },
+  "das-auge": {
+    "de": "Meine Augen sind müde.",
+    "en": "My eyes are tired."
+  },
+  "der-hals": {
+    "de": "Ich habe Halsschmerzen.",
+    "en": "I have a sore throat."
+  },
+  "wehtun": {
+    "de": "Was tut Ihnen weh?",
+    "en": "What hurts?"
+  },
+  "die-schmerzen": {
+    "de": "Ich habe starke Schmerzen.",
+    "en": "I'm in a lot of pain."
+  },
+  "das-fieber": {
+    "de": "Ich habe Fieber.",
+    "en": "I have a fever."
+  },
+  "die-erkaeltung": {
+    "de": "Ich habe eine Erkältung.",
+    "en": "I have a cold."
+  },
+  "die-tablette": {
+    "de": "Nehmen Sie eine Tablette.",
+    "en": "Take one tablet."
+  },
+  "das-rezept": {
+    "de": "Brauche ich ein Rezept?",
+    "en": "Do I need a prescription?"
+  },
+  "das-wochenende": {
+    "de": "Am Wochenende habe ich frei.",
+    "en": "I'm off at the weekend."
+  },
+  "letzte": {
+    "de": "Letzte Woche war ich krank.",
+    "en": "Last week I was ill."
+  },
+  "gemacht": {
+    "de": "Was hast du gemacht?",
+    "en": "What did you do?"
+  },
+  "gesagt": {
+    "de": "Was hat er gesagt?",
+    "en": "What did he say?"
+  },
+  "gekauft": {
+    "de": "Ich habe Brot gekauft.",
+    "en": "I bought bread."
+  },
+  "gearbeitet": {
+    "de": "Ich habe viel gearbeitet.",
+    "en": "I worked a lot."
+  },
+  "gegessen": {
+    "de": "Wir haben schon gegessen.",
+    "en": "We've already eaten."
+  },
+  "getrunken": {
+    "de": "Ich habe Kaffee getrunken.",
+    "en": "I drank coffee."
+  },
+  "gesehen": {
+    "de": "Ich habe den Film gesehen.",
+    "en": "I saw the film."
+  },
+  "gelesen": {
+    "de": "Ich habe das Buch gelesen.",
+    "en": "I read the book."
+  },
+  "geschrieben": {
+    "de": "Ich habe eine Mail geschrieben.",
+    "en": "I wrote an email."
+  },
+  "schon": {
+    "de": "Ich habe schon gegessen.",
+    "en": "I've already eaten."
+  },
+  "gegangen": {
+    "de": "Ich bin nach Hause gegangen.",
+    "en": "I went home."
+  },
+  "gefahren": {
+    "de": "Wir sind nach Berlin gefahren.",
+    "en": "We travelled to Berlin."
+  },
+  "gekommen": {
+    "de": "Er ist zu spät gekommen.",
+    "en": "He came too late."
+  },
+  "geblieben": {
+    "de": "Ich bin zu Hause geblieben.",
+    "en": "I stayed at home."
+  },
+  "bleiben": {
+    "de": "Ich bleibe hier.",
+    "en": "I'm staying here."
+  },
+  "passieren": {
+    "de": "Was ist passiert?",
+    "en": "What happened?"
+  },
+  "nach-hause": {
+    "de": "Ich gehe jetzt nach Hause.",
+    "en": "I'm going home now."
+  },
+  "zu-hause": {
+    "de": "Ich bin zu Hause.",
+    "en": "I'm at home."
+  },
+  "vorgestern": {
+    "de": "Vorgestern war Montag.",
+    "en": "The day before yesterday was Monday."
+  },
+  "zurueck": {
+    "de": "Ich bin gleich zurück.",
+    "en": "I'll be right back."
+  },
+  "das-wetter": {
+    "de": "Wie ist das Wetter?",
+    "en": "What's the weather like?"
+  },
+  "die-sonne": {
+    "de": "Die Sonne scheint.",
+    "en": "The sun is shining."
+  },
+  "der-regen": {
+    "de": "Der Regen hört auf.",
+    "en": "The rain is stopping."
+  },
+  "der-schnee": {
+    "de": "Im Winter gibt es Schnee.",
+    "en": "There's snow in winter."
+  },
+  "warm": {
+    "de": "Heute ist es warm.",
+    "en": "It's warm today."
+  },
+  "kalt": {
+    "de": "Im Januar ist es kalt.",
+    "en": "It's cold in January."
+  },
+  "heiss": {
+    "de": "Der Kaffee ist heiß.",
+    "en": "The coffee is hot."
+  },
+  "sonnig": {
+    "de": "Morgen wird es sonnig.",
+    "en": "Tomorrow will be sunny."
+  },
+  "regnen": {
+    "de": "Es regnet.",
+    "en": "It's raining."
+  },
+  "schneien": {
+    "de": "Es schneit.",
+    "en": "It's snowing."
+  },
+  "der-sommer": {
+    "de": "Im Sommer ist es warm.",
+    "en": "In summer it's warm."
+  },
+  "der-winter": {
+    "de": "Der Winter ist lang.",
+    "en": "The winter is long."
+  },
+  "der-fruehling": {
+    "de": "Im Frühling wird es warm.",
+    "en": "In spring it gets warm."
+  },
+  "der-herbst": {
+    "de": "Im Herbst regnet es oft.",
+    "en": "It often rains in autumn."
+  },
+  "die-kleidung": {
+    "de": "Die Kleidung ist im Schrank.",
+    "en": "The clothes are in the wardrobe."
+  },
+  "das-hemd": {
+    "de": "Das Hemd ist zu groß.",
+    "en": "The shirt is too big."
+  },
+  "die-hose": {
+    "de": "Die Hose passt gut.",
+    "en": "The trousers fit well."
+  },
+  "der-rock": {
+    "de": "Der Rock ist schön.",
+    "en": "The skirt is nice."
+  },
+  "das-kleid": {
+    "de": "Das Kleid ist teuer.",
+    "en": "The dress is expensive."
+  },
+  "die-jacke": {
+    "de": "Nimm eine Jacke mit.",
+    "en": "Take a jacket with you."
+  },
+  "der-mantel": {
+    "de": "Im Winter trage ich einen Mantel.",
+    "en": "In winter I wear a coat."
+  },
+  "der-schuh": {
+    "de": "Die Schuhe sind zu klein.",
+    "en": "The shoes are too small."
+  },
+  "der-pullover": {
+    "de": "Der Pullover ist warm.",
+    "en": "The jumper is warm."
+  },
+  "die-muetze": {
+    "de": "Wo ist meine Mütze?",
+    "en": "Where is my hat?"
+  },
+  "die-groesse": {
+    "de": "Welche Größe haben Sie?",
+    "en": "What size are you?"
+  },
+  "tragen": {
+    "de": "Ich trage gern Blau.",
+    "en": "I like wearing blue."
+  },
+  "anprobieren": {
+    "de": "Kann ich das anprobieren?",
+    "en": "Can I try this on?"
+  },
+  "umtauschen": {
+    "de": "Kann ich das umtauschen?",
+    "en": "Can I exchange this?"
+  },
+  "der-bus": {
+    "de": "Der Bus kommt gleich.",
+    "en": "The bus is coming shortly."
+  },
+  "die-bahn": {
+    "de": "Ich fahre mit der Bahn.",
+    "en": "I travel by train."
+  },
+  "der-zug": {
+    "de": "Der Zug hat Verspätung.",
+    "en": "The train is delayed."
+  },
+  "das-fahrrad": {
+    "de": "Ich fahre mit dem Fahrrad.",
+    "en": "I go by bike."
+  },
+  "die-haltestelle": {
+    "de": "Die Haltestelle ist dort.",
+    "en": "The stop is over there."
+  },
+  "die-fahrkarte": {
+    "de": "Eine Fahrkarte nach Köln.",
+    "en": "One ticket to Cologne."
+  },
+  "einsteigen": {
+    "de": "Bitte einsteigen!",
+    "en": "All aboard!"
+  },
+  "aussteigen": {
+    "de": "Ich steige hier aus.",
+    "en": "I'm getting off here."
+  },
+  "umsteigen": {
+    "de": "Sie müssen in Hamburg umsteigen.",
+    "en": "You have to change in Hamburg."
+  },
+  "die-verspaetung": {
+    "de": "Der Zug hat zehn Minuten Verspätung.",
+    "en": "The train is ten minutes late."
+  },
+  "das-gleis": {
+    "de": "Gleis drei, bitte.",
+    "en": "Platform three, please."
+  },
+  "langsam": {
+    "de": "Sprechen Sie bitte langsam.",
+    "en": "Please speak slowly."
+  },
+  "schnell": {
+    "de": "Nicht so schnell!",
+    "en": "Not so fast!"
+  },
+  "ruhig": {
+    "de": "Seien Sie bitte ruhig.",
+    "en": "Please be quiet."
+  },
+  "vorsichtig": {
+    "de": "Sei vorsichtig!",
+    "en": "Be careful!"
+  },
+  "das-schild": {
+    "de": "Lesen Sie das Schild.",
+    "en": "Read the sign."
+  },
+  "die-regel": {
+    "de": "Das ist die Regel.",
+    "en": "That's the rule."
+  },
+  "aufpassen": {
+    "de": "Pass auf!",
+    "en": "Watch out!"
+  },
+  "bitten": {
+    "de": "Ich bitte Sie um Hilfe.",
+    "en": "I'm asking you for help."
+  },
+  "sagen": {
+    "de": "Sagen Sie das bitte noch einmal.",
+    "en": "Please say that again."
+  },
+  "entschuldigen": {
+    "de": "Entschuldigen Sie bitte.",
+    "en": "Excuse me, please."
+  },
+  "unser": {
+    "de": "Das ist unsere Wohnung.",
+    "en": "That is our flat."
+  },
+  "euer": {
+    "de": "Wo ist euer Auto?",
+    "en": "Where is your car?"
+  },
+  "die-chefin": {
+    "de": "Meine Chefin heißt Frau Weber.",
+    "en": "My boss is called Mrs Weber."
+  },
+  "wessen": {
+    "de": "Wessen Tasche ist das?",
+    "en": "Whose bag is that?"
+  },
+  "der-kollege": {
+    "de": "Mein Kollege heißt Tom.",
+    "en": "My colleague is called Tom."
+  },
+  "die-kollegin": {
+    "de": "Meine Kollegin ist krank.",
+    "en": "My colleague is ill."
+  },
+  "der-nachbar": {
+    "de": "Der Nachbar ist sehr nett.",
+    "en": "The neighbour is very nice."
+  },
+  "die-nachbarin": {
+    "de": "Unsere Nachbarin hat einen Hund.",
+    "en": "Our neighbour has a dog."
+  },
+  "der-chef": {
+    "de": "Mein Chef ist im Urlaub.",
+    "en": "My boss is on holiday."
+  },
+  "der-hund": {
+    "de": "Ihr Hund ist klein.",
+    "en": "Their dog is small."
+  },
+  "unter": {
+    "de": "Die Tasche steht unter dem Stuhl.",
+    "en": "The bag is under the chair."
+  },
+  "ueber": {
+    "de": "Das Bild hängt über dem Sofa.",
+    "en": "The picture hangs above the sofa."
+  },
+  "hinter": {
+    "de": "Der Garten ist hinter dem Haus.",
+    "en": "The garden is behind the house."
+  },
+  "der-garten": {
+    "de": "Der Garten ist hinter dem Haus.",
+    "en": "The garden is behind the house."
+  },
+  "an": {
+    "de": "Das Bild hängt an der Wand.",
+    "en": "The picture hangs on the wall."
+  },
+  "stellen": {
+    "de": "Ich stelle die Flasche auf den Tisch.",
+    "en": "I put the bottle on the table."
+  },
+  "legen": {
+    "de": "Ich lege das Buch auf den Tisch.",
+    "en": "I lay the book on the table."
+  },
+  "stehen": {
+    "de": "Die Flasche steht auf dem Tisch.",
+    "en": "The bottle stands on the table."
+  },
+  "liegen": {
+    "de": "Das Buch liegt auf dem Tisch.",
+    "en": "The book lies on the table."
+  },
+  "die-wand": {
+    "de": "Die Wand ist weiß.",
+    "en": "The wall is white."
+  },
+  "der-beruf": {
+    "de": "Was sind Sie von Beruf?",
+    "en": "What do you do for a living?"
+  },
+  "studieren": {
+    "de": "Ich studiere Informatik.",
+    "en": "I study computer science."
+  },
+  "der-student": {
+    "de": "Ich bin Student.",
+    "en": "I'm a student."
+  },
+  "die-erfahrung": {
+    "de": "Ich habe wenig Erfahrung.",
+    "en": "I have little experience."
+  },
+  "interessant": {
+    "de": "Das ist sehr interessant.",
+    "en": "That's very interesting."
+  },
+  "wichtig": {
+    "de": "Das ist mir wichtig.",
+    "en": "That's important to me."
+  },
+  "das-hobby": {
+    "de": "Mein Hobby ist Kochen.",
+    "en": "My hobby is cooking."
+  },
+  "gern": {
+    "de": "Ich koche gern.",
+    "en": "I like cooking."
+  },
+  "am-liebsten": {
+    "de": "Am liebsten lese ich.",
+    "en": "Most of all I like reading."
+  },
+  "erzaehlen": {
+    "de": "Erzähl mir von dir.",
+    "en": "Tell me about yourself."
   }
 }

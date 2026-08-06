@@ -355,7 +355,7 @@
     "lemma": "mein",
     "article": null,
     "plural": null,
-    "pos": "pronoun",
+    "pos": "possessive",
     "en": "my",
     "topic": "pronouns"
   },
@@ -364,7 +364,7 @@
     "lemma": "dein",
     "article": null,
     "plural": null,
-    "pos": "pronoun",
+    "pos": "possessive",
     "en": "your (informal)",
     "topic": "pronouns"
   },
@@ -1354,7 +1354,7 @@
     "lemma": "sein",
     "article": null,
     "plural": null,
-    "pos": "pronoun",
+    "pos": "possessive",
     "en": "his — same word as the verb sein, told apart by position",
     "topic": "pronouns"
   },
@@ -1363,7 +1363,7 @@
     "lemma": "ihr",
     "article": null,
     "plural": null,
-    "pos": "pronoun",
+    "pos": "possessive",
     "en": "her / their",
     "topic": "pronouns"
   },
