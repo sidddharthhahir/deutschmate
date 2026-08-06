@@ -8,6 +8,7 @@ import { readFileSync, readdirSync, existsSync } from "node:fs";
 import path from "node:path";
 import { applySchema, DB_PATH } from "../src/lib/db.ts";
 import { wordKey } from "../src/lib/error-key.ts";
+import { needsUnit } from "../src/lib/sentence-grammar.ts";
 
 const ROOT = process.cwd();
 
@@ -505,14 +506,22 @@ if (existsSync(SENTENCE_FILE)) {
     readFileSync(SENTENCE_FILE, "utf8"),
   ) as RawSentence[];
   const upS = db.prepare(`
-    INSERT INTO sentence (id, de, en, level, word_ids_json, source)
-    VALUES (?, ?, ?, ?, ?, ?)
+    INSERT INTO sentence (id, de, en, level, word_ids_json, source, needs_unit)
+    VALUES (?, ?, ?, ?, ?, ?, ?)
     ON CONFLICT(id) DO UPDATE SET
       de=excluded.de, en=excluded.en, level=excluded.level,
-      word_ids_json=excluded.word_ids_json, source=excluded.source
+      word_ids_json=excluded.word_ids_json, source=excluded.source,
+      needs_unit=excluded.needs_unit
   `);
   db.exec("BEGIN");
+  /* Classified here, once, rather than on every session build: the rules are
+     pure and the corpus does not change between seeds. */
+  const gated = { a11: 0, a12: 0, out: 0 };
   for (const s of sentences) {
+    const needs = needsUnit(s.de);
+    if (needs > 40) gated.out++;
+    else if (needs > 20) gated.a12++;
+    else gated.a11++;
     upS.run(
       s.id,
       s.de,
@@ -520,10 +529,14 @@ if (existsSync(SENTENCE_FILE)) {
       s.level,
       JSON.stringify(s.word_ids ?? []),
       s.source,
+      needs,
     );
   }
   db.exec("COMMIT");
   console.log(`OK${sentences.length} sentences  (Tatoeba, CC-BY 2.0 FR)`);
+  console.log(
+    `    by grammar: ${gated.a11} reachable in A1.1, ${gated.a12} in A1.2, ${gated.out} beyond A1`,
+  );
 } else {
   console.log(
     "--  no data/sentences.json — run `npm run import-sentences` to build it",

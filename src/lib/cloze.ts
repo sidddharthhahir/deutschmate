@@ -2,6 +2,7 @@ import { createEmptyCard } from "ts-fsrs";
 import { all, get, run, tx } from "./db";
 import { toSqlDate } from "./srs";
 import { blankForError } from "./cloze-text";
+import { needsUnit } from "./sentence-grammar";
 import { CLOZE_BACKLOG_CAP as BACKLOG_CAP } from "@/lib/config";
 
 /** Cloze cards — fill the gap. A cloze is only worth making when ONE token is wrong. */
@@ -71,8 +72,15 @@ export function addCloze(opts: {
   });
 }
 
-/** Turn recent mistakes into cloze cards. */
-export function mineFromErrors(userId: string, days = 14): number {
+/**
+ * Turn recent mistakes into cloze cards.
+ *
+ * `reach` is how far into A1 the learner has got. Attempts at sentences beyond
+ * it are skipped: those are the ones the old word-frequency filing served too
+ * early, and drilling a learner on grammar nobody has taught them is punishing
+ * them for a bug. 99 mines everything, which is what past-A1 learners want.
+ */
+export function mineFromErrors(userId: string, reach = 99, days = 14): number {
   if (clozeBacklog(userId) >= BACKLOG_CAP) return 0;
 
   const rows = all<{
@@ -96,6 +104,7 @@ export function mineFromErrors(userId: string, days = 14): number {
   let made = 0;
   for (const r of rows) {
     if (clozeBacklog(userId) + made >= BACKLOG_CAP) break;
+    if (needsUnit(r.expected) > reach) continue;
     const gap = blankForError(r.expected, r.user_answer);
     if (!gap) continue;
     const tags = safeTags(r.tags);

@@ -50,9 +50,14 @@ CREATE TABLE IF NOT EXISTS sentence (
   level         TEXT NOT NULL,
   word_ids_json TEXT NOT NULL DEFAULT '[]',  -- which words it uses (constraint checking)
   audio_url     TEXT,
-  source        TEXT                          -- tatoeba | generated | curated
+  source        TEXT,                         -- tatoeba | generated | curated
+  -- The earliest A1 unit (1..40) by which every structure in this sentence has
+  -- been taught; 99 means it is not A1 grammar at all. Computed at seed time by
+  -- lib/sentence-grammar.ts. `level` above records how common the WORDS are,
+  -- which is how a relative clause came to be served on day two.
+  needs_unit    INTEGER NOT NULL DEFAULT 99
 );
-CREATE INDEX IF NOT EXISTS idx_sentence_level ON sentence(level);
+CREATE INDEX IF NOT EXISTS idx_sentence_level ON sentence(level, needs_unit);
 
 CREATE TABLE IF NOT EXISTS grammar (
   id            TEXT PRIMARY KEY,          -- "praesens-regular"

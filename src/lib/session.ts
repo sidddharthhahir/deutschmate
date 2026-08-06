@@ -4,6 +4,7 @@ import { topErrorTags } from "./errors";
 import { dueCloze, mineFromErrors } from "./cloze";
 import { rhythmFor, today } from "./rhythm";
 import { dueGrammar } from "./grammar-srs";
+import { reachOf } from "./sentence-grammar";
 import {
   CLOZE_PER_SESSION,
   GAP_BACKLOG,
@@ -385,6 +386,9 @@ export function buildSession(
   const atLevel = unit?.level ?? level;
   const unitsInLevel = unitCount(atLevel);
   const pacing = newWordBudget(userId);
+  /* How far into A1 the learner has got, for the sentence gate. No unit means
+     an empty course, and 1 keeps a broken database from serving everything. */
+  const reach = unit ? reachOf(unit.level, unit.ord) : 1;
 
   /* The next unit by name. Looked up across levels rather than by ord+1, so
      the last unit of a level points at the first of the next one instead of
@@ -472,7 +476,7 @@ export function buildSession(
   // 2b. Lücken — sentences mined from this learner's own wrong answers and
   //     from lines they tapped while reading. Mining runs here, on every build,
   //     so yesterday's mistake is today's card with nobody having to ask.
-  mineFromErrors(userId);
+  mineFromErrors(userId, reach);
   const gaps = dueCloze(userId, CLOZE_PER_SESSION);
   if (gaps.length) {
     blocks.push({
@@ -615,7 +619,9 @@ export function buildSession(
         // trip — the runner just renders this instead (spec §17).
         fallback: {
           kind: "listening",
-          payload: { items: listeningItems(unitWords, atLevel, dayIndex) },
+          payload: {
+            items: listeningItems(unitWords, atLevel, reach, dayIndex),
+          },
         },
       },
     });
@@ -647,7 +653,7 @@ export function buildSession(
       minutes: 15,
       offline: true,
       skippable: true,
-      payload: { items: listeningItems(unitWords, atLevel, dayIndex) },
+      payload: { items: listeningItems(unitWords, atLevel, reach, dayIndex) },
     });
   }
 
@@ -659,7 +665,9 @@ export function buildSession(
       minutes: 12,
       offline: true,
       skippable: true,
-      payload: { items: builderItems(unit!, unitWords, atLevel, dayIndex) },
+      payload: {
+        items: builderItems(unit!, unitWords, atLevel, reach, dayIndex),
+      },
     });
   }
 
@@ -672,7 +680,7 @@ export function buildSession(
       offline: true, // Web Speech runs in the browser
       skippable: true,
       payload: {
-        items: listeningItems(unitWords, atLevel, dayIndex).slice(0, 5),
+        items: listeningItems(unitWords, atLevel, reach, dayIndex).slice(0, 5),
       },
     });
   } else if (unit) {
@@ -748,20 +756,38 @@ export function buildSession(
 
 // ---------------------------------------------------------------- generators
 
-/** Extra sentences from the corpus, at or below the learner's level. */
-function corpusSentences(level: string, dayIndex: number, limit: number) {
+/**
+ * Extra sentences from the corpus, at or below the learner's level AND inside
+ * the grammar they have been taught.
+ *
+ * `level` alone is how common the words are, and that is what put a relative
+ * clause in front of a beginner: every word in "Mein Vater ist der, der Tee
+ * trinkt" is common. `reach` is the unit the learner has got to, on the 1..40
+ * A1 scale, and needs_unit is what the sentence actually demands.
+ */
+function corpusSentences(
+  level: string,
+  reach: number,
+  dayIndex: number,
+  limit: number,
+) {
   const levels = LEVELS.slice(
     0,
     Math.max(1, LEVELS.indexOf(level as (typeof LEVELS)[number]) + 1),
   );
   const ph = levels.map(() => "?").join(",");
+  const where = `level IN (${ph}) AND needs_unit <= ?`;
+  const args = [...levels, reach];
 
   /* A window that moves by one page a day. Two things broke it. */
   const total =
     get<{ n: number }>(
-      `SELECT COUNT(*) AS n FROM sentence WHERE level IN (${ph})`,
-      ...levels,
+      `SELECT COUNT(*) AS n FROM sentence WHERE ${where}`,
+      ...args,
     )?.n ?? 0;
+  /* Empty is a real answer in the first eleven units: the course has not taught
+     a finite verb yet, so there is no sentence the learner could build. The
+     unit's own curated examples carry those blocks. */
   if (!total) return [];
 
   const offset = (dayIndex * limit) % total;
@@ -772,19 +798,22 @@ function corpusSentences(level: string, dayIndex: number, limit: number) {
     source: string | null;
   }>(
     `SELECT id, de, en, source FROM sentence
-      WHERE level IN (${ph}) ORDER BY id LIMIT ? OFFSET ?`,
-    ...levels,
+      WHERE ${where} ORDER BY id LIMIT ? OFFSET ?`,
+    ...args,
     limit,
     offset,
   );
 
-  // Wrap round rather than returning a short block on the last page.
-  if (rows.length < limit) {
+  /* Wrap round rather than returning a short block on the last page — but only
+     when there is a second page to wrap to. The gate can leave fewer sentences
+     than a block wants, and wrapping into a pool smaller than the limit hands
+     back the same sentence twice: heard, then heard again. */
+  if (rows.length < limit && total > limit) {
     rows.push(
       ...all<{ id: string; de: string; en: string; source: string | null }>(
         `SELECT id, de, en, source FROM sentence
-          WHERE level IN (${ph}) ORDER BY id LIMIT ?`,
-        ...levels,
+          WHERE ${where} ORDER BY id LIMIT ?`,
+        ...args,
         limit - rows.length,
       ),
     );
@@ -796,7 +825,12 @@ function corpusSentences(level: string, dayIndex: number, limit: number) {
  * Listening items: hear it, type it. Before the corpus import this block could only ever offer as
  * many items as the unit had example sentences, which was often three.
  */
-function listeningItems(words: Word[], level: string, dayIndex: number) {
+function listeningItems(
+  words: Word[],
+  level: string,
+  reach: number,
+  dayIndex: number,
+) {
   const curated = words
     .filter((w) => w.example_de)
     .slice(0, 5)
@@ -808,7 +842,7 @@ function listeningItems(words: Word[], level: string, dayIndex: number) {
       credit: null as string | null,
     }));
 
-  const extra = corpusSentences(level, dayIndex, 8 - curated.length).map(
+  const extra = corpusSentences(level, reach, dayIndex, 8 - curated.length).map(
     (s) => ({
       wordId: s.id,
       de: s.de,
@@ -826,6 +860,7 @@ function builderItems(
   unit: Unit,
   words: Word[],
   level: string,
+  reach: number,
   dayIndex: number,
 ) {
   const make = (id: string, de: string, en: string, credit: string | null) => {
@@ -847,9 +882,12 @@ function builderItems(
 
   // Offset the corpus cursor from the listening block's, or the same sentence
   // turns up twice in one session — heard, then rebuilt.
-  const extra = corpusSentences(level, dayIndex + 7, 8 - curated.length).map(
-    (s) => make(s.id, s.de, s.en, s.source),
-  );
+  const extra = corpusSentences(
+    level,
+    reach,
+    dayIndex + 7,
+    8 - curated.length,
+  ).map((s) => make(s.id, s.de, s.en, s.source));
 
   return [...curated, ...extra];
 }

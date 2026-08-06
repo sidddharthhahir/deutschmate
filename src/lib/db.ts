@@ -59,6 +59,12 @@ const MIGRATIONS: [
          OR EXISTS (SELECT 1 FROM video    v WHERE instr(lower(v.segments_json), lower(explanation.sentence)) > 0);
      DELETE FROM explanation WHERE shared = 0;`,
   ],
+  /*
+   * What grammar a sentence uses, as opposed to how common its words are.
+   * Defaults to 99 — out of A1 — so an un-reseeded database withholds corpus
+   * sentences rather than serving ungated ones. Filled by scripts/seed.mts.
+   */
+  ["sentence", "needs_unit", "INTEGER NOT NULL DEFAULT 99"],
 ];
 
 export function migrate(db: DatabaseSync) {

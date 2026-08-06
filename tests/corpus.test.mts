@@ -7,25 +7,37 @@ import { ok, eq, section, done, open } from "./harness.mts";
 const LEVELS = ["A1.1", "A1.2", "A2.1", "A2.2", "B1.1", "B1.2"];
 const db = open();
 
-/** The query lib/session.ts runs, driven directly across a run of days. */
-function walk(level: string, limit: number, days: number) {
+/**
+ * The query lib/session.ts runs, driven directly across a run of days.
+ *
+ * `reach` mirrors the grammar gate. Default 99 — a learner past A1, for whom
+ * the gate lets everything through — so the rotation assertions below still
+ * test the cursor rather than the filter.
+ */
+function walk(level: string, limit: number, days: number, reach = 99) {
   const levels = LEVELS.slice(0, LEVELS.indexOf(level) + 1);
   const ph = levels.map(() => "?").join(",");
+  const args = [...levels, reach];
+  const where = `level IN (${ph}) AND needs_unit <= ?`;
   const pool = db
-    .prepare(`SELECT COUNT(*) AS n FROM sentence WHERE level IN (${ph})`)
-    .get(...levels) as { n: number };
+    .prepare(`SELECT COUNT(*) AS n FROM sentence WHERE ${where}`)
+    .get(...args) as { n: number };
   const page = db.prepare(
-    `SELECT id FROM sentence WHERE level IN (${ph}) ORDER BY id LIMIT ? OFFSET ?`,
+    `SELECT id FROM sentence WHERE ${where} ORDER BY id LIMIT ? OFFSET ?`,
+  );
+  const top = db.prepare(
+    `SELECT id FROM sentence WHERE ${where} ORDER BY id LIMIT ?`,
   );
 
   const seen = new Set<string>();
   const perDay: string[] = [];
   for (let d = 0; d < days; d++) {
     const offset = (d * limit) % Math.max(1, pool.n);
-    const rows = page.all(...levels, limit, offset) as { id: string }[];
+    const rows = page.all(...args, limit, offset) as { id: string }[];
+    // Only wrap when there is a second page to wrap to — see corpusSentences.
     const wrapped =
-      rows.length < limit
-        ? (page.all(...levels, limit - rows.length, 0) as { id: string }[])
+      rows.length < limit && pool.n > limit
+        ? (top.all(...args, limit - rows.length) as { id: string }[])
         : [];
     for (const r of [...rows, ...wrapped]) seen.add(r.id);
     perDay.push([...rows, ...wrapped].map((r) => r.id).join(","));
@@ -63,6 +75,36 @@ ok(
   long.perDay[0]?.slice(0, 40),
 );
 ok(long.perDay[1] !== long.perDay[37], "day 37 differs from day 1");
+
+section("the gate shrinks the pool without stalling the cursor");
+/* The gate can cut the pool by three quarters. The cursor has to keep moving
+   through what is left, or a beginner sees the same eight sentences all week —
+   which is the failure the rotation work above exists to prevent, reappearing
+   through a different door. */
+const gated = walk("A1.1", 8, 30, 20);
+ok(
+  gated.pool < walk("A1.1", 8, 1).pool,
+  "an A1.1 learner sees a smaller pool than an A2 one",
+  `${gated.pool} of ${walk("A1.1", 8, 1).pool}`,
+);
+ok(gated.pool >= 8, "and it is still big enough to fill a block", gated.pool);
+ok(
+  new Set(gated.perDay).size >= 25,
+  "30 days, at least 25 distinct sets",
+  `${new Set(gated.perDay).size} distinct`,
+);
+
+section("a pool smaller than one block does not repeat itself in one day");
+/* Unit 4 has five reachable sentences and the block asks for eight. Wrapping
+   into a pool that small handed back the same line twice — heard, then heard
+   again three items later. */
+const tiny = walk("A1.1", 8, 1, 4);
+const ids = tiny.perDay[0].split(",").filter(Boolean);
+eq(
+  ids.length,
+  new Set(ids).size,
+  `no sentence appears twice in one block (${ids.length} offered from a pool of ${tiny.pool})`,
+);
 
 section("the last page wraps instead of coming up short");
 const pool = (
