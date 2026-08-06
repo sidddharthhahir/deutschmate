@@ -187,15 +187,16 @@ export default function VideoBlock({
             </p>
           </>
         ) : (
-          <p className="text-muted mt-5 text-center text-[14px] leading-relaxed">
-            Für dieses Video sind noch keine Sätze markiert.
-            <br />
-            <a
-              href="/admin/video"
-              className="text-secondary hover:text-accent underline"
-            >
-              Im Segment-Editor markieren
-            </a>
+          /*
+           * The normal case, not an error: almost no episode has been marked up
+           * by hand, and this block existing at all is worth more than the
+           * per-sentence replay it is missing. It used to link to the segment
+           * editor, which is behind DEUTSCHMATE_ADMIN and is not a thing to put
+           * in front of somebody in the middle of a lesson.
+           */
+          <p className="text-muted mx-auto mt-5 max-w-[46ch] text-center text-[14px] leading-relaxed">
+            Einmal ganz ansehen, ohne alles verstehen zu wollen — dann noch
+            einmal. Für dieses Video sind noch keine einzelnen Sätze markiert.
           </p>
         )}
 

@@ -111,10 +111,10 @@ export const INTRO: Record<string, Intro> = {
     ],
   },
   video: {
-    line: "A clip, in sections, with the German written out",
+    line: "Ninety seconds of real German, at your level",
     body: [
-      "A short piece of real German, cut into sections you can replay one at a time.",
-      "This is the one block that needs the network. Offline it is quietly replaced by a listening drill.",
+      "An episode of Nicos Weg — Deutsche Welle's A1–B1 drama course — picked for the unit you are on. About a minute and a half.",
+      "Watch it once without trying to catch everything, then again. Where the sentences have been marked up you can tap one to replay just that line; most episodes have not been, and watching is the point either way.",
     ],
   },
   builder: {

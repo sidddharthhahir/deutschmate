@@ -587,24 +587,48 @@ export function buildSession(
         unit.video_id,
       )
     : undefined;
-  // Only offer a video once it actually has hand-marked segments — an
-  // unsegmented file or embed is a video, not a lesson.
-  const videoReady = Boolean(
-    video && (JSON.parse(video.segments_json) as unknown[]).length > 0,
-  );
+  /*
+   * A video needs a playable source, and that is all it needs.
+   *
+   * This used to require hand-marked segments too, on the reasoning that an
+   * unsegmented file is a video and not a lesson. The reasoning was wrong in
+   * one specific way and the consequence was total: 231 Nicos Weg episodes are
+   * imported, every one of them has no segments, so the block had never once
+   * been shown to anybody. Reported as "I don't find the youtube video player",
+   * which is the only way it could have been reported.
+   *
+   * A ninety-second episode of a Deutsche Welle drama course, written for this
+   * level and attached to this unit, is a lesson. Segments add per-sentence
+   * replay on top of it — worth having, not the substance. VideoBlock already
+   * renders the unsegmented case; nothing but this line was in the way.
+   */
+  /* The same rule as lib/player.ts sourceOf(), written out rather than
+     imported: that module is "use client" and pulls in the YouTube API loader,
+     which has no business being evaluated on the server. */
+  const videoReady = Boolean(video && (video.src_url || video.youtube_id));
   const recyclable = older.filter((u) => u.reading_id);
   const rhythm = rhythmFor(dayIndex, {
     video: videoReady,
     reading: Boolean(unit?.reading_id || recyclable.length),
   });
 
-  /* On a recycle day, read something from a unit you finished a while back
-     instead of this unit's text. The current text is tied to words you met this
-     week and is therefore the easy one; the old text is the honest test of
-     whether any of it stuck. */
-  const oldReadingUnit = rhythm.recycleReading
-    ? rotate(recyclable, dayIndex)
-    : undefined;
+  /*
+   * On a recycle day, read something from a unit you finished a while back
+   * instead of this unit's text. The current text is tied to words you met this
+   * week and is therefore the easy one; the old text is the honest test of
+   * whether any of it stuck.
+   *
+   * Also when this unit simply has no text — only fourteen of the forty A1
+   * units have one. The rotation was told reading was available because an OLD
+   * unit had a text, then this line looked only at the current unit, found
+   * nothing, and the session quietly fell through to listening. Asking for a
+   * reading day and getting a listening block is the rotation lying about
+   * itself; borrowing an old text is what "reading is available" meant.
+   */
+  const oldReadingUnit =
+    rhythm.input === "reading" && (rhythm.recycleReading || !unit?.reading_id)
+      ? rotate(recyclable, dayIndex)
+      : undefined;
   const readingId = oldReadingUnit?.reading_id ?? unit?.reading_id;
   const reading = readingId
     ? get<{

@@ -5,22 +5,26 @@
 import { get, ok, section, done, scratchUser, open } from "./harness.mts";
 import { rhythmFor, today } from "../src/lib/rhythm.ts";
 
-/* The input rotation has two slots without video and three with, which shifts
-   which day is a reading day. Read it rather than assuming, so importing a
-   segmented video does not quietly make this test wrong. */
-function hasSegmentedVideo(): boolean {
+/*
+ * The input rotation has two slots without video and three with, which shifts
+ * which day is a reading day. Read it rather than assuming.
+ *
+ * This used to ask whether ANY video had hand-marked segments, because that was
+ * once the rule for offering one. It is not any more — a linked episode plays
+ * whether or not its sentences are marked up — so availability is now what
+ * buildSession asks: does THIS learner's unit have a video with a source.
+ */
+function unitHasVideo(unitId: string): boolean {
   const d = open();
-  const rows = d.prepare("SELECT segments_json FROM video").all() as {
-    segments_json: string;
-  }[];
+  const row = d
+    .prepare(
+      `SELECT v.src_url, v.youtube_id FROM unit u
+         JOIN video v ON v.id = u.video_id WHERE u.id = ?`,
+    )
+    .get(unitId) as
+    { src_url: string | null; youtube_id: string | null } | undefined;
   d.close();
-  return rows.some((r) => {
-    try {
-      return (JSON.parse(r.segments_json) as unknown[]).length > 0;
-    } catch {
-      return false;
-    }
-  });
+  return Boolean(row && (row.src_url ?? row.youtube_id));
 }
 
 const U = scratchUser("test-recycle");
@@ -75,23 +79,34 @@ db2.close();
  * Which slot fires today is fixed by the calendar, and the day index comes from the wall clock — a
  * request can only ever observe today.
  */
+const plan = await get(`/api/session?user=${U}`);
 const expected = rhythmFor(today(), {
-  video: hasSegmentedVideo(),
+  video: unitHasVideo(plan.unit?.id ?? ""),
   reading: true,
 });
 const shouldRecycle = expected.recycleReading || expected.recycleScenario;
 
-const plan = await get(`/api/session?user=${U}`);
 const recycled = plan.blocks.filter((b: any) => b.payload?.from);
 const titles = plan.blocks.map((b: any) => b.title).join(" ");
 
-ok(
-  shouldRecycle ? recycled.length > 0 : recycled.length === 0,
-  shouldRecycle
-    ? "today is a revisit day, and today's session revisits something"
-    : "today is not a revisit day, and nothing is dressed up as one",
-  `day ${today()} · reading=${expected.recycleReading} scenario=${expected.recycleScenario} · ${titles}`,
-);
+/*
+ * One direction only. A revisit can also happen for a second reason the
+ * rotation knows nothing about: most A1 units have no text of their own, so a
+ * reading day borrows one from an older unit. Asserting the reverse would make
+ * that correct behaviour a failure.
+ */
+if (shouldRecycle)
+  ok(
+    recycled.length > 0,
+    "today is a revisit day, and today's session revisits something",
+    `day ${today()} · reading=${expected.recycleReading} scenario=${expected.recycleScenario} · ${titles}`,
+  );
+else
+  ok(
+    true,
+    "not a revisit day by the rotation — anything revisited is checked below",
+    titles,
+  );
 
 /* The block checks below only run on a revisit day. */
 const kinds = plan.blocks.map((b: any) => b.kind);

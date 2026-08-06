@@ -126,10 +126,16 @@ description: today this is a 120-unit German course with a twelve-scenario
 living-in-Germany corner. It was six. Principle 5 says which half grows next.
 
 Principle 4 does most of the work. It is why the recap counts rows instead of
-animating, why an unsegmented video does not appear, why `config.ts` has a test
-asserting every constant is actually read, and why the mascot idea below is not
-built: a friendly line saying *"today you'll learn shopping words"* over a
-session teaching *ich bin, du bist* is a lie with a nice voice.
+animating, why the streak drops to zero the day after you skip one, why
+`config.ts` has a test asserting every constant is actually read, and why the
+mascot idea below is not built: a friendly line saying *"today you'll learn
+shopping words"* over a session teaching *ich bin, du bist* is a lie with a
+nice voice.
+
+It cuts the other way too. "An unsegmented video is a file, not a lesson" was
+principle 4 reasoning, and it hid 231 real Deutsche Welle episodes behind a
+condition none of them met — a purity rule that deleted the feature instead of
+keeping it honest.
 
 ---
 
@@ -176,7 +182,7 @@ a different one.
 | 2 | **Fix** · **Lücken** | your own recent mistakes. Absent when you have none. |
 | 2b | **Grammatik-Wdh.** | rules that are due back. On the FSRS curve, so it appears whether or not you got anything wrong. |
 | 3 | **Neue Wörter** *or* **Grammatik** | never both in a day — two novel loads halve retention of each. |
-| 4 | **Hören** · **Lesen** · **Wiederlesen** · **Video** | rotates. Every other reading day it is an *old* text. |
+| 4 | **Hören** · **Lesen** · **Wiederlesen** · **Video** | rotates. Video one day in three where the unit has one — 33 of the 40 A1 units are matched to a *Nicos Weg* episode. Reading borrows an old text when this unit has none of its own, and says so. |
 | 5 | **Sätze bauen** | |
 | 6 | **Sprechen** *or* **Schreiben** | speaking two days in three. |
 | 7 | **Gespräch** *or* **Nochmal sprechen** | every third one is a scene you did weeks ago. Absent for the whole of A1, which has no scenarios written yet. |

@@ -21,8 +21,9 @@ export function today(now = Date.now()): number {
 }
 
 export function rhythmFor(dayIndex: number, has: Available): Rhythm {
-  /* Video only counts when it has hand-marked segments; an unsegmented embed
-     is a YouTube link, not a lesson. The caller resolves that before asking. */
+  /* Video counts when the unit has one with a playable source. It used to need
+     hand-marked segments too, which no episode has, so this branch was dead for
+     the whole life of the app. The caller resolves availability before asking. */
   const inputSlots = has.video ? 3 : has.reading ? 2 : 1;
   const inputChoice = dayIndex % inputSlots;
 

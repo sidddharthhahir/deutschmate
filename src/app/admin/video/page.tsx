@@ -258,11 +258,14 @@ export default function VideoAdmin() {
           </div>
         )}
 
+        {/* It has always taken a direct mp4 too — loadTyped falls through to a
+            file source. Saying "YouTube" hid the only kind of URL the 231
+            imported Deutsche Welle episodes actually have. */}
         <div className="mt-6 flex gap-2">
           <input
             value={ytId}
             onChange={(e) => setYtId(e.target.value)}
-            placeholder="YouTube-URL oder ID"
+            placeholder="YouTube-URL, ID oder .mp4-Link"
             className="flex-1 rounded-lg border border-neutral-800 bg-neutral-900 px-3 py-2 text-sm outline-none focus:border-neutral-600"
           />
           <button

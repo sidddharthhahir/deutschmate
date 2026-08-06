@@ -226,6 +226,27 @@ let inserted = 0;
 let updated = 0;
 let linked = 0;
 
+/*
+ * Clear every link this catalogue is about to make, first.
+ *
+ * Assignments were only ever added, never withdrawn, so the six links made
+ * against the pre-rewrite A1 curriculum survived it — "Zahlen von 1 bis 100"
+ * stayed attached to the unit about "Woher kommst du?". Dropping a unit_id from
+ * the catalogue now actually unlinks it.
+ */
+const claimed = new Set(ok.map((v) => v.unit_id).filter(Boolean));
+const orphaned = all<{ id: string }>(
+  `SELECT u.id FROM unit u JOIN video v ON v.id = u.video_id
+    WHERE u.id NOT IN (${claimed.size ? [...claimed].map(() => "?").join(",") : "''"})`,
+  ...claimed,
+);
+for (const u of orphaned)
+  run("UPDATE unit SET video_id = NULL WHERE id = ?", u.id);
+if (orphaned.length)
+  console.log(
+    `  unlinked ${orphaned.length} unit(s) the catalogue no longer claims`,
+  );
+
 for (const v of ok) {
   const id = idOf(v);
   const existing = get<{ id: string }>("SELECT id FROM video WHERE id = ?", id);
@@ -307,14 +328,13 @@ if (stale.length) {
     );
   }
 }
-console.log(`\n  ${segmented} videos have segments.`);
+console.log(`\n  ${segmented} of ${ok.length} videos have marked-up sentences.`);
 console.log(
   dim(
-    segmented === 0
-      ? "  None yet, so the video block still never appears — correct, since an\n" +
-          "  unsegmented video is a file, not a lesson. Mark them up at /admin/video\n" +
-          "  with DEUTSCHMATE_ADMIN=1, about ten minutes each."
-      : "  Those are the only ones a session can use.",
+    "  Not a blocker: a linked episode plays either way, and segments only add\n" +
+      "  per-sentence replay on top. Requiring them is what kept the video block\n" +
+      "  off the screen entirely. Mark one up at /admin/video with\n" +
+      "  DEUTSCHMATE_ADMIN=1, about ten minutes each.",
   ),
 );
 console.log();
