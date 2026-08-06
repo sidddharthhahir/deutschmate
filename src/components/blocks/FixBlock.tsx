@@ -8,6 +8,7 @@ import {
   Option,
   Verdict,
   SkipLink,
+  SkipToNext,
   record,
   type BlockProps,
 } from "./shared";
@@ -37,10 +38,8 @@ export default function FixBlock({
   const drills = payload.drills ?? [];
   const d = drills[i];
 
-  if (!drills.length || !d) {
-    onDone();
-    return null;
-  }
+  // Not onDone() in the render — see SkipToNext.
+  if (!drills.length || !d) return <SkipToNext onDone={onDone} />;
 
   async function choose(n: number) {
     setPicked(n);

@@ -7,6 +7,7 @@ import {
   Progress,
   Option,
   Verdict,
+  SkipToNext,
   record,
   type BlockProps,
 } from "./shared";
@@ -186,10 +187,9 @@ export default function GrammarBlock({ payload, onDone }: BlockProps<Payload>) {
     );
   }
 
-  if (!d) {
-    onDone();
-    return null;
-  }
+  // Same as FixBlock: onDone() sets state on the session runner, so it belongs
+  // in an effect rather than in this component's render.
+  if (!d) return <SkipToNext onDone={onDone} />;
 
   async function choose(n: number) {
     setPicked(n);

@@ -85,6 +85,14 @@ function enqueue(url: string, body: unknown) {
   announce();
 }
 
+/**
+ * Sends that have left but not landed. Most callers fire and forget — a grade is
+ * sent with `void send(...)` so the next card appears immediately — and the recap
+ * then asks the server to count today's attempts. Without this the two race, and
+ * the recap reports one review fewer than you actually did. See settled().
+ */
+const inflight = new Set<Promise<unknown>>();
+
 /** POST that never loses the write. */
 export async function send<T = unknown>(
   url: string,
@@ -94,23 +102,41 @@ export async function send<T = unknown>(
     enqueue(url, body);
     return null;
   }
-  try {
-    const res = await fetch(url, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(body),
-    });
-    // A 4xx means the server understood and refused; replaying it would just
-    // fail again forever. Only transport failures and 5xx are worth keeping.
-    if (res.status >= 500) {
+  const call = (async (): Promise<T | null> => {
+    try {
+      const res = await fetch(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body),
+      });
+      // A 4xx means the server understood and refused; replaying it would just
+      // fail again forever. Only transport failures and 5xx are worth keeping.
+      if (res.status >= 500) {
+        enqueue(url, body);
+        return null;
+      }
+      return (await res.json()) as T;
+    } catch {
       enqueue(url, body);
       return null;
     }
-    return (await res.json()) as T;
-  } catch {
-    enqueue(url, body);
-    return null;
+  })();
+
+  inflight.add(call);
+  try {
+    return await call;
+  } finally {
+    inflight.delete(call);
   }
+}
+
+/**
+ * Wait for every fire-and-forget send to land. Loops, because one settling can
+ * start another. Call this before asking the server for numbers about work the
+ * user has just done.
+ */
+export async function settled(): Promise<void> {
+  while (inflight.size) await Promise.allSettled([...inflight]);
 }
 
 /** Stamp the replay with the learner who owns the queue. */

@@ -1,7 +1,21 @@
 "use client";
 
-import type { ReactNode } from "react";
+import { useEffect, type ReactNode } from "react";
 import { send } from "@/lib/outbox";
+
+/**
+ * A block with nothing in it, bowing out. Renders nothing and calls onDone from
+ * an effect — calling it straight from a block's render sets state on the session
+ * runner mid-render, which is the "Cannot update a component while rendering a
+ * different component" React reports. A component rather than a hook, because
+ * the blocks that need it return early and cannot add a hook at that point.
+ */
+export function SkipToNext({ onDone }: { onDone: () => void }) {
+  useEffect(() => {
+    onDone();
+  }, [onDone]);
+  return null;
+}
 
 export type BlockProps<P = unknown> = {
   payload: P;

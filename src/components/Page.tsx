@@ -131,9 +131,12 @@ export function Empty({
   return (
     <div className="border-line rounded-[14px] border border-dashed p-8 text-center">
       <p className="font-serif text-[20px]">{title}</p>
-      <p className="text-muted mx-auto mt-2 max-w-[46ch] text-[14px] leading-relaxed">
+      {/* A div, not a p. Callers pass prose that is sometimes already a <p>, and
+          a <p> inside a <p> is invalid HTML — the browser closes the outer one
+          and React reports a hydration mismatch on a page that looked fine. */}
+      <div className="text-muted mx-auto mt-2 max-w-[46ch] text-[14px] leading-relaxed">
         {children}
-      </p>
+      </div>
       {action && (
         <Link
           href={action.href}

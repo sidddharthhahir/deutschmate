@@ -33,6 +33,7 @@ import {
   onOutboxChange,
   pendingCount,
   send,
+  settled,
 } from "@/lib/outbox";
 import { myKey } from "@/lib/who";
 import { shouldIgnoreKey } from "@/lib/keys";
@@ -221,6 +222,14 @@ function SessionRunner() {
     setMinutes(elapsed);
     setDone(true);
     clearSaved();
+
+    /*
+     * Let the last grade land first. Blocks send grades fire-and-forget so the
+     * next card is instant, and /api/session counts today's attempt rows — so
+     * without this the recap races the final POST and reports one review fewer
+     * than you just did. Exactly the screen §21 caught showing zeros.
+     */
+    await settled();
 
     // Queued when offline, so the session still counts once you reconnect.
     const data = await send<{
