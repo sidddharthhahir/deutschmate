@@ -1691,3 +1691,38 @@ different passwords each.
 
 Written before the feature was wired to anything, which is the only reason it was
 found on a laptop rather than in a public repo.
+
+### Opening the console, which nobody had done
+
+§21 listed passes by what each could structurally see. A tenth was missing and is
+the cheapest of the lot: open the browser console and read it. Three faults were
+sitting there, and the app rendered correctly for all three.
+
+**The recap raced the grade it was counting.** One review graded, session
+finished, recap says `0 WIEDERHOLUNGEN` — with the attempt row already written,
+timestamped a few seconds earlier. Blocks send grades fire-and-forget so the next
+card is instant; `/api/session` computes the recap by counting today's attempts.
+Nothing ordered the two.
+
+This is §21's own example screen — the one caught reporting zeros because
+`requestAnimationFrame` does not run in a background tab — failing again for an
+unrelated reason. Worth noting as a pattern: a screen assembled from a count of
+rows written asynchronously will keep finding new ways to be early. `outbox.ts`
+tracks in-flight sends and exposes `settled()`; `finish()` awaits it. Verified by
+the numbers matching the table, not by the error going quiet.
+
+**Two blocks set state on their parent during render.** `FixBlock` and
+`GrammarBlock` both called `onDone()` straight from the render path when they had
+nothing to show — React's "Cannot update a component while rendering a different
+component". Both return early, so a hook cannot be added at that point;
+`SkipToNext` in `blocks/shared.tsx` is a component that renders nothing and calls
+`onDone` from an effect.
+
+**`<p>` inside `<p>`.** `Empty` wrapped its children in a paragraph; callers pass
+prose that is already one. Invalid HTML, a hydration mismatch, and a page that
+looks entirely correct.
+
+**The trap in checking it.** The console buffer persists across navigations, so
+after all three were fixed it still listed them — reading as "still broken" and
+inviting a second round of chasing something already gone. A fresh tab is the
+only honest reading. Worth knowing before the next person spends an hour on it.

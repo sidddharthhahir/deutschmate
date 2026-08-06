@@ -455,10 +455,10 @@ stop reading reds, and after that a genuine one looks the same.
 | `strings` | no HTML entity survives into a string literal, where JSX will not decode it |
 | `undo` | one grade is one attempt row and one step of the curve — never two |
 | `tenancy` | you cannot act as another learner, mint an account, or write to shared content |
-| `auth` | tokens work once, sessions are stored hashed, deleting an account takes its credentials |
+| `auth` | sessions are stored hashed and last ten years, a wrong password and an unknown username answer identically, and a reset signs every device out |
+| `password` | scrypt round-trips, a corrupt stored hash is a no rather than a yes, and a recovery code survives being copied off paper |
 | `apikey` | a stored key is never in the row, never in the response, and never another learner's |
 | `shared-cache` | course sentences are cached for everyone, pasted text only for you, and both are deletable |
-| `mail` | half-configured mail is caught, the link is in both parts of the message, and nothing in it phones home |
 | `config` | every constant in `config.ts` is actually read by something — five were not |
 
 `corpus` and `error-key` are worth a note on how they are written, because both
@@ -806,6 +806,19 @@ the [Goethe-Institut](https://www.goethe.de/de/spr/kup/prf.html).
 - ~~"1 NEUE WÖRTER".~~ `lib/plural.ts` already existed and `/woche` was using it
   properly; the recap and the home screen were not. An app teaching German
   should not print broken German.
+- ~~The recap under-reported the session you had just finished.~~ Blocks send
+  grades fire-and-forget so the next card is instant, and `/api/session` counts
+  today's attempt rows — so the recap raced the final grade and reported one
+  review fewer. Caught by grading exactly one card and reading **0
+  Wiederholungen** on a screen whose row was already in the database.
+  `outbox.ts` tracks in-flight sends now and `finish()` awaits `settled()`
+  before asking for the numbers. Same screen as §21, different cause.
+- ~~Two React errors nobody had opened the console to see.~~ `FixBlock` and
+  `GrammarBlock` called `onDone()` **during their own render**, setting state on
+  the session runner mid-render; both return early, so `SkipToNext` does it from
+  an effect instead. And `Empty` wrapped its children in a `<p>` while callers
+  passed prose that was already one — invalid HTML and a hydration mismatch on a
+  page that looked perfect.
 - ~~An expired session crashed `/wortschatz`.~~ `fetch` does not throw on 401,
   so the body parsed with every field undefined and `topics.map` took the page
   down. The route had been returning `signIn: "/anmelden"` for the client to
@@ -827,7 +840,7 @@ tracker that could never be true, an offline queue for written texts that stored
 nothing, and a sentence rotation reaching 6% of the corpus behind a comment
 claiming it covered all of it.
 
-Nine passes, each finding what the one before it structurally could not:
+Ten passes, each finding what the one before it structurally could not:
 
 | | |
 |---|---|
@@ -840,6 +853,7 @@ Nine passes, each finding what the one before it structurally could not:
 | **reading the server log** | one deprecation warning in 6,272 lines, for a convention that will stop working |
 | **running the suite four times** | a 40% flake whose checks always passed — a red that meant nothing |
 | **doing another hour of German** | a screen that lied about its own timer, broken German in the recap, and a compound noun wider than a phone |
+| **reading the browser console** | the recap racing the grade it was counting, and two React errors nobody had opened the panel to see |
 
 The third is worth the detail. The recap counters animate up from zero with
 `requestAnimationFrame`, browsers do not run rAF in a background tab, and there
@@ -888,5 +902,16 @@ found a screen lying about its own five-second timer, two counters printing
 broken German, a page header saying "six" over a list of twelve, and a compound
 noun 29px wider than a phone. Every one is invisible to the type checker, the
 linter, the tests and the dead-code pass, all of which were green throughout.
+
+The tenth is the cheapest of all and had never been done: **open the console.**
+Three faults sat there, and the app looked correct on screen for every one of
+them — a recap racing the grade it was counting, a block setting state on its
+parent mid-render, and a `<p>` nested in a `<p>` producing a hydration mismatch.
+None is visible from the outside until the day it isn't.
+
+It also came with its own trap. The console buffer carries messages across
+navigations, so after fixing all three it still listed them and would have been
+read as "not fixed". A **fresh tab** is the only honest reading, and it was
+silent.
 
 If you are reading this repo to judge it, read §21, §24 and §25 first.
