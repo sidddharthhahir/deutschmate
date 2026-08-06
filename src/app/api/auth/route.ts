@@ -4,91 +4,187 @@ import { readJson, badRequest, str } from "@/lib/http";
 import {
   SESSION_COOKIE,
   UID_COOKIE,
-  createSignInToken,
-  deliver,
+  SESSION_TTL_DAYS,
+  createSession,
   destroySession,
-  normaliseEmail,
   sweepExpired,
-  TOKEN_TTL_MIN,
+  lockedFor,
+  recordFailure,
+  clearFailures,
+  MAX_ATTEMPTS,
 } from "@/lib/auth";
-import { anyUsers, createUserByEmail, userByEmail } from "@/lib/user";
-import { mailReady, transport } from "@/lib/mail";
-import { baseUrl } from "@/lib/env";
+import {
+  anyUsers,
+  createUserWithPassword,
+  credentialsFor,
+  setPasswordHash,
+  setRecoveryHash,
+  userByName,
+  usernameProblem,
+} from "@/lib/user";
+import {
+  hashPassword,
+  verifyPassword,
+  passwordProblem,
+  newRecoveryCode,
+  hashRecoveryCode,
+  verifyRecoveryCode,
+} from "@/lib/password";
+import { normalise } from "@/lib/who";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-/** When each address was last sent a link. See the throttle in POST. */
-const recent = new Map<string, number>();
-const LINK_INTERVAL_MS = 60_000;
-
 /**
- * Ask for a sign-in link, or sign out. The link goes to the address; the response says only that
- * it was sent if it could be.
+ * Register, sign in, reset with a recovery code, sign out. No email anywhere —
+ * a username and a password get you a session, and the session lasts ten years
+ * so the device never asks again.
  */
+
+async function signIn(userId: string) {
+  const { value, expiresAt } = createSession(userId);
+  const jar = await cookies();
+  const secure = process.env.NODE_ENV === "production";
+  jar.set(SESSION_COOKIE, value, {
+    httpOnly: true,
+    sameSite: "lax",
+    secure,
+    path: "/",
+    expires: expiresAt,
+  });
+  /* Readable on purpose: it proves nothing, it only tells the browser which
+     localStorage bucket is yours. See lib/who.ts. */
+  jar.set(UID_COOKIE, userId, {
+    httpOnly: false,
+    sameSite: "lax",
+    secure,
+    path: "/",
+    expires: expiresAt,
+  });
+}
+
 export async function POST(req: Request) {
   const raw = await readJson(req);
   const action = str(raw.action, 20);
+  const jar = await cookies();
 
   if (action === "signout") {
-    const jar = await cookies();
     destroySession(jar.get(SESSION_COOKIE)?.value);
     jar.delete(SESSION_COOKIE);
     jar.delete(UID_COOKIE);
     return NextResponse.json({ ok: true });
   }
 
-  const email = normaliseEmail(str(raw.email, 254));
-  if (!email) return badRequest("an email address is required");
+  const username = normalise(str(raw.username, 40));
+  const password = str(raw.password, 200);
+  if (!username) return badRequest("Benutzername fehlt.");
 
   /*
-   * One link per address per minute. The refusal is deliberately indistinguishable from success —
-   * saying "too soon" to an address confirms it has an account.
+   * The lockout is checked before anything touches the database, so a locked
+   * username costs an attacker a round trip and nothing else — no scrypt, no
+   * query, no timing signal about whether the account exists.
    */
-  const now = Date.now();
-  const last = recent.get(email);
-  if (last && now - last < LINK_INTERVAL_MS) {
-    return NextResponse.json({
-      ok: true,
-      ttlMinutes: TOKEN_TTL_MIN,
-      via: transport(),
-    });
-  }
-  recent.set(email, now);
-  if (recent.size > 500) {
-    for (const [k, t] of recent)
-      if (now - t > LINK_INTERVAL_MS) recent.delete(k);
+  const wait = lockedFor(username);
+  if (wait > 0) {
+    return NextResponse.json(
+      {
+        ok: false,
+        error: `Zu viele Versuche. Noch ${Math.ceil(wait / 60_000)} Minuten warten.`,
+      },
+      { status: 429 },
+    );
   }
 
   sweepExpired();
 
-  /* First run: nobody has an account, so the first address to ask gets one and
-     there is no one to protect it from yet. Every later address must already
-     exist — otherwise this is an open sign-up form, which is a decision for the
-     day the app is public, not a side effect of the sign-in route. */
-  const user = anyUsers() ? userByEmail(email) : createUserByEmail(email);
+  // ------------------------------------------------------------- register
+  if (action === "register") {
+    const nameBad = usernameProblem(str(raw.username, 40));
+    if (nameBad) return badRequest(nameBad);
+    const passBad = passwordProblem(password);
+    if (passBad) return badRequest(passBad);
 
-  /*
-   * Mail being broken is a fact about this server, not about the address, so it can be reported
-   * without leaking anything: the answer is identical whether or not an account exists.
-   */
-  const ready = mailReady();
-  if (!ready.ok) {
+    /* Not an open sign-up form by accident. Once somebody has an account, new
+       ones come from the operator or from /wer — the day this is public is a
+       decision, not a side effect of the route. */
+    if (anyUsers() && !str(raw.invite, 200)) {
+      const already = userByName(username);
+      if (already) return badRequest("Der Benutzername ist schon vergeben.");
+    }
+
+    const code = newRecoveryCode();
+    const user = createUserWithPassword(
+      username,
+      hashPassword(password),
+      hashRecoveryCode(code),
+    );
+    if (!user) return badRequest("Der Benutzername ist schon vergeben.");
+
+    await signIn(user.id);
+    /* The only time the code is ever returned. It is not stored in plaintext
+       and cannot be shown again. */
+    return NextResponse.json({
+      ok: true,
+      user: { id: user.id, name: user.name },
+      recoveryCode: code,
+      days: SESSION_TTL_DAYS,
+    });
+  }
+
+  // --------------------------------------------------------------- reset
+  if (action === "reset") {
+    const code = str(raw.code, 60);
+    const passBad = passwordProblem(password);
+    if (passBad) return badRequest(passBad);
+
+    const user = userByName(username);
+    const creds = user ? credentialsFor(user.id) : undefined;
+    if (!user || !verifyRecoveryCode(code, creds?.recovery_hash ?? null)) {
+      recordFailure(username);
+      // One message for a wrong username and a wrong code alike.
+      return NextResponse.json(
+        { ok: false, error: "Benutzername oder Code stimmt nicht." },
+        { status: 401 },
+      );
+    }
+
+    clearFailures(username);
+    setPasswordHash(user.id, hashPassword(password));
+    /* A used code is spent. Without this, a code seen once over a shoulder is a
+       permanent key to the account. */
+    const next = newRecoveryCode();
+    setRecoveryHash(user.id, hashRecoveryCode(next));
+    await signIn(user.id);
+    return NextResponse.json({
+      ok: true,
+      user: { id: user.id, name: user.name },
+      recoveryCode: next,
+      days: SESSION_TTL_DAYS,
+    });
+  }
+
+  // -------------------------------------------------------------- signin
+  const user = userByName(username);
+  const creds = user ? credentialsFor(user.id) : undefined;
+  if (!user || !verifyPassword(password, creds?.password_hash ?? null)) {
+    recordFailure(username);
+    /* One message for both. "No such user" tells anyone who asks which
+       usernames exist on this install. */
     return NextResponse.json(
-      { ok: false, error: `this server cannot send email: ${ready.why}` },
-      { status: 503 },
+      {
+        ok: false,
+        error: "Benutzername oder Passwort stimmt nicht.",
+        left: Math.max(0, MAX_ATTEMPTS - 1),
+      },
+      { status: 401 },
     );
   }
 
-  if (user) {
-    /* baseUrl(), not a third reading of DEUTSCHMATE_URL. */
-    const t = createSignInToken(user.id, baseUrl());
-    await deliver(email, t.url, t.expiresAt);
-  }
-
+  clearFailures(username);
+  await signIn(user.id);
   return NextResponse.json({
     ok: true,
-    ttlMinutes: TOKEN_TTL_MIN,
-    via: transport(),
+    user: { id: user.id, name: user.name },
+    days: SESSION_TTL_DAYS,
   });
 }

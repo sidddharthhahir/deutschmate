@@ -32,6 +32,13 @@ const MIGRATIONS: [
   // YouTube embed. See the comment on the video table in schema.sql.
   ["video", "src_url", "TEXT"],
   ["video", "duration", "INTEGER"],
+  /*
+   * Username and password sign-in. `name` is already UNIQUE, so it is the
+   * username — no second identity column. `email` stays for the accounts that
+   * have one; nothing reads it for sign-in any more.
+   */
+  ["user", "password_hash", "TEXT"],
+  ["user", "recovery_hash", "TEXT"],
   // Who paid for a cached row, and whether it may be served to other accounts.
   ["error_pattern", "created_by", "TEXT"],
   ["explanation", "created_by", "TEXT"],

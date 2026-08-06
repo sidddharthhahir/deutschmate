@@ -7,12 +7,6 @@ import { secretsAvailable } from "./secrets.ts";
 import { anyStoredKeys } from "./apikey.ts";
 import { orphanedRows } from "./shared-cache.ts";
 import { get } from "./db.ts";
-import {
-  from as mailFrom,
-  fromWillBeRewritten,
-  mailReady,
-  transport as mailTransport,
-} from "./mail.ts";
 
 export type Issue = { name: string; level: "error" | "warn"; message: string };
 
@@ -90,39 +84,8 @@ export function check(): Issue[] {
     });
   }
 
-  /*
-   * Mail configured but unusable is worse than mail not configured, because
-   * the console fallback is gone and the only symptom is silence.
-   */
-  const mail = mailReady();
-  if (!mail.ok) {
-    issues.push({
-      name: "DEUTSCHMATE_MAIL",
-      level: "error",
-      message: mail.why!,
-    });
-  }
-
-  /* Separate checks, not an else-if chain: a Gmail From mismatch and links
-     pointing at localhost are unrelated, and reporting only the first would
-     send somebody to fix one and hit the other. */
-  const rewritten = fromWillBeRewritten();
-  if (rewritten) {
-    issues.push({
-      name: "DEUTSCHMATE_MAIL_FROM",
-      level: "warn",
-      message: rewritten,
-    });
-  }
-
-  if (mailTransport() !== "console" && url.startsWith("http://localhost")) {
-    issues.push({
-      name: "DEUTSCHMATE_MAIL",
-      level: "error",
-      message:
-        "sending real email with links that point at localhost — every recipient gets a dead link",
-    });
-  }
+  /* Mail used to be checked here. Sign-in is a username and a password now, so
+     there is nothing to deliver and nothing to misconfigure. */
 
   if (adminEnabled()) {
     issues.push({
@@ -224,14 +187,6 @@ export function describe(): { name: string; value: string; note: string }[] {
          printing it in a terminal would be the worst line in the codebase. */
       value: secretsAvailable() ? "set" : "unset",
       note: "encrypts each learner's stored API key",
-    },
-    {
-      name: "DEUTSCHMATE_MAIL",
-      value:
-        mailTransport() === "console"
-          ? "console (links print to this terminal)"
-          : `${mailTransport()} · from ${mailFrom()}`,
-      note: "how sign-in links reach people",
     },
     {
       name: "DEUTSCHMATE_DB",

@@ -2,57 +2,16 @@ import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
 import Link from "next/link";
 import AppHeader from "@/components/AppHeader";
-import {
-  requireUser,
-  allUsers,
-  createUserByEmail,
-  userByEmail,
-} from "@/lib/user";
-import {
-  SESSION_COOKIE,
-  UID_COOKIE,
-  createSignInToken,
-  deliver,
-  destroySession,
-  normaliseEmail,
-  TOKEN_TTL_MIN,
-} from "@/lib/auth";
-import { transport } from "@/lib/mail";
-import { baseUrl } from "@/lib/env";
+import { requireUser, allUsers } from "@/lib/user";
+import { SESSION_COOKIE, UID_COOKIE, destroySession } from "@/lib/auth";
 import { TAP } from "@/lib/ui";
 
 export const dynamic = "force-dynamic";
 
 /** Who is using this install. */
-export default async function WhoPage({
-  searchParams,
-}: {
-  searchParams: Promise<{ sent?: string; error?: string }>;
-}) {
-  const { sent, error } = await searchParams;
+export default async function WhoPage() {
   const me = await requireUser();
   const users = allUsers();
-  const postal = transport();
-
-  /** Invite somebody, or send yourself a link for another device. */
-  async function sendLink(formData: FormData) {
-    "use server";
-    const email = normaliseEmail(String(formData.get("email") ?? ""));
-    if (!email) redirect("/wer?error=1");
-
-    /* An address with no account gets one. This is the invite path and it sits
-       behind a signed-in session, so it is not open sign-up. */
-    const user = userByEmail(email) ?? createUserByEmail(email);
-    if (user) {
-      // baseUrl() — one answer for where links point, the one config reports.
-      const t = createSignInToken(user.id, baseUrl());
-      /* Awaited. redirect() throws to unwind the action, so a floating send
-         would be racing a thrown control-flow exception — fine when deliver()
-         only wrote to the console, a dropped email now. */
-      await deliver(email, t.url, t.expiresAt);
-    }
-    redirect("/wer?sent=1");
-  }
 
   async function signOut() {
     "use server";
@@ -135,73 +94,31 @@ export default async function WhoPage({
                 ))}
             </div>
             <p className="text-muted mt-3 text-[12.5px] leading-relaxed">
-              You cannot switch into one of these. Signing in as somebody means
-              having their email — send a link below and it goes to them, not to
-              you.
+              You cannot switch into one of these from here. Signing in as
+              somebody means knowing their password — sign out, and they sign in
+              as themselves.
             </p>
           </div>
         )}
 
-        <form action={sendLink} className="border-line-sub mt-8 border-t pt-6">
-          <label
-            htmlFor="email"
-            className="font-mono text-muted mb-2 block text-[11.5px] tracking-[0.14em] uppercase"
-          >
-            Einladen · or sign in on another device
-          </label>
-          <div className="flex gap-2">
-            <input
-              id="email"
-              name="email"
-              type="email"
-              required
-              maxLength={254}
-              placeholder="name@beispiel.de"
-              autoComplete="off"
-              className="border-line bg-bg text-fg focus:border-line-strong placeholder:text-muted font-serif flex-1 rounded-xl border px-4 py-3 text-[17px] outline-none"
-            />
-            <button
-              type="submit"
-              className="bg-fg rounded-xl px-6 font-medium text-[#16211E] transition-colors hover:bg-white"
-            >
-              Link
-            </button>
-          </div>
-          {sent && (
-            <p className="text-accent mt-3 text-[13px]">
-              Link erstellt — er steht im Terminal.
-            </p>
-          )}
-          {error && (
-            <p className="text-das mt-3 text-[13px]">
-              Das sieht nicht nach einer Adresse aus.
-            </p>
-          )}
+        <div className="border-line-sub mt-8 border-t pt-6">
+          <p className="font-mono text-muted mb-2 text-[11.5px] tracking-[0.14em] uppercase">
+            Noch jemand?
+          </p>
+          <p className="text-secondary text-[14px] leading-relaxed">
+            Sign out and pick{" "}
+            <strong className="text-fg">Konto erstellen</strong> on the sign-in
+            screen. A username, a password, and a recovery code to write down —
+            no address, nothing to send, nothing to wait for.
+          </p>
           <p className="text-muted mt-3 text-[12.5px] leading-relaxed">
-            An address with no account gets one, with an empty deck. The link
-            works once and expires in {TOKEN_TTL_MIN} minutes.
-          </p>
-        </form>
-
-        {/* Where the link goes, read from the server rather than asserted.
-            This said flatly that email was not configured — true when there was
-            no way to configure it, and a lie the day there was. */}
-        {postal === "console" ? (
-          <p className="text-muted/70 mt-10 text-[12px] leading-relaxed">
-            No mail provider is configured on this install, on purpose — so it
-            still runs with no network and no account anywhere. The link is
-            printed in the terminal running{" "}
+            If somebody forgets both their password and their code, you can
+            reset it from the terminal:{" "}
             <code className="bg-raised text-der rounded px-1 py-0.5 font-mono text-[11.5px]">
-              npm run dev
+              npm run passwd &lt;benutzername&gt;
             </code>
-            ; paste it to whoever it is for.
           </p>
-        ) : (
-          <p className="text-muted/70 mt-10 text-[12px] leading-relaxed">
-            The link is emailed. If it does not arrive within a minute or two,
-            the spam folder is the first place to look.
-          </p>
-        )}
+        </div>
       </div>
     </main>
   );

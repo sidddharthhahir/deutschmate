@@ -173,11 +173,18 @@ CREATE INDEX IF NOT EXISTS idx_explanation_by ON explanation(created_by);
 
 CREATE TABLE IF NOT EXISTS user (
   id                TEXT PRIMARY KEY,
+  -- The username. Already UNIQUE, which is what lets it be the login identity.
   name              TEXT NOT NULL UNIQUE,
-  -- The identity. NULL only for accounts made before sign-in existed; those
-  -- claim an address the first time somebody signs in to them.
+  -- Optional, and no longer part of signing in. Kept for accounts that had one.
   email             TEXT,
   level             TEXT NOT NULL DEFAULT 'A1.1',
+
+  -- scrypt, per-user salt, versioned (lib/password.ts). NULL for an account
+  -- with no password yet, which cannot sign in until it has one.
+  password_hash     TEXT,
+  -- sha256 of the recovery code shown once at sign-up. With no email to send a
+  -- reset to, this is the only way back in without the operator.
+  recovery_hash     TEXT,
 
   /*
    * The learner's own Anthropic key, encrypted (lib/secrets.ts).

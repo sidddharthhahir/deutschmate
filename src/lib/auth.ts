@@ -1,13 +1,17 @@
 ﻿import { randomBytes, createHash } from "node:crypto";
 import { get, run } from "./db.ts";
 
-/** Sign-in, without passwords and without a dependency. */
+/** Sessions. A username and a password get you one; nothing else does. */
 
 const TOKEN_BYTES = 32;
-/** Long enough to walk to another room; short enough that a leaked link rots. */
-export const TOKEN_TTL_MIN = 20;
-/** Re-sign-in every fortnight. Long, because losing a session costs a learner a streak. */
-export const SESSION_TTL_DAYS = 14;
+
+/**
+ * Ten years — "this device never asks again", which is the point. A learner opens
+ * this daily for months and a sign-in screen between them and the one button is
+ * pure friction; the deck is the only thing at stake and the device is already
+ * theirs. Sign out on /wer is the escape hatch for a shared laptop.
+ */
+export const SESSION_TTL_DAYS = 3650;
 
 /* Both names live in who.ts, which imports nothing — the middleware needs
    SESSION_COOKIE and cannot import this file, because node:sqlite does not
@@ -34,49 +38,6 @@ export function normaliseEmail(raw: string): string | null {
   if (at < 1 || at !== e.lastIndexOf("@") || at === e.length - 1) return null;
   if (/\s/.test(e)) return null;
   return e;
-}
-
-// ------------------------------------------------------------- sign-in link
-export type Token = { token: string; url: string; expiresAt: string };
-
-/** Mint a single-use sign-in link for an account. */
-export function createSignInToken(userId: string, baseUrl: string): Token {
-  run("DELETE FROM auth_token WHERE user_id = ? AND used_at IS NULL", userId);
-  const token = secret();
-  const expiresAt = new Date(Date.now() + TOKEN_TTL_MIN * 60_000).toISOString();
-  run(
-    "INSERT INTO auth_token (hash, user_id, expires_at) VALUES (?, ?, ?)",
-    sha(token),
-    userId,
-    expiresAt,
-  );
-  return {
-    token,
-    /* A route handler, not the sign-in page: only a Route Handler or a Server
-       Action can set a cookie, and a page trying to do it is a 500. */
-    url: `${baseUrl.replace(/\/$/, "")}/api/auth/callback?token=${encodeURIComponent(token)}`,
-    expiresAt,
-  };
-}
-
-/**
- * Redeem a token. Marks it used inside the same statement that requires it to be unused, so two
- * simultaneous redemptions cannot both succeed — `changes` tells us which one won.
- */
-export function redeemSignInToken(token: string): string | null {
-  if (!token || token.length < 20) return null;
-  const res = run(
-    `UPDATE auth_token SET used_at = datetime('now')
-      WHERE hash = ? AND used_at IS NULL AND expires_at > datetime('now')`,
-    sha(token),
-  );
-  if (!res.changes) return null;
-  return (
-    get<{ user_id: string }>(
-      "SELECT user_id FROM auth_token WHERE hash = ?",
-      sha(token),
-    )?.user_id ?? null
-  );
 }
 
 // ---------------------------------------------------------------- sessions
@@ -123,62 +84,43 @@ export function destroyAllSessions(userId: string) {
 /** Housekeeping. */
 export function sweepExpired() {
   run("DELETE FROM session WHERE expires_at <= datetime('now')");
-  run(
-    "DELETE FROM auth_token WHERE expires_at <= datetime('now') OR used_at IS NOT NULL",
-  );
 }
 
-// ---------------------------------------------------------------- delivery
-/** The terminal box. Also the rescue path when a real send fails. */
-function printLink(email: string, url: string, mins: number, note?: string) {
-  console.log(
-    [
-      "",
-      "  ┌─ DeutschMate — sign-in link " + "─".repeat(28),
-      `  │  for:     ${email}`,
-      `  │  expires: in ${mins} minutes, and on first use`,
-      "  │",
-      `  │  ${url}`,
-      ...(note ? ["  │", `  │  ${note}`] : []),
-      "  └" + "─".repeat(58),
-      "",
-    ].join("\n"),
-  );
-}
+// ------------------------------------------------------------- rate limiting
 
 /**
- * Where a sign-in link goes. IT NEVER RETURNS THE LINK TO THE CALLER, and that is the whole reason
- * this is a function rather than something the route does inline.
+ * Failed sign-ins per username. A password box without this is guessable at
+ * whatever rate the network allows.
+ *
+ * In memory, so it resets on restart and does not survive more than one process.
+ * That is the honest limit and it is the right trade here: the alternative is a
+ * write to SQLite on every wrong password, which is a denial-of-service lever
+ * pointed at the disk. Keyed on the username, because that is what is under
+ * attack — an IP is trivially changed.
  */
-export async function deliver(
-  email: string,
-  url: string,
-  expiresAt: string,
-): Promise<{ sent: boolean; via: string; error?: string }> {
-  const mins = Math.round((Date.parse(expiresAt) - Date.now()) / 60_000);
-  /* Imported here rather than at the top so that nodemailer is not in the
-     module graph of everything that touches auth.ts. Almost every request in
-     the app calls userIdForSession() from this file; none of them should pay to
-     load an SMTP library to read a cookie. */
-  const { sendMail, transport } = await import("./mail.ts");
-  const { signInEmail } = await import("./mail-templates.ts");
+const ATTEMPTS = new Map<string, { n: number; until: number }>();
+export const MAX_ATTEMPTS = 8;
+export const LOCKOUT_MS = 5 * 60_000;
 
-  const via = transport();
-  if (via === "console") {
-    printLink(email, url, mins);
-    return { sent: true, via };
+/** Milliseconds still to wait, or 0 when the door is open. */
+export function lockedFor(username: string): number {
+  const hit = ATTEMPTS.get(username);
+  if (!hit || hit.n < MAX_ATTEMPTS) return 0;
+  const left = hit.until - Date.now();
+  if (left <= 0) {
+    ATTEMPTS.delete(username);
+    return 0;
   }
+  return left;
+}
 
-  const res = await sendMail(signInEmail(email, url, mins));
-  if (res.ok) {
-    // The address, not the link: a server log is not a secure place for a live
-    // credential, and anyone who can read this log can already read the box
-    // above — but there is no reason to put it there when nothing needs it.
-    console.log(`  ✓ sign-in link sent to ${email} via ${via}`);
-    return { sent: true, via };
-  }
+export function recordFailure(username: string) {
+  const hit = ATTEMPTS.get(username) ?? { n: 0, until: 0 };
+  hit.n += 1;
+  hit.until = Date.now() + LOCKOUT_MS;
+  ATTEMPTS.set(username, hit);
+}
 
-  console.error(`  ✗ could not send to ${email} via ${via}: ${res.error}`);
-  printLink(email, url, mins, "mail failed — paste this to them by hand");
-  return { sent: false, via, error: res.error };
+export function clearFailures(username: string) {
+  ATTEMPTS.delete(username);
 }

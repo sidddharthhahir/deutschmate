@@ -7,10 +7,14 @@ import { createUser, userById, type User } from "./accounts.ts";
 /** Who you are, and how the app knows. `dm_user` is no longer an identity; the name is display only. */
 export type { User };
 export {
-  createUserByEmail,
-  userByEmail,
   anyUsers,
   allUsers,
+  userByName,
+  usernameProblem,
+  createUserWithPassword,
+  credentialsFor,
+  setPasswordHash,
+  setRecoveryHash,
 } from "./accounts.ts";
 
 /**
