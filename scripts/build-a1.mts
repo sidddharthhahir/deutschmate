@@ -9,7 +9,7 @@
  * cannot drift. Only the levels that are actually written are emitted — A1.2 is
  * left to the old files until its vocabulary exists.
  */
-import { readFileSync, writeFileSync } from "node:fs";
+import { readFileSync, writeFileSync, readdirSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -47,8 +47,21 @@ const { words } = read("data/vocab-a1.json") as { words: Word[] };
  * still teaches its vocabulary, and the gap is visible instead of blocking the
  * whole rewrite behind 26 grammar pages.
  */
+/*
+ * grammar-a2.json is in the list because four points A1.2 teaches — the dative,
+ * the imperative, separable verbs and the two-way prepositions — were written
+ * for A2.1 first and are reused rather than explained a second time. Leaving
+ * the file out did not surface that as a warning: the ids were simply nulled,
+ * and units 27, 29, 37 and 39 taught vocabulary and no rule at all. The level
+ * on a grammar row gates nothing, so the reuse is safe; the mislabelling is
+ * recorded in docs rather than fixed here, because moving them moves A2 too.
+ */
 const grammarIds = new Set<string>();
-for (const f of ["data/grammar.json", "data/grammar-a1.json"]) {
+for (const f of [
+  "data/grammar.json",
+  "data/grammar-a1.json",
+  "data/grammar-a2.json",
+]) {
   try {
     for (const g of read(f) as { id: string }[]) grammarIds.add(g.id);
   } catch {
@@ -99,6 +112,12 @@ for (const [level, from, to, slug] of LEVELS) {
    */
   const dbId = (ord: number) =>
     `${slug}-u${String(ord - from + 1).padStart(2, "0")}`;
+  /* Any unit in A1, not just this level's — the prerequisite chain crosses the
+     boundary, and dbId(20) inside the A1.2 pass produced a1-2-u00. */
+  const anyId = (ord: number) =>
+    ord <= 20
+      ? `a1-1-u${String(ord).padStart(2, "0")}`
+      : `a1-2-u${String(ord - 20).padStart(2, "0")}`;
 
   writeFileSync(
     path.join(ROOT, `data/words-${slug}.json`),
@@ -130,9 +149,14 @@ for (const [level, from, to, slug] of LEVELS) {
         grammar_id: u.grammar && grammarIds.has(u.grammar) ? u.grammar : null,
         scenario: null,
         dialogue: null,
-        /* Strictly linear. The old units had no prerequisites at all, which is
-           how a relative clause could turn up on day two. */
-        prereq: u.ord === from ? [] : [dbId(u.ord - 1)],
+        /*
+         * Strictly linear, and the chain crosses the level boundary: A1.2 unit
+         * 1 requires A1.1 unit 20. Only unit 1 of the whole course starts free.
+         * Leaving the first unit of every level unlocked let a learner who had
+         * finished nothing be handed the first unit of A1.2 — the walk found it
+         * available and took it before falling back.
+         */
+        prereq: u.ord === 1 ? [] : [anyId(u.ord - 1)],
       })),
       null,
       2,
@@ -150,6 +174,25 @@ for (const [level, from, to, slug] of LEVELS) {
     `  ${level}: ${ready.length} units, ${mine.length} words, ${wrote} examples -> data/words-${slug}.json, data/units-${slug}.json`,
   );
 }
+
+/*
+ * Drop examples for words nothing defines any more.
+ *
+ * This file is merged into, never rebuilt, so the ids from the draft the A1
+ * rewrite replaced — mann, frau, montag — survived every run and the seeder
+ * printed sixty of them as unknown on every seed. A warning nobody can act on
+ * is a warning everybody learns to skip. Anything a word file still defines is
+ * kept, including the legacy A1.2 browse words, which are not in vocab-a1.json.
+ */
+const defined = new Set(words.map((w) => w.id));
+for (const f of readdirSync(path.join(ROOT, "data"))) {
+  if (!/^words-.*\.json$/.test(f)) continue;
+  for (const w of read(`data/${f}`) as { id: string }[]) defined.add(w.id);
+}
+const stale = Object.keys(examples).filter((id) => !defined.has(id));
+for (const id of stale) delete examples[id];
+if (stale.length)
+  console.log(`  dropped ${stale.length} examples for words nothing defines`);
 
 writeFileSync(exFile, JSON.stringify(examples, null, 2) + "\n");
 if (missingGrammar.size) {

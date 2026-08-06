@@ -304,8 +304,20 @@ type RawUnit = {
   dialogue: unknown;
   prereq: string[];
 };
-// Hand-written A1.1 units first, then everything build-units.mts generated.
-const UNIT_FILES = ["data/units-a1-1.json", "data/units-generated.json"];
+/*
+ * Hand-written A1 units first, then everything build-units.mts generated.
+ *
+ * units-a1-2.json was missing from this list and therefore read by nothing:
+ * build-a1 wrote it, and the seeder took A1.2 from the generated file, whose
+ * grammar_id is null for every unit. Four A1.2 units — separable verbs, the
+ * dative, the imperative and the two-way prepositions — taught their
+ * vocabulary and no rule, while a correct file sat next to it unread.
+ */
+const UNIT_FILES = [
+  "data/units-a1-1.json",
+  "data/units-a1-2.json",
+  "data/units-generated.json",
+];
 /*
  * FIRST occurrence wins, the same rule the word files use. The generated file
  * still contains A1.1 and shares its ids, and the upsert is ON CONFLICT DO

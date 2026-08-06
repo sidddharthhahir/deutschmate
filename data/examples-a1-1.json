@@ -60,32 +60,24 @@
     "en": "Where are you from?"
   },
   "er": {
-    "de": "Er kommt aus Berlin.",
-    "en": "He comes from Berlin."
+    "de": "Er heißt Tom.",
+    "en": "He is called Tom."
   },
   "sie-she": {
-    "de": "Sie wohnt in Wien.",
-    "en": "She lives in Vienna."
+    "de": "Sie heißt Anna.",
+    "en": "She is called Anna."
   },
   "es": {
-    "de": "Es ist sehr gut.",
-    "en": "It is very good."
+    "de": "Es ist gut.",
+    "en": "It is good."
   },
   "wir": {
     "de": "Wir lernen Deutsch.",
     "en": "We are learning German."
   },
-  "ihr": {
-    "de": "Ihr seid meine Freunde.",
-    "en": "You are my friends."
-  },
   "sie-formal": {
     "de": "Wie heißen Sie?",
     "en": "What is your name?"
-  },
-  "sein": {
-    "de": "Ich bin müde.",
-    "en": "I am tired."
   },
   "haben": {
     "de": "Ich habe zwei Kinder.",
@@ -179,141 +171,17 @@
     "de": "Wie viel kostet das?",
     "en": "How much does that cost?"
   },
-  "name": {
-    "de": "Mein Name ist Anna.",
-    "en": "My name is Anna."
-  },
-  "mann": {
-    "de": "Der Mann ist sehr alt.",
-    "en": "The man is very old."
-  },
-  "frau": {
-    "de": "Die Frau kommt aus Köln.",
-    "en": "The woman comes from Cologne."
-  },
-  "kind": {
-    "de": "Das Kind ist noch klein.",
-    "en": "The child is still small."
-  },
-  "mutter": {
-    "de": "Meine Mutter wohnt hier.",
-    "en": "My mother lives here."
-  },
-  "vater": {
-    "de": "Mein Vater arbeitet viel.",
-    "en": "My father works a lot."
-  },
-  "eltern": {
-    "de": "Meine Eltern sind nett.",
-    "en": "My parents are nice."
-  },
-  "bruder": {
-    "de": "Ich habe einen Bruder.",
-    "en": "I have a brother."
-  },
-  "schwester": {
-    "de": "Meine Schwester ist Ärztin.",
-    "en": "My sister is a doctor."
-  },
-  "freund": {
-    "de": "Er ist mein Freund.",
-    "en": "He is my friend."
-  },
-  "familie": {
-    "de": "Meine Familie ist groß.",
-    "en": "My family is big."
-  },
-  "haus": {
-    "de": "Das Haus ist sehr alt.",
-    "en": "The house is very old."
-  },
-  "wohnung": {
-    "de": "Die Wohnung ist klein.",
-    "en": "The flat is small."
-  },
   "zimmer": {
     "de": "Das Zimmer ist schön.",
     "en": "The room is beautiful."
-  },
-  "tisch": {
-    "de": "Der Tisch ist neu.",
-    "en": "The table is new."
-  },
-  "stuhl": {
-    "de": "Der Stuhl ist kaputt.",
-    "en": "The chair is broken."
-  },
-  "tuer": {
-    "de": "Die Tür ist offen.",
-    "en": "The door is open."
-  },
-  "fenster": {
-    "de": "Das Fenster ist groß.",
-    "en": "The window is big."
-  },
-  "bett": {
-    "de": "Das Bett ist sehr bequem.",
-    "en": "The bed is very comfortable."
-  },
-  "kueche": {
-    "de": "Die Küche ist klein.",
-    "en": "The kitchen is small."
   },
   "buch": {
     "de": "Das Buch ist interessant.",
     "en": "The book is interesting."
   },
-  "auto": {
-    "de": "Das Auto ist teuer.",
-    "en": "The car is expensive."
-  },
   "wasser": {
     "de": "Ich trinke Wasser.",
     "en": "I drink water."
-  },
-  "brot": {
-    "de": "Das Brot ist frisch.",
-    "en": "The bread is fresh."
-  },
-  "apfel": {
-    "de": "Der Apfel ist rot.",
-    "en": "The apple is red."
-  },
-  "kaffee": {
-    "de": "Ich trinke gern Kaffee.",
-    "en": "I like drinking coffee."
-  },
-  "tee": {
-    "de": "Möchtest du Tee?",
-    "en": "Would you like tea?"
-  },
-  "milch": {
-    "de": "Die Milch ist kalt.",
-    "en": "The milk is cold."
-  },
-  "bier": {
-    "de": "Das Bier ist sehr gut.",
-    "en": "The beer is very good."
-  },
-  "kaese": {
-    "de": "Der Käse kommt aus Frankreich.",
-    "en": "The cheese comes from France."
-  },
-  "ei": {
-    "de": "Ich esse ein Ei.",
-    "en": "I am eating an egg."
-  },
-  "fleisch": {
-    "de": "Ich esse kein Fleisch.",
-    "en": "I do not eat meat."
-  },
-  "obst": {
-    "de": "Obst ist sehr gesund.",
-    "en": "Fruit is very healthy."
-  },
-  "gemuese": {
-    "de": "Wir kaufen Gemüse.",
-    "en": "We are buying vegetables."
   },
   "eins": {
     "de": "Eins, zwei, drei.",
@@ -334,58 +202,6 @@
   "hundert": {
     "de": "Hundert Gramm Käse, bitte.",
     "en": "A hundred grams of cheese, please."
-  },
-  "geld": {
-    "de": "Ich habe kein Geld.",
-    "en": "I have no money."
-  },
-  "montag": {
-    "de": "Am Montag arbeite ich.",
-    "en": "On Monday I work."
-  },
-  "dienstag": {
-    "de": "Der Dienstag ist frei.",
-    "en": "Tuesday is free."
-  },
-  "mittwoch": {
-    "de": "Am Mittwoch lerne ich Deutsch.",
-    "en": "On Wednesday I learn German."
-  },
-  "donnerstag": {
-    "de": "Der Donnerstag ist lang.",
-    "en": "Thursday is long."
-  },
-  "freitag": {
-    "de": "Am Freitag gehe ich nach Hause.",
-    "en": "On Friday I go home."
-  },
-  "samstag": {
-    "de": "Am Samstag kaufe ich Obst.",
-    "en": "On Saturday I buy fruit."
-  },
-  "sonntag": {
-    "de": "Der Sonntag ist ruhig.",
-    "en": "Sunday is quiet."
-  },
-  "tag": {
-    "de": "Der Tag ist sehr lang.",
-    "en": "The day is very long."
-  },
-  "woche": {
-    "de": "Die Woche ist kurz.",
-    "en": "The week is short."
-  },
-  "monat": {
-    "de": "Der Monat ist fast vorbei.",
-    "en": "The month is almost over."
-  },
-  "jahr": {
-    "de": "Das Jahr ist neu.",
-    "en": "The year is new."
-  },
-  "stunde": {
-    "de": "Ich lerne eine Stunde.",
-    "en": "I study for an hour."
   },
   "heute": {
     "de": "Heute ist Montag.",
@@ -451,14 +267,6 @@
     "de": "Das ist sehr billig.",
     "en": "That is very cheap."
   },
-  "richtig": {
-    "de": "Das ist nicht richtig.",
-    "en": "That is not correct."
-  },
-  "falsch": {
-    "de": "Die Antwort ist falsch.",
-    "en": "The answer is wrong."
-  },
   "muede": {
     "de": "Ich bin sehr müde.",
     "en": "I am very tired."
@@ -467,29 +275,13 @@
     "de": "Deutschland ist groß.",
     "en": "Germany is big."
   },
-  "stadt": {
-    "de": "Die Stadt ist groß.",
-    "en": "The city is big."
-  },
   "land": {
     "de": "Das Land ist sehr klein.",
     "en": "The country is very small."
   },
-  "strasse": {
-    "de": "Die Straße ist lang.",
-    "en": "The street is long."
-  },
   "bahnhof": {
     "de": "Wo ist der Bahnhof?",
     "en": "Where is the station?"
-  },
-  "schule": {
-    "de": "Die Schule ist neu.",
-    "en": "The school is new."
-  },
-  "arbeit": {
-    "de": "Die Arbeit ist schwer.",
-    "en": "The work is hard."
   },
   "und": {
     "de": "Ich und meine Schwester.",
@@ -502,10 +294,6 @@
   "aber": {
     "de": "Ich möchte gehen, aber ich bin müde.",
     "en": "I want to go, but I'm tired."
-  },
-  "weil": {
-    "de": "Ich lerne, weil es wichtig ist.",
-    "en": "I study because it is important."
   },
   "auch": {
     "de": "Ich komme auch aus Indien.",
@@ -530,18 +318,6 @@
   "aus": {
     "de": "Sie kommt aus Österreich.",
     "en": "She comes from Austria."
-  },
-  "zu": {
-    "de": "Ich gehe zu meinem Freund.",
-    "en": "I am going to my friend."
-  },
-  "fuer": {
-    "de": "Das ist für dich.",
-    "en": "That is for you."
-  },
-  "ohne": {
-    "de": "Ich trinke Tee ohne Milch.",
-    "en": "I drink tea without milk."
   },
   "bei": {
     "de": "Bei der Apotheke rechts.",
@@ -2154,5 +1930,9 @@
   "erzaehlen": {
     "de": "Erzähl mir von dir.",
     "en": "Tell me about yourself."
+  },
+  "ihr-you": {
+    "de": "Was macht ihr?",
+    "en": "What are you (all) doing?"
   }
 }

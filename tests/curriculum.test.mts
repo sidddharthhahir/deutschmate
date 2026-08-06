@@ -1,11 +1,11 @@
 /**
  * The A1 teaching order. The order IS the design, so it is asserted.
- * needs: nothing
+ * needs: seeded database
  */
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { fileURLToPath } from "node:url";
-import { ok, eq, section, done } from "./harness.mts";
+import { ok, eq, section, done, open } from "./harness.mts";
 
 const ROOT = join(fileURLToPath(new URL(".", import.meta.url)), "..");
 
@@ -179,15 +179,20 @@ section("the vocabulary written so far");
 ok(vocab.length > 0, "there is some", `${vocab.length} words`);
 eq(new Set(vocab.map((w) => w.id)).size, vocab.length, "no duplicate ids");
 /*
- * Lemma AND part of speech. German uses one word for two jobs — sein is both
- * "to be" and "his", ihr is both "her" and "their" — and those are two things
- * to learn, not a duplicate. Keying on the lemma alone would forbid teaching
- * the second one.
+ * Lemma, part of speech AND gloss. German uses one word for several jobs, and
+ * those are several things to learn, not duplicates. Keying on the lemma alone
+ * would forbid teaching the second one.
+ *
+ * The gloss is in the key because lemma+pos was not enough: "ihr" is you-plural
+ * (unit 12), her-dative (unit 29) and her/their-possessive (unit 13), and the
+ * first two are both pronouns. That constraint would have kept ihr and wir out
+ * of the deck — which is how the unit teaching the present tense came to have
+ * no word for "we".
  */
 eq(
-  new Set(vocab.map((w) => `${w.lemma}|${w.pos}`)).size,
+  new Set(vocab.map((w) => `${w.lemma}|${w.pos}|${w.en}`)).size,
   vocab.length,
-  "no word is taught twice in the same role",
+  "no word is taught twice for the same meaning",
 );
 ok(
   written.every((u, i) => u === i + 1),
@@ -239,4 +244,72 @@ for (const u of written) {
   );
 }
 
+// ------------------------------------------------- the plan actually shipped
+
+/*
+ * Everything above reads the plan. This part reads the database the app serves
+ * from, because a plan that never reaches it teaches nobody.
+ *
+ * data/units-a1-2.json was written by build-a1 on every run and listed in no
+ * seeder input. A1.2 came from the generated file instead, which had the old
+ * titles and a null grammar_id for every unit — so "Wechselpräpositionen", the
+ * unit this course calls its hardest, was seeded as "Wo und wohin" with no rule
+ * attached, while a correct file sat unread beside it.
+ */
+const db = open();
+const rows = db
+  .prepare(
+    `SELECT id, level, ord, title, grammar_id, prereq_json
+       FROM unit WHERE level IN ('A1.1','A1.2') ORDER BY level, ord`,
+  )
+  .all() as {
+  id: string;
+  level: string;
+  ord: number;
+  title: string;
+  grammar_id: string | null;
+  prereq_json: string;
+}[];
+
+section("the database teaches the plan, not an older copy of it");
+eq(rows.length, 40, "forty A1 units are seeded");
+const wrongTitle = rows.filter((r, i) => r.title !== units[i].title);
+eq(wrongTitle.length, 0, "every seeded title matches the plan");
+if (wrongTitle.length)
+  console.log(
+    `        e.g. ${wrongTitle[0].id} is "${wrongTitle[0].title}", plan says "${units[rows.indexOf(wrongTitle[0])].title}"`,
+  );
+
+const noRule = rows.filter((r, i) => units[i].grammar && !r.grammar_id);
+eq(
+  noRule.length,
+  0,
+  "no unit that names a grammar point was seeded without one",
+);
+if (noRule.length)
+  console.log(
+    `        ${noRule.map((r) => `${r.id} wants ${units[rows.indexOf(r)].grammar}`).join(", ")}`,
+  );
+
+section("the prerequisite chain is unbroken across the level boundary");
+/* A1.2 unit 1 with no prerequisite is reachable on day one, and the unit walk
+   took it — a learner who had finished nothing was handed the start of A1.2. */
+const chain = (i: number) => JSON.parse(rows[i].prereq_json) as string[];
+eq(chain(0), [], "the first unit of the course starts free");
+const broken = rows
+  .slice(1)
+  .map((r, i) => ({ r, want: rows[i].id, got: chain(i + 1) }))
+  .filter((x) => x.got.length !== 1 || x.got[0] !== x.want);
+eq(broken.length, 0, "the other 39 each require the one before them");
+if (broken.length)
+  console.log(
+    `        ${broken.map((b) => `${b.r.id} has ${JSON.stringify(b.got)}, wants ${b.want}`).join("; ")}`,
+  );
+eq(
+  chain(20),
+  ["a1-1-u20"],
+  "and A1.2 unit 1 requires the last unit of A1.1, not nothing",
+);
+
+db.close();
 done();

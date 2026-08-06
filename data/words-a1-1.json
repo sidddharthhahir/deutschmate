@@ -369,6 +369,33 @@
     "topic": "pronouns"
   },
   {
+    "id": "er",
+    "lemma": "er",
+    "article": null,
+    "plural": null,
+    "pos": "pronoun",
+    "en": "he",
+    "topic": "pronouns"
+  },
+  {
+    "id": "sie-she",
+    "lemma": "sie",
+    "article": null,
+    "plural": null,
+    "pos": "pronoun",
+    "en": "she; they — one word for both, told apart by the verb ending",
+    "topic": "pronouns"
+  },
+  {
+    "id": "es",
+    "lemma": "es",
+    "article": null,
+    "plural": null,
+    "pos": "pronoun",
+    "en": "it",
+    "topic": "pronouns"
+  },
+  {
     "id": "wer",
     "lemma": "wer",
     "article": null,
@@ -1150,6 +1177,24 @@
     "pos": "adverb",
     "en": "yesterday",
     "topic": "time"
+  },
+  {
+    "id": "wir",
+    "lemma": "wir",
+    "article": null,
+    "plural": null,
+    "pos": "pronoun",
+    "en": "we",
+    "topic": "pronouns"
+  },
+  {
+    "id": "ihr-you",
+    "lemma": "ihr",
+    "article": null,
+    "plural": null,
+    "pos": "pronoun",
+    "en": "you (plural, informal)",
+    "topic": "pronouns"
   },
   {
     "id": "machen",

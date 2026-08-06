@@ -428,6 +428,36 @@
       "example_en": "Is that your chair?"
     },
     {
+      "id": "er",
+      "lemma": "er",
+      "pos": "pronoun",
+      "en": "he",
+      "topic": "pronouns",
+      "unit": 4,
+      "example_de": "Er heißt Tom.",
+      "example_en": "He is called Tom."
+    },
+    {
+      "id": "sie-she",
+      "lemma": "sie",
+      "pos": "pronoun",
+      "en": "she; they — one word for both, told apart by the verb ending",
+      "topic": "pronouns",
+      "unit": 4,
+      "example_de": "Sie heißt Anna.",
+      "example_en": "She is called Anna."
+    },
+    {
+      "id": "es",
+      "lemma": "es",
+      "pos": "pronoun",
+      "en": "it",
+      "topic": "pronouns",
+      "unit": 4,
+      "example_de": "Es ist gut.",
+      "example_en": "It is good."
+    },
+    {
       "id": "wer",
       "lemma": "wer",
       "pos": "pronoun",
@@ -1373,6 +1403,26 @@
       "unit": 11,
       "example_de": "Gestern war Sonntag.",
       "example_en": "Yesterday was Sunday."
+    },
+    {
+      "id": "wir",
+      "lemma": "wir",
+      "pos": "pronoun",
+      "en": "we",
+      "topic": "pronouns",
+      "unit": 12,
+      "example_de": "Wir lernen Deutsch.",
+      "example_en": "We are learning German."
+    },
+    {
+      "id": "ihr-you",
+      "lemma": "ihr",
+      "pos": "pronoun",
+      "en": "you (plural, informal)",
+      "topic": "pronouns",
+      "unit": 12,
+      "example_de": "Was macht ihr?",
+      "example_en": "What are you (all) doing?"
     },
     {
       "id": "machen",

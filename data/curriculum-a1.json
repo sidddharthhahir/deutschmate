@@ -57,9 +57,9 @@
         "choose between du and Sie"
       ],
       "grammar": "g-pronouns",
-      "grammarNote": "du/Sie before any verb table, because every sentence after this has to pick one.",
+      "grammarNote": "du/Sie before any verb table, because every sentence after this has to pick one. All of ich/du/er/sie/es/Sie land here: the unit that teaches the pronouns cannot teach three of them.",
       "topics": ["greetings", "pronouns"],
-      "words": 12
+      "words": 15
     },
     {
       "ord": 5,
@@ -177,9 +177,9 @@
         "ask what somebody else does"
       ],
       "grammar": "g-praesens",
-      "grammarNote": "-e -st -t -en -t -en. Deferred to unit 12 so there are verbs worth conjugating and a du/Sie decision already made.",
-      "topics": ["core-verbs"],
-      "words": 12
+      "grammarNote": "-e -st -t -en -t -en. Deferred to unit 12 so there are verbs worth conjugating and a du/Sie decision already made. wir and ihr arrive here, with the two endings that need them.",
+      "topics": ["core-verbs", "pronouns"],
+      "words": 14
     },
     {
       "ord": 13,
