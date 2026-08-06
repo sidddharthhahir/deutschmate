@@ -128,6 +128,45 @@ const r2 = await post("/api/review", {
 });
 ok(r2.explanation === null, "no explanation on a card you got right");
 
+section("half a sentence is answered as half a sentence, not with grammar");
+/*
+ * From real use: "Guten Abend" for "Guten Abend, kommen Sie herein." came back
+ * with an explanation of present-tense verb endings. True about German, nothing
+ * to do with what happened, and a learner cannot tell the difference.
+ */
+const frag = await post("/api/attempt", {
+  user: U,
+  kind: "listening",
+  correct: false,
+  answer: "Guten Abend",
+  expected: "Guten Abend, kommen Sie herein.",
+  explain: true,
+});
+const fragText = String(frag.explanation ?? "");
+ok(
+  /Anfang|fehlt/.test(fragText),
+  "it says the rest is missing",
+  fragText.slice(0, 70),
+);
+ok(
+  !/-st|-en\b|Endung/i.test(fragText),
+  "and does not lecture about verb endings",
+);
+
+const whole = await post("/api/attempt", {
+  user: U,
+  kind: "listening",
+  correct: false,
+  answer: "Ich sehe der Mann",
+  expected: "Ich sehe den Mann",
+  explain: true,
+});
+ok(
+  !/erst der Anfang/.test(String(whole.explanation ?? "")),
+  "a full attempt with one wrong word is still a real correction",
+  String(whole.explanation).slice(0, 50),
+);
+
 function countAttempts(): number {
   const db2 = open();
   const n = (
