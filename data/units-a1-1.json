@@ -50,7 +50,7 @@
       "das-wort",
       "noch-einmal"
     ],
-    "grammar_id": null,
+    "grammar_id": "g-alphabet",
     "scenario": null,
     "dialogue": null,
     "prereq": [
@@ -112,7 +112,7 @@
       "schlecht",
       "und"
     ],
-    "grammar_id": null,
+    "grammar_id": "g-pronouns",
     "scenario": null,
     "dialogue": null,
     "prereq": [
@@ -143,7 +143,7 @@
       "das-land",
       "die-stadt"
     ],
-    "grammar_id": null,
+    "grammar_id": "g-wordorder",
     "scenario": null,
     "dialogue": null,
     "prereq": [
@@ -174,7 +174,7 @@
       "die-freiheit",
       "die-moeglichkeit"
     ],
-    "grammar_id": null,
+    "grammar_id": "g-articles-nom",
     "scenario": null,
     "dialogue": null,
     "prereq": [
@@ -205,7 +205,7 @@
       "hier",
       "dort"
     ],
-    "grammar_id": null,
+    "grammar_id": "g-articles-nom",
     "scenario": null,
     "dialogue": null,
     "prereq": [
@@ -234,7 +234,7 @@
       "krank",
       "sehr"
     ],
-    "grammar_id": null,
+    "grammar_id": "g-sein",
     "scenario": null,
     "dialogue": null,
     "prereq": [
@@ -265,7 +265,7 @@
       "viel",
       "wenig"
     ],
-    "grammar_id": null,
+    "grammar_id": "g-zahlen",
     "scenario": null,
     "dialogue": null,
     "prereq": [
@@ -296,7 +296,7 @@
       "die-zeit",
       "jetzt"
     ],
-    "grammar_id": null,
+    "grammar_id": "g-uhrzeit",
     "scenario": null,
     "dialogue": null,
     "prereq": [
@@ -327,7 +327,7 @@
       "morgen-adv",
       "gestern"
     ],
-    "grammar_id": null,
+    "grammar_id": "g-zeitpraepositionen",
     "scenario": null,
     "dialogue": null,
     "prereq": [
@@ -358,7 +358,7 @@
       "kaufen",
       "brauchen"
     ],
-    "grammar_id": null,
+    "grammar_id": "g-praesens",
     "scenario": null,
     "dialogue": null,
     "prereq": [
@@ -389,7 +389,7 @@
       "sein-poss",
       "ihr-poss"
     ],
-    "grammar_id": null,
+    "grammar_id": "g-possessiv",
     "scenario": null,
     "dialogue": null,
     "prereq": [
@@ -418,7 +418,7 @@
       "die-sache",
       "alle"
     ],
-    "grammar_id": null,
+    "grammar_id": "g-plural",
     "scenario": null,
     "dialogue": null,
     "prereq": [
@@ -451,7 +451,7 @@
       "moegen",
       "moechten"
     ],
-    "grammar_id": null,
+    "grammar_id": "g-moechten",
     "scenario": null,
     "dialogue": null,
     "prereq": [
@@ -482,7 +482,7 @@
       "getrennt",
       "lecker"
     ],
-    "grammar_id": null,
+    "grammar_id": "g-moechten",
     "scenario": null,
     "dialogue": null,
     "prereq": [
@@ -511,7 +511,7 @@
       "doch",
       "leider"
     ],
-    "grammar_id": null,
+    "grammar_id": "g-negation",
     "scenario": null,
     "dialogue": null,
     "prereq": [
@@ -542,7 +542,7 @@
       "schoen",
       "teuer"
     ],
-    "grammar_id": null,
+    "grammar_id": "g-adjektiv-praedikativ",
     "scenario": null,
     "dialogue": null,
     "prereq": [
@@ -573,7 +573,7 @@
       "verstehen",
       "wiederholen"
     ],
-    "grammar_id": null,
+    "grammar_id": "g-questions",
     "scenario": null,
     "dialogue": null,
     "prereq": [
@@ -604,7 +604,7 @@
       "oft",
       "manchmal"
     ],
-    "grammar_id": null,
+    "grammar_id": "g-praesens",
     "scenario": null,
     "dialogue": null,
     "prereq": [

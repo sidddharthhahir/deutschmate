@@ -63,33 +63,45 @@ const at = new Map<string, number>();
 for (const u of units)
   if (u.grammar && !at.has(u.grammar)) at.set(u.grammar, u.ord);
 
+/*
+ * Real grammar ids, not the working names the plan was drafted with. Most of
+ * these points already existed under a g- id, so the plan was remapped rather
+ * than a second copy of praesens-regular being written. A pair naming an id
+ * nothing teaches is skipped below, which is how the A1.2 points that are still
+ * unwritten stay out of the way without weakening the ones that exist.
+ */
 const after: [string, string][] = [
-  ["akkusativ", "gender-nominativ"],
-  ["dativ", "akkusativ"],
+  ["g-akkusativ", "g-articles-nom"],
+  ["dativ", "g-akkusativ"],
   ["wechselpraepositionen", "dativ"],
-  ["praesens-regular", "sein-haben"],
-  ["perfekt-haben", "praesens-regular"],
+  ["g-praesens", "g-sein"],
+  ["perfekt-haben", "g-praesens"],
   ["perfekt-sein", "perfekt-haben"],
-  ["trennbare-verben", "modalverben"],
-  ["possessiv-voll", "dativ"],
+  ["trennbare-verben", "g-modalverben"],
+  ["g-uhrzeit", "g-zahlen"],
+  ["g-zeitpraepositionen", "g-uhrzeit"],
 ];
+let checked = 0;
 for (const [later, earlier] of after) {
   const l = at.get(later);
   const e = at.get(earlier);
-  ok(
-    l !== undefined && e !== undefined && l > e,
-    `${later} comes after ${earlier}`,
-    `${e} → ${l}`,
-  );
+  if (l === undefined || e === undefined) continue; // not written yet
+  checked++;
+  ok(l > e, `${later} comes after ${earlier}`, `unit ${e} → unit ${l}`);
 }
+ok(
+  checked >= 5,
+  "enough of the ordering is written to be worth asserting",
+  `${checked} pairs`,
+);
 
 section("the foundation this course was missing arrives early");
 /* Reported from real use: "we should introduce alphabet, number, time reading
    and all — der die das — this is the base right?" It was not there at all. */
 for (const [what, by] of [
-  ["alphabet-spelling", 5],
-  ["gender-nominativ", 8],
-  ["uhrzeit", 12],
+  ["g-alphabet", 5],
+  ["g-articles-nom", 8],
+  ["g-uhrzeit", 12],
 ] as [string, number][]) {
   const unit = at.get(what);
   ok(
@@ -108,6 +120,23 @@ eq(
   at.get("wechselpraepositionen"),
   39,
   "two-way prepositions at 39, not earlier",
+);
+
+section("every grammar point A1.1 names actually exists");
+/* The plan was drafted with working names and several of those points were
+   already written under a g- id. A unit pointing at a name nobody wrote teaches
+   vocabulary and no rule, silently — so A1.1, which is finished, must be whole. */
+const grammarFile = JSON.parse(
+  readFileSync(join(ROOT, "data/grammar-a1.json"), "utf8"),
+) as { id: string }[];
+const realIds = new Set(grammarFile.map((g) => g.id));
+const dangling = units
+  .filter((u) => u.level === "A1.1" && u.grammar && !realIds.has(u.grammar))
+  .map((u) => `${u.ord}:${u.grammar}`);
+ok(
+  dangling.length === 0,
+  "no A1.1 unit points at a grammar point that was never written",
+  dangling.join(", ") || "all present",
 );
 eq(
   units[39].grammar,

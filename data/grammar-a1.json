@@ -7,9 +7,18 @@
     "ord": 1,
     "explain_md": "German has **three words for \"you\"**. That is the only hard part.\n\n| | singular | plural |\n|---|---|---|\n| **1st** | ich · I | wir · we |\n| **2nd informal** | du · you | ihr · you all |\n| **3rd** | er / sie / es | sie · they |\n| **formal** | Sie · you | Sie · you |\n\n**du** — friends, family, children, students.\n**ihr** — more than one of the above.\n**Sie** — strangers, officials, shops, anyone older you don't know. Always capitalised.\n\nGet **Sie** wrong and you sound rude. Get **du** wrong and you sound stiff. When unsure, use **Sie** and wait to be offered *du*.",
     "examples": [
-      { "de": "Ich bin Siddharth.", "en": "I am Siddharth." },
-      { "de": "Woher kommst du?", "en": "Where do you come from? (friend)" },
-      { "de": "Woher kommen Sie?", "en": "Where do you come from? (stranger)" }
+      {
+        "de": "Ich bin Siddharth.",
+        "en": "I am Siddharth."
+      },
+      {
+        "de": "Woher kommst du?",
+        "en": "Where do you come from? (friend)"
+      },
+      {
+        "de": "Woher kommen Sie?",
+        "en": "Where do you come from? (stranger)"
+      }
     ],
     "drills": [
       {
@@ -47,9 +56,18 @@
     "ord": 2,
     "explain_md": "**sein** is irregular in every language, and German is no exception. Learn it as six sounds, not as a rule.\n\n```\nich   bin      wir  sind\ndu    bist     ihr  seid\ner    ist      sie  sind\n            Sie  sind\n```\n\nNotice **wir / sie / Sie all take `sind`** — three of the six forms are the same word. There are really only four to memorise: *bin, bist, ist, seid*.",
     "examples": [
-      { "de": "Ich bin müde.", "en": "I am tired." },
-      { "de": "Du bist mein Freund.", "en": "You are my friend." },
-      { "de": "Wir sind aus Indien.", "en": "We are from India." }
+      {
+        "de": "Ich bin müde.",
+        "en": "I am tired."
+      },
+      {
+        "de": "Du bist mein Freund.",
+        "en": "You are my friend."
+      },
+      {
+        "de": "Wir sind aus Indien.",
+        "en": "We are from India."
+      }
     ],
     "drills": [
       {
@@ -86,6 +104,57 @@
     "prereq": ["g-pronouns"]
   },
   {
+    "id": "g-alphabet",
+    "slug": "alphabet",
+    "title": "The alphabet, and spelling out loud",
+    "level": "A1.1",
+    "ord": 2,
+    "explain_md": "Same 26 letters as English, four extra characters, and about eight names that will catch you out.\n\n| letter | sounds like | letter | sounds like |\n|---|---|---|---|\n| **e** | *ay* | **i** | *ee* |\n| **a** | *ah* | **j** | *yot* |\n| **v** | *fow* | **w** | *vay* |\n| **y** | *üpsilon* | **z** | *tset* |\n\nThe trap is **e** and **i**: German **e** sounds like English *A*, and German **i** sounds like English *E*. Spelling your email address is where this bites.\n\n**ä ö ü** are said *A-Umlaut, O-Umlaut, U-Umlaut*, or just *ä, ö, ü*.\n**ß** is *Eszett* or *scharfes S*. It is never capitalised at the start of a word, and you may always write **ss** instead.\n\nOn the phone, Germans spell with names — *A wie Anton, B wie Berta*. You do not need the list, but you need to recognise what is happening when somebody does it at you.",
+    "examples": [
+      {
+        "de": "Wie schreibt man das?",
+        "en": "How do you write that?"
+      },
+      {
+        "de": "Können Sie das bitte buchstabieren?",
+        "en": "Could you spell that, please?"
+      },
+      {
+        "de": "M-I-R-A. Mira.",
+        "en": "M-I-R-A. Mira."
+      },
+      {
+        "de": "Mit Eszett oder mit Doppel-S?",
+        "en": "With ß or with ss?"
+      }
+    ],
+    "drills": [
+      {
+        "q": "German **e** is pronounced like the English letter…",
+        "options": ["A", "E", "I"],
+        "a": 0,
+        "why": "German e sounds like English A. This is the one that ruins spelled-out email addresses."
+      },
+      {
+        "q": "How do you say **ß**?",
+        "options": ["Eszett", "Beta", "Doppel-B"],
+        "a": 0,
+        "why": "Eszett, or scharfes S. It looks like a Greek beta and is not one."
+      },
+      {
+        "q": "You did not catch a name. You say:",
+        "options": [
+          "Können Sie das bitte buchstabieren?",
+          "Wie geht es Ihnen?",
+          "Was kostet das?"
+        ],
+        "a": 0,
+        "why": "Asking someone to spell it is the fastest repair in the language."
+      }
+    ],
+    "prereq": []
+  },
+  {
     "id": "g-haben",
     "slug": "verb-haben",
     "title": "haben — to have",
@@ -93,9 +162,18 @@
     "ord": 3,
     "explain_md": "**haben** is almost regular. Only *du* and *er/sie/es* drop the **b**.\n\n```\nich   habe     wir  haben\ndu    hast     ihr  habt\ner    hat      sie  haben\n            Sie  haben\n```\n\nSo: **hast** and **hat** are the two to watch. Everything else keeps the *b*.",
     "examples": [
-      { "de": "Ich habe zwei Brüder.", "en": "I have two brothers." },
-      { "de": "Hast du Zeit?", "en": "Do you have time?" },
-      { "de": "Sie hat ein Auto.", "en": "She has a car." }
+      {
+        "de": "Ich habe zwei Brüder.",
+        "en": "I have two brothers."
+      },
+      {
+        "de": "Hast du Zeit?",
+        "en": "Do you have time?"
+      },
+      {
+        "de": "Sie hat ein Auto.",
+        "en": "She has a car."
+      }
     ],
     "drills": [
       {
@@ -133,9 +211,18 @@
     "ord": 4,
     "explain_md": "Take the infinitive, chop off **-en**, add the ending. That is the whole system.\n\n```\nwohnen  →  wohn-  +  ending\n\nich   wohn e      wir  wohn en\ndu    wohn st     ihr  wohn t\ner    wohn t      sie  wohn en\n```\n\nFive endings: **-e, -st, -t, -en, -t, -en**.\n\nOne wrinkle: if the stem ends in **-t** or **-d** (*arbeiten*, *finden*), you insert an **-e-** so it's pronounceable → *du arbeit**e**st*, *er arbeit**e**t*.",
     "examples": [
-      { "de": "Ich wohne in Berlin.", "en": "I live in Berlin." },
-      { "de": "Du lernst Deutsch.", "en": "You are learning German." },
-      { "de": "Er arbeitet viel.", "en": "He works a lot." }
+      {
+        "de": "Ich wohne in Berlin.",
+        "en": "I live in Berlin."
+      },
+      {
+        "de": "Du lernst Deutsch.",
+        "en": "You are learning German."
+      },
+      {
+        "de": "Er arbeitet viel.",
+        "en": "He works a lot."
+      }
     ],
     "drills": [
       {
@@ -179,9 +266,18 @@
     "ord": 5,
     "explain_md": "Every German noun has a gender. It is **not** logical — *das Mädchen* (girl) is neuter. Learn the article **with** the noun, never the noun alone.\n\n| | definite | indefinite |\n|---|---|---|\n| masculine | **der** Mann | **ein** Mann |\n| feminine | **die** Frau | **eine** Frau |\n| neuter | **das** Kind | **ein** Kind |\n| plural | **die** Kinder | — |\n\nNote **der** and **das** share *ein* — the indefinite article makes no masculine/neuter distinction here.\n\nSome patterns that hold most of the time:\n- **-ung, -heit, -keit, -schaft, -ion** → always **die**\n- **-chen, -lein** → always **das**\n- **-er** (person doing something) → usually **der**",
     "examples": [
-      { "de": "Der Mann ist groß.", "en": "The man is tall." },
-      { "de": "Die Wohnung ist klein.", "en": "The flat is small." },
-      { "de": "Das Kind spielt.", "en": "The child is playing." }
+      {
+        "de": "Der Mann ist groß.",
+        "en": "The man is tall."
+      },
+      {
+        "de": "Die Wohnung ist klein.",
+        "en": "The flat is small."
+      },
+      {
+        "de": "Das Kind spielt.",
+        "en": "The child is playing."
+      }
     ],
     "drills": [
       {
@@ -225,9 +321,18 @@
     "ord": 6,
     "explain_md": "This is the rule that makes German sound German. **The conjugated verb is always the second element** in a statement — not the second *word*, the second *block*.\n\n```\n  1            2        rest\n[Ich]        [wohne]   in Berlin.\n[Heute]      [wohne]   ich in Berlin.\n[Seit 2024]  [wohne]   ich in Berlin.\n```\n\nMove anything to the front and the subject jumps **behind** the verb. English doesn't do this — *\"Today I live\"* stays put, German flips to *\"Heute wohne ich\"*.\n\nThis is the single most common mistake English speakers make, for years.",
     "examples": [
-      { "de": "Ich gehe heute nach Hause.", "en": "I'm going home today." },
-      { "de": "Heute gehe ich nach Hause.", "en": "Today I'm going home." },
-      { "de": "Morgen arbeite ich nicht.", "en": "Tomorrow I'm not working." }
+      {
+        "de": "Ich gehe heute nach Hause.",
+        "en": "I'm going home today."
+      },
+      {
+        "de": "Heute gehe ich nach Hause.",
+        "en": "Today I'm going home."
+      },
+      {
+        "de": "Morgen arbeite ich nicht.",
+        "en": "Tomorrow I'm not working."
+      }
     ],
     "drills": [
       {
@@ -268,9 +373,18 @@
     "ord": 7,
     "explain_md": "Two kinds, both simple.\n\n**W-questions** — question word first, verb second (the same slot-2 rule):\n```\nWoher   kommst   du?\nWo      wohnst   du?\nWas     machst   du?\n```\n\n**Yes/no questions** — just put the verb **first**:\n```\nKommst  du aus Indien?\nWohnst  du hier?\nHast    du Zeit?\n```\n\nNo *do/does* helper verb. German has nothing equivalent — *\"Do you live here?\"* is simply *\"Wohnst du hier?\"*",
     "examples": [
-      { "de": "Wie heißt du?", "en": "What's your name?" },
-      { "de": "Wo wohnst du?", "en": "Where do you live?" },
-      { "de": "Sprichst du Englisch?", "en": "Do you speak English?" }
+      {
+        "de": "Wie heißt du?",
+        "en": "What's your name?"
+      },
+      {
+        "de": "Wo wohnst du?",
+        "en": "Where do you live?"
+      },
+      {
+        "de": "Sprichst du Englisch?",
+        "en": "Do you speak English?"
+      }
     ],
     "drills": [
       {
@@ -308,9 +422,18 @@
     "ord": 8,
     "explain_md": "Two ways to say no, and picking the wrong one is a classic beginner tell.\n\n**kein** negates a noun that has *ein* or no article:\n```\nIch habe ein Auto.   →  Ich habe kein Auto.\nIch habe Zeit.       →  Ich habe keine Zeit.\n```\n\n**nicht** negates everything else — verbs, adjectives, and nouns with *der/die/das* or a possessive:\n```\nIch arbeite.         →  Ich arbeite nicht.\nDas ist gut.         →  Das ist nicht gut.\nIch kenne den Mann.  →  Ich kenne den Mann nicht.\n```\n\nQuick test: **could you say \"a\" or \"any\" in English?** Then it's *kein*.",
     "examples": [
-      { "de": "Ich habe keine Zeit.", "en": "I have no time." },
-      { "de": "Das ist nicht richtig.", "en": "That is not right." },
-      { "de": "Er kommt nicht.", "en": "He isn't coming." }
+      {
+        "de": "Ich habe keine Zeit.",
+        "en": "I have no time."
+      },
+      {
+        "de": "Das ist nicht richtig.",
+        "en": "That is not right."
+      },
+      {
+        "de": "Er kommt nicht.",
+        "en": "He isn't coming."
+      }
     ],
     "drills": [
       {
@@ -348,9 +471,18 @@
     "ord": 9,
     "explain_md": "When a noun is the **object** of the sentence — the thing being acted on — masculine articles change. **Only masculine.**\n\n| | subject (nom.) | object (acc.) |\n|---|---|---|\n| masc | **der** / **ein** Mann | **den** / **einen** Mann |\n| fem | **die** / **eine** Frau | **die** / **eine** Frau |\n| neut | **das** / **ein** Kind | **das** / **ein** Kind |\n| plural | **die** Kinder | **die** Kinder |\n\n```\nDer Mann  →  Ich sehe  den Mann.\nEin Apfel →  Ich esse  einen Apfel.\nDie Frau  →  Ich sehe  die Frau.     (unchanged)\nDas Kind  →  Ich sehe  das Kind.     (unchanged)\n```\n\nSo three quarters of the table does nothing. **Learn der → den and ein → einen and you have accusative.**",
     "examples": [
-      { "de": "Ich esse einen Apfel.", "en": "I'm eating an apple." },
-      { "de": "Sie kauft den Tisch.", "en": "She's buying the table." },
-      { "de": "Wir sehen die Frau.", "en": "We see the woman." }
+      {
+        "de": "Ich esse einen Apfel.",
+        "en": "I'm eating an apple."
+      },
+      {
+        "de": "Sie kauft den Tisch.",
+        "en": "She's buying the table."
+      },
+      {
+        "de": "Wir sehen die Frau.",
+        "en": "We see the woman."
+      }
     ],
     "drills": [
       {
@@ -387,6 +519,53 @@
     "prereq": ["g-articles-nom", "g-praesens"]
   },
   {
+    "id": "g-zahlen",
+    "slug": "zahlen",
+    "title": "Numbers, and why they run backwards",
+    "level": "A1.1",
+    "ord": 9,
+    "explain_md": "Above twenty, German says the **units before the tens**.\n\n**einundzwanzig** — literally *one-and-twenty*.\n**vierundsechzig** — *four-and-sixty*, 64.\n\nWritten as one word, however long. *siebenundachtzig* is 87.\n\nThis is not a curiosity. A price, a house number or a platform is said at full speed and you will hear the small digit first — **zweiundvierzig** starts with *zwei* and means 42, not 24. Listening for the ending is the skill.\n\nTwo spellings worth knowing: **sechzehn** and **siebzehn** drop a letter (not *sechszehn*, not *siebenzehn*), and **dreißig** is the only ten spelled with **ß**.",
+    "examples": [
+      {
+        "de": "Das kostet einundzwanzig Euro.",
+        "en": "That costs twenty-one euros."
+      },
+      {
+        "de": "Ich bin vierunddreißig.",
+        "en": "I am thirty-four."
+      },
+      {
+        "de": "Hausnummer siebenundachtzig.",
+        "en": "House number eighty-seven."
+      },
+      {
+        "de": "Gleis zweiundvierzig.",
+        "en": "Platform forty-two."
+      }
+    ],
+    "drills": [
+      {
+        "q": "**vierundzwanzig** is…",
+        "options": ["24", "42", "4"],
+        "a": 0,
+        "why": "vier-und-zwanzig — four and twenty. The small digit is said first."
+      },
+      {
+        "q": "You hear **zweiundfünfzig**. Write it.",
+        "options": ["52", "25", "2.5"],
+        "a": 0,
+        "why": "zwei-und-fünfzig. The ending fünfzig is what tells you it is in the fifties."
+      },
+      {
+        "q": "Which is spelled correctly?",
+        "options": ["sechzehn", "sechszehn", "sechsezehn"],
+        "a": 0,
+        "why": "sechzehn loses the s. So does siebzehn."
+      }
+    ],
+    "prereq": []
+  },
+  {
     "id": "g-modalverben",
     "slug": "modalverben",
     "title": "Modal verbs — können, müssen, wollen",
@@ -394,9 +573,18 @@
     "ord": 10,
     "explain_md": "Modal verbs express ability, obligation and desire. Two things to know:\n\n**1. ich and er/sie/es are identical** — no ending on either.\n```\nich   kann      wir  können\ndu    kannst    ihr  könnt\ner    kann      sie  können\n```\n\n**2. The other verb goes to the very end, as an infinitive.**\n```\nIch  kann   Deutsch  sprechen.\nIch  muss   heute    arbeiten.\nIch  will   nach Hause  gehen.\n```\n\nThis is the *Satzklammer* — the sentence bracket. The modal is in slot 2, the real verb waits at the end. It feels strange at first and then becomes automatic.\n\n| | means |\n|---|---|\n| können | can, be able to |\n| müssen | must, have to |\n| wollen | want to |\n| möchten | would like (polite) |\n| dürfen | be allowed to |",
     "examples": [
-      { "de": "Ich kann gut kochen.", "en": "I can cook well." },
-      { "de": "Du musst jetzt gehen.", "en": "You have to go now." },
-      { "de": "Wir wollen Deutsch lernen.", "en": "We want to learn German." }
+      {
+        "de": "Ich kann gut kochen.",
+        "en": "I can cook well."
+      },
+      {
+        "de": "Du musst jetzt gehen.",
+        "en": "You have to go now."
+      },
+      {
+        "de": "Wir wollen Deutsch lernen.",
+        "en": "We want to learn German."
+      }
     ],
     "drills": [
       {
@@ -427,6 +615,53 @@
     "prereq": ["g-wordorder"]
   },
   {
+    "id": "g-uhrzeit",
+    "slug": "uhrzeit",
+    "title": "Telling the time, and the halb trap",
+    "level": "A1.1",
+    "ord": 10,
+    "explain_md": "**halb drei is half past TWO.**\n\nGerman counts *towards* the coming hour. *halb drei* means half way to three. Every English speaker gets this wrong once, usually while missing something.\n\n| clock | German |\n|---|---|\n| 2:00 | zwei Uhr |\n| 2:15 | viertel nach zwei |\n| 2:30 | **halb drei** |\n| 2:45 | viertel vor drei |\n| 2:10 | zehn nach zwei |\n| 2:50 | zehn vor drei |\n\n**Two systems, both alive.** In conversation people use the twelve-hour form above. Timetables, appointments and anything official use the 24-hour clock read straight out: *vierzehn Uhr dreißig* for 14:30.\n\nWhen an Amt or a doctor gives you a time, you will hear the official form. When a friend does, you will hear *halb*. Learn to answer both with *Um wie viel Uhr?*",
+    "examples": [
+      {
+        "de": "Es ist halb drei.",
+        "en": "It is half past two."
+      },
+      {
+        "de": "Der Termin ist um vierzehn Uhr dreißig.",
+        "en": "The appointment is at 14:30."
+      },
+      {
+        "de": "Viertel vor neun.",
+        "en": "Quarter to nine."
+      },
+      {
+        "de": "Um wie viel Uhr beginnt das?",
+        "en": "What time does that start?"
+      }
+    ],
+    "drills": [
+      {
+        "q": "**halb sieben** is…",
+        "options": ["6:30", "7:30", "7:00"],
+        "a": 0,
+        "why": "Half way TO seven, so 6:30. The single most expensive mistake in beginner German."
+      },
+      {
+        "q": "The doctor says **um sechzehn Uhr**. That is…",
+        "options": ["16:00", "6:00", "6:16"],
+        "a": 0,
+        "why": "The 24-hour clock, read straight out. Official contexts always use it."
+      },
+      {
+        "q": "It is 9:45. A friend would say…",
+        "options": ["viertel vor zehn", "viertel nach neun", "halb zehn"],
+        "a": 0,
+        "why": "Quarter before ten. German looks forward to the next hour."
+      }
+    ],
+    "prereq": ["g-zahlen"]
+  },
+  {
     "id": "g-possessiv",
     "slug": "possessivartikel",
     "title": "mein, dein, sein — possessives",
@@ -434,12 +669,18 @@
     "ord": 11,
     "explain_md": "Possessives take **exactly the same endings as *ein***. Learn *ein* and you already know all of them.\n\n| | |\n|---|---|\n| mein | my |\n| dein | your (du) |\n| sein | his / its |\n| ihr | her / their |\n| unser | our |\n| euer | your (ihr) |\n| Ihr | your (formal) |\n\n```\nein  Bruder   →  mein  Bruder      (masc, subject)\neine Schwester →  meine Schwester   (fem)\nein  Kind     →  mein  Kind        (neut)\n     Eltern   →  meine Eltern      (plural takes -e)\n\nIch sehe einen Bruder → Ich sehe meinen Bruder   (masc object)\n```\n\nOne trap: **ihr** means both *her* and *their*, and capitalised **Ihr** means *your (formal)*. Context decides.",
     "examples": [
-      { "de": "Das ist mein Bruder.", "en": "That is my brother." },
+      {
+        "de": "Das ist mein Bruder.",
+        "en": "That is my brother."
+      },
       {
         "de": "Meine Schwester wohnt in Köln.",
         "en": "My sister lives in Cologne."
       },
-      { "de": "Ich sehe meinen Vater.", "en": "I see my father." }
+      {
+        "de": "Ich sehe meinen Vater.",
+        "en": "I see my father."
+      }
     ],
     "drills": [
       {
@@ -470,6 +711,59 @@
     "prereq": ["g-akkusativ"]
   },
   {
+    "id": "g-zeitpraepositionen",
+    "slug": "am-um-im",
+    "title": "am, um, im — when something happens",
+    "level": "A1.1",
+    "ord": 11,
+    "explain_md": "Three prepositions, chosen by the **kind** of time word. Learn them as a set; picking between them is not a judgement call.\n\n| | for | example |\n|---|---|---|\n| **am** | days, parts of the day | am Montag, am Abend |\n| **um** | clock times | um acht Uhr |\n| **im** | months, seasons, years | im Januar, im Sommer |\n\nTwo exceptions worth knowing on day one:\n\n**in der Nacht** — not *am*. The night is the odd one out.\n**Am Wochenende** for the weekend as a whole.\n\nAnd no preposition at all with **heute, morgen, gestern**: you say *morgen* and *heute Abend*, never *am morgen* for tomorrow.",
+    "examples": [
+      {
+        "de": "Am Montag arbeite ich.",
+        "en": "On Monday I work."
+      },
+      {
+        "de": "Der Kurs beginnt um neun Uhr.",
+        "en": "The course begins at nine."
+      },
+      {
+        "de": "Im Sommer ist es warm.",
+        "en": "In summer it is warm."
+      },
+      {
+        "de": "Heute Abend koche ich.",
+        "en": "This evening I'm cooking."
+      }
+    ],
+    "drills": [
+      {
+        "q": "___ Freitag habe ich Zeit.",
+        "options": ["Am", "Um", "Im"],
+        "a": 0,
+        "why": "am for days of the week."
+      },
+      {
+        "q": "Der Zug fährt ___ acht Uhr.",
+        "options": ["um", "am", "im"],
+        "a": 0,
+        "why": "um for clock times, always."
+      },
+      {
+        "q": "___ Januar ist es kalt.",
+        "options": ["Im", "Am", "Um"],
+        "a": 0,
+        "why": "im for months and seasons."
+      },
+      {
+        "q": "Which needs NO preposition?",
+        "options": ["morgen", "Montag", "acht Uhr"],
+        "a": 0,
+        "why": "heute, morgen and gestern stand alone."
+      }
+    ],
+    "prereq": ["g-uhrzeit"]
+  },
+  {
     "id": "g-plural",
     "slug": "plural",
     "title": "Making plurals",
@@ -477,9 +771,18 @@
     "ord": 12,
     "explain_md": "German has **five** plural patterns and no reliable way to predict which. Learn the plural with the word, like the article.\n\n| ending | example | notes |\n|---|---|---|\n| **-e** | Tisch → Tisch**e** | often masculine |\n| **-er** | Kind → Kind**er** | often adds umlaut: Haus → H**ä**us**er** |\n| **-(e)n** | Frau → Frau**en** | almost all feminine nouns |\n| **-s** | Auto → Auto**s** | loanwords |\n| **— (none)** | Zimmer → Zimmer | often -er/-el/-en endings |\n\nThe one dependable rule: **nouns ending in -e take -n** (Woche → Wochen), and **almost every feminine noun takes -n or -en**.\n\nThe plural article is always **die**, whatever the gender.",
     "examples": [
-      { "de": "Ich habe zwei Brüder.", "en": "I have two brothers." },
-      { "de": "Die Häuser sind alt.", "en": "The houses are old." },
-      { "de": "Wir kaufen drei Autos.", "en": "We're buying three cars." }
+      {
+        "de": "Ich habe zwei Brüder.",
+        "en": "I have two brothers."
+      },
+      {
+        "de": "Die Häuser sind alt.",
+        "en": "The houses are old."
+      },
+      {
+        "de": "Wir kaufen drei Autos.",
+        "en": "We're buying three cars."
+      }
     ],
     "drills": [
       {
@@ -514,5 +817,111 @@
       }
     ],
     "prereq": ["g-articles-nom"]
+  },
+  {
+    "id": "g-moechten",
+    "slug": "moechten",
+    "title": "ich möchte — the polite one",
+    "level": "A1.1",
+    "ord": 15,
+    "explain_md": "**ich möchte** is the most useful form a beginner owns. It means *I would like*, and it works in every shop, café and office in the country.\n\n| | |\n|---|---|\n| ich **möchte** | wir **möchten** |\n| du **möchtest** | ihr **möchtet** |\n| er/sie/es **möchte** | sie/Sie **möchten** |\n\nNote **ich möchte** and **er möchte** have no ending. That is not a typo — it is how this group of verbs behaves.\n\n**Say möchte, not will.** *Ich will einen Kaffee* is grammatical and lands like *I want a coffee* said flatly to a stranger. Germans are direct, but not that direct in a shop.\n\nA second verb, if there is one, goes to the **end**: *Ich möchte bezahlen.*",
+    "examples": [
+      {
+        "de": "Ich möchte einen Kaffee, bitte.",
+        "en": "I would like a coffee, please."
+      },
+      {
+        "de": "Möchten Sie etwas trinken?",
+        "en": "Would you like something to drink?"
+      },
+      {
+        "de": "Ich möchte bezahlen.",
+        "en": "I would like to pay."
+      },
+      {
+        "de": "Was möchtest du essen?",
+        "en": "What would you like to eat?"
+      }
+    ],
+    "drills": [
+      {
+        "q": "Ordering in a café, the natural choice is:",
+        "options": [
+          "Ich möchte einen Tee.",
+          "Ich will einen Tee.",
+          "Ich habe einen Tee."
+        ],
+        "a": 0,
+        "why": "möchte is the polite form. will is blunt to a stranger."
+      },
+      {
+        "q": "ich ___",
+        "options": ["möchte", "möchtest", "möchten"],
+        "a": 0,
+        "why": "No ending in the ich form — like a modal verb."
+      },
+      {
+        "q": "Where does the second verb go? Ich möchte …",
+        "options": [
+          "… jetzt bezahlen.",
+          "… bezahlen jetzt.",
+          "… bezahle jetzt."
+        ],
+        "a": 0,
+        "why": "The infinitive goes last. This is the bracket that runs through all of German."
+      }
+    ],
+    "prereq": []
+  },
+  {
+    "id": "g-adjektiv-praedikativ",
+    "slug": "adjektiv-praedikativ",
+    "title": "Adjectives after sein — the easy half",
+    "level": "A1.1",
+    "ord": 18,
+    "explain_md": "After **sein**, an adjective takes **no ending at all**. None. Whatever the gender, whatever the number.\n\n*Der Tisch ist **groß**.*\n*Die Lampe ist **groß**.*\n*Das Fenster ist **groß**.*\n*Die Fenster sind **groß**.*\n\nOne form, four sentences. This is the half of German adjectives that is easier than English.\n\n**The other half is not, and it is not A1.** Put the adjective *before* the noun — *der große Tisch* — and it takes an ending that depends on gender, case and which article is in front of it. That is a B-level table and this course does not pretend otherwise.\n\nSo: describe things with **sein** and you can say almost anything. *Das Auto ist rot* rather than *das rote Auto*, until much later.",
+    "examples": [
+      {
+        "de": "Der Kaffee ist heiß.",
+        "en": "The coffee is hot."
+      },
+      {
+        "de": "Die Wohnung ist klein.",
+        "en": "The flat is small."
+      },
+      {
+        "de": "Das Buch ist sehr gut.",
+        "en": "The book is very good."
+      },
+      {
+        "de": "Die Schuhe sind teuer.",
+        "en": "The shoes are expensive."
+      }
+    ],
+    "drills": [
+      {
+        "q": "Die Lampe ist ___.",
+        "options": ["schön", "schöne", "schönes"],
+        "a": 0,
+        "why": "After sein there is never an ending, whatever the gender."
+      },
+      {
+        "q": "Die Fenster sind ___.",
+        "options": ["klein", "kleine", "kleinen"],
+        "a": 0,
+        "why": "Plural changes nothing. Still no ending after sein."
+      },
+      {
+        "q": "Which sentence is A1 territory?",
+        "options": [
+          "Das Auto ist rot.",
+          "Ich sehe das rote Auto.",
+          "Ein rotes Auto steht dort."
+        ],
+        "a": 0,
+        "why": "Predicative — after sein. The other two need adjective endings, which are not A1."
+      }
+    ],
+    "prereq": []
   }
 ]

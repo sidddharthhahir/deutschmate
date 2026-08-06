@@ -26,7 +26,7 @@
         "spell your own name out loud",
         "ask someone to spell theirs"
       ],
-      "grammar": "alphabet-spelling",
+      "grammar": "g-alphabet",
       "grammarNote": "ä ö ü ß, and the letters whose German name catches an English speaker out: e, i, j, v, w, y, z.",
       "topics": ["alphabet"],
       "words": 10
@@ -56,7 +56,7 @@
         "tell someone how you are",
         "choose between du and Sie"
       ],
-      "grammar": "du-sie",
+      "grammar": "g-pronouns",
       "grammarNote": "du/Sie before any verb table, because every sentence after this has to pick one.",
       "topics": ["greetings", "pronouns"],
       "words": 12
@@ -71,7 +71,7 @@
         "say where you live now",
         "ask both questions"
       ],
-      "grammar": "verb-position-2",
+      "grammar": "g-wordorder",
       "grammarNote": "The verb sits second. Introduced here, on statements only — questions come in unit 19.",
       "topics": ["places", "countries"],
       "words": 12
@@ -86,7 +86,7 @@
         "use the right article for the words you know",
         "recognise the endings that predict gender"
       ],
-      "grammar": "gender-nominativ",
+      "grammar": "g-articles-nom",
       "grammarNote": "THE unit this course was missing. Not a list to memorise: -ung -heit -keit -schaft are die, -chen -lein are das, -er -ling are usually der. Every noun from here on is taught with its article, never bare.",
       "topics": ["articles"],
       "words": 12
@@ -101,7 +101,7 @@
         "ask what something is called",
         "say you do not know a word"
       ],
-      "grammar": "gender-nominativ",
+      "grammar": "g-articles-nom",
       "grammarNote": "Practice for unit 6 with objects you can point at. 'Wie heißt das auf Deutsch?' is the sentence that unlocks every later one.",
       "topics": ["objects"],
       "words": 12
@@ -116,7 +116,7 @@
         "say what you are and what you have",
         "say your age"
       ],
-      "grammar": "sein-haben",
+      "grammar": "g-sein",
       "grammarNote": "The two irregular verbs before the regular pattern, because they are irregular and they are unavoidable.",
       "topics": ["core-verbs"],
       "words": 10
@@ -131,7 +131,7 @@
         "understand a price",
         "say how old somebody is"
       ],
-      "grammar": "number-order",
+      "grammar": "g-zahlen",
       "grammarNote": "einundzwanzig — units before tens, said backwards to an English ear. Needs sein/haben from unit 8 to say anything with it.",
       "topics": ["numbers"],
       "words": 12
@@ -146,7 +146,7 @@
         "understand the official 24-hour form",
         "say when something starts"
       ],
-      "grammar": "uhrzeit",
+      "grammar": "g-uhrzeit",
       "grammarNote": "Both systems: halb drei means half past TWO, which is the single most expensive misunderstanding in beginner German. Needs numbers to 60.",
       "topics": ["time"],
       "words": 12
@@ -161,7 +161,7 @@
         "say when something happens",
         "talk about today, tomorrow and yesterday"
       ],
-      "grammar": "am-um-im",
+      "grammar": "g-zeitpraepositionen",
       "grammarNote": "am Montag, um acht, im Januar — the three time prepositions, learnt as a set because they are chosen by the kind of time word.",
       "topics": ["time"],
       "words": 12
@@ -176,7 +176,7 @@
         "say what you do every day",
         "ask what somebody else does"
       ],
-      "grammar": "praesens-regular",
+      "grammar": "g-praesens",
       "grammarNote": "-e -st -t -en -t -en. Deferred to unit 12 so there are verbs worth conjugating and a du/Sie decision already made.",
       "topics": ["core-verbs"],
       "words": 12
@@ -191,7 +191,7 @@
         "say whose someone is",
         "describe your family briefly"
       ],
-      "grammar": "possessiv-nominativ",
+      "grammar": "g-possessiv",
       "grammarNote": "mein/dein/sein/ihr in the nominative only. The full paradigm waits for unit 38, after the cases exist.",
       "topics": ["family"],
       "words": 12
@@ -206,7 +206,7 @@
         "recognise the five plural patterns",
         "count things"
       ],
-      "grammar": "plural",
+      "grammar": "g-plural",
       "grammarNote": "-e -er -n/-en -s and no ending. Taught as patterns with their gender tendencies rather than as one exception per word.",
       "topics": ["articles"],
       "words": 10
@@ -221,7 +221,7 @@
         "say what you like and do not like",
         "say what you would like"
       ],
-      "grammar": "moechten",
+      "grammar": "g-moechten",
       "grammarNote": "ich möchte as a fixed form, not yet as a modal. It is the politest thing a beginner can own.",
       "topics": ["food"],
       "words": 14
@@ -236,7 +236,7 @@
         "ask for the bill",
         "understand what the waiter asks you"
       ],
-      "grammar": "moechten",
+      "grammar": "g-moechten",
       "grammarNote": "First unit where the German comes back at you. Uses only units 1–15.",
       "topics": ["food", "places"],
       "words": 12
@@ -251,7 +251,7 @@
         "say you do not have something",
         "choose between nicht and kein"
       ],
-      "grammar": "negation",
+      "grammar": "g-negation",
       "grammarNote": "kein negates a noun, nicht negates everything else. One rule, and it is the whole of A1 negation.",
       "topics": ["negation"],
       "words": 10
@@ -266,7 +266,7 @@
         "describe an object so somebody finds it",
         "use an adjective after sein"
       ],
-      "grammar": "adjektiv-praedikativ",
+      "grammar": "g-adjektiv-praedikativ",
       "grammarNote": "Only predicative — das Auto ist rot. Adjective endings before a noun are a B-level headache and are not A1.1.",
       "topics": ["adjectives"],
       "words": 12
@@ -281,7 +281,7 @@
         "ask a yes/no question",
         "understand the answer"
       ],
-      "grammar": "fragen",
+      "grammar": "g-questions",
       "grammarNote": "W-word first, or verb first for yes/no. Held until unit 19 so the statement order from unit 5 is solid enough to be broken deliberately.",
       "topics": ["questions"],
       "words": 12
@@ -296,12 +296,11 @@
         "say when you do each thing",
         "understand somebody else's routine"
       ],
-      "grammar": "praesens-regular",
+      "grammar": "g-praesens",
       "grammarNote": "Consolidation. Nothing new — everything from units 1–19 in one connected piece of speech.",
       "topics": ["time", "core-verbs"],
       "words": 12
     },
-
     {
       "ord": 21,
       "level": "A1.2",
@@ -312,7 +311,7 @@
         "say what you see, have and need",
         "notice that only masculine changes"
       ],
-      "grammar": "akkusativ",
+      "grammar": "g-akkusativ",
       "grammarNote": "The first case shift, and the whole of A1.2 leans on it. Only der becomes den — saying that plainly removes most of the fear.",
       "topics": ["articles"],
       "words": 12
@@ -327,7 +326,7 @@
         "ask what something costs",
         "pay and understand the change"
       ],
-      "grammar": "akkusativ",
+      "grammar": "g-akkusativ",
       "grammarNote": "Accusative where you actually meet it: ich nehme den Käse.",
       "topics": ["food", "shopping"],
       "words": 14
@@ -372,7 +371,7 @@
         "say what you have to do",
         "put the second verb at the end"
       ],
-      "grammar": "modalverben",
+      "grammar": "g-modalverben",
       "grammarNote": "The bracket — modal second, infinitive last — is the structural idea of German. Two modals first, not all six.",
       "topics": ["core-verbs"],
       "words": 10
@@ -387,7 +386,7 @@
         "ask permission politely",
         "tell the difference between wollen and möchten"
       ],
-      "grammar": "modalverben",
+      "grammar": "g-modalverben",
       "grammarNote": "möchten becomes a modal here, having been a fixed phrase since unit 15. Ich will can sound blunt to a German ear; that is worth saying out loud.",
       "topics": ["core-verbs"],
       "words": 10
@@ -522,7 +521,7 @@
         "say what suits you",
         "ask for another size"
       ],
-      "grammar": "adjektiv-praedikativ",
+      "grammar": "g-adjektiv-praedikativ",
       "grammarNote": "Still predicative. Attributive endings are deliberately not A1 and the course says so rather than half-teaching them.",
       "topics": ["clothes", "shopping"],
       "words": 14
@@ -567,7 +566,7 @@
         "use mein, dein, sein, ihr, unser correctly",
         "ask whose something is"
       ],
-      "grammar": "possessiv-voll",
+      "grammar": "g-possessiv",
       "grammarNote": "The full paradigm, now that nominative, accusative and dative all exist. Unit 13 taught the nominative alone; this closes it.",
       "topics": ["family", "articles"],
       "words": 10

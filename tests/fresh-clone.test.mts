@@ -33,7 +33,10 @@ section("the course arrives complete");
 const words = count("SELECT COUNT(*) n FROM word");
 ok(words > 2000, "the whole deck", `${words} words`);
 ok(count("SELECT COUNT(*) n FROM unit") === 120, "all 120 units");
-ok(count("SELECT COUNT(*) n FROM grammar") === 36, "all 36 grammar points");
+/* A floor, not a count — writing a new grammar point must not turn this red.
+   The same lesson the scenario count taught when Alltag went from six to twelve. */
+const grammar = count("SELECT COUNT(*) n FROM grammar");
+ok(grammar >= 36, "the grammar points arrive", `${grammar}`);
 ok(
   count("SELECT COUNT(*) n FROM reading") > 30,
   "the readings",
