@@ -91,8 +91,12 @@ for (let d = 0; d < 60; d++) {
 }
 
 section("degrades when content is missing");
-/* No video imported yet — the real state of this install. Reading must take
-   the slot rather than the day silently collapsing to listening every time. */
+/*
+ * A unit with no video of its own. This was described as "the real state of
+ * this install" back when no video could ever be offered; 33 of the 40 A1 units
+ * have one now, and the seven that do not are the case this pins. Reading must
+ * take the slot rather than the day silently collapsing to listening.
+ */
 const nv = over(30, NO_VIDEO);
 eq(nv.video, 0, "no video block when none is ready");
 ok(
@@ -105,7 +109,7 @@ ok(
    video the input slot ALSO alternates on the calendar day — so "odd day" and
    "reading day" were one condition and every single reading was a recycled
    one. The FULL fixture hid it, because three input slots break the alignment.
-   Checked in the configuration that actually ships. */
+   Checked in the shape a unit without a video still has. */
 ok(
   nv.recycleReading > 0 && nv.recycleReading < nv.reading,
   "still only every other reading, with no video to break the cycle",

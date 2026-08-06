@@ -161,46 +161,35 @@ const orphans = (
 ).n;
 eq(orphans, 0, "no attempt row landed on any other account");
 
-section("sign-in links are throttled per address");
+section("the e-mail sign-in endpoint is gone, not merely unused");
 /*
- * Without a throttle, anyone who knows a colleague's address can post it in a loop and fill their
- * inbox from this server.
+ * This section used to assert that sign-in links were throttled per address. It
+ * had been asserting nothing for a while: e-mail sign-in was deleted, /api/auth
+ * answers 401 to a body with no `action`, so "both requests answer the same"
+ * compared 401 to 401 and "at most one live token" counted a table nobody
+ * writes to. Both passed, for ever, whatever the code did.
+ *
+ * What is worth asserting now is that the old door is shut. A request shaped
+ * like the old one must not sign anybody in.
  */
-const THROTTLED = "test-throttle@example.invalid";
-db.prepare(
-  "DELETE FROM auth_token WHERE user_id IN (SELECT id FROM user WHERE email = ?)",
-).run(THROTTLED);
-db.prepare("DELETE FROM user WHERE email = ?").run(THROTTLED);
+const OLD = "test-throttle@example.invalid";
+db.prepare("DELETE FROM user WHERE email = ?").run(OLD);
 db.prepare("INSERT INTO user (id, name, email) VALUES (?, ?, ?)").run(
   "test-throttle",
   "test-throttle",
-  THROTTLED,
+  OLD,
 );
 
-const askForLink = () =>
-  raw("/api/auth", {
-    method: "POST",
-    body: JSON.stringify({ email: THROTTLED }),
-  });
-
-const first = await askForLink();
-const second = await askForLink();
-eq(
-  first.status,
-  second.status,
-  "both requests answer the same — the throttle is not an oracle",
+const old = await raw("/api/auth", {
+  method: "POST",
+  body: JSON.stringify({ email: OLD }),
+});
+ok(old.status >= 400, "posting an address alone is refused", old.status);
+ok(
+  !(old.headers.get("set-cookie") ?? "").includes("dm_session"),
+  "and hands back no session cookie",
 );
 
-/* createSignInToken deletes the previous unused token, so a second send leaves
-   one row with a LATER created_at. A throttled one leaves the first untouched. */
-const tokens = db
-  .prepare(
-    "SELECT COUNT(*) AS n FROM auth_token WHERE user_id = 'test-throttle' AND used_at IS NULL",
-  )
-  .get() as { n: number };
-ok(tokens.n <= 1, "at most one live token either way", `${tokens.n}`);
-
-db.prepare("DELETE FROM auth_token WHERE user_id = 'test-throttle'").run();
 db.prepare("DELETE FROM user WHERE id = 'test-throttle'").run();
 
 section("the door still opens for the harness");

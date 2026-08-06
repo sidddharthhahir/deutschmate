@@ -1032,10 +1032,11 @@ really do write two rows — because that is what the take-back used to produce.
 
 ### Things that are empty but honest
 
-`video` has no rows, and the session only offers a video once it has
-hand-marked segments, so nothing pretends otherwise — `/admin/video` is the tool
-for adding them. `topic` covers 6% of words, and the filter chips are built from
-the topics that exist, with counts.
+`video` has 231 rows now, and both halves of this sentence stopped being true:
+it is not empty, and "the session only offers a video once it has hand-marked
+segments" was the condition that kept the block off the screen entirely. See the
+video section below. `topic` covers 6% of words, and the filter chips are built
+from the topics that exist, with counts.
 
 `error_pattern` was on this list. It is not any more — see §22.
 
@@ -1322,19 +1323,32 @@ opens daily, nothing reporting back what they watched, and less code — half of
 of extras DW does not put in the podcasts (the full films, the recaps) are still
 YouTube embeds.
 
-**Nothing is segmented, so the video block still never appears.** That is
-correct, not broken: `session.ts` will not offer a video without hand-marked
-segments, and an unsegmented file is a video rather than a lesson. A segment is
-a timestamp plus the line actually spoken, and the only way to know the line is
-to listen — generated transcripts would be subtitles that disagree with the
-audio, which is worse than no video because a learner would believe them. The
-editor takes a pasted DW manuscript and reduces the job to two keypresses per
-line, which is the honest way to make it faster.
+**Nothing is segmented, and the video block appears anyway.**
 
-Unit assignment is left to a person too, beyond six exact title matches. DW's
-"Einheit" is DW's course structure, not this app's twenty-per-level one, and
-mapping 226 episodes onto 120 units by arithmetic puts the wrong video in a
-lesson silently.
+This paragraph used to read "nothing is segmented, so the video block still
+never appears — that is correct, not broken". It was not correct. `session.ts`
+required hand-marked segments before it would offer a video, no episode has ever
+been marked up, and the result was that the block had never been rendered for
+anybody in the life of the app. A rule that deletes a feature is not a rule
+about honesty, whatever it is written in the name of.
+
+An episode plays unsegmented and says so on the card. Segments add per-sentence
+replay on top of that, and the work to make them stays human: a segment is a
+timestamp plus the line actually spoken, and the only way to know the line is to
+listen. Generated transcripts would be subtitles that disagree with the audio,
+which is worse than no video because a learner would believe them. Checked
+directly — the mp4s carry no subtitle track and DW's CDN serves no sidecar
+`.vtt` or `.srt`. The editor takes a pasted DW manuscript and reduces the job to
+two keypresses per line, which is the honest way to make it faster.
+
+Unit assignment is a person's judgement too. DW's "Einheit" is DW's course
+structure, not this app's twenty-per-level one, and mapping 226 episodes onto
+120 units by arithmetic puts the wrong video in a lesson silently. 33 of the 40
+A1 units are matched on DW's own episode titles — *Von A bis Z* to the alphabet
+unit, *Wem gehört das?* to the dative — and the seven with no honest match get
+no video day. The six that existed before were matched against the curriculum
+the A1 rewrite replaced and had drifted onto the wrong units; nothing caught it,
+because the block they fed never rendered.
 
 ### The audit that followed
 

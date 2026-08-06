@@ -102,10 +102,9 @@ if (shouldRecycle)
     `day ${today()} · reading=${expected.recycleReading} scenario=${expected.recycleScenario} · ${titles}`,
   );
 else
-  ok(
-    true,
-    "not a revisit day by the rotation — anything revisited is checked below",
-    titles,
+  console.log(
+    `      (not a revisit day by the rotation — ${titles}. Anything revisited\n` +
+      `       anyway is still checked below, so nothing is asserted here.)`,
   );
 
 /* The block checks below only run on a revisit day. */

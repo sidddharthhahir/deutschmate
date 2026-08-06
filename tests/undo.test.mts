@@ -79,6 +79,8 @@ section("the bug this replaced: grading twice would double everything");
 await post("/api/review", { user: U, cardId: before.id, grade: 3 });
 eq(rows("review", "hallo"), 2, "two sends really do write two rows");
 eq(card("hallo")!.reps, before.reps + 2, "and take two steps of the curve");
-ok(true, "which is why the send waits for the window instead of racing it");
+/* Which is why the send waits out the undo window instead of racing it. That
+   was an ok(true) with this sentence in it — a line in the pass column that
+   could not fail, and the two checks above already prove the point. */
 
 done();

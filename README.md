@@ -10,8 +10,8 @@ A1.1 → B1.2 in about seven months of self-study, one hour a day. Runs on a
 laptop or a small box, and costs the person hosting it nothing: the course is
 free, and the four features that need a model run on each learner's own key.
 
-Seven, not six: the deck is 2,400 words and a session introduces at most twelve
-a day, so the vocabulary alone is 200 days. `/fortschritt` shows your own
+Seven, not six: the deck is 2,604 words and a session introduces at most twelve
+a day, so the vocabulary alone is 217 days. `/fortschritt` shows your own
 projection from your own pace rather than that average.
 
 ---
@@ -29,7 +29,7 @@ npm run setup
 ```
 
 `setup` checks your Node version, builds the whole database from the files in
-`data/` — 2,400 words, 120 units, 36 grammar points, 38 readings, 1,827 levelled
+`data/` — 2,604 words, 120 units, 46 grammar points, 38 readings, 1,827 levelled
 sentences, 955 prebuilt explanations and 231 Deutsche Welle video episodes — and
 generates the two secrets the app needs into `.env.local`. No network, no
 downloads, no API key required.
@@ -65,8 +65,8 @@ run on **each learner's own Anthropic key**, added in **Einstellungen**:
 | "Erklär mir das" | from the cache, if anyone has asked before |
 | Eselsbrücken | unavailable, and says so |
 
-Everything else costs nothing and needs nothing: 2,400 words with audio, 120
-units, 36 grammar points, 38 readings, the FSRS engine, cloze mining, practice
+Everything else costs nothing and needs nothing: 2,604 words, 120
+units, 46 grammar points, 38 readings, the FSRS engine, cloze mining, practice
 exams, minimal pairs, walk mode — and **955 prebuilt explanations**, so a wrong
 answer still comes back with a reason. No feature invents an answer.
 
@@ -147,7 +147,7 @@ mistakes, new material, listening, speaking, a quiz — then stops.
 | | |
 |---|---|
 | **Sitzung** | The daily hour. Fixed rhythm, content chosen for you. |
-| **Wortschatz** | All 2,400 words, 2,373 of them with native audio. |
+| **Wortschatz** | All 2,604 words, 2,317 of them with native audio. |
 | **Üben** | Where *you* choose: scenarios, grammar, tests, pronunciation. |
 | **Fortschritt** | Every number is a count of something you did. |
 | **Der Weg** | All 120 units at once, which of them are still sticking, what you can now do, and dated milestones. |
@@ -516,7 +516,7 @@ Content tools, only needed if you change the source data:
 npm run audio             # fetch pronunciations from Wikimedia Commons
 npm run import-words      # rebuild words from data/wordlist-*.txt
 npm run import-sentences  # re-pick Tatoeba sentences (downloads 11 MB)
-npm run import-vocab      # top the deck up to 2,400 words (downloads ~1 GB)
+npm run import-vocab      # top the deck up to the B1 target (downloads ~1 GB)
 npm run attach-examples   # give every word an example sentence
 ```
 
@@ -664,7 +664,7 @@ throwaway learners through the real isolation mechanism. See `src/lib/trust.ts`.
 
 Every progress table is keyed by user and every page reads the same
 `activeUser()`, so the two halves cannot disagree: your streak, your due cards,
-your budget, your milestones. Content is shared — one copy of 2,400 words, one
+your budget, your milestones. Content is shared — one copy of the deck, one
 copy of the audio. Two people on separate machines works too; each clone just
 has its own database.
 
@@ -746,14 +746,19 @@ the [Goethe-Institut](https://www.goethe.de/de/spr/kup/prf.html).
 
 ## Known gaps
 
-- **All 231 videos are in; none is segmented yet.** The complete Deutsche Welle
-  *Nicos Weg* course — 226 episodes across A1, A2 and B1 — plus 5 YouTube extras
-  DW does not publish in its podcasts. Six are linked to the unit their title
-  matches. **None has segments, so the video block still never appears** — that
-  is correct, not broken: an unsegmented video is a file, not a lesson, and
-  `session.ts` will not offer one.
+- **All 231 videos are in and play; none is segmented yet.** The complete
+  Deutsche Welle *Nicos Weg* course — 226 episodes across A1, A2 and B1 — plus 5
+  YouTube extras DW does not publish in its podcasts. 33 of the 40 A1 units are
+  linked to the episode their title matches; the other seven have no honest
+  match and get no video day.
 
-  The remaining work is deliberately human. A segment is a timestamp plus the
+  This entry used to say *"none has segments, so the video block still never
+  appears — that is correct, not broken"*. It was not correct. Requiring
+  segments meant the block had never been shown to anyone, and the only way that
+  could be reported was "I don't find the video player". An episode plays
+  unsegmented and says so; segments add per-sentence replay on top.
+
+  That remaining work is deliberately human. A segment is a timestamp plus the
   line actually spoken, and the only way to know the line is to listen to it —
   generated "transcripts" would be subtitles that disagree with the audio, which
   is worse than no video because a learner would believe them.
@@ -796,6 +801,17 @@ the [Goethe-Institut](https://www.goethe.de/de/spr/kup/prf.html).
   the Web Speech API. Speaking and voice mode degrade to listen-and-repeat there
   and say which browsers work. This is feature-detected, so the day Firefox
   ships it, it turns on with no code change.
+- **Past A1, most units teach vocabulary and no rule.** All 40 A1 units are
+  hand-written and 36 of them name a grammar point. A2.1, A2.2, B1.1 and B1.2
+  have six each — 24 of the 46 written points cover 80 units, so 56 of them
+  introduce words and nothing else. The units are real and the vocabulary is
+  real; the syllabus behind them is A1-deep and A2-shallow. Counted by
+  `tests/docs.test.mts`, so this line cannot quietly stop being true.
+- **A1 has no conversation scenarios.** `Gespräch` is slot 7 of the daily
+  rhythm and never fires below A2.1, which has all twenty. A unit with no
+  scenario now produces no block rather than a broken one — it used to store
+  the four characters `"null"`, which is truthy, and take the whole session
+  down at block five.
 
 ### Closed since
 

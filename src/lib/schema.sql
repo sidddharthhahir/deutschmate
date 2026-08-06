@@ -227,26 +227,25 @@ CREATE TABLE IF NOT EXISTS user (
 CREATE UNIQUE INDEX IF NOT EXISTS idx_user_email ON user(email) WHERE email IS NOT NULL;
 
 /*
- * Sign-in tokens and sessions.
+ * Sessions.
  *
- * BOTH ARE STORED HASHED. The row is a verifier, not a credential: a copy of
- * this database — a backup on a laptop, a file pulled off a box — must not let
+ * STORED HASHED. The row is a verifier, not a credential: a copy of this
+ * database — a backup on a laptop, a file pulled off a box — must not let
  * anybody sign in as anybody. sha256 is right here because the secret is 32
  * random bytes, not a password; there is nothing to brute-force.
  *
- * No passwords anywhere, deliberately. A password needs storage, a reset flow,
- * and a policy, and every one of those is a way to leak. A short-lived
- * single-use link needs none of them.
+ * `auth_token` sat here until it was removed: it held the single-use e-mail
+ * sign-in links, and that whole path was deleted in favour of a username and
+ * password. Nothing in src/ had read the table since, but it was still created
+ * on every fresh clone and still had a test pointed at it — a test that could
+ * not fail, because the endpoint it posted to now answers 401 to anything with
+ * no `action`. An old table nobody reads is untidy; a green test guarding a
+ * feature that is gone is worse.
+ *
+ * Existing databases keep the empty table. Dropping it would be the one piece
+ * of destructive DDL in a migration runner that otherwise only adds columns,
+ * and nothing reads it, so it costs a few kilobytes and no risk.
  */
-CREATE TABLE IF NOT EXISTS auth_token (
-  hash        TEXT PRIMARY KEY,          -- sha256 of the token, never the token
-  user_id     TEXT NOT NULL REFERENCES user(id) ON DELETE CASCADE,
-  expires_at  TEXT NOT NULL,
-  used_at     TEXT,                      -- single use: set on redemption
-  created_at  TEXT NOT NULL DEFAULT (datetime('now'))
-);
-CREATE INDEX IF NOT EXISTS idx_token_user ON auth_token(user_id, expires_at);
-
 CREATE TABLE IF NOT EXISTS session (
   hash        TEXT PRIMARY KEY,          -- sha256 of the cookie value
   user_id     TEXT NOT NULL REFERENCES user(id) ON DELETE CASCADE,
