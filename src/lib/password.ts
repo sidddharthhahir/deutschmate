@@ -17,7 +17,7 @@ const KEYLEN = 64;
 const SALT_BYTES = 16;
 
 /* The numbers live in a crypto-free module so the sign-in form can state them. */
-export { MIN_PASSWORD, MAX_PASSWORD } from "./password-rules.ts";
+export { MIN_PASSWORD } from "./password-rules.ts";
 import { MIN_PASSWORD, MAX_PASSWORD } from "./password-rules.ts";
 
 /** `s1$<salt>$<hash>`, base64url. Versioned so a future cost or algorithm is detectable. */

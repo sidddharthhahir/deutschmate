@@ -36,14 +36,19 @@ downloads, no API key required.
 
 ```bash
 npm run dev
-npm run invite you@example.com     # prints your sign-in link
 ```
 
-Follow the link and press Enter. There is no password: sign-in is a single-use
-link, and with no mail provider configured the link is printed in the terminal
-for you to hand over — configure one and it is emailed instead. `npm run config`
-shows every setting the server is actually using, and says when one of them is
-wrong in a way that would only show up later.
+Open it, pick **Konto erstellen**, choose a username and a password. That is the
+whole of it — no email, no confirmation, nothing to wait for. You will be shown a
+**recovery code once**; write it down, because with no address to send a reset to
+it is the only way back in on your own.
+
+Then press Enter. **That device stays signed in** — the session lasts ten years,
+so a language app you open every morning never asks again. Sign out on `/wer`
+when you want to hand the laptop to somebody else.
+
+`npm run config` shows every setting the server is actually using, and says when
+one of them is wrong in a way that would only show up later.
 
 Add your own Anthropic key later, in **Einstellungen** — see below for exactly
 what it buys and what works without it.
@@ -268,7 +273,7 @@ Conflating these is how a setting ends up in the wrong place and stays there.
 
 | Kind | Lives in | Examples | Changes when |
 |---|---|---|---|
-| **Deployment** | env, read via `src/lib/env.ts` | URL, mail transport, budget, admin switch, DB path | you move machines |
+| **Deployment** | env, read via `src/lib/env.ts` | URL, budget, admin switch, DB path | you move machines |
 | **Provider catalogue** | `data/models.json` | model ids, prices, cache multipliers | Anthropic changes something |
 | **Product constants** | `src/lib/config.ts` | new words per day, review cap, leech threshold | you change the course |
 | **Per learner** | the `user` table | their API key (encrypted), their spend cap | any learner, any time |
@@ -299,8 +304,8 @@ somebody has to support.
 **Every `process.env` read had its own fallback and failed silently.**
 `DEUTSCHMATE_BUDGT=5` is not an error, it is a budget of $5 because the typo'd
 name was never read. `env.ts` names each variable once and `npm run config`
-prints what the server actually thinks — including that a wrong
-`DEUTSCHMATE_URL` sends every sign-in link somewhere nobody can follow.
+prints what the server actually thinks, and flags the settings that would only
+go wrong later.
 
 **And then five of those constants controlled nothing.** `GAP_DAYS`,
 `GAP_BACKLOG`, `GAP_CARDS`, `PACE_CUT_ACCURACY` and `CLOZE_PER_SESSION` sat in
@@ -364,8 +369,7 @@ npm run setup            # build the database from data/
 npm run dev              # start (localhost)
 npm run dev:lan          # start (reachable from your phone)
 npm run config           # every effective setting, and what looks wrong
-npm run invite <email>   # a sign-in link; no argument lists the accounts
-npm run mail:test        # what mail is configured; add an address to send one
+npm run passwd <name>    # reset a password; no argument lists the accounts
 npm run videos           # verify the video catalogue and seed it
 npm run export-content   # segments + mnemonics out of the db, into data/
 npm run backup           # snapshot + JSON export of your progress
@@ -576,69 +580,52 @@ machine only. Back it up.
 
 ### Two people, one install
 
-**You sign in.** Your email, a link, no password — nothing to choose, forget or
-leak. The first address to ask on a fresh install gets an account; after that,
-new accounts come from the invite field on `/wer` or from `npm run invite`.
+**A username and a password.** Everyone picks their own on the sign-in screen —
+**Konto erstellen**, and they are in. No address, no confirmation, no inbox, and
+nothing for you to configure: this install sends no mail at all.
+
+**The device then stays signed in.** The session lasts ten years, because a
+learner opens this every morning for seven months and a sign-in screen between
+them and the one button is friction with nothing behind it. **Abmelden** on
+`/wer` is there for a shared laptop; you simply never press it.
+
+That is worth saying plainly rather than burying: whoever holds the laptop is
+you. For a German course with no payment details that is the right trade, and it
+is the trade this app is making on purpose.
+
+**Forgetting the password.** Creating an account shows a **recovery code** once —
+`X7K2-9PQR-M4TW-BH3D`. It resets the password, and using it spends it: a code
+seen over somebody's shoulder is not a permanent key. Case, spaces and the dashes
+are all forgiven, since it gets copied off paper. The alphabet has no O, 0, I, 1
+or L for the same reason.
+
+When somebody loses the code as well, that is what you are for:
 
 ```bash
-npm run invite anna@example.de        # new account, or a link for an existing one
-npm run invite                        # list the accounts on this install
+npm run passwd                  # the accounts on this install
+npm run passwd mira             # set a password, printed once
 ```
 
-**The link is emailed if you configure a provider, and printed if you don't.**
-Printing is the default and stays it: a provider means an account, a verified
-domain and a network, and `npm run setup` still works with none of those.
+It also signs out every device that account was using — a reset that leaves the
+old sessions alive has not locked anybody out.
 
-```bash
-npm run mail:test                    # what is configured, and whether it can send
-npm run mail:test you@example.com    # send one, and say what came back
-```
+Three things the door does:
 
-Two transports, both switched on by filling in credentials — there is no second
-switch to forget:
-
-| | Set | Notes |
-|---|---|---|
-| **SMTP** | `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASS` | Any provider, including a company mailbox. Gmail and Microsoft 365 want an **app password**, not your account password. |
-| **Resend** | `RESEND_API_KEY` | One HTTP call, no dependency. The sending domain must be verified there first. |
-
-Both also need `DEUTSCHMATE_MAIL_FROM`, on a domain the provider will accept.
-
-Port and TLS is where SMTP setups actually break: **587 is STARTTLS**, **465 is
-TLS from the first byte**, and getting them the wrong way round produces a hang
-rather than an error. The port picks the mode on its own; `SMTP_SECURE` is only
-there for a provider that disagrees.
-
-Three things the sending path is careful about:
-
-- **A dead provider does not lose the link.** The send failure is logged loudly
-  and the link still prints to the terminal, so you can hand it over. Losing it
-  would strand a real person mid-sign-in for no benefit.
-- **A dead provider does not leak who has an account.** Mail being broken is
-  checked *before* the address is looked up, so that 503 is true regardless of
-  who asked. A failure *after* the lookup still returns the ordinary success —
-  "sending failed" would otherwise mean "this address has an account here".
-- **The message does not phone home.** No image, so no tracking pixel; no
-  link-wrapping redirect; the plain-text part carries the URL too, because some
-  clients render that one and a link that exists only in the HTML is a sign-in
-  that works for most people and mysteriously doesn't for one.
-
-**One link per address per minute.** Without it, anyone who knows a colleague's
-address can post it in a loop and fill their inbox from your server — harmless
-while links printed to a terminal, real the moment mail is on. Keyed on the
-address, because that is what is being harmed and an IP is trivially changed.
-The refusal is deliberately indistinguishable from a send: "too soon" would
-confirm the address has an account, which is exactly what the identical-answer
-rule above exists to prevent. `npm run invite` bypasses it, which is also the
-documented way out of a lockout.
+- **A wrong password and an unknown username give the byte-identical answer.**
+  Otherwise anyone can list who has an account here by watching which usernames
+  answer differently. `tests/auth.test.mts` asserts the two messages match.
+- **Eight wrong tries locks that username for five minutes.** Checked before any
+  database work, so a locked name costs an attacker a round trip and teaches
+  them nothing. Keyed on the username, because that is what is under attack.
+- **The password is never stored.** scrypt with a per-user salt, from
+  `node:crypto` — no new dependency, so the clone-and-run promise holds. The
+  recovery code is a sha256, which is enough for 79 bits this server generated
+  itself; the reason a password needs scrypt is that a person chose it.
 
 **The session cookie honours `x-forwarded-proto`.** It used to decide `Secure`
 from the request URL, which reads `http:` behind nginx, Caddy or any platform
 router terminating TLS — so on a real https deployment the cookie would go out
 unprotected and nothing would look wrong.
-
-`deliver()` in [src/lib/auth.ts](src/lib/auth.ts) is still the single seam —
-everything above it is unchanged, and `console` is still one of the options.
 
 Identity used to be a name in a readable cookie, `dm_user=sid`, settable from
 the browser console — plus `?user=alex` on eight GET routes and a `"user"` field
@@ -646,10 +633,8 @@ in twelve POST bodies, both of which overrode it without a check. On one laptop
 that was the design (spec §10). It stops being one the moment a third person can
 reach the server.
 
-Now it is a random 32-byte session token in an httpOnly cookie, and **both the
-session and the sign-in link are stored only as sha256** — a copy of the
-database must not let anybody sign in as anybody. Sessions last 14 days; links
-work once and expire in 20 minutes, and asking for a new one kills the old.
+Now it is a random 32-byte session token in an httpOnly cookie, **stored only as
+sha256** — a copy of the database must not let anybody sign in as anybody.
 
 `?user=` still works for the test suite, and only for it: it needs
 `DEUTSCHMATE_TEST_AUTH`, fails closed, and is what lets the tests drive

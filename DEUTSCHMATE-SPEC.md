@@ -1132,23 +1132,18 @@ Five steps, in order.
 
 ### 1–2. Accounts, and a door
 
-`user` gained `email`; two new tables, `auth_token` and `session`. Sign-in is a
+`user` gained `email`; two new tables, `auth_token` and `session`. Sign-in was a
 magic link: an address, a mailed link, a fourteen-day session. No password to
 choose, forget, or leak, and no password column to be breached.
 
-**Both are stored as sha256 only.** A database copy therefore does not contain a
-usable session or a usable link. Redemption is a single `UPDATE` that both
-requires the token to be unused and marks it used, so two clicks on the same
-link cannot both win — the check and the claim are one statement rather than a
-read followed by a write.
+**Superseded by §26** — the link needed delivery, delivery needed SMTP, and the
+whole apparatus existed to answer a question a password box answers directly.
+The session half of this survived unchanged; the token half is gone.
 
 `src/proxy.ts` redirects page requests with no session cookie to `/anmelden`.
 (It was `src/middleware.ts` until Next 16 deprecated that convention — see §25.)
 It runs in the edge runtime, which cannot load `node:sqlite`, so the cookie names
 live in `lib/who.ts` — a module the edge can import — rather than in `lib/auth.ts`.
-
-`npm run invite <email>` mints a link from the command line. It is also the way
-back in if you lock yourself out.
 
 ### 3. Config, not constants
 
@@ -1271,6 +1266,11 @@ cannot reach them, and they are the exact thing the column exists to prevent.
 ---
 
 ## 24. Email, video, and an audit of the above
+
+> **The email half of this section is history.** §26 replaced sign-in links with
+> a username and a password and deleted the mail subsystem entirely. Kept
+> because the reasoning is still the record of why it was built, and because the
+> three send-path properties below are the standard the replacement had to meet.
 
 ### Sign-in links can be emailed
 
@@ -1613,3 +1613,81 @@ runs since the change of which 18 passed. Against a baseline of 2 failures in 5,
 that is a large improvement and not a proof. The honest claim is "rare", and the
 symptom is documented so the next person who hits it recognises it instead of
 bisecting their own commit.
+
+---
+
+## 26. A username and a password, and the device never asks again
+
+### Why the magic link went
+
+§23 chose an emailed link for good reasons: nothing to choose, nothing to forget,
+no password column to breach. §24 then built the delivery it needed — three
+transports, a From address, STARTTLS versus implicit TLS, a rewrite warning for
+Gmail, a per-address throttle, a "check your email" screen.
+
+Every one of those is machinery in service of *delivery*, and delivery was only
+ever there because the credential had to travel. The verdict came from using it:
+a sign-in ends at a screen saying to go and look somewhere else, and on an
+install with no provider that somewhere else is the terminal. The person who has
+to be told this is a flatmate.
+
+A password box asks for the credential directly. Delivery stops being part of
+sign-in, and the entire subsystem stops being load-bearing — so it is deleted,
+not left switched off. §21's rule: a feature that renders correctly over a
+mechanism nothing needs is the thing this project keeps removing.
+
+### The shape
+
+- **Username and password.** `user.name` was already `UNIQUE`, so it is the
+  login identity — no second column, no second notion of who somebody is.
+- **scrypt from `node:crypto`**, per-user salt, versioned `s1$salt$hash`,
+  timing-safe compare. No dependency, so §17's clone-and-run holds.
+- **The session lasts ten years.** That is the feature, not an oversight. A
+  learner opens this every morning for seven months; a sign-in screen in front
+  of the one button is friction with nothing behind it. Sign out on `/wer` is
+  the escape hatch for a shared laptop, and the trade — whoever holds the device
+  is you — is stated in the README rather than discovered.
+
+### Forgetting the password, without an inbox
+
+A reset always needs a second channel to prove identity. With no email there are
+two honest options and the app does both: a **recovery code** shown once at
+sign-up, and `npm run passwd` for the operator.
+
+The code is `X7K2-9PQR-M4TW-BH3D` — four groups of four from an alphabet with no
+O, 0, I, 1 or L, because it gets written on paper and typed back months later.
+Case, spaces and dashes are all forgiven for the same reason. It is stored as
+sha256 rather than scrypt: it is 79 bits this server generated, so there is no
+dictionary to run at it — the reason a *password* needs scrypt is that a person
+chose it.
+
+**Using a code spends it** and a fresh one is issued. Otherwise a code glimpsed
+once is a permanent key to the account. `npm run passwd` also destroys every
+session for that account, because a reset that leaves the old devices signed in
+has not locked anybody out.
+
+### What the door refuses
+
+- A wrong password and an unknown username return the **byte-identical** body.
+  `tests/auth.test.mts` asserts the two messages match, because differing ones
+  turn the sign-in form into a list of who has an account here.
+- **Eight failures locks that username for five minutes**, checked before any
+  query — a locked name costs a round trip and yields no timing signal. In
+  memory, keyed on the username: a disk write per wrong password would be a
+  denial-of-service lever, and an IP is trivially changed.
+
+### The bug the test found first
+
+`verifyPassword` decoded the stored hash and compared it against a freshly
+derived key of the same length. `Buffer.from("!!", "base64url")` does not throw
+on rubbish — it returns an **empty buffer** — and `timingSafeEqual(empty, empty)`
+is `true`. A row reading `s1$!!$!!` therefore accepted **every password**.
+
+No real row looks like that, which is exactly why it would have survived: it
+needs a corrupt or hand-edited database to trigger, and then it is a total
+bypass. The lengths are checked before the compare now, and
+`tests/password.test.mts` drives nine malformed stored values against two
+different passwords each.
+
+Written before the feature was wired to anything, which is the only reason it was
+found on a laptop rather than in a public repo.
