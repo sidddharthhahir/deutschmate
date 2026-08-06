@@ -140,8 +140,16 @@ export type Milestone = {
   detail: string;
 };
 
-/** Word counts worth stopping at. The last is the whole deck. */
-const WORD_MARKS = [1, 100, 250, 500, 1000, 1500, 2000, 2400];
+/**
+ * Word counts worth stopping at.
+ *
+ * The last used to be a hardcoded 2400, described in this comment as "the whole
+ * deck". The deck has been 2,604 for a while, so the final milestone would have
+ * congratulated somebody on finishing it with 204 words still to go. Read from
+ * the table instead — a milestone that arrives early is a small lie, and this
+ * page exists to count real things.
+ */
+const WORD_MARKS = [1, 100, 250, 500, 1000, 1500, 2000];
 
 /** The first time each of these happened is worth remembering. */
 const FIRSTS: { kind: string; title: string; detail: string }[] = [
@@ -191,7 +199,12 @@ export function milestones(userId: string): Milestone[] {
       ORDER BY at`,
     userId,
   );
-  for (const mark of WORD_MARKS) {
+  /* Plus the real end of the deck, counted rather than typed. */
+  const deck = get<{ n: number }>("SELECT COUNT(*) AS n FROM word")?.n ?? 0;
+  const marks =
+    deck > (WORD_MARKS.at(-1) ?? 0) ? [...WORD_MARKS, deck] : WORD_MARKS;
+
+  for (const mark of marks) {
     const row = intro[mark - 1];
     if (!row) break;
     out.push(

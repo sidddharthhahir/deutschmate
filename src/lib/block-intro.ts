@@ -79,10 +79,11 @@ export const INTRO: Record<string, Intro> = {
     ],
   },
   "new-vocab": {
-    line: "Today's new words — nothing is graded here",
+    line: "Today's new words, one at a time",
     body: [
       "The new words for today, at most twelve, and fewer if your accuracy has been slipping.",
-      "This block does not test you. Read the word, what it means and one example sentence, then Verstanden. Each one becomes a card, and you will meet it again in Aufwärmen tomorrow.",
+      "Each one is shown with its meaning and an example — then Verstanden, and you pick the meaning back out of four. It is a check that it landed, not a memory test, but the answer is recorded and it counts towards the accuracy that decides tomorrow's pace.",
+      "Every word here becomes a card, and comes back in Aufwärmen.",
     ],
   },
   "new-grammar": {

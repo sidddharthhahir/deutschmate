@@ -34,7 +34,13 @@ type Payload = {
   pacing?: { words: number; accuracy: number | null; reduced: boolean };
 };
 
-/** Introducing new words — not a test. */
+/**
+ * Introducing new words: show the word with its meaning, then check the meaning
+ * landed. The check is a four-way recognition question, and it IS recorded —
+ * `record({ kind: "new-vocab" })` feeds the accuracy that newWordBudget uses to
+ * cut tomorrow's pace. Worth saying, because the doorway card for this block
+ * used to claim nothing here was graded.
+ */
 export default function NewVocabBlock({
   payload,
   onDone,

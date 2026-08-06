@@ -103,6 +103,35 @@ if (setup) {
   eq(got, want, "words, units, grammar, readings, sentences, patterns, videos");
 }
 
+section("and so do the numbers the tour shows a learner");
+/*
+ * The README is read by whoever installs this. The tour is read by whoever
+ * learns from it, which makes a stale number there worse, and it had exactly
+ * the same two: "120 units, 2,400 words, 36 grammar points". Fixing the README
+ * and stopping there is how the pair drifted apart in the first place.
+ */
+const tour = readFileSync(
+  join(ROOT, "src/app/willkommen/Tour.tsx"),
+  "utf8",
+).replace(/\s+/g, " ");
+const pitch =
+  /takes you from A1\.1 to B1\.2 — ([\d,]+) units, ([\d,]+) words, ([\d,]+) grammar points/.exec(
+    tour,
+  );
+ok(pitch, "the tour still opens with the size of the course");
+if (pitch) {
+  const got = pitch.slice(1).map((s) => Number(s.replace(/,/g, "")));
+  eq(
+    got,
+    [
+      count("SELECT COUNT(*) AS n FROM unit"),
+      count("SELECT COUNT(*) AS n FROM word"),
+      count("SELECT COUNT(*) AS n FROM grammar"),
+    ],
+    "units, words, grammar points — as the learner is told them",
+  );
+}
+
 section("the course size adds up");
 /* Not a README claim — an internal one. 120 units across six half-levels is the
    scope in the spec, and every screen that says "Unit n von 20" depends on it. */
