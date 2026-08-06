@@ -1,0 +1,606 @@
+{
+  "note": "The A1 teaching order, hand-written. Read docs/CURRICULUM.md before changing it — the order is the design, not a list.",
+  "units": [
+    {
+      "ord": 1,
+      "level": "A1.1",
+      "id": "a1-01-hallo",
+      "title": "Hallo!",
+      "canDo": [
+        "greet someone at any time of day",
+        "say thank you, please and sorry",
+        "say yes and no"
+      ],
+      "grammar": null,
+      "grammarNote": "None on purpose. Day one is sounds and set phrases; a rule needs words to act on.",
+      "topics": ["greetings"],
+      "words": 12
+    },
+    {
+      "ord": 2,
+      "level": "A1.1",
+      "id": "a1-02-alphabet",
+      "title": "Das Alphabet",
+      "canDo": [
+        "say the German alphabet",
+        "spell your own name out loud",
+        "ask someone to spell theirs"
+      ],
+      "grammar": "alphabet-spelling",
+      "grammarNote": "ä ö ü ß, and the letters whose German name catches an English speaker out: e, i, j, v, w, y, z.",
+      "topics": ["alphabet"],
+      "words": 10
+    },
+    {
+      "ord": 3,
+      "level": "A1.1",
+      "id": "a1-03-zahlen-20",
+      "title": "Zahlen 0–20",
+      "canDo": [
+        "count to twenty",
+        "give your phone number",
+        "understand a number said to you"
+      ],
+      "grammar": null,
+      "grammarNote": "Numbers are vocabulary at this size. The teens reverse in the next unit, so they are learnt flat first.",
+      "topics": ["numbers"],
+      "words": 12
+    },
+    {
+      "ord": 4,
+      "level": "A1.1",
+      "id": "a1-04-wie-heisst-du",
+      "title": "Wie heißt du?",
+      "canDo": [
+        "say your name and ask for someone else's",
+        "tell someone how you are",
+        "choose between du and Sie"
+      ],
+      "grammar": "du-sie",
+      "grammarNote": "du/Sie before any verb table, because every sentence after this has to pick one.",
+      "topics": ["greetings", "pronouns"],
+      "words": 12
+    },
+    {
+      "ord": 5,
+      "level": "A1.1",
+      "id": "a1-05-woher",
+      "title": "Woher kommst du?",
+      "canDo": [
+        "say where you are from",
+        "say where you live now",
+        "ask both questions"
+      ],
+      "grammar": "verb-position-2",
+      "grammarNote": "The verb sits second. Introduced here, on statements only — questions come in unit 19.",
+      "topics": ["places", "countries"],
+      "words": 12
+    },
+    {
+      "ord": 6,
+      "level": "A1.1",
+      "id": "a1-06-der-die-das",
+      "title": "Der, die, das",
+      "canDo": [
+        "name the three genders",
+        "use the right article for the words you know",
+        "recognise the endings that predict gender"
+      ],
+      "grammar": "gender-nominativ",
+      "grammarNote": "THE unit this course was missing. Not a list to memorise: -ung -heit -keit -schaft are die, -chen -lein are das, -er -ling are usually der. Every noun from here on is taught with its article, never bare.",
+      "topics": ["articles"],
+      "words": 12
+    },
+    {
+      "ord": 7,
+      "level": "A1.1",
+      "id": "a1-07-was-ist-das",
+      "title": "Was ist das?",
+      "canDo": [
+        "name the things around you",
+        "ask what something is called",
+        "say you do not know a word"
+      ],
+      "grammar": "gender-nominativ",
+      "grammarNote": "Practice for unit 6 with objects you can point at. 'Wie heißt das auf Deutsch?' is the sentence that unlocks every later one.",
+      "topics": ["objects"],
+      "words": 12
+    },
+    {
+      "ord": 8,
+      "level": "A1.1",
+      "id": "a1-08-sein-haben",
+      "title": "Sein und haben",
+      "canDo": [
+        "conjugate sein and haben",
+        "say what you are and what you have",
+        "say your age"
+      ],
+      "grammar": "sein-haben",
+      "grammarNote": "The two irregular verbs before the regular pattern, because they are irregular and they are unavoidable.",
+      "topics": ["core-verbs"],
+      "words": 10
+    },
+    {
+      "ord": 9,
+      "level": "A1.1",
+      "id": "a1-09-zahlen-100",
+      "title": "Zahlen bis 100",
+      "canDo": [
+        "count to a hundred",
+        "understand a price",
+        "say how old somebody is"
+      ],
+      "grammar": "number-order",
+      "grammarNote": "einundzwanzig — units before tens, said backwards to an English ear. Needs sein/haben from unit 8 to say anything with it.",
+      "topics": ["numbers"],
+      "words": 12
+    },
+    {
+      "ord": 10,
+      "level": "A1.1",
+      "id": "a1-10-uhrzeit",
+      "title": "Wie spät ist es?",
+      "canDo": [
+        "ask and tell the time",
+        "understand the official 24-hour form",
+        "say when something starts"
+      ],
+      "grammar": "uhrzeit",
+      "grammarNote": "Both systems: halb drei means half past TWO, which is the single most expensive misunderstanding in beginner German. Needs numbers to 60.",
+      "topics": ["time"],
+      "words": 12
+    },
+    {
+      "ord": 11,
+      "level": "A1.1",
+      "id": "a1-11-die-woche",
+      "title": "Die Woche",
+      "canDo": [
+        "name the days and parts of the day",
+        "say when something happens",
+        "talk about today, tomorrow and yesterday"
+      ],
+      "grammar": "am-um-im",
+      "grammarNote": "am Montag, um acht, im Januar — the three time prepositions, learnt as a set because they are chosen by the kind of time word.",
+      "topics": ["time"],
+      "words": 12
+    },
+    {
+      "ord": 12,
+      "level": "A1.1",
+      "id": "a1-12-praesens",
+      "title": "Verben im Präsens",
+      "canDo": [
+        "conjugate a regular verb",
+        "say what you do every day",
+        "ask what somebody else does"
+      ],
+      "grammar": "praesens-regular",
+      "grammarNote": "-e -st -t -en -t -en. Deferred to unit 12 so there are verbs worth conjugating and a du/Sie decision already made.",
+      "topics": ["core-verbs"],
+      "words": 12
+    },
+    {
+      "ord": 13,
+      "level": "A1.1",
+      "id": "a1-13-familie",
+      "title": "Meine Familie",
+      "canDo": [
+        "name the people in your family",
+        "say whose someone is",
+        "describe your family briefly"
+      ],
+      "grammar": "possessiv-nominativ",
+      "grammarNote": "mein/dein/sein/ihr in the nominative only. The full paradigm waits for unit 38, after the cases exist.",
+      "topics": ["family"],
+      "words": 12
+    },
+    {
+      "ord": 14,
+      "level": "A1.1",
+      "id": "a1-14-plural",
+      "title": "Plural",
+      "canDo": [
+        "form the plural of the nouns you know",
+        "recognise the five plural patterns",
+        "count things"
+      ],
+      "grammar": "plural",
+      "grammarNote": "-e -er -n/-en -s and no ending. Taught as patterns with their gender tendencies rather than as one exception per word.",
+      "topics": ["articles"],
+      "words": 10
+    },
+    {
+      "ord": 15,
+      "level": "A1.1",
+      "id": "a1-15-essen",
+      "title": "Essen und Trinken",
+      "canDo": [
+        "name everyday food and drink",
+        "say what you like and do not like",
+        "say what you would like"
+      ],
+      "grammar": "moechten",
+      "grammarNote": "ich möchte as a fixed form, not yet as a modal. It is the politest thing a beginner can own.",
+      "topics": ["food"],
+      "words": 14
+    },
+    {
+      "ord": 16,
+      "level": "A1.1",
+      "id": "a1-16-im-cafe",
+      "title": "Im Café",
+      "canDo": [
+        "order food and drink",
+        "ask for the bill",
+        "understand what the waiter asks you"
+      ],
+      "grammar": "moechten",
+      "grammarNote": "First unit where the German comes back at you. Uses only units 1–15.",
+      "topics": ["food", "places"],
+      "words": 12
+    },
+    {
+      "ord": 17,
+      "level": "A1.1",
+      "id": "a1-17-nicht-kein",
+      "title": "Nicht und kein",
+      "canDo": [
+        "say something is not the case",
+        "say you do not have something",
+        "choose between nicht and kein"
+      ],
+      "grammar": "negation",
+      "grammarNote": "kein negates a noun, nicht negates everything else. One rule, and it is the whole of A1 negation.",
+      "topics": ["negation"],
+      "words": 10
+    },
+    {
+      "ord": 18,
+      "level": "A1.1",
+      "id": "a1-18-farben",
+      "title": "Farben und Sachen",
+      "canDo": [
+        "name the colours",
+        "describe an object so somebody finds it",
+        "use an adjective after sein"
+      ],
+      "grammar": "adjektiv-praedikativ",
+      "grammarNote": "Only predicative — das Auto ist rot. Adjective endings before a noun are a B-level headache and are not A1.1.",
+      "topics": ["adjectives"],
+      "words": 12
+    },
+    {
+      "ord": 19,
+      "level": "A1.1",
+      "id": "a1-19-fragen",
+      "title": "Fragen stellen",
+      "canDo": [
+        "ask a W-question",
+        "ask a yes/no question",
+        "understand the answer"
+      ],
+      "grammar": "fragen",
+      "grammarNote": "W-word first, or verb first for yes/no. Held until unit 19 so the statement order from unit 5 is solid enough to be broken deliberately.",
+      "topics": ["questions"],
+      "words": 12
+    },
+    {
+      "ord": 20,
+      "level": "A1.1",
+      "id": "a1-20-mein-tag",
+      "title": "Mein Tag",
+      "canDo": [
+        "describe your normal day in order",
+        "say when you do each thing",
+        "understand somebody else's routine"
+      ],
+      "grammar": "praesens-regular",
+      "grammarNote": "Consolidation. Nothing new — everything from units 1–19 in one connected piece of speech.",
+      "topics": ["time", "core-verbs"],
+      "words": 12
+    },
+
+    {
+      "ord": 21,
+      "level": "A1.2",
+      "id": "a1-21-akkusativ",
+      "title": "Der Akkusativ",
+      "canDo": [
+        "use den, die, das and die as objects",
+        "say what you see, have and need",
+        "notice that only masculine changes"
+      ],
+      "grammar": "akkusativ",
+      "grammarNote": "The first case shift, and the whole of A1.2 leans on it. Only der becomes den — saying that plainly removes most of the fear.",
+      "topics": ["articles"],
+      "words": 12
+    },
+    {
+      "ord": 22,
+      "level": "A1.2",
+      "id": "a1-22-einkaufen",
+      "title": "Einkaufen",
+      "canDo": [
+        "ask for an amount of something",
+        "ask what something costs",
+        "pay and understand the change"
+      ],
+      "grammar": "akkusativ",
+      "grammarNote": "Accusative where you actually meet it: ich nehme den Käse.",
+      "topics": ["food", "shopping"],
+      "words": 14
+    },
+    {
+      "ord": 23,
+      "level": "A1.2",
+      "id": "a1-23-wo-ist-das",
+      "title": "Wo ist das?",
+      "canDo": [
+        "ask the way",
+        "understand left, right and straight on",
+        "say where something is"
+      ],
+      "grammar": "praepositionen-ort",
+      "grammarNote": "Static place prepositions only. The two-way ones wait for unit 39, after the dative exists.",
+      "topics": ["places", "prepositions"],
+      "words": 12
+    },
+    {
+      "ord": 24,
+      "level": "A1.2",
+      "id": "a1-24-die-stadt",
+      "title": "In der Stadt",
+      "canDo": [
+        "name the places in a town",
+        "say where you are going",
+        "say what you do there"
+      ],
+      "grammar": "praepositionen-ort",
+      "grammarNote": "zum/zur as fixed forms. They are contractions of a dative that has not been taught, and pretending otherwise would be a lie a learner catches later.",
+      "topics": ["places"],
+      "words": 12
+    },
+    {
+      "ord": 25,
+      "level": "A1.2",
+      "id": "a1-25-koennen-muessen",
+      "title": "Können und müssen",
+      "canDo": [
+        "say what you can do",
+        "say what you have to do",
+        "put the second verb at the end"
+      ],
+      "grammar": "modalverben",
+      "grammarNote": "The bracket — modal second, infinitive last — is the structural idea of German. Two modals first, not all six.",
+      "topics": ["core-verbs"],
+      "words": 10
+    },
+    {
+      "ord": 26,
+      "level": "A1.2",
+      "id": "a1-26-wollen-duerfen",
+      "title": "Wollen, möchten, dürfen",
+      "canDo": [
+        "say what you want",
+        "ask permission politely",
+        "tell the difference between wollen and möchten"
+      ],
+      "grammar": "modalverben",
+      "grammarNote": "möchten becomes a modal here, having been a fixed phrase since unit 15. Ich will can sound blunt to a German ear; that is worth saying out loud.",
+      "topics": ["core-verbs"],
+      "words": 10
+    },
+    {
+      "ord": 27,
+      "level": "A1.2",
+      "id": "a1-27-trennbare-verben",
+      "title": "Trennbare Verben",
+      "canDo": [
+        "use a separable verb in a sentence",
+        "put the prefix at the end",
+        "recognise which prefixes separate"
+      ],
+      "grammar": "trennbare-verben",
+      "grammarNote": "Straight after the modal bracket, because it is the same idea: the meaningful part goes last.",
+      "topics": ["core-verbs"],
+      "words": 12
+    },
+    {
+      "ord": 28,
+      "level": "A1.2",
+      "id": "a1-28-wohnung",
+      "title": "Die Wohnung",
+      "canDo": [
+        "name the rooms and the furniture",
+        "describe where you live",
+        "say what is in a room"
+      ],
+      "grammar": "es-gibt",
+      "grammarNote": "es gibt takes the accusative, which is unit 21 doing real work.",
+      "topics": ["home"],
+      "words": 14
+    },
+    {
+      "ord": 29,
+      "level": "A1.2",
+      "id": "a1-29-dativ",
+      "title": "Der Dativ",
+      "canDo": [
+        "use dem, der and den as indirect objects",
+        "say who you give something to",
+        "use mir and dir"
+      ],
+      "grammar": "dativ",
+      "grammarNote": "The second case, eight units after the first. Introduced through people rather than through a table.",
+      "topics": ["articles", "pronouns"],
+      "words": 12
+    },
+    {
+      "ord": 30,
+      "level": "A1.2",
+      "id": "a1-30-termine",
+      "title": "Termine machen",
+      "canDo": [
+        "make an appointment on the phone",
+        "suggest and refuse a time",
+        "cancel politely"
+      ],
+      "grammar": "dativ",
+      "grammarNote": "The first Alltag-shaped unit. Uses time from unit 10, days from 11, modals from 25.",
+      "topics": ["time"],
+      "words": 12
+    },
+    {
+      "ord": 31,
+      "level": "A1.2",
+      "id": "a1-31-beim-arzt",
+      "title": "Beim Arzt",
+      "canDo": [
+        "name the parts of the body",
+        "say what hurts",
+        "understand what the doctor asks"
+      ],
+      "grammar": "dativ",
+      "grammarNote": "mir tut der Kopf weh — dative where German insists on it and English does not.",
+      "topics": ["body", "health"],
+      "words": 14
+    },
+    {
+      "ord": 32,
+      "level": "A1.2",
+      "id": "a1-32-perfekt-haben",
+      "title": "Perfekt mit haben",
+      "canDo": [
+        "say what you did",
+        "form the participle of a regular verb",
+        "put it at the end"
+      ],
+      "grammar": "perfekt-haben",
+      "grammarNote": "The spoken past, and the third use of the bracket. ge- -t for regular verbs; the strong ones are learnt as they come.",
+      "topics": ["core-verbs"],
+      "words": 12
+    },
+    {
+      "ord": 33,
+      "level": "A1.2",
+      "id": "a1-33-perfekt-sein",
+      "title": "Perfekt mit sein",
+      "canDo": [
+        "say where you went",
+        "choose between haben and sein",
+        "talk about your weekend"
+      ],
+      "grammar": "perfekt-sein",
+      "grammarNote": "Movement and change of state take sein. A short closed list, so it is worth learning as a list.",
+      "topics": ["core-verbs"],
+      "words": 10
+    },
+    {
+      "ord": 34,
+      "level": "A1.2",
+      "id": "a1-34-wetter",
+      "title": "Das Wetter",
+      "canDo": [
+        "say what the weather is doing",
+        "name the seasons and months",
+        "understand a forecast"
+      ],
+      "grammar": null,
+      "grammarNote": "A vocabulary breather between the two past tenses and the harder second half.",
+      "topics": ["weather", "time"],
+      "words": 14
+    },
+    {
+      "ord": 35,
+      "level": "A1.2",
+      "id": "a1-35-kleidung",
+      "title": "Kleidung",
+      "canDo": [
+        "name what you are wearing",
+        "say what suits you",
+        "ask for another size"
+      ],
+      "grammar": "adjektiv-praedikativ",
+      "grammarNote": "Still predicative. Attributive endings are deliberately not A1 and the course says so rather than half-teaching them.",
+      "topics": ["clothes", "shopping"],
+      "words": 14
+    },
+    {
+      "ord": 36,
+      "level": "A1.2",
+      "id": "a1-36-verkehr",
+      "title": "Unterwegs",
+      "canDo": [
+        "buy a ticket",
+        "say how you travel",
+        "understand an announcement"
+      ],
+      "grammar": "praepositionen-ort",
+      "grammarNote": "mit dem Bus — the dative from unit 29 in the phrase you use every day.",
+      "topics": ["transport", "places"],
+      "words": 12
+    },
+    {
+      "ord": 37,
+      "level": "A1.2",
+      "id": "a1-37-imperativ",
+      "title": "Der Imperativ",
+      "canDo": [
+        "tell somebody to do something",
+        "ask for something politely",
+        "understand a written instruction"
+      ],
+      "grammar": "imperativ",
+      "grammarNote": "du, ihr and Sie forms. The Sie form is what you meet on signs and in offices, so it comes first here.",
+      "topics": ["core-verbs"],
+      "words": 10
+    },
+    {
+      "ord": 38,
+      "level": "A1.2",
+      "id": "a1-38-possessiv",
+      "title": "Possessivartikel",
+      "canDo": [
+        "say whose something is in any case",
+        "use mein, dein, sein, ihr, unser correctly",
+        "ask whose something is"
+      ],
+      "grammar": "possessiv-voll",
+      "grammarNote": "The full paradigm, now that nominative, accusative and dative all exist. Unit 13 taught the nominative alone; this closes it.",
+      "topics": ["family", "articles"],
+      "words": 10
+    },
+    {
+      "ord": 39,
+      "level": "A1.2",
+      "id": "a1-39-wechselpraepositionen",
+      "title": "Wechselpräpositionen",
+      "canDo": [
+        "choose accusative or dative after in, auf, an",
+        "say where something is and where it goes",
+        "ask wo or wohin"
+      ],
+      "grammar": "wechselpraepositionen",
+      "grammarNote": "The hardest thing in A1 and correctly last: it needs both cases and the wo/wohin distinction. Movement takes the accusative, position the dative.",
+      "topics": ["prepositions", "places"],
+      "words": 12
+    },
+    {
+      "ord": 40,
+      "level": "A1.2",
+      "id": "a1-40-ueber-mich",
+      "title": "Über mich",
+      "canDo": [
+        "introduce yourself for a minute without stopping",
+        "say what you did and what you are going to do",
+        "ask somebody the same questions back"
+      ],
+      "grammar": null,
+      "grammarNote": "Nothing new. If the forty units worked, this is the unit where you notice.",
+      "topics": ["greetings", "family", "core-verbs"],
+      "words": 10
+    }
+  ]
+}
