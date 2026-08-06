@@ -164,14 +164,38 @@ const taught = (
     )
     .get(U) as { n: number }
 ).n;
-const total = (db.prepare("SELECT COUNT(*) n FROM word").get() as { n: number })
-  .n;
+/*
+ * Against the words the COURSE teaches, not against every row in the table.
+ *
+ * This used to ask whether every word had been introduced — true only while
+ * every word belonged to a unit, and the reason every word belonged to a unit.
+ * Two thousand subtitle-frequency words were padded into units to satisfy it,
+ * which is how a beginner unit came to teach "Leiche".
+ *
+ * Still exact, because a weakened version of this test stops catching an
+ * unfinishable course: every word ANY unit teaches must be introduced by a full
+ * pass. The denominator changed, not the strictness.
+ */
+const inUnits = new Set(
+  (
+    db.prepare("SELECT word_ids_json FROM unit").all() as {
+      word_ids_json: string;
+    }[]
+  ).flatMap((u) => JSON.parse(u.word_ids_json) as string[]),
+);
+const known = new Set(
+  (db.prepare("SELECT id FROM word").all() as { id: string }[]).map(
+    (w) => w.id,
+  ),
+);
+const total = [...inUnits].filter((id) => known.has(id)).length;
 db.close();
 ok(
   taught === total,
-  "no word is left untaught by a full pass",
+  "no word the course teaches is left untaught by a full pass",
   `${taught} of ${total}`,
 );
+ok(total >= 400, "and the course teaches a real vocabulary", `${total} words`);
 
 section("exam scope follows the level");
 const exam = await get(`/api/pruefung?user=${U}`);

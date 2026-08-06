@@ -40,16 +40,52 @@ const wordIds = new Set(words.map((w) => w.id));
 const inUnits = units.flatMap((u) => JSON.parse(u.word_ids_json) as string[]);
 const inUnitsSet = new Set(inUnits);
 
-const orphans = words.filter((w) => !inUnitsSet.has(w.id));
+/*
+ * Two decks, on purpose, and this used to be one rule for both.
+ *
+ * The COURSE is what the daily session teaches: every word in a designed unit,
+ * every unit with a can-do statement that describes it. The BROWSE deck is the
+ * rest — 2,000-odd words padded in from a subtitle frequency list, useful in
+ * Wortschatz and to /text, and never introduced as new vocabulary.
+ *
+ * Requiring every word to belong to a unit is what forced the padding into
+ * units in the first place, which is how "Leiche" ended up in a unit whose
+ * can-do said "name people around you". So: a taught word must be taught by a
+ * unit, and an untaught word must be reachable to browse — but not taught.
+ */
+const taught = words.filter((w) => inUnitsSet.has(w.id));
+const browseOnly = words.filter((w) => !inUnitsSet.has(w.id));
 ok(
-  orphans.length === 0,
-  "no word belongs to no unit",
-  orphans.length
-    ? orphans
-        .slice(0, 5)
-        .map((w) => w.lemma)
-        .join(", ")
-    : "",
+  taught.length >= 400,
+  "the course teaches a real vocabulary",
+  `${taught.length} words`,
+);
+ok(
+  browseOnly.length > 0,
+  "and the rest stays browsable rather than being padded into units",
+  `${browseOnly.length} words`,
+);
+/*
+ * Keyed on the PLAN, not on the level. Plenty of words still carry level A1.1
+ * from the old frequency import — ein, dass, so, wenn — and those are browse
+ * words now, which is the point. What must hold is that everything the plan
+ * says to teach is actually taught; if one is missing, build-a1 and the seeder
+ * have disagreed and a learner would never meet it.
+ */
+const planned = new Set(
+  (
+    JSON.parse(
+      readFileSync(path.join(process.cwd(), "data/vocab-a1.json"), "utf8"),
+    ) as { words: { id: string; unit: number }[] }
+  ).words
+    .filter((w) => w.unit <= 20)
+    .map((w) => w.id),
+);
+const unplaced = [...planned].filter((id) => !inUnitsSet.has(id));
+ok(
+  unplaced.length === 0,
+  "every word the A1.1 plan names is taught by a unit",
+  `${planned.size} planned, missing: ${unplaced.slice(0, 5).join(", ") || "none"}`,
 );
 
 const dangling = [...inUnitsSet].filter((id) => !wordIds.has(id));

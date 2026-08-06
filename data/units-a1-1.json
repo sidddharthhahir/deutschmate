@@ -53,7 +53,9 @@
     "grammar_id": null,
     "scenario": null,
     "dialogue": null,
-    "prereq": ["a1-1-u01"]
+    "prereq": [
+      "a1-1-u01"
+    ]
   },
   {
     "id": "a1-1-u03",
@@ -82,7 +84,9 @@
     "grammar_id": null,
     "scenario": null,
     "dialogue": null,
-    "prereq": ["a1-1-u02"]
+    "prereq": [
+      "a1-1-u02"
+    ]
   },
   {
     "id": "a1-1-u04",
@@ -111,7 +115,9 @@
     "grammar_id": null,
     "scenario": null,
     "dialogue": null,
-    "prereq": ["a1-1-u03"]
+    "prereq": [
+      "a1-1-u03"
+    ]
   },
   {
     "id": "a1-1-u05",
@@ -140,7 +146,9 @@
     "grammar_id": null,
     "scenario": null,
     "dialogue": null,
-    "prereq": ["a1-1-u04"]
+    "prereq": [
+      "a1-1-u04"
+    ]
   },
   {
     "id": "a1-1-u06",
@@ -169,7 +177,9 @@
     "grammar_id": null,
     "scenario": null,
     "dialogue": null,
-    "prereq": ["a1-1-u05"]
+    "prereq": [
+      "a1-1-u05"
+    ]
   },
   {
     "id": "a1-1-u07",
@@ -198,7 +208,9 @@
     "grammar_id": null,
     "scenario": null,
     "dialogue": null,
-    "prereq": ["a1-1-u06"]
+    "prereq": [
+      "a1-1-u06"
+    ]
   },
   {
     "id": "a1-1-u08",
@@ -225,7 +237,9 @@
     "grammar_id": null,
     "scenario": null,
     "dialogue": null,
-    "prereq": ["a1-1-u07"]
+    "prereq": [
+      "a1-1-u07"
+    ]
   },
   {
     "id": "a1-1-u09",
@@ -254,7 +268,9 @@
     "grammar_id": null,
     "scenario": null,
     "dialogue": null,
-    "prereq": ["a1-1-u08"]
+    "prereq": [
+      "a1-1-u08"
+    ]
   },
   {
     "id": "a1-1-u10",
@@ -283,7 +299,9 @@
     "grammar_id": null,
     "scenario": null,
     "dialogue": null,
-    "prereq": ["a1-1-u09"]
+    "prereq": [
+      "a1-1-u09"
+    ]
   },
   {
     "id": "a1-1-u11",
@@ -312,7 +330,9 @@
     "grammar_id": null,
     "scenario": null,
     "dialogue": null,
-    "prereq": ["a1-1-u10"]
+    "prereq": [
+      "a1-1-u10"
+    ]
   },
   {
     "id": "a1-1-u12",
@@ -341,7 +361,9 @@
     "grammar_id": null,
     "scenario": null,
     "dialogue": null,
-    "prereq": ["a1-1-u11"]
+    "prereq": [
+      "a1-1-u11"
+    ]
   },
   {
     "id": "a1-1-u13",
@@ -370,7 +392,9 @@
     "grammar_id": null,
     "scenario": null,
     "dialogue": null,
-    "prereq": ["a1-1-u12"]
+    "prereq": [
+      "a1-1-u12"
+    ]
   },
   {
     "id": "a1-1-u14",
@@ -397,7 +421,9 @@
     "grammar_id": null,
     "scenario": null,
     "dialogue": null,
-    "prereq": ["a1-1-u13"]
+    "prereq": [
+      "a1-1-u13"
+    ]
   },
   {
     "id": "a1-1-u15",
@@ -428,7 +454,9 @@
     "grammar_id": null,
     "scenario": null,
     "dialogue": null,
-    "prereq": ["a1-1-u14"]
+    "prereq": [
+      "a1-1-u14"
+    ]
   },
   {
     "id": "a1-1-u16",
@@ -457,7 +485,9 @@
     "grammar_id": null,
     "scenario": null,
     "dialogue": null,
-    "prereq": ["a1-1-u15"]
+    "prereq": [
+      "a1-1-u15"
+    ]
   },
   {
     "id": "a1-1-u17",
@@ -484,7 +514,9 @@
     "grammar_id": null,
     "scenario": null,
     "dialogue": null,
-    "prereq": ["a1-1-u16"]
+    "prereq": [
+      "a1-1-u16"
+    ]
   },
   {
     "id": "a1-1-u18",
@@ -513,7 +545,9 @@
     "grammar_id": null,
     "scenario": null,
     "dialogue": null,
-    "prereq": ["a1-1-u17"]
+    "prereq": [
+      "a1-1-u17"
+    ]
   },
   {
     "id": "a1-1-u19",
@@ -542,7 +576,9 @@
     "grammar_id": null,
     "scenario": null,
     "dialogue": null,
-    "prereq": ["a1-1-u18"]
+    "prereq": [
+      "a1-1-u18"
+    ]
   },
   {
     "id": "a1-1-u20",
@@ -571,6 +607,8 @@
     "grammar_id": null,
     "scenario": null,
     "dialogue": null,
-    "prereq": ["a1-1-u19"]
+    "prereq": [
+      "a1-1-u19"
+    ]
   }
 ]

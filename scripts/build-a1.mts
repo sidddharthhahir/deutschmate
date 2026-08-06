@@ -34,6 +34,8 @@ type Word = {
   en: string;
   topic: string;
   unit: number;
+  example_de?: string;
+  example_en?: string;
 };
 
 const { units } = read("data/curriculum-a1.json") as { units: Unit[] };
@@ -89,6 +91,21 @@ writeFileSync(
   ) + "\n",
 );
 
+/* Examples ride in the same file the seeder already applies them from, keyed by
+   word id — one shape for hand-written and generated alike. */
+const exFile = path.join(ROOT, "data/examples-a1-1.json");
+const existing = JSON.parse(readFileSync(exFile, "utf8")) as Record<
+  string,
+  { de: string; en: string }
+>;
+let wrote = 0;
+for (const w of a1Words) {
+  if (!w.example_de || !w.example_en) continue;
+  existing[w.id] = { de: w.example_de, en: w.example_en };
+  wrote++;
+}
+writeFileSync(exFile, JSON.stringify(existing, null, 2) + "\n");
+
 /*
  * The unit id stays the one already in the database — a1-1-u06, not the readable
  * a1-06-der-die-das from the plan. Two reasons, and neither is style: unit.ord
@@ -121,7 +138,8 @@ writeFileSync(
 );
 
 console.log(
-  `A1.1: ${ready.length} units, ${a1Words.length} words -> data/words-a1-1.json, data/units-a1-1.json`,
+  `A1.1: ${ready.length} units, ${a1Words.length} words, ${wrote} examples ->` +
+    " data/words-a1-1.json, data/units-a1-1.json, data/examples-a1-1.json",
 );
 if (missingGrammar.size) {
   console.log(
