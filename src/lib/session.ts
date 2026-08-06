@@ -363,6 +363,12 @@ export type SessionPlan = {
   pacing: { words: number; accuracy: number | null; reduced: boolean };
   /** What comes after this unit, by name. */
   next: { ord: number; title: string } | null;
+  /**
+   * Whole days skipped since the last session. Reported so the screen can say
+   * why today is longer than yesterday: a missed day showed up only as a bigger
+   * number on the button, with nothing anywhere admitting a day had been lost.
+   */
+  missed: number;
 };
 
 /** "short" runs only the parts that decay: reviews, Fix, Lücken, grammar. */
@@ -378,6 +384,10 @@ export function buildSession(
   shape: SessionMode = "full",
 ): SessionPlan {
   const gap = daysSinceLastSession(userId);
+  /* A gap of one is yesterday's session and nothing missed; two is one lost
+     day. Reported on the plan so the home screen can say why today is longer,
+     instead of leaving a learner to compare "66 min" with "88 min". */
+  const missed = Math.max(0, gap - 1);
   const total = dueCount(userId);
   const unit = currentUnit(userId, level);
   const canDo: string[] = unit ? JSON.parse(unit.can_do_json) : [];
@@ -414,6 +424,7 @@ export function buildSession(
       unitsInLevel,
       next,
       pacing,
+      missed,
       totalMinutes: 15,
       blocks: [
         {
@@ -519,6 +530,7 @@ export function buildSession(
       unitsInLevel,
       next,
       pacing,
+      missed,
       totalMinutes: blocks.reduce((n, b) => n + b.minutes, 0),
     };
   }
@@ -759,6 +771,7 @@ export function buildSession(
     unitsInLevel,
     next,
     pacing,
+    missed,
     totalMinutes: blocks.reduce((n, b) => n + b.minutes, 0),
   };
 }
@@ -1016,10 +1029,25 @@ export function logSession(userId: string, minutes: number, blocks: string[]) {
   });
 }
 
+/**
+ * The streak, if it is still alive. Zero once it has been broken.
+ *
+ * A streak is alive when the last session was today or yesterday: not having
+ * studied yet TODAY has not broken anything, but a whole missed day has.
+ *
+ * This used to read the last streak_day whatever its date, so a learner who
+ * stopped six days ago was still told "Tag 12" on the home screen, on
+ * /fortschritt and on the recap. logSession had the rule right all along —
+ * it resets to 1 when yesterday has no row — and only the reading of it lied.
+ * "Never fake progress" is the fourth principle of this app, and a streak
+ * counter that keeps counting while you do nothing is exactly that.
+ */
 export function currentStreak(userId: string): number {
   return (
     get<{ n: number }>(
-      "SELECT streak_day AS n FROM session_log WHERE user_id = ? ORDER BY date DESC LIMIT 1",
+      `SELECT streak_day AS n FROM session_log
+        WHERE user_id = ? AND date >= date('now','-1 day')
+        ORDER BY date DESC LIMIT 1`,
       userId,
     )?.n ?? 0
   );

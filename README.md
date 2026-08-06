@@ -111,7 +111,9 @@ would otherwise have shipped.
    getting wrong — then told never to mention it. That is what separates a
    teacher from a chatbot.
 4. **Never fake progress.** If you can't point at the database row that produced
-   a number, don't show the number.
+   a number, don't show the number. A number that was true once counts as
+   faked: the streak read the last stored `streak_day` whatever its date, so
+   somebody who stopped six days ago was still greeted with "Tag 12".
 5. **Life in Germany first.** Teach German through situations people actually
    face. Between two features that both teach equally well, the one that gets
    somebody through an appointment wins.
@@ -182,6 +184,13 @@ a different one.
 
 A full day is eight or nine blocks and about ninety minutes; a quiet one is
 four. Nothing is padded to reach a number.
+
+**A skipped day is said out loud.** Miss a day and the due cards roll into the
+next session, which is why today can be half an hour longer than yesterday. The
+home screen now says which it is — *„2 Tage ausgelassen“* — instead of leaving
+you to compare two numbers. The streak goes to zero at the same moment: it
+counts only while the last session was today or yesterday. Three days away with
+a real backlog is a different thing again, and becomes **Wiedereinstieg**.
 
 **Each block says what it is.** The first time you ever meet a block, it opens
 with a card naming it, saying what you are about to do and which keys matter,

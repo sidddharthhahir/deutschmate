@@ -23,6 +23,8 @@ type Plan = {
   unitsInLevel: number;
   /** How many new words today actually offers — 12, or 6 when the pace was cut. */
   pacing: { words: number; accuracy: number | null; reduced: boolean };
+  /** Whole days skipped since the last session. */
+  missed: number;
 };
 
 type State = "loading" | "normal" | "empty" | "offline" | "error";
@@ -114,6 +116,7 @@ export default function Home() {
 
   /* Offline is a banner over the normal layout, not a different screen —
      the session runs offline, so nothing about the page should look broken. */
+  const missed = plan?.missed ?? 0;
   const banner =
     state === "error"
       ? { dot: "bg-das", text: "Tagesplan nicht geladen — lokal weiter" }
@@ -123,7 +126,21 @@ export default function Home() {
             /* Said "Ersatzübung statt Video". */
             text: "Offline — alles außer dem Gespräch geht",
           }
-        : null;
+        : missed > 0
+          ? {
+              dot: "bg-das",
+              /*
+               * A missed day used to be invisible. Yesterday's button said
+               * 66 min, today's said 88, and nothing anywhere admitted that a
+               * day had been lost — so the extra half hour read as the app
+               * being erratic rather than as work carried over.
+               */
+              text:
+                missed === 1
+                  ? "Gestern ausgelassen — die Karten von gestern sind in der heutigen Sitzung"
+                  : `${missed} Tage ausgelassen — die fälligen Karten sind in der heutigen Sitzung`,
+            }
+          : null;
 
   return (
     <main className="flex min-h-screen flex-col">
