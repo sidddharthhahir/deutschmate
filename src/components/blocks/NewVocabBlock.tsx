@@ -2,6 +2,8 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { playAudio } from "@/lib/speech";
+import { shouldIgnoreKey } from "@/lib/keys";
+import { fourChoices } from "@/lib/choices";
 import Noun, { ArticleWord } from "@/components/Article";
 import {
   Card,
@@ -73,35 +75,68 @@ export default function NewVocabBlock({
     if (!w) onDone();
   }, [w, onDone]);
 
-  if (!w) return null;
+  // Three distractors and the answer — see lib/choices.ts for why it is not
+  // just "the next three words in the list".
+  const options = w ? fourChoices(w, payload.words) : [];
 
-  const options = [w, ...payload.words.filter((x) => x.id !== w.id).slice(0, 3)]
-    .map((x) => x.en)
-    .sort();
+  const { phase, picked } = s;
+
+  const choose = useCallback(
+    async (en: string) => {
+      if (!w) return;
+      setS((p) => ({ ...p, picked: en }));
+      const correct = en === w.en;
+      await record({
+        kind: "new-vocab",
+        refId: w.id,
+        correct,
+        answer: en,
+        expected: w.en,
+      });
+      // Advance and reset the phase in one transition.
+      setTimeout(
+        () => setS((p) => ({ i: p.i + 1, phase: "show", picked: null })),
+        correct ? 550 : 1600,
+      );
+    },
+    [w],
+  );
+
+  /*
+   * The same keys the rest of the session uses. The tour teaches "your hand
+   * never leaves the number row" and this block — the one a learner meets on
+   * day one and most days after — was entirely mouse-driven: twelve words,
+   * twenty-four clicks. Enter or Space to turn the card, 1–4 to answer, R to
+   * hear it again, matching ReviewBlock so nothing has to be relearned.
+   */
+  useEffect(() => {
+    function onKey(e: KeyboardEvent) {
+      if (!w || shouldIgnoreKey(e)) return;
+      if (phase === "show") {
+        if (e.key === " " || e.key === "Enter") {
+          e.preventDefault();
+          setS((p) => ({ ...p, phase: "check" }));
+        } else if (e.key === "r" || e.key === "R") play();
+        return;
+      }
+      if (picked) return; // already answered; the card is about to advance
+      if (e.key === "r" || e.key === "R") {
+        play();
+      } else if (["1", "2", "3", "4"].includes(e.key)) {
+        const opt = options[Number(e.key) - 1];
+        if (opt) void choose(opt);
+      }
+    }
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [w, phase, picked, options, choose, play]);
+
+  if (!w) return null;
 
   const isNoun = w.pos === "noun" && w.article;
   const forms = w.forms_json
     ? (JSON.parse(w.forms_json) as Record<string, string>)
     : null;
-
-  async function choose(en: string) {
-    setS((p) => ({ ...p, picked: en }));
-    const correct = en === w.en;
-    await record({
-      kind: "new-vocab",
-      refId: w.id,
-      correct,
-      answer: en,
-      expected: w.en,
-    });
-    // Advance and reset the phase in one transition.
-    setTimeout(
-      () => setS((p) => ({ i: p.i + 1, phase: "show", picked: null })),
-      correct ? 550 : 1600,
-    );
-  }
-
-  const { phase, picked } = s;
 
   return (
     <div>
@@ -174,7 +209,7 @@ export default function NewVocabBlock({
               <PrimaryButton
                 onClick={() => setS((p) => ({ ...p, phase: "check" }))}
               >
-                Verstanden
+                Verstanden <span className="kbd kbd-hint">Enter</span>
               </PrimaryButton>
             </div>
           </>
@@ -186,7 +221,7 @@ export default function NewVocabBlock({
               Was bedeutet das?
             </p>
             <div className="mt-4 space-y-2">
-              {options.map((o) => (
+              {options.map((o, n) => (
                 <Option
                   key={o}
                   onClick={() => void choose(o)}
@@ -200,6 +235,10 @@ export default function NewVocabBlock({
                           : "dimmed"
                   }
                 >
+                  {/* The number is the key that picks it, so the hand can stay
+                      on the row the tour promises. Hidden on touch, where
+                      there is no key to press. */}
+                  <span className="kbd kbd-hint mr-2.5">{n + 1}</span>
                   {o}
                 </Option>
               ))}

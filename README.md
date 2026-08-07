@@ -830,7 +830,62 @@ the [Goethe-Institut](https://www.goethe.de/de/spr/kup/prf.html).
   **Plusquamperfekt**, **irreale Bedingungssätze**, and **the passive with a
   modal** — the sentence shape every contract and form is written in.
 
+- **Eleven of fifteen blocks are still mouse-only.** `Aufwärmen`, `Lücken` and
+  `Neue Wörter` take the keyboard; `Sätze bauen`, `Sprechen`, `Schreiben`,
+  `Gespräch`, `Abschluss`, `Video`, `Lesen`, `Hören`, `Fix`, `Grammatik` and
+  `Grammatik-Wdh.` do not. A learner following the tour reaches for `1`–`4` in
+  the quiz and nothing happens. Each needs its own binding — the shapes differ
+  (tiles, a microphone, a text field, a video) and a single global handler would
+  be wrong for most of them.
+
 ### Closed since
+
+- ~~Every new word was counted twice.~~ Introducing a word grades its new card,
+  which is right — the recognition check IS the first rep — but `/api/attempt`
+  had already logged that answer as `new-vocab`, and `gradeCard` added a second
+  row calling it a `review`. One answer, two rows. Twelve new words became
+  twelve reviews nobody did: the recap claimed them, the accuracy table read
+  **Wiederholung 100% (12)** on a day with no review block, the recap's
+  **Richtig %** was computed over 38 rows when 26 were real (74% shown, 62%
+  true), the leech finder started every word with a free correct, and the
+  adaptive pacing — which decides how many new words you get tomorrow — read
+  the inflated figure. `gradeCard` takes `silent` now, so the card is still
+  scheduled and the row is not written twice. Found by finishing a session and
+  querying `attempt` instead of trusting the recap.
+
+- ~~Three wrong labels on the error classifier, which had no test at all.~~
+  `classify()` calls itself the whole personalisation engine and had never been
+  tested, because importing it meant resolving `"./db"` the way only the bundler
+  does. One ten-minute session produced all three: a verb-position lecture for
+  **"Tschüss, bis morgen!"**, a sentence with no verb in it; three of four
+  word-order mistakes filed as `vocabulary`, because it split on whitespace
+  without stripping punctuation and the moved `!` made it a different multiset;
+  and `verb-ending` for **Guten** against **Gute**, because the rule asked only
+  that the first `min(len)-2` characters match — two characters for two
+  four-letter words, which would also fire on _Haus_ against _Hand_. These are
+  not cosmetic: the top three tags become tomorrow's Fix drills, so a beginner
+  was drilled on conjugation for picking the wrong greeting. `lib/finite-verb.ts`
+  now answers "is there a verb, and where" — conservatively, saying "I don't
+  know" rather than guessing, measured at 98% on the app's own corpus — and both
+  classifiers agree because they share it.
+
+- ~~Thirteen of fifteen blocks were mouse-only.~~ The tour teaches _"your hand
+  never leaves the number row"_, and only `Aufwärmen` and `Lücken` bound any
+  keys. `Neue Wörter` — block one on day one, and most days after — took
+  twenty-four clicks for twelve words, and its Audio button already advertised
+  an `R` that was never wired. It now takes `Enter`/`Space`, `1`–`4` and `R`,
+  matching `ReviewBlock` so nothing has to be relearned. The other eleven blocks
+  are still mouse-only; see Known gaps.
+
+- ~~The first four new words of every session shared one set of options.~~ The
+  distractors were the first three other words of the day and the four were
+  sorted alphabetically, so cards 1–4 got the identical options in the identical
+  order — after the first you could answer without reading the German. Nothing
+  checked them against the answer either, so **hallo · hello** was offered
+  against **guten Tag · good day / hello** and marked wrong for picking the one
+  that also says hello. Now in `lib/choices.ts` with a test: four options, one
+  right, no second right answer, a different set and position per card, stable
+  across renders.
 
 - ~~A1 has no conversation scenarios.~~ All forty are written, so `Gespräch`
   now fires on day one rather than waiting until A2.1. Each is a three-turn

@@ -58,11 +58,42 @@ ok(
   "the word entered the deck",
   `${before.total} -> ${after.total} (${w.lemma})`,
 );
-ok(
-  after.reviewedToday >= 1,
-  "and it got a real first rep",
-  `reps logged=${after.reviewedToday}`,
-);
+/*
+ * The rep is on the card, which is what scheduling reads. This used to assert
+ * `reviewedToday >= 1` — a count of attempt rows of kind 'review' — and passed
+ * because introducing a word wrote one, on top of the `new-vocab` row for the
+ * same answer. One answer, two rows: the recap then reported twelve reviews on
+ * a day with no review block. The row is gone; the rep it was standing in for
+ * is the thing to check.
+ */
+{
+  const db = open();
+  const card = db
+    .prepare(
+      "SELECT reps, state FROM card WHERE user_id = ? AND ref_type='word' AND ref_id = ?",
+    )
+    .get(U, w.id) as { reps: number; state: number } | undefined;
+  ok(card !== undefined, "the card exists");
+  ok(card!.reps === 1, "and it got a real first rep", `reps=${card!.reps}`);
+
+  const phantom = db
+    .prepare(
+      `SELECT COUNT(*) AS n FROM attempt
+        WHERE user_id = ? AND kind='review' AND date(created_at) = date('now')`,
+    )
+    .get(U) as { n: number };
+  ok(
+    phantom.n === 0,
+    "and no review was claimed that nobody did",
+    `review rows=${phantom.n}`,
+  );
+  ok(
+    after.reviewedToday === 0,
+    "so the deck stats agree",
+    `reviewedToday=${after.reviewedToday}`,
+  );
+  db.close();
+}
 
 await post("/api/attempt", {
   user: U,

@@ -6,6 +6,8 @@
  * the sentence key only.
  */
 
+import { orderTag } from "./finite-verb.ts";
+
 /** Same normalisation both keys use. */
 export function norm(s: string): string {
   return s
@@ -252,10 +254,17 @@ export function patternFor(expected: string, got: string): string | null {
 
   if (eW.length !== gW.length) return null;
 
-  // Same words, different order — one lesson, and it is about position.
+  /* Same words, different order — one lesson, and it is about position.
+   *
+   * Which lesson depends on there being a verb. This used to read the token at
+   * index 1 and call it the verb, so "Tschüss, bis morgen!" — no verb in it —
+   * was answered with the rule about the conjugated verb coming second,
+   * illustrated with "Heute gehe ich ins Kino". orderTag says word-order
+   * unless it can actually find the verb, and word-order's explanation is
+   * true either way. */
   const sorted = (a: string[]) => [...a].sort().join(" ");
   if (sorted(eW) === sorted(gW) && eW.join(" ") !== gW.join(" ")) {
-    return eW[1] !== gW[1] ? "order:verb-position-2" : "order:word-order";
+    return `order:${orderTag(eRaw, gRaw)}`;
   }
 
   // Exactly one word differs. Everything below depends on this.

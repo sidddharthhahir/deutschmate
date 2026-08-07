@@ -1,5 +1,11 @@
-import { all, get, run } from "./db";
+/* Extension spelled out, unlike the other db importers, so plain Node can load
+   this file. classify() is the whole personalisation engine and had no test at
+   all — three wrong labels reached a learner on day one — and it could not have
+   one while importing this file meant resolving "./db" the way only the bundler
+   does. getDb() is lazy, so importing costs nothing until something queries. */
+import { all, get, run } from "./db.ts";
 import { patternFor } from "./error-key.ts";
+import { finiteIndex, looksFinite, orderTag } from "./finite-verb.ts";
 import { TAG_EN, type Tag } from "./tags.ts";
 
 /** Error tagging — the entire personalisation engine (spec §9). */
@@ -133,17 +139,29 @@ export function classify(expected: string, got: string): Tag[] {
   const eW = e.split(/\s+/);
   const gW = g.split(/\s+/);
 
-  // Same words, different order → word order problem.
-  const sorted = (a: string[]) =>
-    [...a]
-      .map((x) => x.toLowerCase())
-      .sort()
-      .join(" ");
-  if (eW.length === gW.length && sorted(eW) === sorted(gW)) {
-    const eVerb = eW[1]?.toLowerCase();
-    const gVerb = gW[1]?.toLowerCase();
-    tags.add(eVerb !== gVerb ? "verb-position-2" : "word-order");
+  /* Same words, different order → word order problem.
+   *
+   * Compared with the punctuation removed. It used to be compared raw, so
+   * "Tschüss, bis morgen!" against "bis morgen Tschüss,!" was not the same
+   * multiset — the exclamation mark had moved with the word — and a plain
+   * reordering fell past this branch to be labelled `vocabulary`. Three of
+   * four word-order mistakes in one session were filed as wrong-word-chosen,
+   * which is also what the Fix block then drilled. error-key.ts always
+   * stripped, so the two classifiers disagreed about the same answer. */
+  const bare = (a: string[]) =>
+    a
+      .map((x) => x.replace(/[.,!?;:„""»«…]/g, "").toLowerCase())
+      .filter(Boolean);
+  const eB = bare(eW);
+  const gB = bare(gW);
+  const sorted = (a: string[]) => [...a].sort().join(" ");
+  if (eB.length === gB.length && sorted(eB) === sorted(gB)) {
+    tags.add(orderTag(eW, gW));
   }
+
+  /* Where the conjugated verb is in the sentence they were aiming at, or -1
+     when none can be identified. Used by the verb-ending rule below. */
+  const verbAt = finiteIndex(eW);
 
   /* Article swaps, named by the case that was actually wanted. */
   for (let i = 0; i < Math.min(eW.length, gW.length); i++) {
@@ -181,8 +199,22 @@ export function classify(expected: string, got: string): Tag[] {
       continue;
     }
 
-    // Verb ending: same stem, different tail.
+    /* Verb ending: same stem, different tail — at the position where the verb
+     * actually is.
+     *
+     * This asked only that the first `min(len)-2` characters matched, which
+     * for two four-letter words is two characters, so "Guten" against "Gute"
+     * was filed as a wrong verb ending — and so would "Haus" against "Hand".
+     * Morphology alone cannot separate them: -e and -en are both verb person
+     * endings and adjective declensions, so `guten` looks exactly as finite as
+     * `gehst`. Position can. A finite verb sits where finiteIndex finds it;
+     * `Guten` sits at index 0 in front of a capitalised noun, and that clause
+     * has no verb at all.
+     *
+     * Worth the care: the top three tags become tomorrow's Fix drills, so this
+     * had a beginner drilling conjugation for picking the wrong greeting. */
     if (want.length < 3 || wrote.length < 3) continue;
+    if (i !== verbAt || !looksFinite(want) || !looksFinite(wrote)) continue;
     const stem = Math.min(want.length, wrote.length) - 2;
     if (stem > 1 && want.slice(0, stem) === wrote.slice(0, stem))
       tags.add("verb-ending");

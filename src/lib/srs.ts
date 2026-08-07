@@ -81,8 +81,12 @@ export function introduceWord(
     // Already in rotation — a re-introduction must not reset a real history.
     if (!card || card.reps > 0) return null;
 
-    // The recognition check at the end of the introduction IS the first rep.
-    return gradeCard(userId, card.id, correct ? Rating.Good : Rating.Again);
+    // The recognition check at the end of the introduction IS the first rep —
+    // but /api/attempt has already logged that answer as `new-vocab`, so this
+    // schedules the card without claiming a review that never happened.
+    return gradeCard(userId, card.id, correct ? Rating.Good : Rating.Again, {
+      silent: true,
+    });
   });
 }
 
@@ -149,12 +153,18 @@ export function dueCount(userId: string): number {
   );
 }
 
-/** Apply a grade, persist the new schedule, and log the attempt. */
+/**
+ * Apply a grade, persist the new schedule, and log the attempt.
+ *
+ * `log.silent` suppresses the attempt row for a caller that has already
+ * written one for the same answer. Scheduling still happens — it is only the
+ * second row that is wrong.
+ */
 export function gradeCard(
   userId: string,
   cardId: number,
   grade: Grade,
-  log?: { answer?: string; expected?: string },
+  log?: { answer?: string; expected?: string; silent?: boolean },
 ) {
   /* The read is INSIDE the transaction, and it was not. */
   return tx(() => {
@@ -189,21 +199,33 @@ export function gradeCard(
     // would inflate the review count on the recap and in the accuracy table
     // with a different exercise — two skills, two rows.
     const correct = grade === Rating.Again ? 0 : 1;
-    const tags =
-      !correct && log?.expected && log?.answer
-        ? classify(log.expected, log.answer)
-        : [];
-    run(
-      `INSERT INTO attempt (user_id, kind, ref_id, correct, user_answer, expected, error_tags_json)
-       VALUES (?, ?, ?, ?, ?, ?, ?)`,
-      userId,
-      row.ref_type === "cloze" ? "cloze" : "review",
-      row.ref_id,
-      correct,
-      log?.answer ?? String(grade),
-      log?.expected ?? null,
-      JSON.stringify(tags),
-    );
+    /*
+     * One answer, one row. Introducing a word grades its brand-new card, which
+     * is right — the recognition check IS the first rep — but the caller has
+     * already logged that same answer as `new-vocab`, and this used to add a
+     * second row calling it a `review`. Twelve new words became twelve reviews
+     * nobody did: the recap claimed them, the accuracy table showed
+     * "Wiederholung 100% (12)" on a day with no review block, the leech finder
+     * counted a free correct on every word, and the adaptive pacing — which
+     * decides how many new words you get tomorrow — read the inflated figure.
+     */
+    if (!log?.silent) {
+      const tags =
+        !correct && log?.expected && log?.answer
+          ? classify(log.expected, log.answer)
+          : [];
+      run(
+        `INSERT INTO attempt (user_id, kind, ref_id, correct, user_answer, expected, error_tags_json)
+         VALUES (?, ?, ?, ?, ?, ?, ?)`,
+        userId,
+        row.ref_type === "cloze" ? "cloze" : "review",
+        row.ref_id,
+        correct,
+        log?.answer ?? String(grade),
+        log?.expected ?? null,
+        JSON.stringify(tags),
+      );
+    }
 
     return {
       due: card.due.toISOString(),

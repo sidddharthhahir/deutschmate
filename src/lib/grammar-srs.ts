@@ -54,7 +54,12 @@ export function introduceGrammar(
     // not re-grade, and a point already in rotation keeps its history.
     if (!card || card.reps > 0) return null;
 
-    return gradeCard(userId, card.id, correct ? Rating.Good : Rating.Again);
+    /* Silent for the same reason as introduceWord: /api/attempt has already
+       logged this answer as `new-grammar`, and a second row calling it a
+       review would count one answer twice. */
+    return gradeCard(userId, card.id, correct ? Rating.Good : Rating.Again, {
+      silent: true,
+    });
   });
 }
 
