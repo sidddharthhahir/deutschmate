@@ -1934,5 +1934,1405 @@
   "ihr-you": {
     "de": "Was macht ihr?",
     "en": "What are you (all) doing?"
+  },
+  "a2-gestern": {
+    "de": "Gestern habe ich lange gearbeitet.",
+    "en": "Yesterday I worked late."
+  },
+  "a2-vorgestern": {
+    "de": "Vorgestern war ich beim Arzt.",
+    "en": "The day before yesterday I was at the doctor's."
+  },
+  "a2-letzt": {
+    "de": "Letzte Woche hatte ich frei.",
+    "en": "Last week I had time off."
+  },
+  "a2-frueher": {
+    "de": "Früher habe ich in Berlin gewohnt.",
+    "en": "I used to live in Berlin."
+  },
+  "a2-damals": {
+    "de": "Damals war alles billiger.",
+    "en": "Back then everything was cheaper."
+  },
+  "a2-gerade": {
+    "de": "Ich habe gerade gegessen.",
+    "en": "I have just eaten."
+  },
+  "a2-schon": {
+    "de": "Hast du schon angerufen?",
+    "en": "Have you called already?"
+  },
+  "a2-noch-nicht": {
+    "de": "Ich habe es noch nicht gemacht.",
+    "en": "I have not done it yet."
+  },
+  "a2-erledigen": {
+    "de": "Ich habe alles erledigt.",
+    "en": "I have dealt with everything."
+  },
+  "a2-passieren": {
+    "de": "Was ist gestern passiert?",
+    "en": "What happened yesterday?"
+  },
+  "a2-erzaehlen": {
+    "de": "Erzähl mir, was passiert ist.",
+    "en": "Tell me what happened."
+  },
+  "a2-vergessen": {
+    "de": "Ich habe deinen Namen vergessen.",
+    "en": "I have forgotten your name."
+  },
+  "a2-treffen": {
+    "de": "Wir haben uns gestern getroffen.",
+    "en": "We met yesterday."
+  },
+  "a2-verlieren": {
+    "de": "Ich habe meinen Schlüssel verloren.",
+    "en": "I have lost my key."
+  },
+  "a2-finden": {
+    "de": "Hast du deine Tasche gefunden?",
+    "en": "Have you found your bag?"
+  },
+  "a2-anfangen": {
+    "de": "Der Kurs hat gestern angefangen.",
+    "en": "The course began yesterday."
+  },
+  "a2-aufhoeren": {
+    "de": "Der Regen hat aufgehört.",
+    "en": "The rain has stopped."
+  },
+  "a2-dauern": {
+    "de": "Das hat zwei Stunden gedauert.",
+    "en": "That took two hours."
+  },
+  "a2-die-reise": {
+    "de": "Die Reise war lang.",
+    "en": "The journey was long."
+  },
+  "a2-abfahren": {
+    "de": "Der Zug ist schon abgefahren.",
+    "en": "The train has already left."
+  },
+  "a2-ankommen": {
+    "de": "Wir sind spät angekommen.",
+    "en": "We arrived late."
+  },
+  "a2-abfliegen": {
+    "de": "Wir sind um sechs abgeflogen.",
+    "en": "We flew out at six."
+  },
+  "a2-umsteigen": {
+    "de": "In Köln bin ich umgestiegen.",
+    "en": "I changed trains in Cologne."
+  },
+  "a2-bleiben": {
+    "de": "Ich bin zu Hause geblieben.",
+    "en": "I stayed at home."
+  },
+  "a2-zurueckkommen": {
+    "de": "Wann bist du zurückgekommen?",
+    "en": "When did you come back?"
+  },
+  "a2-wandern": {
+    "de": "Wir sind viel gewandert.",
+    "en": "We hiked a lot."
+  },
+  "a2-der-ausflug": {
+    "de": "Der Ausflug hat Spaß gemacht.",
+    "en": "The trip was fun."
+  },
+  "a2-der-koffer": {
+    "de": "Mein Koffer ist zu schwer.",
+    "en": "My suitcase is too heavy."
+  },
+  "a2-das-gepaeck": {
+    "de": "Wo ist mein Gepäck?",
+    "en": "Where is my luggage?"
+  },
+  "a2-die-fahrkarte": {
+    "de": "Ich habe die Fahrkarte gekauft.",
+    "en": "I bought the ticket."
+  },
+  "a2-der-bahnsteig": {
+    "de": "Der Zug fährt von Bahnsteig drei.",
+    "en": "The train leaves from platform three."
+  },
+  "a2-die-verspaetung": {
+    "de": "Der Zug hat zwanzig Minuten Verspätung.",
+    "en": "The train is twenty minutes late."
+  },
+  "a2-unterwegs": {
+    "de": "Ich bin gerade unterwegs.",
+    "en": "I am on my way."
+  },
+  "a2-die-rueckfahrt": {
+    "de": "Die Rückfahrt war teurer.",
+    "en": "The return trip was more expensive."
+  },
+  "a2-die-grenze": {
+    "de": "Wir sind über die Grenze gefahren.",
+    "en": "We drove across the border."
+  },
+  "a2-das-ausland": {
+    "de": "Sie ist ins Ausland gefahren.",
+    "en": "She went abroad."
+  },
+  "a2-geben": {
+    "de": "Ich gebe dir das Buch.",
+    "en": "I am giving you the book."
+  },
+  "a2-bekommen": {
+    "de": "Ich habe einen Brief bekommen.",
+    "en": "I received a letter."
+  },
+  "a2-schenken": {
+    "de": "Was schenkst du ihm?",
+    "en": "What are you giving him?"
+  },
+  "a2-leihen": {
+    "de": "Kannst du mir zehn Euro leihen?",
+    "en": "Can you lend me ten euros?"
+  },
+  "a2-zeigen": {
+    "de": "Zeig mir bitte den Weg.",
+    "en": "Please show me the way."
+  },
+  "a2-schicken": {
+    "de": "Ich schicke dir die Adresse.",
+    "en": "I will send you the address."
+  },
+  "a2-erklaeren": {
+    "de": "Können Sie mir das erklären?",
+    "en": "Can you explain that to me?"
+  },
+  "a2-empfehlen": {
+    "de": "Was empfehlen Sie mir?",
+    "en": "What do you recommend?"
+  },
+  "a2-antworten": {
+    "de": "Er hat mir nicht geantwortet.",
+    "en": "He did not answer me."
+  },
+  "a2-danken": {
+    "de": "Ich danke dir sehr.",
+    "en": "Thank you very much."
+  },
+  "a2-gefallen": {
+    "de": "Die Wohnung gefällt mir.",
+    "en": "I like the flat."
+  },
+  "a2-gehoeren": {
+    "de": "Wem gehört das Auto?",
+    "en": "Whose car is that?"
+  },
+  "a2-passen": {
+    "de": "Der Termin passt mir gut.",
+    "en": "The appointment suits me."
+  },
+  "a2-fehlen": {
+    "de": "Mir fehlt ein Dokument.",
+    "en": "I am missing a document."
+  },
+  "a2-das-geschenk": {
+    "de": "Das Geschenk ist für dich.",
+    "en": "The present is for you."
+  },
+  "a2-die-hilfe": {
+    "de": "Danke für deine Hilfe.",
+    "en": "Thank you for your help."
+  },
+  "a2-der-rat": {
+    "de": "Kannst du mir einen Rat geben?",
+    "en": "Can you give me some advice?"
+  },
+  "a2-die-nachricht": {
+    "de": "Ich habe dir eine Nachricht geschickt.",
+    "en": "I sent you a message."
+  },
+  "a2-der-termin": {
+    "de": "Ich hätte gern einen Termin.",
+    "en": "I would like an appointment."
+  },
+  "a2-vereinbaren": {
+    "de": "Wir vereinbaren einen Termin.",
+    "en": "We will arrange an appointment."
+  },
+  "a2-verschieben": {
+    "de": "Können wir den Termin verschieben?",
+    "en": "Can we postpone the appointment?"
+  },
+  "a2-absagen": {
+    "de": "Ich muss leider absagen.",
+    "en": "I have to cancel, unfortunately."
+  },
+  "a2-zusagen": {
+    "de": "Ich sage gern zu.",
+    "en": "I am happy to accept."
+  },
+  "a2-passt-es": {
+    "de": "Am Montag um zehn — passt es Ihnen?",
+    "en": "Monday at ten — does that suit you?"
+  },
+  "a2-frei": {
+    "de": "Am Freitag bin ich frei.",
+    "en": "I am free on Friday."
+  },
+  "a2-besetzt": {
+    "de": "Der Termin ist leider besetzt.",
+    "en": "That slot is unfortunately taken."
+  },
+  "a2-dringend": {
+    "de": "Es ist ziemlich dringend.",
+    "en": "It is quite urgent."
+  },
+  "a2-die-uhrzeit": {
+    "de": "Welche Uhrzeit passt Ihnen?",
+    "en": "What time suits you?"
+  },
+  "a2-der-kalender": {
+    "de": "Ich schaue in den Kalender.",
+    "en": "I will look in the calendar."
+  },
+  "a2-die-sprechstunde": {
+    "de": "Die Sprechstunde ist bis zwölf.",
+    "en": "Consultation hours run until twelve."
+  },
+  "a2-warten": {
+    "de": "Bitte warten Sie einen Moment.",
+    "en": "Please wait a moment."
+  },
+  "a2-anrufen": {
+    "de": "Ich rufe Sie morgen an.",
+    "en": "I will call you tomorrow."
+  },
+  "a2-bestaetigen": {
+    "de": "Bitte bestätigen Sie den Termin.",
+    "en": "Please confirm the appointment."
+  },
+  "a2-spaetestens": {
+    "de": "Ich komme spätestens um acht.",
+    "en": "I will come at eight at the latest."
+  },
+  "a2-fruehestens": {
+    "de": "Frühestens am Mittwoch.",
+    "en": "On Wednesday at the earliest."
+  },
+  "a2-rechtzeitig": {
+    "de": "Bitte kommen Sie rechtzeitig.",
+    "en": "Please come on time."
+  },
+  "a2-stellen": {
+    "de": "Ich stelle die Flasche auf den Tisch.",
+    "en": "I put the bottle on the table."
+  },
+  "a2-stehen": {
+    "de": "Die Flasche steht auf dem Tisch.",
+    "en": "The bottle is standing on the table."
+  },
+  "a2-legen": {
+    "de": "Ich lege das Buch auf den Tisch.",
+    "en": "I lay the book on the table."
+  },
+  "a2-liegen": {
+    "de": "Das Buch liegt auf dem Tisch.",
+    "en": "The book is lying on the table."
+  },
+  "a2-setzen": {
+    "de": "Setzen Sie sich bitte.",
+    "en": "Please sit down."
+  },
+  "a2-sitzen": {
+    "de": "Wir sitzen im Garten.",
+    "en": "We are sitting in the garden."
+  },
+  "a2-haengen": {
+    "de": "Das Bild hängt an der Wand.",
+    "en": "The picture is hanging on the wall."
+  },
+  "a2-zwischen": {
+    "de": "Die Bank steht zwischen den Bäumen.",
+    "en": "The bench stands between the trees."
+  },
+  "a2-hinter": {
+    "de": "Der Garten liegt hinter dem Haus.",
+    "en": "The garden is behind the house."
+  },
+  "a2-neben": {
+    "de": "Die Apotheke ist neben der Bank.",
+    "en": "The pharmacy is next to the bank."
+  },
+  "a2-ueber": {
+    "de": "Die Lampe hängt über dem Tisch.",
+    "en": "The lamp hangs above the table."
+  },
+  "a2-unter": {
+    "de": "Die Katze schläft unter dem Bett.",
+    "en": "The cat is sleeping under the bed."
+  },
+  "a2-die-richtung": {
+    "de": "In welche Richtung muss ich?",
+    "en": "Which direction do I need to go?"
+  },
+  "a2-geradeaus": {
+    "de": "Gehen Sie immer geradeaus.",
+    "en": "Keep going straight ahead."
+  },
+  "a2-die-ecke": {
+    "de": "Das Café ist an der Ecke.",
+    "en": "The café is on the corner."
+  },
+  "a2-die-mitte": {
+    "de": "Wir treffen uns in der Mitte.",
+    "en": "We will meet in the middle."
+  },
+  "a2-oben": {
+    "de": "Das Bad ist oben.",
+    "en": "The bathroom is upstairs."
+  },
+  "a2-unten": {
+    "de": "Die Küche ist unten.",
+    "en": "The kitchen is downstairs."
+  },
+  "a2-besser": {
+    "de": "Dieses Zimmer ist besser.",
+    "en": "This room is better."
+  },
+  "a2-schlechter": {
+    "de": "Das Wetter wird schlechter.",
+    "en": "The weather is getting worse."
+  },
+  "a2-groesser": {
+    "de": "Die Wohnung ist größer als meine.",
+    "en": "The flat is bigger than mine."
+  },
+  "a2-kleiner": {
+    "de": "Mein Zimmer ist kleiner.",
+    "en": "My room is smaller."
+  },
+  "a2-teurer": {
+    "de": "In der Stadt ist alles teurer.",
+    "en": "Everything is more expensive in the city."
+  },
+  "a2-billiger": {
+    "de": "Online ist es billiger.",
+    "en": "It is cheaper online."
+  },
+  "a2-lieber": {
+    "de": "Ich trinke lieber Tee.",
+    "en": "I would rather drink tea."
+  },
+  "a2-am-liebsten": {
+    "de": "Am liebsten bleibe ich zu Hause.",
+    "en": "Most of all I like staying at home."
+  },
+  "a2-als": {
+    "de": "Er ist älter als ich.",
+    "en": "He is older than me."
+  },
+  "a2-wie": {
+    "de": "Sie ist so alt wie ich.",
+    "en": "She is as old as me."
+  },
+  "a2-der-unterschied": {
+    "de": "Der Unterschied ist klein.",
+    "en": "The difference is small."
+  },
+  "a2-vergleichen": {
+    "de": "Vergleichen Sie die Preise.",
+    "en": "Compare the prices."
+  },
+  "a2-bevorzugen": {
+    "de": "Ich bevorzuge den kleineren.",
+    "en": "I prefer the smaller one."
+  },
+  "a2-genauso": {
+    "de": "Das ist genauso gut.",
+    "en": "That is exactly as good."
+  },
+  "a2-ziemlich": {
+    "de": "Es ist ziemlich teuer.",
+    "en": "It is quite expensive."
+  },
+  "a2-viel": {
+    "de": "Das ist viel besser.",
+    "en": "That is much better."
+  },
+  "a2-weniger": {
+    "de": "Ich arbeite jetzt weniger.",
+    "en": "I work less now."
+  },
+  "a2-meistens": {
+    "de": "Meistens nehme ich den Bus.",
+    "en": "I usually take the bus."
+  },
+  "a2-das-rezept": {
+    "de": "Das Rezept ist einfach.",
+    "en": "The recipe is simple."
+  },
+  "a2-ruehren": {
+    "de": "Rühren Sie die Suppe.",
+    "en": "Stir the soup."
+  },
+  "a2-schneiden": {
+    "de": "Schneiden Sie das Brot.",
+    "en": "Cut the bread."
+  },
+  "a2-mischen": {
+    "de": "Mischen Sie alles gut.",
+    "en": "Mix everything well."
+  },
+  "a2-hinzufuegen": {
+    "de": "Fügen Sie Salz hinzu.",
+    "en": "Add salt."
+  },
+  "a2-drucken": {
+    "de": "Drücken Sie den Knopf.",
+    "en": "Press the button."
+  },
+  "a2-ziehen": {
+    "de": "Ziehen Sie die Tür zu.",
+    "en": "Pull the door shut."
+  },
+  "a2-der-knopf": {
+    "de": "Der Knopf ist links.",
+    "en": "The button is on the left."
+  },
+  "a2-das-schild": {
+    "de": "Lesen Sie das Schild.",
+    "en": "Read the sign."
+  },
+  "a2-vorsichtig": {
+    "de": "Seien Sie vorsichtig.",
+    "en": "Be careful."
+  },
+  "a2-langsam": {
+    "de": "Fahren Sie langsam.",
+    "en": "Drive slowly."
+  },
+  "a2-schnell": {
+    "de": "Kommen Sie schnell.",
+    "en": "Come quickly."
+  },
+  "a2-wiederholen": {
+    "de": "Wiederholen Sie das bitte.",
+    "en": "Please repeat that."
+  },
+  "a2-aufpassen": {
+    "de": "Pass auf!",
+    "en": "Watch out!"
+  },
+  "a2-folgen": {
+    "de": "Folgen Sie mir bitte.",
+    "en": "Please follow me."
+  },
+  "a2-benutzen": {
+    "de": "Benutzen Sie den Aufzug.",
+    "en": "Use the lift."
+  },
+  "a2-verboten": {
+    "de": "Rauchen ist hier verboten.",
+    "en": "Smoking is forbidden here."
+  },
+  "a2-erlaubt": {
+    "de": "Fotografieren ist erlaubt.",
+    "en": "Photography is allowed."
+  },
+  "a2-aufstehen": {
+    "de": "Ich stehe um sechs auf.",
+    "en": "I get up at six."
+  },
+  "a2-aufwachen": {
+    "de": "Ich wache früh auf.",
+    "en": "I wake up early."
+  },
+  "a2-einschlafen": {
+    "de": "Ich schlafe schnell ein.",
+    "en": "I fall asleep quickly."
+  },
+  "a2-anziehen": {
+    "de": "Ich ziehe eine Jacke an.",
+    "en": "I am putting on a jacket."
+  },
+  "a2-ausziehen": {
+    "de": "Zieh die Schuhe aus.",
+    "en": "Take your shoes off."
+  },
+  "a2-einkaufen": {
+    "de": "Ich kaufe samstags ein.",
+    "en": "I shop on Saturdays."
+  },
+  "a2-abholen": {
+    "de": "Ich hole dich ab.",
+    "en": "I will pick you up."
+  },
+  "a2-mitnehmen": {
+    "de": "Nimm einen Schirm mit.",
+    "en": "Take an umbrella with you."
+  },
+  "a2-mitkommen": {
+    "de": "Kommst du mit?",
+    "en": "Are you coming along?"
+  },
+  "a2-fernsehen": {
+    "de": "Abends sehe ich fern.",
+    "en": "In the evening I watch television."
+  },
+  "a2-vorbereiten": {
+    "de": "Ich bereite das Essen vor.",
+    "en": "I am preparing the meal."
+  },
+  "a2-aufraeumen": {
+    "de": "Räum bitte dein Zimmer auf.",
+    "en": "Please tidy your room."
+  },
+  "a2-abwaschen": {
+    "de": "Ich wasche später ab.",
+    "en": "I will wash up later."
+  },
+  "a2-ausmachen": {
+    "de": "Mach das Licht aus.",
+    "en": "Turn the light off."
+  },
+  "a2-anmachen": {
+    "de": "Mach bitte das Radio an.",
+    "en": "Please turn the radio on."
+  },
+  "a2-zumachen": {
+    "de": "Mach bitte das Fenster zu.",
+    "en": "Please close the window."
+  },
+  "a2-aufmachen": {
+    "de": "Machen Sie den Koffer auf.",
+    "en": "Open the suitcase."
+  },
+  "a2-losgehen": {
+    "de": "Wir gehen um acht los.",
+    "en": "We set off at eight."
+  },
+  "a2-die-speisekarte": {
+    "de": "Die Speisekarte, bitte.",
+    "en": "The menu, please."
+  },
+  "a2-die-vorspeise": {
+    "de": "Als Vorspeise nehme ich Suppe.",
+    "en": "For a starter I will have soup."
+  },
+  "a2-das-hauptgericht": {
+    "de": "Was ist das Hauptgericht?",
+    "en": "What is the main course?"
+  },
+  "a2-die-nachspeise": {
+    "de": "Möchten Sie eine Nachspeise?",
+    "en": "Would you like a dessert?"
+  },
+  "a2-die-beilage": {
+    "de": "Welche Beilage möchten Sie?",
+    "en": "Which side dish would you like?"
+  },
+  "a2-die-rechnung": {
+    "de": "Die Rechnung, bitte.",
+    "en": "The bill, please."
+  },
+  "a2-das-trinkgeld": {
+    "de": "Das Trinkgeld ist inklusive.",
+    "en": "The tip is included."
+  },
+  "a2-die-bedienung": {
+    "de": "Die Bedienung war freundlich.",
+    "en": "The service was friendly."
+  },
+  "a2-bestellen": {
+    "de": "Ich möchte bestellen.",
+    "en": "I would like to order."
+  },
+  "a2-empfehlen-r": {
+    "de": "Was empfehlen Sie uns?",
+    "en": "What do you recommend to us?"
+  },
+  "a2-reservieren": {
+    "de": "Ich habe einen Tisch reserviert.",
+    "en": "I have reserved a table."
+  },
+  "a2-getrennt": {
+    "de": "Wir zahlen getrennt.",
+    "en": "We are paying separately."
+  },
+  "a2-zusammen": {
+    "de": "Zahlen wir zusammen?",
+    "en": "Shall we pay together?"
+  },
+  "a2-scharf": {
+    "de": "Ist das Gericht scharf?",
+    "en": "Is the dish spicy?"
+  },
+  "a2-vegetarisch": {
+    "de": "Haben Sie etwas Vegetarisches?",
+    "en": "Do you have anything vegetarian?"
+  },
+  "a2-lecker": {
+    "de": "Das Essen war sehr lecker.",
+    "en": "The food was delicious."
+  },
+  "a2-die-portion": {
+    "de": "Die Portion ist groß.",
+    "en": "The portion is large."
+  },
+  "a2-das-besteck": {
+    "de": "Können Sie mir Besteck bringen?",
+    "en": "Could you bring me some cutlery?"
+  },
+  "a2-das-angebot": {
+    "de": "Das ist heute im Angebot.",
+    "en": "That is on offer today."
+  },
+  "a2-der-rabatt": {
+    "de": "Gibt es einen Rabatt?",
+    "en": "Is there a discount?"
+  },
+  "a2-die-kasse": {
+    "de": "Bitte zahlen Sie an der Kasse.",
+    "en": "Please pay at the till."
+  },
+  "a2-die-quittung": {
+    "de": "Kann ich eine Quittung haben?",
+    "en": "Can I have a receipt?"
+  },
+  "a2-das-kleingeld": {
+    "de": "Ich habe kein Kleingeld.",
+    "en": "I have no small change."
+  },
+  "a2-umtauschen": {
+    "de": "Kann ich das umtauschen?",
+    "en": "Can I exchange this?"
+  },
+  "a2-zurueckgeben": {
+    "de": "Ich möchte die Jacke zurückgeben.",
+    "en": "I would like to return the jacket."
+  },
+  "a2-kostenlos": {
+    "de": "Die Lieferung ist kostenlos.",
+    "en": "Delivery is free."
+  },
+  "a2-guenstig": {
+    "de": "Das ist sehr günstig.",
+    "en": "That is very good value."
+  },
+  "a2-bar": {
+    "de": "Ich zahle bar.",
+    "en": "I am paying cash."
+  },
+  "a2-die-karte": {
+    "de": "Kann ich mit Karte zahlen?",
+    "en": "Can I pay by card?"
+  },
+  "a2-die-groesse": {
+    "de": "Haben Sie das in Größe 40?",
+    "en": "Do you have this in size 40?"
+  },
+  "a2-anprobieren": {
+    "de": "Darf ich das anprobieren?",
+    "en": "May I try this on?"
+  },
+  "a2-kaputt": {
+    "de": "Der Reißverschluss ist kaputt.",
+    "en": "The zip is broken."
+  },
+  "a2-die-garantie": {
+    "de": "Wie lange gilt die Garantie?",
+    "en": "How long is the warranty valid?"
+  },
+  "a2-die-tuete": {
+    "de": "Brauchen Sie eine Tüte?",
+    "en": "Do you need a bag?"
+  },
+  "a2-ausgeben": {
+    "de": "Ich habe zu viel ausgegeben.",
+    "en": "I have spent too much."
+  },
+  "a2-sparen": {
+    "de": "So sparst du zehn Euro.",
+    "en": "That way you save ten euros."
+  },
+  "a2-die-miete": {
+    "de": "Die Miete ist zu hoch.",
+    "en": "The rent is too high."
+  },
+  "a2-die-kaution": {
+    "de": "Die Kaution sind drei Monatsmieten.",
+    "en": "The deposit is three months' rent."
+  },
+  "a2-die-nebenkosten": {
+    "de": "Sind die Nebenkosten inklusive?",
+    "en": "Are the utilities included?"
+  },
+  "a2-der-vermieter": {
+    "de": "Der Vermieter wohnt oben.",
+    "en": "The landlord lives upstairs."
+  },
+  "a2-der-mieter": {
+    "de": "Die Mieter sind sehr nett.",
+    "en": "The tenants are very nice."
+  },
+  "a2-der-vertrag": {
+    "de": "Ich habe den Vertrag unterschrieben.",
+    "en": "I have signed the contract."
+  },
+  "a2-die-besichtigung": {
+    "de": "Die Besichtigung ist am Samstag.",
+    "en": "The viewing is on Saturday."
+  },
+  "a2-der-quadratmeter": {
+    "de": "Die Wohnung hat sechzig Quadratmeter.",
+    "en": "The flat has sixty square metres."
+  },
+  "a2-der-stock": {
+    "de": "Wir wohnen im dritten Stock.",
+    "en": "We live on the third floor."
+  },
+  "a2-der-balkon": {
+    "de": "Die Wohnung hat einen Balkon.",
+    "en": "The flat has a balcony."
+  },
+  "a2-der-keller": {
+    "de": "Die Fahrräder stehen im Keller.",
+    "en": "The bicycles are in the cellar."
+  },
+  "a2-der-aufzug": {
+    "de": "Gibt es einen Aufzug?",
+    "en": "Is there a lift?"
+  },
+  "a2-moebliert": {
+    "de": "Das Zimmer ist möbliert.",
+    "en": "The room is furnished."
+  },
+  "a2-hell": {
+    "de": "Die Küche ist sehr hell.",
+    "en": "The kitchen is very bright."
+  },
+  "a2-ruhig": {
+    "de": "Die Straße ist ruhig.",
+    "en": "The street is quiet."
+  },
+  "a2-umziehen": {
+    "de": "Wir ziehen im Mai um.",
+    "en": "We are moving in May."
+  },
+  "a2-mieten": {
+    "de": "Ich möchte die Wohnung mieten.",
+    "en": "I would like to rent the flat."
+  },
+  "a2-kuendigen": {
+    "de": "Ich habe den Vertrag gekündigt.",
+    "en": "I have cancelled the contract."
+  },
+  "a2-die-stelle": {
+    "de": "Ich suche eine neue Stelle.",
+    "en": "I am looking for a new position."
+  },
+  "a2-der-lebenslauf": {
+    "de": "Schicken Sie bitte Ihren Lebenslauf.",
+    "en": "Please send your CV."
+  },
+  "a2-die-erfahrung": {
+    "de": "Ich habe drei Jahre Erfahrung.",
+    "en": "I have three years of experience."
+  },
+  "a2-die-ausbildung": {
+    "de": "Meine Ausbildung hat drei Jahre gedauert.",
+    "en": "My training lasted three years."
+  },
+  "a2-das-studium": {
+    "de": "Mein Studium war in Indien.",
+    "en": "My studies were in India."
+  },
+  "a2-der-abschluss": {
+    "de": "Ich habe einen Abschluss in Informatik.",
+    "en": "I have a degree in computer science."
+  },
+  "a2-der-kollege": {
+    "de": "Mein Kollege hilft mir.",
+    "en": "My colleague helps me."
+  },
+  "a2-der-chef": {
+    "de": "Mein Chef ist heute nicht da.",
+    "en": "My boss is not here today."
+  },
+  "a2-das-gehalt": {
+    "de": "Das Gehalt ist in Ordnung.",
+    "en": "The salary is all right."
+  },
+  "a2-die-bewerbung": {
+    "de": "Ich schreibe eine Bewerbung.",
+    "en": "I am writing an application."
+  },
+  "a2-das-praktikum": {
+    "de": "Ich mache ein Praktikum.",
+    "en": "I am doing an internship."
+  },
+  "a2-verdienen": {
+    "de": "Wie viel verdienst du?",
+    "en": "How much do you earn?"
+  },
+  "a2-bewerben": {
+    "de": "Ich bewerbe mich um die Stelle.",
+    "en": "I am applying for the position."
+  },
+  "a2-kuendigen-w": {
+    "de": "Er hat letzte Woche gekündigt.",
+    "en": "He handed in his notice last week."
+  },
+  "a2-selbststaendig": {
+    "de": "Sie ist selbstständig.",
+    "en": "She is self-employed."
+  },
+  "a2-arbeitslos": {
+    "de": "Er ist zurzeit arbeitslos.",
+    "en": "He is currently unemployed."
+  },
+  "a2-die-schicht": {
+    "de": "Ich habe heute Nachtschicht.",
+    "en": "I am on the night shift today."
+  },
+  "a2-der-urlaub": {
+    "de": "Ich habe nächste Woche Urlaub.",
+    "en": "I am on leave next week."
+  },
+  "a2-verbinden": {
+    "de": "Ich verbinde Sie.",
+    "en": "I will put you through."
+  },
+  "a2-zurueckrufen": {
+    "de": "Ich rufe später zurück.",
+    "en": "I will call back later."
+  },
+  "a2-ausrichten": {
+    "de": "Kann ich etwas ausrichten?",
+    "en": "Can I pass on a message?"
+  },
+  "a2-sprechen-mit": {
+    "de": "Kann ich mit Frau Weber sprechen?",
+    "en": "May I speak to Ms Weber?"
+  },
+  "a2-am-apparat": {
+    "de": "Weber am Apparat.",
+    "en": "Weber speaking."
+  },
+  "a2-die-nummer": {
+    "de": "Wie ist Ihre Nummer?",
+    "en": "What is your number?"
+  },
+  "a2-die-durchwahl": {
+    "de": "Meine Durchwahl ist 24.",
+    "en": "My extension is 24."
+  },
+  "a2-die-mailbox": {
+    "de": "Sprechen Sie auf die Mailbox.",
+    "en": "Leave a message on the voicemail."
+  },
+  "a2-besetzt-p": {
+    "de": "Die Leitung ist besetzt.",
+    "en": "The line is engaged."
+  },
+  "a2-erreichen": {
+    "de": "Ich konnte ihn nicht erreichen.",
+    "en": "I could not reach him."
+  },
+  "a2-buchstabieren": {
+    "de": "Können Sie das buchstabieren?",
+    "en": "Could you spell that?"
+  },
+  "a2-wiederholen-p": {
+    "de": "Wie bitte? Ich habe Sie nicht verstanden.",
+    "en": "Sorry, what? I did not understand you."
+  },
+  "a2-lauter": {
+    "de": "Können Sie etwas lauter sprechen?",
+    "en": "Could you speak a little louder?"
+  },
+  "a2-aufhaengen": {
+    "de": "Bitte legen Sie nicht auf.",
+    "en": "Please do not hang up."
+  },
+  "a2-der-anruf": {
+    "de": "Danke für den Anruf.",
+    "en": "Thank you for the call."
+  },
+  "a2-der-anrufbeantworter": {
+    "de": "Der Anrufbeantworter ist an.",
+    "en": "The answering machine is on."
+  },
+  "a2-dranbleiben": {
+    "de": "Bleiben Sie bitte dran.",
+    "en": "Please hold the line."
+  },
+  "a2-melden": {
+    "de": "Ich melde mich morgen.",
+    "en": "I will get in touch tomorrow."
+  },
+  "a2-das-formular": {
+    "de": "Füllen Sie bitte das Formular aus.",
+    "en": "Please fill in the form."
+  },
+  "a2-der-antrag": {
+    "de": "Ich stelle einen Antrag.",
+    "en": "I am submitting an application."
+  },
+  "a2-der-ausweis": {
+    "de": "Haben Sie Ihren Ausweis dabei?",
+    "en": "Do you have your ID with you?"
+  },
+  "a2-die-anmeldung": {
+    "de": "Die Anmeldung dauert zehn Minuten.",
+    "en": "The registration takes ten minutes."
+  },
+  "a2-die-bescheinigung": {
+    "de": "Ich brauche eine Bescheinigung.",
+    "en": "I need a certificate."
+  },
+  "a2-der-stempel": {
+    "de": "Der Stempel fehlt noch.",
+    "en": "The stamp is still missing."
+  },
+  "a2-die-unterschrift": {
+    "de": "Hier fehlt Ihre Unterschrift.",
+    "en": "Your signature is missing here."
+  },
+  "a2-das-paket": {
+    "de": "Ich möchte ein Paket schicken.",
+    "en": "I would like to send a parcel."
+  },
+  "a2-die-briefmarke": {
+    "de": "Ich brauche zwei Briefmarken.",
+    "en": "I need two stamps."
+  },
+  "a2-der-schalter": {
+    "de": "Gehen Sie bitte zu Schalter drei.",
+    "en": "Please go to counter three."
+  },
+  "a2-die-gebuehr": {
+    "de": "Die Gebühr beträgt zehn Euro.",
+    "en": "The fee is ten euros."
+  },
+  "a2-ausfuellen": {
+    "de": "Füllen Sie das bitte aus.",
+    "en": "Please fill this in."
+  },
+  "a2-unterschreiben": {
+    "de": "Unterschreiben Sie bitte hier.",
+    "en": "Please sign here."
+  },
+  "a2-beantragen": {
+    "de": "Ich beantrage einen neuen Pass.",
+    "en": "I am applying for a new passport."
+  },
+  "a2-abgeben": {
+    "de": "Wo kann ich das abgeben?",
+    "en": "Where can I hand this in?"
+  },
+  "a2-mitbringen": {
+    "de": "Was muss ich mitbringen?",
+    "en": "What do I need to bring?"
+  },
+  "a2-die-frist": {
+    "de": "Die Frist ist am Freitag.",
+    "en": "The deadline is on Friday."
+  },
+  "a2-zustaendig": {
+    "de": "Wer ist dafür zuständig?",
+    "en": "Who is responsible for this?"
+  },
+  "a2-die-beschwerden": {
+    "de": "Welche Beschwerden haben Sie?",
+    "en": "What symptoms do you have?"
+  },
+  "a2-die-schmerzen": {
+    "de": "Ich habe starke Schmerzen.",
+    "en": "I am in a lot of pain."
+  },
+  "a2-das-fieber": {
+    "de": "Ich habe Fieber.",
+    "en": "I have a fever."
+  },
+  "a2-der-husten": {
+    "de": "Der Husten ist schlimmer geworden.",
+    "en": "The cough has got worse."
+  },
+  "a2-die-erkaeltung": {
+    "de": "Ich habe eine Erkältung.",
+    "en": "I have a cold."
+  },
+  "a2-die-untersuchung": {
+    "de": "Die Untersuchung dauert kurz.",
+    "en": "The examination will not take long."
+  },
+  "a2-das-medikament": {
+    "de": "Nehmen Sie das Medikament dreimal täglich.",
+    "en": "Take the medicine three times a day."
+  },
+  "a2-die-tablette": {
+    "de": "Nehmen Sie eine Tablette.",
+    "en": "Take one tablet."
+  },
+  "a2-die-apotheke": {
+    "de": "Die Apotheke hat bis acht auf.",
+    "en": "The pharmacy is open until eight."
+  },
+  "a2-die-krankenkasse": {
+    "de": "Welche Krankenkasse haben Sie?",
+    "en": "Which health insurer do you have?"
+  },
+  "a2-die-versicherung": {
+    "de": "Die Versicherung zahlt das.",
+    "en": "The insurance covers that."
+  },
+  "a2-wehtun": {
+    "de": "Mein Rücken tut weh.",
+    "en": "My back hurts."
+  },
+  "a2-untersuchen": {
+    "de": "Der Arzt untersucht mich.",
+    "en": "The doctor is examining me."
+  },
+  "a2-verschreiben": {
+    "de": "Er hat mir etwas verschrieben.",
+    "en": "He prescribed me something."
+  },
+  "a2-sich-ausruhen": {
+    "de": "Sie müssen sich ausruhen.",
+    "en": "You need to rest."
+  },
+  "a2-krankgeschrieben": {
+    "de": "Ich bin eine Woche krankgeschrieben.",
+    "en": "I am signed off sick for a week."
+  },
+  "a2-gesund-werden": {
+    "de": "Werde bald gesund!",
+    "en": "Get well soon!"
+  },
+  "a2-schwindelig": {
+    "de": "Mir ist schwindelig.",
+    "en": "I feel dizzy."
+  },
+  "a2-die-einladung": {
+    "de": "Danke für die Einladung.",
+    "en": "Thank you for the invitation."
+  },
+  "a2-die-feier": {
+    "de": "Die Feier war schön.",
+    "en": "The celebration was lovely."
+  },
+  "a2-der-geburtstag": {
+    "de": "Herzlichen Glückwunsch zum Geburtstag!",
+    "en": "Happy birthday!"
+  },
+  "a2-die-hochzeit": {
+    "de": "Die Hochzeit ist im Juni.",
+    "en": "The wedding is in June."
+  },
+  "a2-der-gast": {
+    "de": "Wir haben zwanzig Gäste.",
+    "en": "We have twenty guests."
+  },
+  "a2-einladen": {
+    "de": "Ich lade dich ein.",
+    "en": "I am inviting you."
+  },
+  "a2-feiern": {
+    "de": "Wir feiern am Samstag.",
+    "en": "We are celebrating on Saturday."
+  },
+  "a2-gratulieren": {
+    "de": "Ich gratuliere dir!",
+    "en": "Congratulations!"
+  },
+  "a2-anstossen": {
+    "de": "Wir stoßen auf dich an.",
+    "en": "We are drinking to you."
+  },
+  "a2-absagen-f": {
+    "de": "Leider kann ich nicht kommen.",
+    "en": "Unfortunately I cannot come."
+  },
+  "a2-gern-kommen": {
+    "de": "Ich komme gern.",
+    "en": "I would love to come."
+  },
+  "a2-der-feiertag": {
+    "de": "Montag ist ein Feiertag.",
+    "en": "Monday is a public holiday."
+  },
+  "a2-weihnachten": {
+    "de": "An Weihnachten fahre ich heim.",
+    "en": "At Christmas I travel home."
+  },
+  "a2-ostern": {
+    "de": "Zu Ostern haben wir frei.",
+    "en": "We have time off at Easter."
+  },
+  "a2-silvester": {
+    "de": "Was machst du an Silvester?",
+    "en": "What are you doing on New Year's Eve?"
+  },
+  "a2-mitbringen-f": {
+    "de": "Soll ich etwas mitbringen?",
+    "en": "Should I bring something?"
+  },
+  "a2-sich-freuen": {
+    "de": "Ich freue mich auf den Abend.",
+    "en": "I am looking forward to the evening."
+  },
+  "a2-der-glueckwunsch": {
+    "de": "Herzlichen Glückwunsch!",
+    "en": "Congratulations!"
+  },
+  "a2-der-verein": {
+    "de": "Ich bin in einem Verein.",
+    "en": "I am in a club."
+  },
+  "a2-das-training": {
+    "de": "Das Training ist dienstags.",
+    "en": "Training is on Tuesdays."
+  },
+  "a2-die-mannschaft": {
+    "de": "Unsere Mannschaft hat gewonnen.",
+    "en": "Our team won."
+  },
+  "a2-das-spiel": {
+    "de": "Das Spiel beginnt um drei.",
+    "en": "The match starts at three."
+  },
+  "a2-trainieren": {
+    "de": "Ich trainiere zweimal pro Woche.",
+    "en": "I train twice a week."
+  },
+  "a2-gewinnen": {
+    "de": "Wir haben gewonnen.",
+    "en": "We won."
+  },
+  "a2-verlieren-s": {
+    "de": "Sie haben leider verloren.",
+    "en": "They lost, unfortunately."
+  },
+  "a2-schwimmen": {
+    "de": "Ich schwimme gern.",
+    "en": "I like swimming."
+  },
+  "a2-radfahren": {
+    "de": "Am Wochenende fahre ich Rad.",
+    "en": "At the weekend I cycle."
+  },
+  "a2-laufen": {
+    "de": "Ich laufe jeden Morgen.",
+    "en": "I run every morning."
+  },
+  "a2-einmal-pro": {
+    "de": "Ich spiele einmal pro Woche.",
+    "en": "I play once a week."
+  },
+  "a2-regelmaessig": {
+    "de": "Ich gehe regelmäßig ins Schwimmbad.",
+    "en": "I go to the pool regularly."
+  },
+  "a2-selten": {
+    "de": "Ich sehe selten fern.",
+    "en": "I rarely watch television."
+  },
+  "a2-oft": {
+    "de": "Wir treffen uns oft.",
+    "en": "We meet often."
+  },
+  "a2-das-hobby": {
+    "de": "Mein Hobby ist Kochen.",
+    "en": "My hobby is cooking."
+  },
+  "a2-die-freizeit": {
+    "de": "In meiner Freizeit lese ich.",
+    "en": "In my free time I read."
+  },
+  "a2-mitmachen": {
+    "de": "Willst du mitmachen?",
+    "en": "Do you want to join in?"
+  },
+  "a2-das-schwimmbad": {
+    "de": "Das Schwimmbad ist neu.",
+    "en": "The swimming pool is new."
+  },
+  "a2-die-sendung": {
+    "de": "Die Sendung läuft um acht.",
+    "en": "The programme is on at eight."
+  },
+  "a2-die-zeitung": {
+    "de": "Ich lese jeden Tag Zeitung.",
+    "en": "I read the newspaper every day."
+  },
+  "a2-die-zeitschrift": {
+    "de": "Die Zeitschrift kommt monatlich.",
+    "en": "The magazine comes out monthly."
+  },
+  "a2-der-artikel": {
+    "de": "Der Artikel war interessant.",
+    "en": "The article was interesting."
+  },
+  "a2-die-folge": {
+    "de": "Ich habe die letzte Folge gesehen.",
+    "en": "I watched the last episode."
+  },
+  "a2-die-serie": {
+    "de": "Die Serie ist sehr gut.",
+    "en": "The series is very good."
+  },
+  "a2-anschauen": {
+    "de": "Das schaue ich mir später an.",
+    "en": "I will watch that later."
+  },
+  "a2-abonnieren": {
+    "de": "Ich habe die Zeitung abonniert.",
+    "en": "I subscribe to the newspaper."
+  },
+  "a2-spannend": {
+    "de": "Der Film war spannend.",
+    "en": "The film was gripping."
+  },
+  "a2-langweilig": {
+    "de": "Die Sendung war langweilig.",
+    "en": "The programme was boring."
+  },
+  "a2-lustig": {
+    "de": "Das Buch ist sehr lustig.",
+    "en": "The book is very funny."
+  },
+  "a2-meiner-meinung": {
+    "de": "Meiner Meinung nach ist das falsch.",
+    "en": "In my opinion that is wrong."
+  },
+  "a2-halten-von": {
+    "de": "Was hältst du davon?",
+    "en": "What do you think of it?"
+  },
+  "a2-die-nachricht-m": {
+    "de": "Ich sehe abends die Nachrichten.",
+    "en": "I watch the news in the evening."
+  },
+  "a2-der-sender": {
+    "de": "Welcher Sender ist das?",
+    "en": "Which channel is that?"
+  },
+  "a2-herunterladen": {
+    "de": "Ich lade die Folge herunter.",
+    "en": "I am downloading the episode."
+  },
+  "a2-online": {
+    "de": "Der Artikel steht online.",
+    "en": "The article is online."
+  },
+  "a2-das-problem": {
+    "de": "Es gibt ein Problem.",
+    "en": "There is a problem."
+  },
+  "a2-die-loesung": {
+    "de": "Ich suche eine Lösung.",
+    "en": "I am looking for a solution."
+  },
+  "a2-der-fehler": {
+    "de": "Das war mein Fehler.",
+    "en": "That was my mistake."
+  },
+  "a2-die-beschwerde": {
+    "de": "Ich möchte eine Beschwerde einreichen.",
+    "en": "I would like to make a complaint."
+  },
+  "a2-reklamieren": {
+    "de": "Ich möchte das reklamieren.",
+    "en": "I would like to make a claim about this."
+  },
+  "a2-funktionieren": {
+    "de": "Das funktioniert nicht.",
+    "en": "That does not work."
+  },
+  "a2-reparieren": {
+    "de": "Können Sie das reparieren?",
+    "en": "Can you repair this?"
+  },
+  "a2-sich-beschweren": {
+    "de": "Ich möchte mich beschweren.",
+    "en": "I would like to complain."
+  },
+  "a2-entschuldigen": {
+    "de": "Er hat sich entschuldigt.",
+    "en": "He apologised."
+  },
+  "a2-leider": {
+    "de": "Leider ist das nicht möglich.",
+    "en": "Unfortunately that is not possible."
+  },
+  "a2-trotzdem": {
+    "de": "Es hat geregnet, trotzdem sind wir gegangen.",
+    "en": "It rained; we went anyway."
+  },
+  "a2-moeglich": {
+    "de": "Ist das möglich?",
+    "en": "Is that possible?"
+  },
+  "a2-unmoeglich": {
+    "de": "Das ist leider unmöglich.",
+    "en": "That is unfortunately impossible."
+  },
+  "a2-sofort": {
+    "de": "Ich kümmere mich sofort darum.",
+    "en": "I will see to it immediately."
+  },
+  "a2-kuemmern": {
+    "de": "Ich kümmere mich darum.",
+    "en": "I will take care of it."
+  },
+  "a2-die-verspaetung-p": {
+    "de": "Es gibt eine Störung.",
+    "en": "There is a fault."
+  },
+  "a2-erstatten": {
+    "de": "Wir erstatten Ihnen das Geld.",
+    "en": "We will refund your money."
+  },
+  "a2-zuerst": {
+    "de": "Zuerst rufe ich an.",
+    "en": "First of all I will call."
+  },
+  "a2-danach": {
+    "de": "Danach gehe ich einkaufen.",
+    "en": "After that I will go shopping."
+  },
+  "a2-schliesslich": {
+    "de": "Schließlich sind wir gegangen.",
+    "en": "Finally we left."
+  },
+  "a2-deshalb": {
+    "de": "Es war spät, deshalb bin ich gegangen.",
+    "en": "It was late, so I left."
+  },
+  "a2-vielleicht": {
+    "de": "Vielleicht komme ich später.",
+    "en": "Maybe I will come later."
+  },
+  "a2-bestimmt": {
+    "de": "Das schaffst du bestimmt.",
+    "en": "You will definitely manage that."
+  },
+  "a2-eigentlich": {
+    "de": "Eigentlich wollte ich zu Hause bleiben.",
+    "en": "Actually I wanted to stay at home."
+  },
+  "a2-uebrigens": {
+    "de": "Übrigens, dein Paket ist da.",
+    "en": "By the way, your parcel is here."
+  },
+  "a2-endlich": {
+    "de": "Endlich ist der Sommer da.",
+    "en": "Summer is here at last."
+  },
+  "a2-wahrscheinlich": {
+    "de": "Wahrscheinlich regnet es morgen.",
+    "en": "It will probably rain tomorrow."
   }
 }
