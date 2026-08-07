@@ -59,7 +59,12 @@ console.log(`${blueprints.length} blueprints loaded`);
  * too big.
  */
 const HANDWRITTEN = new Set(
-  ["data/units-a1-1.json", "data/units-a1-2.json", "data/units-a2-1.json"]
+  [
+    "data/units-a1-1.json",
+    "data/units-a1-2.json",
+    "data/units-a2-1.json",
+    "data/units-a2-2.json",
+  ]
     .filter((f) => existsSync(path.join(ROOT, f)))
     .flatMap(
       (f) =>

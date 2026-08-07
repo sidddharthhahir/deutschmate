@@ -3334,5 +3334,1417 @@
   "a2-wahrscheinlich": {
     "de": "Wahrscheinlich regnet es morgen.",
     "en": "It will probably rain tomorrow."
+  },
+  "a22-weil": {
+    "de": "Ich bleibe zu Hause, weil ich müde bin.",
+    "en": "I am staying at home because I am tired."
+  },
+  "a22-dass": {
+    "de": "Ich glaube, dass er recht hat.",
+    "en": "I think that he is right."
+  },
+  "a22-obwohl": {
+    "de": "Obwohl es regnet, gehe ich raus.",
+    "en": "Although it is raining, I am going out."
+  },
+  "a22-damit": {
+    "de": "Ich lerne, damit ich die Prüfung bestehe.",
+    "en": "I study so that I pass the exam."
+  },
+  "a22-der-grund": {
+    "de": "Was ist der Grund dafür?",
+    "en": "What is the reason for that?"
+  },
+  "a22-die-entscheidung": {
+    "de": "Das war eine gute Entscheidung.",
+    "en": "That was a good decision."
+  },
+  "a22-entscheiden": {
+    "de": "Ich habe mich für die Wohnung entschieden.",
+    "en": "I decided on the flat."
+  },
+  "a22-begruenden": {
+    "de": "Können Sie das begründen?",
+    "en": "Can you give reasons for that?"
+  },
+  "a22-der-vorteil": {
+    "de": "Das hat einen großen Vorteil.",
+    "en": "That has a big advantage."
+  },
+  "a22-der-nachteil": {
+    "de": "Der Nachteil ist der Preis.",
+    "en": "The disadvantage is the price."
+  },
+  "a22-naemlich": {
+    "de": "Ich kann nicht — ich arbeite nämlich.",
+    "en": "I cannot — I am working, you see."
+  },
+  "a22-darum": {
+    "de": "Es war teuer, darum habe ich es nicht gekauft.",
+    "en": "It was expensive, that is why I did not buy it."
+  },
+  "a22-der-zweck": {
+    "de": "Was ist der Zweck davon?",
+    "en": "What is the purpose of it?"
+  },
+  "a22-erklaerung": {
+    "de": "Danke für die Erklärung.",
+    "en": "Thank you for the explanation."
+  },
+  "a22-der-zusammenhang": {
+    "de": "Ich sehe den Zusammenhang nicht.",
+    "en": "I do not see the connection."
+  },
+  "a22-zugeben": {
+    "de": "Ich gebe zu, das war mein Fehler.",
+    "en": "I admit that was my mistake."
+  },
+  "a22-sonst": {
+    "de": "Beeil dich, sonst kommen wir zu spät.",
+    "en": "Hurry up, otherwise we will be late."
+  },
+  "a22-jedenfalls": {
+    "de": "Ich komme jedenfalls später.",
+    "en": "In any case I will come later."
+  },
+  "a22-sich-freuen-auf": {
+    "de": "Ich freue mich auf den Urlaub.",
+    "en": "I am looking forward to the holiday."
+  },
+  "a22-sich-interessieren": {
+    "de": "Ich interessiere mich für Musik.",
+    "en": "I am interested in music."
+  },
+  "a22-sich-erinnern": {
+    "de": "Erinnerst du dich an gestern?",
+    "en": "Do you remember yesterday?"
+  },
+  "a22-sich-aergern": {
+    "de": "Ich ärgere mich über den Lärm.",
+    "en": "I am annoyed about the noise."
+  },
+  "a22-sich-treffen": {
+    "de": "Ich treffe mich mit Anna.",
+    "en": "I am meeting up with Anna."
+  },
+  "a22-sich-unterhalten": {
+    "de": "Wir haben uns lange unterhalten.",
+    "en": "We chatted for a long time."
+  },
+  "a22-sich-vorstellen": {
+    "de": "Darf ich mich vorstellen?",
+    "en": "May I introduce myself?"
+  },
+  "a22-sich-setzen": {
+    "de": "Setz dich bitte hin.",
+    "en": "Please sit down."
+  },
+  "a22-sich-beeilen": {
+    "de": "Wir müssen uns beeilen.",
+    "en": "We have to hurry."
+  },
+  "a22-sich-anziehen": {
+    "de": "Ich ziehe mich schnell um.",
+    "en": "I will get changed quickly."
+  },
+  "a22-sich-waschen": {
+    "de": "Ich wasche mir die Hände.",
+    "en": "I am washing my hands."
+  },
+  "a22-sich-fuehlen": {
+    "de": "Wie fühlst du dich?",
+    "en": "How do you feel?"
+  },
+  "a22-sich-gewoehnen": {
+    "de": "Ich gewöhne mich an das Wetter.",
+    "en": "I am getting used to the weather."
+  },
+  "a22-sich-konzentrieren": {
+    "de": "Ich kann mich nicht konzentrieren.",
+    "en": "I cannot concentrate."
+  },
+  "a22-sich-verabreden": {
+    "de": "Wir haben uns für Freitag verabredet.",
+    "en": "We arranged to meet on Friday."
+  },
+  "a22-sich-bedanken": {
+    "de": "Ich möchte mich bedanken.",
+    "en": "I would like to say thank you."
+  },
+  "a22-sich-verlassen": {
+    "de": "Auf ihn kann man sich verlassen.",
+    "en": "You can rely on him."
+  },
+  "a22-sich-vorbereiten": {
+    "de": "Ich bereite mich auf die Prüfung vor.",
+    "en": "I am preparing for the exam."
+  },
+  "a22-das-gefuehl": {
+    "de": "Ich habe ein gutes Gefühl.",
+    "en": "I have a good feeling."
+  },
+  "a22-gluecklich": {
+    "de": "Ich bin sehr glücklich.",
+    "en": "I am very happy."
+  },
+  "a22-traurig": {
+    "de": "Warum bist du traurig?",
+    "en": "Why are you sad?"
+  },
+  "a22-wuetend": {
+    "de": "Er war richtig wütend.",
+    "en": "He was really angry."
+  },
+  "a22-nervoes": {
+    "de": "Ich bin vor der Prüfung nervös.",
+    "en": "I am nervous before the exam."
+  },
+  "a22-aufgeregt": {
+    "de": "Sie ist ganz aufgeregt.",
+    "en": "She is quite excited."
+  },
+  "a22-enttaeuscht": {
+    "de": "Ich bin ein bisschen enttäuscht.",
+    "en": "I am a little disappointed."
+  },
+  "a22-erleichtert": {
+    "de": "Ich bin so erleichtert.",
+    "en": "I am so relieved."
+  },
+  "a22-stolz": {
+    "de": "Ich bin stolz auf dich.",
+    "en": "I am proud of you."
+  },
+  "a22-muede-f": {
+    "de": "Nach der Arbeit bin ich erschöpft.",
+    "en": "After work I am exhausted."
+  },
+  "a22-die-angst": {
+    "de": "Ich habe Angst vor Hunden.",
+    "en": "I am afraid of dogs."
+  },
+  "a22-die-sorge": {
+    "de": "Mach dir keine Sorgen.",
+    "en": "Do not worry."
+  },
+  "a22-die-freude": {
+    "de": "Das ist eine große Freude.",
+    "en": "That is a great joy."
+  },
+  "a22-tut-mir-leid": {
+    "de": "Das tut mir wirklich leid.",
+    "en": "I am really sorry to hear that."
+  },
+  "a22-wie-schoen": {
+    "de": "Wie schön für dich!",
+    "en": "How lovely for you!"
+  },
+  "a22-das-ist-ja": {
+    "de": "Das ist ja schrecklich — was machst du jetzt?",
+    "en": "That is awful — what will you do now?"
+  },
+  "a22-hoffen": {
+    "de": "Ich hoffe, es geht dir bald besser.",
+    "en": "I hope you feel better soon."
+  },
+  "a22-trotzdem-f": {
+    "de": "Kopf hoch, das wird schon.",
+    "en": "Chin up, it will be fine."
+  },
+  "a22-rund": {
+    "de": "Der Tisch ist rund.",
+    "en": "The table is round."
+  },
+  "a22-eckig": {
+    "de": "Ich suche eine eckige Lampe.",
+    "en": "I am looking for a square lamp."
+  },
+  "a22-schmal": {
+    "de": "Der Flur ist sehr schmal.",
+    "en": "The hallway is very narrow."
+  },
+  "a22-breit": {
+    "de": "Das Bett ist zu breit.",
+    "en": "The bed is too wide."
+  },
+  "a22-tief": {
+    "de": "Der Schrank ist nicht tief genug.",
+    "en": "The cupboard is not deep enough."
+  },
+  "a22-weich": {
+    "de": "Das Sofa ist sehr weich.",
+    "en": "The sofa is very soft."
+  },
+  "a22-hart": {
+    "de": "Die Matratze ist zu hart.",
+    "en": "The mattress is too hard."
+  },
+  "a22-glatt": {
+    "de": "Der Boden ist glatt.",
+    "en": "The floor is slippery."
+  },
+  "a22-leicht": {
+    "de": "Die Tasche ist ganz leicht.",
+    "en": "The bag is very light."
+  },
+  "a22-schwer": {
+    "de": "Der Karton ist zu schwer.",
+    "en": "The box is too heavy."
+  },
+  "a22-das-material": {
+    "de": "Aus welchem Material ist das?",
+    "en": "What material is this made of?"
+  },
+  "a22-das-holz": {
+    "de": "Der Tisch ist aus Holz.",
+    "en": "The table is made of wood."
+  },
+  "a22-das-metall": {
+    "de": "Der Griff ist aus Metall.",
+    "en": "The handle is made of metal."
+  },
+  "a22-das-plastik": {
+    "de": "Die Box ist aus Plastik.",
+    "en": "The box is made of plastic."
+  },
+  "a22-die-form": {
+    "de": "Welche Form hat es?",
+    "en": "What shape is it?"
+  },
+  "a22-aussehen": {
+    "de": "Wie sieht es aus?",
+    "en": "What does it look like?"
+  },
+  "a22-beschreiben": {
+    "de": "Können Sie es beschreiben?",
+    "en": "Can you describe it?"
+  },
+  "a22-erkennen": {
+    "de": "Ich erkenne meinen Koffer sofort.",
+    "en": "I recognise my suitcase straight away."
+  },
+  "a22-die-kindheit": {
+    "de": "Meine Kindheit war schön.",
+    "en": "My childhood was lovely."
+  },
+  "a22-die-erinnerung": {
+    "de": "Ich habe gute Erinnerungen daran.",
+    "en": "I have good memories of it."
+  },
+  "a22-frueher-a22": {
+    "de": "Als Kind war ich oft draußen.",
+    "en": "As a child I was often outside."
+  },
+  "a22-die-vergangenheit": {
+    "de": "Das gehört zur Vergangenheit.",
+    "en": "That belongs to the past."
+  },
+  "a22-die-gegenwart": {
+    "de": "Leben wir in der Gegenwart.",
+    "en": "Let us live in the present."
+  },
+  "a22-sich-veraendern": {
+    "de": "Die Stadt hat sich sehr verändert.",
+    "en": "The city has changed a lot."
+  },
+  "a22-aufwachsen": {
+    "de": "Ich bin in Indien aufgewachsen.",
+    "en": "I grew up in India."
+  },
+  "a22-die-schulzeit": {
+    "de": "In der Schulzeit hatte ich viel Zeit.",
+    "en": "During my school days I had a lot of time."
+  },
+  "a22-der-nachbar": {
+    "de": "Unsere Nachbarn waren nett.",
+    "en": "Our neighbours were nice."
+  },
+  "a22-damals-a22": {
+    "de": "Früher einmal gab es hier einen Laden.",
+    "en": "There used to be a shop here."
+  },
+  "a22-inzwischen": {
+    "de": "Inzwischen wohnt sie in Hamburg.",
+    "en": "By now she lives in Hamburg."
+  },
+  "a22-normalerweise": {
+    "de": "Normalerweise stehe ich früh auf.",
+    "en": "Normally I get up early."
+  },
+  "a22-die-gewohnheit": {
+    "de": "Das ist eine alte Gewohnheit.",
+    "en": "That is an old habit."
+  },
+  "a22-erlauben": {
+    "de": "Meine Eltern haben das nicht erlaubt.",
+    "en": "My parents did not allow that."
+  },
+  "a22-streng": {
+    "de": "Meine Lehrerin war sehr streng.",
+    "en": "My teacher was very strict."
+  },
+  "a22-die-jugend": {
+    "de": "In meiner Jugend war das anders.",
+    "en": "In my youth that was different."
+  },
+  "a22-das-dorf": {
+    "de": "Ich komme aus einem kleinen Dorf.",
+    "en": "I come from a small village."
+  },
+  "a22-vermissen": {
+    "de": "Ich vermisse meine Familie.",
+    "en": "I miss my family."
+  },
+  "a22-werden": {
+    "de": "Ich werde nächstes Jahr umziehen.",
+    "en": "I will move next year."
+  },
+  "a22-vorhaben": {
+    "de": "Was hast du am Wochenende vor?",
+    "en": "What are you planning this weekend?"
+  },
+  "a22-planen": {
+    "de": "Wir planen eine Reise.",
+    "en": "We are planning a trip."
+  },
+  "a22-der-plan": {
+    "de": "Mein Plan ist einfach.",
+    "en": "My plan is simple."
+  },
+  "a22-die-zukunft": {
+    "de": "In Zukunft mache ich das anders.",
+    "en": "In future I will do it differently."
+  },
+  "a22-das-ziel": {
+    "de": "Mein Ziel ist die B1-Prüfung.",
+    "en": "My goal is the B1 exam."
+  },
+  "a22-schaffen": {
+    "de": "Ich schaffe das bis Freitag.",
+    "en": "I will manage it by Friday."
+  },
+  "a22-erreichen-p": {
+    "de": "Ich möchte mein Ziel erreichen.",
+    "en": "I want to reach my goal."
+  },
+  "a22-sich-etwas-vornehmen": {
+    "de": "Ich habe mir vorgenommen, mehr zu lesen.",
+    "en": "I have resolved to read more."
+  },
+  "a22-voraussichtlich": {
+    "de": "Voraussichtlich komme ich am Montag.",
+    "en": "I am expected to come on Monday."
+  },
+  "a22-hoffentlich": {
+    "de": "Hoffentlich klappt das.",
+    "en": "Hopefully that will work out."
+  },
+  "a22-klappen": {
+    "de": "Hat es geklappt?",
+    "en": "Did it work out?"
+  },
+  "a22-sicher": {
+    "de": "Bist du dir sicher?",
+    "en": "Are you sure?"
+  },
+  "a22-unsicher": {
+    "de": "Ich bin noch unsicher.",
+    "en": "I am still unsure."
+  },
+  "a22-bald": {
+    "de": "Demnächst ziehen wir um.",
+    "en": "We are moving shortly."
+  },
+  "a22-die-absicht": {
+    "de": "Das war nicht meine Absicht.",
+    "en": "That was not my intention."
+  },
+  "a22-sich-entscheiden-p": {
+    "de": "Ich überlege es mir noch.",
+    "en": "I am still thinking it over."
+  },
+  "a22-aufschieben": {
+    "de": "Wir verschieben das auf nächste Woche.",
+    "en": "We will put it off until next week."
+  },
+  "a22-gehoeren-b": {
+    "de": "Wem gehört diese Jacke?",
+    "en": "Whose jacket is this?"
+  },
+  "a22-der-besitzer": {
+    "de": "Der Besitzer wohnt nebenan.",
+    "en": "The owner lives next door."
+  },
+  "a22-das-eigentum": {
+    "de": "Das ist mein Eigentum.",
+    "en": "That is my property."
+  },
+  "a22-besitzen": {
+    "de": "Sie besitzt ein Haus.",
+    "en": "She owns a house."
+  },
+  "a22-eigen": {
+    "de": "Ich habe ein eigenes Zimmer.",
+    "en": "I have my own room."
+  },
+  "a22-gemeinsam": {
+    "de": "Wir haben ein gemeinsames Konto.",
+    "en": "We have a joint account."
+  },
+  "a22-teilen": {
+    "de": "Wir teilen uns die Küche.",
+    "en": "We share the kitchen."
+  },
+  "a22-ausleihen": {
+    "de": "Ich habe mir ein Buch ausgeliehen.",
+    "en": "I borrowed a book."
+  },
+  "a22-der-wert": {
+    "de": "Der Wert ist nicht hoch.",
+    "en": "The value is not high."
+  },
+  "a22-wertvoll": {
+    "de": "Das ist sehr wertvoll für mich.",
+    "en": "That is very valuable to me."
+  },
+  "a22-verlieren-b": {
+    "de": "Mein Schirm ist verloren gegangen.",
+    "en": "My umbrella got lost."
+  },
+  "a22-das-fundbuero": {
+    "de": "Frag im Fundbüro nach.",
+    "en": "Ask at the lost property office."
+  },
+  "a22-zurueckgeben-b": {
+    "de": "Du kannst es behalten.",
+    "en": "You can keep it."
+  },
+  "a22-weggeben": {
+    "de": "Ich habe die alten Möbel weggegeben.",
+    "en": "I gave the old furniture away."
+  },
+  "a22-verkaufen": {
+    "de": "Ich verkaufe mein Fahrrad.",
+    "en": "I am selling my bicycle."
+  },
+  "a22-der-schluessel-b": {
+    "de": "Hast du einen Ersatzschlüssel?",
+    "en": "Do you have a spare key?"
+  },
+  "a22-persoenlich": {
+    "de": "Das ist eine persönliche Sache.",
+    "en": "That is a personal matter."
+  },
+  "a22-privat": {
+    "de": "Das ist privat.",
+    "en": "That is private."
+  },
+  "a22-die-meinung": {
+    "de": "Was ist deine Meinung?",
+    "en": "What is your opinion?"
+  },
+  "a22-finden-m": {
+    "de": "Ich finde, dass er recht hat.",
+    "en": "I think that he is right."
+  },
+  "a22-glauben": {
+    "de": "Ich glaube, das stimmt nicht.",
+    "en": "I do not think that is right."
+  },
+  "a22-stimmen": {
+    "de": "Das stimmt.",
+    "en": "That is right."
+  },
+  "a22-recht-haben": {
+    "de": "Da hast du recht.",
+    "en": "You are right there."
+  },
+  "a22-zustimmen": {
+    "de": "Ich stimme dir zu.",
+    "en": "I agree with you."
+  },
+  "a22-widersprechen": {
+    "de": "Da muss ich widersprechen.",
+    "en": "I have to disagree there."
+  },
+  "a22-einerseits": {
+    "de": "Einerseits ja, andererseits nein.",
+    "en": "On the one hand yes, on the other no."
+  },
+  "a22-teilweise": {
+    "de": "Da hast du teilweise recht.",
+    "en": "You are partly right there."
+  },
+  "a22-genau": {
+    "de": "Genau, das denke ich auch.",
+    "en": "Exactly, I think so too."
+  },
+  "a22-sehe-anders": {
+    "de": "Das sehe ich ehrlich gesagt anders.",
+    "en": "Honestly, I see it differently."
+  },
+  "a22-nachvollziehbar": {
+    "de": "Deine Kritik ist nachvollziehbar.",
+    "en": "Your criticism is understandable."
+  },
+  "a22-egal": {
+    "de": "Das ist mir egal.",
+    "en": "It is all the same to me."
+  },
+  "a22-uebertreiben": {
+    "de": "Jetzt übertreibst du.",
+    "en": "Now you are exaggerating."
+  },
+  "a22-ehrlich": {
+    "de": "Ehrlich gesagt gefällt mir das nicht.",
+    "en": "To be honest I do not like it."
+  },
+  "a22-der-eindruck": {
+    "de": "Ich habe den Eindruck, es geht ihm gut.",
+    "en": "I have the impression he is doing well."
+  },
+  "a22-behaupten": {
+    "de": "Er behauptet, er war dort.",
+    "en": "He claims he was there."
+  },
+  "a22-zweifeln": {
+    "de": "Das bezweifle ich.",
+    "en": "I doubt that."
+  },
+  "a22-der-vorschlag": {
+    "de": "Ich habe einen Vorschlag.",
+    "en": "I have a suggestion."
+  },
+  "a22-vorschlagen": {
+    "de": "Ich schlage vor, wir treffen uns um acht.",
+    "en": "I suggest we meet at eight."
+  },
+  "a22-wie-waere": {
+    "de": "Wie wäre es mit Samstag?",
+    "en": "How about Saturday?"
+  },
+  "a22-sollen-wir": {
+    "de": "Sollen wir zusammen gehen?",
+    "en": "Shall we go together?"
+  },
+  "a22-lass-uns": {
+    "de": "Lass uns morgen anfangen.",
+    "en": "Let us start tomorrow."
+  },
+  "a22-lieber-v": {
+    "de": "Mir wäre Freitag lieber.",
+    "en": "I would prefer Friday."
+  },
+  "a22-einverstanden": {
+    "de": "Ich bin einverstanden.",
+    "en": "I agree to that."
+  },
+  "a22-ablehnen": {
+    "de": "Er hat den Vorschlag abgelehnt.",
+    "en": "He turned the suggestion down."
+  },
+  "a22-annehmen": {
+    "de": "Ich nehme den Vorschlag an.",
+    "en": "I accept the suggestion."
+  },
+  "a22-der-kompromiss": {
+    "de": "Finden wir einen Kompromiss.",
+    "en": "Let us find a compromise."
+  },
+  "a22-die-alternative": {
+    "de": "Gibt es eine Alternative?",
+    "en": "Is there an alternative?"
+  },
+  "a22-sich-einigen": {
+    "de": "Wir haben uns geeinigt.",
+    "en": "We have reached an agreement."
+  },
+  "a22-diskutieren": {
+    "de": "Wir haben lange diskutiert.",
+    "en": "We discussed it for a long time."
+  },
+  "a22-passt-mir": {
+    "de": "Montag passt mir leider nicht.",
+    "en": "Monday does not suit me, unfortunately."
+  },
+  "a22-notfalls": {
+    "de": "Notfalls komme ich später.",
+    "en": "If necessary I will come later."
+  },
+  "a22-lieber-nicht": {
+    "de": "Heute lieber nicht.",
+    "en": "Better not today."
+  },
+  "a22-ueberzeugen": {
+    "de": "Du hast mich überzeugt.",
+    "en": "You have convinced me."
+  },
+  "a22-nachgeben": {
+    "de": "Am Ende habe ich nachgegeben.",
+    "en": "In the end I gave in."
+  },
+  "a22-die-besprechung": {
+    "de": "Die Besprechung ist um zehn.",
+    "en": "The meeting is at ten."
+  },
+  "a22-die-aufgabe": {
+    "de": "Das ist nicht meine Aufgabe.",
+    "en": "That is not my task."
+  },
+  "a22-die-abteilung": {
+    "de": "Ich arbeite in der Abteilung Technik.",
+    "en": "I work in the technical department."
+  },
+  "a22-der-drucker": {
+    "de": "Der Drucker geht nicht.",
+    "en": "The printer is not working."
+  },
+  "a22-die-unterlagen": {
+    "de": "Schicken Sie mir bitte die Unterlagen.",
+    "en": "Please send me the documents."
+  },
+  "a22-erledigen-b": {
+    "de": "Ich bearbeite das heute noch.",
+    "en": "I will process it today."
+  },
+  "a22-weiterleiten": {
+    "de": "Ich leite die Mail weiter.",
+    "en": "I will forward the email."
+  },
+  "a22-bescheid-sagen": {
+    "de": "Sag mir bitte Bescheid.",
+    "en": "Please let me know."
+  },
+  "a22-sich-verspaeten": {
+    "de": "Ich verspäte mich um zehn Minuten.",
+    "en": "I will be ten minutes late."
+  },
+  "a22-die-verzoegerung": {
+    "de": "Es gibt eine kleine Verzögerung.",
+    "en": "There is a slight delay."
+  },
+  "a22-uebernehmen": {
+    "de": "Kannst du das übernehmen?",
+    "en": "Can you take that over?"
+  },
+  "a22-zusammenarbeiten": {
+    "de": "Wir arbeiten gut zusammen.",
+    "en": "We work well together."
+  },
+  "a22-die-pause": {
+    "de": "Ich bin in der Mittagspause.",
+    "en": "I am on my lunch break."
+  },
+  "a22-die-frist-b": {
+    "de": "Die Abgabe ist am Freitag.",
+    "en": "The hand-in is on Friday."
+  },
+  "a22-dringend-b": {
+    "de": "Es ist nicht eilig.",
+    "en": "It is not urgent."
+  },
+  "a22-erinnern-b": {
+    "de": "Erinnere mich bitte daran.",
+    "en": "Please remind me of that."
+  },
+  "a22-der-kunde": {
+    "de": "Der Kunde wartet.",
+    "en": "The customer is waiting."
+  },
+  "a22-melden-b": {
+    "de": "Ich muss mich krankmelden.",
+    "en": "I have to call in sick."
+  },
+  "a22-das-anschreiben": {
+    "de": "Das Anschreiben ist eine Seite lang.",
+    "en": "The cover letter is one page long."
+  },
+  "a22-das-zeugnis": {
+    "de": "Legen Sie bitte Ihre Zeugnisse bei.",
+    "en": "Please enclose your references."
+  },
+  "a22-die-kenntnisse": {
+    "de": "Ich habe gute Deutschkenntnisse.",
+    "en": "I have good German skills."
+  },
+  "a22-die-staerke": {
+    "de": "Meine Stärke ist Teamarbeit.",
+    "en": "My strength is teamwork."
+  },
+  "a22-die-schwaeche": {
+    "de": "Was ist Ihre größte Schwäche?",
+    "en": "What is your greatest weakness?"
+  },
+  "a22-das-gespraech": {
+    "de": "Ich habe morgen ein Vorstellungsgespräch.",
+    "en": "I have a job interview tomorrow."
+  },
+  "a22-einstellen": {
+    "de": "Sie haben mich eingestellt.",
+    "en": "They hired me."
+  },
+  "a22-passen-b": {
+    "de": "Ich bin für die Stelle geeignet.",
+    "en": "I am suitable for the position."
+  },
+  "a22-zuverlaessig": {
+    "de": "Ich bin sehr zuverlässig.",
+    "en": "I am very reliable."
+  },
+  "a22-motiviert": {
+    "de": "Ich bin hoch motiviert.",
+    "en": "I am highly motivated."
+  },
+  "a22-flexibel": {
+    "de": "Ich bin zeitlich flexibel.",
+    "en": "I am flexible about hours."
+  },
+  "a22-belastbar": {
+    "de": "Ich bin belastbar.",
+    "en": "I can work under pressure."
+  },
+  "a22-die-probezeit": {
+    "de": "Die Probezeit dauert sechs Monate.",
+    "en": "The probation period lasts six months."
+  },
+  "a22-die-teilzeit": {
+    "de": "Ich suche eine Stelle in Teilzeit.",
+    "en": "I am looking for a part-time position."
+  },
+  "a22-die-vollzeit": {
+    "de": "Arbeiten Sie Vollzeit?",
+    "en": "Do you work full-time?"
+  },
+  "a22-sich-kuemmern-b": {
+    "de": "Ich war für den Einkauf zuständig.",
+    "en": "I was responsible for purchasing."
+  },
+  "a22-anfangen-b": {
+    "de": "Ich kann sofort antreten.",
+    "en": "I can start immediately."
+  },
+  "a22-die-referenz": {
+    "de": "Ich kann Ihnen Referenzen geben.",
+    "en": "I can give you references."
+  },
+  "a22-das-konto": {
+    "de": "Ich möchte ein Konto eröffnen.",
+    "en": "I would like to open an account."
+  },
+  "a22-eroeffnen": {
+    "de": "Wo kann ich ein Konto eröffnen?",
+    "en": "Where can I open an account?"
+  },
+  "a22-die-ueberweisung": {
+    "de": "Die Überweisung dauert zwei Tage.",
+    "en": "The transfer takes two days."
+  },
+  "a22-ueberweisen": {
+    "de": "Ich überweise Ihnen das Geld.",
+    "en": "I will transfer you the money."
+  },
+  "a22-die-ec-karte": {
+    "de": "Meine Bankkarte funktioniert nicht.",
+    "en": "My bank card is not working."
+  },
+  "a22-die-geheimzahl": {
+    "de": "Geben Sie Ihre Geheimzahl ein.",
+    "en": "Enter your PIN."
+  },
+  "a22-der-geldautomat": {
+    "de": "Wo ist der nächste Geldautomat?",
+    "en": "Where is the nearest cash machine?"
+  },
+  "a22-abheben": {
+    "de": "Ich hebe hundert Euro ab.",
+    "en": "I am withdrawing a hundred euros."
+  },
+  "a22-einzahlen": {
+    "de": "Ich möchte Geld einzahlen.",
+    "en": "I would like to pay money in."
+  },
+  "a22-der-kontostand": {
+    "de": "Wie ist mein Kontostand?",
+    "en": "What is my account balance?"
+  },
+  "a22-die-zinsen": {
+    "de": "Die Zinsen sind niedrig.",
+    "en": "The interest rates are low."
+  },
+  "a22-der-kredit": {
+    "de": "Ich brauche keinen Kredit.",
+    "en": "I do not need a loan."
+  },
+  "a22-die-lastschrift": {
+    "de": "Die Miete geht per Lastschrift ab.",
+    "en": "The rent goes out by direct debit."
+  },
+  "a22-die-kontonummer": {
+    "de": "Können Sie mir Ihre IBAN geben?",
+    "en": "Can you give me your IBAN?"
+  },
+  "a22-buchen": {
+    "de": "Der Betrag wurde gebucht.",
+    "en": "The amount has been debited."
+  },
+  "a22-der-betrag": {
+    "de": "Der Betrag stimmt nicht.",
+    "en": "The amount is not right."
+  },
+  "a22-kostenpflichtig": {
+    "de": "Der Service ist kostenpflichtig.",
+    "en": "The service is subject to a charge."
+  },
+  "a22-monatlich": {
+    "de": "Die Gebühr ist monatlich.",
+    "en": "The fee is monthly."
+  },
+  "a22-der-umzug": {
+    "de": "Der Umzug ist am Samstag.",
+    "en": "The move is on Saturday."
+  },
+  "a22-der-karton": {
+    "de": "Ich brauche noch zehn Umzugskartons.",
+    "en": "I still need ten packing boxes."
+  },
+  "a22-packen": {
+    "de": "Ich packe die Bücher ein.",
+    "en": "I am packing the books."
+  },
+  "a22-auspacken": {
+    "de": "Wir packen morgen aus.",
+    "en": "We will unpack tomorrow."
+  },
+  "a22-tragen": {
+    "de": "Kannst du das tragen?",
+    "en": "Can you carry that?"
+  },
+  "a22-der-transporter": {
+    "de": "Wir mieten einen Transporter.",
+    "en": "We are renting a van."
+  },
+  "a22-die-ummeldung": {
+    "de": "Die Ummeldung muss in zwei Wochen sein.",
+    "en": "The registration must be within two weeks."
+  },
+  "a22-ummelden": {
+    "de": "Ich muss mich ummelden.",
+    "en": "I have to register my new address."
+  },
+  "a22-das-einwohnermeldeamt": {
+    "de": "Das Einwohnermeldeamt hat bis vier auf.",
+    "en": "The registration office is open until four."
+  },
+  "a22-der-nachsendeauftrag": {
+    "de": "Ich stelle einen Nachsendeauftrag.",
+    "en": "I am setting up mail forwarding."
+  },
+  "a22-die-wohnungsgeberbestaetigung": {
+    "de": "Ohne Wohnungsgeberbestätigung geht es nicht.",
+    "en": "It cannot be done without the landlord's confirmation."
+  },
+  "a22-helfen-u": {
+    "de": "Alle haben mit angepackt.",
+    "en": "Everyone lent a hand."
+  },
+  "a22-der-hausmeister": {
+    "de": "Der Hausmeister hat den Schlüssel.",
+    "en": "The caretaker has the key."
+  },
+  "a22-einziehen": {
+    "de": "Wir ziehen am Ersten ein.",
+    "en": "We are moving in on the first."
+  },
+  "a22-renovieren": {
+    "de": "Wir müssen vorher renovieren.",
+    "en": "We have to redecorate beforehand."
+  },
+  "a22-streichen": {
+    "de": "Ich streiche die Wände weiß.",
+    "en": "I am painting the walls white."
+  },
+  "a22-die-uebergabe": {
+    "de": "Die Übergabe ist um zwölf.",
+    "en": "The handover is at twelve."
+  },
+  "a22-das-protokoll": {
+    "de": "Wir schreiben ein Übergabeprotokoll.",
+    "en": "We will write a handover report."
+  },
+  "a22-der-handwerker": {
+    "de": "Ich rufe einen Handwerker an.",
+    "en": "I will call a tradesman."
+  },
+  "a22-der-installateur": {
+    "de": "Der Installateur kommt am Dienstag.",
+    "en": "The plumber is coming on Tuesday."
+  },
+  "a22-der-schaden": {
+    "de": "Der Schaden ist nicht groß.",
+    "en": "The damage is not great."
+  },
+  "a22-der-kostenvoranschlag": {
+    "de": "Können Sie mir einen Kostenvoranschlag machen?",
+    "en": "Can you give me a cost estimate?"
+  },
+  "a22-das-ersatzteil": {
+    "de": "Das Ersatzteil ist bestellt.",
+    "en": "The spare part has been ordered."
+  },
+  "a22-tropfen": {
+    "de": "Der Wasserhahn tropft.",
+    "en": "The tap is dripping."
+  },
+  "a22-undicht": {
+    "de": "Das Rohr ist undicht.",
+    "en": "The pipe is leaking."
+  },
+  "a22-verstopft": {
+    "de": "Der Abfluss ist verstopft.",
+    "en": "The drain is blocked."
+  },
+  "a22-die-heizung": {
+    "de": "Die Heizung wird nicht warm.",
+    "en": "The heating is not getting warm."
+  },
+  "a22-der-strom": {
+    "de": "Der Strom ist ausgefallen.",
+    "en": "The electricity has gone out."
+  },
+  "a22-ausfallen": {
+    "de": "Das Internet ist ausgefallen.",
+    "en": "The internet has gone down."
+  },
+  "a22-beschaedigt": {
+    "de": "Die Tür ist beschädigt.",
+    "en": "The door is damaged."
+  },
+  "a22-die-rechnung-r": {
+    "de": "Die Handwerkerrechnung war hoch.",
+    "en": "The tradesman's invoice was high."
+  },
+  "a22-melden-r": {
+    "de": "Geben Sie dem Vermieter Bescheid.",
+    "en": "Notify the landlord."
+  },
+  "a22-dauern-r": {
+    "de": "Es dauert voraussichtlich drei Tage.",
+    "en": "It is expected to take three days."
+  },
+  "a22-der-termin-r": {
+    "de": "Am Wochenende gibt es einen Notdienst.",
+    "en": "There is an emergency service at the weekend."
+  },
+  "a22-selbst-machen": {
+    "de": "Das kann ich selbst machen.",
+    "en": "I can do that myself."
+  },
+  "a22-austauschen": {
+    "de": "Wir tauschen das Fenster aus.",
+    "en": "We are replacing the window."
+  },
+  "a22-der-hinweis": {
+    "de": "Bitte beachten Sie die Hinweise am Eingang.",
+    "en": "Please note the signs at the entrance."
+  },
+  "a22-die-vorschrift": {
+    "de": "Das ist Vorschrift.",
+    "en": "That is a regulation."
+  },
+  "a22-duerfen-r": {
+    "de": "Darf ich hier parken?",
+    "en": "May I park here?"
+  },
+  "a22-gestattet": {
+    "de": "Rauchen ist hier nicht gestattet.",
+    "en": "Smoking is not permitted here."
+  },
+  "a22-untersagt": {
+    "de": "Der Zutritt ist untersagt.",
+    "en": "Entry is prohibited."
+  },
+  "a22-die-ausnahme": {
+    "de": "Wir machen eine Ausnahme.",
+    "en": "We will make an exception."
+  },
+  "a22-die-genehmigung": {
+    "de": "Dafür brauchen Sie eine Genehmigung.",
+    "en": "You need a permit for that."
+  },
+  "a22-beachten": {
+    "de": "Bitte beachten Sie die Öffnungszeiten.",
+    "en": "Please note the opening hours."
+  },
+  "a22-einhalten": {
+    "de": "Wir halten die Frist ein.",
+    "en": "We are keeping to the deadline."
+  },
+  "a22-verstossen": {
+    "de": "Das verstößt gegen die Hausordnung.",
+    "en": "That breaks the house rules."
+  },
+  "a22-die-hausordnung": {
+    "de": "Die Hausordnung hängt im Flur.",
+    "en": "The house rules are posted in the hallway."
+  },
+  "a22-die-ruhezeit": {
+    "de": "Ab zweiundzwanzig Uhr ist Ruhezeit.",
+    "en": "Quiet hours start at ten p.m."
+  },
+  "a22-die-strafe": {
+    "de": "Es gibt eine Strafe von fünfzig Euro.",
+    "en": "There is a fifty-euro fine."
+  },
+  "a22-das-bussgeld": {
+    "de": "Ich musste ein Bußgeld zahlen.",
+    "en": "I had to pay a fine."
+  },
+  "a22-verpflichtet": {
+    "de": "Sie sind verpflichtet, das zu melden.",
+    "en": "You are obliged to report that."
+  },
+  "a22-freiwillig": {
+    "de": "Die Teilnahme ist freiwillig.",
+    "en": "Participation is voluntary."
+  },
+  "a22-mitmachen-r": {
+    "de": "Zutritt nur für Personal.",
+    "en": "Staff only."
+  },
+  "a22-vermeiden": {
+    "de": "Bitte vermeiden Sie Lärm.",
+    "en": "Please avoid noise."
+  },
+  "a22-verschieben-v": {
+    "de": "Mir ist leider etwas dazwischengekommen.",
+    "en": "Unfortunately something has come up."
+  },
+  "a22-kurzfristig": {
+    "de": "Es tut mir leid, so kurzfristig abzusagen.",
+    "en": "I am sorry to cancel at such short notice."
+  },
+  "a22-bescheid-geben-v": {
+    "de": "Ich melde mich rechtzeitig bei Ihnen.",
+    "en": "I will let you know in good time."
+  },
+  "a22-entschuldigung-v": {
+    "de": "Entschuldigen Sie bitte die Umstände.",
+    "en": "Sorry for the inconvenience."
+  },
+  "a22-ausmachen-v": {
+    "de": "Können wir einen neuen Termin ausmachen?",
+    "en": "Can we make a new appointment?"
+  },
+  "a22-stattdessen": {
+    "de": "Können wir stattdessen Donnerstag?",
+    "en": "Can we do Thursday instead?"
+  },
+  "a22-eventuell": {
+    "de": "Eventuell klappt es am Freitag.",
+    "en": "It might possibly work on Friday."
+  },
+  "a22-vorziehen": {
+    "de": "Können wir den Termin vorziehen?",
+    "en": "Can we bring the appointment forward?"
+  },
+  "a22-nachholen": {
+    "de": "Das holen wir nächste Woche nach.",
+    "en": "We will make up for it next week."
+  },
+  "a22-verhindert": {
+    "de": "Ich bin leider verhindert.",
+    "en": "Unfortunately I am unable to attend."
+  },
+  "a22-krankheitsbedingt": {
+    "de": "Ich sage aus gesundheitlichen Gründen ab.",
+    "en": "I am cancelling for health reasons."
+  },
+  "a22-bedauern": {
+    "de": "Ich bedaure sehr, dass es nicht klappt.",
+    "en": "I very much regret that it will not work."
+  },
+  "a22-verstaendnis": {
+    "de": "Vielen Dank für Ihr Verständnis.",
+    "en": "Thank you for your understanding."
+  },
+  "a22-bestaetigen-v": {
+    "de": "Ich bestätige den neuen Termin am Montag.",
+    "en": "I confirm the new appointment on Monday."
+  },
+  "a22-erreichbar": {
+    "de": "Ich bin ab zehn erreichbar.",
+    "en": "I am available from ten."
+  },
+  "a22-passt-besser": {
+    "de": "Der Nachmittag würde mir besser passen.",
+    "en": "The afternoon would suit me better."
+  },
+  "a22-unerwartet": {
+    "de": "Es war ganz unerwartet.",
+    "en": "It was completely unexpected."
+  },
+  "a22-doppelt": {
+    "de": "Ich habe mich doppelt gebucht.",
+    "en": "I have double-booked myself."
+  },
+  "a22-als-e": {
+    "de": "Als ich ankam, war niemand da.",
+    "en": "When I arrived, nobody was there."
+  },
+  "a22-plotzlich": {
+    "de": "Plötzlich klingelte das Telefon.",
+    "en": "Suddenly the telephone rang."
+  },
+  "a22-zuerst-e": {
+    "de": "Am Anfang war alles ruhig.",
+    "en": "At the beginning everything was quiet."
+  },
+  "a22-am-ende": {
+    "de": "Am Ende hat alles geklappt.",
+    "en": "In the end everything worked out."
+  },
+  "a22-kurz-darauf": {
+    "de": "Kurz darauf kam sie zurück.",
+    "en": "Shortly afterwards she came back."
+  },
+  "a22-waehrend": {
+    "de": "Während ich kochte, hat er angerufen.",
+    "en": "While I was cooking, he called."
+  },
+  "a22-bevor": {
+    "de": "Bevor ich ging, habe ich abgeschlossen.",
+    "en": "Before I left, I locked up."
+  },
+  "a22-nachdem": {
+    "de": "Nachdem wir gegessen hatten, gingen wir los.",
+    "en": "After we had eaten, we set off."
+  },
+  "a22-stell-dir-vor": {
+    "de": "Stell dir vor, wen ich getroffen habe.",
+    "en": "Imagine who I met."
+  },
+  "a22-und-dann": {
+    "de": "Und dann? Was ist passiert?",
+    "en": "And then? What happened?"
+  },
+  "a22-im-ernst": {
+    "de": "Im Ernst? Das glaube ich nicht.",
+    "en": "Seriously? I do not believe it."
+  },
+  "a22-zum-glueck": {
+    "de": "Zum Glück war nichts passiert.",
+    "en": "Luckily nothing had happened."
+  },
+  "a22-leider-e": {
+    "de": "Unglücklicherweise war der Laden zu.",
+    "en": "Unfortunately the shop was shut."
+  },
+  "a22-die-geschichte": {
+    "de": "Ich erzähle dir eine Geschichte.",
+    "en": "I will tell you a story."
+  },
+  "a22-witzig": {
+    "de": "Das war wirklich witzig.",
+    "en": "That was really amusing."
+  },
+  "a22-peinlich": {
+    "de": "Das war mir sehr peinlich.",
+    "en": "That was very embarrassing for me."
+  },
+  "a22-schliesslich-e": {
+    "de": "Letztendlich war es halb so schlimm.",
+    "en": "Ultimately it was not that bad."
+  },
+  "a22-erst-dann": {
+    "de": "Erst dann habe ich verstanden.",
+    "en": "Only then did I understand."
+  },
+  "a22-die-entschaedigung": {
+    "de": "Ich möchte eine Entschädigung.",
+    "en": "I would like compensation."
+  },
+  "a22-der-ersatz": {
+    "de": "Ich verlange Ersatz.",
+    "en": "I am demanding a replacement."
+  },
+  "a22-verlangen": {
+    "de": "Ich verlange mein Geld zurück.",
+    "en": "I demand my money back."
+  },
+  "a22-bestehen-auf": {
+    "de": "Ich bestehe auf einer Lösung.",
+    "en": "I insist on a solution."
+  },
+  "a22-unzufrieden": {
+    "de": "Ich bin sehr unzufrieden.",
+    "en": "I am very dissatisfied."
+  },
+  "a22-inakzeptabel": {
+    "de": "Das ist inakzeptabel.",
+    "en": "That is unacceptable."
+  },
+  "a22-eine-frist-setzen": {
+    "de": "Ich setze Ihnen eine Frist von zwei Wochen.",
+    "en": "I am setting you a two-week deadline."
+  },
+  "a22-der-vorgesetzte": {
+    "de": "Kann ich mit Ihrem Vorgesetzten sprechen?",
+    "en": "May I speak to your supervisor?"
+  },
+  "a22-sich-weigern": {
+    "de": "Er hat sich geweigert zu zahlen.",
+    "en": "He refused to pay."
+  },
+  "a22-schriftlich": {
+    "de": "Ich möchte das schriftlich.",
+    "en": "I would like that in writing."
+  },
+  "a22-muendlich": {
+    "de": "Eine mündliche Zusage reicht nicht.",
+    "en": "A verbal promise is not enough."
+  },
+  "a22-die-zusage": {
+    "de": "Ich hatte eine Zusage.",
+    "en": "I had a commitment."
+  },
+  "a22-hoeflich-aber": {
+    "de": "Ich habe es höflich, aber bestimmt gesagt.",
+    "en": "I said it politely but firmly."
+  },
+  "a22-nicht-einverstanden": {
+    "de": "Damit bin ich überhaupt nicht einverstanden.",
+    "en": "I do not agree with that at all."
+  },
+  "a22-sich-wenden-an": {
+    "de": "Ich wende mich an den Verbraucherschutz.",
+    "en": "I will contact consumer protection."
+  },
+  "a22-die-mangelhaft": {
+    "de": "Der Mangel war von Anfang an da.",
+    "en": "The defect was there from the start."
+  },
+  "a22-zurueckerstatten": {
+    "de": "Der Betrag wird zurückerstattet.",
+    "en": "The amount will be reimbursed."
+  },
+  "a22-nachdruecklich": {
+    "de": "Ich bitte Sie nachdrücklich darum.",
+    "en": "I ask you emphatically for that."
+  },
+  "a22-die-gesellschaft": {
+    "de": "Die Gesellschaft verändert sich.",
+    "en": "Society is changing."
+  },
+  "a22-die-kultur": {
+    "de": "Die Kultur ist hier anders.",
+    "en": "The culture is different here."
+  },
+  "a22-die-sitte": {
+    "de": "Das ist bei uns Sitte.",
+    "en": "That is a custom where I come from."
+  },
+  "a22-die-tradition": {
+    "de": "Das ist eine alte Tradition.",
+    "en": "That is an old tradition."
+  },
+  "a22-ueblich": {
+    "de": "Trinkgeld ist hier üblich.",
+    "en": "Tipping is customary here."
+  },
+  "a22-typisch": {
+    "de": "Das ist typisch deutsch.",
+    "en": "That is typically German."
+  },
+  "a22-hoeflich": {
+    "de": "Man ist hier sehr höflich.",
+    "en": "People here are very polite."
+  },
+  "a22-puenktlich": {
+    "de": "Man sollte pünktlich sein.",
+    "en": "One should be punctual."
+  },
+  "a22-direkt": {
+    "de": "Die Leute sind hier sehr direkt.",
+    "en": "People here are very direct."
+  },
+  "a22-der-unterschied-g": {
+    "de": "Es gibt große Unterschiede.",
+    "en": "There are big differences."
+  },
+  "a22-die-gemeinsamkeit": {
+    "de": "Es gibt viele Gemeinsamkeiten.",
+    "en": "There is a lot in common."
+  },
+  "a22-sich-anpassen": {
+    "de": "Man muss sich anpassen.",
+    "en": "One has to adapt."
+  },
+  "a22-auffallen": {
+    "de": "Mir ist aufgefallen, dass alle leise sind.",
+    "en": "I noticed that everyone is quiet."
+  },
+  "a22-die-mehrheit": {
+    "de": "Die Mehrheit ist dafür.",
+    "en": "The majority is in favour."
+  },
+  "a22-die-minderheit": {
+    "de": "Eine Minderheit ist dagegen.",
+    "en": "A minority is against it."
+  },
+  "a22-die-umgebung": {
+    "de": "Die Umgebung ist sehr grün.",
+    "en": "The area is very green."
+  },
+  "a22-vergleichen-g": {
+    "de": "Im Vergleich zu Indien ist es ruhig.",
+    "en": "Compared to India it is quiet."
+  },
+  "a22-sich-wohlfuehlen": {
+    "de": "Ich fühle mich hier wohl.",
+    "en": "I feel at home here."
+  },
+  "a22-zusammenfassen": {
+    "de": "Ich fasse kurz zusammen.",
+    "en": "I will summarise briefly."
+  },
+  "a22-insgesamt": {
+    "de": "Insgesamt war es ein gutes Jahr.",
+    "en": "Overall it was a good year."
+  },
+  "a22-einerseits-z": {
+    "de": "Vor allem die Sprache war schwer.",
+    "en": "Above all the language was hard."
+  },
+  "a22-zum-beispiel": {
+    "de": "Zum Beispiel beim Arzt.",
+    "en": "For example at the doctor's."
+  },
+  "a22-das-heisst": {
+    "de": "Das heißt, ich komme später.",
+    "en": "That is to say, I will come later."
+  },
+  "a22-mit-anderen-worten": {
+    "de": "Mit anderen Worten: es geht nicht.",
+    "en": "In other words: it will not work."
+  },
+  "a22-kurz-gesagt": {
+    "de": "Kurz gesagt, es hat geklappt.",
+    "en": "In short, it worked."
+  },
+  "a22-auf-jeden-fall": {
+    "de": "Ich komme auf jeden Fall.",
+    "en": "I will definitely come."
+  },
+  "a22-im-grossen-ganzen": {
+    "de": "Im Großen und Ganzen bin ich zufrieden.",
+    "en": "By and large I am satisfied."
+  },
+  "a22-wie-gesagt": {
+    "de": "Wie gesagt, das war nicht meine Idee.",
+    "en": "As I said, that was not my idea."
+  },
+  "a22-der-zutritt": {
+    "de": "Zutritt nur für Personal.",
+    "en": "Staff only."
   }
 }

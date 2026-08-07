@@ -10,7 +10,7 @@ A1.1 → B1.2 in about seven months of self-study, one hour a day. Runs on a
 laptop or a small box, and costs the person hosting it nothing: the course is
 free, and the four features that need a model run on each learner's own key.
 
-Seven, not six: the deck is 2,760 words and a session introduces at most twelve
+Seven, not six: the deck is 2,915 words and a session introduces at most twelve
 a day, so the vocabulary alone is 217 days. `/fortschritt` shows your own
 projection from your own pace rather than that average.
 
@@ -29,7 +29,7 @@ npm run setup
 ```
 
 `setup` checks your Node version, builds the whole database from the files in
-`data/` — 2,760 words, 120 units, 49 grammar points, 38 readings, 1,827 levelled
+`data/` — 2,915 words, 120 units, 49 grammar points, 38 readings, 1,827 levelled
 sentences, 955 prebuilt explanations and 231 Deutsche Welle video episodes — and
 generates the two secrets the app needs into `.env.local`. No network, no
 downloads, no API key required.
@@ -65,7 +65,7 @@ run on **each learner's own Anthropic key**, added in **Einstellungen**:
 | "Erklär mir das" | from the cache, if anyone has asked before           |
 | Eselsbrücken     | unavailable, and says so                             |
 
-Everything else costs nothing and needs nothing: 2,760 words, 120
+Everything else costs nothing and needs nothing: 2,915 words, 120
 units, 49 grammar points, 38 readings, the FSRS engine, cloze mining, practice
 exams, minimal pairs, walk mode — and **955 prebuilt explanations**, so a wrong
 answer still comes back with a reason. No feature invents an answer.
@@ -159,7 +159,7 @@ mistakes, new material, listening, speaking, a quiz — then stops.
 |                 |                                                                                                     |
 | --------------- | --------------------------------------------------------------------------------------------------- |
 | **Sitzung**     | The daily hour. Fixed rhythm, content chosen for you.                                               |
-| **Wortschatz**  | All 2,760 words, 2,132 of them with native audio.                                                   |
+| **Wortschatz**  | All 2,915 words, 1,935 of them with native audio.                                                   |
 | **Üben**        | Where _you_ choose: scenarios, grammar, tests, pronunciation.                                       |
 | **Fortschritt** | Every number is a count of something you did.                                                       |
 | **Der Weg**     | All 120 units at once, which of them are still sticking, what you can now do, and dated milestones. |
