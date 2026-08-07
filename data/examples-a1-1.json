@@ -6154,5 +6154,1413 @@
   "b11-korrigieren": {
     "de": "Ich korrigiere mich: es war Freitag.",
     "en": "Let me correct myself: it was Friday."
+  },
+  "b12-warten-auf": {
+    "de": "Ich warte auf eine Antwort.",
+    "en": "I am waiting for an answer."
+  },
+  "b12-denken-an": {
+    "de": "Ich denke oft an zu Hause.",
+    "en": "I often think of home."
+  },
+  "b12-sprechen-ueber": {
+    "de": "Wir sprechen über das Projekt.",
+    "en": "We are talking about the project."
+  },
+  "b12-sich-kuemmern-um": {
+    "de": "Ich sorge für das Essen.",
+    "en": "I will see to the food."
+  },
+  "b12-bitten-um": {
+    "de": "Ich bitte um Verständnis.",
+    "en": "I ask for your understanding."
+  },
+  "b12-achten-auf": {
+    "de": "Achten Sie auf die Schilder.",
+    "en": "Pay attention to the signs."
+  },
+  "b12-sich-beziehen-auf": {
+    "de": "Ich beziehe mich auf Ihr Schreiben.",
+    "en": "I refer to your letter."
+  },
+  "b12-teilnehmen-an": {
+    "de": "Ich nehme an dem Kurs teil.",
+    "en": "I am taking part in the course."
+  },
+  "b12-sich-bewerben-um": {
+    "de": "Sie bewirbt sich um die Stelle.",
+    "en": "She is applying for the position."
+  },
+  "b12-leiden-unter": {
+    "de": "Er leidet unter dem Lärm.",
+    "en": "He suffers from the noise."
+  },
+  "b12-sich-handeln-um": {
+    "de": "Es handelt sich um einen Fehler.",
+    "en": "It is a matter of an error."
+  },
+  "b12-hinweisen-auf": {
+    "de": "Ich weise auf die Frist hin.",
+    "en": "I would point out the deadline."
+  },
+  "b12-worauf": {
+    "de": "Worauf wartest du?",
+    "en": "What are you waiting for?"
+  },
+  "b12-worueber": {
+    "de": "Worüber habt ihr gesprochen?",
+    "en": "What did you talk about?"
+  },
+  "b12-womit": {
+    "de": "Womit kann ich helfen?",
+    "en": "What can I help with?"
+  },
+  "b12-darauf": {
+    "de": "Ich freue mich darauf.",
+    "en": "I am looking forward to it."
+  },
+  "b12-darueber": {
+    "de": "Darüber müssen wir reden.",
+    "en": "We need to talk about that."
+  },
+  "b12-sich-gewoehnen-b": {
+    "de": "Wir haben uns auf einen Termin geeinigt.",
+    "en": "We agreed on a date."
+  },
+  "b12-deshalb": {
+    "de": "Es regnete, deshalb blieben wir zu Hause.",
+    "en": "It was raining, so we stayed at home."
+  },
+  "b12-deswegen": {
+    "de": "Deswegen habe ich abgesagt.",
+    "en": "For that reason I cancelled."
+  },
+  "b12-trotzdem-b": {
+    "de": "Es war spät, trotzdem bin ich gekommen.",
+    "en": "It was late; all the same I came."
+  },
+  "b12-daher": {
+    "de": "Daher schlage ich Folgendes vor.",
+    "en": "Hence I suggest the following."
+  },
+  "b12-folglich": {
+    "de": "Folglich müssen wir umplanen.",
+    "en": "Consequently we have to replan."
+  },
+  "b12-zwar-aber": {
+    "de": "Es ist zwar teuer, aber es lohnt sich.",
+    "en": "It is admittedly expensive, but it is worth it."
+  },
+  "b12-sowohl-als-auch": {
+    "de": "Sowohl die Miete als auch die Kosten sind hoch.",
+    "en": "Both the rent and the costs are high."
+  },
+  "b12-weder-noch": {
+    "de": "Ich habe weder Zeit noch Lust.",
+    "en": "I have neither the time nor the inclination."
+  },
+  "b12-entweder-oder": {
+    "de": "Entweder heute oder gar nicht.",
+    "en": "Either today or not at all."
+  },
+  "b12-je-desto": {
+    "de": "Je früher, desto besser.",
+    "en": "The earlier the better."
+  },
+  "b12-anstatt": {
+    "de": "Anstatt zu warten, habe ich angerufen.",
+    "en": "Instead of waiting, I called."
+  },
+  "b12-sodass": {
+    "de": "Der Zug fiel aus, sodass ich zu spät kam.",
+    "en": "The train was cancelled, so I arrived late."
+  },
+  "b12-indem": {
+    "de": "Man lernt, indem man spricht.",
+    "en": "One learns by speaking."
+  },
+  "b12-solange": {
+    "de": "Solange es regnet, bleiben wir hier.",
+    "en": "As long as it is raining, we will stay here."
+  },
+  "b12-sobald": {
+    "de": "Sobald ich es weiß, sage ich Bescheid.",
+    "en": "As soon as I know, I will let you know."
+  },
+  "b12-einerseits-b12": {
+    "de": "Im Gegensatz dazu ist die andere Wohnung billiger.",
+    "en": "In contrast, the other flat is cheaper."
+  },
+  "b12-zusaetzlich": {
+    "de": "Zusätzlich brauchen Sie einen Nachweis.",
+    "en": "Additionally you need proof."
+  },
+  "b12-schliesslich-b12": {
+    "de": "Abschließend möchte ich sagen: es lohnt sich.",
+    "en": "In conclusion I would like to say: it is worth it."
+  },
+  "b12-der-mensch": {
+    "de": "Ich kenne den Menschen nicht.",
+    "en": "I do not know that person."
+  },
+  "b12-der-nachbar-n": {
+    "de": "Ich habe dem Herrn geholfen.",
+    "en": "I helped the gentleman."
+  },
+  "b12-der-junge": {
+    "de": "Er hat den Jungen gesehen.",
+    "en": "He saw the boy."
+  },
+  "b12-der-praesident": {
+    "de": "Sie sprach mit dem Präsidenten.",
+    "en": "She spoke to the president."
+  },
+  "b12-der-student": {
+    "de": "Ich habe dem Studenten geantwortet.",
+    "en": "I answered the student."
+  },
+  "b12-der-experte": {
+    "de": "Fragen Sie einen Experten.",
+    "en": "Ask an expert."
+  },
+  "b12-der-kollege-n": {
+    "de": "Die Polizei befragt den Zeugen.",
+    "en": "The police are questioning the witness."
+  },
+  "b12-der-beamte": {
+    "de": "Ich habe mit dem Beamten gesprochen.",
+    "en": "I spoke to the civil servant."
+  },
+  "b12-der-praktikant": {
+    "de": "Wir haben einen Praktikanten eingestellt.",
+    "en": "We took on an intern."
+  },
+  "b12-der-patient": {
+    "de": "Der Arzt untersucht den Patienten.",
+    "en": "The doctor is examining the patient."
+  },
+  "b12-der-kunde-n": {
+    "de": "Es gibt schon einen Interessenten.",
+    "en": "There is already an interested party."
+  },
+  "b12-der-kandidat": {
+    "de": "Wir laden den Kandidaten ein.",
+    "en": "We are inviting the candidate."
+  },
+  "b12-der-nachbar-b": {
+    "de": "Ich frage einen Kollegen im Team.",
+    "en": "I will ask a colleague on the team."
+  },
+  "b12-die-endung": {
+    "de": "Die Endung -en steht überall außer im Nominativ.",
+    "en": "The ending -en appears everywhere except the nominative."
+  },
+  "b12-die-ausnahme-b": {
+    "de": "Herr ist ein Sonderfall.",
+    "en": "Herr is a special case."
+  },
+  "b12-der-erwachsene": {
+    "de": "Für Erwachsene kostet es zehn Euro.",
+    "en": "For adults it costs ten euros."
+  },
+  "b12-der-verwandte": {
+    "de": "Ich besuche einen Verwandten.",
+    "en": "I am visiting a relative."
+  },
+  "b12-der-angestellte": {
+    "de": "Die Firma hat dreißig Angestellte.",
+    "en": "The company has thirty employees."
+  },
+  "b12-geschlossen": {
+    "de": "Der Laden ist geschlossen.",
+    "en": "The shop is closed."
+  },
+  "b12-geoeffnet": {
+    "de": "Die Ausstellung ist bis acht geöffnet.",
+    "en": "The exhibition is open until eight."
+  },
+  "b12-gebraucht": {
+    "de": "Ich habe ein gebrauchtes Rad gekauft.",
+    "en": "I bought a second-hand bike."
+  },
+  "b12-beschaeftigt": {
+    "de": "Sie ist bei einer Bank beschäftigt.",
+    "en": "She is employed at a bank."
+  },
+  "b12-erwartet": {
+    "de": "Das ist das erwartete Ergebnis.",
+    "en": "That is the expected result."
+  },
+  "b12-betroffen": {
+    "de": "Die betroffenen Mieter wurden informiert.",
+    "en": "The affected tenants were informed."
+  },
+  "b12-beteiligt": {
+    "de": "Alle Beteiligten waren einverstanden.",
+    "en": "Everyone involved agreed."
+  },
+  "b12-geplant": {
+    "de": "Der geplante Umbau beginnt im Mai.",
+    "en": "The planned conversion starts in May."
+  },
+  "b12-verletzt": {
+    "de": "Zwei Personen wurden verletzt.",
+    "en": "Two people were injured."
+  },
+  "b12-gestiegen": {
+    "de": "Die gestiegenen Kosten sind ein Problem.",
+    "en": "The increased costs are a problem."
+  },
+  "b12-steigend": {
+    "de": "Steigende Preise treffen alle.",
+    "en": "Rising prices affect everyone."
+  },
+  "b12-wachsend": {
+    "de": "Es gibt eine wachsende Nachfrage.",
+    "en": "There is growing demand."
+  },
+  "b12-bestehend": {
+    "de": "Der bestehende Vertrag läuft weiter.",
+    "en": "The existing contract continues."
+  },
+  "b12-folgend": {
+    "de": "Bitte beachten Sie folgende Punkte.",
+    "en": "Please note the following points."
+  },
+  "b12-entsprechend": {
+    "de": "Bringen Sie die entsprechenden Unterlagen mit.",
+    "en": "Bring the corresponding documents."
+  },
+  "b12-zunehmend": {
+    "de": "Zunehmende Kosten sind das Hauptproblem.",
+    "en": "Increasing costs are the main problem."
+  },
+  "b12-abgeschlossen": {
+    "de": "Die Arbeiten sind abgeschlossen.",
+    "en": "The works are completed."
+  },
+  "b12-vorhanden": {
+    "de": "Ein Aufzug ist vorhanden.",
+    "en": "A lift is available."
+  },
+  "b12-behaupten-b": {
+    "de": "Angeblich soll das Gesetz kommen.",
+    "en": "The law is allegedly coming."
+  },
+  "b12-laut": {
+    "de": "Laut dem Bericht steigen die Preise.",
+    "en": "According to the report prices are rising."
+  },
+  "b12-zufolge": {
+    "de": "Der Studie zufolge sind viele betroffen.",
+    "en": "According to the study many are affected."
+  },
+  "b12-die-quelle": {
+    "de": "Was ist die Quelle dieser Zahl?",
+    "en": "What is the source of that figure?"
+  },
+  "b12-die-aussage": {
+    "de": "Seine Aussage war eindeutig.",
+    "en": "His statement was unambiguous."
+  },
+  "b12-berichten": {
+    "de": "Die Zeitung berichtet darüber.",
+    "en": "The newspaper is reporting on it."
+  },
+  "b12-melden-b12": {
+    "de": "Der Sender meldet einen Unfall.",
+    "en": "The channel is reporting an accident."
+  },
+  "b12-erklaeren-b": {
+    "de": "Die Firma ließ mitteilen, sie prüfe den Fall.",
+    "en": "The company had it announced that it was examining the case."
+  },
+  "b12-bestaetigen-b": {
+    "de": "Die Polizei bestätigte den Vorfall.",
+    "en": "The police confirmed the incident."
+  },
+  "b12-dementieren": {
+    "de": "Der Sprecher dementierte die Meldung.",
+    "en": "The spokesperson denied the report."
+  },
+  "b12-der-sprecher": {
+    "de": "Ein Sprecher sagte, es sei geklärt.",
+    "en": "A spokesperson said it had been resolved."
+  },
+  "b12-die-meldung": {
+    "de": "Die Meldung kam heute Morgen.",
+    "en": "The report came this morning."
+  },
+  "b12-der-bericht": {
+    "de": "Der Bericht ist lang.",
+    "en": "The report is long."
+  },
+  "b12-die-studie": {
+    "de": "Eine neue Studie zeigt das Gegenteil.",
+    "en": "A new study shows the opposite."
+  },
+  "b12-glaubwuerdig": {
+    "de": "Die Quelle ist glaubwürdig.",
+    "en": "The source is credible."
+  },
+  "b12-umstritten": {
+    "de": "Die Zahl ist umstritten.",
+    "en": "The figure is contested."
+  },
+  "b12-es-heisst": {
+    "de": "Es heißt, dass die Regel bald fällt.",
+    "en": "It is said that the rule will soon go."
+  },
+  "b12-soll-sein": {
+    "de": "Das Verfahren soll einfacher sein.",
+    "en": "The procedure is said to be simpler."
+  },
+  "b12-das-kompositum": {
+    "de": "Ein Kompositum liest man von hinten.",
+    "en": "You read a compound word from the back."
+  },
+  "b12-das-grundwort": {
+    "de": "Das Grundwort steht hinten und gibt den Artikel.",
+    "en": "The head word comes last and gives the article."
+  },
+  "b12-die-vorsilbe": {
+    "de": "Die Vorsilbe un- macht das Gegenteil.",
+    "en": "The prefix un- makes the opposite."
+  },
+  "b12-die-nachsilbe": {
+    "de": "Die Nachsilbe -ung ist immer feminin.",
+    "en": "The suffix -ung is always feminine."
+  },
+  "b12-das-gegenteil": {
+    "de": "Das Gegenteil von möglich ist unmöglich.",
+    "en": "The opposite of possible is impossible."
+  },
+  "b12-ableiten": {
+    "de": "Das Wort ist von arbeiten abgeleitet.",
+    "en": "The word is derived from arbeiten."
+  },
+  "b12-zusammensetzen": {
+    "de": "Das Wort setzt sich aus drei Teilen zusammen.",
+    "en": "The word is made up of three parts."
+  },
+  "b12-erraten": {
+    "de": "Die Bedeutung kann man oft erraten.",
+    "en": "You can often guess the meaning."
+  },
+  "b12-unbekannt": {
+    "de": "Das Wort war mir unbekannt.",
+    "en": "The word was unknown to me."
+  },
+  "b12-ungewoehnlich": {
+    "de": "Das ist ein ungewöhnliches Wort.",
+    "en": "That is an unusual word."
+  },
+  "b12-die-arbeitslosigkeit": {
+    "de": "Die Arbeitslosigkeit ist gesunken.",
+    "en": "Unemployment has fallen."
+  },
+  "b12-die-moeglichkeit-b": {
+    "de": "Danke für Ihre Freundlichkeit.",
+    "en": "Thank you for your friendliness."
+  },
+  "b12-die-wohnungssuche": {
+    "de": "Die Wohnungssuche dauert Monate.",
+    "en": "The flat hunt takes months."
+  },
+  "b12-die-krankenversicherung": {
+    "de": "Die Krankenversicherung ist Pflicht.",
+    "en": "Health insurance is compulsory."
+  },
+  "b12-die-aufenthaltserlaubnis": {
+    "de": "Meine Aufenthaltserlaubnis läuft im Mai ab.",
+    "en": "My residence permit expires in May."
+  },
+  "b12-die-geschwindigkeit": {
+    "de": "Die Geschwindigkeit ist begrenzt.",
+    "en": "The speed is limited."
+  },
+  "b12-mehrsprachig": {
+    "de": "Sie ist mehrsprachig aufgewachsen.",
+    "en": "She grew up multilingual."
+  },
+  "b12-arbeitsintensiv": {
+    "de": "Das Verfahren ist zeitaufwendig.",
+    "en": "The procedure is time-consuming."
+  },
+  "b12-die-behoerde": {
+    "de": "Die Behörde braucht drei Wochen.",
+    "en": "The authority needs three weeks."
+  },
+  "b12-der-sachbearbeiter": {
+    "de": "Mein Sachbearbeiter ist im Urlaub.",
+    "en": "My case worker is on leave."
+  },
+  "b12-der-bescheid": {
+    "de": "Der Bescheid kam per Post.",
+    "en": "The decision came by post."
+  },
+  "b12-der-widerspruch": {
+    "de": "Ich lege Widerspruch ein.",
+    "en": "I am lodging a formal objection."
+  },
+  "b12-der-nachweis": {
+    "de": "Bringen Sie einen Nachweis mit.",
+    "en": "Bring proof with you."
+  },
+  "b12-die-vollmacht": {
+    "de": "Ohne Vollmacht darf ich das nicht.",
+    "en": "Without power of attorney I am not allowed to."
+  },
+  "b12-beglaubigt": {
+    "de": "Wir brauchen eine beglaubigte Kopie.",
+    "en": "We need a certified copy."
+  },
+  "b12-die-bearbeitungszeit": {
+    "de": "Die Bearbeitungszeit beträgt vier Wochen.",
+    "en": "The processing time is four weeks."
+  },
+  "b12-einreichen": {
+    "de": "Reichen Sie die Unterlagen bis Freitag ein.",
+    "en": "Submit the documents by Friday."
+  },
+  "b12-das-original": {
+    "de": "Bitte bringen Sie das Original mit.",
+    "en": "Please bring the original."
+  },
+  "b12-die-wartenummer": {
+    "de": "Ziehen Sie eine Wartenummer.",
+    "en": "Take a queue number."
+  },
+  "b12-vorsprechen": {
+    "de": "Sie müssen persönlich vorsprechen.",
+    "en": "You have to attend in person."
+  },
+  "b12-nachreichen": {
+    "de": "Den Nachweis kann ich nachreichen.",
+    "en": "I can submit the proof later."
+  },
+  "b12-abgelehnt": {
+    "de": "Mein Antrag wurde abgelehnt.",
+    "en": "My application was rejected."
+  },
+  "b12-bewilligt": {
+    "de": "Der Antrag wurde bewilligt.",
+    "en": "The application was approved."
+  },
+  "b12-die-rechtsbehelfsbelehrung": {
+    "de": "Die Rechtsbehelfsbelehrung steht am Ende.",
+    "en": "The notice of appeal rights is at the end."
+  },
+  "b12-wie-geht-es-weiter": {
+    "de": "Und wie geht es jetzt weiter?",
+    "en": "And what happens next?"
+  },
+  "b12-schriftlich-b": {
+    "de": "Bitte in zweifacher Ausfertigung.",
+    "en": "In duplicate, please."
+  },
+  "b12-das-recht": {
+    "de": "Sie haben ein Recht darauf.",
+    "en": "You have a right to that."
+  },
+  "b12-die-pflicht": {
+    "de": "Das ist Ihre Pflicht als Mieter.",
+    "en": "That is your duty as a tenant."
+  },
+  "b12-das-widerrufsrecht": {
+    "de": "Sie haben vierzehn Tage Widerrufsrecht.",
+    "en": "You have fourteen days' right of withdrawal."
+  },
+  "b12-widerrufen": {
+    "de": "Ich möchte den Vertrag widerrufen.",
+    "en": "I would like to withdraw from the contract."
+  },
+  "b12-die-klausel": {
+    "de": "Diese Klausel ist ungültig.",
+    "en": "This clause is invalid."
+  },
+  "b12-ungueltig": {
+    "de": "Der Ausweis ist ungültig.",
+    "en": "The ID is invalid."
+  },
+  "b12-guelt": {
+    "de": "Das Ticket ist zwei Stunden gültig.",
+    "en": "The ticket is valid for two hours."
+  },
+  "b12-die-haftung": {
+    "de": "Die Haftung ist begrenzt.",
+    "en": "Liability is limited."
+  },
+  "b12-haften": {
+    "de": "Wer haftet für den Schaden?",
+    "en": "Who is liable for the damage?"
+  },
+  "b12-in-kraft-treten": {
+    "de": "Die Regel tritt im Januar in Kraft.",
+    "en": "The rule comes into force in January."
+  },
+  "b12-ausserordentlich": {
+    "de": "Eine außerordentliche Kündigung ist möglich.",
+    "en": "Termination without notice is possible."
+  },
+  "b12-der-vertragspartner": {
+    "de": "Beide Vertragspartner unterschreiben.",
+    "en": "Both contracting parties sign."
+  },
+  "b12-verpflichten": {
+    "de": "Ich verpflichte mich zu zwölf Monaten.",
+    "en": "I am committing to twelve months."
+  },
+  "b12-schriftform": {
+    "de": "Die Kündigung bedarf der Schriftform.",
+    "en": "Termination must be in written form."
+  },
+  "b12-die-frist-c": {
+    "de": "Die Widerrufsfrist läuft am Montag ab.",
+    "en": "The withdrawal period expires on Monday."
+  },
+  "b12-ablaufen": {
+    "de": "Der Vertrag läuft im März ab.",
+    "en": "The contract expires in March."
+  },
+  "b12-rechtlich": {
+    "de": "Ich hole mir rechtlichen Rat.",
+    "en": "I am getting legal advice."
+  },
+  "b12-kleingedruckt": {
+    "de": "Lies das Kleingedruckte.",
+    "en": "Read the small print."
+  },
+  "b12-die-arbeitsbedingungen": {
+    "de": "Die Arbeitsbedingungen sind gut.",
+    "en": "The working conditions are good."
+  },
+  "b12-die-gewerkschaft": {
+    "de": "Die Gewerkschaft verhandelt gerade.",
+    "en": "The union is negotiating at the moment."
+  },
+  "b12-der-tarifvertrag": {
+    "de": "Wir arbeiten nach Tarifvertrag.",
+    "en": "We work under a collective agreement."
+  },
+  "b12-die-forderung": {
+    "de": "Die Forderung ist berechtigt.",
+    "en": "The demand is justified."
+  },
+  "b12-berechtigt": {
+    "de": "Ihre Kritik ist berechtigt.",
+    "en": "Your criticism is justified."
+  },
+  "b12-das-zugestaendnis": {
+    "de": "Beide Seiten machten Zugeständnisse.",
+    "en": "Both sides made concessions."
+  },
+  "b12-der-konflikt": {
+    "de": "Es gab einen Konflikt im Team.",
+    "en": "There was a conflict in the team."
+  },
+  "b12-eskalieren": {
+    "de": "Der Streit ist eskaliert.",
+    "en": "The argument escalated."
+  },
+  "b12-das-mobbing": {
+    "de": "Das grenzt an Schikane.",
+    "en": "That borders on harassment."
+  },
+  "b12-die-rueckmeldung": {
+    "de": "Danke für die offene Rückmeldung.",
+    "en": "Thank you for the open feedback."
+  },
+  "b12-ansprechen": {
+    "de": "Ich möchte etwas ansprechen.",
+    "en": "I would like to raise something."
+  },
+  "b12-die-belastung": {
+    "de": "Die Belastung ist zu hoch.",
+    "en": "The workload is too high."
+  },
+  "b12-entlasten": {
+    "de": "Das würde uns entlasten.",
+    "en": "That would relieve us."
+  },
+  "b12-die-schichtarbeit": {
+    "de": "Schichtarbeit ist anstrengend.",
+    "en": "Shift work is tiring."
+  },
+  "b12-der-arbeitsschutz": {
+    "de": "Der Arbeitsschutz wird ernst genommen.",
+    "en": "Occupational safety is taken seriously."
+  },
+  "b12-sich-einsetzen": {
+    "de": "Er setzt sich für das Team ein.",
+    "en": "He stands up for the team."
+  },
+  "b12-anerkennung": {
+    "de": "Anerkennung ist wichtiger als Geld.",
+    "en": "Recognition matters more than money."
+  },
+  "b12-fair": {
+    "de": "Das finde ich nicht fair.",
+    "en": "I do not think that is fair."
+  },
+  "b12-die-statistik": {
+    "de": "Die Statistik zeigt etwas anderes.",
+    "en": "The statistics show something else."
+  },
+  "b12-die-grafik": {
+    "de": "Die Grafik zeigt die Entwicklung.",
+    "en": "The chart shows the development."
+  },
+  "b12-die-entwicklung": {
+    "de": "Die Entwicklung ist positiv.",
+    "en": "The trend is positive."
+  },
+  "b12-der-anteil": {
+    "de": "Der Anteil liegt bei dreißig Prozent.",
+    "en": "The share is thirty per cent."
+  },
+  "b12-das-prozent": {
+    "de": "Fünf Prozent mehr als letztes Jahr.",
+    "en": "Five per cent more than last year."
+  },
+  "b12-der-durchschnitt": {
+    "de": "Im Durchschnitt sind es zwei Stunden.",
+    "en": "On average it is two hours."
+  },
+  "b12-durchschnittlich": {
+    "de": "Durchschnittlich zahlt man 800 Euro.",
+    "en": "On average one pays 800 euros."
+  },
+  "b12-etwa": {
+    "de": "Rund die Hälfte ist dafür.",
+    "en": "Roughly half are in favour."
+  },
+  "b12-die-haelfte": {
+    "de": "Die Hälfte der Befragten stimmt zu.",
+    "en": "Half of those asked agree."
+  },
+  "b12-das-drittel": {
+    "de": "Ein Drittel arbeitet in Teilzeit.",
+    "en": "A third work part-time."
+  },
+  "b12-zunehmen-s": {
+    "de": "Die Zahl ist stark angestiegen.",
+    "en": "The figure has risen sharply."
+  },
+  "b12-abnehmen-s": {
+    "de": "Die Nachfrage ist zurückgegangen.",
+    "en": "Demand has declined."
+  },
+  "b12-gleich-bleiben": {
+    "de": "Die Werte bleiben gleich.",
+    "en": "The values stay the same."
+  },
+  "b12-deutlich": {
+    "de": "Die Kosten sind deutlich gestiegen.",
+    "en": "Costs have risen markedly."
+  },
+  "b12-leicht-s": {
+    "de": "Es gab eine geringfügige Änderung.",
+    "en": "There was a slight change."
+  },
+  "b12-der-hoechststand": {
+    "de": "Die Preise sind auf einem Höchststand.",
+    "en": "Prices are at an all-time high."
+  },
+  "b12-im-vergleich-zum": {
+    "de": "Im Vergleich zum Vorjahr ist es weniger.",
+    "en": "Compared with the previous year it is less."
+  },
+  "b12-betragen": {
+    "de": "Der Anteil beträgt 12 Prozent.",
+    "en": "The share amounts to 12 per cent."
+  },
+  "b12-die-ausstellung": {
+    "de": "Die Ausstellung läuft bis Mai.",
+    "en": "The exhibition runs until May."
+  },
+  "b12-das-werk": {
+    "de": "Das Werk stammt aus dem 19. Jahrhundert.",
+    "en": "The work dates from the 19th century."
+  },
+  "b12-der-kuenstler": {
+    "de": "Der Künstler lebt in Berlin.",
+    "en": "The artist lives in Berlin."
+  },
+  "b12-die-auffuehrung": {
+    "de": "Die Aufführung war ausverkauft.",
+    "en": "The performance was sold out."
+  },
+  "b12-das-publikum": {
+    "de": "Das Publikum war begeistert.",
+    "en": "The audience was thrilled."
+  },
+  "b12-begeistert": {
+    "de": "Ich war begeistert.",
+    "en": "I was thrilled."
+  },
+  "b12-beeindruckend": {
+    "de": "Das war beeindruckend.",
+    "en": "That was impressive."
+  },
+  "b12-anspruchsvoll-k": {
+    "de": "Der Roman ist anspruchsvoll.",
+    "en": "The novel is demanding."
+  },
+  "b12-der-roman": {
+    "de": "Ich lese gerade einen Roman.",
+    "en": "I am reading a novel at the moment."
+  },
+  "b12-die-handlung": {
+    "de": "Die Handlung ist etwas verwirrend.",
+    "en": "The plot is a little confusing."
+  },
+  "b12-die-figur": {
+    "de": "Die Hauptfigur ist sympathisch.",
+    "en": "The main character is likeable."
+  },
+  "b12-handeln-von": {
+    "de": "Der Film handelt von einer Familie.",
+    "en": "The film is about a family."
+  },
+  "b12-empfehlen-k": {
+    "de": "Die Ausstellung ist sehenswert.",
+    "en": "The exhibition is worth seeing."
+  },
+  "b12-enttaeuschend": {
+    "de": "Das Ende war enttäuschend.",
+    "en": "The ending was disappointing."
+  },
+  "b12-geschmackssache": {
+    "de": "Das ist Geschmackssache.",
+    "en": "That is a matter of taste."
+  },
+  "b12-die-veranstaltung": {
+    "de": "Die Veranstaltung ist kostenlos.",
+    "en": "The event is free."
+  },
+  "b12-der-eintritt": {
+    "de": "Der Eintritt kostet acht Euro.",
+    "en": "Admission costs eight euros."
+  },
+  "b12-sich-anschauen": {
+    "de": "Das schaue ich mir an.",
+    "en": "I will go and see that."
+  },
+  "b12-die-integration": {
+    "de": "Integration braucht Zeit.",
+    "en": "Integration takes time."
+  },
+  "b12-die-heimat": {
+    "de": "Meine Heimat ist weit weg.",
+    "en": "My homeland is far away."
+  },
+  "b12-der-kulturschock": {
+    "de": "Am Anfang hatte ich einen Kulturschock.",
+    "en": "At the beginning I had culture shock."
+  },
+  "b12-das-heimweh": {
+    "de": "Manchmal habe ich Heimweh.",
+    "en": "Sometimes I feel homesick."
+  },
+  "b12-sich-einleben": {
+    "de": "Ich habe mich schnell eingelebt.",
+    "en": "I settled in quickly."
+  },
+  "b12-dazugehoeren": {
+    "de": "Inzwischen fühle ich mich dazugehörig.",
+    "en": "By now I feel I belong."
+  },
+  "b12-die-zugehoerigkeit": {
+    "de": "Zugehörigkeit ist ein Gefühl.",
+    "en": "Belonging is a feeling."
+  },
+  "b12-das-vorurteil": {
+    "de": "Vorurteile verschwinden langsam.",
+    "en": "Prejudices disappear slowly."
+  },
+  "b12-die-herkunft": {
+    "de": "Die Herkunft spielt keine Rolle.",
+    "en": "Background plays no role."
+  },
+  "b12-die-muttersprache": {
+    "de": "Meine Muttersprache ist Gujarati.",
+    "en": "My mother tongue is Gujarati."
+  },
+  "b12-der-integrationskurs": {
+    "de": "Der Integrationskurs dauert sechs Monate.",
+    "en": "The integration course lasts six months."
+  },
+  "b12-die-staatsangehoerigkeit": {
+    "de": "Er hat die deutsche Staatsangehörigkeit.",
+    "en": "He has German citizenship."
+  },
+  "b12-einbuergern": {
+    "de": "Sie hat sich einbürgern lassen.",
+    "en": "She became naturalised."
+  },
+  "b12-fremd": {
+    "de": "Am Anfang war alles fremd.",
+    "en": "At the beginning everything was unfamiliar."
+  },
+  "b12-vertraut": {
+    "de": "Jetzt ist mir vieles vertraut.",
+    "en": "Now a lot is familiar to me."
+  },
+  "b12-offen-sein": {
+    "de": "Man muss offen für Neues sein.",
+    "en": "One has to be open to new things."
+  },
+  "b12-die-teilhabe": {
+    "de": "Teilhabe heißt mitreden können.",
+    "en": "Participation means being able to have a say."
+  },
+  "b12-akzeptieren": {
+    "de": "Beide Seiten müssen einander akzeptieren.",
+    "en": "Both sides have to accept each other."
+  },
+  "b12-die-forschung": {
+    "de": "Die Forschung läuft seit Jahren.",
+    "en": "The research has been going on for years."
+  },
+  "b12-das-ergebnis": {
+    "de": "Das Ergebnis war überraschend.",
+    "en": "The result was surprising."
+  },
+  "b12-der-versuch": {
+    "de": "Der Versuch wurde wiederholt.",
+    "en": "The experiment was repeated."
+  },
+  "b12-die-ursache": {
+    "de": "Die Ursache ist noch unklar.",
+    "en": "The cause is still unclear."
+  },
+  "b12-die-wirkung": {
+    "de": "Die Wirkung hält lange an.",
+    "en": "The effect lasts a long time."
+  },
+  "b12-untersuchen-w": {
+    "de": "Das Team erforscht den Zusammenhang.",
+    "en": "The team is investigating the connection."
+  },
+  "b12-beweisen": {
+    "de": "Das lässt sich nicht beweisen.",
+    "en": "That cannot be proved."
+  },
+  "b12-vermuten": {
+    "de": "Man vermutet einen Zusammenhang.",
+    "en": "A connection is presumed."
+  },
+  "b12-nachweisen": {
+    "de": "Der Effekt konnte nachgewiesen werden.",
+    "en": "The effect could be demonstrated."
+  },
+  "b12-vereinfacht": {
+    "de": "Vereinfacht gesagt funktioniert es so.",
+    "en": "Put simply, it works like this."
+  },
+  "b12-mit-anderen-worten-w": {
+    "de": "Habe ich das richtig verstanden?",
+    "en": "Have I understood that correctly?"
+  },
+  "b12-koennen-sie-erklaeren": {
+    "de": "Könnten Sie das genauer erklären?",
+    "en": "Could you explain that more precisely?"
+  },
+  "b12-der-fachbegriff": {
+    "de": "Der Fachbegriff sagt mir nichts.",
+    "en": "The technical term means nothing to me."
+  },
+  "b12-komplex": {
+    "de": "Das Thema ist komplex.",
+    "en": "The topic is complex."
+  },
+  "b12-verstaendlich": {
+    "de": "Er hat es verständlich erklärt.",
+    "en": "He explained it comprehensibly."
+  },
+  "b12-die-theorie": {
+    "de": "Es gibt mehrere Theorien.",
+    "en": "There are several theories."
+  },
+  "b12-zusammenfassen-w": {
+    "de": "Ich fasse es in eigenen Worten zusammen.",
+    "en": "I will summarise it in my own words."
+  },
+  "b12-erstaunlich-w": {
+    "de": "Das ist ein bemerkenswertes Ergebnis.",
+    "en": "That is a remarkable result."
+  },
+  "b12-die-schlagzeile": {
+    "de": "Die Schlagzeile ist übertrieben.",
+    "en": "The headline is exaggerated."
+  },
+  "b12-die-tatsache": {
+    "de": "Das ist eine Tatsache, keine Meinung.",
+    "en": "That is a fact, not an opinion."
+  },
+  "b12-sachlich-n": {
+    "de": "Der Bericht ist neutral geschrieben.",
+    "en": "The report is written neutrally."
+  },
+  "b12-einseitig": {
+    "de": "Die Darstellung ist einseitig.",
+    "en": "The account is one-sided."
+  },
+  "b12-die-darstellung": {
+    "de": "Die Darstellung stimmt nicht ganz.",
+    "en": "The account is not quite right."
+  },
+  "b12-der-kommentar": {
+    "de": "Das war ein Kommentar, keine Nachricht.",
+    "en": "That was a commentary, not a news item."
+  },
+  "b12-der-hintergrund": {
+    "de": "Der Hintergrund wird kurz erklärt.",
+    "en": "The background is briefly explained."
+  },
+  "b12-zusammenhaengen": {
+    "de": "Das hängt mit der neuen Regel zusammen.",
+    "en": "That is connected with the new rule."
+  },
+  "b12-betreffen": {
+    "de": "Die Änderung betrifft alle Mieter.",
+    "en": "The change affects all tenants."
+  },
+  "b12-die-folge": {
+    "de": "Die Folgen sind noch unklar.",
+    "en": "The consequences are still unclear."
+  },
+  "b12-worum-geht-es": {
+    "de": "Worum geht es in dem Bericht?",
+    "en": "What is the report about?"
+  },
+  "b12-hauptsaechlich": {
+    "de": "Es geht hauptsächlich um die Kosten.",
+    "en": "It is mainly about the costs."
+  },
+  "b12-der-kern": {
+    "de": "Die Kernaussage ist einfach.",
+    "en": "The key message is simple."
+  },
+  "b12-kritisch": {
+    "de": "Man sollte kritisch lesen.",
+    "en": "One should read critically."
+  },
+  "b12-hinterfragen": {
+    "de": "Man muss Zahlen hinterfragen.",
+    "en": "One has to scrutinise figures."
+  },
+  "b12-uebertrieben": {
+    "de": "Die Reaktion war übertrieben.",
+    "en": "The reaction was exaggerated."
+  },
+  "b12-die-ueberschrift": {
+    "de": "Die Überschrift verrät schon viel.",
+    "en": "The heading already gives a lot away."
+  },
+  "b12-im-groben": {
+    "de": "Grob gesagt geht es um Geld.",
+    "en": "Roughly speaking it is about money."
+  },
+  "b12-ansprechen-k": {
+    "de": "Ich möchte das offen ansprechen.",
+    "en": "I would like to raise this openly."
+  },
+  "b12-das-missverstaendnis": {
+    "de": "Das war ein Missverständnis.",
+    "en": "That was a misunderstanding."
+  },
+  "b12-klaeren": {
+    "de": "Wir sollten das klären.",
+    "en": "We should clear that up."
+  },
+  "b12-deeskalieren": {
+    "de": "Bitte beruhigen Sie sich.",
+    "en": "Please calm down."
+  },
+  "b12-ruhig-bleiben": {
+    "de": "Ich versuche, ruhig zu bleiben.",
+    "en": "I am trying to stay calm."
+  },
+  "b12-zuhoeren": {
+    "de": "Hören Sie mir bitte kurz zu.",
+    "en": "Please listen to me for a moment."
+  },
+  "b12-ausreden-lassen": {
+    "de": "Lass mich bitte ausreden.",
+    "en": "Please let me finish."
+  },
+  "b12-unterbrechen": {
+    "de": "Entschuldigung, ich wollte nicht unterbrechen.",
+    "en": "Sorry, I did not mean to interrupt."
+  },
+  "b12-vorwerfen": {
+    "de": "Ich will dir nichts vorwerfen.",
+    "en": "I do not want to reproach you."
+  },
+  "b12-der-vorwurf": {
+    "de": "Das ist kein Vorwurf.",
+    "en": "That is not an accusation."
+  },
+  "b12-sich-entschuldigen-k": {
+    "de": "Ich möchte um Entschuldigung bitten.",
+    "en": "I would like to apologise."
+  },
+  "b12-entgegenkommen": {
+    "de": "Wir kommen Ihnen gern entgegen.",
+    "en": "We are happy to meet you halfway."
+  },
+  "b12-gemeinsam-loesen": {
+    "de": "Lassen Sie uns gemeinsam eine Lösung finden.",
+    "en": "Let us find a solution together."
+  },
+  "b12-verstaendnis-zeigen": {
+    "de": "Ich zeige durchaus Verständnis dafür.",
+    "en": "I do show understanding for that."
+  },
+  "b12-nachgeben-k": {
+    "de": "Treffen wir uns auf halbem Weg.",
+    "en": "Let us meet halfway."
+  },
+  "b12-eskalation-vermeiden": {
+    "de": "Nehmen Sie es bitte nicht persönlich.",
+    "en": "Please do not take it personally."
+  },
+  "b12-heikel": {
+    "de": "Das ist ein heikles Thema.",
+    "en": "That is a delicate subject."
+  },
+  "b12-aus-der-welt": {
+    "de": "Das schaffen wir schnell aus der Welt.",
+    "en": "We will settle that quickly."
+  },
+  "b12-es-waere-ratsam": {
+    "de": "Es wäre ratsam, früh zu buchen.",
+    "en": "It would be advisable to book early."
+  },
+  "b12-du-solltest": {
+    "de": "Du solltest dich früher melden.",
+    "en": "You should get in touch earlier."
+  },
+  "b12-an-ihrer-stelle": {
+    "de": "Ich an Ihrer Stelle würde nachfragen.",
+    "en": "In your position I would follow up."
+  },
+  "b12-abraten": {
+    "de": "Davon würde ich abraten.",
+    "en": "I would advise against that."
+  },
+  "b12-es-kommt-darauf-an": {
+    "de": "Es kommt darauf an, wie viel Zeit du hast.",
+    "en": "It depends how much time you have."
+  },
+  "b12-ueberlegenswert": {
+    "de": "Das ist überlegenswert.",
+    "en": "That is worth considering."
+  },
+  "b12-am-besten": {
+    "de": "Am besten rufst du direkt an.",
+    "en": "The best thing is to call directly."
+  },
+  "b12-versuch-doch": {
+    "de": "Versuch es doch mal mit einer E-Mail.",
+    "en": "Why not try an email."
+  },
+  "b12-vor-und-nachteile": {
+    "de": "Beide haben Vor- und Nachteile.",
+    "en": "Both have pros and cons."
+  },
+  "b12-in-betracht-ziehen": {
+    "de": "Das sollten wir in Betracht ziehen.",
+    "en": "We should take that into consideration."
+  },
+  "b12-sich-entscheiden-fuer": {
+    "de": "Ich habe mich für die zweite Option entschieden.",
+    "en": "I opted for the second option."
+  },
+  "b12-die-entscheidung-b": {
+    "de": "Am Ende liegt die Entscheidung bei dir.",
+    "en": "In the end the decision is yours."
+  },
+  "b12-nicht-bevormunden": {
+    "de": "Nur ein Vorschlag — du musst nicht.",
+    "en": "Just a suggestion — you do not have to."
+  },
+  "b12-erfahrungsgemaess": {
+    "de": "Erfahrungsgemäß dauert es länger.",
+    "en": "In my experience it takes longer."
+  },
+  "b12-sinnvoller": {
+    "de": "Diese Methode hat sich bewährt.",
+    "en": "This method has proved effective."
+  },
+  "b12-lieber-nicht-b": {
+    "de": "Davon halte ich ehrlich gesagt wenig.",
+    "en": "Honestly, I do not think much of that."
+  },
+  "b12-riskant": {
+    "de": "Das wäre mir zu riskant.",
+    "en": "That would be too risky for me."
+  },
+  "b12-unbedingt": {
+    "de": "Das solltest du unbedingt machen.",
+    "en": "You should absolutely do that."
+  },
+  "b12-der-vortrag": {
+    "de": "Mein Vortrag dauert zehn Minuten.",
+    "en": "My talk lasts ten minutes."
+  },
+  "b12-die-gliederung": {
+    "de": "Zuerst zeige ich die Gliederung.",
+    "en": "First I will show the outline."
+  },
+  "b12-zunaechst-p": {
+    "de": "Zunächst möchte ich das Thema vorstellen.",
+    "en": "First I would like to introduce the topic."
+  },
+  "b12-im-folgenden": {
+    "de": "Im Folgenden zeige ich drei Beispiele.",
+    "en": "In what follows I will show three examples."
+  },
+  "b12-kommen-wir-zu": {
+    "de": "Kommen wir zum zweiten Punkt.",
+    "en": "Let us turn to the second point."
+  },
+  "b12-zusammenfassend": {
+    "de": "Zusammenfassend lässt sich sagen: es lohnt sich.",
+    "en": "In summary one can say: it is worth it."
+  },
+  "b12-vielen-dank-fuer": {
+    "de": "Vielen Dank für Ihre Aufmerksamkeit.",
+    "en": "Thank you for your attention."
+  },
+  "b12-gibt-es-fragen": {
+    "de": "Gibt es dazu Fragen?",
+    "en": "Are there any questions on that?"
+  },
+  "b12-gute-frage": {
+    "de": "Das ist eine gute Frage, danke.",
+    "en": "That is a good question, thank you."
+  },
+  "b12-darauf-komme-ich": {
+    "de": "Darauf komme ich gleich zurück.",
+    "en": "I will come back to that shortly."
+  },
+  "b12-die-folie": {
+    "de": "Auf dieser Folie sehen Sie die Zahlen.",
+    "en": "On this slide you see the figures."
+  },
+  "b12-hervorheben": {
+    "de": "Ich möchte einen Punkt hervorheben.",
+    "en": "I would like to highlight one point."
+  },
+  "b12-verdeutlichen": {
+    "de": "Ein Beispiel verdeutlicht das.",
+    "en": "An example makes that clear."
+  },
+  "b12-eingehen-auf": {
+    "de": "Darauf gehe ich später ein.",
+    "en": "I will go into that later."
+  },
+  "b12-der-ueberblick": {
+    "de": "Ich gebe Ihnen einen Überblick.",
+    "en": "I will give you an overview."
+  },
+  "b12-anschaulich": {
+    "de": "Das war sehr anschaulich erklärt.",
+    "en": "That was explained very vividly."
+  },
+  "b12-frei-sprechen": {
+    "de": "Ich versuche, frei zu sprechen.",
+    "en": "I try to speak without notes."
+  },
+  "b12-nervositaet": {
+    "de": "Ich habe immer etwas Lampenfieber.",
+    "en": "I always get a bit of stage fright."
+  },
+  "b12-sehr-geehrte": {
+    "de": "Sehr geehrte Damen und Herren, hiermit kündige ich.",
+    "en": "Dear Sir or Madam, I hereby give notice."
+  },
+  "b12-mit-freundlichen": {
+    "de": "Mit freundlichen Grüßen, S. Ahir",
+    "en": "Yours sincerely, S. Ahir"
+  },
+  "b12-hiermit": {
+    "de": "Hiermit bestätige ich den Termin.",
+    "en": "I hereby confirm the appointment."
+  },
+  "b12-bezugnehmend": {
+    "de": "Bezug nehmend auf Ihr Schreiben vom 3. Mai …",
+    "en": "With reference to your letter of 3 May …"
+  },
+  "b12-anbei": {
+    "de": "Anbei finden Sie die Unterlagen.",
+    "en": "Enclosed you will find the documents."
+  },
+  "b12-im-voraus-danke": {
+    "de": "Vielen Dank im Voraus für Ihre Mühe.",
+    "en": "Thank you in advance for your trouble."
+  },
+  "b12-ich-bitte-sie": {
+    "de": "Ich bitte Sie um eine kurze Rückmeldung.",
+    "en": "I would ask you for a brief reply."
+  },
+  "b12-bis-spaetestens": {
+    "de": "Bitte antworten Sie bis spätestens Freitag.",
+    "en": "Please reply by Friday at the latest."
+  },
+  "b12-der-betreff": {
+    "de": "Im Betreff steht die Vertragsnummer.",
+    "en": "The contract number is in the subject line."
+  },
+  "b12-die-anlage": {
+    "de": "Die Anlage enthält die Kopie.",
+    "en": "The attachment contains the copy."
+  },
+  "b12-hoefliche-bitte": {
+    "de": "Ich wäre Ihnen dankbar, wenn Sie das prüfen könnten.",
+    "en": "I would be grateful if you could check that."
+  },
+  "b12-formell": {
+    "de": "Der Brief ist sehr förmlich.",
+    "en": "The letter is very formal."
+  },
+  "b12-knapp": {
+    "de": "Halte die Mail knapp.",
+    "en": "Keep the email brief."
+  },
+  "b12-verbleibe": {
+    "de": "Ich verbleibe mit freundlichen Grüßen.",
+    "en": "I remain, yours sincerely."
+  },
+  "b12-fuer-rueckfragen": {
+    "de": "Für Rückfragen stehe ich gern zur Verfügung.",
+    "en": "I am happy to be available for any queries."
+  },
+  "b12-um-antwort-wird-gebeten": {
+    "de": "Um Antwort wird gebeten.",
+    "en": "A reply is requested."
+  },
+  "b12-liebe-gruesse": {
+    "de": "Liebe Grüße, Mira",
+    "en": "Best wishes, Mira"
+  },
+  "b12-ansprechpartner": {
+    "de": "Wer ist mein Ansprechpartner?",
+    "en": "Who is my contact person?"
+  },
+  "b12-die-aufgabenstellung": {
+    "de": "Lesen Sie die Aufgabenstellung genau.",
+    "en": "Read the task wording carefully."
+  },
+  "b12-umschreiben": {
+    "de": "Wenn das Wort fehlt, umschreibe es.",
+    "en": "If the word is missing, paraphrase it."
+  },
+  "b12-wie-nennt-man": {
+    "de": "Wie nennt man das noch mal — dieses Gerät?",
+    "en": "What do you call that again — this device?"
+  },
+  "b12-mir-faellt-nicht-ein": {
+    "de": "Mir fällt das Wort gerade nicht ein.",
+    "en": "The word escapes me at the moment."
+  },
+  "b12-so-eine-art": {
+    "de": "Das ist so eine Art Formular.",
+    "en": "It is a sort of form."
+  },
+  "b12-etwas-womit": {
+    "de": "Das ist etwas, womit man Wasser kocht.",
+    "en": "It is something you boil water with."
+  },
+  "b12-ich-meine-b": {
+    "de": "Ich meine Folgendes: es ist zu teuer.",
+    "en": "What I mean is this: it is too expensive."
+  },
+  "b12-moment-bitte": {
+    "de": "Einen Moment bitte, ich überlege kurz.",
+    "en": "One moment please, let me think."
+  },
+  "b12-sich-korrigieren-b": {
+    "de": "Entschuldigung, ich korrigiere mich: es war Dienstag.",
+    "en": "Sorry, let me correct myself: it was Tuesday."
+  },
+  "b12-anders-gesagt": {
+    "de": "Anders gesagt: ich schaffe es nicht.",
+    "en": "Put another way: I will not manage it."
+  },
+  "b12-die-stichworte": {
+    "de": "Ich mache mir Stichwörter.",
+    "en": "I am making notes."
+  },
+  "b12-die-zeit-einteilen": {
+    "de": "Teile dir die Zeit gut ein.",
+    "en": "Manage your time well."
+  },
+  "b12-ueberfliegen": {
+    "de": "Überfliegen Sie den Text zuerst.",
+    "en": "Skim the text first."
+  },
+  "b12-markieren": {
+    "de": "Markieren Sie die wichtigen Stellen.",
+    "en": "Mark the important passages."
+  },
+  "b12-raten": {
+    "de": "Bei Unsicherheit lieber raten als leer lassen.",
+    "en": "If unsure, better to guess than leave it blank."
+  },
+  "b12-in-ruhe": {
+    "de": "Lies die Aufgabe in Ruhe.",
+    "en": "Read the task calmly."
+  },
+  "b12-ausfuehrlich": {
+    "de": "Antworten Sie möglichst ausführlich.",
+    "en": "Answer in as much detail as possible."
+  },
+  "b12-der-zeitdruck": {
+    "de": "Unter Zeitdruck mache ich Fehler.",
+    "en": "Under time pressure I make mistakes."
+  },
+  "b12-einigermassen": {
+    "de": "Ich komme einigermaßen zurecht.",
+    "en": "I get along reasonably well."
+  },
+  "b12-zurechtkommen": {
+    "de": "Ich komme im Alltag gut zurecht.",
+    "en": "I manage well in everyday life."
+  },
+  "b12-souveraen": {
+    "de": "Sie hat das souverän gemacht.",
+    "en": "She handled that with assurance."
+  },
+  "b12-durchaus": {
+    "de": "Das ist durchaus möglich.",
+    "en": "That is quite possible."
+  },
+  "b12-eher": {
+    "de": "Ich bin da eher skeptisch.",
+    "en": "I am rather sceptical about that."
+  },
+  "b12-vermutlich": {
+    "de": "Vermutlich kommt sie später.",
+    "en": "She is presumably coming later."
+  },
+  "b12-womoeglich": {
+    "de": "Womöglich habe ich mich geirrt.",
+    "en": "I may possibly have been mistaken."
+  },
+  "b12-sich-irren": {
+    "de": "Da irre ich mich vielleicht.",
+    "en": "I may be mistaken there."
+  },
+  "b12-einschaetzen": {
+    "de": "Das kann ich schwer einschätzen.",
+    "en": "That is hard for me to judge."
+  },
+  "b12-angekommen": {
+    "de": "Nach zwei Jahren bin ich angekommen.",
+    "en": "After two years I feel settled."
   }
 }

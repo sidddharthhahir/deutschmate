@@ -1,0 +1,841 @@
+[
+  {
+    "id": "b1-2-u01",
+    "level": "B1.2",
+    "ord": 1,
+    "title": "Feste Präpositionen",
+    "can_do": [
+      "use verbs with their fixed prepositions",
+      "ask worauf / worüber questions",
+      "avoid English interference"
+    ],
+    "words": [
+      "b12-warten-auf",
+      "b12-denken-an",
+      "b12-sprechen-ueber",
+      "b12-sich-kuemmern-um",
+      "b12-bitten-um",
+      "b12-achten-auf",
+      "b12-sich-beziehen-auf",
+      "b12-teilnehmen-an",
+      "b12-sich-bewerben-um",
+      "b12-leiden-unter",
+      "b12-sich-handeln-um",
+      "b12-hinweisen-auf",
+      "b12-worauf",
+      "b12-worueber",
+      "b12-womit",
+      "b12-darauf",
+      "b12-darueber",
+      "b12-sich-gewoehnen-b"
+    ],
+    "grammar_id": "g-verben-praeposition",
+    "scenario": {
+      "role": "a friend waiting with you",
+      "goal": "talk about what you're both waiting for and looking forward to",
+      "opener": "Worauf wartest du eigentlich?"
+    },
+    "dialogue": [
+      {
+        "them": "Worauf wartest du eigentlich?",
+        "options": [
+          {
+            "say": "Ich warte auf den Bus.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Ich warte für den Bus.",
+            "ok": false,
+            "why": "warten takes auf, not für.",
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Der kommt gleich. Freust du dich auf das Wochenende?",
+        "options": [
+          {
+            "say": "Ja, sehr!",
+            "ok": true,
+            "next": -1
+          }
+        ]
+      }
+    ],
+    "prereq": [
+      "b1-1-u20"
+    ]
+  },
+  {
+    "id": "b1-2-u02",
+    "level": "B1.2",
+    "ord": 2,
+    "title": "Verbinden und begründen",
+    "can_do": [
+      "use deshalb, trotzdem and obwohl",
+      "keep word order right after each",
+      "build a longer argument"
+    ],
+    "words": [
+      "b12-deshalb",
+      "b12-deswegen",
+      "b12-trotzdem-b",
+      "b12-daher",
+      "b12-folglich",
+      "b12-zwar-aber",
+      "b12-sowohl-als-auch",
+      "b12-weder-noch",
+      "b12-entweder-oder",
+      "b12-je-desto",
+      "b12-anstatt",
+      "b12-sodass",
+      "b12-indem",
+      "b12-solange",
+      "b12-sobald",
+      "b12-einerseits-b12",
+      "b12-zusaetzlich",
+      "b12-schliesslich-b12"
+    ],
+    "grammar_id": "g-konnektoren",
+    "scenario": {
+      "role": "a colleague you're persuading",
+      "goal": "argue for a change and handle objections",
+      "opener": "Ich bin da noch nicht überzeugt."
+    },
+    "dialogue": null,
+    "prereq": [
+      "b1-2-u01"
+    ]
+  },
+  {
+    "id": "b1-2-u03",
+    "level": "B1.2",
+    "ord": 3,
+    "title": "Der Mensch, den…",
+    "can_do": [
+      "use N-declension nouns",
+      "talk about people precisely",
+      "avoid a common B1 error"
+    ],
+    "words": [
+      "b12-der-mensch",
+      "b12-der-nachbar-n",
+      "b12-der-junge",
+      "b12-der-praesident",
+      "b12-der-student",
+      "b12-der-experte",
+      "b12-der-kollege-n",
+      "b12-der-beamte",
+      "b12-der-praktikant",
+      "b12-der-patient",
+      "b12-der-kunde-n",
+      "b12-der-kandidat",
+      "b12-der-nachbar-b",
+      "b12-die-endung",
+      "b12-die-ausnahme-b",
+      "b12-der-erwachsene",
+      "b12-der-verwandte",
+      "b12-der-angestellte"
+    ],
+    "grammar_id": "g-nomen-verb",
+    "scenario": {
+      "role": "a colleague discussing a new hire",
+      "goal": "describe the new colleague",
+      "opener": "Und wie ist der Neue so?"
+    },
+    "dialogue": null,
+    "prereq": [
+      "b1-2-u02"
+    ]
+  },
+  {
+    "id": "b1-2-u04",
+    "level": "B1.2",
+    "ord": 4,
+    "title": "Beschreiben mit Partizipien",
+    "can_do": [
+      "understand participles used as adjectives",
+      "read a news sentence",
+      "describe a state versus an action"
+    ],
+    "words": [
+      "b12-geschlossen",
+      "b12-geoeffnet",
+      "b12-gebraucht",
+      "b12-beschaeftigt",
+      "b12-erwartet",
+      "b12-betroffen",
+      "b12-beteiligt",
+      "b12-geplant",
+      "b12-verletzt",
+      "b12-gestiegen",
+      "b12-steigend",
+      "b12-wachsend",
+      "b12-bestehend",
+      "b12-folgend",
+      "b12-entsprechend",
+      "b12-zunehmend",
+      "b12-abgeschlossen",
+      "b12-vorhanden"
+    ],
+    "grammar_id": "g-partizip-adjektiv",
+    "scenario": {
+      "role": "a friend reading the news with you",
+      "goal": "explain a headline in simpler words",
+      "opener": "Was steht denn da? Ich versteh's nicht ganz."
+    },
+    "dialogue": null,
+    "prereq": [
+      "b1-2-u03"
+    ]
+  },
+  {
+    "id": "b1-2-u05",
+    "level": "B1.2",
+    "ord": 5,
+    "title": "Was gesagt wurde",
+    "can_do": [
+      "recognise reported speech",
+      "read a news report critically",
+      "repeat what someone said"
+    ],
+    "words": [
+      "b12-behaupten-b",
+      "b12-laut",
+      "b12-zufolge",
+      "b12-die-quelle",
+      "b12-die-aussage",
+      "b12-berichten",
+      "b12-melden-b12",
+      "b12-erklaeren-b",
+      "b12-bestaetigen-b",
+      "b12-dementieren",
+      "b12-der-sprecher",
+      "b12-die-meldung",
+      "b12-der-bericht",
+      "b12-die-studie",
+      "b12-glaubwuerdig",
+      "b12-umstritten",
+      "b12-es-heisst",
+      "b12-soll-sein"
+    ],
+    "grammar_id": "g-konjunktiv1",
+    "scenario": {
+      "role": "a friend who missed a meeting",
+      "goal": "report what was said without claiming it yourself",
+      "opener": "Was wurde denn besprochen?"
+    },
+    "dialogue": null,
+    "prereq": [
+      "b1-2-u04"
+    ]
+  },
+  {
+    "id": "b1-2-u06",
+    "level": "B1.2",
+    "ord": 6,
+    "title": "Wörter bauen",
+    "can_do": [
+      "decode long compound words",
+      "guess gender from an ending",
+      "expand vocabulary without memorising"
+    ],
+    "words": [
+      "b12-das-kompositum",
+      "b12-das-grundwort",
+      "b12-die-vorsilbe",
+      "b12-die-nachsilbe",
+      "b12-das-gegenteil",
+      "b12-ableiten",
+      "b12-zusammensetzen",
+      "b12-erraten",
+      "b12-unbekannt",
+      "b12-ungewoehnlich",
+      "b12-die-arbeitslosigkeit",
+      "b12-die-moeglichkeit-b",
+      "b12-die-wohnungssuche",
+      "b12-die-krankenversicherung",
+      "b12-die-aufenthaltserlaubnis",
+      "b12-die-geschwindigkeit",
+      "b12-mehrsprachig",
+      "b12-arbeitsintensiv"
+    ],
+    "grammar_id": "g-wortbildung",
+    "scenario": {
+      "role": "a teacher testing your word sense",
+      "goal": "work out unknown words from their parts",
+      "opener": "Was könnte 'Arbeitslosigkeit' bedeuten?"
+    },
+    "dialogue": null,
+    "prereq": [
+      "b1-2-u05"
+    ]
+  },
+  {
+    "id": "b1-2-u07",
+    "level": "B1.2",
+    "ord": 7,
+    "title": "Behörden und Formulare",
+    "can_do": [
+      "deal with an official office",
+      "fill in a complex form",
+      "ask what happens next"
+    ],
+    "words": [
+      "b12-die-behoerde",
+      "b12-der-sachbearbeiter",
+      "b12-der-bescheid",
+      "b12-der-widerspruch",
+      "b12-der-nachweis",
+      "b12-die-vollmacht",
+      "b12-beglaubigt",
+      "b12-die-bearbeitungszeit",
+      "b12-einreichen",
+      "b12-das-original",
+      "b12-die-wartenummer",
+      "b12-vorsprechen",
+      "b12-nachreichen",
+      "b12-abgelehnt",
+      "b12-bewilligt",
+      "b12-die-rechtsbehelfsbelehrung",
+      "b12-wie-geht-es-weiter",
+      "b12-schriftlich-b"
+    ],
+    "grammar_id": "g-passiv-modal",
+    "scenario": {
+      "role": "an official at the Ausländerbehörde",
+      "goal": "submit an application and understand the next steps",
+      "opener": "Ihre Unterlagen bitte."
+    },
+    "dialogue": null,
+    "prereq": [
+      "b1-2-u06"
+    ]
+  },
+  {
+    "id": "b1-2-u08",
+    "level": "B1.2",
+    "ord": 8,
+    "title": "Verträge und Rechte",
+    "can_do": [
+      "understand contract basics",
+      "ask about obligations",
+      "cancel something formally"
+    ],
+    "words": [
+      "b12-das-recht",
+      "b12-die-pflicht",
+      "b12-das-widerrufsrecht",
+      "b12-widerrufen",
+      "b12-die-klausel",
+      "b12-ungueltig",
+      "b12-guelt",
+      "b12-die-haftung",
+      "b12-haften",
+      "b12-in-kraft-treten",
+      "b12-ausserordentlich",
+      "b12-der-vertragspartner",
+      "b12-verpflichten",
+      "b12-schriftform",
+      "b12-die-frist-c",
+      "b12-ablaufen",
+      "b12-rechtlich",
+      "b12-kleingedruckt"
+    ],
+    "grammar_id": "g-passiv-modal",
+    "scenario": {
+      "role": "a customer-service agent",
+      "goal": "cancel a contract and confirm it in writing",
+      "opener": "Sie möchten kündigen?"
+    },
+    "dialogue": null,
+    "prereq": [
+      "b1-2-u07"
+    ]
+  },
+  {
+    "id": "b1-2-u09",
+    "level": "B1.2",
+    "ord": 9,
+    "title": "Arbeitswelt",
+    "can_do": [
+      "discuss working conditions",
+      "negotiate",
+      "describe a workplace conflict"
+    ],
+    "words": [
+      "b12-die-arbeitsbedingungen",
+      "b12-die-gewerkschaft",
+      "b12-der-tarifvertrag",
+      "b12-die-forderung",
+      "b12-berechtigt",
+      "b12-das-zugestaendnis",
+      "b12-der-konflikt",
+      "b12-eskalieren",
+      "b12-das-mobbing",
+      "b12-die-rueckmeldung",
+      "b12-ansprechen",
+      "b12-die-belastung",
+      "b12-entlasten",
+      "b12-die-schichtarbeit",
+      "b12-der-arbeitsschutz",
+      "b12-sich-einsetzen",
+      "b12-anerkennung",
+      "b12-fair"
+    ],
+    "grammar_id": null,
+    "scenario": {
+      "role": "your manager in a review meeting",
+      "goal": "discuss your role and ask for a change",
+      "opener": "Wie zufrieden sind Sie mit Ihrer aktuellen Rolle?"
+    },
+    "dialogue": null,
+    "prereq": [
+      "b1-2-u08"
+    ]
+  },
+  {
+    "id": "b1-2-u10",
+    "level": "B1.2",
+    "ord": 10,
+    "title": "Statistik und Zahlen",
+    "can_do": [
+      "describe a trend",
+      "read a chart out loud",
+      "compare figures"
+    ],
+    "words": [
+      "b12-die-statistik",
+      "b12-die-grafik",
+      "b12-die-entwicklung",
+      "b12-der-anteil",
+      "b12-das-prozent",
+      "b12-der-durchschnitt",
+      "b12-durchschnittlich",
+      "b12-etwa",
+      "b12-die-haelfte",
+      "b12-das-drittel",
+      "b12-zunehmen-s",
+      "b12-abnehmen-s",
+      "b12-gleich-bleiben",
+      "b12-deutlich",
+      "b12-leicht-s",
+      "b12-der-hoechststand",
+      "b12-im-vergleich-zum",
+      "b12-betragen"
+    ],
+    "grammar_id": "g-komparativ",
+    "scenario": {
+      "role": "a colleague reviewing a report with you",
+      "goal": "describe what the numbers show",
+      "opener": "Was sagen die Zahlen denn?"
+    },
+    "dialogue": null,
+    "prereq": [
+      "b1-2-u09"
+    ]
+  },
+  {
+    "id": "b1-2-u11",
+    "level": "B1.2",
+    "ord": 11,
+    "title": "Kultur",
+    "can_do": [
+      "talk about art, music or literature",
+      "give a considered opinion",
+      "describe an event you attended"
+    ],
+    "words": [
+      "b12-die-ausstellung",
+      "b12-das-werk",
+      "b12-der-kuenstler",
+      "b12-die-auffuehrung",
+      "b12-das-publikum",
+      "b12-begeistert",
+      "b12-beeindruckend",
+      "b12-anspruchsvoll-k",
+      "b12-der-roman",
+      "b12-die-handlung",
+      "b12-die-figur",
+      "b12-handeln-von",
+      "b12-empfehlen-k",
+      "b12-enttaeuschend",
+      "b12-geschmackssache",
+      "b12-die-veranstaltung",
+      "b12-der-eintritt",
+      "b12-sich-anschauen"
+    ],
+    "grammar_id": null,
+    "scenario": {
+      "role": "someone at an exhibition",
+      "goal": "discuss what you've both seen",
+      "opener": "Und, wie finden Sie die Ausstellung?"
+    },
+    "dialogue": null,
+    "prereq": [
+      "b1-2-u10"
+    ]
+  },
+  {
+    "id": "b1-2-u12",
+    "level": "B1.2",
+    "ord": 12,
+    "title": "Migration und Integration",
+    "can_do": [
+      "talk about living in another country",
+      "describe culture shock",
+      "discuss belonging"
+    ],
+    "words": [
+      "b12-die-integration",
+      "b12-die-heimat",
+      "b12-der-kulturschock",
+      "b12-das-heimweh",
+      "b12-sich-einleben",
+      "b12-dazugehoeren",
+      "b12-die-zugehoerigkeit",
+      "b12-das-vorurteil",
+      "b12-die-herkunft",
+      "b12-die-muttersprache",
+      "b12-der-integrationskurs",
+      "b12-die-staatsangehoerigkeit",
+      "b12-einbuergern",
+      "b12-fremd",
+      "b12-vertraut",
+      "b12-offen-sein",
+      "b12-die-teilhabe",
+      "b12-akzeptieren"
+    ],
+    "grammar_id": null,
+    "scenario": {
+      "role": "someone who also moved to Germany",
+      "goal": "compare your experiences of settling in",
+      "opener": "Wie lange hat es bei dir gedauert, bis du dich wohlgefühlt hast?"
+    },
+    "dialogue": null,
+    "prereq": [
+      "b1-2-u11"
+    ]
+  },
+  {
+    "id": "b1-2-u13",
+    "level": "B1.2",
+    "ord": 13,
+    "title": "Wissenschaft",
+    "can_do": [
+      "follow a popular-science explanation",
+      "ask clarifying questions",
+      "summarise what you understood"
+    ],
+    "words": [
+      "b12-die-forschung",
+      "b12-das-ergebnis",
+      "b12-der-versuch",
+      "b12-die-ursache",
+      "b12-die-wirkung",
+      "b12-untersuchen-w",
+      "b12-beweisen",
+      "b12-vermuten",
+      "b12-nachweisen",
+      "b12-vereinfacht",
+      "b12-mit-anderen-worten-w",
+      "b12-koennen-sie-erklaeren",
+      "b12-der-fachbegriff",
+      "b12-komplex",
+      "b12-verstaendlich",
+      "b12-die-theorie",
+      "b12-zusammenfassen-w",
+      "b12-erstaunlich-w"
+    ],
+    "grammar_id": null,
+    "scenario": {
+      "role": "a friend who works in research",
+      "goal": "understand their work and ask good questions",
+      "opener": "Willst du wissen, woran ich gerade arbeite?"
+    },
+    "dialogue": null,
+    "prereq": [
+      "b1-2-u12"
+    ]
+  },
+  {
+    "id": "b1-2-u14",
+    "level": "B1.2",
+    "ord": 14,
+    "title": "Nachrichten verstehen",
+    "can_do": [
+      "follow a slow news report",
+      "identify the main point",
+      "distinguish fact from opinion"
+    ],
+    "words": [
+      "b12-die-schlagzeile",
+      "b12-die-tatsache",
+      "b12-sachlich-n",
+      "b12-einseitig",
+      "b12-die-darstellung",
+      "b12-der-kommentar",
+      "b12-der-hintergrund",
+      "b12-zusammenhaengen",
+      "b12-betreffen",
+      "b12-die-folge",
+      "b12-worum-geht-es",
+      "b12-hauptsaechlich",
+      "b12-der-kern",
+      "b12-kritisch",
+      "b12-hinterfragen",
+      "b12-uebertrieben",
+      "b12-die-ueberschrift",
+      "b12-im-groben"
+    ],
+    "grammar_id": "g-konjunktiv1",
+    "scenario": {
+      "role": "a colleague discussing the news",
+      "goal": "summarise a story and give your view",
+      "opener": "Hast du das heute Morgen gehört?"
+    },
+    "dialogue": null,
+    "prereq": [
+      "b1-2-u13"
+    ]
+  },
+  {
+    "id": "b1-2-u15",
+    "level": "B1.2",
+    "ord": 15,
+    "title": "Konflikte lösen",
+    "can_do": [
+      "raise a difficult subject",
+      "stay polite under pressure",
+      "propose a compromise"
+    ],
+    "words": [
+      "b12-ansprechen-k",
+      "b12-das-missverstaendnis",
+      "b12-klaeren",
+      "b12-deeskalieren",
+      "b12-ruhig-bleiben",
+      "b12-zuhoeren",
+      "b12-ausreden-lassen",
+      "b12-unterbrechen",
+      "b12-vorwerfen",
+      "b12-der-vorwurf",
+      "b12-sich-entschuldigen-k",
+      "b12-entgegenkommen",
+      "b12-gemeinsam-loesen",
+      "b12-verstaendnis-zeigen",
+      "b12-nachgeben-k",
+      "b12-eskalation-vermeiden",
+      "b12-heikel",
+      "b12-aus-der-welt"
+    ],
+    "grammar_id": null,
+    "scenario": {
+      "role": "a flatmate you have a problem with",
+      "goal": "raise the issue calmly and agree a solution",
+      "opener": "Du wolltest mit mir reden?"
+    },
+    "dialogue": null,
+    "prereq": [
+      "b1-2-u14"
+    ]
+  },
+  {
+    "id": "b1-2-u16",
+    "level": "B1.2",
+    "ord": 16,
+    "title": "Ratschläge geben",
+    "can_do": [
+      "give advice without being bossy",
+      "use Konjunktiv II for suggestions",
+      "weigh up options"
+    ],
+    "words": [
+      "b12-es-waere-ratsam",
+      "b12-du-solltest",
+      "b12-an-ihrer-stelle",
+      "b12-abraten",
+      "b12-es-kommt-darauf-an",
+      "b12-ueberlegenswert",
+      "b12-am-besten",
+      "b12-versuch-doch",
+      "b12-vor-und-nachteile",
+      "b12-in-betracht-ziehen",
+      "b12-sich-entscheiden-fuer",
+      "b12-die-entscheidung-b",
+      "b12-nicht-bevormunden",
+      "b12-erfahrungsgemaess",
+      "b12-sinnvoller",
+      "b12-lieber-nicht-b",
+      "b12-riskant",
+      "b12-unbedingt"
+    ],
+    "grammar_id": "g-konjunktiv2",
+    "scenario": {
+      "role": "a friend facing a big decision",
+      "goal": "help them think it through",
+      "opener": "Ich weiß echt nicht, was ich machen soll."
+    },
+    "dialogue": null,
+    "prereq": [
+      "b1-2-u15"
+    ]
+  },
+  {
+    "id": "b1-2-u17",
+    "level": "B1.2",
+    "ord": 17,
+    "title": "Präsentieren",
+    "can_do": [
+      "structure a short talk",
+      "signal what comes next",
+      "answer a question afterwards"
+    ],
+    "words": [
+      "b12-der-vortrag",
+      "b12-die-gliederung",
+      "b12-zunaechst-p",
+      "b12-im-folgenden",
+      "b12-kommen-wir-zu",
+      "b12-zusammenfassend",
+      "b12-vielen-dank-fuer",
+      "b12-gibt-es-fragen",
+      "b12-gute-frage",
+      "b12-darauf-komme-ich",
+      "b12-die-folie",
+      "b12-hervorheben",
+      "b12-verdeutlichen",
+      "b12-eingehen-auf",
+      "b12-der-ueberblick",
+      "b12-anschaulich",
+      "b12-frei-sprechen",
+      "b12-nervositaet"
+    ],
+    "grammar_id": null,
+    "scenario": {
+      "role": "an audience at a small meeting",
+      "goal": "present something for two minutes and take a question",
+      "opener": "Sie haben das Wort."
+    },
+    "dialogue": null,
+    "prereq": [
+      "b1-2-u16"
+    ]
+  },
+  {
+    "id": "b1-2-u18",
+    "level": "B1.2",
+    "ord": 18,
+    "title": "Schreiben, das ankommt",
+    "can_do": [
+      "write a formal email",
+      "use the right greeting and sign-off",
+      "make a clear request in writing"
+    ],
+    "words": [
+      "b12-sehr-geehrte",
+      "b12-mit-freundlichen",
+      "b12-hiermit",
+      "b12-bezugnehmend",
+      "b12-anbei",
+      "b12-im-voraus-danke",
+      "b12-ich-bitte-sie",
+      "b12-bis-spaetestens",
+      "b12-der-betreff",
+      "b12-die-anlage",
+      "b12-hoefliche-bitte",
+      "b12-formell",
+      "b12-knapp",
+      "b12-verbleibe",
+      "b12-fuer-rueckfragen",
+      "b12-um-antwort-wird-gebeten",
+      "b12-liebe-gruesse",
+      "b12-ansprechpartner"
+    ],
+    "grammar_id": null,
+    "scenario": {
+      "role": "someone you must write to formally",
+      "goal": "draft the message out loud before writing it",
+      "opener": "An wen schreiben Sie denn?"
+    },
+    "dialogue": null,
+    "prereq": [
+      "b1-2-u17"
+    ]
+  },
+  {
+    "id": "b1-2-u19",
+    "level": "B1.2",
+    "ord": 19,
+    "title": "Prüfungstraining",
+    "can_do": [
+      "handle a typical exam task",
+      "keep talking when you don't know a word",
+      "correct yourself naturally"
+    ],
+    "words": [
+      "b12-die-aufgabenstellung",
+      "b12-umschreiben",
+      "b12-wie-nennt-man",
+      "b12-mir-faellt-nicht-ein",
+      "b12-so-eine-art",
+      "b12-etwas-womit",
+      "b12-ich-meine-b",
+      "b12-moment-bitte",
+      "b12-sich-korrigieren-b",
+      "b12-anders-gesagt",
+      "b12-die-stichworte",
+      "b12-die-zeit-einteilen",
+      "b12-ueberfliegen",
+      "b12-markieren",
+      "b12-raten",
+      "b12-in-ruhe",
+      "b12-ausfuehrlich",
+      "b12-der-zeitdruck"
+    ],
+    "grammar_id": null,
+    "scenario": {
+      "role": "an exam partner in a paired task",
+      "goal": "plan something together and reach a decision",
+      "opener": "Also, wir sollen zusammen etwas organisieren."
+    },
+    "dialogue": null,
+    "prereq": [
+      "b1-2-u18"
+    ]
+  },
+  {
+    "id": "b1-2-u20",
+    "level": "B1.2",
+    "ord": 20,
+    "title": "B1.2 — angekommen",
+    "can_do": [
+      "talk fluently about familiar topics",
+      "handle unexpected turns",
+      "express nuance and doubt"
+    ],
+    "words": [
+      "b12-einigermassen",
+      "b12-zurechtkommen",
+      "b12-souveraen",
+      "b12-durchaus",
+      "b12-eher",
+      "b12-vermutlich",
+      "b12-womoeglich",
+      "b12-sich-irren",
+      "b12-einschaetzen",
+      "b12-angekommen"
+    ],
+    "grammar_id": null,
+    "scenario": {
+      "role": "a German friend on a long walk",
+      "goal": "hold a real, unstructured conversation",
+      "opener": "Erzähl mal — wie war dein Weg hierher, von ganz am Anfang?"
+    },
+    "dialogue": null,
+    "prereq": [
+      "b1-2-u19"
+    ]
+  }
+]

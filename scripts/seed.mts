@@ -358,12 +358,16 @@ type RawUnit = {
  * dative, the imperative and the two-way prepositions — taught their
  * vocabulary and no rule, while a correct file sat next to it unread.
  */
+/** Levels whose units are written by hand, one file each, in course order. */
+const HAND_WRITTEN = new Set(["A1.1", "A1.2", "A2.1", "A2.2", "B1.1", "B1.2"]);
+
 const UNIT_FILES = [
   "data/units-a1-1.json",
   "data/units-a1-2.json",
   "data/units-a2-1.json",
   "data/units-a2-2.json",
   "data/units-b1-1.json",
+  "data/units-b1-2.json",
   "data/units-generated.json",
 ];
 /*
@@ -412,10 +416,17 @@ if (existsSync(UNIT_ADDITIONS)) {
     string[]
   >;
   for (const u of units) {
-    /* Hand-written levels take nothing from the padding. A2.1 joined them when
-       its vocabulary was written: the additions map is the frequency list in
-       positional chunks, which is what gave "Im Restaurant" Majestät. */
-    if (["A1.1", "A1.2", "A2.1", "A2.2", "B1.1"].includes(u.level)) continue;
+    /*
+     * Hand-written levels take nothing from the padding, and as of B1.2 that
+     * is every level — so this loop now adds nothing to anything.
+     *
+     * Kept rather than deleted because it is the guard, not the feature: if a
+     * seventh level is ever blueprinted without vocabulary, the additions map
+     * would otherwise start filling its units from the frequency list again,
+     * which is what gave "Im Restaurant" Majestät and Major. The words in
+     * words-extra.json stay in the deck as browse vocabulary either way.
+     */
+    if (HAND_WRITTEN.has(u.level)) continue;
     const more = (extra[u.id] ?? []).filter(
       (id) => seenIds.has(id) && !u.words.includes(id),
     );

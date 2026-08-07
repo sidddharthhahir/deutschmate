@@ -71,6 +71,13 @@ const HALVES: {
     prev: "a2-2-u20",
     blueprints: "data/blueprints-b1.json",
   },
+  {
+    level: "B1.2",
+    slug: "b1-2",
+    vocab: "data/vocab-b1-2.json",
+    prev: "b1-1-u20",
+    blueprints: "data/blueprints-b1.json",
+  },
 ];
 
 for (const half of HALVES) build(half);
