@@ -3,6 +3,7 @@
  * needs: nothing
  */
 import { readFileSync } from "node:fs";
+import { spawnSync } from "node:child_process";
 import path from "node:path";
 import { resolveScene, isGeneric, GENERIC } from "../src/lib/scene.ts";
 import { ok, eq, section, done } from "./harness.mts";
@@ -105,5 +106,19 @@ for (const s of survival) {
   );
   ok(s.bring.length >= 3, `  and knows what to bring`, `${s.bring.length}`);
 }
+
+section("no A1 scene says a word its unit has not taught");
+/*
+ * Runs the real checker rather than a copy of it — the rule lives in one file,
+ * and a second implementation here would be the thing that drifts. Beginner
+ * scenes are where untaught vocabulary hurts most: the learner has no way to
+ * guess, and the whole point of the gate is that they never have to.
+ */
+const check = spawnSync(process.execPath, ["scripts/check-scenes.mts"], {
+  cwd: process.cwd(),
+  encoding: "utf8",
+});
+eq(check.status, 0, "scripts/check-scenes.mts is clean");
+if (check.status !== 0) console.log(check.stdout);
 
 done();

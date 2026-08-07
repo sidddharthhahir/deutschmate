@@ -24,6 +24,10 @@ type Unit = {
   title: string;
   canDo: string[];
   grammar: string | null;
+  /* The role-play. Checked by scripts/check-scenes.mts, which refuses a scene
+     that uses vocabulary its unit has not taught yet. */
+  scenario?: { role: string; goal: string; opener: string } | null;
+  dialogue?: unknown[] | null;
 };
 type Word = {
   id: string;
@@ -147,8 +151,8 @@ for (const [level, from, to, slug] of LEVELS) {
         can_do: u.canDo,
         words: mine.filter((w) => w.unit === u.ord).map((w) => w.id),
         grammar_id: u.grammar && grammarIds.has(u.grammar) ? u.grammar : null,
-        scenario: null,
-        dialogue: null,
+        scenario: u.scenario ?? null,
+        dialogue: u.dialogue ?? null,
         /*
          * Strictly linear, and the chain crosses the level boundary: A1.2 unit
          * 1 requires A1.1 unit 20. Only unit 1 of the whole course starts free.

@@ -139,9 +139,10 @@ const broken = withScenario.filter((u) => {
 eq(broken.length, 0, "each one parses to an object with a role");
 if (broken.length) console.log(`        ${broken.map((b) => b.id).join(", ")}`);
 
-section("the units that have none are the ones we wrote by hand");
-/* Not an accident to be tidied away: all forty A1 units have no scenario yet,
-   and the honest behaviour is no Gespräch block rather than a broken one. */
+section("A1 can hold a conversation from day one");
+/* This assertion used to read the other way — 40 units with no scenario, on the
+   grounds that no Gespräch is more honest than a broken one. They are written
+   now, so the honest assertion is that every one of them is there. */
 const a1None = (
   db
     .prepare(
@@ -149,7 +150,19 @@ const a1None = (
     )
     .get() as { n: number }
 ).n;
-eq(a1None, 40, "all of A1 is still without scenarios, and says so");
+eq(a1None, 0, "no A1 unit is left without a scenario");
+
+/* A1 is the level most likely to be studied on a train with no signal, and the
+   only one where every unit ships a scripted fallback. Losing that would fail
+   quietly: the block still renders, and just stops working without a network. */
+const a1NoDialogue = (
+  db
+    .prepare(
+      "SELECT COUNT(*) AS n FROM unit WHERE level IN ('A1.1','A1.2') AND (dialogue_json IS NULL OR dialogue_json = '')",
+    )
+    .get() as { n: number }
+).n;
+eq(a1NoDialogue, 0, "and every one can be played offline");
 
 db.close();
 done();

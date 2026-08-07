@@ -14,7 +14,46 @@
       "grammar": null,
       "grammarNote": "None on purpose. Day one is sounds and set phrases; a rule needs words to act on.",
       "topics": ["greetings"],
-      "words": 12
+      "words": 12,
+      "scenario": {
+        "role": "a neighbour on the stairs",
+        "goal": "greet them, then say goodbye",
+        "opener": "Guten Tag!"
+      },
+      "dialogue": [
+        {
+          "them": "Guten Tag!",
+          "options": [
+            {
+              "say": "Guten Tag!",
+              "ok": true,
+              "next": 1
+            },
+            {
+              "say": "Gute Nacht!",
+              "ok": false,
+              "why": "Gute Nacht is for going to bed, not for meeting somebody.",
+              "next": 1
+            }
+          ]
+        },
+        {
+          "them": "Auf Wiedersehen!",
+          "options": [
+            {
+              "say": "Tschüss!",
+              "ok": true,
+              "next": -1
+            },
+            {
+              "say": "Bitte.",
+              "ok": false,
+              "why": "Bitte answers danke. It does not say goodbye.",
+              "next": -1
+            }
+          ]
+        }
+      ]
     },
     {
       "ord": 2,
@@ -29,7 +68,46 @@
       "grammar": "g-alphabet",
       "grammarNote": "ä ö ü ß, and the letters whose German name catches an English speaker out: e, i, j, v, w, y, z.",
       "topics": ["alphabet"],
-      "words": 10
+      "words": 10,
+      "scenario": {
+        "role": "someone writing your name down",
+        "goal": "spell it and correct them",
+        "opener": "Buchstabieren, bitte!"
+      },
+      "dialogue": [
+        {
+          "them": "Groß?",
+          "options": [
+            {
+              "say": "Ja, groß.",
+              "ok": true,
+              "next": 1
+            },
+            {
+              "say": "Danke.",
+              "ok": false,
+              "why": "They asked whether it is a capital letter. Answer ja or nein.",
+              "next": 1
+            }
+          ]
+        },
+        {
+          "them": "Eszett?",
+          "options": [
+            {
+              "say": "Nein.",
+              "ok": true,
+              "next": -1
+            },
+            {
+              "say": "Noch einmal.",
+              "ok": false,
+              "why": "Noch einmal asks them to repeat. They asked you a question.",
+              "next": -1
+            }
+          ]
+        }
+      ]
     },
     {
       "ord": 3,
@@ -44,7 +122,46 @@
       "grammar": null,
       "grammarNote": "Numbers are vocabulary at this size. The teens reverse in the next unit, so they are learnt flat first.",
       "topics": ["numbers"],
-      "words": 12
+      "words": 12,
+      "scenario": {
+        "role": "someone taking a phone number",
+        "goal": "give four digits and confirm",
+        "opener": "Nummer, bitte!"
+      },
+      "dialogue": [
+        {
+          "them": "Nummer?",
+          "options": [
+            {
+              "say": "Null eins zwei drei.",
+              "ok": true,
+              "next": 1
+            },
+            {
+              "say": "Zehn Buchstabe.",
+              "ok": false,
+              "why": "Buchstabe is a letter, not a number.",
+              "next": 1
+            }
+          ]
+        },
+        {
+          "them": "Vier fünf?",
+          "options": [
+            {
+              "say": "Ja.",
+              "ok": true,
+              "next": -1
+            },
+            {
+              "say": "Sieben acht neun.",
+              "ok": false,
+              "why": "They read two digits back. Confirm them.",
+              "next": -1
+            }
+          ]
+        }
+      ]
     },
     {
       "ord": 4,
@@ -59,7 +176,46 @@
       "grammar": "g-pronouns",
       "grammarNote": "du/Sie before any verb table, because every sentence after this has to pick one. All of ich/du/er/sie/es/Sie land here: the unit that teaches the pronouns cannot teach three of them.",
       "topics": ["greetings", "pronouns"],
-      "words": 15
+      "words": 15,
+      "scenario": {
+        "role": "somebody at a language course",
+        "goal": "say your name and ask for theirs",
+        "opener": "Hallo! Wie heißt du?"
+      },
+      "dialogue": [
+        {
+          "them": "Wie heißt du?",
+          "options": [
+            {
+              "say": "Ich heiße Mira. Und du?",
+              "ok": true,
+              "next": 1
+            },
+            {
+              "say": "Du heiße Mira.",
+              "ok": false,
+              "why": "With ich the verb is heiße; du takes heißt.",
+              "next": 1
+            }
+          ]
+        },
+        {
+          "them": "Ich heiße Jan.",
+          "options": [
+            {
+              "say": "Guten Tag, Jan!",
+              "ok": true,
+              "next": -1
+            },
+            {
+              "say": "Wer ist das?",
+              "ok": false,
+              "why": "You are talking to Jan, so wer is the wrong question.",
+              "next": -1
+            }
+          ]
+        }
+      ]
     },
     {
       "ord": 5,
@@ -74,7 +230,62 @@
       "grammar": "g-wordorder",
       "grammarNote": "The verb sits second. Introduced here, on statements only — questions come in unit 19.",
       "topics": ["places", "countries"],
-      "words": 12
+      "words": 12,
+      "scenario": {
+        "role": "somebody at a party",
+        "goal": "say where you come from and where you live",
+        "opener": "Woher kommst du?"
+      },
+      "dialogue": [
+        {
+          "them": "Woher kommst du?",
+          "options": [
+            {
+              "say": "Ich komme aus Indien.",
+              "ok": true,
+              "next": 1
+            },
+            {
+              "say": "Ich kommen aus Indien.",
+              "ok": false,
+              "why": "With ich the verb ends in -e: ich komme.",
+              "next": 1
+            }
+          ]
+        },
+        {
+          "them": "Und wo wohnst du?",
+          "options": [
+            {
+              "say": "Ich wohne in Deutschland.",
+              "ok": true,
+              "next": 1
+            },
+            {
+              "say": "Ich wohne aus Deutschland.",
+              "ok": false,
+              "why": "wohnen takes in for where you live, not aus.",
+              "next": 1
+            }
+          ]
+        },
+        {
+          "them": "Sprichst du Deutsch?",
+          "options": [
+            {
+              "say": "Ja!",
+              "ok": true,
+              "next": -1
+            },
+            {
+              "say": "Ja, Stadt.",
+              "ok": false,
+              "why": "Stadt is a noun. Answer the question about speaking.",
+              "next": -1
+            }
+          ]
+        }
+      ]
     },
     {
       "ord": 6,
@@ -89,7 +300,62 @@
       "grammar": "g-articles-nom",
       "grammarNote": "THE unit this course was missing. Not a list to memorise: -ung -heit -keit -schaft are die, -chen -lein are das, -er -ling are usually der. Every noun from here on is taught with its article, never bare.",
       "topics": ["articles"],
-      "words": 12
+      "words": 12,
+      "scenario": {
+        "role": "a child pointing at things",
+        "goal": "name three things with the right article",
+        "opener": "Was ist das?"
+      },
+      "dialogue": [
+        {
+          "them": "Das?",
+          "options": [
+            {
+              "say": "Das ist die Zeitung.",
+              "ok": true,
+              "next": 1
+            },
+            {
+              "say": "Das ist der Zeitung.",
+              "ok": false,
+              "why": "Zeitung is feminine: die Zeitung.",
+              "next": 1
+            }
+          ]
+        },
+        {
+          "them": "Und das?",
+          "options": [
+            {
+              "say": "Das ist das Kind.",
+              "ok": true,
+              "next": 1
+            },
+            {
+              "say": "Das ist die Kind.",
+              "ok": false,
+              "why": "Kind is neuter: das Kind.",
+              "next": 1
+            }
+          ]
+        },
+        {
+          "them": "Und das?",
+          "options": [
+            {
+              "say": "Das ist der Mann.",
+              "ok": true,
+              "next": -1
+            },
+            {
+              "say": "Das ist das Mann.",
+              "ok": false,
+              "why": "Mann is masculine: der Mann.",
+              "next": -1
+            }
+          ]
+        }
+      ]
     },
     {
       "ord": 7,
@@ -104,7 +370,62 @@
       "grammar": "g-articles-nom",
       "grammarNote": "Practice for unit 6 with objects you can point at. 'Wie heißt das auf Deutsch?' is the sentence that unlocks every later one.",
       "topics": ["objects"],
-      "words": 12
+      "words": 12,
+      "scenario": {
+        "role": "a flatmate looking for something",
+        "goal": "say where the thing is",
+        "opener": "Wo ist mein Schlüssel?"
+      },
+      "dialogue": [
+        {
+          "them": "Wo ist mein Handy?",
+          "options": [
+            {
+              "say": "Hier ist das Handy.",
+              "ok": true,
+              "next": 1
+            },
+            {
+              "say": "Hier ist der Handy.",
+              "ok": false,
+              "why": "Handy is neuter: das Handy.",
+              "next": 1
+            }
+          ]
+        },
+        {
+          "them": "Und die Tasche?",
+          "options": [
+            {
+              "say": "Die Tasche ist dort.",
+              "ok": true,
+              "next": 1
+            },
+            {
+              "say": "Die Tasche ist hier dort.",
+              "ok": false,
+              "why": "Pick one: hier or dort, not both.",
+              "next": 1
+            }
+          ]
+        },
+        {
+          "them": "Danke!",
+          "options": [
+            {
+              "say": "Bitte!",
+              "ok": true,
+              "next": -1
+            },
+            {
+              "say": "Danke!",
+              "ok": false,
+              "why": "They thanked you. Bitte is the answer.",
+              "next": -1
+            }
+          ]
+        }
+      ]
     },
     {
       "ord": 8,
@@ -119,7 +440,62 @@
       "grammar": "g-sein",
       "grammarNote": "The two irregular verbs before the regular pattern, because they are irregular and they are unavoidable.",
       "topics": ["core-verbs"],
-      "words": 10
+      "words": 10,
+      "scenario": {
+        "role": "someone who has just met you",
+        "goal": "say how old you are and how you feel",
+        "opener": "Wie alt bist du?"
+      },
+      "dialogue": [
+        {
+          "them": "Wie alt bist du?",
+          "options": [
+            {
+              "say": "Ich bin dreißig Jahre alt.",
+              "ok": true,
+              "next": 1
+            },
+            {
+              "say": "Ich habe dreißig Jahre.",
+              "ok": false,
+              "why": "German uses sein for age: ich bin dreißig.",
+              "next": 1
+            }
+          ]
+        },
+        {
+          "them": "Hast du Hunger?",
+          "options": [
+            {
+              "say": "Ja, ich bin hungrig.",
+              "ok": true,
+              "next": 1
+            },
+            {
+              "say": "Ja, ich habe hungrig.",
+              "ok": false,
+              "why": "hungrig is an adjective, so it takes sein: ich bin hungrig.",
+              "next": 1
+            }
+          ]
+        },
+        {
+          "them": "Und müde?",
+          "options": [
+            {
+              "say": "Sehr müde!",
+              "ok": true,
+              "next": -1
+            },
+            {
+              "say": "Ich bin sehr Jahr.",
+              "ok": false,
+              "why": "Jahr is a noun, not a feeling.",
+              "next": -1
+            }
+          ]
+        }
+      ]
     },
     {
       "ord": 9,
@@ -134,7 +510,62 @@
       "grammar": "g-zahlen",
       "grammarNote": "einundzwanzig — units before tens, said backwards to an English ear. Needs sein/haben from unit 8 to say anything with it.",
       "topics": ["numbers"],
-      "words": 12
+      "words": 12,
+      "scenario": {
+        "role": "a market stall holder",
+        "goal": "ask a price and react to it",
+        "opener": "Das kostet zwölf Euro."
+      },
+      "dialogue": [
+        {
+          "them": "Was kostet das?",
+          "options": [
+            {
+              "say": "Zwölf Euro.",
+              "ok": true,
+              "next": 1
+            },
+            {
+              "say": "Zwölf Jahre.",
+              "ok": false,
+              "why": "Jahre is an age, not a price.",
+              "next": 1
+            }
+          ]
+        },
+        {
+          "them": "Zwölf Euro.",
+          "options": [
+            {
+              "say": "Das ist viel.",
+              "ok": true,
+              "next": 1
+            },
+            {
+              "say": "Das ist wenig viel.",
+              "ok": false,
+              "why": "Say one thing: das ist viel.",
+              "next": 1
+            }
+          ]
+        },
+        {
+          "them": "Und das hier? Fünfzig Euro.",
+          "options": [
+            {
+              "say": "Nein, danke.",
+              "ok": true,
+              "next": -1
+            },
+            {
+              "say": "Ja, fünf Euro.",
+              "ok": false,
+              "why": "They said fünfzig, not fünf.",
+              "next": -1
+            }
+          ]
+        }
+      ]
     },
     {
       "ord": 10,
@@ -149,7 +580,62 @@
       "grammar": "g-uhrzeit",
       "grammarNote": "Both systems: halb drei means half past TWO, which is the single most expensive misunderstanding in beginner German. Needs numbers to 60.",
       "topics": ["time"],
-      "words": 12
+      "words": 12,
+      "scenario": {
+        "role": "a friend on the phone",
+        "goal": "agree a time to meet",
+        "opener": "Wie spät ist es?"
+      },
+      "dialogue": [
+        {
+          "them": "Wie spät ist es?",
+          "options": [
+            {
+              "say": "Es ist halb acht.",
+              "ok": true,
+              "next": 1
+            },
+            {
+              "say": "Es ist halb acht Uhr Minute.",
+              "ok": false,
+              "why": "halb acht is already the time. Stop there.",
+              "next": 1
+            }
+          ]
+        },
+        {
+          "them": "Wann beginnt das?",
+          "options": [
+            {
+              "say": "Um acht Uhr.",
+              "ok": true,
+              "next": 1
+            },
+            {
+              "say": "Um acht Stunde.",
+              "ok": false,
+              "why": "Stunde is a length of time; the clock time takes Uhr.",
+              "next": 1
+            }
+          ]
+        },
+        {
+          "them": "Ist das zu früh?",
+          "options": [
+            {
+              "say": "Nein, das ist gut.",
+              "ok": true,
+              "next": -1
+            },
+            {
+              "say": "Ja, das ist spät.",
+              "ok": false,
+              "why": "früh and spät are opposites — this answers the wrong one.",
+              "next": -1
+            }
+          ]
+        }
+      ]
     },
     {
       "ord": 11,
@@ -164,7 +650,62 @@
       "grammar": "g-zeitpraepositionen",
       "grammarNote": "am Montag, um acht, im Januar — the three time prepositions, learnt as a set because they are chosen by the kind of time word.",
       "topics": ["time"],
-      "words": 12
+      "words": 12,
+      "scenario": {
+        "role": "a colleague making plans",
+        "goal": "say which day suits you",
+        "opener": "Wann hast du Zeit?"
+      },
+      "dialogue": [
+        {
+          "them": "Hast du am Montag Zeit?",
+          "options": [
+            {
+              "say": "Am Montag ist es schlecht.",
+              "ok": true,
+              "next": 1
+            },
+            {
+              "say": "Am Montag es ist schlecht.",
+              "ok": false,
+              "why": "The verb comes second: am Montag ist es schlecht.",
+              "next": 1
+            }
+          ]
+        },
+        {
+          "them": "Und am Samstag?",
+          "options": [
+            {
+              "say": "Ja, am Samstag ist gut.",
+              "ok": true,
+              "next": 1
+            },
+            {
+              "say": "Ja, am Samstag Woche.",
+              "ok": false,
+              "why": "Woche is the week itself, not a day.",
+              "next": 1
+            }
+          ]
+        },
+        {
+          "them": "Also Samstag.",
+          "options": [
+            {
+              "say": "Gut, am Samstag!",
+              "ok": true,
+              "next": -1
+            },
+            {
+              "say": "Gut, am gestern!",
+              "ok": false,
+              "why": "gestern is in the past. You are agreeing on a future day.",
+              "next": -1
+            }
+          ]
+        }
+      ]
     },
     {
       "ord": 12,
@@ -179,7 +720,62 @@
       "grammar": "g-praesens",
       "grammarNote": "-e -st -t -en -t -en. Deferred to unit 12 so there are verbs worth conjugating and a du/Sie decision already made. wir and ihr arrive here, with the two endings that need them.",
       "topics": ["core-verbs", "pronouns"],
-      "words": 14
+      "words": 14,
+      "scenario": {
+        "role": "someone asking about your day",
+        "goal": "say what you do",
+        "opener": "Was machst du?"
+      },
+      "dialogue": [
+        {
+          "them": "Was machst du?",
+          "options": [
+            {
+              "say": "Ich lerne Deutsch.",
+              "ok": true,
+              "next": 1
+            },
+            {
+              "say": "Ich lernen Deutsch.",
+              "ok": false,
+              "why": "With ich the verb ends in -e: ich lerne.",
+              "next": 1
+            }
+          ]
+        },
+        {
+          "them": "Und was macht ihr am Abend?",
+          "options": [
+            {
+              "say": "Wir essen und lesen.",
+              "ok": true,
+              "next": 1
+            },
+            {
+              "say": "Wir esst und lest.",
+              "ok": false,
+              "why": "With wir the ending is -en: wir essen, wir lesen.",
+              "next": 1
+            }
+          ]
+        },
+        {
+          "them": "Fährst du morgen?",
+          "options": [
+            {
+              "say": "Ja, ich fahre morgen.",
+              "ok": true,
+              "next": -1
+            },
+            {
+              "say": "Ja, ich fahren morgen.",
+              "ok": false,
+              "why": "With ich: ich fahre.",
+              "next": -1
+            }
+          ]
+        }
+      ]
     },
     {
       "ord": 13,
@@ -194,7 +790,62 @@
       "grammar": "g-possessiv",
       "grammarNote": "mein/dein/sein/ihr in the nominative only. The full paradigm waits for unit 38, after the cases exist.",
       "topics": ["family"],
-      "words": 12
+      "words": 12,
+      "scenario": {
+        "role": "a new friend",
+        "goal": "talk about your family",
+        "opener": "Wie ist deine Familie?"
+      },
+      "dialogue": [
+        {
+          "them": "Hast du einen Bruder?",
+          "options": [
+            {
+              "say": "Ja, mein Bruder ist Lehrer.",
+              "ok": true,
+              "next": 1
+            },
+            {
+              "say": "Ja, meine Bruder ist Lehrer.",
+              "ok": false,
+              "why": "Bruder is masculine: mein Bruder.",
+              "next": 1
+            }
+          ]
+        },
+        {
+          "them": "Und deine Schwester?",
+          "options": [
+            {
+              "say": "Meine Schwester wohnt in Indien.",
+              "ok": true,
+              "next": 1
+            },
+            {
+              "say": "Mein Schwester wohnt in Indien.",
+              "ok": false,
+              "why": "Schwester is feminine: meine Schwester.",
+              "next": 1
+            }
+          ]
+        },
+        {
+          "them": "Und deine Eltern?",
+          "options": [
+            {
+              "say": "Sie sind in Indien.",
+              "ok": true,
+              "next": -1
+            },
+            {
+              "say": "Er ist in Indien.",
+              "ok": false,
+              "why": "Eltern is plural, so it takes sie sind.",
+              "next": -1
+            }
+          ]
+        }
+      ]
     },
     {
       "ord": 14,
@@ -209,7 +860,62 @@
       "grammar": "g-plural",
       "grammarNote": "-e -er -n/-en -s and no ending. Taught as patterns with their gender tendencies rather than as one exception per word.",
       "topics": ["articles"],
-      "words": 10
+      "words": 10,
+      "scenario": {
+        "role": "someone tidying up with you",
+        "goal": "count things in the room",
+        "opener": "Wie viele Stühle sind das?"
+      },
+      "dialogue": [
+        {
+          "them": "Wie viele Bücher?",
+          "options": [
+            {
+              "say": "Drei Bücher.",
+              "ok": true,
+              "next": 1
+            },
+            {
+              "say": "Drei Buch.",
+              "ok": false,
+              "why": "The plural of Buch is Bücher.",
+              "next": 1
+            }
+          ]
+        },
+        {
+          "them": "Und Stühle?",
+          "options": [
+            {
+              "say": "Vier Stühle.",
+              "ok": true,
+              "next": 1
+            },
+            {
+              "say": "Vier Stuhl.",
+              "ok": false,
+              "why": "The plural of Stuhl is Stühle.",
+              "next": 1
+            }
+          ]
+        },
+        {
+          "them": "Und die Bilder?",
+          "options": [
+            {
+              "say": "Alle Bilder sind hier.",
+              "ok": true,
+              "next": -1
+            },
+            {
+              "say": "Alle Bild ist hier.",
+              "ok": false,
+              "why": "Bilder is plural, so the verb is sind.",
+              "next": -1
+            }
+          ]
+        }
+      ]
     },
     {
       "ord": 15,
@@ -224,7 +930,62 @@
       "grammar": "g-moechten",
       "grammarNote": "ich möchte as a fixed form, not yet as a modal. It is the politest thing a beginner can own.",
       "topics": ["food"],
-      "words": 14
+      "words": 14,
+      "scenario": {
+        "role": "a friend cooking for you",
+        "goal": "say what you like and do not like",
+        "opener": "Magst du Käse?"
+      },
+      "dialogue": [
+        {
+          "them": "Magst du Fisch?",
+          "options": [
+            {
+              "say": "Ja, ich mag Fisch.",
+              "ok": true,
+              "next": 1
+            },
+            {
+              "say": "Ja, ich möchte Fisch mag.",
+              "ok": false,
+              "why": "Say one verb: ich mag Fisch.",
+              "next": 1
+            }
+          ]
+        },
+        {
+          "them": "Und Milch?",
+          "options": [
+            {
+              "say": "Nein, ich mag keine Milch.",
+              "ok": true,
+              "next": 1
+            },
+            {
+              "say": "Nein, ich mag nicht Milch.",
+              "ok": false,
+              "why": "Before a noun the negation is kein: keine Milch.",
+              "next": 1
+            }
+          ]
+        },
+        {
+          "them": "Möchtest du Obst?",
+          "options": [
+            {
+              "say": "Ja, bitte.",
+              "ok": true,
+              "next": -1
+            },
+            {
+              "say": "Ja, ich mögen.",
+              "ok": false,
+              "why": "With ich it is ich mag or ich möchte.",
+              "next": -1
+            }
+          ]
+        }
+      ]
     },
     {
       "ord": 16,
@@ -239,7 +1000,62 @@
       "grammar": "g-moechten",
       "grammarNote": "First unit where the German comes back at you. Uses only units 1–15.",
       "topics": ["food", "places"],
-      "words": 12
+      "words": 12,
+      "scenario": {
+        "role": "a waiter in a café",
+        "goal": "order and ask for the bill",
+        "opener": "Guten Tag! Was möchten Sie?"
+      },
+      "dialogue": [
+        {
+          "them": "Was möchten Sie?",
+          "options": [
+            {
+              "say": "Ich möchte einen Kaffee, bitte.",
+              "ok": true,
+              "next": 1
+            },
+            {
+              "say": "Ich möchte Kaffee bringen.",
+              "ok": false,
+              "why": "bringen is what the waiter does. Just order.",
+              "next": 1
+            }
+          ]
+        },
+        {
+          "them": "Und noch etwas?",
+          "options": [
+            {
+              "say": "Nein, danke.",
+              "ok": true,
+              "next": 1
+            },
+            {
+              "say": "Ja, die Rechnung bitte.",
+              "ok": false,
+              "why": "Ask for the bill at the end, not with the order.",
+              "next": 1
+            }
+          ]
+        },
+        {
+          "them": "Bitte.",
+          "options": [
+            {
+              "say": "Die Rechnung, bitte. Zusammen.",
+              "ok": true,
+              "next": -1
+            },
+            {
+              "say": "Die Speisekarte, bitte.",
+              "ok": false,
+              "why": "You have already ordered. Now you want to pay.",
+              "next": -1
+            }
+          ]
+        }
+      ]
     },
     {
       "ord": 17,
@@ -254,7 +1070,62 @@
       "grammar": "g-negation",
       "grammarNote": "kein negates a noun, nicht negates everything else. One rule, and it is the whole of A1 negation.",
       "topics": ["negation"],
-      "words": 10
+      "words": 10,
+      "scenario": {
+        "role": "a friend who got something wrong",
+        "goal": "correct them politely",
+        "opener": "Du wohnst in Berlin, oder?"
+      },
+      "dialogue": [
+        {
+          "them": "Du wohnst in Berlin, oder?",
+          "options": [
+            {
+              "say": "Nein, ich wohne nicht in Berlin.",
+              "ok": true,
+              "next": 1
+            },
+            {
+              "say": "Nein, ich wohne kein Berlin.",
+              "ok": false,
+              "why": "kein goes before a noun; with a verb it is nicht.",
+              "next": 1
+            }
+          ]
+        },
+        {
+          "them": "Und du hast ein Auto?",
+          "options": [
+            {
+              "say": "Nein, ich habe kein Auto.",
+              "ok": true,
+              "next": 1
+            },
+            {
+              "say": "Nein, ich habe nicht Auto.",
+              "ok": false,
+              "why": "Before a noun the negation is kein: kein Auto.",
+              "next": 1
+            }
+          ]
+        },
+        {
+          "them": "Aber du sprichst Deutsch!",
+          "options": [
+            {
+              "say": "Ja, aber nicht viel.",
+              "ok": true,
+              "next": -1
+            },
+            {
+              "say": "Ja, niemand.",
+              "ok": false,
+              "why": "niemand means nobody. It does not answer this.",
+              "next": -1
+            }
+          ]
+        }
+      ]
     },
     {
       "ord": 18,
@@ -269,7 +1140,62 @@
       "grammar": "g-adjektiv-praedikativ",
       "grammarNote": "Only predicative — das Auto ist rot. Adjective endings before a noun are a B-level headache and are not A1.1.",
       "topics": ["adjectives"],
-      "words": 12
+      "words": 12,
+      "scenario": {
+        "role": "a friend shopping with you",
+        "goal": "say which colour you want",
+        "opener": "Welche Farbe magst du?"
+      },
+      "dialogue": [
+        {
+          "them": "Magst du das rote Handy?",
+          "options": [
+            {
+              "say": "Ja, rot ist schön.",
+              "ok": true,
+              "next": 1
+            },
+            {
+              "say": "Ja, rot ist teuer.",
+              "ok": false,
+              "why": "You were asked whether you like it, not the price.",
+              "next": 1
+            }
+          ]
+        },
+        {
+          "them": "Und das blaue?",
+          "options": [
+            {
+              "say": "Blau mag ich nicht.",
+              "ok": true,
+              "next": 1
+            },
+            {
+              "say": "Blau mag ich kein.",
+              "ok": false,
+              "why": "With a verb the negation is nicht.",
+              "next": 1
+            }
+          ]
+        },
+        {
+          "them": "Das grüne ist neu.",
+          "options": [
+            {
+              "say": "Aber es ist sehr teuer.",
+              "ok": true,
+              "next": -1
+            },
+            {
+              "say": "Aber es ist sehr grün Farbe.",
+              "ok": false,
+              "why": "Say one thing: es ist teuer.",
+              "next": -1
+            }
+          ]
+        }
+      ]
     },
     {
       "ord": 19,
@@ -284,7 +1210,62 @@
       "grammar": "g-questions",
       "grammarNote": "W-word first, or verb first for yes/no. Held until unit 19 so the statement order from unit 5 is solid enough to be broken deliberately.",
       "topics": ["questions"],
-      "words": 12
+      "words": 12,
+      "scenario": {
+        "role": "somebody you did not understand",
+        "goal": "ask them to repeat and explain",
+        "opener": "Wie viele Bücher sind das?"
+      },
+      "dialogue": [
+        {
+          "them": "Wann kommst du?",
+          "options": [
+            {
+              "say": "Wie bitte? Noch einmal, bitte.",
+              "ok": true,
+              "next": 1
+            },
+            {
+              "say": "Was ist das?",
+              "ok": false,
+              "why": "You did not catch the question, so ask them to repeat it.",
+              "next": 1
+            }
+          ]
+        },
+        {
+          "them": "Wann kommst du?",
+          "options": [
+            {
+              "say": "Ich verstehe. Um acht.",
+              "ok": true,
+              "next": 1
+            },
+            {
+              "say": "Ich wiederhole nicht.",
+              "ok": false,
+              "why": "wiederholen is what you asked them to do.",
+              "next": 1
+            }
+          ]
+        },
+        {
+          "them": "Und warum so spät?",
+          "options": [
+            {
+              "say": "Ich arbeite. Ich komme um acht.",
+              "ok": true,
+              "next": -1
+            },
+            {
+              "say": "Welche arbeite ich.",
+              "ok": false,
+              "why": "welcher asks which one. The question was warum.",
+              "next": -1
+            }
+          ]
+        }
+      ]
     },
     {
       "ord": 20,
@@ -299,7 +1280,62 @@
       "grammar": "g-praesens",
       "grammarNote": "Consolidation. Nothing new — everything from units 1–19 in one connected piece of speech.",
       "topics": ["time", "core-verbs"],
-      "words": 12
+      "words": 12,
+      "scenario": {
+        "role": "a friend asking how your day goes",
+        "goal": "describe your day in order",
+        "opener": "Wie ist dein Tag?"
+      },
+      "dialogue": [
+        {
+          "them": "Was machst du zuerst?",
+          "options": [
+            {
+              "say": "Zuerst dusche ich.",
+              "ok": true,
+              "next": 1
+            },
+            {
+              "say": "Zuerst ich dusche.",
+              "ok": false,
+              "why": "The verb comes second: zuerst dusche ich.",
+              "next": 1
+            }
+          ]
+        },
+        {
+          "them": "Und dann?",
+          "options": [
+            {
+              "say": "Dann frühstücke ich.",
+              "ok": true,
+              "next": 1
+            },
+            {
+              "say": "Dann ich frühstücke.",
+              "ok": false,
+              "why": "Again, the verb goes second: dann frühstücke ich.",
+              "next": 1
+            }
+          ]
+        },
+        {
+          "them": "Und am Abend?",
+          "options": [
+            {
+              "say": "Danach koche ich. Ich schlafe oft früh.",
+              "ok": true,
+              "next": -1
+            },
+            {
+              "say": "Danach ich koche immer manchmal.",
+              "ok": false,
+              "why": "immer and manchmal contradict each other. Pick one.",
+              "next": -1
+            }
+          ]
+        }
+      ]
     },
     {
       "ord": 21,
@@ -314,7 +1350,62 @@
       "grammar": "g-akkusativ",
       "grammarNote": "The first case shift, and the whole of A1.2 leans on it. Only der becomes den — saying that plainly removes most of the fear.",
       "topics": ["articles"],
-      "words": 12
+      "words": 12,
+      "scenario": {
+        "role": "a flatmate who has lost something",
+        "goal": "say what you are looking for and found",
+        "opener": "Was suchst du?"
+      },
+      "dialogue": [
+        {
+          "them": "Was suchst du?",
+          "options": [
+            {
+              "say": "Ich suche den Schlüssel.",
+              "ok": true,
+              "next": 1
+            },
+            {
+              "say": "Ich suche der Schlüssel.",
+              "ok": false,
+              "why": "The object takes the accusative: den Schlüssel.",
+              "next": 1
+            }
+          ]
+        },
+        {
+          "them": "Und die Tasche?",
+          "options": [
+            {
+              "say": "Ich sehe die Tasche nicht.",
+              "ok": true,
+              "next": 1
+            },
+            {
+              "say": "Ich sehe der Tasche nicht.",
+              "ok": false,
+              "why": "Feminine stays die in the accusative.",
+              "next": 1
+            }
+          ]
+        },
+        {
+          "them": "Hier ist sie!",
+          "options": [
+            {
+              "say": "Danke, jetzt finde ich alles.",
+              "ok": true,
+              "next": -1
+            },
+            {
+              "say": "Danke, ich kenne einen.",
+              "ok": false,
+              "why": "einen needs a noun after it.",
+              "next": -1
+            }
+          ]
+        }
+      ]
     },
     {
       "ord": 22,
@@ -329,7 +1420,62 @@
       "grammar": "g-akkusativ",
       "grammarNote": "Accusative where you actually meet it: ich nehme den Käse.",
       "topics": ["food", "shopping"],
-      "words": 14
+      "words": 14,
+      "scenario": {
+        "role": "a cashier at the supermarket",
+        "goal": "buy two things and pay",
+        "opener": "Guten Tag! Das macht acht Euro."
+      },
+      "dialogue": [
+        {
+          "them": "Was möchten Sie?",
+          "options": [
+            {
+              "say": "Ein Kilo Äpfel, bitte.",
+              "ok": true,
+              "next": 1
+            },
+            {
+              "say": "Ein Gramm Äpfel, bitte.",
+              "ok": false,
+              "why": "A gram of apples is nothing. Use Kilo.",
+              "next": 1
+            }
+          ]
+        },
+        {
+          "them": "Und noch etwas?",
+          "options": [
+            {
+              "say": "Eine Flasche Wasser, bitte.",
+              "ok": true,
+              "next": 1
+            },
+            {
+              "say": "Eine Packung Wasser, bitte.",
+              "ok": false,
+              "why": "Water comes in a Flasche, not a Packung.",
+              "next": 1
+            }
+          ]
+        },
+        {
+          "them": "Das macht acht Euro.",
+          "options": [
+            {
+              "say": "Hier, bitte. Brauche ich eine Tüte?",
+              "ok": true,
+              "next": -1
+            },
+            {
+              "say": "Das ist billig Geld.",
+              "ok": false,
+              "why": "Say what you mean: das ist billig.",
+              "next": -1
+            }
+          ]
+        }
+      ]
     },
     {
       "ord": 23,
@@ -344,7 +1490,62 @@
       "grammar": "g-praepositionen-ort",
       "grammarNote": "Static place prepositions only. The two-way ones wait for unit 39, after the dative exists.",
       "topics": ["places", "prepositions"],
-      "words": 12
+      "words": 12,
+      "scenario": {
+        "role": "a stranger who has stopped you",
+        "goal": "give directions",
+        "opener": "Entschuldigung, wo ist der Supermarkt?"
+      },
+      "dialogue": [
+        {
+          "them": "Wo ist der Supermarkt?",
+          "options": [
+            {
+              "say": "Gehen Sie geradeaus.",
+              "ok": true,
+              "next": 1
+            },
+            {
+              "say": "Gehen Sie weit.",
+              "ok": false,
+              "why": "weit says how far, not which way.",
+              "next": 1
+            }
+          ]
+        },
+        {
+          "them": "Und dann?",
+          "options": [
+            {
+              "say": "An der Ecke links.",
+              "ok": true,
+              "next": 1
+            },
+            {
+              "say": "An der Ecke zwischen.",
+              "ok": false,
+              "why": "zwischen needs two things to be between.",
+              "next": 1
+            }
+          ]
+        },
+        {
+          "them": "Ist das weit?",
+          "options": [
+            {
+              "say": "Nein, er ist neben dem Café.",
+              "ok": true,
+              "next": -1
+            },
+            {
+              "say": "Nein, er ist bei links.",
+              "ok": false,
+              "why": "bei takes a place, not a direction.",
+              "next": -1
+            }
+          ]
+        }
+      ]
     },
     {
       "ord": 24,
@@ -359,7 +1560,62 @@
       "grammar": "g-praepositionen-ort",
       "grammarNote": "zum/zur as fixed forms. They are contractions of a dative that has not been taught, and pretending otherwise would be a lie a learner catches later.",
       "topics": ["places"],
-      "words": 12
+      "words": 12,
+      "scenario": {
+        "role": "a visitor new to town",
+        "goal": "say what is where",
+        "opener": "Wo ist die Bank?"
+      },
+      "dialogue": [
+        {
+          "them": "Wo ist die Bank?",
+          "options": [
+            {
+              "say": "Die Bank ist neben dem Rathaus.",
+              "ok": true,
+              "next": 1
+            },
+            {
+              "say": "Die Apotheke ist neben dem Rathaus.",
+              "ok": false,
+              "why": "A pharmacy sells medicine, not money.",
+              "next": 1
+            }
+          ]
+        },
+        {
+          "them": "Und ein Restaurant?",
+          "options": [
+            {
+              "say": "Das Restaurant ist am Park.",
+              "ok": true,
+              "next": 1
+            },
+            {
+              "say": "Das Krankenhaus ist am Park.",
+              "ok": false,
+              "why": "You were asked where to eat.",
+              "next": 1
+            }
+          ]
+        },
+        {
+          "them": "Und die Post?",
+          "options": [
+            {
+              "say": "Zur Post? Immer geradeaus.",
+              "ok": true,
+              "next": -1
+            },
+            {
+              "say": "Zum Post? Immer geradeaus.",
+              "ok": false,
+              "why": "Post is feminine: zur Post.",
+              "next": -1
+            }
+          ]
+        }
+      ]
     },
     {
       "ord": 25,
@@ -374,7 +1630,62 @@
       "grammar": "g-modalverben",
       "grammarNote": "The bracket — modal second, infinitive last — is the structural idea of German. Two modals first, not all six.",
       "topics": ["core-verbs"],
-      "words": 10
+      "words": 10,
+      "scenario": {
+        "role": "a colleague who needs a hand",
+        "goal": "say what you can and must do",
+        "opener": "Kannst du mir helfen?"
+      },
+      "dialogue": [
+        {
+          "them": "Kannst du mir helfen?",
+          "options": [
+            {
+              "say": "Ja, ich kann dir helfen.",
+              "ok": true,
+              "next": 1
+            },
+            {
+              "say": "Ja, ich kann dir hilfe.",
+              "ok": false,
+              "why": "After können the verb stays in the infinitive: helfen.",
+              "next": 1
+            }
+          ]
+        },
+        {
+          "them": "Hast du jetzt Zeit?",
+          "options": [
+            {
+              "say": "Nein, ich muss arbeiten.",
+              "ok": true,
+              "next": 1
+            },
+            {
+              "say": "Nein, ich muss arbeite.",
+              "ok": false,
+              "why": "After müssen it is the infinitive: arbeiten.",
+              "next": 1
+            }
+          ]
+        },
+        {
+          "them": "Und später?",
+          "options": [
+            {
+              "say": "Vielleicht. Es ist nicht schwer.",
+              "ok": true,
+              "next": -1
+            },
+            {
+              "say": "Vielleicht. Es ist nicht nötig möglich.",
+              "ok": false,
+              "why": "Say one: nötig or möglich.",
+              "next": -1
+            }
+          ]
+        }
+      ]
     },
     {
       "ord": 26,
@@ -389,7 +1700,62 @@
       "grammar": "g-modalverben",
       "grammarNote": "möchten becomes a modal here, having been a fixed phrase since unit 15. Ich will can sound blunt to a German ear; that is worth saying out loud.",
       "topics": ["core-verbs"],
-      "words": 10
+      "words": 10,
+      "scenario": {
+        "role": "someone in a place with rules",
+        "goal": "say what is allowed",
+        "opener": "Darf man hier rauchen?"
+      },
+      "dialogue": [
+        {
+          "them": "Darf man hier rauchen?",
+          "options": [
+            {
+              "say": "Nein, das ist verboten.",
+              "ok": true,
+              "next": 1
+            },
+            {
+              "say": "Nein, das ist erlaubt.",
+              "ok": false,
+              "why": "verboten and erlaubt are opposites.",
+              "next": 1
+            }
+          ]
+        },
+        {
+          "them": "Und parken?",
+          "options": [
+            {
+              "say": "Ja, hier darf man parken.",
+              "ok": true,
+              "next": 1
+            },
+            {
+              "say": "Ja, hier will man parken.",
+              "ok": false,
+              "why": "wollen is wanting; permission is dürfen.",
+              "next": 1
+            }
+          ]
+        },
+        {
+          "them": "Was möchtest du machen?",
+          "options": [
+            {
+              "say": "Ich will lieber gehen.",
+              "ok": true,
+              "next": -1
+            },
+            {
+              "say": "Ich soll lieber gehen sollen.",
+              "ok": false,
+              "why": "One modal is enough.",
+              "next": -1
+            }
+          ]
+        }
+      ]
     },
     {
       "ord": 27,
@@ -404,7 +1770,62 @@
       "grammar": "g-trennbare",
       "grammarNote": "Straight after the modal bracket, because it is the same idea: the meaningful part goes last.",
       "topics": ["core-verbs"],
-      "words": 12
+      "words": 12,
+      "scenario": {
+        "role": "a friend planning the evening",
+        "goal": "arrange when things start",
+        "opener": "Wann fängst du an?"
+      },
+      "dialogue": [
+        {
+          "them": "Wann stehst du auf?",
+          "options": [
+            {
+              "say": "Ich stehe um sieben auf.",
+              "ok": true,
+              "next": 1
+            },
+            {
+              "say": "Ich aufstehe um sieben.",
+              "ok": false,
+              "why": "Separable verbs split: ich stehe … auf.",
+              "next": 1
+            }
+          ]
+        },
+        {
+          "them": "Und wann fängt das an?",
+          "options": [
+            {
+              "say": "Es fängt um acht an.",
+              "ok": true,
+              "next": 1
+            },
+            {
+              "say": "Es anfängt um acht.",
+              "ok": false,
+              "why": "Again it splits: es fängt … an.",
+              "next": 1
+            }
+          ]
+        },
+        {
+          "them": "Kommst du mit?",
+          "options": [
+            {
+              "say": "Ja, ich komme mit. Ich rufe dich an.",
+              "ok": true,
+              "next": -1
+            },
+            {
+              "say": "Ja, ich mitkomme.",
+              "ok": false,
+              "why": "ich komme mit.",
+              "next": -1
+            }
+          ]
+        }
+      ]
     },
     {
       "ord": 28,
@@ -419,7 +1840,62 @@
       "grammar": "g-es-gibt",
       "grammarNote": "es gibt takes the accusative, which is unit 21 doing real work.",
       "topics": ["home"],
-      "words": 14
+      "words": 14,
+      "scenario": {
+        "role": "a landlord showing a flat",
+        "goal": "ask about the rooms and the rent",
+        "opener": "Das ist die Wohnung."
+      },
+      "dialogue": [
+        {
+          "them": "Das ist das Wohnzimmer.",
+          "options": [
+            {
+              "say": "Es gibt auch einen Balkon, oder?",
+              "ok": true,
+              "next": 1
+            },
+            {
+              "say": "Es gibt auch ein Balkon, oder?",
+              "ok": false,
+              "why": "es gibt takes the accusative: einen Balkon.",
+              "next": 1
+            }
+          ]
+        },
+        {
+          "them": "Ja, und hier ist die Küche.",
+          "options": [
+            {
+              "say": "Wie viele Zimmer gibt es?",
+              "ok": true,
+              "next": 1
+            },
+            {
+              "say": "Wie viele Zimmer es gibt?",
+              "ok": false,
+              "why": "In a question the verb comes first: gibt es.",
+              "next": 1
+            }
+          ]
+        },
+        {
+          "them": "Drei Zimmer.",
+          "options": [
+            {
+              "say": "Und wie viel ist die Miete?",
+              "ok": true,
+              "next": -1
+            },
+            {
+              "say": "Und wie viel ist der Vermieter?",
+              "ok": false,
+              "why": "The Vermieter is the person. You mean the Miete.",
+              "next": -1
+            }
+          ]
+        }
+      ]
     },
     {
       "ord": 29,
@@ -434,7 +1910,62 @@
       "grammar": "g-dativ",
       "grammarNote": "The second case, eight units after the first. Introduced through people rather than through a table.",
       "topics": ["articles", "pronouns"],
-      "words": 12
+      "words": 12,
+      "scenario": {
+        "role": "a friend at your birthday",
+        "goal": "say who gets what",
+        "opener": "Wem gibst du das?"
+      },
+      "dialogue": [
+        {
+          "them": "Wem gibst du das Buch?",
+          "options": [
+            {
+              "say": "Ich gebe dir das Buch.",
+              "ok": true,
+              "next": 1
+            },
+            {
+              "say": "Ich gebe dich das Buch.",
+              "ok": false,
+              "why": "The person receiving takes the dative: dir.",
+              "next": 1
+            }
+          ]
+        },
+        {
+          "them": "Und wem gehört die Tasche?",
+          "options": [
+            {
+              "say": "Sie gehört mir.",
+              "ok": true,
+              "next": 1
+            },
+            {
+              "say": "Sie gehört mich.",
+              "ok": false,
+              "why": "gehören always takes the dative: mir.",
+              "next": 1
+            }
+          ]
+        },
+        {
+          "them": "Schmeckt dir der Kaffee?",
+          "options": [
+            {
+              "say": "Ja, er schmeckt mir gut.",
+              "ok": true,
+              "next": -1
+            },
+            {
+              "say": "Ja, er schmeckt ich gut.",
+              "ok": false,
+              "why": "schmecken takes the dative: mir.",
+              "next": -1
+            }
+          ]
+        }
+      ]
     },
     {
       "ord": 30,
@@ -449,7 +1980,62 @@
       "grammar": "g-dativ",
       "grammarNote": "The first Alltag-shaped unit. Uses time from unit 10, days from 11, modals from 25.",
       "topics": ["time"],
-      "words": 12
+      "words": 12,
+      "scenario": {
+        "role": "a receptionist at the doctor's",
+        "goal": "make an appointment",
+        "opener": "Praxis Dr. Weber, guten Tag!"
+      },
+      "dialogue": [
+        {
+          "them": "Guten Tag!",
+          "options": [
+            {
+              "say": "Ich brauche einen Termin.",
+              "ok": true,
+              "next": 1
+            },
+            {
+              "say": "Ich brauche eine Praxis.",
+              "ok": false,
+              "why": "The Praxis is the surgery. You want a Termin.",
+              "next": 1
+            }
+          ]
+        },
+        {
+          "them": "Am Montag um neun?",
+          "options": [
+            {
+              "say": "Ist es auch nachmittags frei?",
+              "ok": true,
+              "next": 1
+            },
+            {
+              "say": "Ist es auch gestern frei?",
+              "ok": false,
+              "why": "gestern is in the past.",
+              "next": 1
+            }
+          ]
+        },
+        {
+          "them": "Um vier ist frei.",
+          "options": [
+            {
+              "say": "Gut, ich nehme den Termin.",
+              "ok": true,
+              "next": -1
+            },
+            {
+              "say": "Gut, ich möchte absagen.",
+              "ok": false,
+              "why": "absagen cancels it. You have just booked it.",
+              "next": -1
+            }
+          ]
+        }
+      ]
     },
     {
       "ord": 31,
@@ -464,7 +2050,62 @@
       "grammar": "g-dativ",
       "grammarNote": "mir tut der Kopf weh — dative where German insists on it and English does not.",
       "topics": ["body", "health"],
-      "words": 14
+      "words": 14,
+      "scenario": {
+        "role": "a doctor asking what is wrong",
+        "goal": "describe where it hurts",
+        "opener": "Wo sind die Schmerzen?"
+      },
+      "dialogue": [
+        {
+          "them": "Wo sind die Schmerzen?",
+          "options": [
+            {
+              "say": "Mein Kopf tut weh.",
+              "ok": true,
+              "next": 1
+            },
+            {
+              "say": "Mein Kopf tut wehtun.",
+              "ok": false,
+              "why": "The verb is already there: tut weh.",
+              "next": 1
+            }
+          ]
+        },
+        {
+          "them": "Haben Sie Fieber?",
+          "options": [
+            {
+              "say": "Ja, ich habe Fieber.",
+              "ok": true,
+              "next": 1
+            },
+            {
+              "say": "Ja, ich habe Erkältung Tablette.",
+              "ok": false,
+              "why": "Say one thing at a time.",
+              "next": 1
+            }
+          ]
+        },
+        {
+          "them": "Ich schreibe ein Rezept.",
+          "options": [
+            {
+              "say": "Danke. Nehme ich die Tablette morgens?",
+              "ok": true,
+              "next": -1
+            },
+            {
+              "say": "Danke. Nehme ich das Bein morgens?",
+              "ok": false,
+              "why": "Bein is your leg, not the medicine.",
+              "next": -1
+            }
+          ]
+        }
+      ]
     },
     {
       "ord": 32,
@@ -479,7 +2120,62 @@
       "grammar": "g-perfekt-haben",
       "grammarNote": "The spoken past, and the third use of the bracket. ge- -t for regular verbs; the strong ones are learnt as they come.",
       "topics": ["core-verbs"],
-      "words": 12
+      "words": 12,
+      "scenario": {
+        "role": "a colleague on Monday",
+        "goal": "say what you did at the weekend",
+        "opener": "Was hast du am Wochenende gemacht?"
+      },
+      "dialogue": [
+        {
+          "them": "Was hast du gemacht?",
+          "options": [
+            {
+              "say": "Ich habe viel gearbeitet.",
+              "ok": true,
+              "next": 1
+            },
+            {
+              "say": "Ich habe viel arbeiten.",
+              "ok": false,
+              "why": "The Perfekt needs the participle: gearbeitet.",
+              "next": 1
+            }
+          ]
+        },
+        {
+          "them": "Und am Sonntag?",
+          "options": [
+            {
+              "say": "Ich habe ein Buch gelesen.",
+              "ok": true,
+              "next": 1
+            },
+            {
+              "say": "Ich habe ein Buch lesen.",
+              "ok": false,
+              "why": "The participle is gelesen.",
+              "next": 1
+            }
+          ]
+        },
+        {
+          "them": "Sehr gut.",
+          "options": [
+            {
+              "say": "Ja, und ich habe viel gegessen!",
+              "ok": true,
+              "next": -1
+            },
+            {
+              "say": "Ja, und ich habe viel essen!",
+              "ok": false,
+              "why": "The participle is gegessen.",
+              "next": -1
+            }
+          ]
+        }
+      ]
     },
     {
       "ord": 33,
@@ -494,7 +2190,62 @@
       "grammar": "g-perfekt-sein",
       "grammarNote": "Movement and change of state take sein. A short closed list, so it is worth learning as a list.",
       "topics": ["core-verbs"],
-      "words": 10
+      "words": 10,
+      "scenario": {
+        "role": "a friend you have not seen",
+        "goal": "say where you went",
+        "opener": "Wo warst du?"
+      },
+      "dialogue": [
+        {
+          "them": "Wo warst du?",
+          "options": [
+            {
+              "say": "Ich bin nach Berlin gefahren.",
+              "ok": true,
+              "next": 1
+            },
+            {
+              "say": "Ich habe nach Berlin gefahren.",
+              "ok": false,
+              "why": "Movement takes sein: ich bin gefahren.",
+              "next": 1
+            }
+          ]
+        },
+        {
+          "them": "Wann bist du zurück?",
+          "options": [
+            {
+              "say": "Ich bin gestern gekommen.",
+              "ok": true,
+              "next": 1
+            },
+            {
+              "say": "Ich habe gestern gekommen.",
+              "ok": false,
+              "why": "kommen is movement: ich bin gekommen.",
+              "next": 1
+            }
+          ]
+        },
+        {
+          "them": "Und heute?",
+          "options": [
+            {
+              "say": "Heute bin ich zu Hause geblieben.",
+              "ok": true,
+              "next": -1
+            },
+            {
+              "say": "Heute habe ich zu Hause geblieben.",
+              "ok": false,
+              "why": "bleiben takes sein: ich bin geblieben.",
+              "next": -1
+            }
+          ]
+        }
+      ]
     },
     {
       "ord": 34,
@@ -509,7 +2260,62 @@
       "grammar": null,
       "grammarNote": "A vocabulary breather between the two past tenses and the harder second half.",
       "topics": ["weather", "time"],
-      "words": 14
+      "words": 14,
+      "scenario": {
+        "role": "a neighbour at the door",
+        "goal": "talk about the weather",
+        "opener": "Kaltes Wetter heute, oder?"
+      },
+      "dialogue": [
+        {
+          "them": "Wie ist das Wetter?",
+          "options": [
+            {
+              "say": "Es ist kalt und es regnet.",
+              "ok": true,
+              "next": 1
+            },
+            {
+              "say": "Es ist kalt und es Regen.",
+              "ok": false,
+              "why": "Regen is the noun; the verb is regnet.",
+              "next": 1
+            }
+          ]
+        },
+        {
+          "them": "Und morgen?",
+          "options": [
+            {
+              "say": "Morgen ist es sonnig.",
+              "ok": true,
+              "next": 1
+            },
+            {
+              "say": "Morgen ist es Sonne sonnig warm.",
+              "ok": false,
+              "why": "One word is enough: sonnig.",
+              "next": 1
+            }
+          ]
+        },
+        {
+          "them": "Gut!",
+          "options": [
+            {
+              "say": "Ja, der Sommer kommt.",
+              "ok": true,
+              "next": -1
+            },
+            {
+              "say": "Ja, der Winter schneit warm.",
+              "ok": false,
+              "why": "Snow and warm do not go together.",
+              "next": -1
+            }
+          ]
+        }
+      ]
     },
     {
       "ord": 35,
@@ -524,7 +2330,62 @@
       "grammar": "g-adjektiv-praedikativ",
       "grammarNote": "Still predicative. Attributive endings are deliberately not A1 and the course says so rather than half-teaching them.",
       "topics": ["clothes", "shopping"],
-      "words": 14
+      "words": 14,
+      "scenario": {
+        "role": "a shop assistant",
+        "goal": "try something on and change the size",
+        "opener": "Kann ich Ihnen helfen?"
+      },
+      "dialogue": [
+        {
+          "them": "Kann ich Ihnen helfen?",
+          "options": [
+            {
+              "say": "Ich möchte die Jacke anprobieren.",
+              "ok": true,
+              "next": 1
+            },
+            {
+              "say": "Ich möchte die Jacke umtauschen.",
+              "ok": false,
+              "why": "umtauschen is for something you already bought.",
+              "next": 1
+            }
+          ]
+        },
+        {
+          "them": "Welche Größe?",
+          "options": [
+            {
+              "say": "Größe achtunddreißig, bitte.",
+              "ok": true,
+              "next": 1
+            },
+            {
+              "say": "Größe rot, bitte.",
+              "ok": false,
+              "why": "rot is a colour, not a size.",
+              "next": 1
+            }
+          ]
+        },
+        {
+          "them": "Und, passt sie?",
+          "options": [
+            {
+              "say": "Sie ist zu klein. Haben Sie sie größer?",
+              "ok": true,
+              "next": -1
+            },
+            {
+              "say": "Sie ist zu klein. Ich trage sie.",
+              "ok": false,
+              "why": "If it is too small you do not want to wear it.",
+              "next": -1
+            }
+          ]
+        }
+      ]
     },
     {
       "ord": 36,
@@ -539,7 +2400,62 @@
       "grammar": "g-praepositionen-ort",
       "grammarNote": "mit dem Bus — the dative from unit 29 in the phrase you use every day.",
       "topics": ["transport", "places"],
-      "words": 12
+      "words": 12,
+      "scenario": {
+        "role": "someone on the platform",
+        "goal": "work out which train and when",
+        "opener": "Fährt der Zug nach Köln?"
+      },
+      "dialogue": [
+        {
+          "them": "Welches Gleis?",
+          "options": [
+            {
+              "say": "Gleis drei.",
+              "ok": true,
+              "next": 1
+            },
+            {
+              "say": "Haltestelle drei.",
+              "ok": false,
+              "why": "A train leaves from a Gleis; a bus from a Haltestelle.",
+              "next": 1
+            }
+          ]
+        },
+        {
+          "them": "Muss ich umsteigen?",
+          "options": [
+            {
+              "say": "Ja, in Hannover steigst du um.",
+              "ok": true,
+              "next": 1
+            },
+            {
+              "say": "Ja, in Hannover steigst du ein.",
+              "ok": false,
+              "why": "einsteigen is getting on at the start; changing is umsteigen.",
+              "next": 1
+            }
+          ]
+        },
+        {
+          "them": "Und die Fahrkarte?",
+          "options": [
+            {
+              "say": "Die brauchst du auch.",
+              "ok": true,
+              "next": -1
+            },
+            {
+              "say": "Die Verspätung brauchst du auch.",
+              "ok": false,
+              "why": "A delay is not something you need.",
+              "next": -1
+            }
+          ]
+        }
+      ]
     },
     {
       "ord": 37,
@@ -554,7 +2470,62 @@
       "grammar": "g-imperativ",
       "grammarNote": "du, ihr and Sie forms. The Sie form is what you meet on signs and in offices, so it comes first here.",
       "topics": ["core-verbs"],
-      "words": 10
+      "words": 10,
+      "scenario": {
+        "role": "a friend who is about to do something risky",
+        "goal": "tell them what to do",
+        "opener": "Ich fahre jetzt schnell!"
+      },
+      "dialogue": [
+        {
+          "them": "Ich fahre jetzt schnell!",
+          "options": [
+            {
+              "say": "Fahr bitte langsam!",
+              "ok": true,
+              "next": 1
+            },
+            {
+              "say": "Fahren bitte langsam!",
+              "ok": false,
+              "why": "To a friend the imperative is fahr.",
+              "next": 1
+            }
+          ]
+        },
+        {
+          "them": "Ist schon gut.",
+          "options": [
+            {
+              "say": "Pass bitte auf!",
+              "ok": true,
+              "next": 1
+            },
+            {
+              "say": "Aufpassen bitte du!",
+              "ok": false,
+              "why": "Pass … auf, with the prefix at the end.",
+              "next": 1
+            }
+          ]
+        },
+        {
+          "them": "Ja, ja.",
+          "options": [
+            {
+              "say": "Sei vorsichtig. Lies das Schild!",
+              "ok": true,
+              "next": -1
+            },
+            {
+              "say": "Sein vorsichtig.",
+              "ok": false,
+              "why": "The imperative of sein is sei.",
+              "next": -1
+            }
+          ]
+        }
+      ]
     },
     {
       "ord": 38,
@@ -569,7 +2540,62 @@
       "grammar": "g-possessiv",
       "grammarNote": "The full paradigm, now that nominative, accusative and dative all exist. Unit 13 taught the nominative alone; this closes it.",
       "topics": ["family", "articles"],
-      "words": 10
+      "words": 10,
+      "scenario": {
+        "role": "a colleague sorting out whose things are whose",
+        "goal": "say who owns what",
+        "opener": "Wessen Tasche ist das?"
+      },
+      "dialogue": [
+        {
+          "them": "Wessen Tasche ist das?",
+          "options": [
+            {
+              "say": "Das ist unsere Tasche.",
+              "ok": true,
+              "next": 1
+            },
+            {
+              "say": "Das ist unser Tasche.",
+              "ok": false,
+              "why": "Tasche is feminine: unsere Tasche.",
+              "next": 1
+            }
+          ]
+        },
+        {
+          "them": "Und der Stift?",
+          "options": [
+            {
+              "say": "Das ist euer Stift.",
+              "ok": true,
+              "next": 1
+            },
+            {
+              "say": "Das ist eure Stift.",
+              "ok": false,
+              "why": "Stift is masculine: euer Stift.",
+              "next": 1
+            }
+          ]
+        },
+        {
+          "them": "Und der Hund?",
+          "options": [
+            {
+              "say": "Der gehört meiner Nachbarin.",
+              "ok": true,
+              "next": -1
+            },
+            {
+              "say": "Der gehört meine Nachbarin.",
+              "ok": false,
+              "why": "gehören takes the dative: meiner Nachbarin.",
+              "next": -1
+            }
+          ]
+        }
+      ]
     },
     {
       "ord": 39,
@@ -584,7 +2610,62 @@
       "grammar": "g-wechselpraep",
       "grammarNote": "The hardest thing in A1 and correctly last: it needs both cases and the wo/wohin distinction. Movement takes the accusative, position the dative.",
       "topics": ["prepositions", "places"],
-      "words": 12
+      "words": 12,
+      "scenario": {
+        "role": "a flatmate rearranging the room",
+        "goal": "say where things go and where they are",
+        "opener": "Wohin stellen wir das?"
+      },
+      "dialogue": [
+        {
+          "them": "Wohin stelle ich die Lampe?",
+          "options": [
+            {
+              "say": "Stell sie auf den Tisch.",
+              "ok": true,
+              "next": 1
+            },
+            {
+              "say": "Stell sie auf dem Tisch.",
+              "ok": false,
+              "why": "Movement takes the accusative: auf den Tisch.",
+              "next": 1
+            }
+          ]
+        },
+        {
+          "them": "Und wo steht das Bett?",
+          "options": [
+            {
+              "say": "Es steht an der Wand.",
+              "ok": true,
+              "next": 1
+            },
+            {
+              "say": "Es steht an die Wand.",
+              "ok": false,
+              "why": "No movement, so the dative: an der Wand.",
+              "next": 1
+            }
+          ]
+        },
+        {
+          "them": "Und das Buch?",
+          "options": [
+            {
+              "say": "Leg es auf den Tisch.",
+              "ok": true,
+              "next": -1
+            },
+            {
+              "say": "Leg es auf dem Tisch.",
+              "ok": false,
+              "why": "You are moving it there: auf den Tisch.",
+              "next": -1
+            }
+          ]
+        }
+      ]
     },
     {
       "ord": 40,
@@ -599,7 +2680,62 @@
       "grammar": null,
       "grammarNote": "Nothing new. If the forty units worked, this is the unit where you notice.",
       "topics": ["greetings", "family", "core-verbs"],
-      "words": 10
+      "words": 10,
+      "scenario": {
+        "role": "somebody you have just met",
+        "goal": "introduce yourself properly",
+        "opener": "Erzähl mal — was machst du?"
+      },
+      "dialogue": [
+        {
+          "them": "Was machst du?",
+          "options": [
+            {
+              "say": "Ich studiere. Mein Beruf kommt später.",
+              "ok": true,
+              "next": 1
+            },
+            {
+              "say": "Ich Beruf studieren.",
+              "ok": false,
+              "why": "Say it as a sentence: ich studiere.",
+              "next": 1
+            }
+          ]
+        },
+        {
+          "them": "Und was machst du gern?",
+          "options": [
+            {
+              "say": "Am liebsten koche ich.",
+              "ok": true,
+              "next": 1
+            },
+            {
+              "say": "Am liebsten ich koche.",
+              "ok": false,
+              "why": "The verb comes second: am liebsten koche ich.",
+              "next": 1
+            }
+          ]
+        },
+        {
+          "them": "Sehr interessant!",
+          "options": [
+            {
+              "say": "Ja, das ist mein Hobby. Und du?",
+              "ok": true,
+              "next": -1
+            },
+            {
+              "say": "Ja, das ist mein Erfahrung wichtig.",
+              "ok": false,
+              "why": "Erfahrung is feminine, and this says nothing. Keep it simple.",
+              "next": -1
+            }
+          ]
+        }
+      ]
     }
   ]
 }

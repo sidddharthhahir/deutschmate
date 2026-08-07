@@ -197,7 +197,7 @@ a different one.
 | 4    | **Hören** · **Lesen** · **Wiederlesen** · **Video** | rotates. Video one day in three where the unit has one — 33 of the 40 A1 units are matched to a _Nicos Weg_ episode. Reading borrows an old text when this unit has none of its own, and says so. |
 | 5    | **Sätze bauen**                                     |                                                                                                                                                                                                   |
 | 6    | **Sprechen** _or_ **Schreiben**                     | speaking two days in three.                                                                                                                                                                       |
-| 7    | **Gespräch** _or_ **Nochmal sprechen**              | every third one is a scene you did weeks ago. Absent for the whole of A1, which has no scenarios written yet.                                                                                     |
+| 7    | **Gespräch** _or_ **Nochmal sprechen**              | every third one is a scene you did weeks ago. Runs from day one: all 120 units have a scenario, and A1's forty each ship a script that works offline.                                             |
 | 8    | **Abschluss**                                       | the closing quiz, then the recap.                                                                                                                                                                 |
 
 A full day is eight or nine blocks and about ninety minutes; a quiet one is
@@ -830,13 +830,18 @@ the [Goethe-Institut](https://www.goethe.de/de/spr/kup/prf.html).
   **Plusquamperfekt**, **irreale Bedingungssätze**, and **the passive with a
   modal** — the sentence shape every contract and form is written in.
 
-- **A1 has no conversation scenarios.** `Gespräch` is slot 7 of the daily
-  rhythm and never fires below A2.1, which has all twenty. A unit with no
-  scenario now produces no block rather than a broken one — it used to store
-  the four characters `"null"`, which is truthy, and take the whole session
-  down at block five.
-
 ### Closed since
+
+- ~~A1 has no conversation scenarios.~~ All forty are written, so `Gespräch`
+  now fires on day one rather than waiting until A2.1. Each is a three-turn
+  branching dialogue with a right answer and a wrong one that names the mistake,
+  and each ships its script, so A1 — the level most likely to be studied on a
+  train — needs no key, no budget and no signal. `scripts/check-scenes.mts`
+  enforces the same rule the sentence gate applies to the corpus: a scene at
+  unit 6 may say the words of units 1–6 and nothing else. Its first run found
+  nineteen scenes reaching ahead of themselves — `Bahnhof` a unit before it is
+  taught, `es gibt` four units early — and `tests/scene.test.mts` runs it, so
+  the next one fails the build instead of reaching a beginner.
 
 - ~~The Progress page is eleven sections in flat order.~~ Now four named bands —
   _Was kannst du · Wie läuft es · Was hakt · Nebenbei_ — each showing the

@@ -24,11 +24,62 @@
       "etwas"
     ],
     "grammar_id": "g-akkusativ",
-    "scenario": null,
-    "dialogue": null,
-    "prereq": [
-      "a1-1-u20"
-    ]
+    "scenario": {
+      "role": "a flatmate who has lost something",
+      "goal": "say what you are looking for and found",
+      "opener": "Was suchst du?"
+    },
+    "dialogue": [
+      {
+        "them": "Was suchst du?",
+        "options": [
+          {
+            "say": "Ich suche den Schlüssel.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Ich suche der Schlüssel.",
+            "ok": false,
+            "why": "The object takes the accusative: den Schlüssel.",
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Und die Tasche?",
+        "options": [
+          {
+            "say": "Ich sehe die Tasche nicht.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Ich sehe der Tasche nicht.",
+            "ok": false,
+            "why": "Feminine stays die in the accusative.",
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Hier ist sie!",
+        "options": [
+          {
+            "say": "Danke, jetzt finde ich alles.",
+            "ok": true,
+            "next": -1
+          },
+          {
+            "say": "Danke, ich kenne einen.",
+            "ok": false,
+            "why": "einen needs a noun after it.",
+            "next": -1
+          }
+        ]
+      }
+    ],
+    "prereq": ["a1-1-u20"]
   },
   {
     "id": "a1-2-u02",
@@ -57,11 +108,62 @@
       "das-angebot"
     ],
     "grammar_id": "g-akkusativ",
-    "scenario": null,
-    "dialogue": null,
-    "prereq": [
-      "a1-2-u01"
-    ]
+    "scenario": {
+      "role": "a cashier at the supermarket",
+      "goal": "buy two things and pay",
+      "opener": "Guten Tag! Das macht acht Euro."
+    },
+    "dialogue": [
+      {
+        "them": "Was möchten Sie?",
+        "options": [
+          {
+            "say": "Ein Kilo Äpfel, bitte.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Ein Gramm Äpfel, bitte.",
+            "ok": false,
+            "why": "A gram of apples is nothing. Use Kilo.",
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Und noch etwas?",
+        "options": [
+          {
+            "say": "Eine Flasche Wasser, bitte.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Eine Packung Wasser, bitte.",
+            "ok": false,
+            "why": "Water comes in a Flasche, not a Packung.",
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Das macht acht Euro.",
+        "options": [
+          {
+            "say": "Hier, bitte. Brauche ich eine Tüte?",
+            "ok": true,
+            "next": -1
+          },
+          {
+            "say": "Das ist billig Geld.",
+            "ok": false,
+            "why": "Say what you mean: das ist billig.",
+            "next": -1
+          }
+        ]
+      }
+    ],
+    "prereq": ["a1-2-u01"]
   },
   {
     "id": "a1-2-u03",
@@ -88,11 +190,62 @@
       "weit"
     ],
     "grammar_id": "g-praepositionen-ort",
-    "scenario": null,
-    "dialogue": null,
-    "prereq": [
-      "a1-2-u02"
-    ]
+    "scenario": {
+      "role": "a stranger who has stopped you",
+      "goal": "give directions",
+      "opener": "Entschuldigung, wo ist der Supermarkt?"
+    },
+    "dialogue": [
+      {
+        "them": "Wo ist der Supermarkt?",
+        "options": [
+          {
+            "say": "Gehen Sie geradeaus.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Gehen Sie weit.",
+            "ok": false,
+            "why": "weit says how far, not which way.",
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Und dann?",
+        "options": [
+          {
+            "say": "An der Ecke links.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "An der Ecke zwischen.",
+            "ok": false,
+            "why": "zwischen needs two things to be between.",
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Ist das weit?",
+        "options": [
+          {
+            "say": "Nein, er ist neben dem Café.",
+            "ok": true,
+            "next": -1
+          },
+          {
+            "say": "Nein, er ist bei links.",
+            "ok": false,
+            "why": "bei takes a place, not a direction.",
+            "next": -1
+          }
+        ]
+      }
+    ],
+    "prereq": ["a1-2-u02"]
   },
   {
     "id": "a1-2-u04",
@@ -119,11 +272,62 @@
       "zur"
     ],
     "grammar_id": "g-praepositionen-ort",
-    "scenario": null,
-    "dialogue": null,
-    "prereq": [
-      "a1-2-u03"
-    ]
+    "scenario": {
+      "role": "a visitor new to town",
+      "goal": "say what is where",
+      "opener": "Wo ist die Bank?"
+    },
+    "dialogue": [
+      {
+        "them": "Wo ist die Bank?",
+        "options": [
+          {
+            "say": "Die Bank ist neben dem Rathaus.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Die Apotheke ist neben dem Rathaus.",
+            "ok": false,
+            "why": "A pharmacy sells medicine, not money.",
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Und ein Restaurant?",
+        "options": [
+          {
+            "say": "Das Restaurant ist am Park.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Das Krankenhaus ist am Park.",
+            "ok": false,
+            "why": "You were asked where to eat.",
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Und die Post?",
+        "options": [
+          {
+            "say": "Zur Post? Immer geradeaus.",
+            "ok": true,
+            "next": -1
+          },
+          {
+            "say": "Zum Post? Immer geradeaus.",
+            "ok": false,
+            "why": "Post is feminine: zur Post.",
+            "next": -1
+          }
+        ]
+      }
+    ],
+    "prereq": ["a1-2-u03"]
   },
   {
     "id": "a1-2-u05",
@@ -148,11 +352,62 @@
       "vielleicht2"
     ],
     "grammar_id": "g-modalverben",
-    "scenario": null,
-    "dialogue": null,
-    "prereq": [
-      "a1-2-u04"
-    ]
+    "scenario": {
+      "role": "a colleague who needs a hand",
+      "goal": "say what you can and must do",
+      "opener": "Kannst du mir helfen?"
+    },
+    "dialogue": [
+      {
+        "them": "Kannst du mir helfen?",
+        "options": [
+          {
+            "say": "Ja, ich kann dir helfen.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Ja, ich kann dir hilfe.",
+            "ok": false,
+            "why": "After können the verb stays in the infinitive: helfen.",
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Hast du jetzt Zeit?",
+        "options": [
+          {
+            "say": "Nein, ich muss arbeiten.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Nein, ich muss arbeite.",
+            "ok": false,
+            "why": "After müssen it is the infinitive: arbeiten.",
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Und später?",
+        "options": [
+          {
+            "say": "Vielleicht. Es ist nicht schwer.",
+            "ok": true,
+            "next": -1
+          },
+          {
+            "say": "Vielleicht. Es ist nicht nötig möglich.",
+            "ok": false,
+            "why": "Say one: nötig or möglich.",
+            "next": -1
+          }
+        ]
+      }
+    ],
+    "prereq": ["a1-2-u04"]
   },
   {
     "id": "a1-2-u06",
@@ -177,11 +432,62 @@
       "lieber"
     ],
     "grammar_id": "g-modalverben",
-    "scenario": null,
-    "dialogue": null,
-    "prereq": [
-      "a1-2-u05"
-    ]
+    "scenario": {
+      "role": "someone in a place with rules",
+      "goal": "say what is allowed",
+      "opener": "Darf man hier rauchen?"
+    },
+    "dialogue": [
+      {
+        "them": "Darf man hier rauchen?",
+        "options": [
+          {
+            "say": "Nein, das ist verboten.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Nein, das ist erlaubt.",
+            "ok": false,
+            "why": "verboten and erlaubt are opposites.",
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Und parken?",
+        "options": [
+          {
+            "say": "Ja, hier darf man parken.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Ja, hier will man parken.",
+            "ok": false,
+            "why": "wollen is wanting; permission is dürfen.",
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Was möchtest du machen?",
+        "options": [
+          {
+            "say": "Ich will lieber gehen.",
+            "ok": true,
+            "next": -1
+          },
+          {
+            "say": "Ich soll lieber gehen sollen.",
+            "ok": false,
+            "why": "One modal is enough.",
+            "next": -1
+          }
+        ]
+      }
+    ],
+    "prereq": ["a1-2-u05"]
   },
   {
     "id": "a1-2-u07",
@@ -208,11 +514,62 @@
       "mitbringen"
     ],
     "grammar_id": "g-trennbare",
-    "scenario": null,
-    "dialogue": null,
-    "prereq": [
-      "a1-2-u06"
-    ]
+    "scenario": {
+      "role": "a friend planning the evening",
+      "goal": "arrange when things start",
+      "opener": "Wann fängst du an?"
+    },
+    "dialogue": [
+      {
+        "them": "Wann stehst du auf?",
+        "options": [
+          {
+            "say": "Ich stehe um sieben auf.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Ich aufstehe um sieben.",
+            "ok": false,
+            "why": "Separable verbs split: ich stehe … auf.",
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Und wann fängt das an?",
+        "options": [
+          {
+            "say": "Es fängt um acht an.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Es anfängt um acht.",
+            "ok": false,
+            "why": "Again it splits: es fängt … an.",
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Kommst du mit?",
+        "options": [
+          {
+            "say": "Ja, ich komme mit. Ich rufe dich an.",
+            "ok": true,
+            "next": -1
+          },
+          {
+            "say": "Ja, ich mitkomme.",
+            "ok": false,
+            "why": "ich komme mit.",
+            "next": -1
+          }
+        ]
+      }
+    ],
+    "prereq": ["a1-2-u06"]
   },
   {
     "id": "a1-2-u08",
@@ -241,11 +598,62 @@
       "es-gibt"
     ],
     "grammar_id": "g-es-gibt",
-    "scenario": null,
-    "dialogue": null,
-    "prereq": [
-      "a1-2-u07"
-    ]
+    "scenario": {
+      "role": "a landlord showing a flat",
+      "goal": "ask about the rooms and the rent",
+      "opener": "Das ist die Wohnung."
+    },
+    "dialogue": [
+      {
+        "them": "Das ist das Wohnzimmer.",
+        "options": [
+          {
+            "say": "Es gibt auch einen Balkon, oder?",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Es gibt auch ein Balkon, oder?",
+            "ok": false,
+            "why": "es gibt takes the accusative: einen Balkon.",
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Ja, und hier ist die Küche.",
+        "options": [
+          {
+            "say": "Wie viele Zimmer gibt es?",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Wie viele Zimmer es gibt?",
+            "ok": false,
+            "why": "In a question the verb comes first: gibt es.",
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Drei Zimmer.",
+        "options": [
+          {
+            "say": "Und wie viel ist die Miete?",
+            "ok": true,
+            "next": -1
+          },
+          {
+            "say": "Und wie viel ist der Vermieter?",
+            "ok": false,
+            "why": "The Vermieter is the person. You mean the Miete.",
+            "next": -1
+          }
+        ]
+      }
+    ],
+    "prereq": ["a1-2-u07"]
   },
   {
     "id": "a1-2-u09",
@@ -272,11 +680,62 @@
       "passen"
     ],
     "grammar_id": "g-dativ",
-    "scenario": null,
-    "dialogue": null,
-    "prereq": [
-      "a1-2-u08"
-    ]
+    "scenario": {
+      "role": "a friend at your birthday",
+      "goal": "say who gets what",
+      "opener": "Wem gibst du das?"
+    },
+    "dialogue": [
+      {
+        "them": "Wem gibst du das Buch?",
+        "options": [
+          {
+            "say": "Ich gebe dir das Buch.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Ich gebe dich das Buch.",
+            "ok": false,
+            "why": "The person receiving takes the dative: dir.",
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Und wem gehört die Tasche?",
+        "options": [
+          {
+            "say": "Sie gehört mir.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Sie gehört mich.",
+            "ok": false,
+            "why": "gehören always takes the dative: mir.",
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Schmeckt dir der Kaffee?",
+        "options": [
+          {
+            "say": "Ja, er schmeckt mir gut.",
+            "ok": true,
+            "next": -1
+          },
+          {
+            "say": "Ja, er schmeckt ich gut.",
+            "ok": false,
+            "why": "schmecken takes the dative: mir.",
+            "next": -1
+          }
+        ]
+      }
+    ],
+    "prereq": ["a1-2-u08"]
   },
   {
     "id": "a1-2-u10",
@@ -303,11 +762,62 @@
       "das-datum"
     ],
     "grammar_id": "g-dativ",
-    "scenario": null,
-    "dialogue": null,
-    "prereq": [
-      "a1-2-u09"
-    ]
+    "scenario": {
+      "role": "a receptionist at the doctor's",
+      "goal": "make an appointment",
+      "opener": "Praxis Dr. Weber, guten Tag!"
+    },
+    "dialogue": [
+      {
+        "them": "Guten Tag!",
+        "options": [
+          {
+            "say": "Ich brauche einen Termin.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Ich brauche eine Praxis.",
+            "ok": false,
+            "why": "The Praxis is the surgery. You want a Termin.",
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Am Montag um neun?",
+        "options": [
+          {
+            "say": "Ist es auch nachmittags frei?",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Ist es auch gestern frei?",
+            "ok": false,
+            "why": "gestern is in the past.",
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Um vier ist frei.",
+        "options": [
+          {
+            "say": "Gut, ich nehme den Termin.",
+            "ok": true,
+            "next": -1
+          },
+          {
+            "say": "Gut, ich möchte absagen.",
+            "ok": false,
+            "why": "absagen cancels it. You have just booked it.",
+            "next": -1
+          }
+        ]
+      }
+    ],
+    "prereq": ["a1-2-u09"]
   },
   {
     "id": "a1-2-u11",
@@ -336,11 +846,62 @@
       "das-rezept"
     ],
     "grammar_id": "g-dativ",
-    "scenario": null,
-    "dialogue": null,
-    "prereq": [
-      "a1-2-u10"
-    ]
+    "scenario": {
+      "role": "a doctor asking what is wrong",
+      "goal": "describe where it hurts",
+      "opener": "Wo sind die Schmerzen?"
+    },
+    "dialogue": [
+      {
+        "them": "Wo sind die Schmerzen?",
+        "options": [
+          {
+            "say": "Mein Kopf tut weh.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Mein Kopf tut wehtun.",
+            "ok": false,
+            "why": "The verb is already there: tut weh.",
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Haben Sie Fieber?",
+        "options": [
+          {
+            "say": "Ja, ich habe Fieber.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Ja, ich habe Erkältung Tablette.",
+            "ok": false,
+            "why": "Say one thing at a time.",
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Ich schreibe ein Rezept.",
+        "options": [
+          {
+            "say": "Danke. Nehme ich die Tablette morgens?",
+            "ok": true,
+            "next": -1
+          },
+          {
+            "say": "Danke. Nehme ich das Bein morgens?",
+            "ok": false,
+            "why": "Bein is your leg, not the medicine.",
+            "next": -1
+          }
+        ]
+      }
+    ],
+    "prereq": ["a1-2-u10"]
   },
   {
     "id": "a1-2-u12",
@@ -367,11 +928,62 @@
       "schon"
     ],
     "grammar_id": "g-perfekt-haben",
-    "scenario": null,
-    "dialogue": null,
-    "prereq": [
-      "a1-2-u11"
-    ]
+    "scenario": {
+      "role": "a colleague on Monday",
+      "goal": "say what you did at the weekend",
+      "opener": "Was hast du am Wochenende gemacht?"
+    },
+    "dialogue": [
+      {
+        "them": "Was hast du gemacht?",
+        "options": [
+          {
+            "say": "Ich habe viel gearbeitet.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Ich habe viel arbeiten.",
+            "ok": false,
+            "why": "The Perfekt needs the participle: gearbeitet.",
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Und am Sonntag?",
+        "options": [
+          {
+            "say": "Ich habe ein Buch gelesen.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Ich habe ein Buch lesen.",
+            "ok": false,
+            "why": "The participle is gelesen.",
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Sehr gut.",
+        "options": [
+          {
+            "say": "Ja, und ich habe viel gegessen!",
+            "ok": true,
+            "next": -1
+          },
+          {
+            "say": "Ja, und ich habe viel essen!",
+            "ok": false,
+            "why": "The participle is gegessen.",
+            "next": -1
+          }
+        ]
+      }
+    ],
+    "prereq": ["a1-2-u11"]
   },
   {
     "id": "a1-2-u13",
@@ -396,11 +1008,62 @@
       "zurueck"
     ],
     "grammar_id": "g-perfekt-sein",
-    "scenario": null,
-    "dialogue": null,
-    "prereq": [
-      "a1-2-u12"
-    ]
+    "scenario": {
+      "role": "a friend you have not seen",
+      "goal": "say where you went",
+      "opener": "Wo warst du?"
+    },
+    "dialogue": [
+      {
+        "them": "Wo warst du?",
+        "options": [
+          {
+            "say": "Ich bin nach Berlin gefahren.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Ich habe nach Berlin gefahren.",
+            "ok": false,
+            "why": "Movement takes sein: ich bin gefahren.",
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Wann bist du zurück?",
+        "options": [
+          {
+            "say": "Ich bin gestern gekommen.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Ich habe gestern gekommen.",
+            "ok": false,
+            "why": "kommen is movement: ich bin gekommen.",
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Und heute?",
+        "options": [
+          {
+            "say": "Heute bin ich zu Hause geblieben.",
+            "ok": true,
+            "next": -1
+          },
+          {
+            "say": "Heute habe ich zu Hause geblieben.",
+            "ok": false,
+            "why": "bleiben takes sein: ich bin geblieben.",
+            "next": -1
+          }
+        ]
+      }
+    ],
+    "prereq": ["a1-2-u12"]
   },
   {
     "id": "a1-2-u14",
@@ -429,11 +1092,62 @@
       "der-herbst"
     ],
     "grammar_id": null,
-    "scenario": null,
-    "dialogue": null,
-    "prereq": [
-      "a1-2-u13"
-    ]
+    "scenario": {
+      "role": "a neighbour at the door",
+      "goal": "talk about the weather",
+      "opener": "Kaltes Wetter heute, oder?"
+    },
+    "dialogue": [
+      {
+        "them": "Wie ist das Wetter?",
+        "options": [
+          {
+            "say": "Es ist kalt und es regnet.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Es ist kalt und es Regen.",
+            "ok": false,
+            "why": "Regen is the noun; the verb is regnet.",
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Und morgen?",
+        "options": [
+          {
+            "say": "Morgen ist es sonnig.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Morgen ist es Sonne sonnig warm.",
+            "ok": false,
+            "why": "One word is enough: sonnig.",
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Gut!",
+        "options": [
+          {
+            "say": "Ja, der Sommer kommt.",
+            "ok": true,
+            "next": -1
+          },
+          {
+            "say": "Ja, der Winter schneit warm.",
+            "ok": false,
+            "why": "Snow and warm do not go together.",
+            "next": -1
+          }
+        ]
+      }
+    ],
+    "prereq": ["a1-2-u13"]
   },
   {
     "id": "a1-2-u15",
@@ -462,11 +1176,62 @@
       "umtauschen"
     ],
     "grammar_id": "g-adjektiv-praedikativ",
-    "scenario": null,
-    "dialogue": null,
-    "prereq": [
-      "a1-2-u14"
-    ]
+    "scenario": {
+      "role": "a shop assistant",
+      "goal": "try something on and change the size",
+      "opener": "Kann ich Ihnen helfen?"
+    },
+    "dialogue": [
+      {
+        "them": "Kann ich Ihnen helfen?",
+        "options": [
+          {
+            "say": "Ich möchte die Jacke anprobieren.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Ich möchte die Jacke umtauschen.",
+            "ok": false,
+            "why": "umtauschen is for something you already bought.",
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Welche Größe?",
+        "options": [
+          {
+            "say": "Größe achtunddreißig, bitte.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Größe rot, bitte.",
+            "ok": false,
+            "why": "rot is a colour, not a size.",
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Und, passt sie?",
+        "options": [
+          {
+            "say": "Sie ist zu klein. Haben Sie sie größer?",
+            "ok": true,
+            "next": -1
+          },
+          {
+            "say": "Sie ist zu klein. Ich trage sie.",
+            "ok": false,
+            "why": "If it is too small you do not want to wear it.",
+            "next": -1
+          }
+        ]
+      }
+    ],
+    "prereq": ["a1-2-u14"]
   },
   {
     "id": "a1-2-u16",
@@ -493,11 +1258,62 @@
       "mit"
     ],
     "grammar_id": "g-praepositionen-ort",
-    "scenario": null,
-    "dialogue": null,
-    "prereq": [
-      "a1-2-u15"
-    ]
+    "scenario": {
+      "role": "someone on the platform",
+      "goal": "work out which train and when",
+      "opener": "Fährt der Zug nach Köln?"
+    },
+    "dialogue": [
+      {
+        "them": "Welches Gleis?",
+        "options": [
+          {
+            "say": "Gleis drei.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Haltestelle drei.",
+            "ok": false,
+            "why": "A train leaves from a Gleis; a bus from a Haltestelle.",
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Muss ich umsteigen?",
+        "options": [
+          {
+            "say": "Ja, in Hannover steigst du um.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Ja, in Hannover steigst du ein.",
+            "ok": false,
+            "why": "einsteigen is getting on at the start; changing is umsteigen.",
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Und die Fahrkarte?",
+        "options": [
+          {
+            "say": "Die brauchst du auch.",
+            "ok": true,
+            "next": -1
+          },
+          {
+            "say": "Die Verspätung brauchst du auch.",
+            "ok": false,
+            "why": "A delay is not something you need.",
+            "next": -1
+          }
+        ]
+      }
+    ],
+    "prereq": ["a1-2-u15"]
   },
   {
     "id": "a1-2-u17",
@@ -522,11 +1338,62 @@
       "entschuldigen"
     ],
     "grammar_id": "g-imperativ",
-    "scenario": null,
-    "dialogue": null,
-    "prereq": [
-      "a1-2-u16"
-    ]
+    "scenario": {
+      "role": "a friend who is about to do something risky",
+      "goal": "tell them what to do",
+      "opener": "Ich fahre jetzt schnell!"
+    },
+    "dialogue": [
+      {
+        "them": "Ich fahre jetzt schnell!",
+        "options": [
+          {
+            "say": "Fahr bitte langsam!",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Fahren bitte langsam!",
+            "ok": false,
+            "why": "To a friend the imperative is fahr.",
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Ist schon gut.",
+        "options": [
+          {
+            "say": "Pass bitte auf!",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Aufpassen bitte du!",
+            "ok": false,
+            "why": "Pass … auf, with the prefix at the end.",
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Ja, ja.",
+        "options": [
+          {
+            "say": "Sei vorsichtig. Lies das Schild!",
+            "ok": true,
+            "next": -1
+          },
+          {
+            "say": "Sein vorsichtig.",
+            "ok": false,
+            "why": "The imperative of sein is sei.",
+            "next": -1
+          }
+        ]
+      }
+    ],
+    "prereq": ["a1-2-u16"]
   },
   {
     "id": "a1-2-u18",
@@ -551,11 +1418,62 @@
       "der-hund"
     ],
     "grammar_id": "g-possessiv",
-    "scenario": null,
-    "dialogue": null,
-    "prereq": [
-      "a1-2-u17"
-    ]
+    "scenario": {
+      "role": "a colleague sorting out whose things are whose",
+      "goal": "say who owns what",
+      "opener": "Wessen Tasche ist das?"
+    },
+    "dialogue": [
+      {
+        "them": "Wessen Tasche ist das?",
+        "options": [
+          {
+            "say": "Das ist unsere Tasche.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Das ist unser Tasche.",
+            "ok": false,
+            "why": "Tasche is feminine: unsere Tasche.",
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Und der Stift?",
+        "options": [
+          {
+            "say": "Das ist euer Stift.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Das ist eure Stift.",
+            "ok": false,
+            "why": "Stift is masculine: euer Stift.",
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Und der Hund?",
+        "options": [
+          {
+            "say": "Der gehört meiner Nachbarin.",
+            "ok": true,
+            "next": -1
+          },
+          {
+            "say": "Der gehört meine Nachbarin.",
+            "ok": false,
+            "why": "gehören takes the dative: meiner Nachbarin.",
+            "next": -1
+          }
+        ]
+      }
+    ],
+    "prereq": ["a1-2-u17"]
   },
   {
     "id": "a1-2-u19",
@@ -582,11 +1500,62 @@
       "die-wand"
     ],
     "grammar_id": "g-wechselpraep",
-    "scenario": null,
-    "dialogue": null,
-    "prereq": [
-      "a1-2-u18"
-    ]
+    "scenario": {
+      "role": "a flatmate rearranging the room",
+      "goal": "say where things go and where they are",
+      "opener": "Wohin stellen wir das?"
+    },
+    "dialogue": [
+      {
+        "them": "Wohin stelle ich die Lampe?",
+        "options": [
+          {
+            "say": "Stell sie auf den Tisch.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Stell sie auf dem Tisch.",
+            "ok": false,
+            "why": "Movement takes the accusative: auf den Tisch.",
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Und wo steht das Bett?",
+        "options": [
+          {
+            "say": "Es steht an der Wand.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Es steht an die Wand.",
+            "ok": false,
+            "why": "No movement, so the dative: an der Wand.",
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Und das Buch?",
+        "options": [
+          {
+            "say": "Leg es auf den Tisch.",
+            "ok": true,
+            "next": -1
+          },
+          {
+            "say": "Leg es auf dem Tisch.",
+            "ok": false,
+            "why": "You are moving it there: auf den Tisch.",
+            "next": -1
+          }
+        ]
+      }
+    ],
+    "prereq": ["a1-2-u18"]
   },
   {
     "id": "a1-2-u20",
@@ -611,10 +1580,61 @@
       "erzaehlen"
     ],
     "grammar_id": null,
-    "scenario": null,
-    "dialogue": null,
-    "prereq": [
-      "a1-2-u19"
-    ]
+    "scenario": {
+      "role": "somebody you have just met",
+      "goal": "introduce yourself properly",
+      "opener": "Erzähl mal — was machst du?"
+    },
+    "dialogue": [
+      {
+        "them": "Was machst du?",
+        "options": [
+          {
+            "say": "Ich studiere. Mein Beruf kommt später.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Ich Beruf studieren.",
+            "ok": false,
+            "why": "Say it as a sentence: ich studiere.",
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Und was machst du gern?",
+        "options": [
+          {
+            "say": "Am liebsten koche ich.",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Am liebsten ich koche.",
+            "ok": false,
+            "why": "The verb comes second: am liebsten koche ich.",
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Sehr interessant!",
+        "options": [
+          {
+            "say": "Ja, das ist mein Hobby. Und du?",
+            "ok": true,
+            "next": -1
+          },
+          {
+            "say": "Ja, das ist mein Erfahrung wichtig.",
+            "ok": false,
+            "why": "Erfahrung is feminine, and this says nothing. Keep it simple.",
+            "next": -1
+          }
+        ]
+      }
+    ],
+    "prereq": ["a1-2-u19"]
   }
 ]

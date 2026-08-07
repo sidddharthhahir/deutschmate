@@ -171,14 +171,6 @@
     "de": "Wie viel kostet das?",
     "en": "How much does that cost?"
   },
-  "zimmer": {
-    "de": "Das Zimmer ist schön.",
-    "en": "The room is beautiful."
-  },
-  "buch": {
-    "de": "Das Buch ist interessant.",
-    "en": "The book is interesting."
-  },
   "wasser": {
     "de": "Ich trinke Wasser.",
     "en": "I drink water."
@@ -274,14 +266,6 @@
   "deutschland": {
     "de": "Deutschland ist groß.",
     "en": "Germany is big."
-  },
-  "land": {
-    "de": "Das Land ist sehr klein.",
-    "en": "The country is very small."
-  },
-  "bahnhof": {
-    "de": "Wo ist der Bahnhof?",
-    "en": "Where is the station?"
   },
   "und": {
     "de": "Ich und meine Schwester.",
@@ -4406,10 +4390,6 @@
   "a22-freiwillig": {
     "de": "Die Teilnahme ist freiwillig.",
     "en": "Participation is voluntary."
-  },
-  "a22-mitmachen-r": {
-    "de": "Zutritt nur für Personal.",
-    "en": "Staff only."
   },
   "a22-vermeiden": {
     "de": "Bitte vermeiden Sie Lärm.",
