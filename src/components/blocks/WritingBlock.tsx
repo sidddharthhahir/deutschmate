@@ -4,7 +4,14 @@ import { useState } from "react";
 import { useOnline } from "@/lib/hooks";
 import { send } from "@/lib/outbox";
 import { GermanTextarea } from "@/components/GermanInput";
-import { Card, Eyebrow, SkipLink, type BlockProps } from "./shared";
+import {
+  Card,
+  Eyebrow,
+  SkipLink,
+  useAdvanceKey,
+  useSubmitKey,
+  type BlockProps,
+} from "./shared";
 
 type Payload = { prompt: string; hint?: string; minWords?: number };
 type Correction = {
@@ -36,6 +43,16 @@ export default function WritingBlock({
 
   const minWords = payload.minWords ?? 15;
   const words = text.trim() ? text.trim().split(/\s+/).length : 0;
+  const ready = !busy && words >= minWords;
+
+  /*
+   * Ctrl/Cmd+Enter submits, and plain Enter stays a newline — this is the one
+   * block where a paragraph is the point, and stealing Enter would make it
+   * impossible to write one. The result and queued screens have no field, so
+   * they take plain Enter like every other Weiter in the app.
+   */
+  useSubmitKey(() => void submit(), ready && !result && !queued);
+  useAdvanceKey(onDone, Boolean(result) || queued);
 
   async function submit() {
     setBusy(true);
@@ -66,7 +83,7 @@ export default function WritingBlock({
           onClick={onDone}
           className="bg-fg mt-7 w-full rounded-xl py-3.5 font-medium text-[#16211E] transition-colors hover:bg-white"
         >
-          Weiter
+          Weiter <span className="kbd kbd-hint">Enter</span>
         </button>
       </Card>
     );
@@ -113,7 +130,7 @@ export default function WritingBlock({
             onClick={onDone}
             className="bg-fg mt-6 w-full rounded-xl py-3.5 font-medium text-[#16211E] transition-colors hover:bg-white"
           >
-            Weiter
+            Weiter <span className="kbd kbd-hint">Enter</span>
           </button>
         </Card>
       </div>
@@ -155,10 +172,11 @@ export default function WritingBlock({
 
         <button
           onClick={() => void submit()}
-          disabled={busy || words < minWords}
+          disabled={!ready}
           className="bg-fg mt-4 w-full rounded-xl py-3.5 font-medium text-[#16211E] transition-colors hover:bg-white disabled:bg-[#243330] disabled:text-[#5C6B65]"
         >
-          {busy ? "Wird geprüft…" : online ? "Korrigieren lassen" : "Speichern"}
+          {busy ? "Wird geprüft…" : online ? "Korrigieren lassen" : "Speichern"}{" "}
+          {ready && <span className="kbd kbd-hint">Ctrl + Enter</span>}
         </button>
       </Card>
       <SkipLink onSkip={onSkip} />

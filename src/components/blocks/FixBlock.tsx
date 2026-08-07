@@ -10,6 +10,7 @@ import {
   SkipLink,
   SkipToNext,
   record,
+  useChoiceKeys,
   type BlockProps,
 } from "./shared";
 import { de } from "@/lib/tags";
@@ -38,10 +39,14 @@ export default function FixBlock({
   const drills = payload.drills ?? [];
   const d = drills[i];
 
+  // Before the early return: a hook cannot be called conditionally.
+  useChoiceKeys(d?.options.length ?? 0, (n) => void choose(n), picked === null);
+
   // Not onDone() in the render — see SkipToNext.
   if (!drills.length || !d) return <SkipToNext onDone={onDone} />;
 
   async function choose(n: number) {
+    if (!d) return;
     setPicked(n);
     const correct = n === d.a;
     await record({
@@ -90,6 +95,7 @@ export default function FixBlock({
           {d.options.map((o, n) => (
             <Option
               key={n}
+              n={n + 1}
               onClick={() => void choose(n)}
               state={
                 picked === null

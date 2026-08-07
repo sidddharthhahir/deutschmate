@@ -1,7 +1,132 @@
 "use client";
 
-import { useEffect, type ReactNode } from "react";
+import { useEffect, useRef, type ReactNode } from "react";
 import { send } from "@/lib/outbox";
+import { shouldIgnoreKey, modalIsOpen } from "@/lib/keys";
+
+/* ------------------------------------------------------------------ keys --
+ *
+ * The tour teaches "your hand never leaves the number row", and for a long
+ * time that was true of two blocks out of fifteen. These are the bindings the
+ * rest of them share, in one place, so a learner who learns them in Aufwärmen
+ * finds the same keys in the quiz.
+ *
+ *   1–9      pick option n
+ *   Enter    the primary button — Weiter, Prüfen, Übungen starten
+ *   Space    the same, where it does not fight the page (never in a text field)
+ *   R        play the audio again
+ *
+ * All of them go through shouldIgnoreKey, so nothing fires while a text field
+ * has focus or an overlay is up. That is also why the typing blocks — Hören,
+ * Schreiben — bind Enter on the field itself and take R only once the field is
+ * disabled: a single-letter shortcut that eats a letter you were typing is
+ * worse than no shortcut.
+ */
+
+/**
+ * The current callback without re-binding the listener on every render.
+ *
+ * Written in an effect rather than during render — a ref assignment in the
+ * render body is a React Compiler error, and it is safe here because the only
+ * reader is a keydown handler, which cannot run before effects have flushed.
+ */
+function useLatest<T>(value: T) {
+  const ref = useRef(value);
+  useEffect(() => {
+    ref.current = value;
+  });
+  return ref;
+}
+
+/** A window keydown listener that stays out of the way of typing and modals. */
+function useKey(handler: (e: KeyboardEvent) => void, enabled = true) {
+  const latest = useLatest(handler);
+  useEffect(() => {
+    if (!enabled) return;
+    function onKey(e: KeyboardEvent) {
+      if (shouldIgnoreKey(e)) return;
+      latest.current(e);
+    }
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [enabled, latest]);
+}
+
+/**
+ * 1–9 choose one of `count` options.
+ *
+ * Pass `enabled: false` once an answer is in, or a second keypress lands on the
+ * next question while the verdict for this one is still on screen.
+ */
+export function useChoiceKeys(
+  count: number,
+  pick: (n: number) => void,
+  enabled = true,
+) {
+  useKey((e) => {
+    if (e.metaKey || e.ctrlKey || e.altKey) return;
+    const n = Number(e.key);
+    if (!Number.isInteger(n) || n < 1 || n > Math.min(count, 9)) return;
+    e.preventDefault();
+    pick(n - 1);
+  }, enabled);
+}
+
+/** Enter (and optionally Space) for the one button that moves you forward. */
+export function useAdvanceKey(
+  go: () => void,
+  enabled = true,
+  { space = true } = {},
+) {
+  useKey((e) => {
+    if (e.metaKey || e.ctrlKey || e.altKey) return;
+    if (e.key !== "Enter" && !(space && e.key === " ")) return;
+    e.preventDefault(); // Space would scroll the page
+    go();
+  }, enabled);
+}
+
+/**
+ * Ctrl/Cmd + Enter, and deliberately NOT behind the typing guard.
+ *
+ * Every other binding here stays out of a text field. This one has to reach
+ * into it: Schreiben is a paragraph, plain Enter must stay a newline, and the
+ * submit shortcut is only useful to somebody whose hands are already in the
+ * field. The modifier is what keeps it unambiguous. Modals still win.
+ */
+export function useSubmitKey(fn: () => void, enabled = true) {
+  const latest = useLatest(fn);
+  useEffect(() => {
+    if (!enabled) return;
+    function onKey(e: KeyboardEvent) {
+      if (modalIsOpen() || e.key !== "Enter" || !(e.metaKey || e.ctrlKey))
+        return;
+      e.preventDefault();
+      latest.current();
+    }
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [enabled, latest]);
+}
+
+/** One named key, for the bindings only one block needs. */
+export function useKeyPress(key: string, fn: () => void, enabled = true) {
+  useKey((e) => {
+    if (e.metaKey || e.ctrlKey || e.altKey || e.key !== key) return;
+    e.preventDefault();
+    fn();
+  }, enabled);
+}
+
+/** R hears it again — the same key ReviewBlock has always used. */
+export function useReplayKey(play: () => void, enabled = true) {
+  useKey((e) => {
+    if (e.metaKey || e.ctrlKey || e.altKey) return;
+    if (e.key !== "r" && e.key !== "R") return;
+    e.preventDefault();
+    play();
+  }, enabled);
+}
 
 /**
  * A block with nothing in it, bowing out. Renders nothing and calls onDone from
@@ -71,15 +196,23 @@ export function Progress({ done, total }: { done: number; total: number }) {
   );
 }
 
-/** Multiple-choice option. */
+/**
+ * Multiple-choice option.
+ *
+ * `n` is the 1-based key that picks it. Shown here rather than at each call
+ * site so every list of choices in the app advertises the same thing, and
+ * hidden on touch — `.kbd-hint` — where there is no key to press.
+ */
 export function Option({
   children,
   onClick,
   state,
+  n,
 }: {
   children: ReactNode;
   onClick?: () => void;
   state: "idle" | "correct" | "wrong" | "dimmed";
+  n?: number;
 }) {
   const cls = {
     idle: "border-line hover:bg-raised hover:border-line-strong text-fg",
@@ -96,6 +229,10 @@ export function Option({
     >
       {state === "correct" && <span className="text-accent mr-2">✓</span>}
       {state === "wrong" && <span className="text-das mr-2">✕</span>}
+      {/* The tick and the cross replace the number, so the row never jumps. */}
+      {n !== undefined && state === "idle" && (
+        <span className="kbd kbd-hint mr-2.5">{n}</span>
+      )}
       {children}
     </button>
   );

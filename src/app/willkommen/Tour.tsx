@@ -141,6 +141,14 @@ const STEPS: Step[] = [
           Be honest with the grades. The schedule is only as good as what you
           tell it, and nobody is watching.
         </p>
+        {/* Said here because this is where the number row is introduced, and
+            for a long time it was the only block that honoured it. */}
+        <p className="kbd-hint">
+          The same keys work in every block: <span className="kbd">1</span>–
+          <span className="kbd">4</span> picks an answer anywhere there are
+          options, and <span className="kbd">Enter</span> is always the one
+          button on screen.
+        </p>
         <p className="text-muted kbd-hint text-[14px]">
           Mis-hit a key? <span className="kbd">Z</span> undoes the last grade
           for five seconds.

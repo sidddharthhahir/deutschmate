@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { playAudio } from "@/lib/speech";
 import { shouldIgnoreKey } from "@/lib/keys";
 import { fourChoices } from "@/lib/choices";
@@ -75,9 +75,14 @@ export default function NewVocabBlock({
     if (!w) onDone();
   }, [w, onDone]);
 
-  // Three distractors and the answer — see lib/choices.ts for why it is not
-  // just "the next three words in the list".
-  const options = w ? fourChoices(w, payload.words) : [];
+  /* Three distractors and the answer — see lib/choices.ts for why it is not
+     just "the next three words in the list". Memoised because the key handler
+     below lists it as a dependency, and a fresh array every render would
+     re-bind the listener on every render. */
+  const options = useMemo(
+    () => (w ? fourChoices(w, payload.words) : []),
+    [w, payload.words],
+  );
 
   const { phase, picked } = s;
 
@@ -224,6 +229,7 @@ export default function NewVocabBlock({
               {options.map((o, n) => (
                 <Option
                   key={o}
+                  n={n + 1}
                   onClick={() => void choose(o)}
                   state={
                     !picked
@@ -235,10 +241,6 @@ export default function NewVocabBlock({
                           : "dimmed"
                   }
                 >
-                  {/* The number is the key that picks it, so the hand can stay
-                      on the row the tour promises. Hidden on touch, where
-                      there is no key to press. */}
-                  <span className="kbd kbd-hint mr-2.5">{n + 1}</span>
                   {o}
                 </Option>
               ))}

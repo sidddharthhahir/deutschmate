@@ -10,6 +10,9 @@ import {
   SkipLink,
   SentenceCredit,
   record,
+  useChoiceKeys,
+  useAdvanceKey,
+  useKeyPress,
   type BlockProps,
 } from "./shared";
 
@@ -50,13 +53,56 @@ export default function BuilderBlock({
     if (items.length && !it) onDone();
   }, [it, items.length, onDone]);
 
+  const { pool, placed, checked, explanation } = s;
+  const attempt = placed.join(" ") + (it?.punctuation ?? "");
+  const correct = attempt.toLowerCase() === (it?.answer ?? "").toLowerCase();
+
+  /*
+   * Tiles, so the numbers place rather than answer: 1 is the leftmost tile
+   * still in the pool, and the numbering closes up as tiles are used. Backspace
+   * takes the last one back — the same key it would be in a text field, which
+   * is what this is pretending to be.
+   *
+   * Declared before the early return; each is enabled only when it applies.
+   */
+  useChoiceKeys(
+    pool.length,
+    (n) =>
+      setS((p) => ({
+        ...p,
+        pool: p.pool.filter((_, x) => x !== n),
+        placed: [...p.placed, p.pool[n]],
+      })),
+    Boolean(it) && !checked,
+  );
+  useKeyPress(
+    "Backspace",
+    () =>
+      setS((p) =>
+        p.placed.length
+          ? {
+              ...p,
+              placed: p.placed.slice(0, -1),
+              pool: [...p.pool, p.placed[p.placed.length - 1]],
+            }
+          : p,
+      ),
+    Boolean(it) && !checked,
+  );
+  /* Enter means Prüfen while the sentence is being built and Weiter once it
+     has been marked — the same key for "the one button on screen". Space is
+     off: it is a plausible thing to press while reading the verdict, and it
+     would skip it. */
+  useAdvanceKey(
+    () => (checked ? next() : void check()),
+    Boolean(it) && (checked || pool.length === 0),
+    { space: false },
+  );
+
   if (!it) return null;
 
-  const { pool, placed, checked, explanation } = s;
-  const attempt = placed.join(" ") + it.punctuation;
-  const correct = attempt.toLowerCase() === it.answer.toLowerCase();
-
   async function check() {
+    if (!it) return;
     setS((p) => ({ ...p, checked: true }));
     setBusy(true);
     if (correct) speak(it.answer);
@@ -138,6 +184,11 @@ export default function BuilderBlock({
               }
               className="border-line-strong text-fg hover:bg-raised font-serif rounded-lg border px-3.5 py-2 text-[17px] transition-all hover:-translate-y-0.5 disabled:opacity-40"
             >
+              {/* Only the first nine get a number, because that is how many
+                  keys there are. A1 sentences rarely reach nine tiles. */}
+              {n < 9 && !checked && (
+                <span className="kbd kbd-hint mr-2">{n + 1}</span>
+              )}
               {t}
             </button>
           ))}
@@ -158,7 +209,8 @@ export default function BuilderBlock({
               disabled={pool.length > 0}
               className="bg-fg flex-1 rounded-xl py-3.5 font-medium text-[#16211E] transition-colors hover:bg-white disabled:bg-[#243330] disabled:text-[#5C6B65]"
             >
-              Prüfen
+              Prüfen{" "}
+              {pool.length === 0 && <span className="kbd kbd-hint">Enter</span>}
             </button>
           </div>
         ) : (
@@ -173,7 +225,7 @@ export default function BuilderBlock({
               onClick={next}
               className="bg-fg mt-4 w-full rounded-xl py-3.5 font-medium text-[#16211E] transition-colors hover:bg-white"
             >
-              Weiter
+              Weiter <span className="kbd kbd-hint">Enter</span>
             </button>
           </>
         )}

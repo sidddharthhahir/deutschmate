@@ -10,6 +10,7 @@ import {
   Option,
   Verdict,
   SkipLink,
+  useChoiceKeys,
   type BlockProps,
 } from "./shared";
 
@@ -49,6 +50,9 @@ export default function GrammarReviewBlock({
     if (!cards.length) onDone();
   }, [cards.length, onDone]);
 
+  // Before the early return: a hook cannot be called conditionally.
+  useChoiceKeys(drill?.options.length ?? 0, choose, picked === null);
+
   if (!card || !drill) return null;
 
   function finishCard(correctCount: number) {
@@ -67,7 +71,7 @@ export default function GrammarReviewBlock({
   }
 
   function choose(n: number) {
-    if (picked !== null) return;
+    if (!card || !drill || picked !== null) return;
     setPicked(n);
     const ok = n === drill.a;
     const total = right + (ok ? 1 : 0);
@@ -122,6 +126,7 @@ export default function GrammarReviewBlock({
             {drill.options.map((o, n) => (
               <Option
                 key={n}
+                n={n + 1}
                 onClick={() => choose(n)}
                 state={
                   picked === null

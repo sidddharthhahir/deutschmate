@@ -8,6 +8,8 @@ import {
   Option,
   Verdict,
   record,
+  useChoiceKeys,
+  useAdvanceKey,
   type BlockProps,
 } from "./shared";
 
@@ -38,10 +40,19 @@ export default function QuizBlock({ payload, onDone }: BlockProps<Payload>) {
     if (questions && questions.length === 0) onDone();
   }, [questions, onDone]);
 
+  const q = questions?.[i];
+
+  /* Above the early returns, because hooks cannot be called conditionally.
+     Each is enabled only for the screen it belongs to. */
+  useChoiceKeys(
+    q?.options.length ?? 0,
+    (n) => void choose(n),
+    Boolean(q) && picked === null,
+  );
+  useAdvanceKey(onDone, Boolean(questions) && !q);
+
   if (!questions)
     return <p className="font-mono text-muted text-center text-sm">…</p>;
-
-  const q = questions[i];
 
   if (!q) {
     return (
@@ -57,13 +68,14 @@ export default function QuizBlock({ payload, onDone }: BlockProps<Payload>) {
           onClick={onDone}
           className="bg-fg mt-7 w-full rounded-xl py-3.5 font-medium text-[#16211E] transition-colors hover:bg-white"
         >
-          Zum Tagesabschluss
+          Zum Tagesabschluss <span className="kbd kbd-hint">Enter</span>
         </button>
       </Card>
     );
   }
 
   async function choose(n: number) {
+    if (!q) return;
     setPicked(n);
     const correct = n === q.a;
     if (correct) setScore((s) => s + 1);
@@ -95,6 +107,7 @@ export default function QuizBlock({ payload, onDone }: BlockProps<Payload>) {
           {q.options.map((o, n) => (
             <Option
               key={n}
+              n={n + 1}
               onClick={() => void choose(n)}
               state={
                 picked === null

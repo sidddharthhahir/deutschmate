@@ -9,6 +9,8 @@ import {
   Progress,
   SkipLink,
   record,
+  useAdvanceKey,
+  useReplayKey,
   type BlockProps,
 } from "./shared";
 
@@ -34,12 +36,32 @@ export default function SpeakingBlock({
     if (items.length && !it) onDone();
   }, [it, items.length, onDone]);
 
-  if (!it) return null;
-
-  const diff = heard ? diffWords(it.de, heard) : null;
+  const diff = heard && it ? diffWords(it.de, heard) : null;
   const hits = diff?.filter((d) => d.ok).length ?? 0;
 
+  /*
+   * Enter is the microphone until there is a result, then it is Weiter — one
+   * key for "the thing this screen is asking of me". Space is off throughout:
+   * holding it is what you do to talk in every other voice app, and here it
+   * would fire the recogniser again over your own sentence.
+   */
+  useAdvanceKey(
+    () => {
+      if (diff) {
+        setHeard(null);
+        setError(null);
+        setI((n) => n + 1);
+      } else if (supported && !listening) void listen();
+    },
+    Boolean(it),
+    { space: false },
+  );
+  useReplayKey(() => it && speak(it.de, 0.85), Boolean(it) && !listening);
+
+  if (!it) return null;
+
   async function listen() {
+    if (!it) return;
     setListening(true);
     setError(null);
     setHeard(null);
@@ -82,7 +104,8 @@ export default function SpeakingBlock({
             onClick={() => speak(it.de, 0.85)}
             className="border-line text-secondary hover:border-line-strong hover:text-fg inline-flex items-center gap-2.5 rounded-full border px-5 py-2.5 text-[14px] transition-colors"
           >
-            <span className="text-[10px]">▶</span> vorhören
+            <span className="text-[10px]">▶</span> vorhören{" "}
+            <span className="kbd kbd-hint">R</span>
           </button>
         </div>
 
@@ -107,7 +130,18 @@ export default function SpeakingBlock({
               🎤
             </button>
             <p className="font-mono text-muted text-[12px]">
-              {listening ? "Sprich jetzt…" : "Tippen und den Satz sagen"}
+              <span className="touch-hint">
+                {listening ? "Sprich jetzt…" : "Tippen und den Satz sagen"}
+              </span>
+              <span className="kbd-hint">
+                {listening ? (
+                  "Sprich jetzt…"
+                ) : (
+                  <>
+                    <span className="kbd">Enter</span> und den Satz sagen
+                  </>
+                )}
+              </span>
             </p>
           </div>
         )}
@@ -154,7 +188,7 @@ export default function SpeakingBlock({
                 }}
                 className="bg-fg flex-1 rounded-xl py-3.5 font-medium text-[#16211E] transition-colors hover:bg-white"
               >
-                Weiter
+                Weiter <span className="kbd kbd-hint">Enter</span>
               </button>
             </div>
           </div>

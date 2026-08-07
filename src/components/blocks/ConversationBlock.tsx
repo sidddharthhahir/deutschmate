@@ -10,6 +10,8 @@ import {
   SkipLink,
   SkipToNext,
   record,
+  useChoiceKeys,
+  useAdvanceKey,
   type BlockProps,
 } from "./shared";
 
@@ -113,6 +115,26 @@ export default function ConversationBlock({
   useEffect(() => {
     endRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [turns, scriptLog]);
+
+  /*
+   * Bindings for the two screens that are a list of choices or a single
+   * button. Live mode is deliberately absent: its field has focus, Enter is
+   * already wired to send on the field itself, and a global key would be
+   * swallowed by the typing guard or eat a letter.
+   *
+   * `pick` is a function declaration below and so is hoisted; the handler only
+   * runs on a keypress, long after this render.
+   */
+  const scriptedNow = mode === "scripted" && !corrections && !noScenario;
+  useChoiceKeys(
+    scriptedNow ? (payload.dialogue?.[step]?.options.length ?? 0) : 0,
+    (n) => {
+      const o = payload.dialogue?.[step]?.options[n];
+      if (o) pick(o);
+    },
+    scriptedNow,
+  );
+  useAdvanceKey(onDone, Boolean(corrections));
 
   /* Placed with the other hooks, so the early return below breaks no rule. */
   if (noScenario) return <SkipToNext onDone={onDone} />;
@@ -296,7 +318,7 @@ export default function ConversationBlock({
             onClick={onDone}
             className="bg-fg mt-6 w-full rounded-xl py-3.5 font-medium text-[#16211E] transition-colors hover:bg-white"
           >
-            Weiter
+            Weiter <span className="kbd kbd-hint">Enter</span>
           </button>
         </Card>
       </div>
@@ -392,6 +414,7 @@ export default function ConversationBlock({
                 onClick={() => pick(o)}
                 className="border-line hover:bg-raised hover:border-line-strong font-serif w-full rounded-xl border px-4 py-3 text-left text-[17px] transition-colors"
               >
+                <span className="kbd kbd-hint mr-2.5">{n + 1}</span>
                 {o.say}
               </button>
             ))}

@@ -10,6 +10,8 @@ import {
   Verdict,
   SkipLink,
   record,
+  useChoiceKeys,
+  useAdvanceKey,
   type BlockProps,
 } from "./shared";
 
@@ -37,6 +39,21 @@ export default function ReadingBlock({
   const [score, setScore] = useState(0);
 
   const questions = payload.questions ?? [];
+  const q = phase === "quiz" ? questions[i] : undefined;
+  const done = phase === "quiz" && !q;
+
+  /* Three screens, three bindings, all declared before any return.
+     Space is off for the reading screen: the text is long enough to scroll,
+     and taking Space away from a reader mid-paragraph is worse than the
+     shortcut is worth. */
+  const startQuiz = () => (questions.length ? setPhase("quiz") : onDone());
+  useAdvanceKey(startQuiz, phase === "read", { space: false });
+  useChoiceKeys(
+    q?.options.length ?? 0,
+    (n) => void choose(n),
+    Boolean(q) && picked === null,
+  );
+  useAdvanceKey(onDone, done);
 
   if (phase === "read") {
     return (
@@ -65,19 +82,19 @@ export default function ReadingBlock({
         </Card>
 
         <button
-          onClick={() => (questions.length ? setPhase("quiz") : onDone())}
+          onClick={startQuiz}
           className="bg-fg mt-4 w-full rounded-xl py-4 font-medium text-[#16211E] transition-colors hover:bg-white"
         >
           {questions.length
             ? `Fragen beantworten (${questions.length})`
-            : "Weiter"}
+            : "Weiter"}{" "}
+          <span className="kbd kbd-hint">Enter</span>
         </button>
         <SkipLink onSkip={onSkip} />
       </div>
     );
   }
 
-  const q = questions[i];
   if (!q) {
     return (
       <Card>
@@ -92,13 +109,14 @@ export default function ReadingBlock({
           onClick={onDone}
           className="bg-fg mt-7 w-full rounded-xl py-3.5 font-medium text-[#16211E] transition-colors hover:bg-white"
         >
-          Weiter
+          Weiter <span className="kbd kbd-hint">Enter</span>
         </button>
       </Card>
     );
   }
 
   async function choose(n: number) {
+    if (!q) return;
     setPicked(n);
     const correct = n === q.a;
     if (correct) setScore((s) => s + 1);
@@ -128,6 +146,7 @@ export default function ReadingBlock({
           {q.options.map((o, n) => (
             <Option
               key={n}
+              n={n + 1}
               onClick={() => void choose(n)}
               state={
                 picked === null

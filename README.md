@@ -830,14 +830,6 @@ the [Goethe-Institut](https://www.goethe.de/de/spr/kup/prf.html).
   **Plusquamperfekt**, **irreale Bedingungssätze**, and **the passive with a
   modal** — the sentence shape every contract and form is written in.
 
-- **Eleven of fifteen blocks are still mouse-only.** `Aufwärmen`, `Lücken` and
-  `Neue Wörter` take the keyboard; `Sätze bauen`, `Sprechen`, `Schreiben`,
-  `Gespräch`, `Abschluss`, `Video`, `Lesen`, `Hören`, `Fix`, `Grammatik` and
-  `Grammatik-Wdh.` do not. A learner following the tour reaches for `1`–`4` in
-  the quiz and nothing happens. Each needs its own binding — the shapes differ
-  (tiles, a microphone, a text field, a video) and a single global handler would
-  be wrong for most of them.
-
 ### Closed since
 
 - ~~Every new word was counted twice.~~ Introducing a word grades its new card,
@@ -871,11 +863,27 @@ the [Goethe-Institut](https://www.goethe.de/de/spr/kup/prf.html).
 
 - ~~Thirteen of fifteen blocks were mouse-only.~~ The tour teaches _"your hand
   never leaves the number row"_, and only `Aufwärmen` and `Lücken` bound any
-  keys. `Neue Wörter` — block one on day one, and most days after — took
-  twenty-four clicks for twelve words, and its Audio button already advertised
-  an `R` that was never wired. It now takes `Enter`/`Space`, `1`–`4` and `R`,
-  matching `ReviewBlock` so nothing has to be relearned. The other eleven blocks
-  are still mouse-only; see Known gaps.
+  keys — `Neue Wörter`, block one on day one, took twenty-four clicks for twelve
+  words, and its Audio button already advertised an `R` that was never wired.
+  All fifteen take the keyboard now, through four shared hooks in
+  `blocks/shared.tsx` rather than fifteen private listeners:
+
+  | Where                     | Keys                                                 |
+  | ------------------------- | ---------------------------------------------------- |
+  | Any question with options | `1`–`4` answer · `Enter` the one button              |
+  | Sätze bauen               | `1`–`9` place · `Backspace` take back · `Enter`      |
+  | Video                     | `Space` play/pause · `E` English · `Enter`           |
+  | Sprechen                  | `Enter` microphone, then Weiter · `R` hear first     |
+  | Hören                     | `Enter` in the field, then `Enter`/`R` after         |
+  | Schreiben                 | `Cmd`/`Ctrl` + `Enter` — plain Enter stays a newline |
+
+  Every binding goes through `shouldIgnoreKey`, so none of them fires while a
+  text field has focus or an overlay is up. The one exception is Schreiben's
+  submit, which has to reach into the textarea and is unambiguous because of the
+  modifier. The number a key presses is printed on the option itself and hidden
+  on touch, because an unadvertised shortcut is one nobody uses. `?` lists all
+  of it, and `tests/keyboard.test.mts` checks both directions: every block binds
+  something, and nothing is advertised that no block binds.
 
 - ~~The first four new words of every session shared one set of options.~~ The
   distractors were the first three other words of the day and the four were

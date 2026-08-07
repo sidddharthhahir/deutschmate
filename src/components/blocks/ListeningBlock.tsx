@@ -11,6 +11,8 @@ import {
   SkipLink,
   SentenceCredit,
   record,
+  useAdvanceKey,
+  useReplayKey,
   type BlockProps,
 } from "./shared";
 
@@ -59,6 +61,19 @@ export default function ListeningBlock({
   useEffect(() => {
     if (items.length && !it) onDone();
   }, [it, items.length, onDone]);
+
+  /*
+   * The field owns Enter while you are typing — it always has, through
+   * GermanInput's onEnter. What was missing is the other half: once you have
+   * checked, the field is disabled, focus leaves it, and Enter did nothing, so
+   * the one block you are already typing in was the one that made you reach
+   * for the mouse to go on.
+   *
+   * R only works once the field is disabled too, and that is correct rather
+   * than a limitation: while you are typing, R is the letter R.
+   */
+  useAdvanceKey(() => next(), Boolean(it) && checked, { space: false });
+  useReplayKey(() => play(), Boolean(it) && checked);
 
   if (!it) return null;
 
@@ -190,7 +205,7 @@ export default function ListeningBlock({
               onClick={next}
               className="bg-fg mt-4 w-full rounded-xl py-3.5 font-medium text-[#16211E] transition-colors hover:bg-white"
             >
-              Weiter
+              Weiter <span className="kbd kbd-hint">Enter</span>
             </button>
           </>
         )}

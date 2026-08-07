@@ -28,12 +28,41 @@ const GROUPS: { title: string; keys: [string, string][] }[] = [
       ["Z", "Undo that grade (5 s)"],
     ],
   },
+  /* Every block, not two of them. This list used to describe Wiederholen and
+     the typing fields, which was all that had bindings — a learner who took
+     "your hand never leaves the number row" at its word reached for 1–4 in the
+     quiz and nothing happened. */
+  {
+    title: "Any question with options",
+    keys: [
+      ["1 – 4", "Pick that answer"],
+      ["Enter", "Weiter · Prüfen · the one button on screen"],
+    ],
+  },
+  {
+    title: "Sätze bauen",
+    keys: [
+      ["1 – 9", "Place that word"],
+      ["Backspace", "Take the last one back"],
+      ["Enter", "Prüfen, then Weiter"],
+    ],
+  },
+  {
+    title: "Video · Sprechen",
+    keys: [
+      ["Leertaste / Space", "Play · pause the video"],
+      ["E", "English subtitles on · off"],
+      ["Enter", "Start the microphone, then Weiter"],
+      ["R", "Hear the sentence first"],
+    ],
+  },
   {
     title: "Typing German",
     keys: [
       ["Alt + a o u s", "ä ö ü ß"],
       ["Alt + Shift + a", "Ä Ö Ü"],
       ["Enter", "Check, then continue"],
+      ["Cmd / Ctrl + Enter", "Hand in a written text"],
     ],
   },
 ];

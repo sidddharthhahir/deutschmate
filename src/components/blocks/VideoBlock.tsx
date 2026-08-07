@@ -2,7 +2,14 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { mount, sourceOf, type Playable } from "@/lib/player";
-import { Card, Eyebrow, SkipLink, type BlockProps } from "./shared";
+import {
+  Card,
+  Eyebrow,
+  SkipLink,
+  useAdvanceKey,
+  useKeyPress,
+  type BlockProps,
+} from "./shared";
 
 type Segment = { t_start: number; t_end: number; de: string; en: string };
 type Payload = {
@@ -77,6 +84,27 @@ export default function VideoBlock({
     }, 250);
     return () => clearInterval(id);
   }, [ready, segments]);
+
+  /*
+   * Space plays and pauses, which is what Space does in every video player a
+   * learner has ever used — and preventDefault matters, because otherwise it
+   * scrolls the segment list instead. Enter moves on, E turns the English on
+   * and off. Not the numbers: an episode has dozens of segments, and 1–9 would
+   * cover the first nine seconds of it.
+   */
+  useKeyPress(
+    " ",
+    () => {
+      const p = player.current;
+      if (!p) return;
+      loopUntil.current = null; // a manual play leaves the single-sentence loop
+      if (p.playing()) p.pause();
+      else p.play();
+    },
+    ready,
+  );
+  useAdvanceKey(onDone, true, { space: false });
+  useKeyPress("e", () => setShowEn((v) => !v), segments.length > 0);
 
   const playSegment = useCallback((s: Segment, i: number) => {
     const p = player.current;
@@ -218,11 +246,20 @@ export default function VideoBlock({
         )}
       </Card>
 
+      <p className="font-mono text-muted kbd-hint mt-3 text-center text-[11px]">
+        <span className="kbd">Space</span> Play / Pause
+        {segments.length > 0 && (
+          <>
+            {" · "}
+            <span className="kbd">E</span> Englisch
+          </>
+        )}
+      </p>
       <button
         onClick={onDone}
         className="bg-fg mt-4 w-full rounded-xl py-3.5 font-medium text-[#16211E] transition-colors hover:bg-white"
       >
-        Weiter
+        Weiter <span className="kbd kbd-hint">Enter</span>
       </button>
       <SkipLink onSkip={onSkip} />
     </div>

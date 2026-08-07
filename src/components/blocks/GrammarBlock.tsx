@@ -9,6 +9,8 @@ import {
   Verdict,
   SkipToNext,
   record,
+  useChoiceKeys,
+  useAdvanceKey,
   type BlockProps,
 } from "./shared";
 
@@ -151,6 +153,17 @@ export default function GrammarBlock({ payload, onDone }: BlockProps<Payload>) {
   const drills = payload.drills ?? [];
   const d = drills[i];
 
+  /* Both phases' bindings, declared before either return. Enter reads as
+     "I have read the rule, give me the drills" on the lesson screen and picks
+     nothing on the drill screen, where the numbers do the work. */
+  const startDrills = () => (drills.length ? setPhase("drill") : onDone());
+  useAdvanceKey(startDrills, phase === "learn");
+  useChoiceKeys(
+    d?.options.length ?? 0,
+    (n) => void choose(n),
+    phase === "drill" && picked === null,
+  );
+
   if (phase === "learn") {
     return (
       <div>
@@ -178,10 +191,11 @@ export default function GrammarBlock({ payload, onDone }: BlockProps<Payload>) {
           )}
         </Card>
         <button
-          onClick={() => (drills.length ? setPhase("drill") : onDone())}
+          onClick={startDrills}
           className="bg-fg mt-4 w-full rounded-xl py-4 font-medium text-[#16211E] transition-colors hover:bg-white"
         >
-          {drills.length ? `Üben (${drills.length})` : "Weiter"}
+          {drills.length ? `Üben (${drills.length})` : "Weiter"}{" "}
+          <span className="kbd kbd-hint">Enter</span>
         </button>
       </div>
     );
@@ -192,6 +206,7 @@ export default function GrammarBlock({ payload, onDone }: BlockProps<Payload>) {
   if (!d) return <SkipToNext onDone={onDone} />;
 
   async function choose(n: number) {
+    if (!d) return;
     setPicked(n);
     const correct = n === d.a;
     await record({
@@ -220,6 +235,7 @@ export default function GrammarBlock({ payload, onDone }: BlockProps<Payload>) {
           {d.options.map((o, n) => (
             <Option
               key={n}
+              n={n + 1}
               onClick={() => void choose(n)}
               state={
                 picked === null
