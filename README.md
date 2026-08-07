@@ -361,9 +361,19 @@ canonical. One implementation each; `env.ts` re-exports.
 
 This codebase used to be **19% comment** — 5,140 lines against 21,807 of code
 across `src/`, `scripts/` and `tests/`, with 478 blocks of four lines or more,
-several of them essays. It is **6% now**: 1,810 lines, 190 blocks. Every block is
-one or two lines — its first sentence, plus the one sentence in the block that
-carried a warning.
+several of them essays. The sweep cut it to **6%**: 1,810 lines, 190 blocks,
+each one or two lines — its first sentence, plus the one sentence that carried a
+warning.
+
+It is **11% today**: 3,456 comment lines against 28,790 of code, in 343 blocks.
+Re-counted rather than left at 6%, which is exactly the "true once" number
+principle 4 is about. The code grew by a third in the same stretch, and the
+comments grew faster, because most of what was added was a fix for something
+found by walking the app — and a fix whose comment says only what it does
+invites the bug back. The ones worth their length name the wrong behaviour they
+replaced: twelve reviews nobody did, a verb-second lecture for a sentence with
+no verb, a hash that overflowed `2^53`. The ones to watch for are the ones that
+merely restate the line below them.
 
 That was done with a script, because 174 files is not a job for judgement
 applied 478 times, and then read back over the files where the judgement
@@ -413,7 +423,15 @@ npm test                 # the checks below
 npm run lint             # eslint
 npx tsc --noEmit         # typecheck
 npx knip                 # unused files, exports and dependencies
+
+node scripts/check-scenes.mts   # no A1 scene says a word its unit has not taught
+node scripts/walk.mts           # every route still returns 200 for a real learner
 ```
+
+**Do not pipe `tsc` into `Select-Object -First n` on Windows.** It terminates
+the pipeline early and kills the compiler before it prints, so a broken build
+reports clean — that is how a duplicate `const` reached the browser here while
+the typecheck said nothing. `| Out-String` first, then filter.
 
 `knip` is not a dependency — [knip.json](knip.json) tells it that
 `src/app/**/{page,layout,route}`, `scripts/` and `tests/` are entry points, which
@@ -436,10 +454,15 @@ npm test                 # all of them
 npm test text outbox     # only files matching these names
 ```
 
-Twenty-five suites, no framework. Seventeen run anywhere; eight need `npm run dev`
-listening and are **skipped with a message** if it isn't — never quietly
-passed. They use throwaway user ids in the real database, which is how the app
-separates two flatmates, and clean up after themselves.
+Thirty-eight suites, no framework. Twenty-six run anywhere; twelve need
+`npm run dev` listening and are **skipped with a message** if it isn't — never
+quietly passed. They use throwaway user ids in the real database, which is how
+the app separates two flatmates, and clean up after themselves.
+
+One consequence of sharing that database: **running the suite while you are
+using the app in a browser can fail a suite**, because both are writing to it.
+It passes on its own and on a re-run. Finish the session or use a different
+window.
 
 **The dev server will die if you leave it running under the suite all day.** It
 OOM'd here at a 15.6 GB heap after 5.7 hours and 89,000 requests — `progression`
@@ -454,46 +477,66 @@ throughput each round. Uncapped it drifts to 322 MB over the same load, which is
 V8 declining to collect while it has 4 GB of headroom, not a leak. Give it a
 reason and it collects.
 
-The suite used to fail about **two runs in five**, always on `undo.test.mts`,
-always with exit 3221226505 — and its ten checks passed every time. The crash was
-libuv's `UV_HANDLE_CLOSING` assertion on Windows: Node's fetch keeps a socket
-alive and `process.exit()` was landing on one mid-close. The harness closes the
-connection pool first now.
+The suite used to fail about **two runs in five**, always with exit 3221226505
+and always on a file whose checks had all printed PASS. That is libuv's
+`UV_HANDLE_CLOSING` assertion on Windows: Node's fetch keeps a socket alive and
+`process.exit()` lands on one mid-close. The first fix told the connection pool
+to close before exiting, which took it from two-in-five to roughly one-in-twenty
+— and the README said, honestly, "reduced, not proven gone".
 
-**Reduced, not proven gone.** 19 full runs since: one failure early on, then 18
-clean. That is a different order of magnitude from 2-in-5 and it is not zero, so
-if you see exit 3221226505 on a file whose checks all printed PASS, that is this
-and not your change. Worth the paragraph because an intermittent red on a file
-that passed is worse than a real failure — the only sustainable response is to
-stop reading reds, and after that a genuine one looks the same.
+It is gone now, and the remaining one-in-twenty was not luck. `destroy()`
+returns a promise and was being fired without waiting, which is enough for one
+socket and not for two: **any test file making two POSTs aborted every single
+time**, deterministically, after printing ALL PASS. It looked intermittent only
+because every file in the suite happened to end on a GET. Awaiting the destroy
+is not enough either — the handles are still unwinding when the exit lands. So
+`done()` sets `process.exitCode` and lets Node leave by itself, with an unref'd
+timer as the backstop for a socket that never closes.
 
-|                  |                                                                                                                                                   |
-| ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `content`        | every word belongs to a unit, every reference resolves, every noun has an article                                                                 |
-| `fresh-clone`    | seeds a throwaway database from `data/` alone and checks nothing is missing                                                                       |
-| `cost`           | token pricing, the cache saving, and the budget ceiling                                                                                           |
-| `rhythm`         | walks a month of the session rotation — every skill gets its share                                                                                |
-| `coaching`       | the tutor is told your weak spots, and told never to mention them                                                                                 |
-| `text`           | cloze gaps and exam scoring                                                                                                                       |
-| `outbox`         | the offline queue: what is retried, what is dropped, what survives a corrupt store                                                                |
-| `progression`    | walks a new learner through all 120 units and checks every word gets taught                                                                       |
-| `unit-carryover` | an oversized unit comes back tomorrow instead of losing its remainder                                                                             |
-| `mastery`        | finishing ≠ retaining, retention never blocks progression, and bad prerequisite data can't strand anyone                                          |
-| `scene`          | the tutor gets the brief the page is showing — all twelve Alltag scenarios included, each with enough to say, enough to hear, and enough to bring |
-| `recycle`        | old scenarios and readings come back, and say where they came from                                                                                |
-| `grammar`        | a taught rule returns when due, with a different drill                                                                                            |
-| `why`            | every wrong answer comes back with a reason, on every path, with or without a key                                                                 |
-| `who`            | two flatmates on one browser get separate keys, the cookie read is the cookie sign-in writes, and a queued answer replays to whoever gave it      |
-| `corpus`         | the sentence rotation covers the corpus over a course, not just over a month                                                                      |
-| `error-key`      | 41 mistakes a beginner really makes, each one reaching a specific prebuilt explanation                                                            |
-| `strings`        | no HTML entity survives into a string literal, where JSX will not decode it                                                                       |
-| `undo`           | one grade is one attempt row and one step of the curve — never two                                                                                |
-| `tenancy`        | you cannot act as another learner, mint an account, or write to shared content                                                                    |
-| `auth`           | sessions are stored hashed and last ten years, a wrong password and an unknown username answer identically, and a reset signs every device out    |
-| `password`       | scrypt round-trips, a corrupt stored hash is a no rather than a yes, and a recovery code survives being copied off paper                          |
-| `apikey`         | a stored key is never in the row, never in the response, and never another learner's                                                              |
-| `shared-cache`   | course sentences are cached for everyone, pasted text only for you, and both are deletable                                                        |
-| `config`         | every constant in `config.ts` is actually read by something — five were not                                                                       |
+Kept in the README because the lesson outlived the bug: **a suite that can print
+ALL PASS and exit non-zero teaches you to stop reading exit codes**, and after
+that a real failure looks exactly the same.
+
+|                    |                                                                                                                                                                     |
+| ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `content`          | every word belongs to a unit, every reference resolves, every noun has an article                                                                                   |
+| `curriculum`       | the A1 teaching order, asserted — the order IS the design                                                                                                           |
+| `grammar-map`      | an A2 or B1 unit teaches the rule its own title names                                                                                                               |
+| `gate`             | a session never serves grammar the course has not taught yet                                                                                                        |
+| `sentence-grammar` | sentences are gated on the grammar they use, not on how common their words are                                                                                      |
+| `blocks`           | every block says what it is, and none of them can blank the screen                                                                                                  |
+| `keyboard`         | every block binds keys, every option shows its number, and nothing is advertised that no block binds                                                                |
+| `choices`          | four options on a new word, one right, no second right answer, and no pattern to learn instead of the vocabulary                                                    |
+| `finite-verb`      | "your verb is in the wrong place" is only said when there is a verb                                                                                                 |
+| `speech-diff`      | matching what you said ignores case; showing it back does not                                                                                                       |
+| `video`            | the video block is reachable, and every unit points at the right episode                                                                                            |
+| `missed`           | a day you skipped is a day the app admits you skipped                                                                                                               |
+| `writing-queue`    | a queued text says which of offline, no key, budget or a failed call it was waiting on                                                                              |
+| `docs`             | every number this README states as fact is counted from the database                                                                                                |
+| `fresh-clone`      | seeds a throwaway database from `data/` alone and checks nothing is missing                                                                                         |
+| `cost`             | token pricing, the cache saving, and the budget ceiling                                                                                                             |
+| `rhythm`           | walks a month of the session rotation — every skill gets its share                                                                                                  |
+| `coaching`         | the tutor is told your weak spots, and told never to mention them                                                                                                   |
+| `text`             | cloze gaps and exam scoring                                                                                                                                         |
+| `outbox`           | the offline queue: what is retried, what is dropped, what survives a corrupt store                                                                                  |
+| `progression`      | walks a new learner through all 120 units and checks every word gets taught                                                                                         |
+| `unit-carryover`   | an oversized unit comes back tomorrow instead of losing its remainder                                                                                               |
+| `mastery`          | finishing ≠ retaining, retention never blocks progression, and bad prerequisite data can't strand anyone                                                            |
+| `scene`            | the tutor gets the brief the page is showing, all twelve Alltag scenarios carry enough to say, hear and bring — and no A1 scene says a word its unit has not taught |
+| `recycle`          | old scenarios and readings come back, and say where they came from                                                                                                  |
+| `grammar`          | a taught rule returns when due, with a different drill                                                                                                              |
+| `why`              | every wrong answer comes back with a reason, on every path, with or without a key                                                                                   |
+| `who`              | two flatmates on one browser get separate keys, the cookie read is the cookie sign-in writes, and a queued answer replays to whoever gave it                        |
+| `corpus`           | the sentence rotation covers the corpus over a course, not just over a month                                                                                        |
+| `error-key`        | 41 mistakes a beginner really makes, each one reaching a specific prebuilt explanation                                                                              |
+| `strings`          | no HTML entity survives into a string literal, where JSX will not decode it                                                                                         |
+| `undo`             | one grade is one attempt row and one step of the curve — never two                                                                                                  |
+| `tenancy`          | you cannot act as another learner, mint an account, or write to shared content                                                                                      |
+| `auth`             | sessions are stored hashed and last ten years, a wrong password and an unknown username answer identically, and a reset signs every device out                      |
+| `password`         | scrypt round-trips, a corrupt stored hash is a no rather than a yes, and a recovery code survives being copied off paper                                            |
+| `apikey`           | a stored key is never in the row, never in the response, and never another learner's                                                                                |
+| `shared-cache`     | course sentences are cached for everyone, pasted text only for you, and both are deletable                                                                          |
+| `config`           | every constant in `config.ts` is actually read by something — five were not                                                                                         |
 
 `corpus` and `error-key` are worth a note on how they are written, because both
 guard the same kind of failure.
@@ -556,7 +599,7 @@ src/app/       24 pages and 20 API routes
 src/proxy.ts   the signed-out redirect, in the edge runtime
 src/components/blocks/   the 14 block types a session is made of
 scripts/       content generation and maintenance
-tests/         25 suites, run with `npm test`
+tests/         38 suites, run with `npm test`
 public/audio/  2,381 native recordings from Wikimedia Commons (37 MB)
 ```
 

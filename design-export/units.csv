@@ -1,121 +1,121 @@
 id,level,ord,title,can_do_json,grammar_id,reading_id,video_id,word_count
-a1-1-u01,A1.1,1,Hallo!,"[""greet someone at any time of day"",""say thank you and please"",""say yes and no""]",,,dw-A1_E0_L1_F1_hd,13
-a1-1-u02,A1.1,2,Ich heiße …,"[""say your name"",""ask someone their name"",""use ich, du and Sie correctly""]",g-pronouns,r-u02,dw-A1_E1_L1_F5_hd,13
-a1-1-u03,A1.1,3,"Ich bin, du bist","[""say what you are"",""describe someone with sein"",""use all six forms of sein""]",g-sein,,dw-A1_E1_L2_F6_hd,13
-a1-1-u04,A1.1,4,Woher kommst du?,"[""say where you're from"",""say where you live"",""ask both questions""]",g-praesens,r-u04,dw-A1_E1_L3_F7_hd,13
-a1-1-u05,A1.1,5,Zahlen,"[""count to twenty"",""give your phone number"",""ask what something costs""]",,,dw-A1_E2_L1_F9_hd,16
-a1-1-u06,A1.1,6,"Der, die, das","[""use the right article for common nouns"",""recognise -ung and -chen patterns""]",g-articles-nom,,,13
-a1-1-u07,A1.1,7,Meine Familie,"[""name your family members"",""say how many siblings you have"",""use haben""]",g-haben,r-u07,,13
-a1-1-u08,A1.1,8,Verb an zweiter Stelle,"[""put the verb in position 2"",""start a sentence with a time word"",""flip the subject correctly""]",g-wordorder,,,13
-a1-1-u09,A1.1,9,Essen und Trinken,"[""name everyday food and drink"",""say what you eat and drink"",""order in a café""]",,r-u09,dw-A1_E3_L2_F14_hd,14
-a1-1-u10,A1.1,10,Fragen stellen,"[""ask a W-question"",""ask a yes/no question"",""ask why and when""]",g-questions,,,13
-a1-1-u11,A1.1,11,Nein sagen,"[""negate a verb with nicht"",""negate a noun with kein"",""choose between them""]",g-negation,,,13
-a1-1-u12,A1.1,12,Die Woche,"[""name the days of the week"",""say when something happens"",""make an appointment""]",,r-u12,,16
-a1-1-u13,A1.1,13,Zahlen und Preise,"[""count above twenty"",""ask and understand a price"",""pay at a counter""]",g-pronouns,,,13
-a1-1-u14,A1.1,14,Farben und Sachen,"[""name everyday objects"",""describe something with an adjective"",""say what belongs to you""]",g-sein,,,13
-a1-1-u15,A1.1,15,Wo ist das?,"[""ask where something is"",""understand simple directions"",""say left, right and straight on""]",g-haben,r-a11-u15,,13
-a1-1-u16,A1.1,16,Mein Tag,"[""say what you do each day"",""tell the time roughly"",""say when something happens""]",g-praesens,,,13
-a1-1-u17,A1.1,17,Einkaufen,"[""ask for something in a shop"",""say how much you want"",""say it's too expensive""]",g-articles-nom,,,13
-a1-1-u18,A1.1,18,Kleine Gespräche,"[""make small talk"",""say you don't understand"",""ask someone to repeat""]",g-wordorder,r-a11-u18,,13
-a1-1-u19,A1.1,19,Verabredungen,"[""suggest meeting up"",""agree or say no politely"",""name a day and a time""]",g-questions,,,13
-a1-1-u20,A1.1,20,A1.1 zusammen,"[""introduce yourself fully"",""order something"",""ask three useful questions""]",g-negation,r-a11-u20,,13
-a1-2-u01,A1.2,1,Menschen um mich,"[""name people around you"",""say who someone is"",""describe a person briefly""]",g-akkusativ,,,19
-a1-2-u02,A1.2,2,Wie ist er?,"[""describe someone's character"",""say how someone looks"",""say what you like about them""]",,,,19
-a1-2-u03,A1.2,3,Berufe,"[""say what you do for a living"",""ask what someone does"",""name common jobs""]",,r-a12-u03,,19
-a1-2-u04,A1.2,4,Der Körper,"[""name parts of the body"",""say where it hurts"",""understand a doctor's question""]",,,,19
-a1-2-u05,A1.2,5,Beim Arzt,"[""make a doctor's appointment"",""say you feel ill"",""understand simple instructions""]",,r-a12-u05,,19
-a1-2-u06,A1.2,6,Meine Wohnung,"[""describe your home"",""name the rooms"",""say what's in a room""]",g-modalverben,,,18
-a1-2-u07,A1.2,7,Möbel und Dinge,"[""name furniture and household things"",""say where something is"",""say something is broken""]",,,,18
-a1-2-u08,A1.2,8,Essen kaufen,"[""shop for food"",""say how much you need"",""ask where something is in a shop""]",,r-a12-u08,,18
-a1-2-u09,A1.2,9,Kochen und Essen,"[""say what you're cooking"",""say what you like and don't like"",""say you're hungry or full""]",,,,18
-a1-2-u10,A1.2,10,Kleidung,"[""name clothes"",""say what you're wearing"",""ask for a different size""]",,,,18
-a1-2-u11,A1.2,11,In der Stadt,"[""name places in a town"",""say where you're going"",""ask if something is nearby""]",g-possessiv,,,18
-a1-2-u12,A1.2,12,Verkehrsmittel,"[""say how you travel"",""buy a ticket"",""ask which platform""]",,r-a12-u12,,18
-a1-2-u13,A1.2,13,Reisen,"[""talk about a trip"",""say where you've been"",""pack and describe your luggage""]",,,,18
-a1-2-u14,A1.2,14,Die Uhrzeit,"[""tell the time"",""say when something starts"",""arrange a precise time""]",,,,18
-a1-2-u15,A1.2,15,Jahreszeiten,"[""name the seasons and months"",""say when your birthday is"",""say what you do in each season""]",,,,18
-a1-2-u16,A1.2,16,Wetter,"[""describe the weather"",""understand a forecast"",""say what you'll do if it rains""]",g-plural,r-a12-u16,,18
-a1-2-u17,A1.2,17,Natur und Tiere,"[""name common animals"",""talk about nature"",""say whether you have a pet""]",,,,18
-a1-2-u18,A1.2,18,Freizeit,"[""say what you do in your free time"",""suggest an activity"",""say what you can and can't do""]",,,,18
-a1-2-u19,A1.2,19,Wo und wohin,"[""say where things are"",""say where you're going"",""use left, right, above, below""]",,,,18
-a1-2-u20,A1.2,20,A1 zusammen,"[""hold a simple conversation about yourself"",""handle a shop or a doctor"",""ask for help when stuck""]",,r-a12-u20,,18
-a2-1-u01,A2.1,1,Gestern,"[""say what you did yesterday"",""form the Perfekt with haben"",""ask what someone did""]",g-perfekt,r-a21-u01,,14
-a2-1-u02,A2.1,2,Unterwegs gewesen,"[""use sein in the Perfekt"",""say where you went"",""tell a short travel story""]",,,,14
-a2-1-u03,A2.1,3,Geben und bekommen,"[""say who you gave something to"",""use the dative"",""ask for help""]",,,,14
-a2-1-u04,A2.1,4,Termine machen,"[""arrange an appointment on the phone"",""suggest and change a time"",""confirm details""]",g-dativ,,,14
-a2-1-u05,A2.1,5,Zu Hause und unterwegs,"[""say whether you're going somewhere or already there"",""use two-way prepositions"",""describe a route""]",,r-a21-u05,,14
-a2-1-u06,A2.1,6,Vergleichen,"[""compare two things"",""say which you prefer"",""use als and wie correctly""]",,,,13
-a2-1-u07,A2.1,7,Anweisungen geben,"[""give an instruction politely"",""use the imperative"",""understand a recipe or sign""]",g-wechselpraep,,,13
-a2-1-u08,A2.1,8,Trennbare Verben,"[""use separable verbs correctly"",""describe your morning routine"",""say when things start and end""]",,,,13
-a2-1-u09,A2.1,9,Im Restaurant,"[""order a full meal"",""ask about a dish"",""ask for the bill and tip""]",,r-a21-u09,,13
-a2-1-u10,A2.1,10,Einkaufen und Geld,"[""compare prices"",""ask for a discount"",""return something""]",g-komparativ,,,13
-a2-1-u11,A2.1,11,Wohnung suchen,"[""describe what you're looking for"",""ask about rent and rooms"",""arrange a viewing""]",,,,13
-a2-1-u12,A2.1,12,Arbeit und Studium,"[""talk about your work or studies"",""say what you did before"",""explain why you're here""]",,,,13
-a2-1-u13,A2.1,13,Telefonieren,"[""make a phone call"",""ask for someone"",""leave a message""]",g-imperativ,r-a21-u13,,13
-a2-1-u14,A2.1,14,Post und Behörden,"[""send a parcel"",""fill in a simple form"",""ask what documents you need""]",,,,13
-a2-1-u15,A2.1,15,Gesundheit,"[""describe symptoms in detail"",""understand advice"",""collect a prescription""]",,,,13
-a2-1-u16,A2.1,16,Feste und Feiern,"[""invite someone"",""accept or decline"",""congratulate someone""]",g-trennbare,,,13
-a2-1-u17,A2.1,17,Sport und Hobbys,"[""talk about a hobby"",""say how often you do it"",""invite someone to join""]",,r-a21-u17,,13
-a2-1-u18,A2.1,18,Medien,"[""say what you read and watch"",""recommend something"",""give a short opinion""]",,,,13
-a2-1-u19,A2.1,19,Probleme lösen,"[""explain that something went wrong"",""ask for a solution"",""complain politely""]",,,,13
-a2-1-u20,A2.1,20,A2.1 zusammen,"[""talk about the past"",""handle an everyday problem"",""compare and choose""]",,r-a21-u20,,13
+a1-1-u01,A1.1,1,Hallo!,"[""greet someone at any time of day"",""say thank you, please and sorry"",""say yes and no""]",,,dw-A1_E0_L1_F1_hd,12
+a1-1-u02,A1.1,2,Das Alphabet,"[""say the German alphabet"",""spell your own name out loud"",""ask someone to spell theirs""]",g-alphabet,r-u02,dw-A1_E0_L4_F4_hd,10
+a1-1-u03,A1.1,3,Zahlen 0–20,"[""count to twenty"",""give your phone number"",""understand a number said to you""]",,,dw-A1_E2_L1_F9_hd,12
+a1-1-u04,A1.1,4,Wie heißt du?,"[""say your name and ask for someone else's"",""tell someone how you are"",""choose between du and Sie""]",g-pronouns,r-u04,dw-A1_E1_L1_F5_hd,15
+a1-1-u05,A1.1,5,Woher kommst du?,"[""say where you are from"",""say where you live now"",""ask both questions""]",g-wordorder,,dw-A1_E1_L3_F7_hd,12
+a1-1-u06,A1.1,6,"Der, die, das","[""name the three genders"",""use the right article for the words you know"",""recognise the endings that predict gender""]",g-articles-nom,,,12
+a1-1-u07,A1.1,7,Was ist das?,"[""name the things around you"",""ask what something is called"",""say you do not know a word""]",g-articles-nom,r-u07,dw-A1_E5_L1_F21_hd,12
+a1-1-u08,A1.1,8,Sein und haben,"[""conjugate sein and haben"",""say what you are and what you have"",""say your age""]",g-sein,,dw-A1_E1_L4_F8_hd,10
+a1-1-u09,A1.1,9,Zahlen bis 100,"[""count to a hundred"",""understand a price"",""say how old somebody is""]",g-zahlen,r-u09,dw-A1_E2_L2_F10_hd,12
+a1-1-u10,A1.1,10,Wie spät ist es?,"[""ask and tell the time"",""understand the official 24-hour form"",""say when something starts""]",g-uhrzeit,,dw-A1_E7_L2_F30_hd,12
+a1-1-u11,A1.1,11,Die Woche,"[""name the days and parts of the day"",""say when something happens"",""talk about today, tomorrow and yesterday""]",g-zeitpraepositionen,,dw-A1_E8_L2_F34_hd,12
+a1-1-u12,A1.1,12,Verben im Präsens,"[""conjugate a regular verb"",""say what you do every day"",""ask what somebody else does""]",g-praesens,r-u12,dw-A1_E3_L1_F13_hd,14
+a1-1-u13,A1.1,13,Meine Familie,"[""name the people in your family"",""say whose someone is"",""describe your family briefly""]",g-possessiv,,dw-A1_E15_L1_F61_hd,12
+a1-1-u14,A1.1,14,Plural,"[""form the plural of the nouns you know"",""recognise the five plural patterns"",""count things""]",g-plural,,,10
+a1-1-u15,A1.1,15,Essen und Trinken,"[""name everyday food and drink"",""say what you like and do not like"",""say what you would like""]",g-moechten,r-a11-u15,dw-A1_E3_L2_F14_hd,14
+a1-1-u16,A1.1,16,Im Café,"[""order food and drink"",""ask for the bill"",""understand what the waiter asks you""]",g-moechten,,dw-A1_E3_L3_F15_hd,12
+a1-1-u17,A1.1,17,Nicht und kein,"[""say something is not the case"",""say you do not have something"",""choose between nicht and kein""]",g-negation,,dw-A1_E5_L3_F23_hd,10
+a1-1-u18,A1.1,18,Farben und Sachen,"[""name the colours"",""describe an object so somebody finds it"",""use an adjective after sein""]",g-adjektiv-praedikativ,r-a11-u18,dw-A1_E5_L4_F24_hd,12
+a1-1-u19,A1.1,19,Fragen stellen,"[""ask a W-question"",""ask a yes/no question"",""understand the answer""]",g-questions,,,12
+a1-1-u20,A1.1,20,Mein Tag,"[""describe your normal day in order"",""say when you do each thing"",""understand somebody else's routine""]",g-praesens,r-a11-u20,dw-A1_E7_L1_F29_hd,12
+a1-2-u01,A1.2,1,Der Akkusativ,"[""use den, die, das and die as objects"",""say what you see, have and need"",""notice that only masculine changes""]",g-akkusativ,,,12
+a1-2-u02,A1.2,2,Einkaufen,"[""ask for an amount of something"",""ask what something costs"",""pay and understand the change""]",g-akkusativ,,dw-A1_E12_L2_F50_hd,14
+a1-2-u03,A1.2,3,Wo ist das?,"[""ask the way"",""understand left, right and straight on"",""say where something is""]",g-praepositionen-ort,r-a12-u03,dw-A1_E4_L2_F18_hd,12
+a1-2-u04,A1.2,4,In der Stadt,"[""name the places in a town"",""say where you are going"",""say what you do there""]",g-praepositionen-ort,,dw-A1_E10_L1_F41_hd,12
+a1-2-u05,A1.2,5,Können und müssen,"[""say what you can do"",""say what you have to do"",""put the second verb at the end""]",g-modalverben,r-a12-u05,,10
+a1-2-u06,A1.2,6,"Wollen, möchten, dürfen","[""say what you want"",""ask permission politely"",""tell the difference between wollen and möchten""]",g-modalverben,,,10
+a1-2-u07,A1.2,7,Trennbare Verben,"[""use a separable verb in a sentence"",""put the prefix at the end"",""recognise which prefixes separate""]",g-trennbare,,,12
+a1-2-u08,A1.2,8,Die Wohnung,"[""name the rooms and the furniture"",""describe where you live"",""say what is in a room""]",g-es-gibt,r-a12-u08,dw-A1_E6_L2_F26_hd,14
+a1-2-u09,A1.2,9,Der Dativ,"[""use dem, der and den as indirect objects"",""say who you give something to"",""use mir and dir""]",g-dativ,,dw-A1_E5_L2_F22_hd,12
+a1-2-u10,A1.2,10,Termine machen,"[""make an appointment on the phone"",""suggest and refuse a time"",""cancel politely""]",g-dativ,,dw-A1_E8_L3_F35_hd,12
+a1-2-u11,A1.2,11,Beim Arzt,"[""name the parts of the body"",""say what hurts"",""understand what the doctor asks""]",g-dativ,,dw-A1_E17_L2_F70_hd,14
+a1-2-u12,A1.2,12,Perfekt mit haben,"[""say what you did"",""form the participle of a regular verb"",""put it at the end""]",g-perfekt-haben,r-a12-u12,dw-A1_E13_L1_F53_hd,12
+a1-2-u13,A1.2,13,Perfekt mit sein,"[""say where you went"",""choose between haben and sein"",""talk about your weekend""]",g-perfekt-sein,,dw-A1_E13_L3_F55_hd,10
+a1-2-u14,A1.2,14,Das Wetter,"[""say what the weather is doing"",""name the seasons and months"",""understand a forecast""]",,,dw-A1_E13_L4_F56_hd,14
+a1-2-u15,A1.2,15,Kleidung,"[""name what you are wearing"",""say what suits you"",""ask for another size""]",g-adjektiv-praedikativ,,dw-A1_E14_L2_F58_hd,14
+a1-2-u16,A1.2,16,Unterwegs,"[""buy a ticket"",""say how you travel"",""understand an announcement""]",g-praepositionen-ort,r-a12-u16,dw-A1_E10_L3_F43_hd,12
+a1-2-u17,A1.2,17,Der Imperativ,"[""tell somebody to do something"",""ask for something politely"",""understand a written instruction""]",g-imperativ,,dw-A1_E17_L4_F72_hd,10
+a1-2-u18,A1.2,18,Possessivartikel,"[""say whose something is in any case"",""use mein, dein, sein, ihr, unser correctly"",""ask whose something is""]",g-possessiv,,dw-A1_E15_L2_F62_hd,10
+a1-2-u19,A1.2,19,Wechselpräpositionen,"[""choose accusative or dative after in, auf, an"",""say where something is and where it goes"",""ask wo or wohin""]",g-wechselpraep,,dw-A1_E10_L2_F42_hd,12
+a1-2-u20,A1.2,20,Über mich,"[""introduce yourself for a minute without stopping"",""say what you did and what you are going to do"",""ask somebody the same questions back""]",,r-a12-u20,dw-A1_E18_L1_F73_hd,10
+a2-1-u01,A2.1,1,Gestern,"[""say what you did yesterday"",""form the Perfekt with haben"",""ask what someone did""]",g-perfekt,r-a21-u01,,18
+a2-1-u02,A2.1,2,Unterwegs gewesen,"[""use sein in the Perfekt"",""say where you went"",""tell a short travel story""]",g-perfekt-sein,,,18
+a2-1-u03,A2.1,3,Geben und bekommen,"[""say who you gave something to"",""use the dative"",""ask for help""]",g-dativ,,,18
+a2-1-u04,A2.1,4,Termine machen,"[""arrange an appointment on the phone"",""suggest and change a time"",""confirm details""]",g-zeitpraepositionen,,,18
+a2-1-u05,A2.1,5,Zu Hause und unterwegs,"[""say whether you're going somewhere or already there"",""use two-way prepositions"",""describe a route""]",g-wechselpraep,r-a21-u05,,18
+a2-1-u06,A2.1,6,Vergleichen,"[""compare two things"",""say which you prefer"",""use als and wie correctly""]",g-komparativ,,,18
+a2-1-u07,A2.1,7,Anweisungen geben,"[""give an instruction politely"",""use the imperative"",""understand a recipe or sign""]",g-imperativ,,,18
+a2-1-u08,A2.1,8,Trennbare Verben,"[""use separable verbs correctly"",""describe your morning routine"",""say when things start and end""]",g-trennbare,,,18
+a2-1-u09,A2.1,9,Im Restaurant,"[""order a full meal"",""ask about a dish"",""ask for the bill and tip""]",g-moechten,r-a21-u09,,18
+a2-1-u10,A2.1,10,Einkaufen und Geld,"[""compare prices"",""ask for a discount"",""return something""]",,,,18
+a2-1-u11,A2.1,11,Wohnung suchen,"[""describe what you're looking for"",""ask about rent and rooms"",""arrange a viewing""]",,,,18
+a2-1-u12,A2.1,12,Arbeit und Studium,"[""talk about your work or studies"",""say what you did before"",""explain why you're here""]",g-perfekt,,,18
+a2-1-u13,A2.1,13,Telefonieren,"[""make a phone call"",""ask for someone"",""leave a message""]",,r-a21-u13,,18
+a2-1-u14,A2.1,14,Post und Behörden,"[""send a parcel"",""fill in a simple form"",""ask what documents you need""]",,,,18
+a2-1-u15,A2.1,15,Gesundheit,"[""describe symptoms in detail"",""understand advice"",""collect a prescription""]",g-dativ,,,18
+a2-1-u16,A2.1,16,Feste und Feiern,"[""invite someone"",""accept or decline"",""congratulate someone""]",,,,18
+a2-1-u17,A2.1,17,Sport und Hobbys,"[""talk about a hobby"",""say how often you do it"",""invite someone to join""]",,r-a21-u17,,18
+a2-1-u18,A2.1,18,Medien,"[""say what you read and watch"",""recommend something"",""give a short opinion""]",,,,17
+a2-1-u19,A2.1,19,Probleme lösen,"[""explain that something went wrong"",""ask for a solution"",""complain politely""]",,,,17
+a2-1-u20,A2.1,20,A2.1 zusammen,"[""talk about the past"",""handle an everyday problem"",""compare and choose""]",,r-a21-u20,,10
 a2-2-u01,A2.2,1,Warum? Weil…,"[""give a reason with weil"",""put the verb at the end"",""explain a decision""]",g-nebensatz,r-a22-u01,,18
-a2-2-u02,A2.2,2,Ich freue mich,"[""use reflexive verbs"",""say how you feel about something"",""look forward to something""]",,,,18
+a2-2-u02,A2.2,2,Ich freue mich,"[""use reflexive verbs"",""say how you feel about something"",""look forward to something""]",g-reflexiv,,,18
 a2-2-u03,A2.2,3,Gefühle,"[""name feelings"",""say why you feel that way"",""react to someone else's news""]",,,,18
-a2-2-u04,A2.2,4,Beschreiben,"[""use adjective endings before nouns"",""describe an object precisely"",""identify something in a group""]",g-reflexiv,,,18
-a2-2-u05,A2.2,5,Früher war das anders,"[""use war and hatte"",""talk about your childhood"",""compare then and now""]",,r-a22-u05,,18
-a2-2-u06,A2.2,6,Pläne,"[""talk about the future"",""say what you're going to do"",""make a prediction""]",,,,18
-a2-2-u07,A2.2,7,Besitz,"[""use the genitive"",""say what belongs to whom"",""use von + dative instead""]",g-adjektivendung,,,18
-a2-2-u08,A2.2,8,Meinung sagen,"[""give an opinion"",""agree and disagree politely"",""give a reason""]",,,,18
+a2-2-u04,A2.2,4,Beschreiben,"[""use adjective endings before nouns"",""describe an object precisely"",""identify something in a group""]",g-adjektivendung,,,18
+a2-2-u05,A2.2,5,Früher war das anders,"[""use war and hatte"",""talk about your childhood"",""compare then and now""]",g-praeteritum,r-a22-u05,,18
+a2-2-u06,A2.2,6,Pläne,"[""talk about the future"",""say what you're going to do"",""make a prediction""]",g-futur,,,18
+a2-2-u07,A2.2,7,Besitz,"[""use the genitive"",""say what belongs to whom"",""use von + dative instead""]",g-genitiv,,,18
+a2-2-u08,A2.2,8,Meinung sagen,"[""give an opinion"",""agree and disagree politely"",""give a reason""]",g-nebensatz,,,18
 a2-2-u09,A2.2,9,Vorschläge machen,"[""suggest something"",""respond to a suggestion"",""reach a compromise""]",,r-a22-u09,,18
-a2-2-u10,A2.2,10,Im Büro,"[""talk about your work day"",""ask a colleague for something"",""explain a delay""]",g-praeteritum,,,18
+a2-2-u10,A2.2,10,Im Büro,"[""talk about your work day"",""ask a colleague for something"",""explain a delay""]",,,,18
 a2-2-u11,A2.2,11,Bewerbung,"[""talk about your experience"",""say what you're good at"",""answer a simple interview question""]",,,,18
 a2-2-u12,A2.2,12,Geld und Konten,"[""open a bank account"",""understand costs and fees"",""ask about a payment""]",,,,18
-a2-2-u13,A2.2,13,Umzug,"[""describe moving house"",""arrange help"",""register your new address""]",g-futur,r-a22-u13,,18
-a2-2-u14,A2.2,14,Reparaturen,"[""report something broken"",""ask for a repair"",""understand a cost estimate""]",,,,17
-a2-2-u15,A2.2,15,Regeln,"[""understand rules and signs"",""say what's allowed and forbidden"",""ask permission""]",,,,17
-a2-2-u16,A2.2,16,Verabredungen ändern,"[""cancel or move an appointment"",""apologise"",""suggest an alternative""]",g-genitiv,,,17
-a2-2-u17,A2.2,17,Erzählen,"[""tell a short story"",""put events in order"",""keep a listener interested""]",,r-a22-u17,,17
-a2-2-u18,A2.2,18,Beschwerden,"[""complain effectively"",""insist politely"",""ask for compensation""]",,,,17
-a2-2-u19,A2.2,19,Gesellschaft,"[""talk about where you live"",""describe a custom"",""compare two countries""]",,,,17
-a2-2-u20,A2.2,20,A2 zusammen,"[""give reasons and opinions"",""handle official situations"",""talk about past and future""]",,r-a22-u20,,17
-b1-1-u01,B1.1,1,"Der Mann, der…","[""use relative clauses"",""define a person or thing"",""add detail without a new sentence""]",g-relativsatz,r-b11-u01,,29
-b1-1-u02,B1.1,2,Höflich bitten,"[""use Konjunktiv II to be polite"",""make a request that doesn't sound blunt"",""soften a refusal""]",,,,29
-b1-1-u03,B1.1,3,Wenn ich könnte…,"[""form conditional sentences"",""talk about hypotheticals"",""express a wish""]",,,,29
-b1-1-u04,B1.1,4,Es wird gemacht,"[""understand the passive"",""describe a process"",""read instructions and notices""]",g-konjunktiv2,,,29
-b1-1-u05,B1.1,5,Um … zu,"[""say why you're doing something"",""use zu + infinitive"",""express purpose""]",,r-b11-u05,,29
-b1-1-u06,B1.1,6,Präpositionen sicher,"[""choose the right case after a preposition"",""use contractions naturally"",""describe a journey precisely""]",,,,29
-b1-1-u07,B1.1,7,Indirekt fragen,"[""ask indirect questions"",""be polite with strangers"",""use ob correctly""]",g-passiv,,,29
-b1-1-u08,B1.1,8,Arbeit und Karriere,"[""describe your responsibilities"",""talk about strengths and weaknesses"",""discuss career plans""]",,,,29
-b1-1-u09,B1.1,9,Diskutieren,"[""state and defend an opinion"",""concede a point"",""disagree without being rude""]",,r-b11-u09,,29
-b1-1-u10,B1.1,10,Medien und Technik,"[""talk about technology you use"",""describe a problem with a device"",""explain how something works""]",g-infinitiv-zu,,,29
-b1-1-u11,B1.1,11,Gesundheit und Ernährung,"[""talk about a healthy lifestyle"",""describe symptoms in detail"",""give and take advice""]",,,,29
-b1-1-u12,B1.1,12,Umwelt,"[""talk about environmental issues"",""describe what you do personally"",""state a problem and a solution""]",,,,29
-b1-1-u13,B1.1,13,Beziehungen,"[""describe a relationship"",""talk about a disagreement"",""say what you value in people""]",g-praeposition-kasus,r-b11-u13,,28
-b1-1-u14,B1.1,14,Wohnen in Deutschland,"[""understand a rental contract"",""deal with a landlord"",""describe housing problems""]",,,,28
-b1-1-u15,B1.1,15,Reisen planen,"[""plan a trip in detail"",""handle a booking problem"",""describe an itinerary""]",,,,28
-b1-1-u16,B1.1,16,Erfahrungen,"[""describe a past experience in detail"",""say what you learned"",""structure a longer answer""]",g-indirekte-frage,,,28
-b1-1-u17,B1.1,17,Bildung,"[""describe your education"",""compare school systems"",""talk about learning strategies""]",,r-b11-u17,,28
-b1-1-u18,B1.1,18,Geld und Wirtschaft,"[""talk about costs of living"",""describe a financial decision"",""understand a bill or contract""]",,,,28
-b1-1-u19,B1.1,19,Zukunftspläne,"[""talk about long-term plans"",""express hopes and doubts"",""describe conditions""]",,,,28
-b1-1-u20,B1.1,20,B1.1 zusammen,"[""hold a real conversation on a familiar topic"",""give reasons and examples"",""handle an unexpected question""]",,r-b11-u20,,28
-b1-2-u01,B1.2,1,Feste Präpositionen,"[""use verbs with their fixed prepositions"",""ask worauf / worüber questions"",""avoid English interference""]",g-verben-praeposition,,,29
-b1-2-u02,B1.2,2,Verbinden und begründen,"[""use deshalb, trotzdem and obwohl"",""keep word order right after each"",""build a longer argument""]",,r-b12-u02,,29
-b1-2-u03,B1.2,3,"Der Mensch, den…","[""use N-declension nouns"",""talk about people precisely"",""avoid a common B1 error""]",,,,29
-b1-2-u04,B1.2,4,Beschreiben mit Partizipien,"[""understand participles used as adjectives"",""read a news sentence"",""describe a state versus an action""]",g-konnektoren,,,29
-b1-2-u05,B1.2,5,Was gesagt wurde,"[""recognise reported speech"",""read a news report critically"",""repeat what someone said""]",,,,29
-b1-2-u06,B1.2,6,Wörter bauen,"[""decode long compound words"",""guess gender from an ending"",""expand vocabulary without memorising""]",,r-b12-u06,,29
-b1-2-u07,B1.2,7,Behörden und Formulare,"[""deal with an official office"",""fill in a complex form"",""ask what happens next""]",g-nomen-verb,,,29
-b1-2-u08,B1.2,8,Verträge und Rechte,"[""understand contract basics"",""ask about obligations"",""cancel something formally""]",,,,29
-b1-2-u09,B1.2,9,Arbeitswelt,"[""discuss working conditions"",""negotiate"",""describe a workplace conflict""]",,,,29
-b1-2-u10,B1.2,10,Statistik und Zahlen,"[""describe a trend"",""read a chart out loud"",""compare figures""]",g-partizip-adjektiv,r-b12-u10,,29
-b1-2-u11,B1.2,11,Kultur,"[""talk about art, music or literature"",""give a considered opinion"",""describe an event you attended""]",,,,29
-b1-2-u12,B1.2,12,Migration und Integration,"[""talk about living in another country"",""describe culture shock"",""discuss belonging""]",,,,29
-b1-2-u13,B1.2,13,Wissenschaft,"[""follow a popular-science explanation"",""ask clarifying questions"",""summarise what you understood""]",g-konjunktiv1,,,29
-b1-2-u14,B1.2,14,Nachrichten verstehen,"[""follow a slow news report"",""identify the main point"",""distinguish fact from opinion""]",,r-b12-u14,,29
-b1-2-u15,B1.2,15,Konflikte lösen,"[""raise a difficult subject"",""stay polite under pressure"",""propose a compromise""]",,,,29
-b1-2-u16,B1.2,16,Ratschläge geben,"[""give advice without being bossy"",""use Konjunktiv II for suggestions"",""weigh up options""]",g-wortbildung,,,29
-b1-2-u17,B1.2,17,Präsentieren,"[""structure a short talk"",""signal what comes next"",""answer a question afterwards""]",,r-b12-u17,,29
-b1-2-u18,B1.2,18,"Schreiben, das ankommt","[""write a formal email"",""use the right greeting and sign-off"",""make a clear request in writing""]",,,,29
-b1-2-u19,B1.2,19,Prüfungstraining,"[""handle a typical exam task"",""keep talking when you don't know a word"",""correct yourself naturally""]",,,,28
-b1-2-u20,B1.2,20,B1.2 — angekommen,"[""talk fluently about familiar topics"",""handle unexpected turns"",""express nuance and doubt""]",,r-b12-u20,,28
+a2-2-u13,A2.2,13,Umzug,"[""describe moving house"",""arrange help"",""register your new address""]",,r-a22-u13,,18
+a2-2-u14,A2.2,14,Reparaturen,"[""report something broken"",""ask for a repair"",""understand a cost estimate""]",,,,18
+a2-2-u15,A2.2,15,Regeln,"[""understand rules and signs"",""say what's allowed and forbidden"",""ask permission""]",g-modalverben,,,18
+a2-2-u16,A2.2,16,Verabredungen ändern,"[""cancel or move an appointment"",""apologise"",""suggest an alternative""]",,,,18
+a2-2-u17,A2.2,17,Erzählen,"[""tell a short story"",""put events in order"",""keep a listener interested""]",g-als-wenn,r-a22-u17,,18
+a2-2-u18,A2.2,18,Beschwerden,"[""complain effectively"",""insist politely"",""ask for compensation""]",,,,18
+a2-2-u19,A2.2,19,Gesellschaft,"[""talk about where you live"",""describe a custom"",""compare two countries""]",,,,18
+a2-2-u20,A2.2,20,A2 zusammen,"[""give reasons and opinions"",""handle official situations"",""talk about past and future""]",,r-a22-u20,,10
+b1-1-u01,B1.1,1,"Der Mann, der…","[""use relative clauses"",""define a person or thing"",""add detail without a new sentence""]",g-relativsatz,r-b11-u01,,18
+b1-1-u02,B1.1,2,Höflich bitten,"[""use Konjunktiv II to be polite"",""make a request that doesn't sound blunt"",""soften a refusal""]",g-konjunktiv2,,,18
+b1-1-u03,B1.1,3,Wenn ich könnte…,"[""form conditional sentences"",""talk about hypotheticals"",""express a wish""]",g-irreal,,,18
+b1-1-u04,B1.1,4,Es wird gemacht,"[""understand the passive"",""describe a process"",""read instructions and notices""]",g-passiv,,,18
+b1-1-u05,B1.1,5,Um … zu,"[""say why you're doing something"",""use zu + infinitive"",""express purpose""]",g-infinitiv-zu,r-b11-u05,,18
+b1-1-u06,B1.1,6,Präpositionen sicher,"[""choose the right case after a preposition"",""use contractions naturally"",""describe a journey precisely""]",g-praeposition-kasus,,,18
+b1-1-u07,B1.1,7,Indirekt fragen,"[""ask indirect questions"",""be polite with strangers"",""use ob correctly""]",g-indirekte-frage,,,18
+b1-1-u08,B1.1,8,Arbeit und Karriere,"[""describe your responsibilities"",""talk about strengths and weaknesses"",""discuss career plans""]",,,,18
+b1-1-u09,B1.1,9,Diskutieren,"[""state and defend an opinion"",""concede a point"",""disagree without being rude""]",,r-b11-u09,,18
+b1-1-u10,B1.1,10,Medien und Technik,"[""talk about technology you use"",""describe a problem with a device"",""explain how something works""]",g-passiv,,,18
+b1-1-u11,B1.1,11,Gesundheit und Ernährung,"[""talk about a healthy lifestyle"",""describe symptoms in detail"",""give and take advice""]",,,,18
+b1-1-u12,B1.1,12,Umwelt,"[""talk about environmental issues"",""describe what you do personally"",""state a problem and a solution""]",,,,18
+b1-1-u13,B1.1,13,Beziehungen,"[""describe a relationship"",""talk about a disagreement"",""say what you value in people""]",,r-b11-u13,,18
+b1-1-u14,B1.1,14,Wohnen in Deutschland,"[""understand a rental contract"",""deal with a landlord"",""describe housing problems""]",,,,18
+b1-1-u15,B1.1,15,Reisen planen,"[""plan a trip in detail"",""handle a booking problem"",""describe an itinerary""]",,,,18
+b1-1-u16,B1.1,16,Erfahrungen,"[""describe a past experience in detail"",""say what you learned"",""structure a longer answer""]",g-plusquamperfekt,,,18
+b1-1-u17,B1.1,17,Bildung,"[""describe your education"",""compare school systems"",""talk about learning strategies""]",,r-b11-u17,,18
+b1-1-u18,B1.1,18,Geld und Wirtschaft,"[""talk about costs of living"",""describe a financial decision"",""understand a bill or contract""]",,,,18
+b1-1-u19,B1.1,19,Zukunftspläne,"[""talk about long-term plans"",""express hopes and doubts"",""describe conditions""]",g-irreal,,,18
+b1-1-u20,B1.1,20,B1.1 zusammen,"[""hold a real conversation on a familiar topic"",""give reasons and examples"",""handle an unexpected question""]",,r-b11-u20,,10
+b1-2-u01,B1.2,1,Feste Präpositionen,"[""use verbs with their fixed prepositions"",""ask worauf / worüber questions"",""avoid English interference""]",g-verben-praeposition,,,18
+b1-2-u02,B1.2,2,Verbinden und begründen,"[""use deshalb, trotzdem and obwohl"",""keep word order right after each"",""build a longer argument""]",g-konnektoren,r-b12-u02,,18
+b1-2-u03,B1.2,3,"Der Mensch, den…","[""use N-declension nouns"",""talk about people precisely"",""avoid a common B1 error""]",g-nomen-verb,,,18
+b1-2-u04,B1.2,4,Beschreiben mit Partizipien,"[""understand participles used as adjectives"",""read a news sentence"",""describe a state versus an action""]",g-partizip-adjektiv,,,18
+b1-2-u05,B1.2,5,Was gesagt wurde,"[""recognise reported speech"",""read a news report critically"",""repeat what someone said""]",g-konjunktiv1,,,18
+b1-2-u06,B1.2,6,Wörter bauen,"[""decode long compound words"",""guess gender from an ending"",""expand vocabulary without memorising""]",g-wortbildung,r-b12-u06,,18
+b1-2-u07,B1.2,7,Behörden und Formulare,"[""deal with an official office"",""fill in a complex form"",""ask what happens next""]",g-passiv-modal,,,18
+b1-2-u08,B1.2,8,Verträge und Rechte,"[""understand contract basics"",""ask about obligations"",""cancel something formally""]",g-passiv-modal,,,18
+b1-2-u09,B1.2,9,Arbeitswelt,"[""discuss working conditions"",""negotiate"",""describe a workplace conflict""]",,,,18
+b1-2-u10,B1.2,10,Statistik und Zahlen,"[""describe a trend"",""read a chart out loud"",""compare figures""]",g-komparativ,r-b12-u10,,18
+b1-2-u11,B1.2,11,Kultur,"[""talk about art, music or literature"",""give a considered opinion"",""describe an event you attended""]",,,,18
+b1-2-u12,B1.2,12,Migration und Integration,"[""talk about living in another country"",""describe culture shock"",""discuss belonging""]",,,,18
+b1-2-u13,B1.2,13,Wissenschaft,"[""follow a popular-science explanation"",""ask clarifying questions"",""summarise what you understood""]",,,,18
+b1-2-u14,B1.2,14,Nachrichten verstehen,"[""follow a slow news report"",""identify the main point"",""distinguish fact from opinion""]",g-konjunktiv1,r-b12-u14,,18
+b1-2-u15,B1.2,15,Konflikte lösen,"[""raise a difficult subject"",""stay polite under pressure"",""propose a compromise""]",,,,18
+b1-2-u16,B1.2,16,Ratschläge geben,"[""give advice without being bossy"",""use Konjunktiv II for suggestions"",""weigh up options""]",g-konjunktiv2,,,18
+b1-2-u17,B1.2,17,Präsentieren,"[""structure a short talk"",""signal what comes next"",""answer a question afterwards""]",,r-b12-u17,,18
+b1-2-u18,B1.2,18,"Schreiben, das ankommt","[""write a formal email"",""use the right greeting and sign-off"",""make a clear request in writing""]",,,,18
+b1-2-u19,B1.2,19,Prüfungstraining,"[""handle a typical exam task"",""keep talking when you don't know a word"",""correct yourself naturally""]",,,,18
+b1-2-u20,B1.2,20,B1.2 — angekommen,"[""talk fluently about familiar topics"",""handle unexpected turns"",""express nuance and doubt""]",,r-b12-u20,,10

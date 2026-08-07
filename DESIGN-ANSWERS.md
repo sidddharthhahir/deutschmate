@@ -157,15 +157,21 @@ Home is the screen where "can't start" is fatal, so it's the one worth proving.
 
 | File             |                                                                                                                              |
 | ---------------- | ---------------------------------------------------------------------------------------------------------------------------- |
-| `vocabulary.csv` | all 2,400 words: article, plural, POS, gloss, level, example                                                                 |
+| `vocabulary.csv` | all 3,219 words: article, plural, POS, gloss, level, example                                                                 |
 | `units.csv`      | all 120 units with can-do statements                                                                                         |
 | `samples.json`   | real review cards, real Wortschatz rows, real error labels, real offline messages, **and the longest string in every field** |
 | `routes.md`      | all 24 pages and the 14 block types                                                                                          |
 
 The longest-strings block is the one to design against:
 
-- longest German word: **Vorstellungsgespräch** (20 chars)
+- longest German entry: **"Für Rückfragen stehe ich zur Verfügung."** (39 chars)
+  — the deck holds set phrases as well as words now, so the widest thing in the
+  vocabulary column is a sentence, not a compound noun
 - longest can-do: **"say whether you're going somewhere or already there"** (51)
+
+Regenerate with `npm run export-design` before designing against it. The copy
+attached to this brief was two half-levels of vocabulary out of date — 2,400
+words when the deck held 3,219, and A1's units rewritten since.
 
 ---
 

@@ -1,9 +1,9 @@
 {
   "scale": {
-    "words": 2400,
-    "wordsWithAudio": 2373,
+    "words": 3219,
+    "wordsWithAudio": 1536,
     "units": 120,
-    "grammar": 36,
+    "grammar": 49,
     "readings": 38
   },
   "reviewCards": [
@@ -11,16 +11,16 @@
       "lemma": "hallo",
       "article": null,
       "plural": null,
-      "pos": "phrase",
+      "pos": "interjection",
       "en": "hello",
-      "example_de": "Hallo, wie geht es dir?",
+      "example_de": "Hallo, ich bin Mira.",
       "forms_json": null
     },
     {
       "lemma": "tschüss",
       "article": null,
       "plural": null,
-      "pos": "phrase",
+      "pos": "interjection",
       "en": "bye",
       "example_de": "Tschüss, bis morgen!",
       "forms_json": null
@@ -31,7 +31,7 @@
       "plural": null,
       "pos": "phrase",
       "en": "good morning",
-      "example_de": "Guten Morgen, Frau Müller.",
+      "example_de": "Guten Morgen, Frau Weber.",
       "forms_json": null
     },
     {
@@ -40,7 +40,7 @@
       "plural": null,
       "pos": "phrase",
       "en": "good day / hello",
-      "example_de": "Guten Tag, ich heiße Anna.",
+      "example_de": "Guten Tag! Wie geht es Ihnen?",
       "forms_json": null
     },
     {
@@ -64,76 +64,76 @@
   ],
   "wortschatzRows": [
     {
-      "article": "der",
-      "lemma": "Gedanke",
-      "plural": "Gedanken",
-      "en": "thinking",
-      "example_de": "Der Gedanke zählt.",
-      "unit_ord": 6,
-      "unit_title": "Präpositionen sicher"
-    },
-    {
       "article": "die",
-      "lemma": "Absicht",
-      "plural": "Absichten",
-      "en": "intention",
-      "example_de": "Ich habe nicht die Absicht, ihn zu heiraten.",
-      "unit_ord": 6,
-      "unit_title": "Präpositionen sicher"
+      "lemma": "Eigenschaft",
+      "plural": "Eigenschaften",
+      "en": "quality, characteristic",
+      "example_de": "Welche Eigenschaft schätzt du am meisten?",
+      "unit_ord": 1,
+      "unit_title": "Der Mann, der…"
     },
     {
-      "article": "die",
-      "lemma": "Vorstellung",
-      "plural": "Vorstellungen",
-      "en": "idea",
-      "example_de": "Ich habe keine Vorstellung, wie viel das kostet.",
-      "unit_ord": 6,
-      "unit_title": "Präpositionen sicher"
+      "article": null,
+      "lemma": "derjenige",
+      "plural": null,
+      "en": "the one who",
+      "example_de": "Derjenige, der anruft, bekommt den Termin.",
+      "unit_ord": 1,
+      "unit_title": "Der Mann, der…"
     },
     {
-      "article": "die",
-      "lemma": "Ansicht",
-      "plural": "Ansichten",
-      "en": "view",
-      "example_de": "Ich bin anderer Ansicht.",
-      "unit_ord": 6,
-      "unit_title": "Präpositionen sicher"
+      "article": null,
+      "lemma": "bezeichnen",
+      "plural": null,
+      "en": "to describe, to call",
+      "example_de": "Wie bezeichnet man das auf Deutsch?",
+      "unit_ord": 1,
+      "unit_title": "Der Mann, der…"
     },
     {
-      "article": "der",
-      "lemma": "Standpunkt",
-      "plural": "Standpunkte",
-      "en": "standpoint",
-      "example_de": "Sein Standpunkt ist recht logisch.",
-      "unit_ord": 6,
-      "unit_title": "Präpositionen sicher"
+      "article": null,
+      "lemma": "bestimmen",
+      "plural": null,
+      "en": "to determine, to define",
+      "example_de": "Der Vertrag bestimmt die Bedingungen.",
+      "unit_ord": 1,
+      "unit_title": "Der Mann, der…"
     },
     {
-      "article": "das",
-      "lemma": "Argument",
-      "plural": "Argumente",
-      "en": "argument",
-      "example_de": "Das Argument ist löchrig.",
-      "unit_ord": 6,
-      "unit_title": "Präpositionen sicher"
-    },
-    {
-      "article": "die",
-      "lemma": "Behauptung",
-      "plural": "Behauptungen",
-      "en": "claim",
-      "example_de": "Beide Behauptungen sind falsch.",
-      "unit_ord": 6,
-      "unit_title": "Präpositionen sicher"
+      "article": null,
+      "lemma": "zählen zu",
+      "plural": null,
+      "en": "to be among, to count as",
+      "example_de": "Er zählt zu den besten Kollegen.",
+      "unit_ord": 1,
+      "unit_title": "Der Mann, der…"
     },
     {
       "article": "der",
-      "lemma": "Beweis",
-      "plural": "Beweise",
-      "en": "evidence",
-      "example_de": "Ich habe Beweise.",
-      "unit_ord": 6,
-      "unit_title": "Präpositionen sicher"
+      "lemma": "Begriff",
+      "plural": "Begriffe",
+      "en": "term, concept",
+      "example_de": "Der Begriff ist mir neu.",
+      "unit_ord": 1,
+      "unit_title": "Der Mann, der…"
+    },
+    {
+      "article": "die",
+      "lemma": "Bedeutung",
+      "plural": "Bedeutungen",
+      "en": "meaning, significance",
+      "example_de": "Das hat eine besondere Bedeutung.",
+      "unit_ord": 1,
+      "unit_title": "Der Mann, der…"
+    },
+    {
+      "article": "die",
+      "lemma": "Voraussetzung",
+      "plural": "Voraussetzungen",
+      "en": "prerequisite",
+      "example_de": "Deutsch ist eine Voraussetzung für die Stelle.",
+      "unit_ord": 1,
+      "unit_title": "Der Mann, der…"
     }
   ],
   "errorTagLabels": [
@@ -174,40 +174,40 @@
   ],
   "longestStrings": {
     "words": [
-      "Vorstellungsgespräch (20)",
-      "selbstverständlich (18)",
-      "Schlussfolgerung (16)",
-      "Arbeitslosigkeit (16)",
-      "unwahrscheinlich (16)",
-      "Missverständnis (15)",
-      "berücksichtigen (15)",
-      "veröffentlichen (15)",
-      "beziehungsweise (15)",
-      "Wissenschaftler (15)",
-      "Entschuldigung (14)",
-      "unterschreiben (14)",
-      "Landwirtschaft (14)",
-      "verantwortlich (14)",
-      "zusammenfassen (14)"
+      "Für Rückfragen stehe ich zur Verfügung. (39)",
+      "Ich verbleibe mit freundlichen Grüßen (37)",
+      "Vielen Dank für Ihre Aufmerksamkeit. (36)",
+      "Entschuldigung, ich korrigiere mich. (36)",
+      "Das lässt sich leider nicht machen. (35)",
+      "Entschuldigen Sie die Frage, aber … (35)",
+      "Damit bin ich nicht einverstanden. (34)",
+      "Zusammenfassend lässt sich sagen … (34)",
+      "Könnten Sie das genauer erklären? (33)",
+      "Einen Moment bitte, ich überlege. (33)",
+      "Vielen Dank für Ihr Verständnis. (32)",
+      "Habe ich das richtig verstanden? (32)",
+      "Entschuldigen Sie die Umstände. (31)",
+      "Ich bestätige den neuen Termin. (31)",
+      "Darauf komme ich gleich zurück. (31)"
     ],
     "englishGlosses": [
+      "the (masculine, as an object) — the only article that changes (61)",
       "attack, offensive, strike, assault, onslaught, raid, offence (60)",
+      "she; they — one word for both, told apart by the verb ending (60)",
       "to prevent, to inhibit, to keep (something) from happening. (59)",
       "to turn something so as to cook or roast it from both sides (59)",
       "to hand in, to turn in, to drop off, to deliver, to return (58)",
       "legacy handed over to the heir before the leaver's death. (57)",
-      "condition (health status of a patient), state of health (55)",
-      "to steer, to navigate, to pilot, to operate, to control (55)",
-      "Introduces an indirect question, a doubt. if, whether. (54)",
-      "Former spelling of Doktor which is no longer standard. (54)",
-      "treason, betrayal, treachery, backstabbing, bewrayment (54)"
+      "his — same word as the verb sein, told apart by position (56)",
+      "to please — the German way of saying you like something (55)",
+      "condition (health status of a patient), state of health (55)"
     ],
     "unitTitles": [
       "Beschreiben mit Partizipien (27)",
       "Migration und Integration (25)",
       "Gesundheit und Ernährung (24)",
+      "Wollen, möchten, dürfen (23)",
       "Verbinden und begründen (23)",
-      "Verb an zweiter Stelle (22)",
       "Zu Hause und unterwegs (22)",
       "Behörden und Formulare (22)",
       "Schreiben, das ankommt (22)",
@@ -216,25 +216,25 @@
     ],
     "canDoStatements": [
       "say whether you're going somewhere or already there (51)",
+      "introduce yourself for a minute without stopping (48)",
+      "tell the difference between wollen and möchten (46)",
+      "choose accusative or dative after in, auf, an (45)",
+      "say what you did and what you are going to do (45)",
+      "use the right article for the words you know (44)",
       "hold a real conversation on a familiar topic (44)",
-      "hold a simple conversation about yourself (41)",
-      "choose the right case after a preposition (41)",
-      "understand participles used as adjectives (41)",
-      "make a request that doesn't sound blunt (39)",
-      "use verbs with their fixed prepositions (39)",
-      "keep talking when you don't know a word (39)",
-      "use the right article for common nouns (38)",
-      "describe something with an adjective (36)"
+      "use mein, dein, sein, ihr, unser correctly (42)",
+      "recognise the endings that predict gender (41)",
+      "choose the right case after a preposition (41)"
     ],
     "exampleSentences": [
       "Wenn Sie ein Messer waschen, müssen Sie vorsichtig sein, sich nicht zu schneiden. (81)",
-      "Wenn Sie ein Messer waschen, müssen Sie vorsichtig sein, sich nicht zu schneiden. (81)",
-      "Ich diskutierte mit ihm das Abfallproblem unter dem Gesichtspunkt des Recyclings. (81)",
-      "Wenn wir nicht bald gehen, kommen wir nicht mehr an, solange es noch hell ist. (78)",
-      "Ich bin froh, dass sie die Heizung repariert haben, jetzt ist es aber zu heiß. (78)",
-      "Tom veröffentlicht immerfort Bilder aus seinem Leben in den sozialen Medien. (76)",
-      "Ich habe Tom gestern Nacht gesehen – beziehungsweise sehr früh heute Morgen. (76)",
-      "Er gab uns eine so umfangreiche Hausaufgabe auf, dass wir protestierten. (72)"
+      "Der Staatsanwalt kann nicht beweisen, dass es niemand anderes getan hat. (72)",
+      "Der Dämonenfürst verlor endlich das Bewusstsein und krachte zu Boden. (69)",
+      "Was hast du denn Herrgott noch mal erwartet, was passieren würde? (65)",
+      "Ich brauche deine Hilfe. Kannst du für mich zum Supermarkt gehen? (65)",
+      "Zunächst einmal müssen wir in Erfahrung bringen, wo sie wohnen. (63)",
+      "Da drin ist ein Typ mit einer Knarre. Ich brauche Verstärkung. (62)",
+      "Da drin ist ein Typ mit einer Knarre. Ich brauche Verstärkung. (62)"
     ]
   }
 }

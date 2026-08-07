@@ -4,7 +4,7 @@
 
 I need you to design the frontend for **DeutschMate**, a German learning app that
 already exists and works. The logic, data and all 24 pages are built in
-Next.js 16 + Tailwind + TypeScript. What it has is a *functional* interface, not
+Next.js 16 + Tailwind + TypeScript. What it has is a _functional_ interface, not
 a designed one. I want you to design it properly, then I'll build it.
 
 Produce **HTML/CSS artifacts I can look at**, not descriptions. Use real German
@@ -28,7 +28,7 @@ seven months. Two users right now: me and my flatmate — same install, a name a
 1. **One button.** The app decides what you study. Never make the user choose a
    lesson, a skill, or a difficulty. If a design adds a decision, it's wrong.
 2. **Offline-first.** A full session must be finishable in airplane mode. Every
-   screen needs an offline state that is *calm*, not an error.
+   screen needs an offline state that is _calm_, not an error.
 3. **Vocabulary-constrained.** Text shown to the learner only uses words they
    already know. Nothing in the UI should feel like it's showing off.
 4. **Never fake progress.** Every number on screen traces to a database row.
@@ -37,18 +37,19 @@ seven months. Two users right now: me and my flatmate — same install, a name a
 
 ## Real scale — design for this, not for five items
 
-| | |
-|---|---|
-| Vocabulary | 2,400 words, 2,373 with native audio |
-| Units | 120, across 6 levels (20 each) |
-| Grammar points | 36 |
-| Readings | 38 |
-| Scenarios | 120 — and they now come back on a rotation, not once each |
-| Reviews due on a normal day | 40–90, hard-capped at 60 |
-| A session | 4–10 blocks, up to ~92 minutes. A full day is 8–9. |
-| Block types | 14 |
-| Routes | 24 pages, 20 API |
-| Video | 231 Deutsche Welle episodes, none segmented yet — the block stays hidden until one is |
+|                             |                                                                                                                                              |
+| --------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| Vocabulary                  | 3,219 words, 1,536 with native audio                                                                                                         |
+| Units                       | 120, across 6 levels (20 each)                                                                                                               |
+| Grammar points              | 49                                                                                                                                           |
+| Readings                    | 38                                                                                                                                           |
+| Scenarios                   | 120 — all of them, A1 included, and they come back on a rotation rather than once each                                                       |
+| Scripted dialogues          | 48 — every A1 unit plus eight later ones, so the conversation runs with no key and no signal                                                 |
+| Reviews due on a normal day | 40–90, hard-capped at 60                                                                                                                     |
+| A session                   | 4–10 blocks, up to ~92 minutes. A full day is 8–9.                                                                                           |
+| Block types                 | 14                                                                                                                                           |
+| Routes                      | 24 pages, 19 API                                                                                                                             |
+| Video                       | 231 Deutsche Welle episodes, none segmented — the block plays the episode anyway; requiring segments kept it hidden for the app's whole life |
 
 ---
 
@@ -60,7 +61,7 @@ seven months. Two users right now: me and my flatmate — same install, a name a
 greeting + level + unit + streak, today's can-do statements, one big button
 with duration and counts, a list of the session's blocks, three nav links.
 
-The emotional job: *you should not be able to open this and not start.*
+The emotional job: _you should not be able to open this and not start._
 
 **2. Session runner shell.** A progress rail across 7 blocks, a way out, and
 the current block's title. It must show where you are without offering a choice
@@ -73,7 +74,7 @@ a keyboard user should be able to hold a steady pace without moving their hand.
 
 **4. Sentence builder.** English sentence at the top, German word tiles below,
 an empty slot to arrange them in. On a wrong answer an explanation appears
-saying *why*. Needs to feel tactile.
+saying _why_. Needs to feel tactile.
 
 **5. Daily recap.** End of session. Tick off the can-do statements, show four
 real numbers, name the most common mistake, preview tomorrow. This is the
@@ -81,7 +82,7 @@ screen that makes someone come back — design it like it matters.
 
 ### Priority 2 — design the pattern, not every instance
 
-**6. Wortschatz** — browsable list of all 2,400 words. Filters, 50–100 a day,
+**6. Wortschatz** — browsable list of all 3,219 words. Filters, 50–100 a day,
 "+ Deck" per row. Dense list design; must stay scannable at 100 rows.
 
 **7. Progress** — **eleven sections in flat order** and four ungrouped stats.
@@ -91,10 +92,10 @@ the last 30 days, but four sections are all-time (Wortschatz, Grammatik, Units,
 Tempo) and nothing on the page says which is which. This is the screen I most
 want restructured — see answer 12(e).
 
-**7b. Der Weg** — the *arc* page, and the newer of the two. All 120 units as
+**7b. Der Weg** — the _arc_ page, and the newer of the two. All 120 units as
 ticks (done / here / ahead), every can-do statement earned so far grouped by
 level, and a dated milestone timeline. Deliberately not in the nav — it hangs
-off Progress. The design question: how do you show 120 units and **359** can-do
+off Progress. The design question: how do you show 120 units and **360** can-do
 statements without it becoming a wall? (A learner near the end has ~350 of
 them. My current answer is a two-column list per level, and I don't think it
 scales.)
@@ -102,10 +103,10 @@ scales.)
 **8. Reading block** — a German text where every word is tappable for a gloss,
 followed by comprehension questions.
 
-**9. Conversation block** — chat with the AI tutor. Also needs a *scripted*
+**9. Conversation block** — chat with the AI tutor. Also needs a _scripted_
 offline variant that must not feel like a downgrade. And a third state: a scene
 you already did weeks ago, coming back on rotation. It carries a line saying
-where it's from (*"schon gemacht · Unit 10 · Fragen stellen"*) — that has to
+where it's from (_"schon gemacht · Unit 10 · Fragen stellen"_) — that has to
 read as revision, not as the app having lost its place.
 
 **10. Word detail page** — everything about one word: forms, audio, examples,
@@ -117,8 +118,8 @@ which unit teaches it, your review history, your mistakes with it.
 
 **German text is long.** `Grundstücksverkehrsgenehmigung` is one word. Buttons
 and labels must survive strings 3× longer than the English equivalent. Test
-your layouts with: *Wiedereinstieg*, *Vorstellungsgespräch*, *Arbeitslosigkeit*,
-*Krankenversicherungsbeitrag*.
+your layouts with: _Wiedereinstieg_, _Vorstellungsgespräch_, _Arbeitslosigkeit_,
+_Krankenversicherungsbeitrag_.
 
 **Umlauts and ß must be unambiguous** at small sizes: ä ö ü Ä Ö Ü ß. Pick a
 typeface where they don't collide with the line above.
@@ -137,6 +138,7 @@ Improve the palette but keep three distinct, memorable, colourblind-safe hues.
 ## Real content to design with
 
 Home screen:
+
 ```
 Guten Abend, Siddharth
 A1.2 · Unit 14 von 20 · Tag 23 🔥
@@ -150,6 +152,7 @@ Heute lernst du
 ```
 
 Review card:
+
 ```
 der Bahnhof          →  station
 Plural: die Bahnhöfe
@@ -158,6 +161,7 @@ Wo ist der Bahnhof?
 ```
 
 Sentence builder:
+
 ```
 "I'm eating an apple."
 tiles:  Apfel · esse · einen · Ich
@@ -166,6 +170,7 @@ error:  "einen, not ein — Apfel is masculine and it's the object here."
 ```
 
 Wortschatz row:
+
 ```
 die  Entwicklung, -en        development
      Die Entwicklung dauert lange.       🔊   [+ Deck]
@@ -173,6 +178,7 @@ die  Entwicklung, -en        development
 ```
 
 Recap:
+
 ```
 Heute geschafft                      58 min
 12 neue Wörter        56 Wiederholungen

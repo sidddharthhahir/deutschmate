@@ -9,14 +9,19 @@
 > deliberately not been rewritten to agree with it — a spec quietly edited to
 > match the implementation stops being useful, because you can no longer tell a
 > decision from a drift. Where the build differs, **§20 lists every change and
-> why**. Three headline ones, so nothing here misleads on a first read:
+> why**, and the sections after it record what each later pass changed. Four
+> headline ones, so nothing here misleads on a first read:
 >
-> - the deck reached **2,400 words**, so the course is nearer **seven months**
->   than six (§4 still says six)
+> - the deck is **3,219 words** and **49 grammar points**, so the course is
+>   nearer **seven months** than six (§4 still says six, and the 2,400 in §1,
+>   §5 and §13 is the original Wortliste plan)
 > - a session is **5–10 blocks**, not 6, and old scenarios and readings now come
 >   back on a rotation (§3)
 > - the $10 ceiling is **enforced before every paid call**, not just planned
 >   against (§13)
+> - **A1 is hand-written**, not generated: 40 units with their own vocabulary,
+>   grammar and conversation, and sentences gated on the grammar they use rather
+>   than on how common their words are (§27)
 >
 > For what the app does today, read `README.md`.
 
@@ -67,11 +72,11 @@ PDFs, cumulative, ~2,400 words total. That is the complete vocabulary universe
 of this app. No frequency lists, no corpus mining, no "is this really B2?"
 judgement calls, no unofficial word sourcing.
 
-| Level | Cumulative words | Source |
-|---|---|---|
-| A1 | ~650 | Goethe Wortliste A1 |
-| A2 | ~1,300 | Goethe Wortliste A2 |
-| B1 | ~2,400 | Goethe Wortliste B1 |
+| Level | Cumulative words | Source              |
+| ----- | ---------------- | ------------------- |
+| A1    | ~650             | Goethe Wortliste A1 |
+| A2    | ~1,300           | Goethe Wortliste A2 |
+| B1    | ~2,400           | Goethe Wortliste B1 |
 
 Three consequences, all good:
 
@@ -111,14 +116,14 @@ button starts it.
 Fixed rhythm, variable content. The rhythm never changes so it becomes a habit;
 the scheduler chooses what fills each block.
 
-| # | Block | Min | What happens | Needs net? |
-|---|-------|-----|--------------|------------|
-| 1 | **Aufwärmen** — Review | 12 | FSRS-due cards: words + grammar. Always first. | No |
-| 2 | **Fix** | 5 | Targeted drills on your top 3 error tags. Skipped if none. | No |
-| 3 | **Neu** — New material | 15 | Either 12 new words **or** 1 grammar point. Never both. | No |
-| 4 | **Input** | 15 | Listening or reading, using only words you know. | No* |
-| 5 | **Output** | 12 | Speaking · writing · AI conversation. | Partly |
-| 6 | **Abschluss** | 4 | 8-question quiz + daily recap. | No |
+| #   | Block                  | Min | What happens                                               | Needs net? |
+| --- | ---------------------- | --- | ---------------------------------------------------------- | ---------- |
+| 1   | **Aufwärmen** — Review | 12  | FSRS-due cards: words + grammar. Always first.             | No         |
+| 2   | **Fix**                | 5   | Targeted drills on your top 3 error tags. Skipped if none. | No         |
+| 3   | **Neu** — New material | 15  | Either 12 new words **or** 1 grammar point. Never both.    | No         |
+| 4   | **Input**              | 15  | Listening or reading, using only words you know.           | No*        |
+| 5   | **Output**             | 12  | Speaking · writing · AI conversation.                      | Partly     |
+| 6   | **Abschluss**          | 4   | 8-question quiz + daily recap.                             | No         |
 
 \* Video needs network; listening and reading do not. Offline swaps the video
 for an audio drill.
@@ -171,17 +176,17 @@ has to be caught up, not absorbed.
 
 **A unit** is the atomic content package:
 
-| Field | Example |
-|---|---|
-| Title | "Im Restaurant" |
-| Level | A2.1 |
-| **Can-do** | `["order a meal", "ask what something costs", "pay and tip"]` |
-| Words | 14, drawn from the Goethe list for that level |
-| Grammar point | Akkusativ with definite articles |
-| Video | one embedded clip, sentence-timestamped |
-| Reading | 1 short text (80–250 words by level) |
-| Conversation | 1 roleplay scenario + AI persona brief |
-| Prerequisites | `["a2-1-unit-11", "grammar:nominativ"]` |
+| Field         | Example                                                       |
+| ------------- | ------------------------------------------------------------- |
+| Title         | "Im Restaurant"                                               |
+| Level         | A2.1                                                          |
+| **Can-do**    | `["order a meal", "ask what something costs", "pay and tip"]` |
+| Words         | 14, drawn from the Goethe list for that level                 |
+| Grammar point | Akkusativ with definite articles                              |
+| Video         | one embedded clip, sentence-timestamped                       |
+| Reading       | 1 short text (80–250 words by level)                          |
+| Conversation  | 1 roleplay scenario + AI persona brief                        |
+| Prerequisites | `["a2-1-unit-11", "grammar:nominativ"]`                       |
 
 ### Can-do statements — never show a bare unit number
 
@@ -231,15 +236,15 @@ Heute: 50 / 100                    ── 34 / 50 ──
 - **One tap adds it to real SRS**
 
 **Because the browse deck is the curriculum deck**, each row can show which unit
-that word belongs to. So browsing isn't a parallel activity — it's *reading
-ahead* in your own course. Tapping `[+ Deck]` means "teach me this now, before
+that word belongs to. So browsing isn't a parallel activity — it's _reading
+ahead_ in your own course. Tapping `[+ Deck]` means "teach me this now, before
 Unit 88 comes around," and the scheduler honours it.
 
 At 100/day you cycle the entire A1–B1 vocabulary in ~24 days. Running that loop
 continuously while your active study catches up is genuine priming: by the time
-Unit 88 arrives you've passively seen *Entwicklung* six times.
+Unit 88 arrives you've passively seen _Entwicklung_ six times.
 
-**One honest design point:** reading 100 words a day and *learning* 100 words a
+**One honest design point:** reading 100 words a day and _learning_ 100 words a
 day are different things. Passive reading builds recognition, not recall. So:
 
 - `Words seen` and `Words mastered` are **separate numbers on the dashboard**
@@ -260,20 +265,20 @@ day are different things. Passive reading builds recognition, not recall. So:
 2. **Wortschatz browse section** — §5.
 3. **Grammar module** — ~60 points across the 6 levels. Short visual
    explanations, never walls of text, plus 10 drill items each. Grammar points
-   get FSRS cards too: you review the *concept* on a schedule via a fresh item.
+   get FSRS cards too: you review the _concept_ on a schedule via a fresh item.
 4. **Sentence builder** — the workhorse. English sentence → arrange German word
-   tiles. On error, explain *why*: from the pre-built error-pattern table for
+   tiles. On error, explain _why_: from the pre-built error-pattern table for
    known mistakes, from a live call for novel ones. Every attempt writes tags.
 5. **Listening drill** — sentence audio → type what you hear → diff highlights
    what you missed. 0.75× / 1× / 1.25×. Transcript hidden by default.
 6. **AI conversation** — roleplay scenarios (restaurant, doctor, Bahnhof,
    WG-Besichtigung). Constrained to your known vocabulary — see §8. Grammar
-   corrections come *after* the conversation, never mid-flow.
+   corrections come _after_ the conversation, never mid-flow.
 7. **Writing correction** — prompt → text box → structured correction: what was
    wrong, why, a more natural alternative. Errors tagged.
 8. **Video player** — YouTube IFrame embed with your own control layer:
    sentence timestamps, tap-to-loop a line, 0.75× speed, tap a word to add it.
-   Sources: *Your German Teacher* (labeled by exact sub-level), DW *Nicos Weg*,
+   Sources: _Your German Teacher_ (labeled by exact sub-level), DW _Nicos Weg_,
    Easy German.
 9. **Reading** — short texts, tap any word for a gloss, comprehension questions.
    By B1, real `nachrichtenleicht.de` articles.
@@ -310,13 +315,13 @@ leaderboards · Netflix clips · vector DB · anything above B1.2.
 
 Three signals, all computable, none invented.
 
-| Signal | Definition |
-|---|---|
-| Word **seen** | appeared in a Wortschatz browse batch |
-| Word **learned** | seen ≥3 times in study, last 2 reviews correct |
-| Word **mastered** | FSRS stability > 30 days |
-| Grammar mastery | rolling accuracy over last 20 attempts, 0–100 |
-| Unit **complete** | ≥80% of its words *learned* AND its grammar ≥70 |
+| Signal            | Definition                                      |
+| ----------------- | ----------------------------------------------- |
+| Word **seen**     | appeared in a Wortschatz browse batch           |
+| Word **learned**  | seen ≥3 times in study, last 2 reviews correct  |
+| Word **mastered** | FSRS stability > 30 days                        |
+| Grammar mastery   | rolling accuracy over last 20 attempts, 0–100   |
+| Unit **complete** | ≥80% of its words _learned_ AND its grammar ≥70 |
 
 A unit unlocks when its prerequisites are complete. Level progress is
 `units_complete / 20`. That's the whole progression engine — no ML, no scoring
@@ -366,7 +371,7 @@ WHERE user_id = ? AND created_at > date('now','-14 days')
 GROUP BY tag ORDER BY COUNT(*) DESC LIMIT 3;
 ```
 
-That's the entire adaptive-learning engine. Counting mistakes *is* adaptive
+That's the entire adaptive-learning engine. Counting mistakes _is_ adaptive
 learning. Anything fancier means building an ML system instead of learning
 German.
 
@@ -409,7 +414,7 @@ migration — retrofitting it is painful.
 
 ### Day 0 — first open (4 min)
 
-Name picker, no email, no password → *"Hast du schon Deutsch gelernt?"* → No →
+Name picker, no email, no password → _"Hast du schon Deutsch gelernt?"_ → No →
 A1.1 (Yes → 15-question placement quiz) → daily goal 30/60/90, default 60 →
 one screen of expectation-setting → straight into Unit 1.
 
@@ -420,8 +425,8 @@ danke, bitte, gut, Name) → grammar `ich bin / du bist` → 3-minute A1.1 video
 say "Ich heiße …" aloud → 3-turn AI conversation using only those 12 words →
 8-question quiz.
 
-Ends with: *"You learned 12 words and can now introduce yourself in German.
-Tomorrow: these 12 come back, plus 12 more."* That line sets up the return
+Ends with: _"You learned 12 words and can now introduce yourself in German.
+Tomorrow: these 12 come back, plus 12 more."_ That line sets up the return
 visit and matters more than it looks.
 
 ### Days 2–7
@@ -438,7 +443,7 @@ mirror, not a test.
 ### Month 3 — the shift
 
 Around A2.2 it stops feeling like drills. Reading becomes short real articles,
-conversations run 10+ turns, the AI starts explaining grammar *in German*.
+conversations run 10+ turns, the AI starts explaining grammar _in German_.
 The UI language toggle unlocks here if you want it.
 
 ### Month 6 — B1.2
@@ -483,12 +488,12 @@ surfaces for two users is how side projects die.
 
 The decision that keeps deployment trivial.
 
-| Need | Choice | Why |
-|---|---|---|
-| Speech → text | Web Speech API (Chrome) | Free, no server, German works well, runs on the roommate's phone |
-| Text → speech (dynamic) | `SpeechSynthesis` API | Free, instant, fine for throwaway sentences |
-| Text → speech (curriculum) | **Piper, pre-generated to mp3** | Consistent, static files, works offline |
-| Native word audio | Wikimedia Commons | Real German speakers, ~85% coverage of A1–B1 |
+| Need                       | Choice                          | Why                                                              |
+| -------------------------- | ------------------------------- | ---------------------------------------------------------------- |
+| Speech → text              | Web Speech API (Chrome)         | Free, no server, German works well, runs on the roommate's phone |
+| Text → speech (dynamic)    | `SpeechSynthesis` API           | Free, instant, fine for throwaway sentences                      |
+| Text → speech (curriculum) | **Piper, pre-generated to mp3** | Consistent, static files, works offline                          |
+| Native word audio          | Wikimedia Commons               | Real German speakers, ~85% coverage of A1–B1                     |
 
 Move to `faster-whisper` only if Web Speech accuracy actually disappoints. A
 Python sidecar means no Vercel deploy and no phone access — pay that cost
@@ -499,13 +504,13 @@ against measured evidence, not a guess.
 There are **three** categories, not two — the third is the one that matters
 most for cost over time.
 
-| Category | Job | Model | Stored? |
-|---|---|---|---|
-| **Build time** | Mnemonics, example sentences, grammar explanations, scripted offline dialogues, the top ~200 error explanations | Opus 5 / Sonnet 5, **Batch API (50% off)** | ✅ committed to the repo |
-| **Write-through cache** | Novel error explanations not in the pre-built table | Haiku 4.5 | ✅ **written back to `error_pattern`** |
-| **Pure runtime** | Conversation, writing correction, Ask Tutor | Sonnet 5 + prompt caching | ❌ genuinely per-user |
+| Category                | Job                                                                                                             | Model                                      | Stored?                                |
+| ----------------------- | --------------------------------------------------------------------------------------------------------------- | ------------------------------------------ | -------------------------------------- |
+| **Build time**          | Mnemonics, example sentences, grammar explanations, scripted offline dialogues, the top ~200 error explanations | Opus 5 / Sonnet 5, **Batch API (50% off)** | ✅ committed to the repo               |
+| **Write-through cache** | Novel error explanations not in the pre-built table                                                             | Haiku 4.5                                  | ✅ **written back to `error_pattern`** |
+| **Pure runtime**        | Conversation, writing correction, Ask Tutor                                                                     | Sonnet 5 + prompt caching                  | ❌ genuinely per-user                  |
 
-**Spend once with the best model, serve from SQLite forever.** Cheaper *and*
+**Spend once with the best model, serve from SQLite forever.** Cheaper _and_
 higher quality than calling a cheap model live.
 
 ### The write-through cache is why costs decay
@@ -514,7 +519,7 @@ When you make a mistake nobody has made before, the app pays for one live
 explanation — then **saves it**. The next time you make that mistake, or the
 first time your roommate does, it's free and instant.
 
-German learners make a *finite* set of mistakes. Within a few weeks the
+German learners make a _finite_ set of mistakes. Within a few weeks the
 `error_pattern` table covers nearly everything either of you does, live calls
 drop toward zero, and that line of the monthly bill quietly dies. Only
 conversation and writing correction stay genuinely per-user forever.
@@ -528,11 +533,11 @@ back**, never just return it. A cache that doesn't fill is just a slow API.
 
 **One-time content build ≈ $13:**
 
-| | |
-|---|---|
+|                                                               |       |
+| ------------------------------------------------------------- | ----- |
 | 2,400 words × (mnemonic + 2 examples + mistake note), batched | ~$4–9 |
-| 60 grammar explanations | ~$2 |
-| 200 recurring error patterns | ~$2 |
+| 60 grammar explanations                                       | ~$2   |
+| 200 recurring error patterns                                  | ~$2   |
 
 **Monthly runtime, 2 users ≈ $7:** conversation ~$3.30 · writing ~$1.10 ·
 novel errors ~$2.20.
@@ -547,18 +552,18 @@ audio, Goethe Wortlisten, Wiktextract, Tatoeba.
 
 ## 14. Free content sources
 
-| What | Source | Licence |
-|---|---|---|
-| Curriculum spine | Goethe Wortlisten A1 / A2 / B1 | Free PDFs |
-| Articles, plurals, IPA, conjugations | Wiktextract (kaikki.org) | CC BY-SA |
-| Native pronunciation audio | Wikimedia Commons (`De-*.ogg`) | CC |
-| Example sentences DE↔EN | Tatoeba | CC BY 2.0 FR |
-| Sentence TTS | Piper / Kokoro, run locally | MIT / Apache |
-| Graded listening + transcripts | DW *Langsam gesprochene Nachrichten*, `nachrichtenleicht.de` | link / embed |
-| Video course A1→B1 | DW *Nicos Weg* | free, embeddable |
-| Level-labeled lessons | *Your German Teacher* (A1.1, A2.1 …) | YouTube embed |
-| Real spoken German | Easy German | YouTube embed |
-| Practice exams | Goethe Modellsätze | free PDF + audio |
+| What                                 | Source                                                       | Licence          |
+| ------------------------------------ | ------------------------------------------------------------ | ---------------- |
+| Curriculum spine                     | Goethe Wortlisten A1 / A2 / B1                               | Free PDFs        |
+| Articles, plurals, IPA, conjugations | Wiktextract (kaikki.org)                                     | CC BY-SA         |
+| Native pronunciation audio           | Wikimedia Commons (`De-*.ogg`)                               | CC               |
+| Example sentences DE↔EN              | Tatoeba                                                      | CC BY 2.0 FR     |
+| Sentence TTS                         | Piper / Kokoro, run locally                                  | MIT / Apache     |
+| Graded listening + transcripts       | DW _Langsam gesprochene Nachrichten_, `nachrichtenleicht.de` | link / embed     |
+| Video course A1→B1                   | DW _Nicos Weg_                                               | free, embeddable |
+| Level-labeled lessons                | _Your German Teacher_ (A1.1, A2.1 …)                         | YouTube embed    |
+| Real spoken German                   | Easy German                                                  | YouTube embed    |
+| Practice exams                       | Goethe Modellsätze                                           | free PDF + audio |
 
 **Videos: embed only.** The YouTube IFrame Player API is the legitimate path and
 it's also the better one — it lets you seek, loop a single sentence, and change
@@ -570,7 +575,7 @@ speed from your own code. Do not download, rip, or re-host.
 
 ### 1. The content prep tax is the real work
 
-Each unit needs ~12 minutes of *human* time: pick the video, mark sentence
+Each unit needs ~12 minutes of _human_ time: pick the video, mark sentence
 timestamps, sanity-check the grammar explanation, write the scenario brief.
 120 units × 12 min = **24 hours**. Not optional, not automatable without the
 quality collapsing.
@@ -585,8 +590,9 @@ Take a 5-day trip, return to 300 due cards, feel awful, never open it again.
 The single most common death of every Anki-style app.
 
 **Design for it on day one:**
+
 - Hard cap reviews at 60 per session regardless of backlog.
-- Prioritize by *overdue ratio*, not raw due date.
+- Prioritize by _overdue ratio_, not raw due date.
 - After a gap ≥3 days, show a **Wiedereinstieg** session: 20 reviews, no new
   material, ~15 min, and say explicitly that the backlog is handled.
 - The streak allows 1 rest day per week without breaking.
@@ -609,8 +615,8 @@ while your German goes nowhere.
 **Day 1 — the spine.** Scaffold, schema, seed script (Goethe A1 Wortliste +
 Wiktextract + Commons audio), vocab review screen with `ts-fsrs`, one
 `/api/chat` route.
-*End of day: 650 real words with native audio and correct spacing — genuinely
-studiable.*
+_End of day: 650 real words with native audio and correct spacing — genuinely
+studiable._
 
 **Days 2–4.** Session runner (the block engine) · sentence builder + error tags
 · listening drill · Wortschatz browse section.
@@ -635,15 +641,15 @@ airplane mode on.** If the API budget runs out or the wifi dies, you still study
 
 This is nearly free given the architecture — SQLite, pre-generated Piper mp3s,
 Commons audio, and browser `SpeechSynthesis` are all local already. What it
-takes is *discipline in the session runner*, not new infrastructure.
+takes is _discipline in the session runner_, not new infrastructure.
 
-| Feature | Offline? |
-|---|---|
-| Vocabulary SRS, Wortschatz, grammar, sentence builder, listening, reading, quizzes, recap, progress | ✅ fully |
-| Speaking | ✅ Web Speech works offline in Chrome for common languages; falls back to record-and-compare |
-| Video | ❌ needs YouTube — swapped for an audio drill |
-| AI conversation | ❌ — swapped for a scripted branching dialogue built from the unit's scenario |
-| Writing correction | ⚠️ write offline, **queue it**, correct on reconnect |
+| Feature                                                                                             | Offline?                                                                                     |
+| --------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| Vocabulary SRS, Wortschatz, grammar, sentence builder, listening, reading, quizzes, recap, progress | ✅ fully                                                                                     |
+| Speaking                                                                                            | ✅ Web Speech works offline in Chrome for common languages; falls back to record-and-compare |
+| Video                                                                                               | ❌ needs YouTube — swapped for an audio drill                                                |
+| AI conversation                                                                                     | ❌ — swapped for a scripted branching dialogue built from the unit's scenario                |
+| Writing correction                                                                                  | ⚠️ write offline, **queue it**, correct on reconnect                                         |
 
 Three concrete requirements:
 
@@ -657,7 +663,7 @@ Three concrete requirements:
    stand-in for conversation, and it costs nothing extra because it's generated
    once with everything else.
 
-**Scope note.** Offline is free *today* because the app runs on your laptop with
+**Scope note.** Offline is free _today_ because the app runs on your laptop with
 a local SQLite file. True offline on your roommate's **phone** is a different
 thing — it needs a PWA with a service worker, content cached to IndexedDB, and
 progress sync on reconnect. That's roughly a week of work. Build the session to
@@ -669,7 +675,7 @@ someone actually wants it.
 ## 18. Pronunciation, honestly
 
 The instinct to replace "87% accurate" with a per-sound breakdown is right —
-but it has to be *derived from real data*, not invented, or it's the same
+but it has to be _derived from real data_, not invented, or it's the same
 mistake in nicer clothes.
 
 **What is not possible:** a genuine `sch ✓ / ch ✗ / ü ✗` phoneme heatmap from
@@ -715,7 +721,7 @@ tab was proposed and **declined**, for two reasons:
    restaurant/doctor/bank as standalone bundles with their own vocab, listening,
    quiz, and cultural notes duplicates unit content at ~12 min prep each.
 
-**Kept instead, at near-zero cost:** a *Szenarien* filter inside Practice that
+**Kept instead, at near-zero cost:** a _Szenarien_ filter inside Practice that
 lists every scenario across all units, so you can replay "Im Restaurant" any
 time. Same access, no new tab, no new content pipeline, no new decisions on the
 home screen.
@@ -734,16 +740,16 @@ rest of the document still describes the app.
 
 ### §3 Session structure — four changes
 
-| Change | Why |
-|---|---|
-| Blocks 2 and 5 each split into several | *Fix* became **Fix · Lücken · Grammatik-Wdh.**; *Output* became **Sprechen/Schreiben** and **Gespräch** as two slots, not one. A session is 5–10 blocks, not 6 — five always run once you are inside a unit, and the other five appear only when there is something to do. Block 1 is absent entirely when nothing is due, which is every day of the first week. |
-| Speaking gets two output days in three | The spec listed speaking, writing and conversation as one rotating slot, which gave speaking a third of days. It is the skill self-study destroys, and the only one that costs nothing per use — Web Speech is in the browser, writing correction is a model call. The free skill was the rationed one. |
-| Old readings and scenarios come back | Words and grammar were on a forgetting curve; situations were one-and-done. A scenario is the slowest thing here to build and the fastest to lose. Every third conversation and every other reading is one from a unit finished over a week ago, labelled with its origin. |
-| A short session exists | `?kurz=1` runs blocks 1–2 only. Not in the spec; added because the alternative to a bad-day escape valve is a broken streak. It can legitimately be empty. |
-| The recap names tomorrow | §4 forbids a bare unit number and the recap was showing "Unit 15". It now shows the unit's title. |
+| Change                                 | Why                                                                                                                                                                                                                                                                                                                                                              |
+| -------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Blocks 2 and 5 each split into several | _Fix_ became **Fix · Lücken · Grammatik-Wdh.**; _Output_ became **Sprechen/Schreiben** and **Gespräch** as two slots, not one. A session is 5–10 blocks, not 6 — five always run once you are inside a unit, and the other five appear only when there is something to do. Block 1 is absent entirely when nothing is due, which is every day of the first week. |
+| Speaking gets two output days in three | The spec listed speaking, writing and conversation as one rotating slot, which gave speaking a third of days. It is the skill self-study destroys, and the only one that costs nothing per use — Web Speech is in the browser, writing correction is a model call. The free skill was the rationed one.                                                          |
+| Old readings and scenarios come back   | Words and grammar were on a forgetting curve; situations were one-and-done. A scenario is the slowest thing here to build and the fastest to lose. Every third conversation and every other reading is one from a unit finished over a week ago, labelled with its origin.                                                                                       |
+| A short session exists                 | `?kurz=1` runs blocks 1–2 only. Not in the spec; added because the alternative to a bad-day escape valve is a broken streak. It can legitimately be empty.                                                                                                                                                                                                       |
+| The recap names tomorrow               | §4 forbids a bare unit number and the recap was showing "Unit 15". It now shows the unit's title.                                                                                                                                                                                                                                                                |
 
-Also corrected in passing: §3's recap mock-up shows *"Hören 92% · Sprechen
-81%"*. Those numbers are not in the recap payload and never were — per-skill
+Also corrected in passing: §3's recap mock-up shows _"Hören 92% · Sprechen
+81%"_. Those numbers are not in the recap payload and never were — per-skill
 accuracy lives on Fortschritt. The four real ones are minutes, new words,
 reviews, and today's overall correct rate.
 
@@ -783,7 +789,7 @@ paid call**. Past it, the app takes the same path it takes with no API key at
 all — which already existed and was already tested (§17). A budget nothing
 enforces is a wish.
 
-### §10 Data model — no schema change *for the above*
+### §10 Data model — no schema change _for the above_
 
 None of the changes in this section added a table or a column. The milestones
 on Der Weg, the recycling rotation, and the tutor's memory are all derived from
@@ -804,7 +810,7 @@ Both were unbuilt for a long time. They are built now, and one of them had to
 change shape on the way in.
 
 **"A unit completes at ≥80% of its words learned AND grammar ≥70"** — built,
-but as *two* states rather than one, because the rule as written breaks the
+but as _two_ states rather than one, because the rule as written breaks the
 course. `currentUnit()` returns the first unit that is not complete, so a
 retention threshold on completion parks the learner on unit 1 for the fortnight
 FSRS takes to reach `state = 2`: no new words, no new grammar, nothing but
@@ -812,10 +818,10 @@ reviews. That is the exact week people quit in.
 
 So:
 
-| | |
-|---|---|
-| **complete** | every word introduced. Coverage. Drives progression, because showing up must never stall. |
-| **mastered** | ≥80% of those words learned *and* the grammar point solid — the spec's threshold, unchanged. Retention. Drives what the app **says** about you, never what it lets you do. |
+|              |                                                                                                                                                                            |
+| ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **complete** | every word introduced. Coverage. Drives progression, because showing up must never stall.                                                                                  |
+| **mastered** | ≥80% of those words learned _and_ the grammar point solid — the spec's threshold, unchanged. Retention. Drives what the app **says** about you, never what it lets you do. |
 
 Retention is still enforced, just not by a gate: the forgetting curve brings
 words back whether or not the unit is behind you, and `newWordBudget()` already
@@ -840,7 +846,7 @@ Two safety rules came out of building it, both from a test that caught the
 first version handing a beginner the last unit of B1.2:
 
 - an unmet prerequisite on a **linear** chain blocks everything downstream, so
-  when *nothing* is available the walk retries ignoring prerequisites. Bad
+  when _nothing_ is available the walk retries ignoring prerequisites. Bad
   content data must never be able to end someone's course.
 - a prerequisite naming a unit that does not exist is **ignored**, not treated
   as unmet. A one-character typo must not silently change the curriculum.
@@ -878,23 +884,23 @@ table, found nothing, and fell through to "a friendly German speaker having a
 short chat". All six briefs rendered perfectly beside a conversation that was
 not theirs. Nothing errored. It survived a full read of the page.
 
-That failure has a shape — *correct-looking output over a disconnected
-mechanism* — so the whole app was swept for it. This section is what the sweep
+That failure has a shape — _correct-looking output over a disconnected
+mechanism_ — so the whole app was swept for it. This section is what the sweep
 found, because a list of near-misses is more useful than a claim of quality.
 
 ### Mechanisms that were not connected
 
-| | |
-|---|---|
-| **"✓ geführt" on /ueben** | Read `attempt.ref_id` for conversations. The chat route logged those rows without a `refId`, so the column was NULL for every conversation ever had, the set was permanently empty, and all six level headers read "0 / 20 geführt" forever. A flawless conversation logged nothing at all — rows were written per *correction* — so the one outcome worth celebrating left no trace. Both fixed. |
-| **"Text gespeichert · die Korrektur kommt, sobald du wieder online bist"** | A plain `fetch`. Offline it rejected, the catch set the flag, and the screen confirmed the saving of eighty words that had just been dropped. The server's queue only ever received texts submitted while the network was up. It goes through the outbox now. |
-| **The drain for that queue** | `GET /api/writing` — "drain the offline queue once we're back online" — had no callers anywhere in `src/`. Rows accumulated permanently under a banner promising they'd be checked. It is called from /ueben now, and shows the corrections rather than silently resolving them. |
-| **"Z zurücknehmen (5 s)"** | The grade was POSTed the moment the button was pressed; take-back only re-queued the card locally. Answering again graded it a *second* time — two attempt rows, two steps of the curve. The send now waits out the undo window, which is the only reading of the word that is true. |
-| **"Esc Beenden"** | Printed in the session header and listed in the shortcut sheet. No Escape listener existed. |
-| **The corpus rotation** | `id > 'tat-' + (dayIndex % 36)`, commented "walks the whole corpus over time instead of replaying the first rows". The modulo made day 36 identical to day 0, and Tatoeba ids are skewed — 941 of 1,827 start with `tat-1`. Measured over the 210-day course: **105 of 1,827 sentences at B1.2**, final by week five. Now an offset window: 92% at B1.2, 100% at A1.1. `tests/corpus.test.mts` measures coverage rather than checking that two days differ, which the broken version also passed. |
-| **Three localStorage keys** | `/wer` says, in as many words, "nothing is shared between learners except the course itself". The saved session, the cached plan and — worst — **the queue of ungraded answers** were global. Switch learner mid-queue and one person's reviews replayed into the other's deck, under whichever cookie happened to be set when the network returned. Keys are scoped by learner now (`src/lib/who.ts`), replays are stamped with the learner who answered, and a pre-existing queue is adopted rather than orphaned. |
-| **"gemischt" on /aussprache** | Linked to `?laut=alle`, which is not a known sound, so it fell through to the auto-picked weak one. On a new account there is no weak sound and it happened to give the mixed spread — so the chip broke only once you had enough data for the page to have an opinion. |
-| **Two copies of the sound map** | Each commented "the same map the other one uses", already drifted: /fortschritt could name "eu / äu" as your worst sound while the drill had no way to open on it. One copy now, in `lib/pairs.ts`, containing only sounds that have drills. |
+|                                                                            |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| -------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **"✓ geführt" on /ueben**                                                  | Read `attempt.ref_id` for conversations. The chat route logged those rows without a `refId`, so the column was NULL for every conversation ever had, the set was permanently empty, and all six level headers read "0 / 20 geführt" forever. A flawless conversation logged nothing at all — rows were written per _correction_ — so the one outcome worth celebrating left no trace. Both fixed.                                                                                                                    |
+| **"Text gespeichert · die Korrektur kommt, sobald du wieder online bist"** | A plain `fetch`. Offline it rejected, the catch set the flag, and the screen confirmed the saving of eighty words that had just been dropped. The server's queue only ever received texts submitted while the network was up. It goes through the outbox now.                                                                                                                                                                                                                                                        |
+| **The drain for that queue**                                               | `GET /api/writing` — "drain the offline queue once we're back online" — had no callers anywhere in `src/`. Rows accumulated permanently under a banner promising they'd be checked. It is called from /ueben now, and shows the corrections rather than silently resolving them.                                                                                                                                                                                                                                     |
+| **"Z zurücknehmen (5 s)"**                                                 | The grade was POSTed the moment the button was pressed; take-back only re-queued the card locally. Answering again graded it a _second_ time — two attempt rows, two steps of the curve. The send now waits out the undo window, which is the only reading of the word that is true.                                                                                                                                                                                                                                 |
+| **"Esc Beenden"**                                                          | Printed in the session header and listed in the shortcut sheet. No Escape listener existed.                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| **The corpus rotation**                                                    | `id > 'tat-' + (dayIndex % 36)`, commented "walks the whole corpus over time instead of replaying the first rows". The modulo made day 36 identical to day 0, and Tatoeba ids are skewed — 941 of 1,827 start with `tat-1`. Measured over the 210-day course: **105 of 1,827 sentences at B1.2**, final by week five. Now an offset window: 92% at B1.2, 100% at A1.1. `tests/corpus.test.mts` measures coverage rather than checking that two days differ, which the broken version also passed.                    |
+| **Three localStorage keys**                                                | `/wer` says, in as many words, "nothing is shared between learners except the course itself". The saved session, the cached plan and — worst — **the queue of ungraded answers** were global. Switch learner mid-queue and one person's reviews replayed into the other's deck, under whichever cookie happened to be set when the network returned. Keys are scoped by learner now (`src/lib/who.ts`), replays are stamped with the learner who answered, and a pre-existing queue is adopted rather than orphaned. |
+| **"gemischt" on /aussprache**                                              | Linked to `?laut=alle`, which is not a known sound, so it fell through to the auto-picked weak one. On a new account there is no weak sound and it happened to give the mixed spread — so the chip broke only once you had enough data for the page to have an opinion.                                                                                                                                                                                                                                              |
+| **Two copies of the sound map**                                            | Each commented "the same map the other one uses", already drifted: /fortschritt could name "eu / äu" as your worst sound while the drill had no way to open on it. One copy now, in `lib/pairs.ts`, containing only sounds that have drills.                                                                                                                                                                                                                                                                         |
 
 ### Claims that were false rather than disconnected
 
@@ -915,7 +921,7 @@ found, because a list of near-misses is more useful than a claim of quality.
   `reps > 0` and the button creates the card with `reps = 0`. Re-clicking also
   reset the card's schedule to today, discarding weeks of it.
 - **"gelernt · 3+ Wdh., letzte 2 richtig."** The query is `reps >= 3 AND state
-  = 2`; FSRS review state says nothing about the last two answers.
+= 2`; FSRS review state says nothing about the last two answers.
 - **Walk mode** wrote `correct = 1` unconditionally and the accuracy chart drew
   it as a permanent **"exposure — 100%"** bar, in English, because the label map
   had no entry. It is a count in a sentence now, not a bar.
@@ -955,12 +961,12 @@ empty pages, at desktop and at 375px. Nothing else came back. What did come back
 were two stale claims in the tour, which is the app's longest piece of prose and
 therefore the place a claim goes wrong most quietly:
 
-- *"Twenty minutes beats zero"*, telling you to look for a button labelled **Nur
+- _"Twenty minutes beats zero"_, telling you to look for a button labelled **Nur
   20 Minuten** — a label that had stopped existing an hour earlier, when that
   same button was corrected for saying twenty minutes about a session nearer
   twenty-eight. An instruction pointing at a control that is not there is the
   worst kind: it reads perfectly.
-- *"One button, then six to nine blocks"*. Five always run once you are inside a
+- _"One button, then six to nine blocks"_. Five always run once you are inside a
   unit; ten is the ceiling. §3 above said 4–10 and that was loose too.
 
 ### A third pass, from using it
@@ -985,7 +991,7 @@ drawn; the animation is decoration over a number that arrives regardless.
 
 **The conversation tracker was still broken, one commit after being fixed.**
 §21 above records adding the unit id to the conversation review call. That is
-the *live* path, and the live path needs an API key — so with no key, which is
+the _live_ path, and the live path needs an API key — so with no key, which is
 the state the app ships in, every conversation still logged nothing and
 "N geführt" was still permanently 0. The scripted fallback, the only path that
 runs today, was never touched. Half a fix is indistinguishable from a whole one
@@ -1055,12 +1061,12 @@ thing this project has spent a week removing.
 
 ### A mistake now has two keys
 
-| | | |
-|---|---|---|
+|              |                                        |                                               |
+| ------------ | -------------------------------------- | --------------------------------------------- |
 | **sentence** | `ich sehe den mann\|ich sehe der mann` | learned, exact, written back from a live call |
-| **pattern** | `w:der→den` | prebuilt, general, written by hand |
+| **pattern**  | `w:der→den`                            | prebuilt, general, written by hand            |
 
-The pattern key is the *difference*, not the sentences, so the same slip in a
+The pattern key is the _difference_, not the sentences, so the same slip in a
 hundred different sentences is one row. `src/lib/error-key.ts` decides what
 counts as the same mistake:
 
@@ -1073,12 +1079,12 @@ counts as the same mistake:
   no single lesson in them, and inventing a key for that would mean serving a
   stored explanation of a mistake nobody made.
 
-Contracted prepositions fold to the preposition inside them, so *nach Arzt* for
-*zum Arzt* reaches the entry about nach and zu rather than dying on `w:nach→zum`.
+Contracted prepositions fold to the preposition inside them, so _nach Arzt_ for
+_zum Arzt_ reaches the entry about nach and zu rather than dying on `w:nach→zum`.
 
 **The rule the file enforces**: a pattern explanation must be true without
 seeing the sentence. That is why live model output is still stored under the
-sentence key only — it says things like *"'Mann' is masculine"*, which would be
+sentence key only — it says things like _"'Mann' is masculine"_, which would be
 a lie the moment it was reused on a sentence about a Frau.
 
 ### What is in it
@@ -1092,21 +1098,21 @@ per tag** so the offline path gives a rule rather than a bare label.
 
 Four tags were added to carry them, because the classifier could not previously
 name what was wrong: `article-dativ`, `article-genitiv`, `perfekt-hilfsverb`,
-`praeposition`. Before this, *mit der Mann* was reported as a gender mistake
+`praeposition`. Before this, _mit der Mann_ was reported as a gender mistake
 when the gender was right and the case was not.
 
 ### What the test measures
 
 `tests/error-key.test.mts` drives **41 wrong answers a beginner actually
-produces** — *Ich sehe der Mann*, *Er hat nach Hause gegangen*, *Ich kenne es
-nicht*, *Ich habe sehr Arbeit* — and fails unless every one of them reaches a
+produces** — _Ich sehe der Mann_, _Er hat nach Hause gegangen_, _Ich kenne es
+nicht_, _Ich habe sehr Arbeit_ — and fails unless every one of them reaches a
 specific explanation. That check found four things a row count never would:
 
 - `ein→einen` was being keyed as a verb ending, because `ein` and `einen` share
   a stem and two short tails exactly like `gehe` and `gehst`
 - `stehen→stellen` likewise, so the entry written about them never fired
-- entries written about infinitives could not match conjugated forms — *kenne*
-  is what a learner types, not *kennen*
+- entries written about infinitives could not match conjugated forms — _kenne_
+  is what a learner types, not _kennen_
 - the seeder upserted and never deleted, so a reworded entry left its old key
   behind, unreachable
 
@@ -1125,7 +1131,7 @@ charging for it forever.
 The spec was written for one learner and a flatmate sharing a laptop, and §10's
 data model had `user_id` on every progress table from the start — so multi-user
 was always half-built. What was missing was everything around it: there was no
-way to *become* a user, no way to pay for the AI half except the operator's own
+way to _become_ a user, no way to pay for the AI half except the operator's own
 env var, and several places where "this is safe" rested on an argument rather
 than on the code.
 
@@ -1189,7 +1195,7 @@ a laptop and the outbox can replay a session while a live one is running.
 
 **Four read-then-write gaps**, and it is worth being exact about them rather
 than claiming a scare. `gradeCard` read the card's FSRS state, computed the next
-schedule, and *then* opened a transaction to write it. That is a lost update in
+schedule, and _then_ opened a transaction to write it. That is a lost update in
 the general case — but this function is synchronous top to bottom and so is
 `node:sqlite`, so **within one Node process nothing can interleave and no grade
 was ever actually lost.** It is fixed because the gap becomes real the moment
@@ -1201,7 +1207,7 @@ stronger argument is atomicity: four statements that are only correct together,
 and a throw between them leaves a card with no first rep.
 
 `logSession` was a different shape. It returned the streak it had just
-*computed*, while the `ON CONFLICT` branch deliberately leaves `streak_day`
+_computed_, while the `ON CONFLICT` branch deliberately leaves `streak_day`
 alone — so on an upsert the returned and the stored number come from different
 places. They agree in normal operation. They stop agreeing if today's row came
 from a restored backup or an import. It reads the row back now.
@@ -1283,7 +1289,7 @@ credentials and credentials without a switch are two ways to have mail silently
 not send.
 
 One dependency, nodemailer, for SMTP. Hand-rolling it over `node:net` is a few
-commands, and the parts that go wrong fail *silently*: STARTTLS upgrade, AUTH
+commands, and the parts that go wrong fail _silently_: STARTTLS upgrade, AUTH
 negotiation, RFC 2047 encoding of a subject with an umlaut, dot-stuffing a body
 line that starts with a period. Each produces mail that vanishes or arrives
 mangled while the app reports success. Resend needs no dependency, so it has none.
@@ -1293,8 +1299,8 @@ Three properties the send path holds:
 - **A dead provider does not lose the link.** The failure is logged and the link
   still prints, so it can be handed over.
 - **A dead provider does not leak who has an account.** Mail health is checked
-  *before* the address lookup, so the 503 is true regardless of who asked. A
-  failure *after* the lookup returns the ordinary success — "sending failed"
+  _before_ the address lookup, so the 503 is true regardless of who asked. A
+  failure _after_ the lookup returns the ordinary success — "sending failed"
   would otherwise mean "this address has an account here".
 - **The message does not phone home.** No image, no tracking pixel, no
   link-wrapping redirect, and the plain-text part carries the URL too: some
@@ -1307,7 +1313,7 @@ account, which is exactly what the identical-answer rule above protects.
 
 ### Video: 231 episodes, and why they are not YouTube
 
-Deutsche Welle's *Nicos Weg* is a free A1–B1 drama course from a public
+Deutsche Welle's _Nicos Weg_ is a free A1–B1 drama course from a public
 broadcaster, already cut into ninety-second lesson-sized episodes.
 
 YouTube reached 14 of them: playlist pages redirect to a consent banner from an
@@ -1344,8 +1350,8 @@ two keypresses per line, which is the honest way to make it faster.
 Unit assignment is a person's judgement too. DW's "Einheit" is DW's course
 structure, not this app's twenty-per-level one, and mapping 226 episodes onto
 120 units by arithmetic puts the wrong video in a lesson silently. 33 of the 40
-A1 units are matched on DW's own episode titles — *Von A bis Z* to the alphabet
-unit, *Wem gehört das?* to the dative — and the seven with no honest match get
+A1 units are matched on DW's own episode titles — _Von A bis Z_ to the alphabet
+unit, _Wem gehört das?_ to the dative — and the seven with no honest match get
 no video day. The six that existed before were matched against the curriculum
 the A1 rewrite replaced and had drifted onto the wrong units; nothing caught it,
 because the block they fed never rendered.
@@ -1367,7 +1373,7 @@ created to stop exactly that. `budgetCeiling` duplicated `pricing.ceiling()`,
 whose own docstring says the guard must not be able to disagree with the bar the
 progress page draws; `adminEnabled` duplicated `trust.ts`; `serverApiKey`
 duplicated an inline fallback in `apikey.ts`. Worse, `DEUTSCHMATE_URL` was read
-in two places with *different* fallbacks, so the same account got links pointing
+in two places with _different_ fallbacks, so the same account got links pointing
 at different hosts depending on which screen asked.
 
 **Two auth gaps.** The throttle above, and the session cookie deciding `secure`
@@ -1401,13 +1407,13 @@ morgen — which is the same screen §21 caught reporting zeros.
 ### Alltag doubles
 
 §19 rejected a "Real Life" navigation tab and principle 5 later argued the
-opposite about *content*: teach German through situations people actually face.
+opposite about _content_: teach German through situations people actually face.
 Six scenarios was the smallest thing that could test that. Twelve is the answer
 to whether it was worth continuing, and the six added are chosen by recurrence
 rather than by drama — **In der Apotheke**, **Krankenkasse anmelden**, **Paket
 abholen**, **Aufenthaltstitel verlängern**, **Handwerker anrufen**,
 **Nebenkostenabrechnung**. A1.2 through B1.2, each with phrases, the lines that
-come *back*, and what to bring, and each with the scripted branching dialogue
+come _back_, and what to bring, and each with the scripted branching dialogue
 that makes it work with no key and no signal.
 
 Both content tests asserted `survival.length === 6`. Adding a scenario would
@@ -1447,13 +1453,13 @@ every file. That is a code review nobody schedules. It found:
   cached plan, one shared resume offer, one shared tour flag, and one shared
   queue of answers given offline, which is the one that corrupts a deck.
   Invisible on the install where it was written, because there the signed-in id
-  *is* the fallback. `tests/who.test.mts` pins the cookie sign-in actually sets.
+  _is_ the fallback. `tests/who.test.mts` pins the cookie sign-in actually sets.
 - **`TUTOR_CACHE_TTL` was named twice.** Its comment said "named once"; the call
   site four lines below hardcoded `"1h"`. The same failure as §24's five
   constants, in a file that had just been audited for it.
 
 Both had a confident comment sitting directly above them. In both cases the
-comment is *why* nobody looked at the line.
+comment is _why_ nobody looked at the line.
 
 ### Dead code, with the tool configured
 
@@ -1511,12 +1517,12 @@ where to go since §23, and nothing was reading it.
 
 Two things this is. It is §21's shape again: **valid JSON, wrong shape**, which
 already took out `/fortschritt` once via an exam row. And it is a seam that only
-opens on an expired session — the proxy redirects a signed-out *page* load, so
+opens on an expired session — the proxy redirects a signed-out _page_ load, so
 the only way to reach it is to be on the page when the session dies, which is
 the fourteenth day and nobody's test.
 
-`lib/http.ts` already had `arr()`, commented *"Guards `.map`/`.reduce` on a value
-that isn't a list"* — the exact guard needed, unusable here because that file
+`lib/http.ts` already had `arr()`, commented _"Guards `.map`/`.reduce` on a value
+that isn't a list"_ — the exact guard needed, unusable here because that file
 imports `next/server`. So `lib/api.ts` is the client half: `getJson()` returns
 null for a 401 (after following `signIn`), a non-ok status, a dead socket or a
 body that is not an object, plus `arr()` and `num()`.
@@ -1566,7 +1572,7 @@ the above found four more, none of which any static check could see.
 geht raus, sobald du weitergehst" — while the same `UNDO_MS` timer committed it
 and advanced the block five seconds later, whether you moved on or not. The Z it
 offered stopped working at the same moment, with no countdown, while the
-*in-block* undo had been showing "(5 s)" all along. It counts down now and says
+_in-block_ undo had been showing "(5 s)" all along. It counts down now and says
 what it actually does. Verified the whole loop: grade, Z inside the window, card
 restored, and **zero** `/api/review` requests — the grade genuinely never left.
 
@@ -1613,7 +1619,7 @@ past for weeks, which is the same lesson as reading the log.
 **And `npm test` was failing about 40% of the time.** `undo.test.mts` exited
 3221226505 — `Assertion failed: !(handle->flags & UV_HANDLE_CLOSING)` from
 libuv's `src\win\async.c`. Its ten checks passed on every single run; the crash
-came *after*, on process teardown, because Node's fetch keeps a socket alive and
+came _after_, on process teardown, because Node's fetch keeps a socket alive and
 `process.exit()` landed on top of one closing.
 
 Worth naming as a bug rather than an environment quirk. A suite that goes red at
@@ -1639,7 +1645,7 @@ no password column to breach. §24 then built the delivery it needed — three
 transports, a From address, STARTTLS versus implicit TLS, a rewrite warning for
 Gmail, a per-address throttle, a "check your email" screen.
 
-Every one of those is machinery in service of *delivery*, and delivery was only
+Every one of those is machinery in service of _delivery_, and delivery was only
 ever there because the credential had to travel. The verdict came from using it:
 a sign-in ends at a screen saying to go and look somewhere else, and on an
 install with no provider that somewhere else is the terminal. The person who has
@@ -1672,7 +1678,7 @@ The code is `X7K2-9PQR-M4TW-BH3D` — four groups of four from an alphabet with 
 O, 0, I, 1 or L, because it gets written on paper and typed back months later.
 Case, spaces and dashes are all forgiven for the same reason. It is stored as
 sha256 rather than scrypt: it is 79 bits this server generated, so there is no
-dictionary to run at it — the reason a *password* needs scrypt is that a person
+dictionary to run at it — the reason a _password_ needs scrypt is that a person
 chose it.
 
 **Using a code spends it** and a fresh one is issued. Otherwise a code glimpsed
@@ -1740,3 +1746,146 @@ looks entirely correct.
 after all three were fixed it still listed them — reading as "still broken" and
 inviting a second round of chasing something already gone. A fresh tab is the
 only honest reading. Worth knowing before the next person spends an hour on it.
+
+---
+
+## 27. Writing A1, and then walking it
+
+Two halves. The first wrote a real beginner course; the second played a learner
+through it in a browser, which found four bugs the first half had shipped and
+three more underneath them.
+
+### The course
+
+A1 had been generated — words picked by frequency, units filled to a quota. It
+is hand-written now: **40 units across A1.1 and A1.2**, each with a can-do list,
+a grammar point, and vocabulary chosen because the unit needs it. A2.1 through
+B1.2 got the same treatment for vocabulary, 350 words a half-level, built by
+`scripts/build-a2.mts` from a table of blueprints so the prerequisite chain is
+generated rather than typed.
+
+**Sentences are gated on grammar, not on word frequency.** `sentence-grammar.ts`
+classifies a sentence by the structures in it — a relative clause, a modal, the
+Perfekt — and maps each to the unit that teaches it. A sentence is reachable at
+unit N when everything in it was taught by unit N. Frequency had been letting a
+relative clause into day two because all its words were common.
+
+**All 120 units have a conversation.** A1's forty were the gap: `Gespräch` is
+slot 7 of the daily rhythm and had never fired below A2.1, because a unit with
+no scenario correctly produces no block. Each is a three-turn branching dialogue
+with a right answer and a wrong one that names the mistake, and each ships its
+script, so the level most likely to be studied on a train needs no key, no
+budget and no signal.
+
+`scripts/check-scenes.mts` applies to those scenes the rule the sentence gate
+applies to the corpus: **a scene at unit 6 may say the words of units 1–6 and
+nothing else.** Its first run failed nineteen of the forty I had just written —
+`Bahnhof` one unit before it is taught, `es gibt` four units early, `hoch` and
+`bisschen` and `glauben` never taught at all. Three of its own rules were wrong
+answers first, and each is commented as such: the literal form is tried before
+the irregular map (or `gibt` fails at unit 28 as `geben` from 29, the unit that
+teaches it), three-character stems as well as four (or `rot` and `rote` are
+different words), and proper nouns are a listed set rather than a
+capitalisation test — every German noun is capitalised, so "looks like a name"
+would wave through exactly what the check exists to catch.
+
+### What playing a learner found
+
+A brand-new account, driven from the tour to the recap and then across every
+page. Everything below was visible on day one, unit one, and none of it was
+visible from the code.
+
+**One answer was counted twice.** Introducing a word grades its new card —
+right, the recognition check IS the first rep — but `/api/attempt` had already
+logged that answer as `new-vocab`, and `gradeCard` added a second row calling it
+a `review`. Twelve new words became twelve reviews nobody did. The recap claimed
+them, the accuracy table read _Wiederholung 100% (12)_ on a day with no review
+block, **Richtig %** was computed over 38 rows when 26 were real, the leech
+finder started every word with a free correct, and the adaptive pacing — which
+decides how many new words you get tomorrow — read the inflated figure.
+`gradeCard` takes `silent` now. Found by finishing the session and querying
+`attempt` instead of believing the recap.
+
+**The error classifier had three wrong labels and no test at all.**
+`classify()` calls itself the whole personalisation engine and had never been
+tested, because importing it meant resolving `"./db"` the way only the bundler
+does. Ten minutes produced all three: a verb-second lecture for _"Tschüss, bis
+morgen!"_, a sentence with no verb in it; three of four word-order mistakes
+filed as `vocabulary`, because it split on whitespace without stripping
+punctuation and a moved `!` made it a different multiset; and `verb-ending` for
+_Guten_ against _Gute_, from a rule that asked only that the first
+`min(len)-2` characters match. **The top three tags become tomorrow's Fix
+drills**, so a beginner was drilled on conjugation for picking the wrong
+greeting.
+
+`lib/finite-verb.ts` answers "is there a verb, and where", conservatively — it
+says "I don't know" rather than guess, and a caller that gets `-1` falls back to
+`word-order`, which is true either way. Morphology cannot separate `guten` from
+`gehst`, since `-e` and `-en` are both verb endings and adjective declensions,
+so the verb-ending rule uses position instead. Measured before trusting it: a
+verb is found in 98% of 1,200 corpus sentences, and the misses are all
+verb-first questions and imperatives.
+
+**Thirteen of fifteen blocks were mouse-only**, under a tour that teaches _"your
+hand never leaves the number row"_. `Neue Wörter` — block one on day one — was
+twenty-four clicks for twelve words, and its Audio button advertised an `R` that
+was never wired. All fifteen take the keyboard now, through four shared hooks
+rather than fifteen private listeners, and `tests/keyboard.test.mts` checks both
+directions: every block binds something, and nothing is advertised that no block
+binds. That reverse check is the bug this was.
+
+**The first four new words of a session shared one set of options** — the
+distractors were the first three other words of the day, sorted alphabetically,
+so after card one you could answer without reading the German. Nothing compared
+them to the answer either, so _hallo · hello_ was offered against _guten Tag ·
+good day / hello_ and marked wrong for picking the one that also says hello.
+
+That fix was wrong twice, and only the browser caught it: a stride of 7 walks in
+circles when it shares a factor with the pool length, and an id hash overflowed
+`2^53`, so `seed + k === seed` and every candidate was the same one — a card
+offered two options instead of four. Typecheck and tests were green both times.
+It lives in `lib/choices.ts` with a test now.
+
+**"Du bist offline" when you were not.** A written text is queued rather than
+lost when it cannot be corrected, which is right, but the screen gave the same
+reason for all four causes — so a learner with a working connection and no API
+key was told their network was down, and pointed at the wrong thing to fix.
+
+**The speaking feedback lower-cased your own words.** `diffWords` normalised
+case to compare, which is right for a transcript, and then displayed the
+normalised word — in a language where capitalisation is a rule this course
+teaches and an error tag it tracks.
+
+### Three about the tools, not the app
+
+**`npx tsc | Select-Object -First n` reports clean on a broken build.** The
+pipeline terminates early and kills the compiler before it prints. A duplicate
+`const` reached the browser that way.
+
+**A green test file could exit non-zero.** `done()` fired undici's `destroy()`
+without waiting, then called `process.exit()` — the libuv assertion the helper
+existed to avoid. One socket survived it, two did not: **any file making two
+POSTs aborted every time, after printing ALL PASS.** It only looked intermittent
+because every file happened to end on a GET. Awaiting the destroy is not enough;
+`done()` sets `process.exitCode` and lets Node leave by itself.
+
+**Running the suite while using the app in a browser fails a suite**, because
+both write to the same database. It passes alone and on a re-run.
+
+### What could not be checked, and why
+
+Recorded because "verified" should mean the same thing every time it appears
+above.
+
+- **Physical key delivery through the browser pane stopped working** partway
+  through — zero `keydown` events reach the page with the cursor over it. The
+  later keyboard work was driven with dispatched `KeyboardEvent`s: the same
+  listeners, not the same input path.
+- **The microphone cannot be driven** — the pane blocks capture. That gave a
+  real `not-allowed` refusal, which is one of the three branches; the other two
+  were produced by substituting `window.SpeechRecognition`. The recogniser's
+  accuracy on a real voice is untested.
+- **Lesen and Schreiben only exist when `dayIndex % 3 === 1`.** Rather than wait
+  three days, `/api/session` takes `?tag=<dayIndex>` and builds that day's
+  rhythm. Development only: production ignores it, the plan is not cached under
+  it, and it changes which blocks a plan contains, never what is recorded.
