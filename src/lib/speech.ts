@@ -120,15 +120,27 @@ export function listenOnce(timeoutMs = 8000): Promise<string> {
   });
 }
 
-/** Compare what was said to the target, word by word. */
+/**
+ * Compare what was said to the target, word by word.
+ *
+ * Matching is case- and punctuation-insensitive, because a recogniser's idea
+ * of either means nothing. The word handed back is the original one, though:
+ * this is displayed, and the block was showing a learner "tschüss" and
+ * "morgen" in lower case — in a language where capitalisation is a rule the
+ * course teaches and an error tag it tracks.
+ */
 export function diffWords(target: string, heard: string) {
-  const norm = (s: string) =>
-    s
-      .toLowerCase()
-      .replace(/[.,!?;:]/g, "")
-      .replace(/\s+/g, " ")
-      .trim();
-  const t = norm(target).split(" ");
-  const h = new Set(norm(heard).split(" "));
-  return t.map((w) => ({ word: w, ok: h.has(w) }));
+  const fold = (s: string) => s.toLowerCase().replace(/[.,!?;:]/g, "");
+  const t = target.trim().split(/\s+/).filter(Boolean);
+  const h = new Set(
+    heard
+      .trim()
+      .split(/\s+/)
+      .filter(Boolean)
+      .map((w) => fold(w)),
+  );
+  return t.map((w) => ({
+    word: w.replace(/[.,!?;:]/g, ""),
+    ok: h.has(fold(w)),
+  }));
 }

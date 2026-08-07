@@ -895,6 +895,25 @@ the [Goethe-Institut](https://www.goethe.de/de/spr/kup/prf.html).
   production, the plan is not cached under it, and it changes which blocks
   appear, never what is recorded.
 
+- ~~The speaking feedback lower-cased your own words.~~ `diffWords` normalised
+  case and punctuation to compare — right, a recogniser is transcribing sound —
+  and then handed the normalised word back to be displayed. So the strip under
+  the sentence read _tschüss_ and _morgen_, in a language where capitalisation
+  is a rule the course teaches and an error tag it tracks. Matching is unchanged;
+  the word shown is the one that was written.
+
+  The rest of Sprechen was checked with a real refusal and a substituted
+  recogniser. The pane blocks microphone capture, which is exactly the
+  `not-allowed` branch: it says **"Mikrofon nicht erlaubt — bitte im Browser
+  freigeben"** rather than a generic failure, and the block does not dead-end.
+  For the outcomes a blocked pane cannot produce, `window.SpeechRecognition` was
+  swapped for a stub — the browser's part, not the app's — which confirmed the
+  app asks for `de-DE` with no interim results and one alternative, marks 4/4
+  and 2/3 correctly, says "Nichts gehört" on `no-speech`, and takes `Enter` for
+  the microphone and then for Weiter. Every speaking row in the database carries
+  the transcript it was scored from, and a refused or silent attempt records
+  nothing at all — no score with nothing behind it.
+
 - ~~"Du bist offline" when you were not.~~ A written text is queued rather than
   lost when it cannot be corrected, which is right — but the screen gave the
   same reason for all four causes, so somebody with a working connection and no
