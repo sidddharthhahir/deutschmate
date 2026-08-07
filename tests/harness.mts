@@ -42,15 +42,21 @@ export function section(title: string) {
  * top of one trips a libuv assertion on Windows (UV_HANDLE_CLOSING, src\win\async.c)
  * and the runner reports exit 3221226505 for a file whose checks all passed — a
  * red that means nothing, which is the kind that teaches you to ignore reds.
+ *
+ * destroy() returns a promise, and firing it without waiting only helped when
+ * there was one socket to close. Two POSTs from one file — any two, not any
+ * particular endpoint — still aborted with 0xC0000409 after printing ALL PASS.
+ * The files that pass today are the ones whose last request happens to be a GET.
  */
-function closeSockets() {
+function closeSockets(): Promise<unknown> {
   const pool = (globalThis as Record<symbol, unknown>)[
     Symbol.for("undici.globalDispatcher.1")
   ] as { destroy?: () => unknown } | undefined;
   try {
-    pool?.destroy?.();
+    return Promise.resolve(pool?.destroy?.());
   } catch {
     /* nothing open, or a Node that keeps its dispatcher somewhere else */
+    return Promise.resolve();
   }
 }
 
@@ -59,8 +65,18 @@ export function done(): never {
   console.log(
     `\n${failures === 0 ? `ALL PASS  (${checks} checks)` : `${failures} FAILURES of ${checks}`}`,
   );
-  closeSockets();
-  process.exit(failures ? 1 : 0);
+  const code = failures ? 1 : 0;
+  /*
+   * Set the code and let Node leave on its own once the sockets are gone.
+   * process.exit() is what trips the assertion — awaiting destroy() first was
+   * not enough, because the handles are still unwinding when the call lands.
+   * The unref'd timer is the backstop for a socket that never closes: it can
+   * force the exit, but it cannot be the reason the process stays up.
+   */
+  process.exitCode = code;
+  void closeSockets();
+  setTimeout(() => process.exit(code), 3000).unref();
+  return undefined as never;
 }
 
 // ------------------------------------------------------------------ database

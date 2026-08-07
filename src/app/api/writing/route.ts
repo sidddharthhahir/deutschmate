@@ -39,7 +39,15 @@ export async function POST(req: Request) {
         "SELECT COUNT(*) AS n FROM pending_correction WHERE user_id = ? AND resolved_at IS NULL",
         user.id,
       )?.n ?? 0;
-    return NextResponse.json({ queued: true, pending: n });
+    /* Which of the two it was. The screen said "Du bist offline" for both, so
+       a learner with no key was told their network was down. The text was safe
+       either way, but the reason given was untrue — and the thing they would
+       have to do about it is in a different place. */
+    return NextResponse.json({
+      queued: true,
+      pending: n,
+      reason: bool(raw.queueOnly) ? "offline" : "no-key",
+    });
   }
 
   try {

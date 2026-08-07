@@ -178,11 +178,17 @@ function SessionRunner() {
       let data: Plan | null = null;
       let fromCache = false;
 
+      /* /session?tag=N asks for another day's rhythm — see the API route. The
+         server ignores it in production, and the plan is not cached under it,
+         so a look at Thursday's blocks cannot become tomorrow's saved plan. */
+      const tag = new URLSearchParams(window.location.search).get("tag");
+      const query = `shape=${shape}${tag ? `&tag=${encodeURIComponent(tag)}` : ""}`;
+
       try {
-        const res = await fetch(`/api/session?shape=${shape}`);
+        const res = await fetch(`/api/session?${query}`);
         if (!res.ok) throw new Error(String(res.status));
         data = (await res.json()) as Plan;
-        cachePlan(shape, data);
+        if (!tag) cachePlan(shape, data);
       } catch {
         data = cachedPlan<Plan>(shape);
         fromCache = true;

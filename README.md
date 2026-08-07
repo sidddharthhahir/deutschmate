@@ -885,6 +885,33 @@ the [Goethe-Institut](https://www.goethe.de/de/spr/kup/prf.html).
   of it, and `tests/keyboard.test.mts` checks both directions: every block binds
   something, and nothing is advertised that no block binds.
 
+  All fifteen were then driven in a browser with keys and nothing else. The six
+  that a fresh account never meets — Fix, Lücken, Grammatik, Grammatik-Wdh.,
+  Lesen, Schreiben — each need a condition to exist: mistakes to fix, gaps mined
+  from them, a rule that is due back, a unit whose words are already met, and a
+  day whose rotation calls for reading and writing. `/session?tag=<dayIndex>`
+  builds another day's rhythm so the last two can be looked at without waiting
+  three days for the rotation. Development only; the API ignores it in
+  production, the plan is not cached under it, and it changes which blocks
+  appear, never what is recorded.
+
+- ~~"Du bist offline" when you were not.~~ A written text is queued rather than
+  lost when it cannot be corrected, which is right — but the screen gave the
+  same reason for all four causes, so somebody with a working connection and no
+  API key was told their network was down and sent to fix the wrong thing. The
+  server already computed a reason on one path; now it does on both, and the
+  block says which of _offline_, _no key_, _budget spent_ or _the call failed_
+  it was. Found by writing a paragraph in the browser and reading what came
+  back.
+
+- ~~A green test file could exit non-zero.~~ `done()` fired undici's
+  `destroy()` without waiting and then called `process.exit()`, which trips the
+  libuv assertion the helper was written to avoid — one socket survived it, two
+  did not. Any file making two POSTs aborted with `0xC0000409` **after** printing
+  ALL PASS; the files that passed were the ones whose last request happened to
+  be a GET. It sets `process.exitCode` and lets Node leave on its own now, with
+  an unref'd timer as the backstop.
+
 - ~~The first four new words of every session shared one set of options.~~ The
   distractors were the first three other words of the day and the four were
   sorted alphabetically, so cards 1–4 got the identical options in the identical

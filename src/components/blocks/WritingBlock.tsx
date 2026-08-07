@@ -26,6 +26,34 @@ type Result = {
   encouragement: string;
 };
 
+/** Why the text is waiting rather than corrected. */
+type QueueReason = "offline" | "no-key" | "budget" | "call-failed";
+
+/*
+ * The screen said "Du bist offline" whatever had happened, so somebody with a
+ * working connection and no API key was told their network was down — and sent
+ * to fix the wrong thing. The server already knew which it was; it just was not
+ * being asked.
+ */
+const WAITING: Record<QueueReason, { title: string; body: string }> = {
+  offline: {
+    title: "Text gespeichert",
+    body: "Du bist offline. Die Korrektur kommt automatisch, sobald du wieder online bist.",
+  },
+  "no-key": {
+    title: "Text gespeichert",
+    body: "Für die Korrektur brauchst du einen eigenen Anthropic-Schlüssel — in den Einstellungen. Dein Text wartet hier und wird korrigiert, sobald einer da ist.",
+  },
+  budget: {
+    title: "Text gespeichert",
+    body: "Dein Monatsbudget ist aufgebraucht. Die Korrektur kommt automatisch, sobald das nächste Monatsfenster beginnt.",
+  },
+  "call-failed": {
+    title: "Text gespeichert",
+    body: "Die Korrektur hat gerade nicht geklappt. Dein Text wartet hier und wird beim nächsten Versuch korrigiert.",
+  },
+};
+
 /**
  * Writing, with the offline queue. "Write now, grade later" is a fine experience, so this never
  * blocks a session.
@@ -38,7 +66,8 @@ export default function WritingBlock({
   const [text, setText] = useState("");
   const [busy, setBusy] = useState(false);
   const [result, setResult] = useState<Result | null>(null);
-  const [queued, setQueued] = useState(false);
+  /** null = not queued. Otherwise why, so the screen can say the true one. */
+  const [queued, setQueued] = useState<QueueReason | null>(null);
   const online = useOnline();
 
   const minWords = payload.minWords ?? 15;
@@ -52,19 +81,25 @@ export default function WritingBlock({
    * they take plain Enter like every other Weiter in the app.
    */
   useSubmitKey(() => void submit(), ready && !result && !queued);
-  useAdvanceKey(onDone, Boolean(result) || queued);
+  useAdvanceKey(onDone, Boolean(result) || Boolean(queued));
 
   async function submit() {
     setBusy(true);
     try {
       // null means the outbox is holding it — that IS the storage the screen
       // below promises, and it replays to /api/writing on reconnect.
-      const data = await send<Result & { queued?: boolean }>("/api/writing", {
+      const data = await send<
+        Result & { queued?: boolean; reason?: QueueReason }
+      >("/api/writing", {
         prompt: payload.prompt,
         body: text,
         queueOnly: !online,
       });
-      if (!data || data.queued) setQueued(true);
+      /* A null means the outbox itself is holding it, which only happens with
+         no network — so that one really is "offline". Otherwise the server
+         said why. */
+      if (!data) setQueued("offline");
+      else if (data.queued) setQueued(data.reason ?? "call-failed");
       else setResult(data);
     } finally {
       setBusy(false);
@@ -74,10 +109,11 @@ export default function WritingBlock({
   if (queued) {
     return (
       <Card>
-        <p className="font-serif text-center text-[22px]">Text gespeichert</p>
+        <p className="font-serif text-center text-[22px]">
+          {WAITING[queued].title}
+        </p>
         <p className="text-muted mx-auto mt-3 max-w-[42ch] text-center text-[14px] leading-relaxed">
-          Du bist offline. Die Korrektur kommt automatisch, sobald du wieder
-          online bist.
+          {WAITING[queued].body}
         </p>
         <button
           onClick={onDone}

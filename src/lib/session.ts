@@ -382,6 +382,13 @@ export function buildSession(
   userId: string,
   level = "A1.1",
   shape: SessionMode = "full",
+  /*
+   * Which day's rhythm to build. Defaults to the real one — this exists so a
+   * developer can look at Lesen or Schreiben without waiting three days for
+   * the rotation to come round, and the API only honours it outside
+   * production. It changes which blocks appear, never what is recorded.
+   */
+  dayOverride?: number,
 ): SessionPlan {
   const gap = daysSinceLastSession(userId);
   /* A gap of one is yesterday's session and nothing missed; two is one lost
@@ -449,7 +456,7 @@ export function buildSession(
   /* Rotates the input and output blocks day to day so the rhythm stays fixed
      while the content varies. The decisions themselves live in lib/rhythm.ts,
      pure and testable; this file only carries them out. */
-  const dayIndex = today();
+  const dayIndex = dayOverride ?? today();
   const older = pastUnits(userId);
 
   // 1. Aufwärmen — always first, never skippable.

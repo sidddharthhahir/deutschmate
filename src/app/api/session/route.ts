@@ -18,9 +18,19 @@ export const dynamic = "force-dynamic";
 export async function GET(req: Request) {
   const user = await activeUser(req);
   if (!user) return unauthorized();
-  const shape =
-    new URL(req.url).searchParams.get("shape") === "short" ? "short" : "full";
-  const plan = buildSession(user.id, user.level, shape);
+  const params = new URL(req.url).searchParams;
+  const shape = params.get("shape") === "short" ? "short" : "full";
+  /*
+   * `?tag=` builds another day's rhythm, so Lesen and Schreiben can be looked
+   * at without waiting for the rotation. Development only — in production the
+   * parameter is ignored entirely rather than validated, because there is no
+   * reason for it to exist there. Nothing about it changes what gets recorded:
+   * it only decides which blocks the plan contains.
+   */
+  const day = process.env.NODE_ENV === "production" ? null : params.get("tag");
+  const dayOverride =
+    day !== null && /^\d+$/.test(day) ? Number(day) : undefined;
+  const plan = buildSession(user.id, user.level, shape, dayOverride);
 
   return NextResponse.json({
     // plan.level, not user.level — building the session can promote the learner
