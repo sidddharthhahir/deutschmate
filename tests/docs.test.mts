@@ -40,8 +40,11 @@ const CLAIMS: [string, RegExp, string][] = [
     "SELECT COUNT(*) AS n FROM word",
   ],
   [
+    /* `\s*` around the pipe: prettier aligns markdown table cells, so the
+       single space this matched on became several the first time the row got
+       long enough to widen the column. */
     "Wortschatz",
-    /\*\*Wortschatz\*\* \| All ([\d,]+) words/g,
+    /\*\*Wortschatz\*\*\s*\|\s*All ([\d,]+) words/g,
     "SELECT COUNT(*) AS n FROM word",
   ],
   [

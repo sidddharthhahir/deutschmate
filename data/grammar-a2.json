@@ -86,7 +86,7 @@
     "id": "g-dativ",
     "slug": "dativ",
     "title": "Dative — the indirect object",
-    "level": "A2.1",
+    "level": "A1.2",
     "ord": 14,
     "explain_md": "Dative marks **who receives** something. In English it's the invisible \"to\": *I give the man a book* = *I give **to the man** a book*.\n\n| | nom | acc | **dat** |\n|---|---|---|---|\n| masc | der | den | **dem** |\n| fem | die | die | **der** |\n| neut | das | das | **dem** |\n| plural | die | die | **den** (+ noun**n**) |\n\n```\nIch gebe  dem Mann   ein Buch.\nIch gebe  der Frau   ein Buch.\nIch helfe den Kindern.            ← plural adds -n\n```\n\n**Verbs that always take dative** — just memorise these six:\n**helfen · danken · gefallen · gehören · antworten · passen**\n\n```\nIch helfe dir.        (not: dich)\nDas gefällt mir.      (not: mich)\n```",
     "examples": [
@@ -162,7 +162,7 @@
     "id": "g-wechselpraep",
     "slug": "wechselpraepositionen",
     "title": "Two-way prepositions",
-    "level": "A2.1",
+    "level": "A1.2",
     "ord": 15,
     "explain_md": "Nine prepositions take **either** accusative or dative, and the choice changes the meaning.\n\n**in · an · auf · über · unter · vor · hinter · neben · zwischen**\n\n```\nWohin?  → movement → ACCUSATIVE\nWo?     → location → DATIVE\n```\n\n```\nIch gehe  in die Küche.   (wohin? → acc)\nIch bin   in der Küche.   (wo?    → dat)\n\nIch lege das Buch auf den Tisch.   (movement)\nDas Buch liegt auf dem Tisch.      (location)\n```\n\nThe verb usually gives it away:\n- **gehen, fahren, legen, stellen, setzen, hängen** (put) → movement → acc\n- **sein, bleiben, liegen, stehen, sitzen, hängen** (be) → location → dat\n\nQuick test: ask **wohin?** If that's the question, use accusative.",
     "examples": [
@@ -591,7 +591,7 @@
     "id": "g-imperativ",
     "slug": "imperativ",
     "title": "Giving instructions",
-    "level": "A2.1",
+    "level": "A1.2",
     "ord": 21,
     "explain_md": "Three forms, matching the three words for \"you\".\n\n```\ndu    →  Komm!        (du form, drop -st and drop du)\nihr   →  Kommt!       (ihr form, drop ihr)\nSie   →  Kommen Sie!  (verb first, keep Sie)\n```\n\n```\ndu gehst  → Geh!\nihr geht  → Geht!\nSie gehen → Gehen Sie!\n```\n\n**sein is irregular:** *Sei ruhig! · Seid ruhig! · Seien Sie ruhig!*\n\nGerman imperatives sound blunter than English ones. Soften them with **bitte** or **mal**:\n```\nKomm bitte!\nWarte mal!\n```",
     "examples": [
@@ -789,7 +789,7 @@
     "id": "g-trennbare",
     "slug": "trennbare-verben",
     "title": "Separable verbs",
-    "level": "A2.1",
+    "level": "A1.2",
     "ord": 24,
     "explain_md": "Some verbs split in half. The prefix flies to the end of the sentence.\n\n```\naufstehen  →  Ich  stehe  um sieben  auf.\neinkaufen  →  Wir  kaufen im Supermarkt ein.\nanrufen    →  Ich  rufe   dich später  an.\n```\n\n**Separable prefixes** (stressed): *an-, auf-, aus-, ein-, mit-, nach-, vor-, zu-, ab-, zurück-, weg-, hin-, her-*\n\n**Inseparable prefixes** (unstressed) never split: *be-, ver-, er-, ent-, ge-, zer-, emp-*\n```\nIch besuche dich.       ← besuchen stays whole\n```\n\n**They stay joined:**\n- after a modal: *Ich muss früh **aufstehen**.*\n- in a subordinate clause: *…, weil ich früh **aufstehe**.*\n- in the participle, with -ge- in the middle: *auf**ge**standen*\n\nIf you can hear the stress on the prefix, it separates.",
     "examples": [

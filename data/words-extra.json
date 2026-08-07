@@ -596,17 +596,6 @@
     "freq_rank": 360
   },
   {
-    "id": "dad",
-    "lemma": "Dad",
-    "article": "der",
-    "plural": "Dads",
-    "pos": "noun",
-    "en": "dad",
-    "level": "A1.2",
-    "source": "wiktionary",
-    "freq_rank": 364
-  },
-  {
     "id": "baby",
     "lemma": "Baby",
     "article": "das",
@@ -750,15 +739,6 @@
     "level": "A1.2",
     "source": "wiktionary",
     "freq_rank": 413
-  },
-  {
-    "id": "mom",
-    "lemma": "mom",
-    "pos": "phrase",
-    "en": "gimme a sec, hold on",
-    "level": "A1.2",
-    "source": "wiktionary",
-    "freq_rank": 416
   },
   {
     "id": "darum",
@@ -1279,15 +1259,6 @@
     "freq_rank": 664
   },
   {
-    "id": "tja",
-    "lemma": "tja",
-    "pos": "phrase",
-    "en": "well, hmm",
-    "level": "A1.2",
-    "source": "wiktionary",
-    "freq_rank": 665
-  },
-  {
     "id": "film",
     "lemma": "Film",
     "article": "der",
@@ -1637,16 +1608,6 @@
     "freq_rank": 797
   },
   {
-    "id": "sex",
-    "lemma": "Sex",
-    "article": "der",
-    "pos": "noun",
-    "en": "sex",
-    "level": "A1.2",
-    "source": "wiktionary",
-    "freq_rank": 799
-  },
-  {
     "id": "klasse",
     "lemma": "klasse",
     "pos": "adj",
@@ -1787,15 +1748,6 @@
     "freq_rank": 860
   },
   {
-    "id": "aehm",
-    "lemma": "ähm",
-    "pos": "phrase",
-    "en": "Um",
-    "level": "A1.2",
-    "source": "wiktionary",
-    "freq_rank": 868
-  },
-  {
     "id": "verzeihung",
     "lemma": "Verzeihung",
     "article": "die",
@@ -1875,15 +1827,6 @@
     "level": "A1.2",
     "source": "wiktionary",
     "freq_rank": 920
-  },
-  {
-    "id": "ha",
-    "lemma": "ha",
-    "pos": "phrase",
-    "en": "Expresses laughter.",
-    "level": "A1.2",
-    "source": "wiktionary",
-    "freq_rank": 927
   },
   {
     "id": "meister",
@@ -2284,17 +2227,6 @@
     "freq_rank": 1085
   },
   {
-    "id": "lady",
-    "lemma": "Lady",
-    "article": "die",
-    "plural": "Ladys",
-    "pos": "noun",
-    "en": "lady, Lady",
-    "level": "A2.1",
-    "source": "wiktionary",
-    "freq_rank": 1087
-  },
-  {
     "id": "herzen",
     "lemma": "herzen",
     "pos": "verb",
@@ -2626,17 +2558,6 @@
     "freq_rank": 1179
   },
   {
-    "id": "colonel",
-    "lemma": "Colonel",
-    "article": "der",
-    "plural": "Colonels",
-    "pos": "noun",
-    "en": "colonel",
-    "level": "A2.1",
-    "source": "wiktionary",
-    "freq_rank": 1180
-  },
-  {
     "id": "haut",
     "lemma": "Haut",
     "article": "die",
@@ -2657,17 +2578,6 @@
     "level": "A2.1",
     "source": "wiktionary",
     "freq_rank": 1185
-  },
-  {
-    "id": "madame",
-    "lemma": "Madame",
-    "article": "die",
-    "plural": "Mesdames",
-    "pos": "noun",
-    "en": "madam",
-    "level": "A2.1",
-    "source": "wiktionary",
-    "freq_rank": 1192
   },
   {
     "id": "frieden",
@@ -2737,26 +2647,6 @@
     "level": "A2.1",
     "source": "wiktionary",
     "freq_rank": 1225
-  },
-  {
-    "id": "naja",
-    "lemma": "naja",
-    "pos": "phrase",
-    "en": "well",
-    "level": "A2.1",
-    "source": "wiktionary",
-    "freq_rank": 1227
-  },
-  {
-    "id": "henry",
-    "lemma": "Henry",
-    "article": "das",
-    "plural": "Henry",
-    "pos": "noun",
-    "en": "henry",
-    "level": "A2.1",
-    "source": "wiktionary",
-    "freq_rank": 1228
   },
   {
     "id": "show",
@@ -3163,17 +3053,6 @@
     "freq_rank": 1349
   },
   {
-    "id": "bob",
-    "lemma": "Bob",
-    "article": "der",
-    "plural": "Bobs",
-    "pos": "noun",
-    "en": "bobsleigh, bob",
-    "level": "A2.2",
-    "source": "wiktionary",
-    "freq_rank": 1356
-  },
-  {
     "id": "kamera",
     "lemma": "Kamera",
     "article": "die",
@@ -3561,17 +3440,6 @@
     "freq_rank": 1493
   },
   {
-    "id": "schaetzchen",
-    "lemma": "Schätzchen",
-    "article": "das",
-    "plural": "Schätzchen",
-    "pos": "noun",
-    "en": "darling, honey",
-    "level": "A2.2",
-    "source": "wiktionary",
-    "freq_rank": 1498
-  },
-  {
     "id": "ring",
     "lemma": "Ring",
     "article": "der",
@@ -3716,15 +3584,6 @@
     "level": "A2.2",
     "source": "wiktionary",
     "freq_rank": 1547
-  },
-  {
-    "id": "aha",
-    "lemma": "aha",
-    "pos": "phrase",
-    "en": "aha",
-    "level": "A2.2",
-    "source": "wiktionary",
-    "freq_rank": 1553
   },
   {
     "id": "unterhalten",
@@ -4444,17 +4303,6 @@
     "freq_rank": 1762
   },
   {
-    "id": "lord",
-    "lemma": "Lord",
-    "article": "der",
-    "plural": "Lords",
-    "pos": "noun",
-    "en": "lord, Lord",
-    "level": "A2.2",
-    "source": "wiktionary",
-    "freq_rank": 1766
-  },
-  {
     "id": "grossvater",
     "lemma": "Großvater",
     "article": "der",
@@ -4912,17 +4760,6 @@
     "level": "B1.1",
     "source": "wiktionary",
     "freq_rank": 1908
-  },
-  {
-    "id": "my",
-    "lemma": "My",
-    "article": "das",
-    "plural": "Mys",
-    "pos": "noun",
-    "en": "mu",
-    "level": "B1.1",
-    "source": "wiktionary",
-    "freq_rank": 1910
   },
   {
     "id": "soldat",
@@ -5440,15 +5277,6 @@
     "freq_rank": 2048
   },
   {
-    "id": "fuck",
-    "lemma": "fuck",
-    "pos": "phrase",
-    "en": "fuck!",
-    "level": "B1.1",
-    "source": "wiktionary",
-    "freq_rank": 2049
-  },
-  {
     "id": "sieg",
     "lemma": "Sieg",
     "article": "der",
@@ -5855,17 +5683,6 @@
     "level": "B1.1",
     "source": "wiktionary",
     "freq_rank": 2139
-  },
-  {
-    "id": "leo",
-    "lemma": "Leo",
-    "article": "das",
-    "plural": "Leos",
-    "pos": "noun",
-    "en": "base",
-    "level": "B1.1",
-    "source": "wiktionary",
-    "freq_rank": 2142
   },
   {
     "id": "zulassen",
@@ -6572,17 +6389,6 @@
     "freq_rank": 2310
   },
   {
-    "id": "story",
-    "lemma": "Story",
-    "article": "die",
-    "plural": "Storys",
-    "pos": "noun",
-    "en": "plot",
-    "level": "B1.1",
-    "source": "wiktionary",
-    "freq_rank": 2314
-  },
-  {
     "id": "leichter",
     "lemma": "Leichter",
     "article": "der",
@@ -6633,15 +6439,6 @@
     "level": "B1.1",
     "source": "wiktionary",
     "freq_rank": 2331
-  },
-  {
-    "id": "hae",
-    "lemma": "hä",
-    "pos": "phrase",
-    "en": "huh? what?",
-    "level": "B1.1",
-    "source": "wiktionary",
-    "freq_rank": 2334
   },
   {
     "id": "gerechtigkeit",
@@ -7515,17 +7312,6 @@
     "freq_rank": 2574
   },
   {
-    "id": "cop",
-    "lemma": "Cop",
-    "article": "der",
-    "plural": "Cops",
-    "pos": "noun",
-    "en": "cop",
-    "level": "B1.1",
-    "source": "wiktionary",
-    "freq_rank": 2578
-  },
-  {
     "id": "taeter",
     "lemma": "Täter",
     "article": "der",
@@ -7699,17 +7485,6 @@
     "level": "B1.1",
     "source": "wiktionary",
     "freq_rank": 2614
-  },
-  {
-    "id": "penny",
-    "lemma": "Penny",
-    "article": "der",
-    "plural": "Pence",
-    "pos": "noun",
-    "en": "penny",
-    "level": "B1.1",
-    "source": "wiktionary",
-    "freq_rank": 2618
   },
   {
     "id": "wirken",
@@ -8744,16 +8519,6 @@
     "freq_rank": 2900
   },
   {
-    "id": "house",
-    "lemma": "House",
-    "article": "der",
-    "pos": "noun",
-    "en": "house music, house",
-    "level": "B1.2",
-    "source": "wiktionary",
-    "freq_rank": 2908
-  },
-  {
     "id": "schulter",
     "lemma": "Schulter",
     "article": "die",
@@ -8963,17 +8728,6 @@
     "freq_rank": 2966
   },
   {
-    "id": "mum",
-    "lemma": "Mum",
-    "article": "die",
-    "plural": "Mums",
-    "pos": "noun",
-    "en": "mum",
-    "level": "B1.2",
-    "source": "wiktionary",
-    "freq_rank": 2967
-  },
-  {
     "id": "schaedel",
     "lemma": "Schädel",
     "article": "der",
@@ -9099,15 +8853,6 @@
     "freq_rank": 2989
   },
   {
-    "id": "jo",
-    "lemma": "jo",
-    "pos": "phrase",
-    "en": "yes",
-    "level": "B1.2",
-    "source": "wiktionary",
-    "freq_rank": 2991
-  },
-  {
     "id": "fuehrer",
     "lemma": "Führer",
     "article": "der",
@@ -9117,15 +8862,6 @@
     "level": "B1.2",
     "source": "wiktionary",
     "freq_rank": 2999
-  },
-  {
-    "id": "ciao",
-    "lemma": "ciao",
-    "pos": "phrase",
-    "en": "ciao",
-    "level": "B1.2",
-    "source": "wiktionary",
-    "freq_rank": 3001
   },
   {
     "id": "loslassen",
@@ -10257,17 +9993,6 @@
     "freq_rank": 3264
   },
   {
-    "id": "junior",
-    "lemma": "Junior",
-    "article": "der",
-    "plural": "Junioren",
-    "pos": "noun",
-    "en": "junior",
-    "level": "B1.2",
-    "source": "wiktionary",
-    "freq_rank": 3265
-  },
-  {
     "id": "leidenschaft",
     "lemma": "Leidenschaft",
     "article": "die",
@@ -10434,15 +10159,6 @@
     "level": "B1.2",
     "source": "wiktionary",
     "freq_rank": 3303
-  },
-  {
-    "id": "wayne",
-    "lemma": "wayne",
-    "pos": "phrase",
-    "en": "who cares",
-    "level": "B1.2",
-    "source": "wiktionary",
-    "freq_rank": 3305
   },
   {
     "id": "wenden",
@@ -10810,17 +10526,6 @@
     },
     "source": "wiktionary",
     "freq_rank": 3391
-  },
-  {
-    "id": "doctor",
-    "lemma": "Doctor",
-    "article": "der",
-    "plural": "Doctoren",
-    "pos": "noun",
-    "en": "Former spelling of Doktor which is no longer standard.",
-    "level": "B1.2",
-    "source": "wiktionary",
-    "freq_rank": 3394
   },
   {
     "id": "aufnahme",
@@ -11488,16 +11193,6 @@
     "freq_rank": 3561
   },
   {
-    "id": "be",
-    "lemma": "Be",
-    "article": "das",
-    "pos": "noun",
-    "en": "flat sign, ♭",
-    "level": "B1.2",
-    "source": "wiktionary",
-    "freq_rank": 3562
-  },
-  {
     "id": "organisation",
     "lemma": "Organisation",
     "article": "die",
@@ -11727,17 +11422,6 @@
     "level": "B1.2",
     "source": "wiktionary",
     "freq_rank": 3611
-  },
-  {
-    "id": "nutte",
-    "lemma": "Nutte",
-    "article": "die",
-    "plural": "Nutten",
-    "pos": "noun",
-    "en": "whore",
-    "level": "B1.2",
-    "source": "wiktionary",
-    "freq_rank": 3617
   },
   {
     "id": "rauch",

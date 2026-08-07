@@ -23,25 +23,41 @@
     "drills": [
       {
         "q": "Talking to your new flatmate, same age:",
-        "options": ["du", "Sie", "ihr"],
+        "options": [
+          "du",
+          "Sie",
+          "ihr"
+        ],
         "a": 0,
         "why": "Same age, living together — informal du."
       },
       {
         "q": "Asking a police officer for directions:",
-        "options": ["du", "Sie", "ihr"],
+        "options": [
+          "du",
+          "Sie",
+          "ihr"
+        ],
         "a": 1,
         "why": "A stranger in an official role always gets Sie."
       },
       {
         "q": "Asking two friends if they're coming:",
-        "options": ["du", "Sie", "ihr"],
+        "options": [
+          "du",
+          "Sie",
+          "ihr"
+        ],
         "a": 2,
         "why": "More than one person, both informal — ihr."
       },
       {
         "q": "___ heiße Anna.",
-        "options": ["Ich", "Du", "Er"],
+        "options": [
+          "Ich",
+          "Du",
+          "Er"
+        ],
         "a": 0,
         "why": "heiße is the ich form."
       }
@@ -51,10 +67,10 @@
   {
     "id": "g-sein",
     "slug": "verb-sein",
-    "title": "sein — to be",
+    "title": "sein und haben — the two you cannot avoid",
     "level": "A1.1",
     "ord": 2,
-    "explain_md": "**sein** is irregular in every language, and German is no exception. Learn it as six sounds, not as a rule.\n\n```\nich   bin      wir  sind\ndu    bist     ihr  seid\ner    ist      sie  sind\n            Sie  sind\n```\n\nNotice **wir / sie / Sie all take `sind`** — three of the six forms are the same word. There are really only four to memorise: *bin, bist, ist, seid*.",
+    "explain_md": "**sein** is irregular in every language, and German is no exception. Learn it as six sounds, not as a rule.\n\n```\nich   bin      wir  sind\ndu    bist     ihr  seid\ner    ist      sie  sind\n            Sie  sind\n```\n\nNotice **wir / sie / Sie all take `sind`** — three of the six forms are the same word. There are really only four to memorise: *bin, bist, ist, seid*.\n\n---\n\n**haben** is almost regular. Only *du* and *er/sie/es* drop the **b**.\n\n```\nich   habe     wir  haben\ndu    hast     ihr  habt\ner    hat      sie  haben\n            Sie  haben\n```\n\nSo: **hast** and **hat** are the two to watch. Everything else keeps the *b*.\n\nThese two carry the whole language: every Perfekt sentence you will meet later starts with one of them.",
     "examples": [
       {
         "de": "Ich bin müde.",
@@ -67,41 +83,115 @@
       {
         "de": "Wir sind aus Indien.",
         "en": "We are from India."
+      },
+      {
+        "de": "Ich habe zwei Brüder.",
+        "en": "I have two brothers."
+      },
+      {
+        "de": "Hast du Zeit?",
+        "en": "Do you have time?"
+      },
+      {
+        "de": "Sie hat ein Auto.",
+        "en": "She has a car."
       }
     ],
     "drills": [
       {
         "q": "Ich ___ Student.",
-        "options": ["bin", "bist", "ist"],
+        "options": [
+          "bin",
+          "bist",
+          "ist"
+        ],
         "a": 0,
         "why": "ich → bin"
       },
       {
         "q": "Du ___ sehr nett.",
-        "options": ["bin", "bist", "ist"],
+        "options": [
+          "bin",
+          "bist",
+          "ist"
+        ],
         "a": 1,
         "why": "du → bist"
       },
       {
         "q": "Das Haus ___ groß.",
-        "options": ["bin", "bist", "ist"],
+        "options": [
+          "bin",
+          "bist",
+          "ist"
+        ],
         "a": 2,
         "why": "das Haus = er/sie/es → ist"
       },
       {
         "q": "Wir ___ hier.",
-        "options": ["seid", "sind", "ist"],
+        "options": [
+          "seid",
+          "sind",
+          "ist"
+        ],
         "a": 1,
         "why": "wir → sind"
       },
       {
         "q": "Ihr ___ spät.",
-        "options": ["seid", "sind", "ist"],
+        "options": [
+          "seid",
+          "sind",
+          "ist"
+        ],
         "a": 0,
         "why": "ihr → seid (the one that catches everyone)"
+      },
+      {
+        "q": "Ich ___ Hunger.",
+        "options": [
+          "habe",
+          "hast",
+          "hat"
+        ],
+        "a": 0,
+        "why": "ich → habe"
+      },
+      {
+        "q": "___ du einen Bruder?",
+        "options": [
+          "Habe",
+          "Hast",
+          "Hat"
+        ],
+        "a": 1,
+        "why": "du → hast (b drops)"
+      },
+      {
+        "q": "Er ___ kein Geld.",
+        "options": [
+          "habe",
+          "hast",
+          "hat"
+        ],
+        "a": 2,
+        "why": "er → hat (b drops)"
+      },
+      {
+        "q": "Wir ___ Zeit.",
+        "options": [
+          "habt",
+          "haben",
+          "hat"
+        ],
+        "a": 1,
+        "why": "wir → haben"
       }
     ],
-    "prereq": ["g-pronouns"]
+    "prereq": [
+      "g-pronouns"
+    ]
   },
   {
     "id": "g-alphabet",
@@ -131,13 +221,21 @@
     "drills": [
       {
         "q": "German **e** is pronounced like the English letter…",
-        "options": ["A", "E", "I"],
+        "options": [
+          "A",
+          "E",
+          "I"
+        ],
         "a": 0,
         "why": "German e sounds like English A. This is the one that ruins spelled-out email addresses."
       },
       {
         "q": "How do you say **ß**?",
-        "options": ["Eszett", "Beta", "Doppel-B"],
+        "options": [
+          "Eszett",
+          "Beta",
+          "Doppel-B"
+        ],
         "a": 0,
         "why": "Eszett, or scharfes S. It looks like a Greek beta and is not one."
       },
@@ -153,55 +251,6 @@
       }
     ],
     "prereq": []
-  },
-  {
-    "id": "g-haben",
-    "slug": "verb-haben",
-    "title": "haben — to have",
-    "level": "A1.1",
-    "ord": 3,
-    "explain_md": "**haben** is almost regular. Only *du* and *er/sie/es* drop the **b**.\n\n```\nich   habe     wir  haben\ndu    hast     ihr  habt\ner    hat      sie  haben\n            Sie  haben\n```\n\nSo: **hast** and **hat** are the two to watch. Everything else keeps the *b*.",
-    "examples": [
-      {
-        "de": "Ich habe zwei Brüder.",
-        "en": "I have two brothers."
-      },
-      {
-        "de": "Hast du Zeit?",
-        "en": "Do you have time?"
-      },
-      {
-        "de": "Sie hat ein Auto.",
-        "en": "She has a car."
-      }
-    ],
-    "drills": [
-      {
-        "q": "Ich ___ Hunger.",
-        "options": ["habe", "hast", "hat"],
-        "a": 0,
-        "why": "ich → habe"
-      },
-      {
-        "q": "___ du einen Bruder?",
-        "options": ["Habe", "Hast", "Hat"],
-        "a": 1,
-        "why": "du → hast (b drops)"
-      },
-      {
-        "q": "Er ___ kein Geld.",
-        "options": ["habe", "hast", "hat"],
-        "a": 2,
-        "why": "er → hat (b drops)"
-      },
-      {
-        "q": "Wir ___ Zeit.",
-        "options": ["habt", "haben", "hat"],
-        "a": 1,
-        "why": "wir → haben"
-      }
-    ],
-    "prereq": ["g-pronouns"]
   },
   {
     "id": "g-praesens",
@@ -227,36 +276,58 @@
     "drills": [
       {
         "q": "Ich ___ (kommen) aus Indien.",
-        "options": ["komme", "kommst", "kommt"],
+        "options": [
+          "komme",
+          "kommst",
+          "kommt"
+        ],
         "a": 0,
         "why": "ich → -e"
       },
       {
         "q": "Du ___ (lernen) Deutsch.",
-        "options": ["lerne", "lernst", "lernt"],
+        "options": [
+          "lerne",
+          "lernst",
+          "lernt"
+        ],
         "a": 1,
         "why": "du → -st"
       },
       {
         "q": "Sie ___ (wohnen) in Wien.  [she]",
-        "options": ["wohne", "wohnst", "wohnt"],
+        "options": [
+          "wohne",
+          "wohnst",
+          "wohnt"
+        ],
         "a": 2,
         "why": "er/sie/es → -t"
       },
       {
         "q": "Er ___ (arbeiten) heute.",
-        "options": ["arbeitt", "arbeitet", "arbeitst"],
+        "options": [
+          "arbeitt",
+          "arbeitet",
+          "arbeitst"
+        ],
         "a": 1,
         "why": "stem ends in -t, so insert -e-: arbeitet"
       },
       {
         "q": "Wir ___ (machen) das.",
-        "options": ["macht", "machen", "mache"],
+        "options": [
+          "macht",
+          "machen",
+          "mache"
+        ],
         "a": 1,
         "why": "wir → -en"
       }
     ],
-    "prereq": ["g-pronouns"]
+    "prereq": [
+      "g-pronouns"
+    ]
   },
   {
     "id": "g-articles-nom",
@@ -282,31 +353,51 @@
     "drills": [
       {
         "q": "___ Haus",
-        "options": ["der", "die", "das"],
+        "options": [
+          "der",
+          "die",
+          "das"
+        ],
         "a": 2,
         "why": "das Haus — neuter."
       },
       {
         "q": "___ Wohnung",
-        "options": ["der", "die", "das"],
+        "options": [
+          "der",
+          "die",
+          "das"
+        ],
         "a": 1,
         "why": "-ung is always feminine."
       },
       {
         "q": "___ Tisch",
-        "options": ["der", "die", "das"],
+        "options": [
+          "der",
+          "die",
+          "das"
+        ],
         "a": 0,
         "why": "der Tisch — masculine."
       },
       {
         "q": "___ Mädchen",
-        "options": ["der", "die", "das"],
+        "options": [
+          "der",
+          "die",
+          "das"
+        ],
         "a": 2,
         "why": "-chen is always neuter, regardless of meaning."
       },
       {
         "q": "___ Zeitung",
-        "options": ["der", "die", "das"],
+        "options": [
+          "der",
+          "die",
+          "das"
+        ],
         "a": 1,
         "why": "-ung → die."
       }
@@ -337,7 +428,11 @@
     "drills": [
       {
         "q": "Heute ___ ich müde.",
-        "options": ["bin", "ich bin", "bin ich"],
+        "options": [
+          "bin",
+          "ich bin",
+          "bin ich"
+        ],
         "a": 0,
         "why": "Heute is slot 1, verb bin is slot 2, then the subject."
       },
@@ -352,18 +447,26 @@
       },
       {
         "q": "Which is correct?",
-        "options": ["In Berlin wohne ich.", "In Berlin ich wohne."],
+        "options": [
+          "In Berlin wohne ich.",
+          "In Berlin ich wohne."
+        ],
         "a": 0,
         "why": "\"In Berlin\" is one block = slot 1, so wohne is slot 2."
       },
       {
         "q": "Which is correct?",
-        "options": ["Jetzt ich lerne Deutsch.", "Jetzt lerne ich Deutsch."],
+        "options": [
+          "Jetzt ich lerne Deutsch.",
+          "Jetzt lerne ich Deutsch."
+        ],
         "a": 1,
         "why": "Same flip after any fronted element."
       }
     ],
-    "prereq": ["g-praesens"]
+    "prereq": [
+      "g-praesens"
+    ]
   },
   {
     "id": "g-questions",
@@ -389,30 +492,47 @@
     "drills": [
       {
         "q": "___ kommst du?  (from where)",
-        "options": ["Wo", "Woher", "Wohin"],
+        "options": [
+          "Wo",
+          "Woher",
+          "Wohin"
+        ],
         "a": 1,
         "why": "woher = from where. wo = where, wohin = to where."
       },
       {
         "q": "___ gehst du?  (to where)",
-        "options": ["Wo", "Woher", "Wohin"],
+        "options": [
+          "Wo",
+          "Woher",
+          "Wohin"
+        ],
         "a": 2,
         "why": "wohin = to where."
       },
       {
         "q": "Yes/no question, correct order:",
-        "options": ["Du hast Zeit?", "Hast du Zeit?"],
+        "options": [
+          "Du hast Zeit?",
+          "Hast du Zeit?"
+        ],
         "a": 1,
         "why": "Verb goes first in a yes/no question."
       },
       {
         "q": "___ kostet das?",
-        "options": ["Wie viel", "Wo", "Wer"],
+        "options": [
+          "Wie viel",
+          "Wo",
+          "Wer"
+        ],
         "a": 0,
         "why": "wie viel = how much."
       }
     ],
-    "prereq": ["g-wordorder"]
+    "prereq": [
+      "g-wordorder"
+    ]
   },
   {
     "id": "g-negation",
@@ -438,30 +558,44 @@
     "drills": [
       {
         "q": "Ich habe ___ Geld.",
-        "options": ["nicht", "kein"],
+        "options": [
+          "nicht",
+          "kein"
+        ],
         "a": 1,
         "why": "Geld has no article → kein."
       },
       {
         "q": "Das Buch ist ___ interessant.",
-        "options": ["nicht", "kein"],
+        "options": [
+          "nicht",
+          "kein"
+        ],
         "a": 0,
         "why": "Negating an adjective → nicht."
       },
       {
         "q": "Ich trinke ___ Kaffee.",
-        "options": ["nicht", "keinen"],
+        "options": [
+          "nicht",
+          "keinen"
+        ],
         "a": 1,
         "why": "Kaffee is a bare noun → kein (accusative masculine → keinen)."
       },
       {
         "q": "Er arbeitet heute ___.",
-        "options": ["nicht", "kein"],
+        "options": [
+          "nicht",
+          "kein"
+        ],
         "a": 0,
         "why": "Negating a verb → nicht."
       }
     ],
-    "prereq": ["g-praesens"]
+    "prereq": [
+      "g-praesens"
+    ]
   },
   {
     "id": "g-akkusativ",
@@ -487,36 +621,58 @@
     "drills": [
       {
         "q": "Ich sehe ___ Mann.",
-        "options": ["der", "den", "dem"],
+        "options": [
+          "der",
+          "den",
+          "dem"
+        ],
         "a": 1,
         "why": "Masculine object → den."
       },
       {
         "q": "Ich esse ___ Apfel.",
-        "options": ["ein", "einen", "einem"],
+        "options": [
+          "ein",
+          "einen",
+          "einem"
+        ],
         "a": 1,
         "why": "Masculine indefinite object → einen."
       },
       {
         "q": "Ich sehe ___ Frau.",
-        "options": ["die", "der", "den"],
+        "options": [
+          "die",
+          "der",
+          "den"
+        ],
         "a": 0,
         "why": "Feminine never changes in accusative."
       },
       {
         "q": "Er kauft ___ Buch.",
-        "options": ["das", "den", "dem"],
+        "options": [
+          "das",
+          "den",
+          "dem"
+        ],
         "a": 0,
         "why": "Neuter never changes."
       },
       {
         "q": "Wir haben ___ Hund.",
-        "options": ["ein", "einen"],
+        "options": [
+          "ein",
+          "einen"
+        ],
         "a": 1,
         "why": "Hund is masculine and it's the object → einen."
       }
     ],
-    "prereq": ["g-articles-nom", "g-praesens"]
+    "prereq": [
+      "g-articles-nom",
+      "g-praesens"
+    ]
   },
   {
     "id": "g-zahlen",
@@ -546,19 +702,31 @@
     "drills": [
       {
         "q": "**vierundzwanzig** is…",
-        "options": ["24", "42", "4"],
+        "options": [
+          "24",
+          "42",
+          "4"
+        ],
         "a": 0,
         "why": "vier-und-zwanzig — four and twenty. The small digit is said first."
       },
       {
         "q": "You hear **zweiundfünfzig**. Write it.",
-        "options": ["52", "25", "2.5"],
+        "options": [
+          "52",
+          "25",
+          "2.5"
+        ],
         "a": 0,
         "why": "zwei-und-fünfzig. The ending fünfzig is what tells you it is in the fifties."
       },
       {
         "q": "Which is spelled correctly?",
-        "options": ["sechzehn", "sechszehn", "sechsezehn"],
+        "options": [
+          "sechzehn",
+          "sechszehn",
+          "sechsezehn"
+        ],
         "a": 0,
         "why": "sechzehn loses the s. So does siebzehn."
       }
@@ -589,30 +757,47 @@
     "drills": [
       {
         "q": "Ich ___ Deutsch sprechen.",
-        "options": ["kann", "kannst", "können"],
+        "options": [
+          "kann",
+          "kannst",
+          "können"
+        ],
         "a": 0,
         "why": "ich → kann, no ending."
       },
       {
         "q": "Er ___ heute arbeiten.",
-        "options": ["muss", "musst", "müssen"],
+        "options": [
+          "muss",
+          "musst",
+          "müssen"
+        ],
         "a": 0,
         "why": "er → muss, same as ich."
       },
       {
         "q": "Correct word order?",
-        "options": ["Ich will lernen Deutsch.", "Ich will Deutsch lernen."],
+        "options": [
+          "Ich will lernen Deutsch.",
+          "Ich will Deutsch lernen."
+        ],
         "a": 1,
         "why": "The infinitive goes to the very end."
       },
       {
         "q": "___ du mir helfen?",
-        "options": ["Kann", "Kannst", "Können"],
+        "options": [
+          "Kann",
+          "Kannst",
+          "Können"
+        ],
         "a": 1,
         "why": "du → kannst."
       }
     ],
-    "prereq": ["g-wordorder"]
+    "prereq": [
+      "g-wordorder"
+    ]
   },
   {
     "id": "g-uhrzeit",
@@ -642,30 +827,44 @@
     "drills": [
       {
         "q": "**halb sieben** is…",
-        "options": ["6:30", "7:30", "7:00"],
+        "options": [
+          "6:30",
+          "7:30",
+          "7:00"
+        ],
         "a": 0,
         "why": "Half way TO seven, so 6:30. The single most expensive mistake in beginner German."
       },
       {
         "q": "The doctor says **um sechzehn Uhr**. That is…",
-        "options": ["16:00", "6:00", "6:16"],
+        "options": [
+          "16:00",
+          "6:00",
+          "6:16"
+        ],
         "a": 0,
         "why": "The 24-hour clock, read straight out. Official contexts always use it."
       },
       {
         "q": "It is 9:45. A friend would say…",
-        "options": ["viertel vor zehn", "viertel nach neun", "halb zehn"],
+        "options": [
+          "viertel vor zehn",
+          "viertel nach neun",
+          "halb zehn"
+        ],
         "a": 0,
         "why": "Quarter before ten. German looks forward to the next hour."
       }
     ],
-    "prereq": ["g-zahlen"]
+    "prereq": [
+      "g-zahlen"
+    ]
   },
   {
     "id": "g-possessiv",
     "slug": "possessivartikel",
     "title": "mein, dein, sein — possessives",
-    "level": "A1.2",
+    "level": "A1.1",
     "ord": 11,
     "explain_md": "Possessives take **exactly the same endings as *ein***. Learn *ein* and you already know all of them.\n\n| | |\n|---|---|\n| mein | my |\n| dein | your (du) |\n| sein | his / its |\n| ihr | her / their |\n| unser | our |\n| euer | your (ihr) |\n| Ihr | your (formal) |\n\n```\nein  Bruder   →  mein  Bruder      (masc, subject)\neine Schwester →  meine Schwester   (fem)\nein  Kind     →  mein  Kind        (neut)\n     Eltern   →  meine Eltern      (plural takes -e)\n\nIch sehe einen Bruder → Ich sehe meinen Bruder   (masc object)\n```\n\nOne trap: **ihr** means both *her* and *their*, and capitalised **Ihr** means *your (formal)*. Context decides.",
     "examples": [
@@ -685,30 +884,48 @@
     "drills": [
       {
         "q": "Das ist ___ Mutter.  [my]",
-        "options": ["mein", "meine", "meinen"],
+        "options": [
+          "mein",
+          "meine",
+          "meinen"
+        ],
         "a": 1,
         "why": "Mutter is feminine → meine."
       },
       {
         "q": "Das ist ___ Vater.  [my]",
-        "options": ["mein", "meine", "meinen"],
+        "options": [
+          "mein",
+          "meine",
+          "meinen"
+        ],
         "a": 0,
         "why": "Vater is masculine, subject → mein."
       },
       {
         "q": "Ich sehe ___ Vater.  [my]",
-        "options": ["mein", "meine", "meinen"],
+        "options": [
+          "mein",
+          "meine",
+          "meinen"
+        ],
         "a": 2,
         "why": "Masculine object → meinen."
       },
       {
         "q": "___ Eltern sind nett.  [my]",
-        "options": ["Mein", "Meine", "Meinen"],
+        "options": [
+          "Mein",
+          "Meine",
+          "Meinen"
+        ],
         "a": 1,
         "why": "Plural takes -e → meine."
       }
     ],
-    "prereq": ["g-akkusativ"]
+    "prereq": [
+      "g-akkusativ"
+    ]
   },
   {
     "id": "g-zeitpraepositionen",
@@ -738,36 +955,54 @@
     "drills": [
       {
         "q": "___ Freitag habe ich Zeit.",
-        "options": ["Am", "Um", "Im"],
+        "options": [
+          "Am",
+          "Um",
+          "Im"
+        ],
         "a": 0,
         "why": "am for days of the week."
       },
       {
         "q": "Der Zug fährt ___ acht Uhr.",
-        "options": ["um", "am", "im"],
+        "options": [
+          "um",
+          "am",
+          "im"
+        ],
         "a": 0,
         "why": "um for clock times, always."
       },
       {
         "q": "___ Januar ist es kalt.",
-        "options": ["Im", "Am", "Um"],
+        "options": [
+          "Im",
+          "Am",
+          "Um"
+        ],
         "a": 0,
         "why": "im for months and seasons."
       },
       {
         "q": "Which needs NO preposition?",
-        "options": ["morgen", "Montag", "acht Uhr"],
+        "options": [
+          "morgen",
+          "Montag",
+          "acht Uhr"
+        ],
         "a": 0,
         "why": "heute, morgen and gestern stand alone."
       }
     ],
-    "prereq": ["g-uhrzeit"]
+    "prereq": [
+      "g-uhrzeit"
+    ]
   },
   {
     "id": "g-plural",
     "slug": "plural",
     "title": "Making plurals",
-    "level": "A1.2",
+    "level": "A1.1",
     "ord": 12,
     "explain_md": "German has **five** plural patterns and no reliable way to predict which. Learn the plural with the word, like the article.\n\n| ending | example | notes |\n|---|---|---|\n| **-e** | Tisch → Tisch**e** | often masculine |\n| **-er** | Kind → Kind**er** | often adds umlaut: Haus → H**ä**us**er** |\n| **-(e)n** | Frau → Frau**en** | almost all feminine nouns |\n| **-s** | Auto → Auto**s** | loanwords |\n| **— (none)** | Zimmer → Zimmer | often -er/-el/-en endings |\n\nThe one dependable rule: **nouns ending in -e take -n** (Woche → Wochen), and **almost every feminine noun takes -n or -en**.\n\nThe plural article is always **die**, whatever the gender.",
     "examples": [
@@ -787,36 +1022,58 @@
     "drills": [
       {
         "q": "das Kind → die ___",
-        "options": ["Kinde", "Kinder", "Kinden"],
+        "options": [
+          "Kinde",
+          "Kinder",
+          "Kinden"
+        ],
         "a": 1,
         "why": "Kind → Kinder (-er pattern)."
       },
       {
         "q": "die Frau → die ___",
-        "options": ["Fraue", "Frauen", "Fraus"],
+        "options": [
+          "Fraue",
+          "Frauen",
+          "Fraus"
+        ],
         "a": 1,
         "why": "Feminine → -en."
       },
       {
         "q": "das Auto → die ___",
-        "options": ["Autoe", "Autos", "Auten"],
+        "options": [
+          "Autoe",
+          "Autos",
+          "Auten"
+        ],
         "a": 1,
         "why": "Loanword → -s."
       },
       {
         "q": "das Haus → die ___",
-        "options": ["Hause", "Häuser", "Hausen"],
+        "options": [
+          "Hause",
+          "Häuser",
+          "Hausen"
+        ],
         "a": 1,
         "why": "Häuser — -er plus umlaut."
       },
       {
         "q": "das Zimmer → die ___",
-        "options": ["Zimmer", "Zimmere", "Zimmern"],
+        "options": [
+          "Zimmer",
+          "Zimmere",
+          "Zimmern"
+        ],
         "a": 0,
         "why": "No change — a zero plural."
       }
     ],
-    "prereq": ["g-articles-nom"]
+    "prereq": [
+      "g-articles-nom"
+    ]
   },
   {
     "id": "g-moechten",
@@ -856,7 +1113,11 @@
       },
       {
         "q": "ich ___",
-        "options": ["möchte", "möchtest", "möchten"],
+        "options": [
+          "möchte",
+          "möchtest",
+          "möchten"
+        ],
         "a": 0,
         "why": "No ending in the ich form — like a modal verb."
       },
@@ -901,13 +1162,21 @@
     "drills": [
       {
         "q": "Die Lampe ist ___.",
-        "options": ["schön", "schöne", "schönes"],
+        "options": [
+          "schön",
+          "schöne",
+          "schönes"
+        ],
         "a": 0,
         "why": "After sein there is never an ending, whatever the gender."
       },
       {
         "q": "Die Fenster sind ___.",
-        "options": ["klein", "kleine", "kleinen"],
+        "options": [
+          "klein",
+          "kleine",
+          "kleinen"
+        ],
         "a": 0,
         "why": "Plural changes nothing. Still no ending after sein."
       },
@@ -952,19 +1221,31 @@
     "drills": [
       {
         "q": "Ich gehe ___ Post. (die Post)",
-        "options": ["zur", "zum", "zu"],
+        "options": [
+          "zur",
+          "zum",
+          "zu"
+        ],
         "a": 0,
         "why": "zu + der = zur, for a feminine noun."
       },
       {
         "q": "Ich gehe ___ Bahnhof. (der Bahnhof)",
-        "options": ["zum", "zur", "zu"],
+        "options": [
+          "zum",
+          "zur",
+          "zu"
+        ],
         "a": 0,
         "why": "zu + dem = zum."
       },
       {
         "q": "Die Bank ist ___ der Post.",
-        "options": ["neben", "neben die", "nebem"],
+        "options": [
+          "neben",
+          "neben die",
+          "nebem"
+        ],
         "a": 0,
         "why": "neben takes the dative and does not change form itself."
       }
@@ -999,7 +1280,11 @@
     "drills": [
       {
         "q": "Es gibt ___ Balkon.",
-        "options": ["einen", "ein", "einem"],
+        "options": [
+          "einen",
+          "ein",
+          "einem"
+        ],
         "a": 0,
         "why": "es gibt takes the accusative, so der Balkon becomes einen Balkon."
       },
@@ -1024,7 +1309,9 @@
         "why": "Verb first for a yes/no question."
       }
     ],
-    "prereq": ["g-akkusativ"]
+    "prereq": [
+      "g-akkusativ"
+    ]
   },
   {
     "id": "g-perfekt-haben",
@@ -1054,13 +1341,21 @@
     "drills": [
       {
         "q": "machen → ich habe …",
-        "options": ["gemacht", "gemachen", "machte"],
+        "options": [
+          "gemacht",
+          "gemachen",
+          "machte"
+        ],
         "a": 0,
         "why": "Regular: ge- + stem + -t."
       },
       {
         "q": "trinken → ich habe …",
-        "options": ["getrunken", "getrinkt", "trinkte"],
+        "options": [
+          "getrunken",
+          "getrinkt",
+          "trinkte"
+        ],
         "a": 0,
         "why": "Strong verb: -en ending and a vowel change."
       },
@@ -1075,7 +1370,9 @@
         "why": "Last. Always last."
       }
     ],
-    "prereq": ["g-praesens"]
+    "prereq": [
+      "g-praesens"
+    ]
   },
   {
     "id": "g-perfekt-sein",
@@ -1105,23 +1402,37 @@
     "drills": [
       {
         "q": "Ich ___ nach Hause gegangen.",
-        "options": ["bin", "habe", "war"],
+        "options": [
+          "bin",
+          "habe",
+          "war"
+        ],
         "a": 0,
         "why": "gehen is movement, so it takes sein."
       },
       {
         "q": "Ich ___ Brot gekauft.",
-        "options": ["habe", "bin", "war"],
+        "options": [
+          "habe",
+          "bin",
+          "war"
+        ],
         "a": 0,
         "why": "kaufen is not movement — haben, like most verbs."
       },
       {
         "q": "Which takes sein even though nothing moves?",
-        "options": ["bleiben", "essen", "lesen"],
+        "options": [
+          "bleiben",
+          "essen",
+          "lesen"
+        ],
         "a": 0,
         "why": "bleiben is the exception worth memorising."
       }
     ],
-    "prereq": ["g-perfekt-haben"]
+    "prereq": [
+      "g-perfekt-haben"
+    ]
   }
 ]

@@ -73,7 +73,6 @@ const many = db2
   .prepare("SELECT id FROM unit WHERE level = 'A1.1' ORDER BY ord LIMIT 10")
   .all() as { id: string }[];
 for (const u of many) mark2.run(U, u.id);
-db2.close();
 
 /*
  * Which slot fires today is fixed by the calendar, and the day index comes from the wall clock — a
@@ -84,7 +83,24 @@ const expected = rhythmFor(today(), {
   video: unitHasVideo(plan.unit?.id ?? ""),
   reading: true,
 });
-const shouldRecycle = expected.recycleReading || expected.recycleScenario;
+/*
+ * Only count a revisit the learner could actually be given. The rotation asks
+ * for a recycled SCENARIO one day in three, and no A1 unit has one — all
+ * twenty scenarios start at A2.1 — so on that day an A1 learner correctly gets
+ * nothing back. Asserting otherwise made this test fail for a content gap
+ * rather than for a bug, which is a test blaming the wrong thing.
+ */
+const oldScenarios = (
+  db2
+    .prepare(
+      `SELECT COUNT(*) AS n FROM unit_progress p JOIN unit u ON u.id = p.unit_id
+        WHERE p.user_id = ? AND u.scenario_json IS NOT NULL`,
+    )
+    .get(U) as { n: number }
+).n;
+const shouldRecycle =
+  expected.recycleReading || (expected.recycleScenario && oldScenarios > 0);
+db2.close();
 
 const recycled = plan.blocks.filter((b: any) => b.payload?.from);
 const titles = plan.blocks.map((b: any) => b.title).join(" ");

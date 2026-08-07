@@ -965,7 +965,10 @@ function drillsForTags(tags: string[]) {
     "article-akkusativ": ["akkusativ"],
     "article-dativ": ["dativ", "praepositionen-kasus"],
     "article-genitiv": ["genitiv"],
-    "verb-ending": ["praesens-regular", "verb-sein", "verb-haben"],
+    /* verb-haben was folded into verb-sein — A1.1 unit 8 is "Sein und haben"
+       and a unit carries one rule, so haben had been written and taught to
+       nobody. Its drills moved with it, so this tag lost no material. */
+    "verb-ending": ["praesens-regular", "verb-sein"],
     "verb-position-2": ["verb-position-2"],
     "verb-final": ["modalverben"],
     "perfekt-hilfsverb": ["perfekt"],

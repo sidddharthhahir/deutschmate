@@ -10,7 +10,7 @@ A1.1 → B1.2 in about seven months of self-study, one hour a day. Runs on a
 laptop or a small box, and costs the person hosting it nothing: the course is
 free, and the four features that need a model run on each learner's own key.
 
-Seven, not six: the deck is 2,604 words and a session introduces at most twelve
+Seven, not six: the deck is 2,573 words and a session introduces at most twelve
 a day, so the vocabulary alone is 217 days. `/fortschritt` shows your own
 projection from your own pace rather than that average.
 
@@ -29,7 +29,7 @@ npm run setup
 ```
 
 `setup` checks your Node version, builds the whole database from the files in
-`data/` — 2,604 words, 120 units, 50 grammar points, 38 readings, 1,827 levelled
+`data/` — 2,573 words, 120 units, 49 grammar points, 38 readings, 1,827 levelled
 sentences, 955 prebuilt explanations and 231 Deutsche Welle video episodes — and
 generates the two secrets the app needs into `.env.local`. No network, no
 downloads, no API key required.
@@ -58,15 +58,15 @@ what it buys and what works without it.
 The course is free and runs on this machine. Four things need a model, and they
 run on **each learner's own Anthropic key**, added in **Einstellungen**:
 
-| Needs a key | Without one |
-|---|---|
-| Gespräch | the unit's scripted dialogue |
+| Needs a key      | Without one                                          |
+| ---------------- | ---------------------------------------------------- |
+| Gespräch         | the unit's scripted dialogue                         |
 | Schreibkorrektur | your text is queued and corrected when a key appears |
-| "Erklär mir das" | from the cache, if anyone has asked before |
-| Eselsbrücken | unavailable, and says so |
+| "Erklär mir das" | from the cache, if anyone has asked before           |
+| Eselsbrücken     | unavailable, and says so                             |
 
-Everything else costs nothing and needs nothing: 2,604 words, 120
-units, 50 grammar points, 38 readings, the FSRS engine, cloze mining, practice
+Everything else costs nothing and needs nothing: 2,573 words, 120
+units, 49 grammar points, 38 readings, the FSRS engine, cloze mining, practice
 exams, minimal pairs, walk mode — and **955 prebuilt explanations**, so a wrong
 answer still comes back with a reason. No feature invents an answer.
 
@@ -97,9 +97,9 @@ which is what stops hot reload dying silently from another device.
 
 **It says different words on a phone.** Every control in the session has always
 been a real button, but each was labelled with its shortcut and the tour opened
-with *"Press Enter. That is the whole daily decision"* — the one sentence
+with _"Press Enter. That is the whole daily decision"_ — the one sentence
 defining the product, naming a key that is not there. On a coarse pointer the
-tour says *"Tap the one button"*, the reviewing page swaps its keyboard legend
+tour says _"Tap the one button"_, the reviewing page swaps its keyboard legend
 for **Aufdecken · Nochmal · Schwer · Gut · Einfach · Zurücknehmen**, and the
 `Esc`, `Enter` and `Leertaste` chips disappear. Inline hints switch in CSS
 (`.kbd-hint` / `.touch-hint` in `globals.css`) so there is no frame where a
@@ -119,7 +119,7 @@ would otherwise have shipped.
 2. **Offline-first.** A full daily session must be finishable in airplane mode.
    Every block has an offline path; the session runner never dead-ends.
 3. **Vocabulary-constrained AI.** Every generated sentence uses only words the
-   learner already knows, and the tutor is briefed on what *this* learner keeps
+   learner already knows, and the tutor is briefed on what _this_ learner keeps
    getting wrong — then told never to mention it. That is what separates a
    teacher from a chatbot.
 4. **Never fake progress.** If you can't point at the database row that produced
@@ -140,8 +140,8 @@ living-in-Germany corner. It was six. Principle 5 says which half grows next.
 Principle 4 does most of the work. It is why the recap counts rows instead of
 animating, why the streak drops to zero the day after you skip one, why
 `config.ts` has a test asserting every constant is actually read, and why the
-mascot idea below is not built: a friendly line saying *"today you'll learn
-shopping words"* over a session teaching *ich bin, du bist* is a lie with a
+mascot idea below is not built: a friendly line saying _"today you'll learn
+shopping words"_ over a session teaching _ich bin, du bist_ is a lie with a
 nice voice.
 
 It cuts the other way too. "An unsegmented video is a file, not a lesson" was
@@ -156,13 +156,13 @@ keeping it honest.
 Press Enter on the home screen and it runs today's session — reviews, your own
 mistakes, new material, listening, speaking, a quiz — then stops.
 
-| | |
-|---|---|
-| **Sitzung** | The daily hour. Fixed rhythm, content chosen for you. |
-| **Wortschatz** | All 2,604 words, 2,317 of them with native audio. |
-| **Üben** | Where *you* choose: scenarios, grammar, tests, pronunciation. |
-| **Fortschritt** | Every number is a count of something you did. |
-| **Der Weg** | All 120 units at once, which of them are still sticking, what you can now do, and dated milestones. |
+|                 |                                                                                                     |
+| --------------- | --------------------------------------------------------------------------------------------------- |
+| **Sitzung**     | The daily hour. Fixed rhythm, content chosen for you.                                               |
+| **Wortschatz**  | All 2,573 words, 2,295 of them with native audio.                                                   |
+| **Üben**        | Where _you_ choose: scenarios, grammar, tests, pronunciation.                                       |
+| **Fortschritt** | Every number is a count of something you did.                                                       |
+| **Der Weg**     | All 120 units at once, which of them are still sticking, what you can now do, and dated milestones. |
 
 And the parts that aren't a course:
 
@@ -188,24 +188,24 @@ stops the rhythm becoming a rut. It is deterministic per calendar day — never
 random — because reloading a session you are halfway through must not hand you
 a different one.
 
-| Slot | | |
-|---|---|---|
-| 1 | **Aufwärmen** *or* **Aufwärmen (Hören)** | due cards, capped at 60. Every third day the word is played and hidden until you answer. Absent if nothing is due — which is every day of your first week. |
-| 2 | **Fix** · **Lücken** | your own recent mistakes. Absent when you have none. |
-| 2b | **Grammatik-Wdh.** | rules that are due back. On the FSRS curve, so it appears whether or not you got anything wrong. |
-| 3 | **Neue Wörter** *or* **Grammatik** | never both in a day — two novel loads halve retention of each. |
-| 4 | **Hören** · **Lesen** · **Wiederlesen** · **Video** | rotates. Video one day in three where the unit has one — 33 of the 40 A1 units are matched to a *Nicos Weg* episode. Reading borrows an old text when this unit has none of its own, and says so. |
-| 5 | **Sätze bauen** | |
-| 6 | **Sprechen** *or* **Schreiben** | speaking two days in three. |
-| 7 | **Gespräch** *or* **Nochmal sprechen** | every third one is a scene you did weeks ago. Absent for the whole of A1, which has no scenarios written yet. |
-| 8 | **Abschluss** | the closing quiz, then the recap. |
+| Slot |                                                     |                                                                                                                                                                                                   |
+| ---- | --------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1    | **Aufwärmen** _or_ **Aufwärmen (Hören)**            | due cards, capped at 60. Every third day the word is played and hidden until you answer. Absent if nothing is due — which is every day of your first week.                                        |
+| 2    | **Fix** · **Lücken**                                | your own recent mistakes. Absent when you have none.                                                                                                                                              |
+| 2b   | **Grammatik-Wdh.**                                  | rules that are due back. On the FSRS curve, so it appears whether or not you got anything wrong.                                                                                                  |
+| 3    | **Neue Wörter** _or_ **Grammatik**                  | never both in a day — two novel loads halve retention of each.                                                                                                                                    |
+| 4    | **Hören** · **Lesen** · **Wiederlesen** · **Video** | rotates. Video one day in three where the unit has one — 33 of the 40 A1 units are matched to a _Nicos Weg_ episode. Reading borrows an old text when this unit has none of its own, and says so. |
+| 5    | **Sätze bauen**                                     |                                                                                                                                                                                                   |
+| 6    | **Sprechen** _or_ **Schreiben**                     | speaking two days in three.                                                                                                                                                                       |
+| 7    | **Gespräch** _or_ **Nochmal sprechen**              | every third one is a scene you did weeks ago. Absent for the whole of A1, which has no scenarios written yet.                                                                                     |
+| 8    | **Abschluss**                                       | the closing quiz, then the recap.                                                                                                                                                                 |
 
 A full day is eight or nine blocks and about ninety minutes; a quiet one is
 four. Nothing is padded to reach a number.
 
 **A skipped day is said out loud.** Miss a day and the due cards roll into the
 next session, which is why today can be half an hour longer than yesterday. The
-home screen now says which it is — *„2 Tage ausgelassen“* — instead of leaving
+home screen now says which it is — _„2 Tage ausgelassen“_ — instead of leaving
 you to compare two numbers. The streak goes to zero at the same moment: it
 counts only while the last session was today or yesterday. Three days away with
 a real backlog is a different thing again, and becomes **Wiedereinstieg**.
@@ -222,8 +222,8 @@ Three things that follow from this and are easy to miss:
 **Old material comes back.** Words and grammar are on a forgetting curve;
 scenarios and readings used to be one-and-done. A conversation is the slowest
 thing in the course to build and the fastest to lose, so past ones return —
-labelled *"schon gemacht · Unit 10 · Fragen stellen"* (a reading says *"schon
-gelesen"*) so it reads as revision, not as the app losing its place. Only units
+labelled _"schon gemacht · Unit 10 · Fragen stellen"_ (a reading says _"schon
+gelesen"_) so it reads as revision, not as the app losing its place. Only units
 finished over a week ago count: redoing yesterday is the same lesson, not a
 second pass.
 
@@ -236,7 +236,7 @@ decay if you skip them. New material waits for tomorrow. On a day with nothing
 due and no recent mistakes it is empty, and says so rather than inventing
 filler.
 
-**A long absence collapses the session.** Three days away *and* more than forty
+**A long absence collapses the session.** Three days away _and_ more than forty
 cards waiting gives you **Wiedereinstieg**: twenty reviews, nothing else. A gap
 with a small backlog just gives you a normal day — the point is the backlog,
 not the guilt.
@@ -252,13 +252,13 @@ firing would otherwise look exactly like the old behaviour.
 Five call sites, all in `src/lib/ai.ts`, each stating its model and settings in
 one table at the top of the file rather than inheriting a default:
 
-| | Model | Thinking | Why |
-|---|---|---|---|
-| Conversation | Sonnet 5 | off, effort `low` | short, formulaic, already constrained by the whitelist |
-| Post-chat review | Sonnet 5 | off, effort `low` | |
-| Writing correction | Sonnet 5 | adaptive, `medium` | a handful a week; a missed error is one you keep making |
-| Sentence explanation | Haiku 4.5 | — | cached in SQLite, so this converges toward free |
-| Mistake explanation | Haiku 4.5 | — | same, keyed by (expected, answer) |
+|                      | Model     | Thinking           | Why                                                     |
+| -------------------- | --------- | ------------------ | ------------------------------------------------------- |
+| Conversation         | Sonnet 5  | off, effort `low`  | short, formulaic, already constrained by the whitelist  |
+| Post-chat review     | Sonnet 5  | off, effort `low`  |                                                         |
+| Writing correction   | Sonnet 5  | adaptive, `medium` | a handful a week; a missed error is one you keep making |
+| Sentence explanation | Haiku 4.5 | —                  | cached in SQLite, so this converges toward free         |
+| Mistake explanation  | Haiku 4.5 | —                  | same, keyed by (expected, answer)                       |
 
 Sonnet 5 **thinks by default** when the parameter is omitted, which is why
 every call names its choice: a two-sentence café reply does not need a
@@ -277,7 +277,7 @@ month's spend first and, once it is gone, takes the same offline path a missing
 key takes. Nothing dead-ends.
 
 **The tutor knows who it is talking to.** Three error tags and four lapsing
-words go into the prompt *after* the cache breakpoint, with instructions to
+words go into the prompt _after_ the cache breakpoint, with instructions to
 steer toward them and never to mention them. A model told what you struggle
 with will try to help by explaining it, and a tutor that stops to teach
 mid-sentence is how beginners stop talking — corrections run afterwards, on
@@ -287,7 +287,7 @@ purpose.
 the exact sentence pair if anyone has hit it before → **955 prebuilt patterns**
 → the cheap model → the rule-based tag description.
 
-Tier two is the one that matters for the bill. It is keyed on the *difference*
+Tier two is the one that matters for the bill. It is keyed on the _difference_
 rather than the sentences, so `w:der→den` covers the accusative slip in every
 sentence it can happen in, and `v:-e→-st` covers the du ending on every regular
 verb in the language. Articles and case, the perfect auxiliary, verb endings,
@@ -297,7 +297,7 @@ what a beginner actually gets wrong is answered instantly, offline, for free.
 any of them could be written.
 
 The fourth tier is why it can never come back empty: with no key, no network or
-a spent budget, *"Nominative article where accusative is needed"* is still true.
+a spent budget, _"Nominative article where accusative is needed"_ is still true.
 
 ---
 
@@ -305,12 +305,12 @@ a spent budget, *"Nominative article where accusative is needed"* is still true.
 
 Conflating these is how a setting ends up in the wrong place and stays there.
 
-| Kind | Lives in | Examples | Changes when |
-|---|---|---|---|
-| **Deployment** | env, read via `src/lib/env.ts` | URL, budget, admin switch, DB path | you move machines |
-| **Provider catalogue** | `data/models.json` | model ids, prices, cache multipliers | Anthropic changes something |
-| **Product constants** | `src/lib/config.ts` | new words per day, review cap, leech threshold | you change the course |
-| **Per learner** | the `user` table | their API key (encrypted), their spend cap | any learner, any time |
+| Kind                   | Lives in                       | Examples                                       | Changes when                |
+| ---------------------- | ------------------------------ | ---------------------------------------------- | --------------------------- |
+| **Deployment**         | env, read via `src/lib/env.ts` | URL, budget, admin switch, DB path             | you move machines           |
+| **Provider catalogue** | `data/models.json`             | model ids, prices, cache multipliers           | Anthropic changes something |
+| **Product constants**  | `src/lib/config.ts`            | new words per day, review cap, leech threshold | you change the course       |
+| **Per learner**        | the `user` table               | their API key (encrypted), their spend cap     | any learner, any time       |
 
 ```bash
 npm run config     # every setting's effective value, the price list, and what looks wrong
@@ -322,7 +322,7 @@ Two of these were not config until recently and should have been.
 `/fortschritt` reports the wrong spend — confidently, with no error. Principle 4
 says never show a number you cannot point at the row that produced it, and a
 price nobody has checked since it was typed is exactly that number. It is
-`data/models.json` now, with an *as-of* date the cost page prints, and a model
+`data/models.json` now, with an _as-of_ date the cost page prints, and a model
 the catalogue does not know is reported as unpriced rather than folded into a
 total that reads as complete. It also fixed a live understatement: the tutor
 prompt is cached for an hour (2× on the write) and was being billed at the
@@ -370,15 +370,15 @@ applied 478 times, and then read back over the files where the judgement
 mattered. Four notes went back in by hand afterwards, because each documents a
 bug already fixed once and deleting it invites the bug back:
 
-| | |
-|---|---|
+|                   |                                                                                                                                                |
+| ----------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
 | `shared-cache.ts` | `instr`, not `LIKE` — a `%` or `_` in a sentence is a wildcard and would match content it does not appear in, which publishes a private letter |
-| `shared-cache.ts` | the 12-character, 3-word floor — *"der"* occurs in every text the app ships |
-| `error-key.ts` | a pattern explanation must be true **without seeing the sentence** — *"'Mann' is masculine"* is a lie the moment the same key fires on a Frau |
-| `config.ts` | `PACE_CUT_ACCURACY` is a fraction and the call site compares a percentage; simplifying the `×100` throttles every learner permanently |
+| `shared-cache.ts` | the 12-character, 3-word floor — _"der"_ occurs in every text the app ships                                                                    |
+| `error-key.ts`    | a pattern explanation must be true **without seeing the sentence** — _"'Mann' is masculine"_ is a lie the moment the same key fires on a Frau  |
+| `config.ts`       | `PACE_CUT_ACCURACY` is a fraction and the call site compares a percentage; simplifying the `×100` throttles every learner permanently          |
 
 One thing the script had to be taught. Each test file's header carries a
-`needs:` line, and [tests/run.mts](tests/run.mts) *parses it* to decide whether
+`needs:` line, and [tests/run.mts](tests/run.mts) _parses it_ to decide whether
 to start a dev server. Stripping it as prose would have run eight suites against
 nothing and reported green — a comment that is load-bearing to a machine, not
 just to a reader, which is the category worth checking for before any sweep like
@@ -391,7 +391,7 @@ three `eslint-disable` lines too — `as never[]` says what `as any[]` said,
 without the escape hatch.
 
 And one constant was decorative in the way §12's five were. `TUTOR_CACHE_TTL`'s
-comment read *"the TTL the tutor prompt is cached with, named once"*, and the
+comment read _"the TTL the tutor prompt is cached with, named once"_, and the
 call site four lines below it hardcoded `"1h"`. Named twice is named zero times.
 
 ---
@@ -422,7 +422,7 @@ is empty when the code is clean.
 
 Two small things that stop the checks lying to you on Windows.
 [.gitattributes](.gitattributes) normalises the repo to LF, because otherwise
-every `git add` prints a wall of *"LF will be replaced by CRLF"* and
+every `git add` prints a wall of _"LF will be replaced by CRLF"_ and
 `prettier --check` fails on all 130 files over line endings alone — real failures
 buried in noise. [.prettierrc.json](.prettierrc.json) sets `endOfLine: "auto"`
 so a Windows clone and a Linux one agree. The tree was also only partly
@@ -467,39 +467,39 @@ and not your change. Worth the paragraph because an intermittent red on a file
 that passed is worse than a real failure — the only sustainable response is to
 stop reading reds, and after that a genuine one looks the same.
 
-| | |
-|---|---|
-| `content` | every word belongs to a unit, every reference resolves, every noun has an article |
-| `fresh-clone` | seeds a throwaway database from `data/` alone and checks nothing is missing |
-| `cost` | token pricing, the cache saving, and the budget ceiling |
-| `rhythm` | walks a month of the session rotation — every skill gets its share |
-| `coaching` | the tutor is told your weak spots, and told never to mention them |
-| `text` | cloze gaps and exam scoring |
-| `outbox` | the offline queue: what is retried, what is dropped, what survives a corrupt store |
-| `progression` | walks a new learner through all 120 units and checks every word gets taught |
-| `unit-carryover` | an oversized unit comes back tomorrow instead of losing its remainder |
-| `mastery` | finishing ≠ retaining, retention never blocks progression, and bad prerequisite data can't strand anyone |
-| `scene` | the tutor gets the brief the page is showing — all twelve Alltag scenarios included, each with enough to say, enough to hear, and enough to bring |
-| `recycle` | old scenarios and readings come back, and say where they came from |
-| `grammar` | a taught rule returns when due, with a different drill |
-| `why` | every wrong answer comes back with a reason, on every path, with or without a key |
-| `who` | two flatmates on one browser get separate keys, the cookie read is the cookie sign-in writes, and a queued answer replays to whoever gave it |
-| `corpus` | the sentence rotation covers the corpus over a course, not just over a month |
-| `error-key` | 41 mistakes a beginner really makes, each one reaching a specific prebuilt explanation |
-| `strings` | no HTML entity survives into a string literal, where JSX will not decode it |
-| `undo` | one grade is one attempt row and one step of the curve — never two |
-| `tenancy` | you cannot act as another learner, mint an account, or write to shared content |
-| `auth` | sessions are stored hashed and last ten years, a wrong password and an unknown username answer identically, and a reset signs every device out |
-| `password` | scrypt round-trips, a corrupt stored hash is a no rather than a yes, and a recovery code survives being copied off paper |
-| `apikey` | a stored key is never in the row, never in the response, and never another learner's |
-| `shared-cache` | course sentences are cached for everyone, pasted text only for you, and both are deletable |
-| `config` | every constant in `config.ts` is actually read by something — five were not |
+|                  |                                                                                                                                                   |
+| ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `content`        | every word belongs to a unit, every reference resolves, every noun has an article                                                                 |
+| `fresh-clone`    | seeds a throwaway database from `data/` alone and checks nothing is missing                                                                       |
+| `cost`           | token pricing, the cache saving, and the budget ceiling                                                                                           |
+| `rhythm`         | walks a month of the session rotation — every skill gets its share                                                                                |
+| `coaching`       | the tutor is told your weak spots, and told never to mention them                                                                                 |
+| `text`           | cloze gaps and exam scoring                                                                                                                       |
+| `outbox`         | the offline queue: what is retried, what is dropped, what survives a corrupt store                                                                |
+| `progression`    | walks a new learner through all 120 units and checks every word gets taught                                                                       |
+| `unit-carryover` | an oversized unit comes back tomorrow instead of losing its remainder                                                                             |
+| `mastery`        | finishing ≠ retaining, retention never blocks progression, and bad prerequisite data can't strand anyone                                          |
+| `scene`          | the tutor gets the brief the page is showing — all twelve Alltag scenarios included, each with enough to say, enough to hear, and enough to bring |
+| `recycle`        | old scenarios and readings come back, and say where they came from                                                                                |
+| `grammar`        | a taught rule returns when due, with a different drill                                                                                            |
+| `why`            | every wrong answer comes back with a reason, on every path, with or without a key                                                                 |
+| `who`            | two flatmates on one browser get separate keys, the cookie read is the cookie sign-in writes, and a queued answer replays to whoever gave it      |
+| `corpus`         | the sentence rotation covers the corpus over a course, not just over a month                                                                      |
+| `error-key`      | 41 mistakes a beginner really makes, each one reaching a specific prebuilt explanation                                                            |
+| `strings`        | no HTML entity survives into a string literal, where JSX will not decode it                                                                       |
+| `undo`           | one grade is one attempt row and one step of the curve — never two                                                                                |
+| `tenancy`        | you cannot act as another learner, mint an account, or write to shared content                                                                    |
+| `auth`           | sessions are stored hashed and last ten years, a wrong password and an unknown username answer identically, and a reset signs every device out    |
+| `password`       | scrypt round-trips, a corrupt stored hash is a no rather than a yes, and a recovery code survives being copied off paper                          |
+| `apikey`         | a stored key is never in the row, never in the response, and never another learner's                                                              |
+| `shared-cache`   | course sentences are cached for everyone, pasted text only for you, and both are deletable                                                        |
+| `config`         | every constant in `config.ts` is actually read by something — five were not                                                                       |
 
 `corpus` and `error-key` are worth a note on how they are written, because both
 guard the same kind of failure.
 
 The obvious corpus test — "do two consecutive days differ?" — passed while the
-rotation was reaching 6% of the sentences, because consecutive days *did*
+rotation was reaching 6% of the sentences, because consecutive days _did_
 differ; it was day 36 that repeated day 0. So it measures coverage over the 210
 days the course actually takes.
 
@@ -569,12 +569,12 @@ per page.
 
 **Everything a clone needs is committed** — including the audio, which is why
 the repo is not small. `npm run setup` rebuilds the database from `data/` with
-no network. Three things are deliberately *not* in the repo:
+no network. Three things are deliberately _not_ in the repo:
 
-| | Why |
-|---|---|
-| `deutschmate.db` | progress is personal, and it is rebuildable from `data/` anyway. `npm run backup` is how you keep it. |
-| `.env.local` | secrets. `.env.example` ships instead, and `npm run setup` fills in the generated ones. |
+|                     | Why                                                                                                                                                                                                                                                                                      |
+| ------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `deutschmate.db`    | progress is personal, and it is rebuildable from `data/` anyway. `npm run backup` is how you keep it.                                                                                                                                                                                    |
+| `.env.local`        | secrets. `.env.example` ships instead, and `npm run setup` fills in the generated ones.                                                                                                                                                                                                  |
 | cached explanations | `error_pattern` rows generated at runtime are keyed on the learner's real wrong answer, and `explanation` holds German somebody pasted into `/text`. Committing either would publish it, and would make Einstellungen's "withdraw my contributions" a lie — git history does not forget. |
 
 Everything else that gets made at runtime — video segments, mnemonics — has a
@@ -582,19 +582,19 @@ way back into `data/` via `npm run export-content`.
 
 The engine, in the order a session touches it:
 
-| | |
-|---|---|
-| `srs.ts` · `grammar-srs.ts` | FSRS scheduling for words and for rules |
-| `session.ts` | builds the day; `rhythm.ts` decides its shape |
-| `errors.ts` | tags every wrong answer — the entire personalisation engine |
-| `cloze.ts` · `cloze-text.ts` | mines gap cards from your own mistakes |
-| `why.ts` | the three-tier answer to "warum?" |
-| `ai.ts` · `coaching.ts` | the five model calls, and what the tutor knows about you |
-| `scene.ts` · `survival.ts` | which brief the tutor is given — a course unit's, or an Alltag one |
-| `cost.ts` · `pricing.ts` | what it cost, and the ceiling that stops it |
-| `mastery.ts` | finished vs actually retained — two states, only one of them a gate |
-| `journey.ts` | the roadmap and milestones behind Der Weg |
-| `outbox.ts` | the offline queue — answers given on a train |
+|                              |                                                                     |
+| ---------------------------- | ------------------------------------------------------------------- |
+| `srs.ts` · `grammar-srs.ts`  | FSRS scheduling for words and for rules                             |
+| `session.ts`                 | builds the day; `rhythm.ts` decides its shape                       |
+| `errors.ts`                  | tags every wrong answer — the entire personalisation engine         |
+| `cloze.ts` · `cloze-text.ts` | mines gap cards from your own mistakes                              |
+| `why.ts`                     | the three-tier answer to "warum?"                                   |
+| `ai.ts` · `coaching.ts`      | the five model calls, and what the tutor knows about you            |
+| `scene.ts` · `survival.ts`   | which brief the tutor is given — a course unit's, or an Alltag one  |
+| `cost.ts` · `pricing.ts`     | what it cost, and the ceiling that stops it                         |
+| `mastery.ts`                 | finished vs actually retained — two states, only one of them a gate |
+| `journey.ts`                 | the roadmap and milestones behind Der Weg                           |
+| `outbox.ts`                  | the offline queue — answers given on a train                        |
 
 **Four files are pure on purpose** — `pricing.ts`, `cloze-text.ts`, `rhythm.ts`
 and `coaching.ts` have no database import, so they can be tested directly by
@@ -693,7 +693,7 @@ answered rather than trusting the cookie at the time it lands.
 stopped writing the day it moved to `dm_uid`. So the scoping worked perfectly
 and every learner scoped to the same fallback name — one shared plan, one shared
 resume offer, one shared tour flag, one shared queue. Nothing looked wrong,
-because on the install where it was written the signed-in id *is* the fallback.
+because on the install where it was written the signed-in id _is_ the fallback.
 It reads `dm_uid` first now and still accepts `dm_user` alone, so a tab left open
 across the upgrade keeps its buckets. Four assertions in `tests/who.test.mts`
 pin the cookie sign-in actually sets, which is the part that had no test.
@@ -707,12 +707,12 @@ Explanations are cached and **shared on purpose** — that is why the second
 person to ask about a sentence pays nothing, and why the app gets cheaper the
 more it is used. The line is drawn at whose German it is:
 
-| | shared with everyone here | private to you |
-|---|---|---|
-| a sentence from the course | ✓ | |
-| a mistake you made in an exercise | ✓ | |
-| German you pasted into `/text` | | ✓ |
-| your writing, your answers, your deck | | ✓ |
+|                                       | shared with everyone here | private to you |
+| ------------------------------------- | ------------------------- | -------------- |
+| a sentence from the course            | ✓                         |                |
+| a mistake you made in an exercise     | ✓                         |                |
+| German you pasted into `/text`        |                           | ✓              |
+| your writing, your answers, your deck |                           | ✓              |
 
 The app decides which by checking the sentence against its own content tables.
 **There is no request parameter for it** — a page asking to share is not
@@ -743,7 +743,7 @@ offline tier depends on them.
   see `public/audio/ATTRIBUTION.md`.
 - **News** — Deutsche Welle, streamed from their public feed. Nothing copied or
   stored.
-- **Video** — Deutsche Welle, *Nicos Weg*, streamed from DW's own CDN via the
+- **Video** — Deutsche Welle, _Nicos Weg_, streamed from DW's own CDN via the
   three official video podcast feeds, the same way a podcast client would.
   Nothing is downloaded or re-hosted and no captions are scraped; the
   transcripts in `segments_json` are typed by whoever marked the video up. A few
@@ -759,13 +759,13 @@ the [Goethe-Institut](https://www.goethe.de/de/spr/kup/prf.html).
 ## Known gaps
 
 - **All 231 videos are in and play; none is segmented yet.** The complete
-  Deutsche Welle *Nicos Weg* course — 226 episodes across A1, A2 and B1 — plus 5
+  Deutsche Welle _Nicos Weg_ course — 226 episodes across A1, A2 and B1 — plus 5
   YouTube extras DW does not publish in its podcasts. 33 of the 40 A1 units are
   linked to the episode their title matches; the other seven have no honest
   match and get no video day.
 
-  This entry used to say *"none has segments, so the video block still never
-  appears — that is correct, not broken"*. It was not correct. Requiring
+  This entry used to say _"none has segments, so the video block still never
+  appears — that is correct, not broken"_. It was not correct. Requiring
   segments meant the block had never been shown to anyone, and the only way that
   could be reported was "I don't find the video player". An episode plays
   unsegmented and says so; segments add per-sentence replay on top.
@@ -809,18 +809,19 @@ the [Goethe-Institut](https://www.goethe.de/de/spr/kup/prf.html).
   `data/videos.json` (and any generated mnemonics into `data/mnemonics.json`).
   Commit those and every clone gets them; without it, ten hours of marking up
   lives on one laptop and dies with it.
+
 - **Speech recognition needs Chrome, Edge or Safari.** Firefox has never shipped
   the Web Speech API. Speaking and voice mode degrade to listen-and-repeat there
   and say which browsers work. This is feature-detected, so the day Firefox
   ships it, it turns on with no code change.
 - **39 of the 80 units past A1 teach vocabulary and no rule** — down from 56,
-  and the remaining ones are thematic on purpose. *Im Restaurant* teaches how to
+  and the remaining ones are thematic on purpose. _Im Restaurant_ teaches how to
   order, not a new rule, and forcing one onto it would be padding.
 
   The 56 was not a content gap. `build-units.mts` spaced each level's grammar
   points evenly across its twenty units — `floor(20 / 6)`, so units 1, 4, 7, 10,
   13, 16 — which is fair-sounding arithmetic that put every point on the wrong
-  unit. B1.1 unit 2 is *"Höflich bitten · use Konjunktiv II to be polite"* and
+  unit. B1.1 unit 2 is _"Höflich bitten · use Konjunktiv II to be polite"_ and
   taught no rule; unit 4, about the passive, taught Konjunktiv II. The
   blueprints name their own point now, and `tests/grammar-map.test.mts` checks
   the database agrees with them.
@@ -828,6 +829,7 @@ the [Goethe-Institut](https://www.goethe.de/de/spr/kup/prf.html).
   Four points genuinely had nothing written and were added: **als/wenn/wann**,
   **Plusquamperfekt**, **irreale Bedingungssätze**, and **the passive with a
   modal** — the sentence shape every contract and form is written in.
+
 - **A1 has no conversation scenarios.** `Gespräch` is slot 7 of the daily
   rhythm and never fires below A2.1, which has all twenty. A unit with no
   scenario now produces no block rather than a broken one — it used to store
@@ -837,7 +839,7 @@ the [Goethe-Institut](https://www.goethe.de/de/spr/kup/prf.html).
 ### Closed since
 
 - ~~The Progress page is eleven sections in flat order.~~ Now four named bands —
-  *Was kannst du · Wie läuft es · Was hakt · Nebenbei* — each showing the
+  _Was kannst du · Wie läuft es · Was hakt · Nebenbei_ — each showing the
   question it answers. Named after questions rather than after data, so anything
   answering no question a learner actually asks sits at the bottom.
 - ~~`/alltag` needs the network.~~ All of them now carry a scripted branching
@@ -901,18 +903,18 @@ claiming it covered all of it.
 
 Ten passes, each finding what the one before it structurally could not:
 
-| | |
-|---|---|
-| reading the code | disconnected mechanisms, dead columns, drifted duplicates |
-| reading the rendered HTML | a button printing `&apos;` — the source looked like the working case |
-| **doing an hour of German** | a recap that reported the session had not happened |
-| asking what reads each constant | five config values that documented a decision they no longer controlled |
-| walking a session end to end | two numbers, both correct, one lying by placement |
-| **deleting the comments** | a cookie nothing writes, and a constant named twice |
-| **reading the server log** | one deprecation warning in 6,272 lines, for a convention that will stop working |
-| **running the suite four times** | a 40% flake whose checks always passed — a red that meant nothing |
+|                                  |                                                                                                            |
+| -------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| reading the code                 | disconnected mechanisms, dead columns, drifted duplicates                                                  |
+| reading the rendered HTML        | a button printing `&apos;` — the source looked like the working case                                       |
+| **doing an hour of German**      | a recap that reported the session had not happened                                                         |
+| asking what reads each constant  | five config values that documented a decision they no longer controlled                                    |
+| walking a session end to end     | two numbers, both correct, one lying by placement                                                          |
+| **deleting the comments**        | a cookie nothing writes, and a constant named twice                                                        |
+| **reading the server log**       | one deprecation warning in 6,272 lines, for a convention that will stop working                            |
+| **running the suite four times** | a 40% flake whose checks always passed — a red that meant nothing                                          |
 | **doing another hour of German** | a screen that lied about its own timer, broken German in the recap, and a compound noun wider than a phone |
-| **reading the browser console** | the recap racing the grade it was counting, and two React errors nobody had opened the panel to see |
+| **reading the browser console**  | the recap racing the grade it was counting, and two React errors nobody had opened the panel to see        |
 
 The third is worth the detail. The recap counters animate up from zero with
 `requestAnimationFrame`, browsers do not run rAF in a background tab, and there

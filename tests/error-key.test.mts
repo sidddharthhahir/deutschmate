@@ -272,7 +272,8 @@ const DRILLS: Record<string, string[]> = {
   "article-akkusativ": ["akkusativ"],
   "article-dativ": ["dativ", "praepositionen-kasus"],
   "article-genitiv": ["genitiv"],
-  "verb-ending": ["praesens-regular", "verb-sein", "verb-haben"],
+  /* verb-haben was folded into verb-sein, drills and all. */
+  "verb-ending": ["praesens-regular", "verb-sein"],
   "verb-position-2": ["verb-position-2"],
   "verb-final": ["modalverben"],
   "perfekt-hilfsverb": ["perfekt"],

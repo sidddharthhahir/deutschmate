@@ -289,7 +289,52 @@ for (const g of grammar) {
   );
 }
 db.exec("COMMIT");
-console.log(`OK${grammar.length} grammar points`);
+
+/*
+ * A point dropped from the content files must leave the database too.
+ *
+ * Seeding upserts, so g-haben survived being folded into g-sein: the file had
+ * 49 and the table had 50, and the extra one was reachable from search and
+ * from /grammatik with nothing teaching it. The same rule as stale words —
+ * anything with review history is kept, because deleting it would take a
+ * learner's card with it.
+ */
+const staleG = (db.prepare("SELECT id FROM grammar").all() as { id: string }[])
+  .map((g) => g.id)
+  .filter((id) => !grammar.some((g) => g.id === id));
+let droppedG = 0;
+let keptG = 0;
+if (staleG.length) {
+  const used = db.prepare(
+    "SELECT 1 FROM card WHERE ref_type = 'grammar' AND ref_id = ? AND reps > 0 LIMIT 1",
+  );
+  const delG = db.prepare("DELETE FROM grammar WHERE id = ?");
+  db.exec("BEGIN");
+  for (const id of staleG) {
+    if (used.get(id)) {
+      keptG++;
+      continue;
+    }
+    db.prepare("UPDATE unit SET grammar_id = NULL WHERE grammar_id = ?").run(
+      id,
+    );
+    db.prepare("DELETE FROM card WHERE ref_type='grammar' AND ref_id = ?").run(
+      id,
+    );
+    delG.run(id);
+    droppedG++;
+  }
+  db.exec("COMMIT");
+}
+console.log(
+  `OK${grammar.length} grammar points` +
+    (droppedG
+      ? `\n   ${droppedG} no longer in the content files were removed`
+      : "") +
+    (keptG
+      ? `\n   ${keptG} kept despite that: they already have review history`
+      : ""),
+);
 
 // ---------------------------------------------------------------- units
 type RawUnit = {

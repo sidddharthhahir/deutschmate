@@ -35,7 +35,7 @@ const STEPS: Step[] = [
     body: (
       <>
         <p>
-          DeutschMate takes you from A1.1 to B1.2 — 120 units, 2,604 words, 50
+          DeutschMate takes you from A1.1 to B1.2 — 120 units, 2,573 words, 49
           grammar points. Built for about an hour a day, roughly seven months.
         </p>
         <p>

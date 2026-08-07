@@ -1,21 +1,92 @@
 {
-  "a1-1-u03": ["ein", "so", "als", "wirklich", "paar"],
-  "a1-1-u10": ["dass", "nur", "um", "ganz", "gar"],
-  "a1-1-u04": ["wenn", "mal", "wuerde", "wieso"],
-  "a1-1-u08": ["an", "dann", "damit", "ach"],
-  "a1-1-u11": ["da", "doch", "nun", "davon"],
-  "a1-1-u02": ["einen", "okay", "raus"],
-  "a1-1-u13": ["man", "leid", "dafuer"],
-  "a1-1-u14": ["werden", "na", "wegen"],
-  "a1-1-u15": ["oh", "zurueck", "hin"],
-  "a1-1-u16": ["also", "gott", "tot"],
-  "a1-1-u17": ["los", "ab", "rein"],
-  "a1-1-u18": ["denn", "gerade", "stimmt"],
-  "a1-1-u19": ["tun", "wohl", "sonst"],
-  "a1-1-u20": ["einer", "durch", "dabei"],
-  "a1-1-u06": ["des", "selbst"],
-  "a1-1-u07": ["zeit", "her"],
-  "a1-1-u01": ["ob"],
+  "a1-1-u03": [
+    "ein",
+    "so",
+    "als",
+    "wirklich",
+    "paar"
+  ],
+  "a1-1-u10": [
+    "dass",
+    "nur",
+    "um",
+    "ganz",
+    "gar"
+  ],
+  "a1-1-u04": [
+    "wenn",
+    "mal",
+    "wuerde",
+    "wieso"
+  ],
+  "a1-1-u08": [
+    "an",
+    "dann",
+    "damit",
+    "ach"
+  ],
+  "a1-1-u11": [
+    "da",
+    "doch",
+    "nun",
+    "davon"
+  ],
+  "a1-1-u02": [
+    "einen",
+    "okay",
+    "raus"
+  ],
+  "a1-1-u13": [
+    "man",
+    "leid",
+    "dafuer"
+  ],
+  "a1-1-u14": [
+    "werden",
+    "na",
+    "wegen"
+  ],
+  "a1-1-u15": [
+    "oh",
+    "zurueck",
+    "hin"
+  ],
+  "a1-1-u16": [
+    "also",
+    "gott",
+    "tot"
+  ],
+  "a1-1-u17": [
+    "los",
+    "ab",
+    "rein"
+  ],
+  "a1-1-u18": [
+    "denn",
+    "gerade",
+    "stimmt"
+  ],
+  "a1-1-u19": [
+    "tun",
+    "wohl",
+    "sonst"
+  ],
+  "a1-1-u20": [
+    "einer",
+    "durch",
+    "dabei"
+  ],
+  "a1-1-u06": [
+    "des",
+    "selbst"
+  ],
+  "a1-1-u07": [
+    "zeit",
+    "her"
+  ],
+  "a1-1-u01": [
+    "ob"
+  ],
   "a1-2-u01": [
     "einmal",
     "fast",
@@ -67,13 +138,11 @@
     "papa",
     "feuer",
     "koerper",
-    "aehm",
     "staendig",
     "rueber"
   ],
   "a1-2-u06": [
     "dank",
-    "mom",
     "wagen",
     "sondern",
     "voellig",
@@ -112,7 +181,6 @@
     "rum"
   ],
   "a1-2-u10": [
-    "dad",
     "sogar",
     "krieg",
     "hierher",
@@ -127,7 +195,6 @@
     "entschuldigen",
     "dollar",
     "super",
-    "sex",
     "liebling",
     "herum"
   ],
@@ -158,7 +225,6 @@
     "schaffen",
     "damals",
     "wenigstens",
-    "ha",
     "gleiche"
   ],
   "a1-2-u15": [
@@ -185,7 +251,6 @@
     "toll",
     "tod",
     "bloss",
-    "tja",
     "genauso",
     "boden",
     "komisch",
@@ -221,26 +286,106 @@
     "dagegen",
     "wunderbar"
   ],
-  "a2-1-u01": ["bisher", "normal", "colonel", "uebrigens"],
-  "a2-1-u02": ["unbedingt", "lauf", "haut", "heim"],
-  "a2-1-u03": ["wofuer", "ehre", "wette", "namens"],
-  "a2-1-u04": ["seele", "geschenk", "madame", "blick"],
-  "a2-1-u05": ["schiessen", "bar", "frieden", "stecken"],
-  "a2-1-u06": ["unfall", "hunger", "guete"],
-  "a2-1-u07": ["dahin", "liste", "diesmal"],
-  "a2-1-u08": ["kontrolle", "geist", "schade"],
-  "a2-1-u09": ["lady", "suesse", "professor"],
-  "a2-1-u10": ["herzen", "schrecklich", "ewig"],
-  "a2-1-u11": ["schlagen", "boot", "weihnachten"],
-  "a2-1-u12": ["darin", "seltsam", "naja"],
-  "a2-1-u13": ["vorsicht", "pferd", "henry"],
-  "a2-1-u14": ["zumindest", "wunder", "show"],
-  "a2-1-u15": ["huebsch", "vermutlich", "kontakt"],
-  "a2-1-u16": ["verbindung", "major", "gold"],
-  "a2-1-u17": ["tief", "majestaet", "ran"],
-  "a2-1-u18": ["lage", "beschuetzen", "gegenueber"],
-  "a2-1-u19": ["sowieso", "verraten", "wunderschoen"],
-  "a2-1-u20": ["kraft", "befehl", "witzig"],
+  "a2-1-u01": [
+    "bisher",
+    "normal",
+    "uebrigens"
+  ],
+  "a2-1-u02": [
+    "unbedingt",
+    "lauf",
+    "haut",
+    "heim"
+  ],
+  "a2-1-u03": [
+    "wofuer",
+    "ehre",
+    "wette",
+    "namens"
+  ],
+  "a2-1-u04": [
+    "seele",
+    "geschenk",
+    "blick"
+  ],
+  "a2-1-u05": [
+    "schiessen",
+    "bar",
+    "frieden",
+    "stecken"
+  ],
+  "a2-1-u06": [
+    "unfall",
+    "hunger",
+    "guete"
+  ],
+  "a2-1-u07": [
+    "dahin",
+    "liste",
+    "diesmal"
+  ],
+  "a2-1-u08": [
+    "kontrolle",
+    "geist",
+    "schade"
+  ],
+  "a2-1-u09": [
+    "suesse",
+    "professor"
+  ],
+  "a2-1-u10": [
+    "herzen",
+    "schrecklich",
+    "ewig"
+  ],
+  "a2-1-u11": [
+    "schlagen",
+    "boot",
+    "weihnachten"
+  ],
+  "a2-1-u12": [
+    "darin",
+    "seltsam"
+  ],
+  "a2-1-u13": [
+    "vorsicht",
+    "pferd"
+  ],
+  "a2-1-u14": [
+    "zumindest",
+    "wunder",
+    "show"
+  ],
+  "a2-1-u15": [
+    "huebsch",
+    "vermutlich",
+    "kontakt"
+  ],
+  "a2-1-u16": [
+    "verbindung",
+    "major",
+    "gold"
+  ],
+  "a2-1-u17": [
+    "tief",
+    "majestaet",
+    "ran"
+  ],
+  "a2-1-u18": [
+    "lage",
+    "beschuetzen",
+    "gegenueber"
+  ],
+  "a2-1-u19": [
+    "sowieso",
+    "verraten",
+    "wunderschoen"
+  ],
+  "a2-1-u20": [
+    "kraft",
+    "befehl",
+    "witzig"
+  ],
   "a2-2-u01": [
     "miteinander",
     "herausfinden",
@@ -268,14 +413,12 @@
     "gleichen",
     "laecherlich",
     "gelegenheit",
-    "mut",
-    "lord"
+    "mut"
   ],
   "a2-2-u04": [
     "flugzeug",
     "soweit",
     "ehemann",
-    "schaetzchen",
     "schaetzen",
     "fang",
     "system",
@@ -303,7 +446,6 @@
   ],
   "a2-2-u07": [
     "entweder",
-    "bob",
     "mission",
     "lied",
     "worum",
@@ -420,7 +562,6 @@
     "vergnuegen",
     "drinnen",
     "worueber",
-    "aha",
     "bloed",
     "bombe",
     "gewalt"
@@ -439,7 +580,6 @@
     "fair",
     "buergermeister",
     "schutz",
-    "fuck",
     "dreck",
     "komplett",
     "innerhalb",
@@ -470,7 +610,6 @@
     "herkommen",
     "zelle",
     "gemein",
-    "penny",
     "wut",
     "auseinander",
     "dicht",
@@ -486,7 +625,6 @@
     "bewusst",
     "blind",
     "cousin",
-    "story",
     "dingen",
     "wild",
     "langen",
@@ -553,7 +691,6 @@
     "deckung",
     "vermissen",
     "station",
-    "cop",
     "geheim",
     "beeilung",
     "entspannen",
@@ -612,7 +749,6 @@
     "alkohol",
     "merkwuerdig",
     "jederzeit",
-    "hae",
     "extra",
     "beerdigung",
     "zunge",
@@ -688,7 +824,6 @@
   ],
   "b1-1-u13": [
     "schwert",
-    "my",
     "zweimal",
     "braut",
     "tatsache",
@@ -792,7 +927,6 @@
     "neulich",
     "nirgendwo",
     "million",
-    "leo",
     "immerhin",
     "moeglicherweise",
     "hoheit",
@@ -861,14 +995,12 @@
     "anzeige",
     "kaefig",
     "widerstand",
-    "nutte",
     "unhoeflich",
     "zweitens",
     "schwaeche",
     "sender"
   ],
   "b1-2-u02": [
-    "house",
     "reifen",
     "benehmen",
     "elf",
@@ -876,7 +1008,6 @@
     "stern",
     "hirn",
     "bedrohung",
-    "wayne",
     "klauen",
     "ex",
     "eile",
@@ -890,7 +1021,6 @@
   ],
   "b1-2-u03": [
     "schulter",
-    "mum",
     "verdacht",
     "clever",
     "opfern",
@@ -959,7 +1089,6 @@
     "daneben",
     "ewigkeit",
     "extrem",
-    "junior",
     "sand",
     "abmachung",
     "funk",
@@ -1163,7 +1292,6 @@
   ],
   "b1-2-u16": [
     "taeglich",
-    "jo",
     "bewahren",
     "schock",
     "planet",
@@ -1171,7 +1299,6 @@
     "testen",
     "schild",
     "kindheit",
-    "doctor",
     "schluck",
     "anschauen",
     "bekaempfen",
@@ -1205,7 +1332,6 @@
   ],
   "b1-2-u18": [
     "west",
-    "ciao",
     "angreifen",
     "besondere",
     "rosa",
@@ -1237,7 +1363,6 @@
     "hoehle",
     "technik",
     "einfallen",
-    "be",
     "aussen",
     "juenger",
     "dreimal",
