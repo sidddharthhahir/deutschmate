@@ -4746,5 +4746,1413 @@
   "a22-der-zutritt": {
     "de": "Zutritt nur für Personal.",
     "en": "Staff only."
+  },
+  "b11-die-eigenschaft": {
+    "de": "Welche Eigenschaft schätzt du am meisten?",
+    "en": "Which quality do you value most?"
+  },
+  "b11-derjenige": {
+    "de": "Derjenige, der anruft, bekommt den Termin.",
+    "en": "Whoever calls gets the appointment."
+  },
+  "b11-bezeichnen": {
+    "de": "Wie bezeichnet man das auf Deutsch?",
+    "en": "What is that called in German?"
+  },
+  "b11-bestimmen": {
+    "de": "Der Vertrag bestimmt die Bedingungen.",
+    "en": "The contract determines the conditions."
+  },
+  "b11-zaehlen-zu": {
+    "de": "Er zählt zu den besten Kollegen.",
+    "en": "He is among the best colleagues."
+  },
+  "b11-der-begriff": {
+    "de": "Der Begriff ist mir neu.",
+    "en": "The term is new to me."
+  },
+  "b11-die-bedeutung": {
+    "de": "Das hat eine besondere Bedeutung.",
+    "en": "That has a particular significance."
+  },
+  "b11-die-voraussetzung": {
+    "de": "Deutsch ist eine Voraussetzung für die Stelle.",
+    "en": "German is a prerequisite for the position."
+  },
+  "b11-die-faehigkeit": {
+    "de": "Sie hat die Fähigkeit, gut zuzuhören.",
+    "en": "She has the ability to listen well."
+  },
+  "b11-zuverlaessig-b": {
+    "de": "Er arbeitet sehr gewissenhaft.",
+    "en": "He works very conscientiously."
+  },
+  "b11-neugierig": {
+    "de": "Ich bin neugierig auf das Ergebnis.",
+    "en": "I am curious about the result."
+  },
+  "b11-geduldig": {
+    "de": "Meine Lehrerin ist sehr geduldig.",
+    "en": "My teacher is very patient."
+  },
+  "b11-ehrgeizig": {
+    "de": "Sie ist sehr ehrgeizig.",
+    "en": "She is very ambitious."
+  },
+  "b11-gelassen": {
+    "de": "Er bleibt immer gelassen.",
+    "en": "He always stays calm."
+  },
+  "b11-auffallend": {
+    "de": "Das ist ein auffallend gutes Ergebnis.",
+    "en": "That is a strikingly good result."
+  },
+  "b11-jeweils": {
+    "de": "Es gibt jeweils zwei Möglichkeiten.",
+    "en": "There are two options in each case."
+  },
+  "b11-sogenannt": {
+    "de": "Das ist der sogenannte Mietspiegel.",
+    "en": "That is the so-called rent index."
+  },
+  "b11-unterscheiden": {
+    "de": "Man muss die beiden unterscheiden.",
+    "en": "One has to distinguish between the two."
+  },
+  "b11-koennten-sie": {
+    "de": "Könnten Sie mir bitte helfen?",
+    "en": "Could you help me, please?"
+  },
+  "b11-waeren-sie": {
+    "de": "Wären Sie so freundlich, kurz zu warten?",
+    "en": "Would you be so kind as to wait a moment?"
+  },
+  "b11-duerfte-ich": {
+    "de": "Dürfte ich Sie kurz stören?",
+    "en": "Might I disturb you briefly?"
+  },
+  "b11-haetten-sie": {
+    "de": "Hätten Sie morgen kurz Zeit?",
+    "en": "Would you have a moment tomorrow?"
+  },
+  "b11-die-bitte": {
+    "de": "Ich habe eine Bitte an Sie.",
+    "en": "I have a request to make of you."
+  },
+  "b11-hoeflichkeit": {
+    "de": "Höflichkeit kostet nichts.",
+    "en": "Politeness costs nothing."
+  },
+  "b11-ungern": {
+    "de": "Ich sage das nur ungern.",
+    "en": "I say this only reluctantly."
+  },
+  "b11-leider-nicht": {
+    "de": "Das lässt sich leider nicht machen.",
+    "en": "That unfortunately cannot be done."
+  },
+  "b11-ich-fuerchte": {
+    "de": "Ich fürchte, das geht nicht.",
+    "en": "I am afraid that will not work."
+  },
+  "b11-gerne-aber": {
+    "de": "Gern, aber erst nächste Woche.",
+    "en": "Gladly, but not until next week."
+  },
+  "b11-sich-erkundigen": {
+    "de": "Ich möchte mich nach dem Termin erkundigen.",
+    "en": "I would like to enquire about the appointment."
+  },
+  "b11-bemuehen": {
+    "de": "Wir bemühen uns um eine Lösung.",
+    "en": "We are making an effort to find a solution."
+  },
+  "b11-behilflich": {
+    "de": "Kann ich Ihnen behilflich sein?",
+    "en": "Can I be of help to you?"
+  },
+  "b11-verzeihen": {
+    "de": "Verzeihen Sie die Störung.",
+    "en": "Pardon the interruption."
+  },
+  "b11-anliegen": {
+    "de": "Was ist Ihr Anliegen?",
+    "en": "What is your concern?"
+  },
+  "b11-gegebenenfalls": {
+    "de": "Gegebenenfalls melde ich mich noch einmal.",
+    "en": "Should the need arise I will get in touch again."
+  },
+  "b11-vorab": {
+    "de": "Vielen Dank vorab.",
+    "en": "Many thanks in advance."
+  },
+  "b11-nachfragen": {
+    "de": "Darf ich noch einmal nachfragen?",
+    "en": "May I follow up on that?"
+  },
+  "b11-die-bedingung": {
+    "de": "Unter einer Bedingung mache ich mit.",
+    "en": "I will join on one condition."
+  },
+  "b11-der-wunsch": {
+    "de": "Das wäre mein größter Wunsch.",
+    "en": "That would be my greatest wish."
+  },
+  "b11-die-moeglichkeit": {
+    "de": "Es gibt noch eine andere Möglichkeit.",
+    "en": "There is another option."
+  },
+  "b11-an-deiner-stelle": {
+    "de": "An deiner Stelle würde ich warten.",
+    "en": "If I were you I would wait."
+  },
+  "b11-wenn-ich-nur": {
+    "de": "Wenn ich nur mehr Zeit hätte!",
+    "en": "If only I had more time!"
+  },
+  "b11-beinahe": {
+    "de": "Ich hätte beinahe den Zug verpasst.",
+    "en": "I almost missed the train."
+  },
+  "b11-angenommen": {
+    "de": "Angenommen, es regnet — was machen wir dann?",
+    "en": "Supposing it rains — what do we do then?"
+  },
+  "b11-falls": {
+    "de": "Falls du kommst, ruf vorher an.",
+    "en": "If you come, call beforehand."
+  },
+  "b11-ansonsten": {
+    "de": "Ansonsten müssen wir absagen.",
+    "en": "Otherwise we will have to cancel."
+  },
+  "b11-vorstellbar": {
+    "de": "Das wäre durchaus vorstellbar.",
+    "en": "That would be quite conceivable."
+  },
+  "b11-unwahrscheinlich": {
+    "de": "Das ist eher unwahrscheinlich.",
+    "en": "That is rather unlikely."
+  },
+  "b11-bereuen": {
+    "de": "Ich bereue nichts.",
+    "en": "I regret nothing."
+  },
+  "b11-verzichten": {
+    "de": "Darauf könnte ich nicht verzichten.",
+    "en": "I could not do without that."
+  },
+  "b11-sich-leisten": {
+    "de": "Das könnte ich mir nicht leisten.",
+    "en": "I could not afford that."
+  },
+  "b11-riskieren": {
+    "de": "Das würde ich nicht riskieren.",
+    "en": "I would not risk that."
+  },
+  "b11-zoegern": {
+    "de": "Ich würde nicht lange zögern.",
+    "en": "I would not hesitate long."
+  },
+  "b11-der-fall": {
+    "de": "In diesem Fall würde ich absagen.",
+    "en": "In that case I would cancel."
+  },
+  "b11-notfalls-b": {
+    "de": "Im schlimmsten Fall zahlen wir mehr.",
+    "en": "In the worst case we pay more."
+  },
+  "b11-der-vorgang": {
+    "de": "Der Vorgang dauert etwa eine Woche.",
+    "en": "The process takes about a week."
+  },
+  "b11-der-ablauf": {
+    "de": "Erklären Sie mir bitte den Ablauf.",
+    "en": "Please explain the procedure to me."
+  },
+  "b11-der-schritt": {
+    "de": "Im ersten Schritt füllen Sie das Formular aus.",
+    "en": "In the first step you fill in the form."
+  },
+  "b11-durchgefuehrt": {
+    "de": "Die Prüfung wird jedes Jahr durchgeführt.",
+    "en": "The inspection is carried out every year."
+  },
+  "b11-hergestellt": {
+    "de": "Das Papier wird aus Holz hergestellt.",
+    "en": "The paper is made from wood."
+  },
+  "b11-geliefert": {
+    "de": "Die Ware wird morgen geliefert.",
+    "en": "The goods will be delivered tomorrow."
+  },
+  "b11-bearbeitet": {
+    "de": "Ihr Antrag wird gerade bearbeitet.",
+    "en": "Your application is currently being processed."
+  },
+  "b11-geprueft": {
+    "de": "Der Antrag wird sorgfältig geprüft.",
+    "en": "The application is checked carefully."
+  },
+  "b11-veroeffentlicht": {
+    "de": "Die Ergebnisse werden morgen veröffentlicht.",
+    "en": "The results will be published tomorrow."
+  },
+  "b11-verwendet": {
+    "de": "Dafür wird nur Bio-Milch verwendet.",
+    "en": "Only organic milk is used for that."
+  },
+  "b11-die-anweisung": {
+    "de": "Befolgen Sie die Anweisungen.",
+    "en": "Follow the instructions."
+  },
+  "b11-die-anleitung": {
+    "de": "Die Anleitung liegt bei.",
+    "en": "The manual is enclosed."
+  },
+  "b11-automatisch": {
+    "de": "Das geschieht automatisch.",
+    "en": "That happens automatically."
+  },
+  "b11-geschehen": {
+    "de": "Was geschieht mit meinen Daten?",
+    "en": "What happens to my data?"
+  },
+  "b11-erfolgen": {
+    "de": "Die Zahlung erfolgt am Monatsende.",
+    "en": "Payment is made at the end of the month."
+  },
+  "b11-zustaendigkeit": {
+    "de": "Das fällt nicht in meine Zuständigkeit.",
+    "en": "That does not fall within my remit."
+  },
+  "b11-der-hinweis-p": {
+    "de": "Der Aushang hängt im Treppenhaus.",
+    "en": "The notice is up in the stairwell."
+  },
+  "b11-in-betrieb": {
+    "de": "Der Aufzug ist außer Betrieb.",
+    "en": "The lift is out of service."
+  },
+  "b11-das-vorhaben": {
+    "de": "Das Vorhaben ist ehrgeizig.",
+    "en": "The undertaking is ambitious."
+  },
+  "b11-versuchen": {
+    "de": "Ich versuche, jeden Tag zu lernen.",
+    "en": "I try to study every day."
+  },
+  "b11-vorhaben-b": {
+    "de": "Wir beabsichtigen umzuziehen.",
+    "en": "We intend to move."
+  },
+  "b11-anfangen-zu": {
+    "de": "Ich beginne zu verstehen.",
+    "en": "I am beginning to understand."
+  },
+  "b11-aufhoeren-zu": {
+    "de": "Er hat aufgehört zu rauchen.",
+    "en": "He stopped smoking."
+  },
+  "b11-vergessen-zu": {
+    "de": "Ich habe vergessen anzurufen.",
+    "en": "I forgot to call."
+  },
+  "b11-sich-freuen-zu": {
+    "de": "Ich freue mich, Sie kennenzulernen.",
+    "en": "I am glad to meet you."
+  },
+  "b11-erlauben-zu": {
+    "de": "Die Regel erlaubt es, früher zu gehen.",
+    "en": "The rule allows one to leave earlier."
+  },
+  "b11-die-gelegenheit": {
+    "de": "Ich hatte die Gelegenheit, dort zu arbeiten.",
+    "en": "I had the opportunity to work there."
+  },
+  "b11-die-aufgabe-b": {
+    "de": "Das erfüllt seinen Zweck.",
+    "en": "That serves its purpose."
+  },
+  "b11-dazu-dienen": {
+    "de": "Das Formular dient dazu, alles zu prüfen.",
+    "en": "The form serves to check everything."
+  },
+  "b11-sinnvoll": {
+    "de": "Es ist sinnvoll, früh anzufangen.",
+    "en": "It is sensible to start early."
+  },
+  "b11-erforderlich": {
+    "de": "Es ist nicht erforderlich, vorher anzurufen.",
+    "en": "It is not required to call beforehand."
+  },
+  "b11-schwerfallen": {
+    "de": "Es fällt mir schwer, früh aufzustehen.",
+    "en": "I find it difficult to get up early."
+  },
+  "b11-leichtfallen": {
+    "de": "Grammatik fällt mir leicht.",
+    "en": "Grammar comes easily to me."
+  },
+  "b11-sich-lohnen": {
+    "de": "Es lohnt sich, früher zu buchen.",
+    "en": "It is worth booking earlier."
+  },
+  "b11-vorhaben-c": {
+    "de": "Wir planen, im Juni zu fahren.",
+    "en": "We plan to travel in June."
+  },
+  "b11-hoffen-zu": {
+    "de": "Ich hoffe, bald umzuziehen.",
+    "en": "I hope to move soon."
+  },
+  "b11-oberhalb": {
+    "de": "Oberhalb des Dorfes liegt ein See.",
+    "en": "Above the village there is a lake."
+  },
+  "b11-entlang": {
+    "de": "Gehen Sie den Fluss entlang.",
+    "en": "Walk along the river."
+  },
+  "b11-waehrend-p": {
+    "de": "Während der Fahrt habe ich gelesen.",
+    "en": "During the journey I read."
+  },
+  "b11-wegen": {
+    "de": "Wegen des Wetters bleiben wir hier.",
+    "en": "Because of the weather we are staying here."
+  },
+  "b11-trotz": {
+    "de": "Trotz des Regens sind wir gegangen.",
+    "en": "In spite of the rain we went."
+  },
+  "b11-innerhalb": {
+    "de": "Innerhalb einer Woche bekommen Sie Antwort.",
+    "en": "You will get an answer within a week."
+  },
+  "b11-ausserhalb": {
+    "de": "Außerhalb der Öffnungszeiten geht das nicht.",
+    "en": "That is not possible outside opening hours."
+  },
+  "b11-seit-p": {
+    "de": "Seit einem Jahr wohne ich hier.",
+    "en": "I have lived here for a year."
+  },
+  "b11-ab-p": {
+    "de": "Ab Montag bin ich wieder da.",
+    "en": "I am back from Monday."
+  },
+  "b11-bis-zu": {
+    "de": "Fahren Sie bis zur Kreuzung.",
+    "en": "Drive as far as the junction."
+  },
+  "b11-durch-p": {
+    "de": "Wir fahren durch die Stadt.",
+    "en": "We are driving through the city."
+  },
+  "b11-gegen-p": {
+    "de": "Ich komme gegen acht.",
+    "en": "I will come around eight."
+  },
+  "b11-die-strecke": {
+    "de": "Die Strecke ist sehr schön.",
+    "en": "The route is very beautiful."
+  },
+  "b11-die-kreuzung": {
+    "de": "An der Kreuzung links.",
+    "en": "Left at the junction."
+  },
+  "b11-die-umleitung": {
+    "de": "Es gibt eine Umleitung.",
+    "en": "There is a diversion."
+  },
+  "b11-unterwegs-b": {
+    "de": "Ich bin auf dem Weg zu dir.",
+    "en": "I am on the way to you."
+  },
+  "b11-vorbei": {
+    "de": "Gehen Sie an der Kirche vorbei.",
+    "en": "Go past the church."
+  },
+  "b11-quer": {
+    "de": "Wir sind quer durch Deutschland gefahren.",
+    "en": "We travelled right across Germany."
+  },
+  "b11-ob": {
+    "de": "Ich weiß nicht, ob er kommt.",
+    "en": "I do not know whether he is coming."
+  },
+  "b11-koennen-sie-mir-sagen": {
+    "de": "Können Sie mir sagen, wo der Bahnhof ist?",
+    "en": "Can you tell me where the station is?"
+  },
+  "b11-wissen-sie-zufaellig": {
+    "de": "Wissen Sie zufällig, wann er öffnet?",
+    "en": "Do you happen to know when it opens?"
+  },
+  "b11-ich-wuerde-gern-wissen": {
+    "de": "Ich wüsste gern, wie lange das dauert.",
+    "en": "I would like to know how long that takes."
+  },
+  "b11-die-auskunft": {
+    "de": "Können Sie mir eine Auskunft geben?",
+    "en": "Can you give me some information?"
+  },
+  "b11-die-frage": {
+    "de": "Bei Rückfragen melden Sie sich gern.",
+    "en": "Do get in touch if you have follow-up questions."
+  },
+  "b11-sich-erkundigen-b": {
+    "de": "Ich schaue kurz nach.",
+    "en": "I will just check."
+  },
+  "b11-herausfinden": {
+    "de": "Ich finde das für Sie heraus.",
+    "en": "I will find that out for you."
+  },
+  "b11-mitteilen": {
+    "de": "Wir teilen Ihnen das Ergebnis mit.",
+    "en": "We will inform you of the result."
+  },
+  "b11-bescheid-b": {
+    "de": "Dazu darf ich keine Auskunft erteilen.",
+    "en": "I am not allowed to provide information on that."
+  },
+  "b11-unklar": {
+    "de": "Mir ist unklar, was gemeint ist.",
+    "en": "It is unclear to me what is meant."
+  },
+  "b11-genau-b": {
+    "de": "Genauer gesagt geht es um die Frist.",
+    "en": "More precisely, it is about the deadline."
+  },
+  "b11-worum": {
+    "de": "Worum geht es denn genau?",
+    "en": "What exactly is it about?"
+  },
+  "b11-weiterhelfen": {
+    "de": "Da kann ich Ihnen leider nicht weiterhelfen.",
+    "en": "I am afraid I cannot help you further there."
+  },
+  "b11-zustaendig-b": {
+    "de": "Sind Sie hier die richtige Stelle?",
+    "en": "Are you the right office for this?"
+  },
+  "b11-verbinden-b": {
+    "de": "Ich verbinde Sie weiter.",
+    "en": "I will transfer you."
+  },
+  "b11-hoeflich-fragen": {
+    "de": "Entschuldigen Sie die Frage, aber wie lange dauert das?",
+    "en": "Sorry to ask, but how long does that take?"
+  },
+  "b11-notieren": {
+    "de": "Ich notiere mir Ihre Nummer.",
+    "en": "I will note down your number."
+  },
+  "b11-die-verantwortung": {
+    "de": "Ich trage die Verantwortung dafür.",
+    "en": "I carry the responsibility for that."
+  },
+  "b11-die-weiterbildung": {
+    "de": "Die Firma zahlt die Weiterbildung.",
+    "en": "The company pays for further training."
+  },
+  "b11-die-befoerderung": {
+    "de": "Er hat eine Beförderung bekommen.",
+    "en": "He got a promotion."
+  },
+  "b11-der-betriebsrat": {
+    "de": "Der Betriebsrat vertritt die Angestellten.",
+    "en": "The works council represents the employees."
+  },
+  "b11-die-ueberstunde": {
+    "de": "Ich habe viele Überstunden gemacht.",
+    "en": "I have worked a lot of overtime."
+  },
+  "b11-der-arbeitsvertrag": {
+    "de": "Der Arbeitsvertrag ist unbefristet.",
+    "en": "The employment contract is permanent."
+  },
+  "b11-unbefristet": {
+    "de": "Die Stelle ist unbefristet.",
+    "en": "The position is permanent."
+  },
+  "b11-befristet": {
+    "de": "Mein Vertrag ist auf ein Jahr befristet.",
+    "en": "My contract is fixed for one year."
+  },
+  "b11-die-kuendigungsfrist": {
+    "de": "Die Kündigungsfrist beträgt drei Monate.",
+    "en": "The notice period is three months."
+  },
+  "b11-sich-weiterentwickeln": {
+    "de": "Ich möchte mich beruflich weiterentwickeln.",
+    "en": "I would like to develop professionally."
+  },
+  "b11-leiten": {
+    "de": "Sie leitet die Abteilung.",
+    "en": "She heads the department."
+  },
+  "b11-die-fuehrung": {
+    "de": "Er ist in einer Führungsposition.",
+    "en": "He is in a management position."
+  },
+  "b11-die-vereinbarkeit": {
+    "de": "Die Vereinbarkeit von Beruf und Familie ist wichtig.",
+    "en": "The balance of work and family is important."
+  },
+  "b11-belastend": {
+    "de": "Die Arbeit ist manchmal belastend.",
+    "en": "The work is sometimes stressful."
+  },
+  "b11-selbststaendig-b": {
+    "de": "Ich arbeite eigenverantwortlich.",
+    "en": "I work in a self-directed way."
+  },
+  "b11-die-gehaltsverhandlung": {
+    "de": "Die Gehaltsverhandlung ist nächste Woche.",
+    "en": "The salary negotiation is next week."
+  },
+  "b11-verhandeln": {
+    "de": "Darüber müssen wir noch verhandeln.",
+    "en": "We still have to negotiate about that."
+  },
+  "b11-die-perspektive": {
+    "de": "Die Stelle hat gute Perspektiven.",
+    "en": "The position has good prospects."
+  },
+  "b11-das-argument": {
+    "de": "Das ist ein gutes Argument.",
+    "en": "That is a good point."
+  },
+  "b11-argumentieren": {
+    "de": "Sie hat sehr gut argumentiert.",
+    "en": "She argued her case very well."
+  },
+  "b11-einwenden": {
+    "de": "Dagegen möchte ich etwas einwenden.",
+    "en": "I would like to object to that."
+  },
+  "b11-zugeben-b": {
+    "de": "Das muss ich Ihnen zugestehen.",
+    "en": "I have to concede that to you."
+  },
+  "b11-einerseits-b": {
+    "de": "Zum einen ist es teuer, zum anderen dauert es lange.",
+    "en": "For one thing it is expensive, for another it takes long."
+  },
+  "b11-allerdings": {
+    "de": "Das stimmt allerdings nur teilweise.",
+    "en": "Admittedly that is only partly true."
+  },
+  "b11-dennoch": {
+    "de": "Dennoch bin ich anderer Meinung.",
+    "en": "Nevertheless I take a different view."
+  },
+  "b11-im-gegenteil": {
+    "de": "Im Gegenteil, ich finde es gut.",
+    "en": "On the contrary, I think it is good."
+  },
+  "b11-das-mag-sein": {
+    "de": "Das mag sein, aber es ist zu teuer.",
+    "en": "That may be, but it is too expensive."
+  },
+  "b11-ich-bin-der-ansicht": {
+    "de": "Ich bin der Ansicht, dass wir warten sollten.",
+    "en": "I take the view that we should wait."
+  },
+  "b11-der-standpunkt": {
+    "de": "Ich verstehe Ihren Standpunkt.",
+    "en": "I understand your point of view."
+  },
+  "b11-nachvollziehen": {
+    "de": "Das kann ich gut nachvollziehen.",
+    "en": "I can well understand that."
+  },
+  "b11-widerlegen": {
+    "de": "Diese Zahl widerlegt das Argument.",
+    "en": "This figure refutes the argument."
+  },
+  "b11-sachlich": {
+    "de": "Bleiben wir sachlich.",
+    "en": "Let us stay objective."
+  },
+  "b11-emotional": {
+    "de": "Die Diskussion war sehr emotional.",
+    "en": "The discussion was very emotional."
+  },
+  "b11-ueberzeugend": {
+    "de": "Das klingt überzeugend.",
+    "en": "That sounds convincing."
+  },
+  "b11-einlenken": {
+    "de": "Am Ende hat er eingelenkt.",
+    "en": "In the end he relented."
+  },
+  "b11-abwaegen": {
+    "de": "Man muss die Vor- und Nachteile abwägen.",
+    "en": "One has to weigh up the pros and cons."
+  },
+  "b11-das-geraet": {
+    "de": "Das Gerät startet nicht.",
+    "en": "The device will not start."
+  },
+  "b11-der-akku": {
+    "de": "Der Akku ist schnell leer.",
+    "en": "The battery runs down quickly."
+  },
+  "b11-die-einstellung": {
+    "de": "Ändern Sie das in den Einstellungen.",
+    "en": "Change that in the settings."
+  },
+  "b11-das-update": {
+    "de": "Es gibt eine neue Aktualisierung.",
+    "en": "There is a new update."
+  },
+  "b11-installieren": {
+    "de": "Ich muss das Programm installieren.",
+    "en": "I have to install the programme."
+  },
+  "b11-speichern": {
+    "de": "Hast du die Datei gespeichert?",
+    "en": "Did you save the file?"
+  },
+  "b11-loeschen": {
+    "de": "Ich habe die Mail gelöscht.",
+    "en": "I deleted the email."
+  },
+  "b11-die-datei": {
+    "de": "Die Datei ist zu groß.",
+    "en": "The file is too big."
+  },
+  "b11-die-verbindung": {
+    "de": "Die Verbindung ist schlecht.",
+    "en": "The connection is poor."
+  },
+  "b11-neu-starten": {
+    "de": "Starten Sie das Gerät neu.",
+    "en": "Restart the device."
+  },
+  "b11-abstuerzen": {
+    "de": "Das Programm ist abgestürzt.",
+    "en": "The programme has crashed."
+  },
+  "b11-funktionieren-b": {
+    "de": "Vorher hat alles einwandfrei funktioniert.",
+    "en": "Before, everything worked perfectly."
+  },
+  "b11-die-fehlermeldung": {
+    "de": "Es kommt eine Fehlermeldung.",
+    "en": "An error message appears."
+  },
+  "b11-der-datenschutz": {
+    "de": "Der Datenschutz ist hier streng.",
+    "en": "Data protection is strict here."
+  },
+  "b11-anschliessen": {
+    "de": "Schließen Sie das Kabel an.",
+    "en": "Connect the cable."
+  },
+  "b11-das-kabel": {
+    "de": "Das Kabel ist defekt.",
+    "en": "The cable is faulty."
+  },
+  "b11-defekt": {
+    "de": "Der Bildschirm ist defekt.",
+    "en": "The screen is faulty."
+  },
+  "b11-bedienen": {
+    "de": "Das Gerät ist leicht zu bedienen.",
+    "en": "The device is easy to operate."
+  },
+  "b11-die-ernaehrung": {
+    "de": "Eine gesunde Ernährung ist wichtig.",
+    "en": "A healthy diet is important."
+  },
+  "b11-sich-ernaehren": {
+    "de": "Ich ernähre mich ziemlich gesund.",
+    "en": "I eat fairly healthily."
+  },
+  "b11-die-bewegung": {
+    "de": "Mir fehlt Bewegung.",
+    "en": "I do not get enough exercise."
+  },
+  "b11-abnehmen": {
+    "de": "Ich habe drei Kilo abgenommen.",
+    "en": "I have lost three kilos."
+  },
+  "b11-zunehmen": {
+    "de": "Im Winter nehme ich zu.",
+    "en": "I put on weight in winter."
+  },
+  "b11-das-gewicht": {
+    "de": "Mein Gewicht ist stabil.",
+    "en": "My weight is stable."
+  },
+  "b11-vorbeugen": {
+    "de": "Damit kann man Krankheiten vorbeugen.",
+    "en": "That can prevent illnesses."
+  },
+  "b11-fettarm": {
+    "de": "Ich esse fettarm.",
+    "en": "I eat a low-fat diet."
+  },
+  "b11-zuckerfrei": {
+    "de": "Das Getränk ist zuckerfrei.",
+    "en": "The drink is sugar-free."
+  },
+  "b11-die-mahlzeit": {
+    "de": "Drei Mahlzeiten am Tag reichen.",
+    "en": "Three meals a day are enough."
+  },
+  "b11-die-allergie": {
+    "de": "Ich habe eine Allergie gegen Nüsse.",
+    "en": "I have a nut allergy."
+  },
+  "b11-vertragen": {
+    "de": "Ich vertrage keine Milch.",
+    "en": "I cannot tolerate milk."
+  },
+  "b11-der-schlaf": {
+    "de": "Ich brauche mehr Schlaf.",
+    "en": "I need more sleep."
+  },
+  "b11-der-stress": {
+    "de": "Ich habe im Moment viel Stress.",
+    "en": "I am under a lot of stress at the moment."
+  },
+  "b11-sich-erholen": {
+    "de": "Ich muss mich erholen.",
+    "en": "I need to recover."
+  },
+  "b11-empfehlenswert": {
+    "de": "Regelmäßiger Sport ist empfehlenswert.",
+    "en": "Regular exercise is advisable."
+  },
+  "b11-an-deiner-stelle-b": {
+    "de": "Ich würde dir raten, zum Arzt zu gehen.",
+    "en": "I would advise you to see a doctor."
+  },
+  "b11-schaden": {
+    "de": "Zu viel Zucker schadet den Zähnen.",
+    "en": "Too much sugar harms the teeth."
+  },
+  "b11-die-umwelt": {
+    "de": "Das ist gut für die Umwelt.",
+    "en": "That is good for the environment."
+  },
+  "b11-der-klimawandel": {
+    "de": "Der Klimawandel betrifft uns alle.",
+    "en": "Climate change affects us all."
+  },
+  "b11-der-muell": {
+    "de": "Wir trennen den Müll.",
+    "en": "We separate our rubbish."
+  },
+  "b11-trennen": {
+    "de": "Papier und Plastik werden getrennt.",
+    "en": "Paper and plastic are sorted separately."
+  },
+  "b11-recyceln": {
+    "de": "Glas kann man wiederverwerten.",
+    "en": "Glass can be recycled."
+  },
+  "b11-vermeiden-b": {
+    "de": "Wir wollen Energie einsparen.",
+    "en": "We want to save energy."
+  },
+  "b11-die-energie": {
+    "de": "Erneuerbare Energie wird wichtiger.",
+    "en": "Renewable energy is becoming more important."
+  },
+  "b11-erneuerbar": {
+    "de": "Wir nutzen erneuerbare Energie.",
+    "en": "We use renewable energy."
+  },
+  "b11-die-verschmutzung": {
+    "de": "Die Verschmutzung nimmt zu.",
+    "en": "Pollution is increasing."
+  },
+  "b11-verursachen": {
+    "de": "Der Verkehr verursacht viel Lärm.",
+    "en": "Traffic causes a lot of noise."
+  },
+  "b11-nachhaltig": {
+    "de": "Wir kaufen nachhaltig ein.",
+    "en": "We shop sustainably."
+  },
+  "b11-umweltfreundlich": {
+    "de": "Das Rad ist umweltfreundlich.",
+    "en": "The bicycle is environmentally friendly."
+  },
+  "b11-die-massnahme": {
+    "de": "Die Stadt hat Maßnahmen beschlossen.",
+    "en": "The city has decided on measures."
+  },
+  "b11-beschliessen": {
+    "de": "Der Rat hat es beschlossen.",
+    "en": "The council has resolved it."
+  },
+  "b11-schuetzen": {
+    "de": "Wir müssen die Natur schützen.",
+    "en": "We must protect nature."
+  },
+  "b11-der-beitrag": {
+    "de": "Jeder kann einen Beitrag leisten.",
+    "en": "Everyone can make a contribution."
+  },
+  "b11-verbrauchen": {
+    "de": "Das Auto verbraucht zu viel.",
+    "en": "The car uses too much."
+  },
+  "b11-der-verzicht": {
+    "de": "Ich kaufe bewusster ein.",
+    "en": "I shop more consciously."
+  },
+  "b11-die-beziehung": {
+    "de": "Wir haben eine gute Beziehung.",
+    "en": "We have a good relationship."
+  },
+  "b11-das-vertrauen": {
+    "de": "Vertrauen ist mir wichtig.",
+    "en": "Trust is important to me."
+  },
+  "b11-vertrauen-v": {
+    "de": "Ich vertraue ihr völlig.",
+    "en": "I trust her completely."
+  },
+  "b11-sich-streiten": {
+    "de": "Wir streiten uns selten.",
+    "en": "We rarely argue."
+  },
+  "b11-der-streit": {
+    "de": "Der Streit war schnell vorbei.",
+    "en": "The argument was over quickly."
+  },
+  "b11-sich-versoehnen": {
+    "de": "Wir haben uns wieder versöhnt.",
+    "en": "We made up again."
+  },
+  "b11-sich-verstehen": {
+    "de": "Wir verstehen uns sehr gut.",
+    "en": "We get on very well."
+  },
+  "b11-ruecksicht": {
+    "de": "Man muss Rücksicht nehmen.",
+    "en": "One has to be considerate."
+  },
+  "b11-ehrlich-b": {
+    "de": "Er ist immer aufrichtig.",
+    "en": "He is always sincere."
+  },
+  "b11-zuverlaessig-r": {
+    "de": "Sie ist eine treue Freundin.",
+    "en": "She is a loyal friend."
+  },
+  "b11-eifersuechtig": {
+    "de": "Er ist manchmal eifersüchtig.",
+    "en": "He is sometimes jealous."
+  },
+  "b11-die-freundschaft": {
+    "de": "Unsere Freundschaft hält lange.",
+    "en": "Our friendship has lasted a long time."
+  },
+  "b11-die-partnerschaft": {
+    "de": "In einer Partnerschaft muss man reden.",
+    "en": "In a partnership one has to talk."
+  },
+  "b11-sich-trennen": {
+    "de": "Sie haben sich getrennt.",
+    "en": "They have split up."
+  },
+  "b11-unterstuetzen": {
+    "de": "Meine Familie unterstützt mich.",
+    "en": "My family supports me."
+  },
+  "b11-schaetzen": {
+    "de": "Ich schätze deine Ehrlichkeit.",
+    "en": "I value your honesty."
+  },
+  "b11-nerven": {
+    "de": "Das geht mir auf die Nerven.",
+    "en": "That gets on my nerves."
+  },
+  "b11-sich-melden-b": {
+    "de": "Wir bleiben in Kontakt.",
+    "en": "We will stay in touch."
+  },
+  "b11-der-mietvertrag": {
+    "de": "Lesen Sie den Mietvertrag genau.",
+    "en": "Read the tenancy agreement carefully."
+  },
+  "b11-die-kaltmiete": {
+    "de": "Die Kaltmiete beträgt 700 Euro.",
+    "en": "The rent excluding bills is 700 euros."
+  },
+  "b11-die-warmmiete": {
+    "de": "Die Warmmiete ist deutlich höher.",
+    "en": "The rent including bills is considerably higher."
+  },
+  "b11-die-betriebskosten": {
+    "de": "Die Betriebskosten werden abgerechnet.",
+    "en": "The service charges are settled up."
+  },
+  "b11-die-abrechnung": {
+    "de": "Die Nebenkostenabrechnung kam gestern.",
+    "en": "The utilities statement came yesterday."
+  },
+  "b11-die-mieterhoehung": {
+    "de": "Ich habe eine Mieterhöhung bekommen.",
+    "en": "I have received a rent increase."
+  },
+  "b11-der-eigenbedarf": {
+    "de": "Er kündigt wegen Eigenbedarf.",
+    "en": "He is giving notice for his own use."
+  },
+  "b11-der-mieterverein": {
+    "de": "Der Mieterverein hat mir geholfen.",
+    "en": "The tenants' association helped me."
+  },
+  "b11-der-schimmel": {
+    "de": "Im Bad ist Schimmel.",
+    "en": "There is mould in the bathroom."
+  },
+  "b11-lueften": {
+    "de": "Man muss täglich lüften.",
+    "en": "One has to air the rooms daily."
+  },
+  "b11-die-mietminderung": {
+    "de": "Ich habe Anspruch auf eine Mietminderung.",
+    "en": "I am entitled to a rent reduction."
+  },
+  "b11-der-anspruch": {
+    "de": "Darauf haben Sie einen Anspruch.",
+    "en": "You are entitled to that."
+  },
+  "b11-melden-t": {
+    "de": "Ich habe den Mangel schriftlich angezeigt.",
+    "en": "I reported the defect in writing."
+  },
+  "b11-die-hausverwaltung": {
+    "de": "Die Hausverwaltung antwortet nicht.",
+    "en": "The property management is not responding."
+  },
+  "b11-instand-halten": {
+    "de": "Der Vermieter muss das Haus instand halten.",
+    "en": "The landlord has to maintain the building."
+  },
+  "b11-die-frist-t": {
+    "de": "Die Zahlungsfrist ist der Dritte.",
+    "en": "The payment deadline is the third."
+  },
+  "b11-fristlos": {
+    "de": "Eine fristlose Kündigung ist selten.",
+    "en": "Termination without notice is rare."
+  },
+  "b11-untervermieten": {
+    "de": "Darf ich das Zimmer untervermieten?",
+    "en": "May I sublet the room?"
+  },
+  "b11-die-unterkunft": {
+    "de": "Die Unterkunft war sauber.",
+    "en": "The accommodation was clean."
+  },
+  "b11-die-buchung": {
+    "de": "Die Buchung ist bestätigt.",
+    "en": "The booking is confirmed."
+  },
+  "b11-umbuchen": {
+    "de": "Kann ich den Flug umbuchen?",
+    "en": "Can I change the flight booking?"
+  },
+  "b11-stornieren": {
+    "de": "Ich musste die Reise stornieren.",
+    "en": "I had to cancel the trip."
+  },
+  "b11-die-stornierung": {
+    "de": "Die Stornogebühr beträgt 30 Euro.",
+    "en": "The cancellation fee is 30 euros."
+  },
+  "b11-der-anschluss": {
+    "de": "Ich habe den Anschluss verpasst.",
+    "en": "I missed my connection."
+  },
+  "b11-verpassen": {
+    "de": "Wir haben den Bus verpasst.",
+    "en": "We missed the bus."
+  },
+  "b11-die-route": {
+    "de": "Die Route führt durch die Berge.",
+    "en": "The route goes through the mountains."
+  },
+  "b11-die-versicherung-r": {
+    "de": "Hast du eine Reiseversicherung?",
+    "en": "Do you have travel insurance?"
+  },
+  "b11-die-halbpension": {
+    "de": "Wir haben Halbpension gebucht.",
+    "en": "We booked half board."
+  },
+  "b11-inbegriffen": {
+    "de": "Das Frühstück ist inbegriffen.",
+    "en": "Breakfast is included."
+  },
+  "b11-im-voraus": {
+    "de": "Man zahlt im Voraus.",
+    "en": "You pay in advance."
+  },
+  "b11-der-aufenthalt": {
+    "de": "Der Aufenthalt dauert fünf Nächte.",
+    "en": "The stay is for five nights."
+  },
+  "b11-die-sehenswuerdigkeit": {
+    "de": "Wir haben viele Sehenswürdigkeiten gesehen.",
+    "en": "We saw a lot of sights."
+  },
+  "b11-besichtigen": {
+    "de": "Wir besichtigen das Schloss.",
+    "en": "We are visiting the castle."
+  },
+  "b11-sich-erkundigen-r": {
+    "de": "Ich informiere mich über die Preise.",
+    "en": "I am finding out about the prices."
+  },
+  "b11-ausgebucht": {
+    "de": "Das Hotel ist ausgebucht.",
+    "en": "The hotel is fully booked."
+  },
+  "b11-kurzfristig-r": {
+    "de": "Wir haben ganz spontan gebucht.",
+    "en": "We booked completely on the spur of the moment."
+  },
+  "b11-die-erfahrung-b": {
+    "de": "Das war ein tolles Erlebnis.",
+    "en": "That was a great experience."
+  },
+  "b11-erleben": {
+    "de": "Ich habe viel erlebt.",
+    "en": "I have experienced a lot."
+  },
+  "b11-nachdem-b": {
+    "de": "Zuvor hatte ich nie in Europa gelebt.",
+    "en": "Previously I had never lived in Europe."
+  },
+  "b11-inzwischen-b": {
+    "de": "Mittlerweile spreche ich gut Deutsch.",
+    "en": "By now I speak German well."
+  },
+  "b11-lernen-aus": {
+    "de": "Daraus habe ich viel gelernt.",
+    "en": "I learnt a lot from that."
+  },
+  "b11-die-herausforderung": {
+    "de": "Das war eine große Herausforderung.",
+    "en": "That was a big challenge."
+  },
+  "b11-bewaeltigen": {
+    "de": "Ich habe das gut bewältigt.",
+    "en": "I coped with that well."
+  },
+  "b11-sich-durchsetzen": {
+    "de": "Am Anfang musste ich mich durchsetzen.",
+    "en": "At the beginning I had to assert myself."
+  },
+  "b11-aufgeben": {
+    "de": "Ich wollte fast aufgeben.",
+    "en": "I almost wanted to give up."
+  },
+  "b11-durchhalten": {
+    "de": "Ich habe durchgehalten.",
+    "en": "I stuck it out."
+  },
+  "b11-der-rueckblick": {
+    "de": "Im Rückblick war es richtig.",
+    "en": "In retrospect it was right."
+  },
+  "b11-im-nachhinein": {
+    "de": "Im Nachhinein hätte ich früher fragen sollen.",
+    "en": "With hindsight I should have asked earlier."
+  },
+  "b11-sich-lohnen-b": {
+    "de": "Die Mühe hat sich ausgezahlt.",
+    "en": "The effort paid off."
+  },
+  "b11-die-muehe": {
+    "de": "Es hat viel Mühe gekostet.",
+    "en": "It took a lot of effort."
+  },
+  "b11-schwierig": {
+    "de": "Der Kurs war anspruchsvoll.",
+    "en": "The course was demanding."
+  },
+  "b11-erstaunlich": {
+    "de": "Erstaunlich, wie schnell das ging.",
+    "en": "Astonishing how quickly that went."
+  },
+  "b11-zunaechst": {
+    "de": "Zunächst war alles fremd.",
+    "en": "At first everything was unfamiliar."
+  },
+  "b11-allmaehlich": {
+    "de": "Allmählich wurde es leichter.",
+    "en": "Gradually it got easier."
+  },
+  "b11-die-bildung": {
+    "de": "Bildung ist hier kostenlos.",
+    "en": "Education is free here."
+  },
+  "b11-die-hochschule": {
+    "de": "Ich habe an einer Hochschule studiert.",
+    "en": "I studied at a university."
+  },
+  "b11-der-studiengang": {
+    "de": "Mein Studiengang war Informatik.",
+    "en": "My degree programme was computer science."
+  },
+  "b11-die-pruefung-b": {
+    "de": "Die Zwischenprüfung war schwer.",
+    "en": "The intermediate exam was hard."
+  },
+  "b11-bestehen": {
+    "de": "Ich habe die Prüfung bestanden.",
+    "en": "I passed the exam."
+  },
+  "b11-durchfallen": {
+    "de": "Er ist durchgefallen.",
+    "en": "He failed."
+  },
+  "b11-die-note": {
+    "de": "Meine Noten waren gut.",
+    "en": "My marks were good."
+  },
+  "b11-das-fach": {
+    "de": "Mein Lieblingsfach war Mathe.",
+    "en": "My favourite subject was maths."
+  },
+  "b11-die-fachhochschule": {
+    "de": "Er geht zweimal pro Woche zur Berufsschule.",
+    "en": "He goes to vocational school twice a week."
+  },
+  "b11-der-abschluss-b": {
+    "de": "Die Zeugnisanerkennung dauert Monate.",
+    "en": "Recognition of qualifications takes months."
+  },
+  "b11-anerkennen": {
+    "de": "Mein Abschluss wurde anerkannt.",
+    "en": "My degree was recognised."
+  },
+  "b11-die-lernstrategie": {
+    "de": "Jeder braucht eine eigene Lernstrategie.",
+    "en": "Everyone needs their own learning strategy."
+  },
+  "b11-auswendig": {
+    "de": "Vokabeln lerne ich nicht auswendig.",
+    "en": "I do not learn vocabulary by heart."
+  },
+  "b11-sich-merken": {
+    "de": "Das kann ich mir gut merken.",
+    "en": "I can remember that well."
+  },
+  "b11-wiederholen-b": {
+    "de": "Ich vertiefe die Grammatik.",
+    "en": "I am consolidating the grammar."
+  },
+  "b11-der-fortschritt": {
+    "de": "Ich mache gute Fortschritte.",
+    "en": "I am making good progress."
+  },
+  "b11-verpflichtend": {
+    "de": "Der Kurs ist verpflichtend.",
+    "en": "The course is compulsory."
+  },
+  "b11-das-stipendium": {
+    "de": "Sie hat ein Stipendium bekommen.",
+    "en": "She got a scholarship."
+  },
+  "b11-die-lebenshaltungskosten": {
+    "de": "Die Lebenshaltungskosten sind gestiegen.",
+    "en": "The cost of living has risen."
+  },
+  "b11-die-inflation": {
+    "de": "Die Inflation macht alles teurer.",
+    "en": "Inflation makes everything more expensive."
+  },
+  "b11-steigen": {
+    "de": "Die Preise steigen weiter.",
+    "en": "Prices continue to rise."
+  },
+  "b11-sinken": {
+    "de": "Die Kosten sind leicht gesunken.",
+    "en": "Costs have fallen slightly."
+  },
+  "b11-die-steuererklaerung": {
+    "de": "Die Steuererklärung ist bis Juli fällig.",
+    "en": "The tax return is due by July."
+  },
+  "b11-die-steuer": {
+    "de": "Die Steuern sind hier hoch.",
+    "en": "Taxes are high here."
+  },
+  "b11-brutto": {
+    "de": "Das Gehalt ist brutto angegeben.",
+    "en": "The salary is quoted gross."
+  },
+  "b11-netto": {
+    "de": "Netto bleibt weniger übrig.",
+    "en": "Net, there is less left over."
+  },
+  "b11-die-rate": {
+    "de": "Ich zahle in Raten.",
+    "en": "I am paying in instalments."
+  },
+  "b11-die-laufzeit": {
+    "de": "Die Laufzeit beträgt 24 Monate.",
+    "en": "The term is 24 months."
+  },
+  "b11-kuendigen-w": {
+    "de": "Ich habe fristgerecht gekündigt.",
+    "en": "I cancelled within the notice period."
+  },
+  "b11-sich-verlaengern": {
+    "de": "Der Vertrag verlängert sich automatisch.",
+    "en": "The contract renews automatically."
+  },
+  "b11-vergleichen-w": {
+    "de": "Es lohnt sich, Preise zu vergleichen.",
+    "en": "It is worth comparing prices."
+  },
+  "b11-sparen-w": {
+    "de": "Ich lege jeden Monat etwas zurück.",
+    "en": "I put something aside every month."
+  },
+  "b11-die-rente": {
+    "de": "In die Rente zahlt man automatisch ein.",
+    "en": "One pays into the pension automatically."
+  },
+  "b11-die-ausgabe": {
+    "de": "Meine Ausgaben sind zu hoch.",
+    "en": "My outgoings are too high."
+  },
+  "b11-die-einnahme": {
+    "de": "Die Einnahmen decken die Kosten.",
+    "en": "The income covers the costs."
+  },
+  "b11-sich-lohnen-w": {
+    "de": "Das rechnet sich nach zwei Jahren.",
+    "en": "That pays for itself after two years."
+  },
+  "b11-die-hoffnung": {
+    "de": "Ich habe die Hoffnung nicht aufgegeben.",
+    "en": "I have not given up hope."
+  },
+  "b11-der-zweifel": {
+    "de": "Ich habe da Zweifel.",
+    "en": "I have doubts about that."
+  },
+  "b11-langfristig": {
+    "de": "Langfristig möchte ich hierbleiben.",
+    "en": "In the long term I would like to stay here."
+  },
+  "b11-kurzfristig-z": {
+    "de": "Kurzfristig ändert sich nichts.",
+    "en": "In the short term nothing changes."
+  },
+  "b11-vorhaben-z": {
+    "de": "Ich habe mir viel vorgenommen.",
+    "en": "I have set out to do a lot."
+  },
+  "b11-anstreben": {
+    "de": "Ich strebe die B2-Prüfung an.",
+    "en": "I am aiming for the B2 exam."
+  },
+  "b11-damit-rechnen": {
+    "de": "Ich rechne nicht damit.",
+    "en": "I am not counting on it."
+  },
+  "b11-sich-vorstellen-z": {
+    "de": "Ich kann mir gut vorstellen, hier zu bleiben.",
+    "en": "I can well imagine staying here."
+  },
+  "b11-verwirklichen": {
+    "de": "Ich möchte den Plan verwirklichen.",
+    "en": "I would like to make the plan happen."
+  },
+  "b11-die-chance": {
+    "de": "Die Chancen stehen gut.",
+    "en": "The chances are good."
+  },
+  "b11-das-risiko": {
+    "de": "Das Risiko ist überschaubar.",
+    "en": "The risk is manageable."
+  },
+  "b11-abhaengen-von": {
+    "de": "Das hängt vom Gehalt ab.",
+    "en": "That depends on the salary."
+  },
+  "b11-vorausgesetzt": {
+    "de": "Vorausgesetzt, dass alles klappt, ziehe ich um.",
+    "en": "Provided everything works out, I will move."
+  },
+  "b11-je-nachdem": {
+    "de": "Je nachdem, wie es läuft.",
+    "en": "Depending on how it goes."
+  },
+  "b11-optimistisch": {
+    "de": "Ich bin optimistisch.",
+    "en": "I am optimistic."
+  },
+  "b11-skeptisch": {
+    "de": "Da bin ich eher skeptisch.",
+    "en": "I am rather sceptical about that."
+  },
+  "b11-offen-lassen": {
+    "de": "Das lasse ich noch offen.",
+    "en": "I am leaving that open for now."
+  },
+  "b11-sich-entscheiden-z": {
+    "de": "Ich möchte mich noch nicht festlegen.",
+    "en": "I do not want to commit yet."
+  },
+  "b11-worauf-es-ankommt": {
+    "de": "Worauf es ankommt, ist Übung.",
+    "en": "What matters is practice."
+  },
+  "b11-was-ich-sagen-will": {
+    "de": "Was ich sagen will, ist: es lohnt sich.",
+    "en": "What I mean is: it is worth it."
+  },
+  "b11-einfach-gesagt": {
+    "de": "Einfach gesagt: es funktioniert.",
+    "en": "Put simply: it works."
+  },
+  "b11-beispielsweise": {
+    "de": "Beispielsweise beim Amt.",
+    "en": "At the authorities, for instance."
+  },
+  "b11-und-zwar": {
+    "de": "Ich brauche das heute, und zwar bis zwölf.",
+    "en": "I need it today, specifically by twelve."
+  },
+  "b11-das-liegt-daran": {
+    "de": "Das liegt daran, dass ich neu bin.",
+    "en": "That is because I am new."
+  },
+  "b11-wie-dem-auch-sei": {
+    "de": "Wie auch immer, wir versuchen es.",
+    "en": "Anyway, we will give it a go."
+  },
+  "b11-moment-mal": {
+    "de": "Moment, wie sagt man das noch?",
+    "en": "Hang on, how do you say that again?"
+  },
+  "b11-ich-meine": {
+    "de": "Am Montag, beziehungsweise am Dienstag.",
+    "en": "On Monday, or rather on Tuesday."
+  },
+  "b11-korrigieren": {
+    "de": "Ich korrigiere mich: es war Freitag.",
+    "en": "Let me correct myself: it was Friday."
   }
 }

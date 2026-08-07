@@ -1,0 +1,868 @@
+[
+  {
+    "id": "b1-1-u01",
+    "level": "B1.1",
+    "ord": 1,
+    "title": "Der Mann, der…",
+    "can_do": [
+      "use relative clauses",
+      "define a person or thing",
+      "add detail without a new sentence"
+    ],
+    "words": [
+      "b11-die-eigenschaft",
+      "b11-derjenige",
+      "b11-bezeichnen",
+      "b11-bestimmen",
+      "b11-zaehlen-zu",
+      "b11-der-begriff",
+      "b11-die-bedeutung",
+      "b11-die-voraussetzung",
+      "b11-die-faehigkeit",
+      "b11-zuverlaessig-b",
+      "b11-neugierig",
+      "b11-geduldig",
+      "b11-ehrgeizig",
+      "b11-gelassen",
+      "b11-auffallend",
+      "b11-jeweils",
+      "b11-sogenannt",
+      "b11-unterscheiden"
+    ],
+    "grammar_id": "g-relativsatz",
+    "scenario": {
+      "role": "a friend who can't remember someone",
+      "goal": "identify a person by describing them",
+      "opener": "Wie hieß nochmal der Typ von der Party?"
+    },
+    "dialogue": [
+      {
+        "them": "Wie hieß nochmal der Typ von der Party?",
+        "options": [
+          {
+            "say": "Der Mann, der neben dir saß?",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Der Mann, der saß neben dir?",
+            "ok": false,
+            "why": "In a relative clause the verb goes to the end.",
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Genau der! Wie hieß er?",
+        "options": [
+          {
+            "say": "Ich glaube, Tobias.",
+            "ok": true,
+            "next": -1
+          }
+        ]
+      }
+    ],
+    "prereq": [
+      "a2-2-u20"
+    ]
+  },
+  {
+    "id": "b1-1-u02",
+    "level": "B1.1",
+    "ord": 2,
+    "title": "Höflich bitten",
+    "can_do": [
+      "use Konjunktiv II to be polite",
+      "make a request that doesn't sound blunt",
+      "soften a refusal"
+    ],
+    "words": [
+      "b11-koennten-sie",
+      "b11-waeren-sie",
+      "b11-duerfte-ich",
+      "b11-haetten-sie",
+      "b11-die-bitte",
+      "b11-hoeflichkeit",
+      "b11-ungern",
+      "b11-leider-nicht",
+      "b11-ich-fuerchte",
+      "b11-gerne-aber",
+      "b11-sich-erkundigen",
+      "b11-bemuehen",
+      "b11-behilflich",
+      "b11-verzeihen",
+      "b11-anliegen",
+      "b11-gegebenenfalls",
+      "b11-vorab",
+      "b11-nachfragen"
+    ],
+    "grammar_id": "g-konjunktiv2",
+    "scenario": {
+      "role": "a stranger you need a favour from",
+      "goal": "ask politely and thank them",
+      "opener": "Ja bitte?"
+    },
+    "dialogue": [
+      {
+        "them": "Ja bitte?",
+        "options": [
+          {
+            "say": "Könnten Sie mir kurz helfen?",
+            "ok": true,
+            "next": 1
+          },
+          {
+            "say": "Können Sie mir helfen!",
+            "ok": false,
+            "why": "Könnten is noticeably softer than können here.",
+            "next": 1
+          }
+        ]
+      },
+      {
+        "them": "Natürlich, gern.",
+        "options": [
+          {
+            "say": "Das wäre sehr nett, danke.",
+            "ok": true,
+            "next": -1
+          }
+        ]
+      }
+    ],
+    "prereq": [
+      "b1-1-u01"
+    ]
+  },
+  {
+    "id": "b1-1-u03",
+    "level": "B1.1",
+    "ord": 3,
+    "title": "Wenn ich könnte…",
+    "can_do": [
+      "form conditional sentences",
+      "talk about hypotheticals",
+      "express a wish"
+    ],
+    "words": [
+      "b11-die-bedingung",
+      "b11-der-wunsch",
+      "b11-die-moeglichkeit",
+      "b11-an-deiner-stelle",
+      "b11-wenn-ich-nur",
+      "b11-beinahe",
+      "b11-angenommen",
+      "b11-falls",
+      "b11-ansonsten",
+      "b11-vorstellbar",
+      "b11-unwahrscheinlich",
+      "b11-bereuen",
+      "b11-verzichten",
+      "b11-sich-leisten",
+      "b11-riskieren",
+      "b11-zoegern",
+      "b11-der-fall",
+      "b11-notfalls-b"
+    ],
+    "grammar_id": "g-irreal",
+    "scenario": {
+      "role": "a friend playing 'what if'",
+      "goal": "say what you'd do with more time or money",
+      "opener": "Was würdest du machen, wenn du ein Jahr frei hättest?"
+    },
+    "dialogue": null,
+    "prereq": [
+      "b1-1-u02"
+    ]
+  },
+  {
+    "id": "b1-1-u04",
+    "level": "B1.1",
+    "ord": 4,
+    "title": "Es wird gemacht",
+    "can_do": [
+      "understand the passive",
+      "describe a process",
+      "read instructions and notices"
+    ],
+    "words": [
+      "b11-der-vorgang",
+      "b11-der-ablauf",
+      "b11-der-schritt",
+      "b11-durchgefuehrt",
+      "b11-hergestellt",
+      "b11-geliefert",
+      "b11-bearbeitet",
+      "b11-geprueft",
+      "b11-veroeffentlicht",
+      "b11-verwendet",
+      "b11-die-anweisung",
+      "b11-die-anleitung",
+      "b11-automatisch",
+      "b11-geschehen",
+      "b11-erfolgen",
+      "b11-zustaendigkeit",
+      "b11-der-hinweis-p",
+      "b11-in-betrieb"
+    ],
+    "grammar_id": "g-passiv",
+    "scenario": {
+      "role": "a colleague explaining a workflow",
+      "goal": "understand and repeat back how something is done",
+      "opener": "Ich erkläre dir kurz, wie das hier läuft."
+    },
+    "dialogue": null,
+    "prereq": [
+      "b1-1-u03"
+    ]
+  },
+  {
+    "id": "b1-1-u05",
+    "level": "B1.1",
+    "ord": 5,
+    "title": "Um … zu",
+    "can_do": [
+      "say why you're doing something",
+      "use zu + infinitive",
+      "express purpose"
+    ],
+    "words": [
+      "b11-das-vorhaben",
+      "b11-versuchen",
+      "b11-vorhaben-b",
+      "b11-anfangen-zu",
+      "b11-aufhoeren-zu",
+      "b11-vergessen-zu",
+      "b11-sich-freuen-zu",
+      "b11-erlauben-zu",
+      "b11-die-gelegenheit",
+      "b11-die-aufgabe-b",
+      "b11-dazu-dienen",
+      "b11-sinnvoll",
+      "b11-erforderlich",
+      "b11-schwerfallen",
+      "b11-leichtfallen",
+      "b11-sich-lohnen",
+      "b11-vorhaben-c",
+      "b11-hoffen-zu"
+    ],
+    "grammar_id": "g-infinitiv-zu",
+    "scenario": {
+      "role": "a course adviser",
+      "goal": "explain what you want to achieve and why",
+      "opener": "Und warum möchten Sie diesen Kurs machen?"
+    },
+    "dialogue": null,
+    "prereq": [
+      "b1-1-u04"
+    ]
+  },
+  {
+    "id": "b1-1-u06",
+    "level": "B1.1",
+    "ord": 6,
+    "title": "Präpositionen sicher",
+    "can_do": [
+      "choose the right case after a preposition",
+      "use contractions naturally",
+      "describe a journey precisely"
+    ],
+    "words": [
+      "b11-oberhalb",
+      "b11-entlang",
+      "b11-waehrend-p",
+      "b11-wegen",
+      "b11-trotz",
+      "b11-innerhalb",
+      "b11-ausserhalb",
+      "b11-seit-p",
+      "b11-ab-p",
+      "b11-bis-zu",
+      "b11-durch-p",
+      "b11-gegen-p",
+      "b11-die-strecke",
+      "b11-die-kreuzung",
+      "b11-die-umleitung",
+      "b11-unterwegs-b",
+      "b11-vorbei",
+      "b11-quer"
+    ],
+    "grammar_id": "g-praeposition-kasus",
+    "scenario": {
+      "role": "someone asking for detailed directions",
+      "goal": "describe a route with several steps",
+      "opener": "Wie komme ich am besten zum Museum?"
+    },
+    "dialogue": null,
+    "prereq": [
+      "b1-1-u05"
+    ]
+  },
+  {
+    "id": "b1-1-u07",
+    "level": "B1.1",
+    "ord": 7,
+    "title": "Indirekt fragen",
+    "can_do": [
+      "ask indirect questions",
+      "be polite with strangers",
+      "use ob correctly"
+    ],
+    "words": [
+      "b11-ob",
+      "b11-koennen-sie-mir-sagen",
+      "b11-wissen-sie-zufaellig",
+      "b11-ich-wuerde-gern-wissen",
+      "b11-die-auskunft",
+      "b11-die-frage",
+      "b11-sich-erkundigen-b",
+      "b11-herausfinden",
+      "b11-mitteilen",
+      "b11-bescheid-b",
+      "b11-unklar",
+      "b11-genau-b",
+      "b11-worum",
+      "b11-weiterhelfen",
+      "b11-zustaendig-b",
+      "b11-verbinden-b",
+      "b11-hoeflich-fragen",
+      "b11-notieren"
+    ],
+    "grammar_id": "g-indirekte-frage",
+    "scenario": {
+      "role": "an information desk clerk",
+      "goal": "ask three things politely",
+      "opener": "Guten Tag, wie kann ich helfen?"
+    },
+    "dialogue": null,
+    "prereq": [
+      "b1-1-u06"
+    ]
+  },
+  {
+    "id": "b1-1-u08",
+    "level": "B1.1",
+    "ord": 8,
+    "title": "Arbeit und Karriere",
+    "can_do": [
+      "describe your responsibilities",
+      "talk about strengths and weaknesses",
+      "discuss career plans"
+    ],
+    "words": [
+      "b11-die-verantwortung",
+      "b11-die-weiterbildung",
+      "b11-die-befoerderung",
+      "b11-der-betriebsrat",
+      "b11-die-ueberstunde",
+      "b11-der-arbeitsvertrag",
+      "b11-unbefristet",
+      "b11-befristet",
+      "b11-die-kuendigungsfrist",
+      "b11-sich-weiterentwickeln",
+      "b11-leiten",
+      "b11-die-fuehrung",
+      "b11-die-vereinbarkeit",
+      "b11-belastend",
+      "b11-selbststaendig-b",
+      "b11-die-gehaltsverhandlung",
+      "b11-verhandeln",
+      "b11-die-perspektive"
+    ],
+    "grammar_id": null,
+    "scenario": {
+      "role": "an interviewer for a job you want",
+      "goal": "describe your experience convincingly",
+      "opener": "Was sind Ihre Stärken?"
+    },
+    "dialogue": null,
+    "prereq": [
+      "b1-1-u07"
+    ]
+  },
+  {
+    "id": "b1-1-u09",
+    "level": "B1.1",
+    "ord": 9,
+    "title": "Diskutieren",
+    "can_do": [
+      "state and defend an opinion",
+      "concede a point",
+      "disagree without being rude"
+    ],
+    "words": [
+      "b11-das-argument",
+      "b11-argumentieren",
+      "b11-einwenden",
+      "b11-zugeben-b",
+      "b11-einerseits-b",
+      "b11-allerdings",
+      "b11-dennoch",
+      "b11-im-gegenteil",
+      "b11-das-mag-sein",
+      "b11-ich-bin-der-ansicht",
+      "b11-der-standpunkt",
+      "b11-nachvollziehen",
+      "b11-widerlegen",
+      "b11-sachlich",
+      "b11-emotional",
+      "b11-ueberzeugend",
+      "b11-einlenken",
+      "b11-abwaegen"
+    ],
+    "grammar_id": null,
+    "scenario": {
+      "role": "a friend who disagrees with you",
+      "goal": "argue your side and find common ground",
+      "opener": "Ich sehe das ganz anders, ehrlich gesagt."
+    },
+    "dialogue": null,
+    "prereq": [
+      "b1-1-u08"
+    ]
+  },
+  {
+    "id": "b1-1-u10",
+    "level": "B1.1",
+    "ord": 10,
+    "title": "Medien und Technik",
+    "can_do": [
+      "talk about technology you use",
+      "describe a problem with a device",
+      "explain how something works"
+    ],
+    "words": [
+      "b11-das-geraet",
+      "b11-der-akku",
+      "b11-die-einstellung",
+      "b11-das-update",
+      "b11-installieren",
+      "b11-speichern",
+      "b11-loeschen",
+      "b11-die-datei",
+      "b11-die-verbindung",
+      "b11-neu-starten",
+      "b11-abstuerzen",
+      "b11-funktionieren-b",
+      "b11-die-fehlermeldung",
+      "b11-der-datenschutz",
+      "b11-anschliessen",
+      "b11-das-kabel",
+      "b11-defekt",
+      "b11-bedienen"
+    ],
+    "grammar_id": "g-passiv",
+    "scenario": {
+      "role": "tech support on the phone",
+      "goal": "describe a problem and follow instructions",
+      "opener": "Beschreiben Sie mir bitte das Problem."
+    },
+    "dialogue": null,
+    "prereq": [
+      "b1-1-u09"
+    ]
+  },
+  {
+    "id": "b1-1-u11",
+    "level": "B1.1",
+    "ord": 11,
+    "title": "Gesundheit und Ernährung",
+    "can_do": [
+      "talk about a healthy lifestyle",
+      "describe symptoms in detail",
+      "give and take advice"
+    ],
+    "words": [
+      "b11-die-ernaehrung",
+      "b11-sich-ernaehren",
+      "b11-die-bewegung",
+      "b11-abnehmen",
+      "b11-zunehmen",
+      "b11-das-gewicht",
+      "b11-vorbeugen",
+      "b11-fettarm",
+      "b11-zuckerfrei",
+      "b11-die-mahlzeit",
+      "b11-die-allergie",
+      "b11-vertragen",
+      "b11-der-schlaf",
+      "b11-der-stress",
+      "b11-sich-erholen",
+      "b11-empfehlenswert",
+      "b11-an-deiner-stelle-b",
+      "b11-schaden"
+    ],
+    "grammar_id": null,
+    "scenario": {
+      "role": "a doctor discussing lifestyle",
+      "goal": "describe your habits and understand the advice",
+      "opener": "Erzählen Sie mir mal von Ihrem Alltag."
+    },
+    "dialogue": null,
+    "prereq": [
+      "b1-1-u10"
+    ]
+  },
+  {
+    "id": "b1-1-u12",
+    "level": "B1.1",
+    "ord": 12,
+    "title": "Umwelt",
+    "can_do": [
+      "talk about environmental issues",
+      "describe what you do personally",
+      "state a problem and a solution"
+    ],
+    "words": [
+      "b11-die-umwelt",
+      "b11-der-klimawandel",
+      "b11-der-muell",
+      "b11-trennen",
+      "b11-recyceln",
+      "b11-vermeiden-b",
+      "b11-die-energie",
+      "b11-erneuerbar",
+      "b11-die-verschmutzung",
+      "b11-verursachen",
+      "b11-nachhaltig",
+      "b11-umweltfreundlich",
+      "b11-die-massnahme",
+      "b11-beschliessen",
+      "b11-schuetzen",
+      "b11-der-beitrag",
+      "b11-verbrauchen",
+      "b11-der-verzicht"
+    ],
+    "grammar_id": null,
+    "scenario": {
+      "role": "someone doing a street survey",
+      "goal": "answer questions about your habits",
+      "opener": "Hätten Sie zwei Minuten für eine Umfrage?"
+    },
+    "dialogue": null,
+    "prereq": [
+      "b1-1-u11"
+    ]
+  },
+  {
+    "id": "b1-1-u13",
+    "level": "B1.1",
+    "ord": 13,
+    "title": "Beziehungen",
+    "can_do": [
+      "describe a relationship",
+      "talk about a disagreement",
+      "say what you value in people"
+    ],
+    "words": [
+      "b11-die-beziehung",
+      "b11-das-vertrauen",
+      "b11-vertrauen-v",
+      "b11-sich-streiten",
+      "b11-der-streit",
+      "b11-sich-versoehnen",
+      "b11-sich-verstehen",
+      "b11-ruecksicht",
+      "b11-ehrlich-b",
+      "b11-zuverlaessig-r",
+      "b11-eifersuechtig",
+      "b11-die-freundschaft",
+      "b11-die-partnerschaft",
+      "b11-sich-trennen",
+      "b11-unterstuetzen",
+      "b11-schaetzen",
+      "b11-nerven",
+      "b11-sich-melden-b"
+    ],
+    "grammar_id": null,
+    "scenario": {
+      "role": "a close friend",
+      "goal": "talk through a disagreement you had with someone",
+      "opener": "Und, habt ihr euch wieder vertragen?"
+    },
+    "dialogue": null,
+    "prereq": [
+      "b1-1-u12"
+    ]
+  },
+  {
+    "id": "b1-1-u14",
+    "level": "B1.1",
+    "ord": 14,
+    "title": "Wohnen in Deutschland",
+    "can_do": [
+      "understand a rental contract",
+      "deal with a landlord",
+      "describe housing problems"
+    ],
+    "words": [
+      "b11-der-mietvertrag",
+      "b11-die-kaltmiete",
+      "b11-die-warmmiete",
+      "b11-die-betriebskosten",
+      "b11-die-abrechnung",
+      "b11-die-mieterhoehung",
+      "b11-der-eigenbedarf",
+      "b11-der-mieterverein",
+      "b11-der-schimmel",
+      "b11-lueften",
+      "b11-die-mietminderung",
+      "b11-der-anspruch",
+      "b11-melden-t",
+      "b11-die-hausverwaltung",
+      "b11-instand-halten",
+      "b11-die-frist-t",
+      "b11-fristlos",
+      "b11-untervermieten"
+    ],
+    "grammar_id": null,
+    "scenario": {
+      "role": "a landlord discussing the contract",
+      "goal": "ask about the terms before signing",
+      "opener": "Haben Sie noch Fragen zum Vertrag?"
+    },
+    "dialogue": null,
+    "prereq": [
+      "b1-1-u13"
+    ]
+  },
+  {
+    "id": "b1-1-u15",
+    "level": "B1.1",
+    "ord": 15,
+    "title": "Reisen planen",
+    "can_do": [
+      "plan a trip in detail",
+      "handle a booking problem",
+      "describe an itinerary"
+    ],
+    "words": [
+      "b11-die-unterkunft",
+      "b11-die-buchung",
+      "b11-umbuchen",
+      "b11-stornieren",
+      "b11-die-stornierung",
+      "b11-der-anschluss",
+      "b11-verpassen",
+      "b11-die-route",
+      "b11-die-versicherung-r",
+      "b11-die-halbpension",
+      "b11-inbegriffen",
+      "b11-im-voraus",
+      "b11-der-aufenthalt",
+      "b11-die-sehenswuerdigkeit",
+      "b11-besichtigen",
+      "b11-sich-erkundigen-r",
+      "b11-ausgebucht",
+      "b11-kurzfristig-r"
+    ],
+    "grammar_id": null,
+    "scenario": {
+      "role": "a travel agent",
+      "goal": "plan a trip and handle a complication",
+      "opener": "Wohin soll es denn gehen?"
+    },
+    "dialogue": null,
+    "prereq": [
+      "b1-1-u14"
+    ]
+  },
+  {
+    "id": "b1-1-u16",
+    "level": "B1.1",
+    "ord": 16,
+    "title": "Erfahrungen",
+    "can_do": [
+      "describe a past experience in detail",
+      "say what you learned",
+      "structure a longer answer"
+    ],
+    "words": [
+      "b11-die-erfahrung-b",
+      "b11-erleben",
+      "b11-nachdem-b",
+      "b11-inzwischen-b",
+      "b11-lernen-aus",
+      "b11-die-herausforderung",
+      "b11-bewaeltigen",
+      "b11-sich-durchsetzen",
+      "b11-aufgeben",
+      "b11-durchhalten",
+      "b11-der-rueckblick",
+      "b11-im-nachhinein",
+      "b11-sich-lohnen-b",
+      "b11-die-muehe",
+      "b11-schwierig",
+      "b11-erstaunlich",
+      "b11-zunaechst",
+      "b11-allmaehlich"
+    ],
+    "grammar_id": "g-plusquamperfekt",
+    "scenario": {
+      "role": "someone genuinely curious about your life",
+      "goal": "tell a longer story with a point",
+      "opener": "Was war die größte Veränderung in deinem Leben?"
+    },
+    "dialogue": null,
+    "prereq": [
+      "b1-1-u15"
+    ]
+  },
+  {
+    "id": "b1-1-u17",
+    "level": "B1.1",
+    "ord": 17,
+    "title": "Bildung",
+    "can_do": [
+      "describe your education",
+      "compare school systems",
+      "talk about learning strategies"
+    ],
+    "words": [
+      "b11-die-bildung",
+      "b11-die-hochschule",
+      "b11-der-studiengang",
+      "b11-die-pruefung-b",
+      "b11-bestehen",
+      "b11-durchfallen",
+      "b11-die-note",
+      "b11-das-fach",
+      "b11-die-fachhochschule",
+      "b11-der-abschluss-b",
+      "b11-anerkennen",
+      "b11-die-lernstrategie",
+      "b11-auswendig",
+      "b11-sich-merken",
+      "b11-wiederholen-b",
+      "b11-der-fortschritt",
+      "b11-verpflichtend",
+      "b11-das-stipendium"
+    ],
+    "grammar_id": null,
+    "scenario": {
+      "role": "a German student curious about your country",
+      "goal": "compare the two education systems",
+      "opener": "Wie läuft die Schule bei euch eigentlich ab?"
+    },
+    "dialogue": null,
+    "prereq": [
+      "b1-1-u16"
+    ]
+  },
+  {
+    "id": "b1-1-u18",
+    "level": "B1.1",
+    "ord": 18,
+    "title": "Geld und Wirtschaft",
+    "can_do": [
+      "talk about costs of living",
+      "describe a financial decision",
+      "understand a bill or contract"
+    ],
+    "words": [
+      "b11-die-lebenshaltungskosten",
+      "b11-die-inflation",
+      "b11-steigen",
+      "b11-sinken",
+      "b11-die-steuererklaerung",
+      "b11-die-steuer",
+      "b11-brutto",
+      "b11-netto",
+      "b11-die-rate",
+      "b11-die-laufzeit",
+      "b11-kuendigen-w",
+      "b11-sich-verlaengern",
+      "b11-vergleichen-w",
+      "b11-sparen-w",
+      "b11-die-rente",
+      "b11-die-ausgabe",
+      "b11-die-einnahme",
+      "b11-sich-lohnen-w"
+    ],
+    "grammar_id": null,
+    "scenario": {
+      "role": "a bank adviser",
+      "goal": "discuss a financial decision and ask the right questions",
+      "opener": "Was kann ich für Sie tun?"
+    },
+    "dialogue": null,
+    "prereq": [
+      "b1-1-u17"
+    ]
+  },
+  {
+    "id": "b1-1-u19",
+    "level": "B1.1",
+    "ord": 19,
+    "title": "Zukunftspläne",
+    "can_do": [
+      "talk about long-term plans",
+      "express hopes and doubts",
+      "describe conditions"
+    ],
+    "words": [
+      "b11-die-hoffnung",
+      "b11-der-zweifel",
+      "b11-langfristig",
+      "b11-kurzfristig-z",
+      "b11-vorhaben-z",
+      "b11-anstreben",
+      "b11-damit-rechnen",
+      "b11-sich-vorstellen-z",
+      "b11-verwirklichen",
+      "b11-die-chance",
+      "b11-das-risiko",
+      "b11-abhaengen-von",
+      "b11-vorausgesetzt",
+      "b11-je-nachdem",
+      "b11-optimistisch",
+      "b11-skeptisch",
+      "b11-offen-lassen",
+      "b11-sich-entscheiden-z"
+    ],
+    "grammar_id": "g-irreal",
+    "scenario": {
+      "role": "a mentor",
+      "goal": "describe where you want to be in five years",
+      "opener": "Wo sehen Sie sich in fünf Jahren?"
+    },
+    "dialogue": null,
+    "prereq": [
+      "b1-1-u18"
+    ]
+  },
+  {
+    "id": "b1-1-u20",
+    "level": "B1.1",
+    "ord": 20,
+    "title": "B1.1 zusammen",
+    "can_do": [
+      "hold a real conversation on a familiar topic",
+      "give reasons and examples",
+      "handle an unexpected question"
+    ],
+    "words": [
+      "b11-worauf-es-ankommt",
+      "b11-was-ich-sagen-will",
+      "b11-einfach-gesagt",
+      "b11-beispielsweise",
+      "b11-und-zwar",
+      "b11-das-liegt-daran",
+      "b11-wie-dem-auch-sei",
+      "b11-moment-mal",
+      "b11-ich-meine",
+      "b11-korrigieren"
+    ],
+    "grammar_id": null,
+    "scenario": {
+      "role": "a friendly examiner",
+      "goal": "speak for five minutes on a topic you're given",
+      "opener": "Erzählen Sie mir von einem wichtigen Tag in Ihrem Leben."
+    },
+    "dialogue": null,
+    "prereq": [
+      "b1-1-u19"
+    ]
+  }
+]

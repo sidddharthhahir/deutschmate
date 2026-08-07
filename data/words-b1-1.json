@@ -1,1807 +1,2700 @@
 [
   {
-    "id": "gedanke",
-    "lemma": "Gedanke",
+    "id": "b11-die-eigenschaft",
+    "lemma": "Eigenschaft",
+    "article": "die",
+    "plural": "Eigenschaften",
+    "pos": "noun",
+    "en": "quality, characteristic",
+    "topic": "defining"
+  },
+  {
+    "id": "b11-derjenige",
+    "lemma": "derjenige",
+    "pos": "pronoun",
+    "en": "the one who",
+    "topic": "defining"
+  },
+  {
+    "id": "b11-bezeichnen",
+    "lemma": "bezeichnen",
+    "pos": "verb",
+    "en": "to describe, to call",
+    "topic": "defining"
+  },
+  {
+    "id": "b11-bestimmen",
+    "lemma": "bestimmen",
+    "pos": "verb",
+    "en": "to determine, to define",
+    "topic": "defining"
+  },
+  {
+    "id": "b11-zaehlen-zu",
+    "lemma": "zählen zu",
+    "pos": "verb",
+    "en": "to be among, to count as",
+    "topic": "defining"
+  },
+  {
+    "id": "b11-der-begriff",
+    "lemma": "Begriff",
     "article": "der",
-    "plural": "Gedanken",
+    "plural": "Begriffe",
     "pos": "noun",
-    "en": "thinking"
+    "en": "term, concept",
+    "topic": "defining"
   },
   {
-    "id": "absicht",
-    "lemma": "Absicht",
+    "id": "b11-die-bedeutung",
+    "lemma": "Bedeutung",
     "article": "die",
-    "plural": "Absichten",
+    "plural": "Bedeutungen",
     "pos": "noun",
-    "en": "intention"
+    "en": "meaning, significance",
+    "topic": "defining"
   },
   {
-    "id": "zweck",
-    "lemma": "Zweck",
-    "article": "der",
-    "plural": "Zwecke",
-    "pos": "noun",
-    "en": "point"
-  },
-  {
-    "id": "ziel",
-    "lemma": "Ziel",
-    "article": "das",
-    "plural": "Ziele",
-    "pos": "noun",
-    "en": "aim"
-  },
-  {
-    "id": "plan",
-    "lemma": "Plan",
-    "article": "der",
-    "plural": "Pläne",
-    "pos": "noun",
-    "en": "plan"
-  },
-  {
-    "id": "vorstellung",
-    "lemma": "Vorstellung",
+    "id": "b11-die-voraussetzung",
+    "lemma": "Voraussetzung",
     "article": "die",
-    "plural": "Vorstellungen",
+    "plural": "Voraussetzungen",
     "pos": "noun",
-    "en": "idea"
+    "en": "prerequisite",
+    "topic": "defining"
   },
   {
-    "id": "ansicht",
-    "lemma": "Ansicht",
-    "article": "die",
-    "plural": "Ansichten",
-    "pos": "noun",
-    "en": "view"
-  },
-  {
-    "id": "standpunkt",
-    "lemma": "Standpunkt",
-    "article": "der",
-    "plural": "Standpunkte",
-    "pos": "noun",
-    "en": "standpoint"
-  },
-  {
-    "id": "argument",
-    "lemma": "Argument",
-    "article": "das",
-    "plural": "Argumente",
-    "pos": "noun",
-    "en": "argument"
-  },
-  {
-    "id": "behauptung",
-    "lemma": "Behauptung",
-    "article": "die",
-    "plural": "Behauptungen",
-    "pos": "noun",
-    "en": "claim"
-  },
-  {
-    "id": "beweis",
-    "lemma": "Beweis",
-    "article": "der",
-    "plural": "Beweise",
-    "pos": "noun",
-    "en": "evidence"
-  },
-  {
-    "id": "zweifel",
-    "lemma": "Zweifel",
-    "article": "der",
-    "plural": "Zweifel",
-    "pos": "noun",
-    "en": "doubt"
-  },
-  {
-    "id": "vermutung",
-    "lemma": "Vermutung",
-    "article": "die",
-    "plural": "Vermutungen",
-    "pos": "noun",
-    "en": "assumption"
-  },
-  {
-    "id": "annahme",
-    "lemma": "Annahme",
-    "article": "die",
-    "plural": "Annahmen",
-    "pos": "noun",
-    "en": "assumption"
-  },
-  {
-    "id": "schlussfolgerung",
-    "lemma": "Schlussfolgerung",
-    "article": "die",
-    "plural": "Schlussfolgerungen",
-    "pos": "noun",
-    "en": "conclusion"
-  },
-  {
-    "id": "zusammenhang",
-    "lemma": "Zusammenhang",
-    "article": "der",
-    "plural": "Zusammenhänge",
-    "pos": "noun",
-    "en": "coherence"
-  },
-  {
-    "id": "ursache",
-    "lemma": "Ursache",
-    "article": "die",
-    "plural": "Ursachen",
-    "pos": "noun",
-    "en": "cause"
-  },
-  {
-    "id": "folge",
-    "lemma": "Folge",
-    "article": "die",
-    "plural": "Folgen",
-    "pos": "noun",
-    "en": "consequence"
-  },
-  {
-    "id": "wirkung",
-    "lemma": "Wirkung",
-    "article": "die",
-    "plural": "Wirkungen",
-    "pos": "noun",
-    "en": "effect"
-  },
-  {
-    "id": "bedingung",
-    "lemma": "Bedingung",
-    "article": "die",
-    "plural": "Bedingungen",
-    "pos": "noun",
-    "en": "condition"
-  },
-  {
-    "id": "ausnahme",
-    "lemma": "Ausnahme",
-    "article": "die",
-    "plural": "Ausnahmen",
-    "pos": "noun",
-    "en": "exception"
-  },
-  {
-    "id": "regel",
-    "lemma": "Regel",
-    "article": "die",
-    "plural": "Regeln",
-    "pos": "noun",
-    "en": "rule"
-  },
-  {
-    "id": "vergleich",
-    "lemma": "Vergleich",
-    "article": "der",
-    "plural": "Vergleiche",
-    "pos": "noun",
-    "en": "comparison"
-  },
-  {
-    "id": "gegenteil",
-    "lemma": "Gegenteil",
-    "article": "das",
-    "plural": "Gegenteile",
-    "pos": "noun",
-    "en": "opposite"
-  },
-  {
-    "id": "behaupten",
-    "lemma": "behaupten",
-    "pos": "verb",
-    "en": "claim",
-    "forms": {
-      "ich": "behaupte",
-      "du": "behauptest",
-      "er": "behauptet"
-    }
-  },
-  {
-    "id": "bezweifeln",
-    "lemma": "bezweifeln",
-    "pos": "verb",
-    "en": "doubt",
-    "forms": {
-      "ich": "bezweifle",
-      "du": "bezweifelst",
-      "er": "bezweifelt"
-    }
-  },
-  {
-    "id": "vermuten",
-    "lemma": "vermuten",
-    "pos": "verb",
-    "en": "assume",
-    "forms": {
-      "ich": "vermute",
-      "du": "vermutest",
-      "er": "vermutet"
-    }
-  },
-  {
-    "id": "annehmen",
-    "lemma": "annehmen",
-    "pos": "verb",
-    "en": "assume",
-    "forms": {
-      "ich": "nehme an",
-      "du": "nimmst an",
-      "er": "nimmt an"
-    }
-  },
-  {
-    "id": "begruenden",
-    "lemma": "begründen",
-    "pos": "verb",
-    "en": "justify",
-    "forms": {
-      "ich": "begründe",
-      "du": "begründest",
-      "er": "begründet"
-    }
-  },
-  {
-    "id": "beweisen",
-    "lemma": "beweisen",
-    "pos": "verb",
-    "en": "prove",
-    "forms": {
-      "ich": "beweise",
-      "du": "beweist",
-      "er": "beweist"
-    }
-  },
-  {
-    "id": "zugeben",
-    "lemma": "zugeben",
-    "pos": "verb",
-    "en": "admit",
-    "forms": {
-      "ich": "gebe zu",
-      "du": "gibst zu",
-      "er": "gibt zu"
-    }
-  },
-  {
-    "id": "bestreiten",
-    "lemma": "bestreiten",
-    "pos": "verb",
-    "en": "deny",
-    "forms": {
-      "ich": "bestreite",
-      "du": "bestreitest",
-      "er": "bestreitet"
-    }
-  },
-  {
-    "id": "betonen",
-    "lemma": "betonen",
-    "pos": "verb",
-    "en": "stress",
-    "forms": {
-      "ich": "betone",
-      "du": "betonst",
-      "er": "betont"
-    }
-  },
-  {
-    "id": "erwaehnen",
-    "lemma": "erwähnen",
-    "pos": "verb",
-    "en": "mention",
-    "forms": {
-      "ich": "erwähne",
-      "du": "erwähnst",
-      "er": "erwähnt"
-    }
-  },
-  {
-    "id": "hinweisen",
-    "lemma": "hinweisen",
-    "pos": "verb",
-    "en": "point out",
-    "forms": {
-      "ich": "weise hin",
-      "du": "weist hin",
-      "er": "weist hin"
-    }
-  },
-  {
-    "id": "zustimmen",
-    "lemma": "zustimmen",
-    "pos": "verb",
-    "en": "agree",
-    "forms": {
-      "ich": "stimme zu",
-      "du": "stimmst zu",
-      "er": "stimmt zu"
-    }
-  },
-  {
-    "id": "ablehnen",
-    "lemma": "ablehnen",
-    "pos": "verb",
-    "en": "decline",
-    "forms": {
-      "ich": "lehne ab",
-      "du": "lehnst ab",
-      "er": "lehnt ab"
-    }
-  },
-  {
-    "id": "kritisieren",
-    "lemma": "kritisieren",
-    "pos": "verb",
-    "en": "criticize",
-    "forms": {
-      "ich": "kritisiere",
-      "du": "kritisierst",
-      "er": "kritisiert"
-    }
-  },
-  {
-    "id": "loben",
-    "lemma": "loben",
-    "pos": "verb",
-    "en": "praise",
-    "forms": {
-      "ich": "lobe",
-      "du": "lobst",
-      "er": "lobt"
-    }
-  },
-  {
-    "id": "empfehlen",
-    "lemma": "empfehlen",
-    "pos": "verb",
-    "en": "recommend",
-    "forms": {
-      "ich": "empfehle",
-      "du": "empfiehlst",
-      "er": "empfiehlt"
-    }
-  },
-  {
-    "id": "warnen",
-    "lemma": "warnen",
-    "pos": "verb",
-    "en": "warn",
-    "forms": {
-      "ich": "warne",
-      "du": "warnst",
-      "er": "warnt"
-    }
-  },
-  {
-    "id": "arbeitgeber",
-    "lemma": "Arbeitgeber",
-    "article": "der",
-    "plural": "Arbeitgeber",
-    "pos": "noun",
-    "en": "employer"
-  },
-  {
-    "id": "arbeitnehmer",
-    "lemma": "Arbeitnehmer",
-    "article": "der",
-    "plural": "Arbeitnehmer",
-    "pos": "noun",
-    "en": "employee"
-  },
-  {
-    "id": "arbeitslosigkeit",
-    "lemma": "Arbeitslosigkeit",
-    "article": "die",
-    "pos": "noun",
-    "en": "unemployment"
-  },
-  {
-    "id": "gewerkschaft",
-    "lemma": "Gewerkschaft",
-    "article": "die",
-    "plural": "Gewerkschaften",
-    "pos": "noun",
-    "en": "trade union"
-  },
-  {
-    "id": "bewerber",
-    "lemma": "Bewerber",
-    "article": "der",
-    "plural": "Bewerber",
-    "pos": "noun",
-    "en": "applicant"
-  },
-  {
-    "id": "faehigkeit",
+    "id": "b11-die-faehigkeit",
     "lemma": "Fähigkeit",
     "article": "die",
     "plural": "Fähigkeiten",
     "pos": "noun",
-    "en": "ability"
+    "en": "ability",
+    "topic": "defining"
   },
   {
-    "id": "kenntnis",
-    "lemma": "Kenntnis",
+    "id": "b11-zuverlaessig-b",
+    "lemma": "gewissenhaft",
+    "pos": "adjective",
+    "en": "conscientious",
+    "topic": "defining"
+  },
+  {
+    "id": "b11-neugierig",
+    "lemma": "neugierig",
+    "pos": "adjective",
+    "en": "curious",
+    "topic": "defining"
+  },
+  {
+    "id": "b11-geduldig",
+    "lemma": "geduldig",
+    "pos": "adjective",
+    "en": "patient",
+    "topic": "defining"
+  },
+  {
+    "id": "b11-ehrgeizig",
+    "lemma": "ehrgeizig",
+    "pos": "adjective",
+    "en": "ambitious",
+    "topic": "defining"
+  },
+  {
+    "id": "b11-gelassen",
+    "lemma": "gelassen",
+    "pos": "adjective",
+    "en": "calm, unruffled",
+    "topic": "defining"
+  },
+  {
+    "id": "b11-auffallend",
+    "lemma": "auffallend",
+    "pos": "adjective",
+    "en": "striking, noticeable",
+    "topic": "defining"
+  },
+  {
+    "id": "b11-jeweils",
+    "lemma": "jeweils",
+    "pos": "adverb",
+    "en": "in each case",
+    "topic": "defining"
+  },
+  {
+    "id": "b11-sogenannt",
+    "lemma": "sogenannt",
+    "pos": "adjective",
+    "en": "so-called",
+    "topic": "defining"
+  },
+  {
+    "id": "b11-unterscheiden",
+    "lemma": "unterscheiden",
+    "pos": "verb",
+    "en": "to distinguish",
+    "topic": "defining"
+  },
+  {
+    "id": "b11-koennten-sie",
+    "lemma": "Könnten Sie …?",
+    "pos": "phrase",
+    "en": "Could you …?",
+    "topic": "politeness"
+  },
+  {
+    "id": "b11-waeren-sie",
+    "lemma": "Wären Sie so freundlich …?",
+    "pos": "phrase",
+    "en": "Would you be so kind …?",
+    "topic": "politeness"
+  },
+  {
+    "id": "b11-duerfte-ich",
+    "lemma": "Dürfte ich …?",
+    "pos": "phrase",
+    "en": "Might I …?",
+    "topic": "politeness"
+  },
+  {
+    "id": "b11-haetten-sie",
+    "lemma": "Hätten Sie kurz Zeit?",
+    "pos": "phrase",
+    "en": "Would you have a moment?",
+    "topic": "politeness"
+  },
+  {
+    "id": "b11-die-bitte",
+    "lemma": "Bitte",
     "article": "die",
-    "plural": "Kenntnisse",
+    "plural": "Bitten",
     "pos": "noun",
-    "en": "acquaintance"
+    "en": "request",
+    "topic": "politeness"
   },
   {
-    "id": "erfahrung",
-    "lemma": "Erfahrung",
+    "id": "b11-hoeflichkeit",
+    "lemma": "Höflichkeit",
     "article": "die",
-    "plural": "Erfahrungen",
+    "plural": "Höflichkeiten",
     "pos": "noun",
-    "en": "experience"
+    "en": "politeness",
+    "topic": "politeness"
   },
   {
-    "id": "verantwortung",
+    "id": "b11-ungern",
+    "lemma": "ungern",
+    "pos": "adverb",
+    "en": "reluctantly",
+    "topic": "politeness"
+  },
+  {
+    "id": "b11-leider-nicht",
+    "lemma": "Das lässt sich leider nicht machen.",
+    "pos": "phrase",
+    "en": "That unfortunately cannot be done.",
+    "topic": "politeness"
+  },
+  {
+    "id": "b11-ich-fuerchte",
+    "lemma": "Ich fürchte, …",
+    "pos": "phrase",
+    "en": "I am afraid that …",
+    "topic": "politeness"
+  },
+  {
+    "id": "b11-gerne-aber",
+    "lemma": "Gern, aber …",
+    "pos": "phrase",
+    "en": "Gladly, but …",
+    "topic": "politeness"
+  },
+  {
+    "id": "b11-sich-erkundigen",
+    "lemma": "sich erkundigen nach",
+    "pos": "verb",
+    "en": "to enquire about",
+    "topic": "politeness"
+  },
+  {
+    "id": "b11-bemuehen",
+    "lemma": "sich bemühen",
+    "pos": "verb",
+    "en": "to make an effort",
+    "topic": "politeness"
+  },
+  {
+    "id": "b11-behilflich",
+    "lemma": "behilflich sein",
+    "pos": "phrase",
+    "en": "to be of help",
+    "topic": "politeness"
+  },
+  {
+    "id": "b11-verzeihen",
+    "lemma": "verzeihen",
+    "pos": "verb",
+    "en": "to forgive, to pardon",
+    "topic": "politeness"
+  },
+  {
+    "id": "b11-anliegen",
+    "lemma": "Anliegen",
+    "article": "das",
+    "plural": "Anliegen",
+    "pos": "noun",
+    "en": "concern, matter",
+    "topic": "politeness"
+  },
+  {
+    "id": "b11-gegebenenfalls",
+    "lemma": "gegebenenfalls",
+    "pos": "adverb",
+    "en": "if applicable, should the case arise",
+    "topic": "politeness"
+  },
+  {
+    "id": "b11-vorab",
+    "lemma": "vorab",
+    "pos": "adverb",
+    "en": "in advance",
+    "topic": "politeness"
+  },
+  {
+    "id": "b11-nachfragen",
+    "lemma": "nachfragen",
+    "pos": "verb",
+    "en": "to follow up, to ask again",
+    "topic": "politeness"
+  },
+  {
+    "id": "b11-die-bedingung",
+    "lemma": "Bedingung",
+    "article": "die",
+    "plural": "Bedingungen",
+    "pos": "noun",
+    "en": "condition",
+    "topic": "hypothetical"
+  },
+  {
+    "id": "b11-der-wunsch",
+    "lemma": "Wunsch",
+    "article": "der",
+    "plural": "Wünsche",
+    "pos": "noun",
+    "en": "wish",
+    "topic": "hypothetical"
+  },
+  {
+    "id": "b11-die-moeglichkeit",
+    "lemma": "Möglichkeit",
+    "article": "die",
+    "plural": "Möglichkeiten",
+    "pos": "noun",
+    "en": "possibility, option",
+    "topic": "hypothetical"
+  },
+  {
+    "id": "b11-an-deiner-stelle",
+    "lemma": "an deiner Stelle",
+    "pos": "phrase",
+    "en": "if I were you",
+    "topic": "hypothetical"
+  },
+  {
+    "id": "b11-wenn-ich-nur",
+    "lemma": "Wenn ich nur …",
+    "pos": "phrase",
+    "en": "If only I …",
+    "topic": "hypothetical"
+  },
+  {
+    "id": "b11-beinahe",
+    "lemma": "beinahe",
+    "pos": "adverb",
+    "en": "almost",
+    "topic": "hypothetical"
+  },
+  {
+    "id": "b11-angenommen",
+    "lemma": "angenommen",
+    "pos": "conjunction",
+    "en": "supposing",
+    "topic": "hypothetical"
+  },
+  {
+    "id": "b11-falls",
+    "lemma": "falls",
+    "pos": "conjunction",
+    "en": "in case, if",
+    "topic": "hypothetical"
+  },
+  {
+    "id": "b11-ansonsten",
+    "lemma": "ansonsten",
+    "pos": "adverb",
+    "en": "otherwise",
+    "topic": "hypothetical"
+  },
+  {
+    "id": "b11-vorstellbar",
+    "lemma": "vorstellbar",
+    "pos": "adjective",
+    "en": "conceivable",
+    "topic": "hypothetical"
+  },
+  {
+    "id": "b11-unwahrscheinlich",
+    "lemma": "unwahrscheinlich",
+    "pos": "adjective",
+    "en": "unlikely",
+    "topic": "hypothetical"
+  },
+  {
+    "id": "b11-bereuen",
+    "lemma": "bereuen",
+    "pos": "verb",
+    "en": "to regret",
+    "topic": "hypothetical"
+  },
+  {
+    "id": "b11-verzichten",
+    "lemma": "verzichten auf",
+    "pos": "verb",
+    "en": "to do without, to give up",
+    "topic": "hypothetical"
+  },
+  {
+    "id": "b11-sich-leisten",
+    "lemma": "sich leisten können",
+    "pos": "phrase",
+    "en": "to be able to afford",
+    "topic": "hypothetical"
+  },
+  {
+    "id": "b11-riskieren",
+    "lemma": "riskieren",
+    "pos": "verb",
+    "en": "to risk",
+    "topic": "hypothetical"
+  },
+  {
+    "id": "b11-zoegern",
+    "lemma": "zögern",
+    "pos": "verb",
+    "en": "to hesitate",
+    "topic": "hypothetical"
+  },
+  {
+    "id": "b11-der-fall",
+    "lemma": "Fall",
+    "article": "der",
+    "plural": "Fälle",
+    "pos": "noun",
+    "en": "case",
+    "topic": "hypothetical"
+  },
+  {
+    "id": "b11-notfalls-b",
+    "lemma": "im schlimmsten Fall",
+    "pos": "phrase",
+    "en": "in the worst case",
+    "topic": "hypothetical"
+  },
+  {
+    "id": "b11-der-vorgang",
+    "lemma": "Vorgang",
+    "article": "der",
+    "plural": "Vorgänge",
+    "pos": "noun",
+    "en": "process, procedure",
+    "topic": "process"
+  },
+  {
+    "id": "b11-der-ablauf",
+    "lemma": "Ablauf",
+    "article": "der",
+    "plural": "Abläufe",
+    "pos": "noun",
+    "en": "sequence, procedure",
+    "topic": "process"
+  },
+  {
+    "id": "b11-der-schritt",
+    "lemma": "Schritt",
+    "article": "der",
+    "plural": "Schritte",
+    "pos": "noun",
+    "en": "step",
+    "topic": "process"
+  },
+  {
+    "id": "b11-durchgefuehrt",
+    "lemma": "durchführen",
+    "pos": "verb",
+    "en": "to carry out",
+    "topic": "process"
+  },
+  {
+    "id": "b11-hergestellt",
+    "lemma": "herstellen",
+    "pos": "verb",
+    "en": "to manufacture, to produce",
+    "topic": "process"
+  },
+  {
+    "id": "b11-geliefert",
+    "lemma": "liefern",
+    "pos": "verb",
+    "en": "to deliver",
+    "topic": "process"
+  },
+  {
+    "id": "b11-bearbeitet",
+    "lemma": "der Antrag wird bearbeitet",
+    "pos": "phrase",
+    "en": "the application is being processed",
+    "topic": "process"
+  },
+  {
+    "id": "b11-geprueft",
+    "lemma": "prüfen",
+    "pos": "verb",
+    "en": "to check, to examine",
+    "topic": "process"
+  },
+  {
+    "id": "b11-veroeffentlicht",
+    "lemma": "veröffentlichen",
+    "pos": "verb",
+    "en": "to publish",
+    "topic": "process"
+  },
+  {
+    "id": "b11-verwendet",
+    "lemma": "verwenden",
+    "pos": "verb",
+    "en": "to use",
+    "topic": "process"
+  },
+  {
+    "id": "b11-die-anweisung",
+    "lemma": "Anweisung",
+    "article": "die",
+    "plural": "Anweisungen",
+    "pos": "noun",
+    "en": "instruction",
+    "topic": "process"
+  },
+  {
+    "id": "b11-die-anleitung",
+    "lemma": "Anleitung",
+    "article": "die",
+    "plural": "Anleitungen",
+    "pos": "noun",
+    "en": "manual, guide",
+    "topic": "process"
+  },
+  {
+    "id": "b11-automatisch",
+    "lemma": "automatisch",
+    "pos": "adjective",
+    "en": "automatic",
+    "topic": "process"
+  },
+  {
+    "id": "b11-geschehen",
+    "lemma": "geschehen",
+    "pos": "verb",
+    "en": "to happen, to occur",
+    "topic": "process"
+  },
+  {
+    "id": "b11-erfolgen",
+    "lemma": "erfolgen",
+    "pos": "verb",
+    "en": "to take place, to be effected",
+    "topic": "process"
+  },
+  {
+    "id": "b11-zustaendigkeit",
+    "lemma": "Zuständigkeit",
+    "article": "die",
+    "plural": "Zuständigkeiten",
+    "pos": "noun",
+    "en": "responsibility, remit",
+    "topic": "process"
+  },
+  {
+    "id": "b11-der-hinweis-p",
+    "lemma": "Aushang",
+    "article": "der",
+    "plural": "Aushänge",
+    "pos": "noun",
+    "en": "notice, posting",
+    "topic": "process"
+  },
+  {
+    "id": "b11-in-betrieb",
+    "lemma": "außer Betrieb",
+    "pos": "phrase",
+    "en": "out of service",
+    "topic": "process"
+  },
+  {
+    "id": "b11-das-vorhaben",
+    "lemma": "Vorhaben",
+    "article": "das",
+    "plural": "Vorhaben",
+    "pos": "noun",
+    "en": "undertaking, project",
+    "topic": "purpose"
+  },
+  {
+    "id": "b11-versuchen",
+    "lemma": "versuchen",
+    "pos": "verb",
+    "en": "to try",
+    "topic": "purpose"
+  },
+  {
+    "id": "b11-vorhaben-b",
+    "lemma": "beabsichtigen",
+    "pos": "verb",
+    "en": "to intend",
+    "topic": "purpose"
+  },
+  {
+    "id": "b11-anfangen-zu",
+    "lemma": "beginnen zu",
+    "pos": "verb",
+    "en": "to begin to",
+    "topic": "purpose"
+  },
+  {
+    "id": "b11-aufhoeren-zu",
+    "lemma": "aufhören zu",
+    "pos": "verb",
+    "en": "to stop doing",
+    "topic": "purpose"
+  },
+  {
+    "id": "b11-vergessen-zu",
+    "lemma": "vergessen zu",
+    "pos": "verb",
+    "en": "to forget to",
+    "topic": "purpose"
+  },
+  {
+    "id": "b11-sich-freuen-zu",
+    "lemma": "sich freuen zu",
+    "pos": "verb",
+    "en": "to be glad to",
+    "topic": "purpose"
+  },
+  {
+    "id": "b11-erlauben-zu",
+    "lemma": "erlauben zu",
+    "pos": "verb",
+    "en": "to allow to",
+    "topic": "purpose"
+  },
+  {
+    "id": "b11-die-gelegenheit",
+    "lemma": "Gelegenheit",
+    "article": "die",
+    "plural": "Gelegenheiten",
+    "pos": "noun",
+    "en": "opportunity",
+    "topic": "purpose"
+  },
+  {
+    "id": "b11-die-aufgabe-b",
+    "lemma": "Zweck erfüllen",
+    "pos": "phrase",
+    "en": "to serve the purpose",
+    "topic": "purpose"
+  },
+  {
+    "id": "b11-dazu-dienen",
+    "lemma": "dazu dienen",
+    "pos": "verb",
+    "en": "to serve to",
+    "topic": "purpose"
+  },
+  {
+    "id": "b11-sinnvoll",
+    "lemma": "sinnvoll",
+    "pos": "adjective",
+    "en": "sensible, worthwhile",
+    "topic": "purpose"
+  },
+  {
+    "id": "b11-erforderlich",
+    "lemma": "erforderlich",
+    "pos": "adjective",
+    "en": "required",
+    "topic": "purpose"
+  },
+  {
+    "id": "b11-schwerfallen",
+    "lemma": "schwerfallen",
+    "pos": "verb",
+    "en": "to find difficult",
+    "topic": "purpose"
+  },
+  {
+    "id": "b11-leichtfallen",
+    "lemma": "leichtfallen",
+    "pos": "verb",
+    "en": "to find easy",
+    "topic": "purpose"
+  },
+  {
+    "id": "b11-sich-lohnen",
+    "lemma": "sich lohnen",
+    "pos": "verb",
+    "en": "to be worth it",
+    "topic": "purpose"
+  },
+  {
+    "id": "b11-vorhaben-c",
+    "lemma": "planen zu",
+    "pos": "verb",
+    "en": "to plan to",
+    "topic": "purpose"
+  },
+  {
+    "id": "b11-hoffen-zu",
+    "lemma": "hoffen zu",
+    "pos": "verb",
+    "en": "to hope to",
+    "topic": "purpose"
+  },
+  {
+    "id": "b11-oberhalb",
+    "lemma": "oberhalb",
+    "pos": "preposition",
+    "en": "above",
+    "topic": "prepositions"
+  },
+  {
+    "id": "b11-entlang",
+    "lemma": "entlang",
+    "pos": "preposition",
+    "en": "along",
+    "topic": "prepositions"
+  },
+  {
+    "id": "b11-waehrend-p",
+    "lemma": "während",
+    "pos": "preposition",
+    "en": "during",
+    "topic": "prepositions"
+  },
+  {
+    "id": "b11-wegen",
+    "lemma": "wegen",
+    "pos": "preposition",
+    "en": "because of",
+    "topic": "prepositions"
+  },
+  {
+    "id": "b11-trotz",
+    "lemma": "trotz",
+    "pos": "preposition",
+    "en": "in spite of",
+    "topic": "prepositions"
+  },
+  {
+    "id": "b11-innerhalb",
+    "lemma": "innerhalb",
+    "pos": "preposition",
+    "en": "within",
+    "topic": "prepositions"
+  },
+  {
+    "id": "b11-ausserhalb",
+    "lemma": "außerhalb",
+    "pos": "preposition",
+    "en": "outside of",
+    "topic": "prepositions"
+  },
+  {
+    "id": "b11-seit-p",
+    "lemma": "seit",
+    "pos": "preposition",
+    "en": "since, for",
+    "topic": "prepositions"
+  },
+  {
+    "id": "b11-ab-p",
+    "lemma": "ab",
+    "pos": "preposition",
+    "en": "from (a time)",
+    "topic": "prepositions"
+  },
+  {
+    "id": "b11-bis-zu",
+    "lemma": "bis zu",
+    "pos": "preposition",
+    "en": "up to, as far as",
+    "topic": "prepositions"
+  },
+  {
+    "id": "b11-durch-p",
+    "lemma": "durch",
+    "pos": "preposition",
+    "en": "through, by",
+    "topic": "prepositions"
+  },
+  {
+    "id": "b11-gegen-p",
+    "lemma": "gegen",
+    "pos": "preposition",
+    "en": "against; around (a time)",
+    "topic": "prepositions"
+  },
+  {
+    "id": "b11-die-strecke",
+    "lemma": "Strecke",
+    "article": "die",
+    "plural": "Strecken",
+    "pos": "noun",
+    "en": "route, distance",
+    "topic": "prepositions"
+  },
+  {
+    "id": "b11-die-kreuzung",
+    "lemma": "Kreuzung",
+    "article": "die",
+    "plural": "Kreuzungen",
+    "pos": "noun",
+    "en": "junction, crossroads",
+    "topic": "prepositions"
+  },
+  {
+    "id": "b11-die-umleitung",
+    "lemma": "Umleitung",
+    "article": "die",
+    "plural": "Umleitungen",
+    "pos": "noun",
+    "en": "diversion",
+    "topic": "prepositions"
+  },
+  {
+    "id": "b11-unterwegs-b",
+    "lemma": "auf dem Weg",
+    "pos": "phrase",
+    "en": "on the way",
+    "topic": "prepositions"
+  },
+  {
+    "id": "b11-vorbei",
+    "lemma": "vorbei an",
+    "pos": "phrase",
+    "en": "past",
+    "topic": "prepositions"
+  },
+  {
+    "id": "b11-quer",
+    "lemma": "quer durch",
+    "pos": "phrase",
+    "en": "right across",
+    "topic": "prepositions"
+  },
+  {
+    "id": "b11-ob",
+    "lemma": "ob",
+    "pos": "conjunction",
+    "en": "whether",
+    "topic": "indirect"
+  },
+  {
+    "id": "b11-koennen-sie-mir-sagen",
+    "lemma": "Können Sie mir sagen, …?",
+    "pos": "phrase",
+    "en": "Can you tell me …?",
+    "topic": "indirect"
+  },
+  {
+    "id": "b11-wissen-sie-zufaellig",
+    "lemma": "Wissen Sie zufällig, …?",
+    "pos": "phrase",
+    "en": "Do you happen to know …?",
+    "topic": "indirect"
+  },
+  {
+    "id": "b11-ich-wuerde-gern-wissen",
+    "lemma": "Ich wüsste gern, …",
+    "pos": "phrase",
+    "en": "I would like to know …",
+    "topic": "indirect"
+  },
+  {
+    "id": "b11-die-auskunft",
+    "lemma": "Auskunft",
+    "article": "die",
+    "plural": "Auskünfte",
+    "pos": "noun",
+    "en": "information",
+    "topic": "indirect"
+  },
+  {
+    "id": "b11-die-frage",
+    "lemma": "Rückfrage",
+    "article": "die",
+    "plural": "Rückfragen",
+    "pos": "noun",
+    "en": "follow-up question",
+    "topic": "indirect"
+  },
+  {
+    "id": "b11-sich-erkundigen-b",
+    "lemma": "nachschauen",
+    "pos": "verb",
+    "en": "to look up, to check",
+    "topic": "indirect"
+  },
+  {
+    "id": "b11-herausfinden",
+    "lemma": "herausfinden",
+    "pos": "verb",
+    "en": "to find out",
+    "topic": "indirect"
+  },
+  {
+    "id": "b11-mitteilen",
+    "lemma": "mitteilen",
+    "pos": "verb",
+    "en": "to inform, to communicate",
+    "topic": "indirect"
+  },
+  {
+    "id": "b11-bescheid-b",
+    "lemma": "Auskunft erteilen",
+    "pos": "phrase",
+    "en": "to provide information",
+    "topic": "indirect"
+  },
+  {
+    "id": "b11-unklar",
+    "lemma": "unklar",
+    "pos": "adjective",
+    "en": "unclear",
+    "topic": "indirect"
+  },
+  {
+    "id": "b11-genau-b",
+    "lemma": "genauer gesagt",
+    "pos": "phrase",
+    "en": "more precisely",
+    "topic": "indirect"
+  },
+  {
+    "id": "b11-worum",
+    "lemma": "Worum geht es?",
+    "pos": "phrase",
+    "en": "What is it about?",
+    "topic": "indirect"
+  },
+  {
+    "id": "b11-weiterhelfen",
+    "lemma": "weiterhelfen",
+    "pos": "verb",
+    "en": "to help further",
+    "topic": "indirect"
+  },
+  {
+    "id": "b11-zustaendig-b",
+    "lemma": "die richtige Stelle",
+    "pos": "phrase",
+    "en": "the right place, the right office",
+    "topic": "indirect"
+  },
+  {
+    "id": "b11-verbinden-b",
+    "lemma": "weiterverbinden",
+    "pos": "verb",
+    "en": "to transfer (a call)",
+    "topic": "indirect"
+  },
+  {
+    "id": "b11-hoeflich-fragen",
+    "lemma": "Entschuldigen Sie die Frage, aber …",
+    "pos": "phrase",
+    "en": "Sorry to ask, but …",
+    "topic": "indirect"
+  },
+  {
+    "id": "b11-notieren",
+    "lemma": "notieren",
+    "pos": "verb",
+    "en": "to note down",
+    "topic": "indirect"
+  },
+  {
+    "id": "b11-die-verantwortung",
     "lemma": "Verantwortung",
     "article": "die",
     "plural": "Verantwortungen",
     "pos": "noun",
-    "en": "responsibility"
+    "en": "responsibility",
+    "topic": "career"
   },
   {
-    "id": "aufgabe",
-    "lemma": "Aufgabe",
+    "id": "b11-die-weiterbildung",
+    "lemma": "Weiterbildung",
     "article": "die",
-    "plural": "Aufgaben",
+    "plural": "Weiterbildungen",
     "pos": "noun",
-    "en": "task"
+    "en": "further training",
+    "topic": "career"
   },
   {
-    "id": "leistung",
-    "lemma": "Leistung",
+    "id": "b11-die-befoerderung",
+    "lemma": "Beförderung",
     "article": "die",
-    "plural": "Leistungen",
+    "plural": "Beförderungen",
     "pos": "noun",
-    "en": "performance"
+    "en": "promotion",
+    "topic": "career"
   },
   {
-    "id": "erfolg",
-    "lemma": "Erfolg",
+    "id": "b11-der-betriebsrat",
+    "lemma": "Betriebsrat",
     "article": "der",
-    "plural": "Erfolge",
+    "plural": "Betriebsräte",
     "pos": "noun",
-    "en": "success"
+    "en": "works council",
+    "topic": "career"
   },
   {
-    "id": "misserfolg",
-    "lemma": "Misserfolg",
-    "article": "der",
-    "plural": "Misserfolge",
-    "pos": "noun",
-    "en": "failure"
-  },
-  {
-    "id": "karriere",
-    "lemma": "Karriere",
-    "article": "die",
-    "plural": "Karrieren",
-    "pos": "noun",
-    "en": "career"
-  },
-  {
-    "id": "teilzeit",
-    "lemma": "Teilzeit",
-    "article": "die",
-    "plural": "Teilzeiten",
-    "pos": "noun",
-    "en": "part-time"
-  },
-  {
-    "id": "vollzeit",
-    "lemma": "Vollzeit",
-    "article": "die",
-    "pos": "noun",
-    "en": "full time"
-  },
-  {
-    "id": "schicht",
-    "lemma": "Schicht",
-    "article": "die",
-    "plural": "Schichten",
-    "pos": "noun",
-    "en": "layer"
-  },
-  {
-    "id": "ueberstunde",
+    "id": "b11-die-ueberstunde",
     "lemma": "Überstunde",
     "article": "die",
     "plural": "Überstunden",
     "pos": "noun",
-    "en": "overtime"
+    "en": "hour of overtime",
+    "topic": "career"
   },
   {
-    "id": "krankenschein",
-    "lemma": "Krankenschein",
+    "id": "b11-der-arbeitsvertrag",
+    "lemma": "Arbeitsvertrag",
     "article": "der",
-    "plural": "Krankenscheine",
+    "plural": "Arbeitsverträge",
     "pos": "noun",
-    "en": "sickness certificate"
+    "en": "employment contract",
+    "topic": "career"
   },
   {
-    "id": "betrieb",
-    "lemma": "Betrieb",
-    "article": "der",
-    "plural": "Betriebe",
-    "pos": "noun",
-    "en": "business"
+    "id": "b11-unbefristet",
+    "lemma": "unbefristet",
+    "pos": "adjective",
+    "en": "permanent, open-ended",
+    "topic": "career"
   },
   {
-    "id": "branche",
-    "lemma": "Branche",
+    "id": "b11-befristet",
+    "lemma": "befristet",
+    "pos": "adjective",
+    "en": "fixed-term",
+    "topic": "career"
+  },
+  {
+    "id": "b11-die-kuendigungsfrist",
+    "lemma": "Kündigungsfrist",
     "article": "die",
-    "plural": "Branchen",
+    "plural": "Kündigungsfristen",
     "pos": "noun",
-    "en": "line"
+    "en": "notice period",
+    "topic": "career"
   },
   {
-    "id": "konkurrenz",
-    "lemma": "Konkurrenz",
-    "article": "die",
-    "plural": "Konkurrenzen",
-    "pos": "noun",
-    "en": "competition"
+    "id": "b11-sich-weiterentwickeln",
+    "lemma": "sich weiterentwickeln",
+    "pos": "verb",
+    "en": "to develop, to grow",
+    "topic": "career"
   },
   {
-    "id": "kunde",
-    "lemma": "Kunde",
-    "article": "der",
-    "plural": "Kunden",
-    "pos": "noun",
-    "en": "customer"
-  },
-  {
-    "id": "auftrag",
-    "lemma": "Auftrag",
-    "article": "der",
-    "plural": "Aufträge",
-    "pos": "noun",
-    "en": "assignment"
-  },
-  {
-    "id": "projekt",
-    "lemma": "Projekt",
-    "article": "das",
-    "plural": "Projekte",
-    "pos": "noun",
-    "en": "project"
-  },
-  {
-    "id": "sitzung",
-    "lemma": "Sitzung",
-    "article": "die",
-    "plural": "Sitzungen",
-    "pos": "noun",
-    "en": "session"
-  },
-  {
-    "id": "protokoll",
-    "lemma": "Protokoll",
-    "article": "das",
-    "plural": "Protokolle",
-    "pos": "noun",
-    "en": "record"
-  },
-  {
-    "id": "leiten",
+    "id": "b11-leiten",
     "lemma": "leiten",
     "pos": "verb",
-    "en": "manage",
-    "forms": {
-      "ich": "leite",
-      "du": "leitest",
-      "er": "leitet"
-    }
+    "en": "to lead, to head",
+    "topic": "career"
   },
   {
-    "id": "organisieren",
-    "lemma": "organisieren",
-    "pos": "verb",
-    "en": "organize",
-    "forms": {
-      "ich": "organisiere",
-      "du": "organisierst",
-      "er": "organisiert"
-    }
+    "id": "b11-die-fuehrung",
+    "lemma": "Führungsposition",
+    "article": "die",
+    "plural": "Führungspositionen",
+    "pos": "noun",
+    "en": "management position",
+    "topic": "career"
   },
   {
-    "id": "verwalten",
-    "lemma": "verwalten",
-    "pos": "verb",
-    "en": "manage",
-    "forms": {
-      "ich": "verwalte",
-      "du": "verwaltest",
-      "er": "verwaltet"
-    }
+    "id": "b11-die-vereinbarkeit",
+    "lemma": "Vereinbarkeit",
+    "article": "die",
+    "plural": "Vereinbarkeiten",
+    "pos": "noun",
+    "en": "compatibility, balance",
+    "topic": "career"
   },
   {
-    "id": "planen",
-    "lemma": "planen",
-    "pos": "verb",
-    "en": "plan",
-    "forms": {
-      "ich": "plane",
-      "du": "planst",
-      "er": "plant"
-    }
+    "id": "b11-belastend",
+    "lemma": "belastend",
+    "pos": "adjective",
+    "en": "stressful, burdensome",
+    "topic": "career"
   },
   {
-    "id": "durchfuehren",
-    "lemma": "durchführen",
-    "pos": "verb",
-    "en": "carry out",
-    "forms": {
-      "ich": "führe durch",
-      "du": "führst durch",
-      "er": "führt durch"
-    }
+    "id": "b11-selbststaendig-b",
+    "lemma": "eigenverantwortlich",
+    "pos": "adjective",
+    "en": "self-directed",
+    "topic": "career"
   },
   {
-    "id": "erledigen",
-    "lemma": "erledigen",
-    "pos": "verb",
-    "en": "finish",
-    "forms": {
-      "ich": "erledige",
-      "du": "erledigst",
-      "er": "erledigt"
-    }
+    "id": "b11-die-gehaltsverhandlung",
+    "lemma": "Gehaltsverhandlung",
+    "article": "die",
+    "plural": "Gehaltsverhandlungen",
+    "pos": "noun",
+    "en": "salary negotiation",
+    "topic": "career"
   },
   {
-    "id": "verhandeln",
+    "id": "b11-verhandeln",
     "lemma": "verhandeln",
     "pos": "verb",
-    "en": "negotiate",
-    "forms": {
-      "ich": "verhandele",
-      "du": "verhandelst",
-      "er": "verhandelt"
-    }
+    "en": "to negotiate",
+    "topic": "career"
   },
   {
-    "id": "einstellen",
-    "lemma": "einstellen",
-    "pos": "verb",
-    "en": "employ",
-    "forms": {
-      "ich": "stelle ein",
-      "du": "stellst ein",
-      "er": "stellt ein"
-    }
+    "id": "b11-die-perspektive",
+    "lemma": "Perspektive",
+    "article": "die",
+    "plural": "Perspektiven",
+    "pos": "noun",
+    "en": "prospect, outlook",
+    "topic": "career"
   },
   {
-    "id": "entlassen",
-    "lemma": "entlassen",
-    "pos": "verb",
-    "en": "dismiss",
-    "forms": {
-      "ich": "entlasse",
-      "du": "entlässt",
-      "er": "entlässt"
-    }
-  },
-  {
-    "id": "medien",
-    "lemma": "Medien",
-    "pos": "other",
-    "en": "Medes"
-  },
-  {
-    "id": "fernsehen",
-    "lemma": "Fernsehen",
+    "id": "b11-das-argument",
+    "lemma": "Argument",
     "article": "das",
+    "plural": "Argumente",
     "pos": "noun",
-    "en": "television"
+    "en": "argument, point",
+    "topic": "debate"
   },
   {
-    "id": "rundfunk",
-    "lemma": "Rundfunk",
+    "id": "b11-argumentieren",
+    "lemma": "argumentieren",
+    "pos": "verb",
+    "en": "to argue a case",
+    "topic": "debate"
+  },
+  {
+    "id": "b11-einwenden",
+    "lemma": "einwenden",
+    "pos": "verb",
+    "en": "to object",
+    "topic": "debate"
+  },
+  {
+    "id": "b11-zugeben-b",
+    "lemma": "zugestehen",
+    "pos": "verb",
+    "en": "to concede",
+    "topic": "debate"
+  },
+  {
+    "id": "b11-einerseits-b",
+    "lemma": "zum einen … zum anderen",
+    "pos": "phrase",
+    "en": "for one thing … for another",
+    "topic": "debate"
+  },
+  {
+    "id": "b11-allerdings",
+    "lemma": "allerdings",
+    "pos": "adverb",
+    "en": "admittedly, however",
+    "topic": "debate"
+  },
+  {
+    "id": "b11-dennoch",
+    "lemma": "dennoch",
+    "pos": "adverb",
+    "en": "nevertheless",
+    "topic": "debate"
+  },
+  {
+    "id": "b11-im-gegenteil",
+    "lemma": "im Gegenteil",
+    "pos": "phrase",
+    "en": "on the contrary",
+    "topic": "debate"
+  },
+  {
+    "id": "b11-das-mag-sein",
+    "lemma": "Das mag sein, aber …",
+    "pos": "phrase",
+    "en": "That may be, but …",
+    "topic": "debate"
+  },
+  {
+    "id": "b11-ich-bin-der-ansicht",
+    "lemma": "Ich bin der Ansicht, dass …",
+    "pos": "phrase",
+    "en": "I take the view that …",
+    "topic": "debate"
+  },
+  {
+    "id": "b11-der-standpunkt",
+    "lemma": "Standpunkt",
     "article": "der",
+    "plural": "Standpunkte",
     "pos": "noun",
-    "en": "broadcast"
+    "en": "point of view",
+    "topic": "debate"
   },
   {
-    "id": "sendung",
-    "lemma": "Sendung",
-    "article": "die",
-    "plural": "Sendungen",
-    "pos": "noun",
-    "en": "broadcasting"
+    "id": "b11-nachvollziehen",
+    "lemma": "nachvollziehen",
+    "pos": "verb",
+    "en": "to follow, to understand",
+    "topic": "debate"
   },
   {
-    "id": "beitrag",
-    "lemma": "Beitrag",
-    "article": "der",
-    "plural": "Beiträge",
-    "pos": "noun",
-    "en": "subscription"
+    "id": "b11-widerlegen",
+    "lemma": "widerlegen",
+    "pos": "verb",
+    "en": "to refute",
+    "topic": "debate"
   },
   {
-    "id": "interview",
-    "lemma": "Interview",
+    "id": "b11-sachlich",
+    "lemma": "sachlich",
+    "pos": "adjective",
+    "en": "objective, factual",
+    "topic": "debate"
+  },
+  {
+    "id": "b11-emotional",
+    "lemma": "emotional",
+    "pos": "adjective",
+    "en": "emotional",
+    "topic": "debate"
+  },
+  {
+    "id": "b11-ueberzeugend",
+    "lemma": "überzeugend",
+    "pos": "adjective",
+    "en": "convincing",
+    "topic": "debate"
+  },
+  {
+    "id": "b11-einlenken",
+    "lemma": "einlenken",
+    "pos": "verb",
+    "en": "to back down, to relent",
+    "topic": "debate"
+  },
+  {
+    "id": "b11-abwaegen",
+    "lemma": "abwägen",
+    "pos": "verb",
+    "en": "to weigh up",
+    "topic": "debate"
+  },
+  {
+    "id": "b11-das-geraet",
+    "lemma": "Gerät",
     "article": "das",
-    "plural": "Interviews",
+    "plural": "Geräte",
     "pos": "noun",
-    "en": "interview"
+    "en": "device",
+    "topic": "technology"
   },
   {
-    "id": "schlagzeile",
-    "lemma": "Schlagzeile",
+    "id": "b11-der-akku",
+    "lemma": "Akku",
+    "article": "der",
+    "plural": "Akkus",
+    "pos": "noun",
+    "en": "battery",
+    "topic": "technology"
+  },
+  {
+    "id": "b11-die-einstellung",
+    "lemma": "Einstellung",
     "article": "die",
-    "plural": "Schlagzeilen",
+    "plural": "Einstellungen",
     "pos": "noun",
-    "en": "headline"
+    "en": "setting",
+    "topic": "technology"
   },
   {
-    "id": "quelle",
-    "lemma": "Quelle",
+    "id": "b11-das-update",
+    "lemma": "Aktualisierung",
     "article": "die",
-    "plural": "Quellen",
+    "plural": "Aktualisierungen",
     "pos": "noun",
-    "en": "spring"
+    "en": "update",
+    "topic": "technology"
   },
   {
-    "id": "datei",
+    "id": "b11-installieren",
+    "lemma": "installieren",
+    "pos": "verb",
+    "en": "to install",
+    "topic": "technology"
+  },
+  {
+    "id": "b11-speichern",
+    "lemma": "speichern",
+    "pos": "verb",
+    "en": "to save",
+    "topic": "technology"
+  },
+  {
+    "id": "b11-loeschen",
+    "lemma": "löschen",
+    "pos": "verb",
+    "en": "to delete",
+    "topic": "technology"
+  },
+  {
+    "id": "b11-die-datei",
     "lemma": "Datei",
     "article": "die",
     "plural": "Dateien",
     "pos": "noun",
-    "en": "file"
+    "en": "file",
+    "topic": "technology"
   },
   {
-    "id": "programm",
-    "lemma": "Programm",
-    "article": "das",
-    "plural": "Programme",
-    "pos": "noun",
-    "en": "cycle"
-  },
-  {
-    "id": "anwendung",
-    "lemma": "Anwendung",
+    "id": "b11-die-verbindung",
+    "lemma": "Verbindung",
     "article": "die",
-    "plural": "Anwendungen",
+    "plural": "Verbindungen",
     "pos": "noun",
-    "en": "application"
+    "en": "connection",
+    "topic": "technology"
   },
   {
-    "id": "bildschirm",
-    "lemma": "Bildschirm",
-    "article": "der",
-    "plural": "Bildschirme",
-    "pos": "noun",
-    "en": "screen"
+    "id": "b11-neu-starten",
+    "lemma": "neu starten",
+    "pos": "phrase",
+    "en": "to restart",
+    "topic": "technology"
   },
   {
-    "id": "tastatur",
-    "lemma": "Tastatur",
+    "id": "b11-abstuerzen",
+    "lemma": "abstürzen",
+    "pos": "verb",
+    "en": "to crash",
+    "topic": "technology"
+  },
+  {
+    "id": "b11-funktionieren-b",
+    "lemma": "einwandfrei funktionieren",
+    "pos": "phrase",
+    "en": "to work perfectly",
+    "topic": "technology"
+  },
+  {
+    "id": "b11-die-fehlermeldung",
+    "lemma": "Fehlermeldung",
     "article": "die",
-    "plural": "Tastaturen",
+    "plural": "Fehlermeldungen",
     "pos": "noun",
-    "en": "keyboard"
+    "en": "error message",
+    "topic": "technology"
   },
   {
-    "id": "drucker",
-    "lemma": "Drucker",
-    "article": "der",
-    "plural": "Drucker",
-    "pos": "noun",
-    "en": "printer"
-  },
-  {
-    "id": "netzwerk",
-    "lemma": "Netzwerk",
-    "article": "das",
-    "plural": "Netzwerke",
-    "pos": "noun",
-    "en": "network"
-  },
-  {
-    "id": "passwort",
-    "lemma": "Passwort",
-    "article": "das",
-    "plural": "Passwörter",
-    "pos": "noun",
-    "en": "password"
-  },
-  {
-    "id": "benutzer",
-    "lemma": "Benutzer",
-    "article": "der",
-    "plural": "Benutzer",
-    "pos": "noun",
-    "en": "user"
-  },
-  {
-    "id": "datenschutz",
+    "id": "b11-der-datenschutz",
     "lemma": "Datenschutz",
     "article": "der",
+    "plural": "Datenschutzbestimmungen",
     "pos": "noun",
-    "en": "data privacy"
+    "en": "data protection",
+    "topic": "technology"
   },
   {
-    "id": "herunterladen",
-    "lemma": "herunterladen",
+    "id": "b11-anschliessen",
+    "lemma": "anschließen",
     "pos": "verb",
-    "en": "download",
-    "forms": {
-      "ich": "lade herunter",
-      "du": "lädst herunter",
-      "er": "lädt herunter"
-    }
+    "en": "to connect up",
+    "topic": "technology"
   },
   {
-    "id": "hochladen",
-    "lemma": "hochladen",
-    "pos": "verb",
-    "en": "upload",
-    "forms": {
-      "ich": "lade hoch",
-      "du": "lädst hoch",
-      "er": "lädt hoch"
-    }
-  },
-  {
-    "id": "speichern",
-    "lemma": "speichern",
-    "pos": "verb",
-    "en": "store",
-    "forms": {
-      "ich": "speichere",
-      "du": "speicherst",
-      "er": "speichert"
-    }
-  },
-  {
-    "id": "loeschen",
-    "lemma": "löschen",
-    "pos": "verb",
-    "en": "extinguish",
-    "forms": {
-      "ich": "lösche",
-      "du": "löschst",
-      "er": "löscht"
-    }
-  },
-  {
-    "id": "installieren",
-    "lemma": "installieren",
-    "pos": "verb",
-    "en": "install",
-    "forms": {
-      "ich": "installiere",
-      "du": "installierst",
-      "er": "installiert"
-    }
-  },
-  {
-    "id": "verbinden",
-    "lemma": "verbinden",
-    "pos": "verb",
-    "en": "bandage",
-    "forms": {
-      "ich": "verbinde",
-      "du": "verbindest",
-      "er": "verbindet"
-    }
-  },
-  {
-    "id": "klicken",
-    "lemma": "klicken",
-    "pos": "verb",
-    "en": "click",
-    "forms": {
-      "ich": "klicke",
-      "du": "klickst",
-      "er": "klickt"
-    }
-  },
-  {
-    "id": "tippen",
-    "lemma": "tippen",
-    "pos": "verb",
-    "en": "tap",
-    "forms": {
-      "ich": "tippe",
-      "du": "tippst",
-      "er": "tippt"
-    }
-  },
-  {
-    "id": "gesundheit",
-    "lemma": "Gesundheit",
-    "article": "die",
-    "pos": "noun",
-    "en": "health"
-  },
-  {
-    "id": "krankheit",
-    "lemma": "Krankheit",
-    "article": "die",
-    "plural": "Krankheiten",
-    "pos": "noun",
-    "en": "illness"
-  },
-  {
-    "id": "behandlung",
-    "lemma": "Behandlung",
-    "article": "die",
-    "plural": "Behandlungen",
-    "pos": "noun",
-    "en": "treatment"
-  },
-  {
-    "id": "untersuchung",
-    "lemma": "Untersuchung",
-    "article": "die",
-    "plural": "Untersuchungen",
-    "pos": "noun",
-    "en": "examination"
-  },
-  {
-    "id": "diagnose",
-    "lemma": "Diagnose",
-    "article": "die",
-    "plural": "Diagnosen",
-    "pos": "noun",
-    "en": "diagnosis"
-  },
-  {
-    "id": "rezept",
-    "lemma": "Rezept",
+    "id": "b11-das-kabel",
+    "lemma": "Kabel",
     "article": "das",
-    "plural": "Rezepte",
+    "plural": "Kabel",
     "pos": "noun",
-    "en": "recipe"
+    "en": "cable",
+    "topic": "technology"
   },
   {
-    "id": "operation",
-    "lemma": "Operation",
-    "article": "die",
-    "plural": "Operationen",
-    "pos": "noun",
-    "en": "surgery"
+    "id": "b11-defekt",
+    "lemma": "defekt",
+    "pos": "adjective",
+    "en": "faulty",
+    "topic": "technology"
   },
   {
-    "id": "verletzung",
-    "lemma": "Verletzung",
-    "article": "die",
-    "plural": "Verletzungen",
-    "pos": "noun",
-    "en": "injury"
+    "id": "b11-bedienen",
+    "lemma": "bedienen",
+    "pos": "verb",
+    "en": "to operate",
+    "topic": "technology"
   },
   {
-    "id": "erkaeltung",
-    "lemma": "Erkältung",
-    "article": "die",
-    "plural": "Erkältungen",
-    "pos": "noun",
-    "en": "cold"
-  },
-  {
-    "id": "grippe",
-    "lemma": "Grippe",
-    "article": "die",
-    "plural": "Grippen",
-    "pos": "noun",
-    "en": "influenza"
-  },
-  {
-    "id": "allergie",
-    "lemma": "Allergie",
-    "article": "die",
-    "plural": "Allergien",
-    "pos": "noun",
-    "en": "allergy"
-  },
-  {
-    "id": "ernaehrung",
+    "id": "b11-die-ernaehrung",
     "lemma": "Ernährung",
     "article": "die",
     "plural": "Ernährungen",
     "pos": "noun",
-    "en": "nourishment"
+    "en": "diet, nutrition",
+    "topic": "nutrition"
   },
   {
-    "id": "bewegung",
+    "id": "b11-sich-ernaehren",
+    "lemma": "sich ernähren",
+    "pos": "verb",
+    "en": "to eat, to feed oneself",
+    "topic": "nutrition"
+  },
+  {
+    "id": "b11-die-bewegung",
     "lemma": "Bewegung",
     "article": "die",
     "plural": "Bewegungen",
     "pos": "noun",
-    "en": "movement"
+    "en": "exercise, movement",
+    "topic": "nutrition"
   },
   {
-    "id": "sport",
-    "lemma": "Sport",
-    "article": "der",
-    "plural": "Sporte",
-    "pos": "noun",
-    "en": "sport"
+    "id": "b11-abnehmen",
+    "lemma": "abnehmen",
+    "pos": "verb",
+    "en": "to lose weight",
+    "topic": "nutrition"
   },
   {
-    "id": "stress",
-    "lemma": "Stress",
-    "article": "der",
-    "plural": "Stresse",
-    "pos": "noun",
-    "en": "stress"
+    "id": "b11-zunehmen",
+    "lemma": "zunehmen",
+    "pos": "verb",
+    "en": "to put on weight",
+    "topic": "nutrition"
   },
   {
-    "id": "erholung",
-    "lemma": "Erholung",
-    "article": "die",
-    "pos": "noun",
-    "en": "recovery"
-  },
-  {
-    "id": "schlaf",
-    "lemma": "Schlaf",
-    "article": "der",
-    "pos": "noun",
-    "en": "sleep"
-  },
-  {
-    "id": "gewicht",
+    "id": "b11-das-gewicht",
     "lemma": "Gewicht",
     "article": "das",
     "plural": "Gewichte",
     "pos": "noun",
-    "en": "weight"
+    "en": "weight",
+    "topic": "nutrition"
   },
   {
-    "id": "behandeln",
-    "lemma": "behandeln",
+    "id": "b11-vorbeugen",
+    "lemma": "vorbeugen",
     "pos": "verb",
-    "en": "treat",
-    "forms": {
-      "ich": "behandele",
-      "du": "behandelst",
-      "er": "behandelt"
-    }
+    "en": "to prevent",
+    "topic": "nutrition"
   },
   {
-    "id": "untersuchen",
-    "lemma": "untersuchen",
+    "id": "b11-fettarm",
+    "lemma": "fettarm",
+    "pos": "adjective",
+    "en": "low-fat",
+    "topic": "nutrition"
+  },
+  {
+    "id": "b11-zuckerfrei",
+    "lemma": "zuckerfrei",
+    "pos": "adjective",
+    "en": "sugar-free",
+    "topic": "nutrition"
+  },
+  {
+    "id": "b11-die-mahlzeit",
+    "lemma": "Mahlzeit",
+    "article": "die",
+    "plural": "Mahlzeiten",
+    "pos": "noun",
+    "en": "meal",
+    "topic": "nutrition"
+  },
+  {
+    "id": "b11-die-allergie",
+    "lemma": "Allergie",
+    "article": "die",
+    "plural": "Allergien",
+    "pos": "noun",
+    "en": "allergy",
+    "topic": "nutrition"
+  },
+  {
+    "id": "b11-vertragen",
+    "lemma": "vertragen",
     "pos": "verb",
-    "en": "investigate",
-    "forms": {
-      "ich": "untersuche",
-      "du": "untersuchst",
-      "er": "untersucht"
-    }
+    "en": "to tolerate (food)",
+    "topic": "nutrition"
   },
   {
-    "id": "verschreiben",
-    "lemma": "verschreiben",
+    "id": "b11-der-schlaf",
+    "lemma": "Schlaf",
+    "article": "der",
+    "plural": "Schläfe",
+    "pos": "noun",
+    "en": "sleep",
+    "topic": "nutrition"
+  },
+  {
+    "id": "b11-der-stress",
+    "lemma": "Stress",
+    "article": "der",
+    "plural": "Stresse",
+    "pos": "noun",
+    "en": "stress",
+    "topic": "nutrition"
+  },
+  {
+    "id": "b11-sich-erholen",
+    "lemma": "sich erholen",
     "pos": "verb",
-    "en": "mispell",
-    "forms": {
-      "ich": "verschreibe",
-      "du": "verschreibst",
-      "er": "verschreibt"
-    }
+    "en": "to recover",
+    "topic": "nutrition"
   },
   {
-    "id": "heilen",
-    "lemma": "heilen",
+    "id": "b11-empfehlenswert",
+    "lemma": "empfehlenswert",
+    "pos": "adjective",
+    "en": "advisable, recommended",
+    "topic": "nutrition"
+  },
+  {
+    "id": "b11-an-deiner-stelle-b",
+    "lemma": "Ich würde dir raten, …",
+    "pos": "phrase",
+    "en": "I would advise you to …",
+    "topic": "nutrition"
+  },
+  {
+    "id": "b11-schaden",
+    "lemma": "schaden",
     "pos": "verb",
-    "en": "heal",
-    "forms": {
-      "ich": "heile",
-      "du": "heilst",
-      "er": "heilt"
-    }
+    "en": "to harm",
+    "topic": "nutrition"
   },
   {
-    "id": "verletzen",
-    "lemma": "verletzen",
-    "pos": "verb",
-    "en": "hurt",
-    "forms": {
-      "ich": "verletze",
-      "du": "verletzt",
-      "er": "verletzt"
-    }
-  },
-  {
-    "id": "erholen",
-    "lemma": "erholen",
-    "pos": "verb",
-    "en": "relax",
-    "forms": {
-      "ich": "erhole",
-      "du": "erholst",
-      "er": "erholt"
-    }
-  },
-  {
-    "id": "abnehmen",
-    "lemma": "abnehmen",
-    "pos": "verb",
-    "en": "take off",
-    "forms": {
-      "ich": "nehme ab",
-      "du": "nimmst ab",
-      "er": "nimmt ab"
-    }
-  },
-  {
-    "id": "zunehmen",
-    "lemma": "zunehmen",
-    "pos": "verb",
-    "en": "increase",
-    "forms": {
-      "ich": "nehme zu",
-      "du": "nimmst zu",
-      "er": "nimmt zu"
-    }
-  },
-  {
-    "id": "leiden",
-    "lemma": "leiden",
-    "pos": "verb",
-    "en": "suffer",
-    "forms": {
-      "ich": "leide",
-      "du": "leidest",
-      "er": "leidet"
-    }
-  },
-  {
-    "id": "umwelt",
+    "id": "b11-die-umwelt",
     "lemma": "Umwelt",
     "article": "die",
     "plural": "Umwelten",
     "pos": "noun",
-    "en": "environment"
+    "en": "environment",
+    "topic": "environment"
   },
   {
-    "id": "klima",
-    "lemma": "Klima",
-    "article": "das",
-    "plural": "Klimas",
-    "pos": "noun",
-    "en": "climate"
-  },
-  {
-    "id": "klimawandel",
+    "id": "b11-der-klimawandel",
     "lemma": "Klimawandel",
     "article": "der",
     "plural": "Klimawandel",
     "pos": "noun",
-    "en": "climate change"
+    "en": "climate change",
+    "topic": "environment"
   },
   {
-    "id": "verschmutzung",
-    "lemma": "Verschmutzung",
-    "article": "die",
-    "plural": "Verschmutzungen",
-    "pos": "noun",
-    "en": "pollution"
-  },
-  {
-    "id": "abfall",
-    "lemma": "Abfall",
+    "id": "b11-der-muell",
+    "lemma": "Müll",
     "article": "der",
-    "plural": "Abfälle",
+    "plural": "Mülle",
     "pos": "noun",
-    "en": "rubbish"
+    "en": "rubbish, waste",
+    "topic": "environment"
   },
   {
-    "id": "recycling",
-    "lemma": "Recycling",
-    "article": "das",
-    "plural": "Recyclings",
-    "pos": "noun",
-    "en": "recycle"
+    "id": "b11-trennen",
+    "lemma": "trennen",
+    "pos": "verb",
+    "en": "to separate, to sort",
+    "topic": "environment"
   },
   {
-    "id": "energie",
+    "id": "b11-recyceln",
+    "lemma": "wiederverwerten",
+    "pos": "verb",
+    "en": "to recycle",
+    "topic": "environment"
+  },
+  {
+    "id": "b11-vermeiden-b",
+    "lemma": "einsparen",
+    "pos": "verb",
+    "en": "to save, to cut back on",
+    "topic": "environment"
+  },
+  {
+    "id": "b11-die-energie",
     "lemma": "Energie",
     "article": "die",
     "plural": "Energien",
     "pos": "noun",
-    "en": "energy"
+    "en": "energy",
+    "topic": "environment"
   },
   {
-    "id": "strom",
-    "lemma": "Strom",
-    "article": "der",
-    "plural": "Ströme",
-    "pos": "noun",
-    "en": "current"
+    "id": "b11-erneuerbar",
+    "lemma": "erneuerbar",
+    "pos": "adjective",
+    "en": "renewable",
+    "topic": "environment"
   },
   {
-    "id": "heizung",
-    "lemma": "Heizung",
+    "id": "b11-die-verschmutzung",
+    "lemma": "Verschmutzung",
     "article": "die",
-    "plural": "Heizungen",
+    "plural": "Verschmutzungen",
     "pos": "noun",
-    "en": "heating"
+    "en": "pollution",
+    "topic": "environment"
   },
   {
-    "id": "rohstoff",
-    "lemma": "Rohstoff",
-    "article": "der",
-    "plural": "Rohstoffe",
-    "pos": "noun",
-    "en": "resource"
+    "id": "b11-verursachen",
+    "lemma": "verursachen",
+    "pos": "verb",
+    "en": "to cause",
+    "topic": "environment"
   },
   {
-    "id": "landwirtschaft",
-    "lemma": "Landwirtschaft",
+    "id": "b11-nachhaltig",
+    "lemma": "nachhaltig",
+    "pos": "adjective",
+    "en": "sustainable",
+    "topic": "environment"
+  },
+  {
+    "id": "b11-umweltfreundlich",
+    "lemma": "umweltfreundlich",
+    "pos": "adjective",
+    "en": "environmentally friendly",
+    "topic": "environment"
+  },
+  {
+    "id": "b11-die-massnahme",
+    "lemma": "Maßnahme",
     "article": "die",
-    "plural": "Landwirtschaften",
+    "plural": "Maßnahmen",
     "pos": "noun",
-    "en": "agriculture"
+    "en": "measure",
+    "topic": "environment"
   },
   {
-    "id": "industrie",
-    "lemma": "Industrie",
-    "article": "die",
-    "plural": "Industrien",
-    "pos": "noun",
-    "en": "industry"
+    "id": "b11-beschliessen",
+    "lemma": "beschließen",
+    "pos": "verb",
+    "en": "to decide, to resolve",
+    "topic": "environment"
   },
   {
-    "id": "wirtschaft",
-    "lemma": "Wirtschaft",
-    "article": "die",
-    "plural": "Wirtschaften",
-    "pos": "noun",
-    "en": "inn"
-  },
-  {
-    "id": "handel",
-    "lemma": "Handel",
-    "article": "der",
-    "plural": "Händel",
-    "pos": "noun",
-    "en": "business"
-  },
-  {
-    "id": "markt",
-    "lemma": "Markt",
-    "article": "der",
-    "plural": "Märkte",
-    "pos": "noun",
-    "en": "market"
-  },
-  {
-    "id": "bevoelkerung",
-    "lemma": "Bevölkerung",
-    "article": "die",
-    "plural": "Bevölkerungen",
-    "pos": "noun",
-    "en": "population"
-  },
-  {
-    "id": "stadtteil",
-    "lemma": "Stadtteil",
-    "article": "der",
-    "plural": "Stadtteile",
-    "pos": "noun",
-    "en": "quarter"
-  },
-  {
-    "id": "gegend",
-    "lemma": "Gegend",
-    "article": "die",
-    "plural": "Gegenden",
-    "pos": "noun",
-    "en": "region"
-  },
-  {
-    "id": "landschaft",
-    "lemma": "Landschaft",
-    "article": "die",
-    "plural": "Landschaften",
-    "pos": "noun",
-    "en": "landscape"
-  },
-  {
-    "id": "kueste",
-    "lemma": "Küste",
-    "article": "die",
-    "plural": "Küsten",
-    "pos": "noun",
-    "en": "coast"
-  },
-  {
-    "id": "fluss",
-    "lemma": "Fluss",
-    "article": "der",
-    "plural": "Flüsse",
-    "pos": "noun",
-    "en": "river"
-  },
-  {
-    "id": "wald",
-    "lemma": "Wald",
-    "article": "der",
-    "plural": "Wälder",
-    "pos": "noun",
-    "en": "forest"
-  },
-  {
-    "id": "wueste",
-    "lemma": "Wüste",
-    "article": "die",
-    "plural": "Wüsten",
-    "pos": "noun",
-    "en": "desert"
-  },
-  {
-    "id": "schuetzen",
+    "id": "b11-schuetzen",
     "lemma": "schützen",
     "pos": "verb",
-    "en": "protect",
-    "forms": {
-      "ich": "schütze",
-      "du": "schützt",
-      "er": "schützt"
-    }
+    "en": "to protect",
+    "topic": "environment"
   },
   {
-    "id": "verschmutzen",
-    "lemma": "verschmutzen",
-    "pos": "verb",
-    "en": "soil",
-    "forms": {
-      "ich": "verschmutze",
-      "du": "verschmutzt",
-      "er": "verschmutzt"
-    }
+    "id": "b11-der-beitrag",
+    "lemma": "Beitrag",
+    "article": "der",
+    "plural": "Beiträge",
+    "pos": "noun",
+    "en": "contribution",
+    "topic": "environment"
   },
   {
-    "id": "verbrauchen",
+    "id": "b11-verbrauchen",
     "lemma": "verbrauchen",
     "pos": "verb",
-    "en": "consume",
-    "forms": {
-      "ich": "verbrauche",
-      "du": "verbrauchst",
-      "er": "verbraucht"
-    }
+    "en": "to consume, to use up",
+    "topic": "environment"
   },
   {
-    "id": "sparen",
-    "lemma": "sparen",
-    "pos": "verb",
-    "en": "spare",
-    "forms": {
-      "ich": "spare",
-      "du": "sparst",
-      "er": "spart"
-    }
+    "id": "b11-der-verzicht",
+    "lemma": "bewusst",
+    "pos": "adjective",
+    "en": "conscious, deliberate",
+    "topic": "environment"
   },
   {
-    "id": "entwickeln",
-    "lemma": "entwickeln",
-    "pos": "verb",
-    "en": "develop",
-    "forms": {
-      "ich": "entwickle",
-      "du": "entwickelst",
-      "er": "entwickelt"
-    }
-  },
-  {
-    "id": "wachsen",
-    "lemma": "wachsen",
-    "pos": "verb",
-    "en": "wax",
-    "forms": {
-      "ich": "wachse",
-      "du": "wächst",
-      "er": "wächst"
-    }
-  },
-  {
-    "id": "sinken",
-    "lemma": "sinken",
-    "pos": "verb",
-    "en": "sink",
-    "forms": {
-      "ich": "sinke",
-      "du": "sinkst",
-      "er": "sinkt"
-    }
-  },
-  {
-    "id": "steigen",
-    "lemma": "steigen",
-    "pos": "verb",
-    "en": "rise",
-    "forms": {
-      "ich": "steige",
-      "du": "steigst",
-      "er": "steigt"
-    }
-  },
-  {
-    "id": "beziehung",
+    "id": "b11-die-beziehung",
     "lemma": "Beziehung",
     "article": "die",
     "plural": "Beziehungen",
     "pos": "noun",
-    "en": "relation"
+    "en": "relationship",
+    "topic": "relationships"
   },
   {
-    "id": "freundschaft",
+    "id": "b11-das-vertrauen",
+    "lemma": "Vertrauen",
+    "article": "das",
+    "plural": "Vertrauen",
+    "pos": "noun",
+    "en": "trust",
+    "topic": "relationships"
+  },
+  {
+    "id": "b11-vertrauen-v",
+    "lemma": "vertrauen",
+    "pos": "verb",
+    "en": "to trust",
+    "topic": "relationships"
+  },
+  {
+    "id": "b11-sich-streiten",
+    "lemma": "sich streiten",
+    "pos": "verb",
+    "en": "to argue, to quarrel",
+    "topic": "relationships"
+  },
+  {
+    "id": "b11-der-streit",
+    "lemma": "Streit",
+    "article": "der",
+    "plural": "Streitigkeiten",
+    "pos": "noun",
+    "en": "argument, quarrel",
+    "topic": "relationships"
+  },
+  {
+    "id": "b11-sich-versoehnen",
+    "lemma": "sich versöhnen",
+    "pos": "verb",
+    "en": "to make up",
+    "topic": "relationships"
+  },
+  {
+    "id": "b11-sich-verstehen",
+    "lemma": "sich gut verstehen",
+    "pos": "phrase",
+    "en": "to get on well",
+    "topic": "relationships"
+  },
+  {
+    "id": "b11-ruecksicht",
+    "lemma": "Rücksicht nehmen",
+    "pos": "phrase",
+    "en": "to be considerate",
+    "topic": "relationships"
+  },
+  {
+    "id": "b11-ehrlich-b",
+    "lemma": "aufrichtig",
+    "pos": "adjective",
+    "en": "sincere",
+    "topic": "relationships"
+  },
+  {
+    "id": "b11-zuverlaessig-r",
+    "lemma": "treu",
+    "pos": "adjective",
+    "en": "loyal, faithful",
+    "topic": "relationships"
+  },
+  {
+    "id": "b11-eifersuechtig",
+    "lemma": "eifersüchtig",
+    "pos": "adjective",
+    "en": "jealous",
+    "topic": "relationships"
+  },
+  {
+    "id": "b11-die-freundschaft",
     "lemma": "Freundschaft",
     "article": "die",
     "plural": "Freundschaften",
     "pos": "noun",
-    "en": "friendship"
+    "en": "friendship",
+    "topic": "relationships"
   },
   {
-    "id": "partnerschaft",
+    "id": "b11-die-partnerschaft",
     "lemma": "Partnerschaft",
     "article": "die",
     "plural": "Partnerschaften",
     "pos": "noun",
-    "en": "partnership"
+    "en": "partnership",
+    "topic": "relationships"
   },
   {
-    "id": "ehe",
-    "lemma": "Ehe",
-    "article": "die",
-    "plural": "Ehen",
-    "pos": "noun",
-    "en": "marriage"
-  },
-  {
-    "id": "trennung",
-    "lemma": "Trennung",
-    "article": "die",
-    "plural": "Trennungen",
-    "pos": "noun",
-    "en": "parting"
-  },
-  {
-    "id": "scheidung",
-    "lemma": "Scheidung",
-    "article": "die",
-    "plural": "Scheidungen",
-    "pos": "noun",
-    "en": "divorce"
-  },
-  {
-    "id": "vertrauen",
-    "lemma": "Vertrauen",
-    "article": "das",
-    "pos": "noun",
-    "en": "trust"
-  },
-  {
-    "id": "respekt",
-    "lemma": "Respekt",
-    "article": "der",
-    "pos": "noun",
-    "en": "respect"
-  },
-  {
-    "id": "konflikt",
-    "lemma": "Konflikt",
-    "article": "der",
-    "plural": "Konflikte",
-    "pos": "noun",
-    "en": "conflict"
-  },
-  {
-    "id": "kompromiss",
-    "lemma": "Kompromiss",
-    "article": "der",
-    "plural": "Kompromisse",
-    "pos": "noun",
-    "en": "compromise"
-  },
-  {
-    "id": "verstaendnis",
-    "lemma": "Verständnis",
-    "article": "das",
-    "plural": "Verständnisse",
-    "pos": "noun",
-    "en": "comprehension"
-  },
-  {
-    "id": "ruecksicht",
-    "lemma": "Rücksicht",
-    "article": "die",
-    "plural": "Rücksichten",
-    "pos": "noun",
-    "en": "consideration"
-  },
-  {
-    "id": "unterstuetzung",
-    "lemma": "Unterstützung",
-    "article": "die",
-    "plural": "Unterstützungen",
-    "pos": "noun",
-    "en": "support"
-  },
-  {
-    "id": "einladung",
-    "lemma": "Einladung",
-    "article": "die",
-    "plural": "Einladungen",
-    "pos": "noun",
-    "en": "invitation"
-  },
-  {
-    "id": "verabredung",
-    "lemma": "Verabredung",
-    "article": "die",
-    "plural": "Verabredungen",
-    "pos": "noun",
-    "en": "appointment"
-  },
-  {
-    "id": "vertrauen",
-    "lemma": "vertrauen",
+    "id": "b11-sich-trennen",
+    "lemma": "sich trennen",
     "pos": "verb",
-    "en": "trust",
-    "forms": {
-      "ich": "vertraue",
-      "du": "vertraust",
-      "er": "vertraut"
-    }
+    "en": "to split up",
+    "topic": "relationships"
   },
   {
-    "id": "respektieren",
-    "lemma": "respektieren",
-    "pos": "verb",
-    "en": "respect",
-    "forms": {
-      "ich": "respektiere",
-      "du": "respektierst",
-      "er": "respektiert"
-    }
-  },
-  {
-    "id": "unterstuetzen",
+    "id": "b11-unterstuetzen",
     "lemma": "unterstützen",
     "pos": "verb",
-    "en": "support",
-    "forms": {
-      "ich": "unterstütze",
-      "du": "unterstützt",
-      "er": "unterstützt"
-    }
+    "en": "to support",
+    "topic": "relationships"
   },
   {
-    "id": "heiraten",
-    "lemma": "heiraten",
+    "id": "b11-schaetzen",
+    "lemma": "schätzen",
     "pos": "verb",
-    "en": "marry",
-    "forms": {
-      "ich": "heirate",
-      "du": "heiratest",
-      "er": "heiratet"
-    }
+    "en": "to value, to appreciate",
+    "topic": "relationships"
   },
   {
-    "id": "einladen",
-    "lemma": "einladen",
+    "id": "b11-nerven",
+    "lemma": "auf die Nerven gehen",
+    "pos": "phrase",
+    "en": "to get on someone's nerves",
+    "topic": "relationships"
+  },
+  {
+    "id": "b11-sich-melden-b",
+    "lemma": "in Kontakt bleiben",
+    "pos": "phrase",
+    "en": "to stay in touch",
+    "topic": "relationships"
+  },
+  {
+    "id": "b11-der-mietvertrag",
+    "lemma": "Mietvertrag",
+    "article": "der",
+    "plural": "Mietverträge",
+    "pos": "noun",
+    "en": "tenancy agreement",
+    "topic": "tenancy"
+  },
+  {
+    "id": "b11-die-kaltmiete",
+    "lemma": "Kaltmiete",
+    "article": "die",
+    "plural": "Kaltmieten",
+    "pos": "noun",
+    "en": "rent excluding bills",
+    "topic": "tenancy"
+  },
+  {
+    "id": "b11-die-warmmiete",
+    "lemma": "Warmmiete",
+    "article": "die",
+    "plural": "Warmmieten",
+    "pos": "noun",
+    "en": "rent including bills",
+    "topic": "tenancy"
+  },
+  {
+    "id": "b11-die-betriebskosten",
+    "lemma": "Betriebskosten",
+    "article": "die",
+    "plural": "Betriebskosten",
+    "pos": "noun",
+    "en": "service charges",
+    "topic": "tenancy"
+  },
+  {
+    "id": "b11-die-abrechnung",
+    "lemma": "Nebenkostenabrechnung",
+    "article": "die",
+    "plural": "Nebenkostenabrechnungen",
+    "pos": "noun",
+    "en": "utilities statement",
+    "topic": "tenancy"
+  },
+  {
+    "id": "b11-die-mieterhoehung",
+    "lemma": "Mieterhöhung",
+    "article": "die",
+    "plural": "Mieterhöhungen",
+    "pos": "noun",
+    "en": "rent increase",
+    "topic": "tenancy"
+  },
+  {
+    "id": "b11-der-eigenbedarf",
+    "lemma": "Eigenbedarf",
+    "article": "der",
+    "plural": "Eigenbedarfe",
+    "pos": "noun",
+    "en": "owner's own use (as grounds for eviction)",
+    "topic": "tenancy"
+  },
+  {
+    "id": "b11-der-mieterverein",
+    "lemma": "Mieterverein",
+    "article": "der",
+    "plural": "Mietervereine",
+    "pos": "noun",
+    "en": "tenants' association",
+    "topic": "tenancy"
+  },
+  {
+    "id": "b11-der-schimmel",
+    "lemma": "Schimmel",
+    "article": "der",
+    "plural": "Schimmel",
+    "pos": "noun",
+    "en": "mould",
+    "topic": "tenancy"
+  },
+  {
+    "id": "b11-lueften",
+    "lemma": "lüften",
     "pos": "verb",
-    "en": "invite",
-    "forms": {
-      "ich": "lade ein",
-      "du": "lädst ein",
-      "er": "lädt ein"
-    }
+    "en": "to air, to ventilate",
+    "topic": "tenancy"
   },
   {
-    "id": "verzichten",
-    "lemma": "verzichten",
+    "id": "b11-die-mietminderung",
+    "lemma": "Mietminderung",
+    "article": "die",
+    "plural": "Mietminderungen",
+    "pos": "noun",
+    "en": "rent reduction",
+    "topic": "tenancy"
+  },
+  {
+    "id": "b11-der-anspruch",
+    "lemma": "Anspruch",
+    "article": "der",
+    "plural": "Ansprüche",
+    "pos": "noun",
+    "en": "entitlement, claim",
+    "topic": "tenancy"
+  },
+  {
+    "id": "b11-melden-t",
+    "lemma": "einen Mangel anzeigen",
+    "pos": "phrase",
+    "en": "to report a defect",
+    "topic": "tenancy"
+  },
+  {
+    "id": "b11-die-hausverwaltung",
+    "lemma": "Hausverwaltung",
+    "article": "die",
+    "plural": "Hausverwaltungen",
+    "pos": "noun",
+    "en": "property management",
+    "topic": "tenancy"
+  },
+  {
+    "id": "b11-instand-halten",
+    "lemma": "instand halten",
+    "pos": "phrase",
+    "en": "to maintain",
+    "topic": "tenancy"
+  },
+  {
+    "id": "b11-die-frist-t",
+    "lemma": "Zahlungsfrist",
+    "article": "die",
+    "plural": "Zahlungsfristen",
+    "pos": "noun",
+    "en": "payment deadline",
+    "topic": "tenancy"
+  },
+  {
+    "id": "b11-fristlos",
+    "lemma": "fristlos",
+    "pos": "adjective",
+    "en": "without notice",
+    "topic": "tenancy"
+  },
+  {
+    "id": "b11-untervermieten",
+    "lemma": "untervermieten",
     "pos": "verb",
-    "en": "renounce",
-    "forms": {
-      "ich": "verzichte",
-      "du": "verzichtest",
-      "er": "verzichtet"
-    }
+    "en": "to sublet",
+    "topic": "tenancy"
   },
   {
-    "id": "vermeiden",
-    "lemma": "vermeiden",
+    "id": "b11-die-unterkunft",
+    "lemma": "Unterkunft",
+    "article": "die",
+    "plural": "Unterkünfte",
+    "pos": "noun",
+    "en": "accommodation",
+    "topic": "trip-planning"
+  },
+  {
+    "id": "b11-die-buchung",
+    "lemma": "Buchung",
+    "article": "die",
+    "plural": "Buchungen",
+    "pos": "noun",
+    "en": "booking",
+    "topic": "trip-planning"
+  },
+  {
+    "id": "b11-umbuchen",
+    "lemma": "umbuchen",
     "pos": "verb",
-    "en": "avoid",
-    "forms": {
-      "ich": "vermeide",
-      "du": "vermeidest",
-      "er": "vermeidet"
-    }
+    "en": "to rebook, to change a booking",
+    "topic": "trip-planning"
   },
   {
-    "id": "deutlich",
-    "lemma": "deutlich",
-    "pos": "adj",
-    "en": "clear"
-  },
-  {
-    "id": "genau",
-    "lemma": "genau",
-    "pos": "adj",
-    "en": "truly"
-  },
-  {
-    "id": "ungefaehr",
-    "lemma": "ungefähr",
-    "pos": "adj",
-    "en": "approximate"
-  },
-  {
-    "id": "ausreichend",
-    "lemma": "ausreichend",
-    "pos": "adj",
-    "en": "sufficient"
-  },
-  {
-    "id": "zusaetzlich",
-    "lemma": "zusätzlich",
-    "pos": "adj",
-    "en": "additional"
-  },
-  {
-    "id": "gemeinsam",
-    "lemma": "gemeinsam",
-    "pos": "adj",
-    "en": "common"
-  },
-  {
-    "id": "persoenlich",
-    "lemma": "persönlich",
-    "pos": "adj",
-    "en": "personal"
-  },
-  {
-    "id": "oeffentlich",
-    "lemma": "öffentlich",
-    "pos": "adj",
-    "en": "public"
-  },
-  {
-    "id": "privat",
-    "lemma": "privat",
-    "pos": "adj",
-    "en": "private"
-  },
-  {
-    "id": "allgemein",
-    "lemma": "allgemein",
-    "pos": "adj",
-    "en": "common"
-  },
-  {
-    "id": "besonders",
-    "lemma": "besonders",
-    "pos": "other",
-    "en": "especially"
-  },
-  {
-    "id": "typisch",
-    "lemma": "typisch",
-    "pos": "adj",
-    "en": "typical"
-  },
-  {
-    "id": "ueblich",
-    "lemma": "üblich",
-    "pos": "adj",
-    "en": "usual"
-  },
-  {
-    "id": "selbstverstaendlich",
-    "lemma": "selbstverständlich",
-    "pos": "adj",
-    "en": "natural"
-  },
-  {
-    "id": "notwendig",
-    "lemma": "notwendig",
-    "pos": "adj",
-    "en": "necessary"
-  },
-  {
-    "id": "nuetzlich",
-    "lemma": "nützlich",
-    "pos": "adj",
-    "en": "useful"
-  },
-  {
-    "id": "schaedlich",
-    "lemma": "schädlich",
-    "pos": "adj",
-    "en": "harmful"
-  },
-  {
-    "id": "gefaehrlich",
-    "lemma": "gefährlich",
-    "pos": "adj",
-    "en": "dangerous"
-  },
-  {
-    "id": "harmlos",
-    "lemma": "harmlos",
-    "pos": "adj",
-    "en": "harmless"
-  },
-  {
-    "id": "zuverlaessig",
-    "lemma": "zuverlässig",
-    "pos": "adj",
-    "en": "reliable"
-  },
-  {
-    "id": "verantwortlich",
-    "lemma": "verantwortlich",
-    "pos": "adj",
-    "en": "responsible"
-  },
-  {
-    "id": "erfolgreich",
-    "lemma": "erfolgreich",
-    "pos": "adj",
-    "en": "successful"
-  },
-  {
-    "id": "erfahren",
-    "lemma": "erfahren",
+    "id": "b11-stornieren",
+    "lemma": "stornieren",
     "pos": "verb",
-    "en": "experience",
-    "forms": {
-      "ich": "erfahre",
-      "du": "erfährst",
-      "er": "erfährt"
-    }
+    "en": "to cancel a booking",
+    "topic": "trip-planning"
   },
   {
-    "id": "begabt",
-    "lemma": "begabt",
-    "pos": "adj",
-    "en": "gifted"
+    "id": "b11-die-stornierung",
+    "lemma": "Stornogebühr",
+    "article": "die",
+    "plural": "Stornogebühren",
+    "pos": "noun",
+    "en": "cancellation fee",
+    "topic": "trip-planning"
   },
   {
-    "id": "neugierig",
-    "lemma": "neugierig",
-    "pos": "adj",
-    "en": "curious"
+    "id": "b11-der-anschluss",
+    "lemma": "Anschluss",
+    "article": "der",
+    "plural": "Anschlüsse",
+    "pos": "noun",
+    "en": "connection (travel)",
+    "topic": "trip-planning"
   },
   {
-    "id": "vorsichtig",
-    "lemma": "vorsichtig",
-    "pos": "adj",
-    "en": "careful"
+    "id": "b11-verpassen",
+    "lemma": "verpassen",
+    "pos": "verb",
+    "en": "to miss",
+    "topic": "trip-planning"
   },
   {
-    "id": "geduldig",
-    "lemma": "geduldig",
-    "pos": "adj",
-    "en": "patient"
+    "id": "b11-die-route",
+    "lemma": "Route",
+    "article": "die",
+    "plural": "Routen",
+    "pos": "noun",
+    "en": "route",
+    "topic": "trip-planning"
   },
   {
-    "id": "ehrlich",
-    "lemma": "ehrlich",
-    "pos": "adj",
-    "en": "real"
+    "id": "b11-die-versicherung-r",
+    "lemma": "Reiseversicherung",
+    "article": "die",
+    "plural": "Reiseversicherungen",
+    "pos": "noun",
+    "en": "travel insurance",
+    "topic": "trip-planning"
   },
   {
-    "id": "hoeflich",
-    "lemma": "höflich",
-    "pos": "adj",
-    "en": "polite"
+    "id": "b11-die-halbpension",
+    "lemma": "Halbpension",
+    "article": "die",
+    "plural": "Halbpensionen",
+    "pos": "noun",
+    "en": "half board",
+    "topic": "trip-planning"
+  },
+  {
+    "id": "b11-inbegriffen",
+    "lemma": "inbegriffen",
+    "pos": "adjective",
+    "en": "included",
+    "topic": "trip-planning"
+  },
+  {
+    "id": "b11-im-voraus",
+    "lemma": "im Voraus",
+    "pos": "phrase",
+    "en": "in advance",
+    "topic": "trip-planning"
+  },
+  {
+    "id": "b11-der-aufenthalt",
+    "lemma": "Aufenthalt",
+    "article": "der",
+    "plural": "Aufenthalte",
+    "pos": "noun",
+    "en": "stay",
+    "topic": "trip-planning"
+  },
+  {
+    "id": "b11-die-sehenswuerdigkeit",
+    "lemma": "Sehenswürdigkeit",
+    "article": "die",
+    "plural": "Sehenswürdigkeiten",
+    "pos": "noun",
+    "en": "sight, attraction",
+    "topic": "trip-planning"
+  },
+  {
+    "id": "b11-besichtigen",
+    "lemma": "besichtigen",
+    "pos": "verb",
+    "en": "to visit, to view",
+    "topic": "trip-planning"
+  },
+  {
+    "id": "b11-sich-erkundigen-r",
+    "lemma": "sich informieren über",
+    "pos": "verb",
+    "en": "to find out about",
+    "topic": "trip-planning"
+  },
+  {
+    "id": "b11-ausgebucht",
+    "lemma": "ausgebucht",
+    "pos": "adjective",
+    "en": "fully booked",
+    "topic": "trip-planning"
+  },
+  {
+    "id": "b11-kurzfristig-r",
+    "lemma": "spontan",
+    "pos": "adjective",
+    "en": "spontaneous, on the spur of the moment",
+    "topic": "trip-planning"
+  },
+  {
+    "id": "b11-die-erfahrung-b",
+    "lemma": "Erlebnis",
+    "article": "das",
+    "plural": "Erlebnisse",
+    "pos": "noun",
+    "en": "experience, event",
+    "topic": "experiences"
+  },
+  {
+    "id": "b11-erleben",
+    "lemma": "erleben",
+    "pos": "verb",
+    "en": "to experience",
+    "topic": "experiences"
+  },
+  {
+    "id": "b11-nachdem-b",
+    "lemma": "zuvor",
+    "pos": "adverb",
+    "en": "beforehand, previously",
+    "topic": "experiences"
+  },
+  {
+    "id": "b11-inzwischen-b",
+    "lemma": "mittlerweile",
+    "pos": "adverb",
+    "en": "by now, meanwhile",
+    "topic": "experiences"
+  },
+  {
+    "id": "b11-lernen-aus",
+    "lemma": "lernen aus",
+    "pos": "verb",
+    "en": "to learn from",
+    "topic": "experiences"
+  },
+  {
+    "id": "b11-die-herausforderung",
+    "lemma": "Herausforderung",
+    "article": "die",
+    "plural": "Herausforderungen",
+    "pos": "noun",
+    "en": "challenge",
+    "topic": "experiences"
+  },
+  {
+    "id": "b11-bewaeltigen",
+    "lemma": "bewältigen",
+    "pos": "verb",
+    "en": "to cope with, to manage",
+    "topic": "experiences"
+  },
+  {
+    "id": "b11-sich-durchsetzen",
+    "lemma": "sich durchsetzen",
+    "pos": "verb",
+    "en": "to assert oneself",
+    "topic": "experiences"
+  },
+  {
+    "id": "b11-aufgeben",
+    "lemma": "aufgeben",
+    "pos": "verb",
+    "en": "to give up",
+    "topic": "experiences"
+  },
+  {
+    "id": "b11-durchhalten",
+    "lemma": "durchhalten",
+    "pos": "verb",
+    "en": "to stick it out",
+    "topic": "experiences"
+  },
+  {
+    "id": "b11-der-rueckblick",
+    "lemma": "Rückblick",
+    "article": "der",
+    "plural": "Rückblicke",
+    "pos": "noun",
+    "en": "retrospect",
+    "topic": "experiences"
+  },
+  {
+    "id": "b11-im-nachhinein",
+    "lemma": "im Nachhinein",
+    "pos": "phrase",
+    "en": "with hindsight",
+    "topic": "experiences"
+  },
+  {
+    "id": "b11-sich-lohnen-b",
+    "lemma": "sich auszahlen",
+    "pos": "verb",
+    "en": "to pay off",
+    "topic": "experiences"
+  },
+  {
+    "id": "b11-die-muehe",
+    "lemma": "Mühe",
+    "article": "die",
+    "plural": "Mühen",
+    "pos": "noun",
+    "en": "effort, trouble",
+    "topic": "experiences"
+  },
+  {
+    "id": "b11-schwierig",
+    "lemma": "anspruchsvoll",
+    "pos": "adjective",
+    "en": "demanding",
+    "topic": "experiences"
+  },
+  {
+    "id": "b11-erstaunlich",
+    "lemma": "erstaunlich",
+    "pos": "adjective",
+    "en": "astonishing",
+    "topic": "experiences"
+  },
+  {
+    "id": "b11-zunaechst",
+    "lemma": "zunächst",
+    "pos": "adverb",
+    "en": "at first",
+    "topic": "experiences"
+  },
+  {
+    "id": "b11-allmaehlich",
+    "lemma": "allmählich",
+    "pos": "adverb",
+    "en": "gradually",
+    "topic": "experiences"
+  },
+  {
+    "id": "b11-die-bildung",
+    "lemma": "Bildung",
+    "article": "die",
+    "plural": "Bildungen",
+    "pos": "noun",
+    "en": "education",
+    "topic": "education"
+  },
+  {
+    "id": "b11-die-hochschule",
+    "lemma": "Hochschule",
+    "article": "die",
+    "plural": "Hochschulen",
+    "pos": "noun",
+    "en": "university, college",
+    "topic": "education"
+  },
+  {
+    "id": "b11-der-studiengang",
+    "lemma": "Studiengang",
+    "article": "der",
+    "plural": "Studiengänge",
+    "pos": "noun",
+    "en": "degree programme",
+    "topic": "education"
+  },
+  {
+    "id": "b11-die-pruefung-b",
+    "lemma": "Zwischenprüfung",
+    "article": "die",
+    "plural": "Zwischenprüfungen",
+    "pos": "noun",
+    "en": "intermediate exam",
+    "topic": "education"
+  },
+  {
+    "id": "b11-bestehen",
+    "lemma": "bestehen",
+    "pos": "verb",
+    "en": "to pass (an exam)",
+    "topic": "education"
+  },
+  {
+    "id": "b11-durchfallen",
+    "lemma": "durchfallen",
+    "pos": "verb",
+    "en": "to fail (an exam)",
+    "topic": "education"
+  },
+  {
+    "id": "b11-die-note",
+    "lemma": "Note",
+    "article": "die",
+    "plural": "Noten",
+    "pos": "noun",
+    "en": "mark, grade",
+    "topic": "education"
+  },
+  {
+    "id": "b11-das-fach",
+    "lemma": "Fach",
+    "article": "das",
+    "plural": "Fächer",
+    "pos": "noun",
+    "en": "subject",
+    "topic": "education"
+  },
+  {
+    "id": "b11-die-fachhochschule",
+    "lemma": "Berufsschule",
+    "article": "die",
+    "plural": "Berufsschulen",
+    "pos": "noun",
+    "en": "vocational school",
+    "topic": "education"
+  },
+  {
+    "id": "b11-der-abschluss-b",
+    "lemma": "Zeugnisanerkennung",
+    "article": "die",
+    "plural": "Zeugnisanerkennungen",
+    "pos": "noun",
+    "en": "recognition of qualifications",
+    "topic": "education"
+  },
+  {
+    "id": "b11-anerkennen",
+    "lemma": "anerkennen",
+    "pos": "verb",
+    "en": "to recognise (a qualification)",
+    "topic": "education"
+  },
+  {
+    "id": "b11-die-lernstrategie",
+    "lemma": "Lernstrategie",
+    "article": "die",
+    "plural": "Lernstrategien",
+    "pos": "noun",
+    "en": "learning strategy",
+    "topic": "education"
+  },
+  {
+    "id": "b11-auswendig",
+    "lemma": "auswendig lernen",
+    "pos": "phrase",
+    "en": "to learn by heart",
+    "topic": "education"
+  },
+  {
+    "id": "b11-sich-merken",
+    "lemma": "sich merken",
+    "pos": "verb",
+    "en": "to memorise, to remember",
+    "topic": "education"
+  },
+  {
+    "id": "b11-wiederholen-b",
+    "lemma": "vertiefen",
+    "pos": "verb",
+    "en": "to deepen, to consolidate",
+    "topic": "education"
+  },
+  {
+    "id": "b11-der-fortschritt",
+    "lemma": "Fortschritt",
+    "article": "der",
+    "plural": "Fortschritte",
+    "pos": "noun",
+    "en": "progress",
+    "topic": "education"
+  },
+  {
+    "id": "b11-verpflichtend",
+    "lemma": "verpflichtend",
+    "pos": "adjective",
+    "en": "compulsory",
+    "topic": "education"
+  },
+  {
+    "id": "b11-das-stipendium",
+    "lemma": "Stipendium",
+    "article": "das",
+    "plural": "Stipendien",
+    "pos": "noun",
+    "en": "scholarship",
+    "topic": "education"
+  },
+  {
+    "id": "b11-die-lebenshaltungskosten",
+    "lemma": "Lebenshaltungskosten",
+    "article": "die",
+    "plural": "Lebenshaltungskosten",
+    "pos": "noun",
+    "en": "cost of living",
+    "topic": "economy"
+  },
+  {
+    "id": "b11-die-inflation",
+    "lemma": "Inflation",
+    "article": "die",
+    "plural": "Inflationen",
+    "pos": "noun",
+    "en": "inflation",
+    "topic": "economy"
+  },
+  {
+    "id": "b11-steigen",
+    "lemma": "steigen",
+    "pos": "verb",
+    "en": "to rise",
+    "topic": "economy"
+  },
+  {
+    "id": "b11-sinken",
+    "lemma": "sinken",
+    "pos": "verb",
+    "en": "to fall",
+    "topic": "economy"
+  },
+  {
+    "id": "b11-die-steuererklaerung",
+    "lemma": "Steuererklärung",
+    "article": "die",
+    "plural": "Steuererklärungen",
+    "pos": "noun",
+    "en": "tax return",
+    "topic": "economy"
+  },
+  {
+    "id": "b11-die-steuer",
+    "lemma": "Steuer",
+    "article": "die",
+    "plural": "Steuern",
+    "pos": "noun",
+    "en": "tax",
+    "topic": "economy"
+  },
+  {
+    "id": "b11-brutto",
+    "lemma": "brutto",
+    "pos": "adjective",
+    "en": "gross",
+    "topic": "economy"
+  },
+  {
+    "id": "b11-netto",
+    "lemma": "netto",
+    "pos": "adjective",
+    "en": "net",
+    "topic": "economy"
+  },
+  {
+    "id": "b11-die-rate",
+    "lemma": "Rate",
+    "article": "die",
+    "plural": "Raten",
+    "pos": "noun",
+    "en": "instalment",
+    "topic": "economy"
+  },
+  {
+    "id": "b11-die-laufzeit",
+    "lemma": "Laufzeit",
+    "article": "die",
+    "plural": "Laufzeiten",
+    "pos": "noun",
+    "en": "term, duration",
+    "topic": "economy"
+  },
+  {
+    "id": "b11-kuendigen-w",
+    "lemma": "fristgerecht kündigen",
+    "pos": "phrase",
+    "en": "to cancel within the notice period",
+    "topic": "economy"
+  },
+  {
+    "id": "b11-sich-verlaengern",
+    "lemma": "sich automatisch verlängern",
+    "pos": "phrase",
+    "en": "to renew automatically",
+    "topic": "economy"
+  },
+  {
+    "id": "b11-vergleichen-w",
+    "lemma": "Preise vergleichen",
+    "pos": "phrase",
+    "en": "to compare prices",
+    "topic": "economy"
+  },
+  {
+    "id": "b11-sparen-w",
+    "lemma": "zurücklegen",
+    "pos": "verb",
+    "en": "to put aside",
+    "topic": "economy"
+  },
+  {
+    "id": "b11-die-rente",
+    "lemma": "Rente",
+    "article": "die",
+    "plural": "Renten",
+    "pos": "noun",
+    "en": "pension",
+    "topic": "economy"
+  },
+  {
+    "id": "b11-die-ausgabe",
+    "lemma": "Ausgaben",
+    "article": "die",
+    "plural": "Ausgaben",
+    "pos": "noun",
+    "en": "expenses, outgoings",
+    "topic": "economy"
+  },
+  {
+    "id": "b11-die-einnahme",
+    "lemma": "Einnahmen",
+    "article": "die",
+    "plural": "Einnahmen",
+    "pos": "noun",
+    "en": "income, receipts",
+    "topic": "economy"
+  },
+  {
+    "id": "b11-sich-lohnen-w",
+    "lemma": "sich rechnen",
+    "pos": "verb",
+    "en": "to pay for itself",
+    "topic": "economy"
+  },
+  {
+    "id": "b11-die-hoffnung",
+    "lemma": "Hoffnung",
+    "article": "die",
+    "plural": "Hoffnungen",
+    "pos": "noun",
+    "en": "hope",
+    "topic": "future"
+  },
+  {
+    "id": "b11-der-zweifel",
+    "lemma": "Zweifel",
+    "article": "der",
+    "plural": "Zweifel",
+    "pos": "noun",
+    "en": "doubt",
+    "topic": "future"
+  },
+  {
+    "id": "b11-langfristig",
+    "lemma": "langfristig",
+    "pos": "adjective",
+    "en": "long-term",
+    "topic": "future"
+  },
+  {
+    "id": "b11-kurzfristig-z",
+    "lemma": "kurzfristig",
+    "pos": "adjective",
+    "en": "short-term",
+    "topic": "future"
+  },
+  {
+    "id": "b11-vorhaben-z",
+    "lemma": "sich vornehmen",
+    "pos": "verb",
+    "en": "to set out to do",
+    "topic": "future"
+  },
+  {
+    "id": "b11-anstreben",
+    "lemma": "anstreben",
+    "pos": "verb",
+    "en": "to aim for",
+    "topic": "future"
+  },
+  {
+    "id": "b11-damit-rechnen",
+    "lemma": "damit rechnen",
+    "pos": "phrase",
+    "en": "to expect, to count on",
+    "topic": "future"
+  },
+  {
+    "id": "b11-sich-vorstellen-z",
+    "lemma": "sich vorstellen können",
+    "pos": "phrase",
+    "en": "to be able to imagine",
+    "topic": "future"
+  },
+  {
+    "id": "b11-verwirklichen",
+    "lemma": "verwirklichen",
+    "pos": "verb",
+    "en": "to realise, to make happen",
+    "topic": "future"
+  },
+  {
+    "id": "b11-die-chance",
+    "lemma": "Chance",
+    "article": "die",
+    "plural": "Chancen",
+    "pos": "noun",
+    "en": "chance, opportunity",
+    "topic": "future"
+  },
+  {
+    "id": "b11-das-risiko",
+    "lemma": "Risiko",
+    "article": "das",
+    "plural": "Risiken",
+    "pos": "noun",
+    "en": "risk",
+    "topic": "future"
+  },
+  {
+    "id": "b11-abhaengen-von",
+    "lemma": "abhängen von",
+    "pos": "verb",
+    "en": "to depend on",
+    "topic": "future"
+  },
+  {
+    "id": "b11-vorausgesetzt",
+    "lemma": "vorausgesetzt, dass",
+    "pos": "phrase",
+    "en": "provided that",
+    "topic": "future"
+  },
+  {
+    "id": "b11-je-nachdem",
+    "lemma": "je nachdem",
+    "pos": "phrase",
+    "en": "depending",
+    "topic": "future"
+  },
+  {
+    "id": "b11-optimistisch",
+    "lemma": "optimistisch",
+    "pos": "adjective",
+    "en": "optimistic",
+    "topic": "future"
+  },
+  {
+    "id": "b11-skeptisch",
+    "lemma": "skeptisch",
+    "pos": "adjective",
+    "en": "sceptical",
+    "topic": "future"
+  },
+  {
+    "id": "b11-offen-lassen",
+    "lemma": "offenlassen",
+    "pos": "verb",
+    "en": "to leave open",
+    "topic": "future"
+  },
+  {
+    "id": "b11-sich-entscheiden-z",
+    "lemma": "sich festlegen",
+    "pos": "verb",
+    "en": "to commit, to pin down",
+    "topic": "future"
+  },
+  {
+    "id": "b11-worauf-es-ankommt",
+    "lemma": "Worauf es ankommt, ist …",
+    "pos": "phrase",
+    "en": "What matters is …",
+    "topic": "review"
+  },
+  {
+    "id": "b11-was-ich-sagen-will",
+    "lemma": "Was ich sagen will, ist …",
+    "pos": "phrase",
+    "en": "What I mean is …",
+    "topic": "review"
+  },
+  {
+    "id": "b11-einfach-gesagt",
+    "lemma": "einfach gesagt",
+    "pos": "phrase",
+    "en": "put simply",
+    "topic": "review"
+  },
+  {
+    "id": "b11-beispielsweise",
+    "lemma": "beispielsweise",
+    "pos": "adverb",
+    "en": "for instance",
+    "topic": "review"
+  },
+  {
+    "id": "b11-und-zwar",
+    "lemma": "und zwar",
+    "pos": "phrase",
+    "en": "namely, specifically",
+    "topic": "review"
+  },
+  {
+    "id": "b11-das-liegt-daran",
+    "lemma": "Das liegt daran, dass …",
+    "pos": "phrase",
+    "en": "That is because …",
+    "topic": "review"
+  },
+  {
+    "id": "b11-wie-dem-auch-sei",
+    "lemma": "wie auch immer",
+    "pos": "phrase",
+    "en": "in any case, anyway",
+    "topic": "review"
+  },
+  {
+    "id": "b11-moment-mal",
+    "lemma": "Moment, wie sagt man …?",
+    "pos": "phrase",
+    "en": "Hang on, how do you say …?",
+    "topic": "review"
+  },
+  {
+    "id": "b11-ich-meine",
+    "lemma": "beziehungsweise",
+    "pos": "conjunction",
+    "en": "or rather",
+    "topic": "review"
+  },
+  {
+    "id": "b11-korrigieren",
+    "lemma": "sich korrigieren",
+    "pos": "verb",
+    "en": "to correct oneself",
+    "topic": "review"
   }
 ]

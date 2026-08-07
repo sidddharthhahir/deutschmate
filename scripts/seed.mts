@@ -363,6 +363,7 @@ const UNIT_FILES = [
   "data/units-a1-2.json",
   "data/units-a2-1.json",
   "data/units-a2-2.json",
+  "data/units-b1-1.json",
   "data/units-generated.json",
 ];
 /*
@@ -414,7 +415,7 @@ if (existsSync(UNIT_ADDITIONS)) {
     /* Hand-written levels take nothing from the padding. A2.1 joined them when
        its vocabulary was written: the additions map is the frequency list in
        positional chunks, which is what gave "Im Restaurant" Majestät. */
-    if (["A1.1", "A1.2", "A2.1", "A2.2"].includes(u.level)) continue;
+    if (["A1.1", "A1.2", "A2.1", "A2.2", "B1.1"].includes(u.level)) continue;
     const more = (extra[u.id] ?? []).filter(
       (id) => seenIds.has(id) && !u.words.includes(id),
     );

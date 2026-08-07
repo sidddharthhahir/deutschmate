@@ -44,7 +44,14 @@ type Word = {
 };
 
 /** Each half-level, with the file its vocabulary lives in. */
-const HALVES: { level: string; slug: string; vocab: string; prev: string }[] = [
+const HALVES: {
+  level: string;
+  slug: string;
+  vocab: string;
+  prev: string;
+  /** A2 and B1 keep their blueprints in different files. */
+  blueprints?: string;
+}[] = [
   {
     level: "A2.1",
     slug: "a2-1",
@@ -57,6 +64,13 @@ const HALVES: { level: string; slug: string; vocab: string; prev: string }[] = [
     vocab: "data/vocab-a2-2.json",
     prev: "a2-1-u20",
   },
+  {
+    level: "B1.1",
+    slug: "b1-1",
+    vocab: "data/vocab-b1-1.json",
+    prev: "a2-2-u20",
+    blueprints: "data/blueprints-b1.json",
+  },
 ];
 
 for (const half of HALVES) build(half);
@@ -66,13 +80,15 @@ function build({
   slug,
   vocab,
   prev,
+  blueprints = "data/blueprints-a2.json",
 }: {
   level: string;
   slug: string;
   vocab: string;
   prev: string;
+  blueprints?: string;
 }) {
-  const bps = (read("data/blueprints-a2.json") as Blueprint[])
+  const bps = (read(blueprints) as Blueprint[])
     .filter((b) => b.level === level)
     .sort((a, b) => a.ord - b.ord);
   if (!existsSync(path.join(ROOT, vocab))) {
