@@ -2,7 +2,7 @@
  * Numbers the README states as fact are facts.
  * needs: seeded database
  */
-import { readFileSync } from "node:fs";
+import { readFileSync, readdirSync } from "node:fs";
 import { join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { ok, eq, section, done, open } from "./harness.mts";
@@ -105,6 +105,54 @@ if (setup) {
   ];
   eq(got, want, "words, units, grammar, readings, sentences, patterns, videos");
 }
+
+section("and the one page a new learner is handed");
+/*
+ * START-HERE.md is what somebody reads before they have the repo. A stale
+ * number there is worse than one in this README, because it is the first thing
+ * they are told and they have nothing to check it against.
+ */
+const start = readFileSync(join(ROOT, "START-HERE.md"), "utf8").replace(
+  /\s+/g,
+  " ",
+);
+const built =
+  /— ([\d,]+) words, ([\d,]+) units, ([\d,]+) grammar points, ([\d,]+) recordings/.exec(
+    start,
+  );
+ok(built, "it still says what setup builds");
+if (built) {
+  const got = built.slice(1).map((s) => Number(s.replace(/,/g, "")));
+  eq(
+    got.slice(0, 3),
+    [
+      count("SELECT COUNT(*) AS n FROM word"),
+      count("SELECT COUNT(*) AS n FROM unit"),
+      count("SELECT COUNT(*) AS n FROM grammar"),
+    ],
+    "words, units, grammar points",
+  );
+  /* The recordings are files rather than rows — counted the same way the setup
+     script counts them, so the two cannot disagree. */
+  const audio = readdirSync(join(ROOT, "public/audio"), { recursive: true })
+    .map(String)
+    .filter((f) => /\.(mp3|ogg|opus|m4a|wav)$/i.test(f)).length;
+  eq(got[3], audio, "recordings on disk");
+}
+
+/* A1 is the level it promises works with no key at all. */
+ok(
+  /whole of A1 conversation, because those (\d+) units ship/.test(start),
+  "it names how many A1 units carry a written-out dialogue",
+);
+const a1Scripts = count(
+  "SELECT COUNT(*) AS n FROM unit WHERE level LIKE 'A1%' AND dialogue_json IS NOT NULL",
+);
+eq(
+  Number(/because those (\d+) units ship/.exec(start)?.[1] ?? -1),
+  a1Scripts,
+  "and that is how many there are",
+);
 
 section("and so do the numbers the tour shows a learner");
 /*

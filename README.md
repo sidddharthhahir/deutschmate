@@ -18,6 +18,10 @@ projection from your own pace rather than that average.
 
 ## Get it running
 
+**Handing this to somebody who wants to learn German rather than read about
+it? Send them [START-HERE.md](START-HERE.md).** Same install, one page, no
+architecture.
+
 You need **Node 24 or newer** — the database is `node:sqlite`, which ships with
 the runtime. Nothing to compile, no native modules, no database server.
 
