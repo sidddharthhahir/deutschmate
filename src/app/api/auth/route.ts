@@ -14,7 +14,6 @@ import {
   MAX_ATTEMPTS,
 } from "@/lib/auth";
 import {
-  anyUsers,
   createUserWithPassword,
   credentialsFor,
   setPasswordHash,
@@ -104,13 +103,12 @@ export async function POST(req: Request) {
     const passBad = passwordProblem(password);
     if (passBad) return badRequest(passBad);
 
-    /* Not an open sign-up form by accident. Once somebody has an account, new
-       ones come from the operator or from /wer — the day this is public is a
-       decision, not a side effect of the route. */
-    if (anyUsers() && !str(raw.invite, 200)) {
-      const already = userByName(username);
-      if (already) return badRequest("Der Benutzername ist schon vergeben.");
-    }
+    /* Registration is open: anything that can reach this route can create an
+       account. That is deliberate rather than an oversight — /wer tells you to
+       add a second learner by signing out and registering, and that is the only
+       way to make one. The boundary is the network, not this route. Before
+       putting this server anywhere other people can reach, put a real gate here
+       first; a duplicate-name check is not one. */
 
     const code = newRecoveryCode();
     const user = createUserWithPassword(

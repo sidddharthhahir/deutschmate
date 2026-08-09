@@ -46,10 +46,12 @@ After that the device stays signed in. You will not be asked again.
 
 ## The one rule
 
-**Go to the end of the session.** The recap screen is what saves it — quit
-before that and nothing is recorded: no streak, no cards scheduled. If you have
-ten minutes instead of an hour, use **Kürzere Sitzung heute** under the main
-button. That still counts.
+**Go to the end of the session.** Every grade is saved the moment you give it,
+so your deck and its schedule survive quitting early — that much is never lost.
+What the recap screen records is everything around it: the streak, the minutes,
+and the unit you just finished. Quit before it and none of that counts. If you
+have ten minutes instead of an hour, use **Kürzere Sitzung heute** under the
+main button. That still counts.
 
 Press <kbd>Enter</kbd> on the home screen and it starts. Inside a session,
 <kbd>Enter</kbd> is always the one button on screen, <kbd>1</kbd>–<kbd>4</kbd>
@@ -97,8 +99,13 @@ npm run start:lan
 
 Not `npm run dev` for this. Dev mode is built for one person reloading their
 own code and drifts past a 15 GB heap after an evening; the production server
-measured 224 MB and stayed there. It prints a **Network:** address — that is
-the one to open from the other laptop.
+measured 224 MB and stayed there.
+
+The server prints `http://0.0.0.0:3000`. That is not an address anybody can
+open — it only means "listening on every interface". The one the other laptop
+needs is this machine's own address on the network: run `ipconfig` (`ifconfig`
+on macOS), take the IPv4 address of the Wi-Fi adapter — something like
+`192.168.0.246` — and open `http://192.168.0.246:3000` from the other laptop.
 
 Two things usually block it, both on the host: the firewall (Windows blocks
 incoming connections to Node by default) and the address changing when the
