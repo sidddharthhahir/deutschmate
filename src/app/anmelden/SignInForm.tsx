@@ -53,8 +53,12 @@ export default function SignInForm({ first }: { first: boolean }) {
         setBusy(false);
         return;
       }
-      // A full load, not a router push: the session cookie was just set and
-      // every server component needs to see it.
+      /* A full load, not a router push: the session cookie was just set and
+         every server component needs to see it. Next 16.3's lint rule wants a
+         router push here, and it is wrong for this one case — crossing from
+         signed-out to signed-in is exactly when a cached RSC payload rendered
+         for the previous state must be thrown away rather than reused. */
+      // eslint-disable-next-line @next/next/no-location-assign-relative-destination
       window.location.href = "/";
     } catch {
       setError("Der Server hat nicht geantwortet.");
@@ -79,6 +83,8 @@ export default function SignInForm({ first }: { first: boolean }) {
           vergisst — es gibt keine E-Mail, an die wir etwas schicken könnten.
         </p>
         <button
+          /* Same reason as above: this is the first load after registering. */
+          // eslint-disable-next-line @next/next/no-location-assign-relative-destination
           onClick={() => (window.location.href = "/")}
           className="bg-fg w-full rounded-xl py-3.5 font-medium text-[#16211E] transition-colors hover:bg-white"
         >
