@@ -77,6 +77,33 @@ your key and your bill — not Sid's.
 
 ---
 
+## Or: one install, two people
+
+If you would rather not run any commands, the other person can host it and you
+just open a link. You still get your own account, your own deck, your own
+streak and your own key — one install, two separate courses. What you share is
+the explanation cache, so whoever meets a sentence first pays for the answer
+and the other gets it free.
+
+**The catch:** their machine has to be awake and running it whenever you want
+to study. That is the whole trade.
+
+On the machine doing the hosting:
+
+```bash
+npm run build      # once, and after every git pull
+npm run start:lan
+```
+
+Not `npm run dev` for this. Dev mode is built for one person reloading their
+own code and drifts past a 15 GB heap after an evening; the production server
+measured 224 MB and stayed there. It prints a **Network:** address — that is
+the one to open from the other laptop.
+
+Two things usually block it, both on the host: the firewall (Windows blocks
+incoming connections to Node by default) and the address changing when the
+router hands out a new one. Ask whoever set it up.
+
 ## Worth knowing
 
 - **On your phone:** run `npm run dev:lan` instead, open the address it prints,
