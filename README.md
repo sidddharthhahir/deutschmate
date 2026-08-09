@@ -28,6 +28,16 @@ npm install
 npm run setup
 ```
 
+**On Windows, clone somewhere short.** `C:\Users\you\deutschmate` is fine;
+anything deeply nested is not. Turbopack writes chunk filenames long enough that
+a deep parent path crosses the 260-character limit, and it does not fail with
+"path too long" — it prints `FATAL: An unexpected Turbopack error occurred`, a
+panic log, and then an endless run of `[Server HMR] Subscription error`, none of
+which mentions where you cloned it. Measured on a real clone: the app is
+blameless and moving the directory is the whole fix. `git clean` and
+`Remove-Item` hit the same wall afterwards, so the folder is also awkward to
+delete — `robocopy <empty-dir> <the-dir> /MIR` clears it.
+
 `setup` checks your Node version, builds the whole database from the files in
 `data/` — 3,219 words, 120 units, 49 grammar points, 38 readings, 1,827 levelled
 sentences, 955 prebuilt explanations and 231 Deutsche Welle video episodes — and
@@ -423,6 +433,7 @@ npm test                 # the checks below
 npm run lint             # eslint
 npx tsc --noEmit         # typecheck
 npx knip                 # unused files, exports and dependencies
+npm audit                # currently zero — keep it there
 
 node scripts/check-scenes.mts   # no A1 scene says a word its unit has not taught
 node scripts/walk.mts           # every route still returns 200 for a real learner
@@ -874,6 +885,25 @@ the [Goethe-Institut](https://www.goethe.de/de/spr/kup/prf.html).
   modal** — the sentence shape every contract and form is written in.
 
 ### Closed since
+
+- ~~Four high-severity advisories in a fresh install.~~ `npm install` on a clean
+  clone reported four — `postcss`, `sharp` and `nanoid`, all transitive through
+  Next 16.2.12. Next 16.3.0 clears three and `npm audit fix` the fourth: **zero
+  now**, on a real clone from GitHub. Low practical risk for two people on a LAN,
+  but "four high" is the first thing anyone you hand this to will see.
+
+  The bump brought a new lint rule, `no-location-assign-relative-destination`,
+  and it found something worth having: `Esc` left a session with
+  `window.location.href = "/"` — a full document load — while the **Beenden**
+  link beside it did a client-side navigation. One action, two behaviours, the
+  keyboard one visibly slower. `Esc` uses `router.push` now and leaves in about
+  100 ms. Whether that is the "Esc sometimes doesn't work properly" from
+  [FRICTION.md](FRICTION.md) is still unproven — it is a plausible cause, not a
+  confirmed one.
+
+  The two sign-in sites keep the full load and say why in an `eslint-disable`:
+  crossing from signed-out to signed-in is exactly when a cached RSC payload
+  rendered for the previous state has to be thrown away rather than reused.
 
 - ~~Every new word was counted twice.~~ Introducing a word grades its new card,
   which is right — the recognition check IS the first rep — but `/api/attempt`

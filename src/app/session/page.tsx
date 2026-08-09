@@ -9,7 +9,7 @@ import {
   useRef,
   useState,
 } from "react";
-import { useSearchParams } from "next/navigation";
+import { useSearchParams, useRouter } from "next/navigation";
 import ReviewBlock from "@/components/blocks/ReviewBlock";
 import FixBlock from "@/components/blocks/FixBlock";
 import NewVocabBlock from "@/components/blocks/NewVocabBlock";
@@ -226,15 +226,23 @@ function SessionRunner() {
     };
   }, []);
 
-  /* Esc leaves the session. */
+  /*
+   * Esc leaves the session — the same way the Beenden link beside it does.
+   *
+   * It used to assign `window.location.href`, so the key did a full document
+   * load while the link next to it did a client-side navigation: one action,
+   * two behaviours, and the keyboard one visibly slower. Next 16.3 added a lint
+   * rule for exactly this.
+   */
+  const router = useRouter();
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (e.key !== "Escape" || shouldIgnoreKey(e)) return;
-      window.location.href = "/";
+      router.push("/");
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, []);
+  }, [router]);
 
   const blocks = useMemo(() => plan?.blocks ?? [], [plan]);
   const block = blocks[i];
