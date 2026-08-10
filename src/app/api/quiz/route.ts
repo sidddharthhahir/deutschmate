@@ -2,6 +2,7 @@
 import { activeUser } from "@/lib/user";
 import { unauthorized } from "@/lib/http";
 import { all, get } from "@/lib/db";
+import { fourChoices } from "@/lib/choices";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -50,13 +51,6 @@ export async function GET(req: Request) {
   }
   if (pool.length < 4) return NextResponse.json({ questions: [] });
 
-  const distractors = (w: Word, key: (x: Word) => string | null) =>
-    pool
-      .filter((x) => x.id !== w.id && key(x) && key(x) !== key(w))
-      .map(key)
-      .filter((v, i, a): v is string => Boolean(v) && a.indexOf(v) === i)
-      .slice(0, 3);
-
   const questions = [];
   for (const w of pool) {
     if (questions.length >= 8) break;
@@ -74,10 +68,21 @@ export async function GET(req: Request) {
       continue;
     }
 
-    // German → English.
-    const wrong = distractors(w, (x) => x.en);
-    if (wrong.length < 3) continue;
-    const opts = [w.en, ...wrong].sort(() => Math.random() - 0.5);
+    /*
+     * German → English, through fourChoices rather than by hand.
+     *
+     * This route used to take the first three other words of the pool as
+     * distractors, and the pool does not change between questions — so the
+     * whole quiz offered one set of options and you could answer "Zahlen 0–20"
+     * by elimination without reading the German. That is bug (1) in
+     * lib/choices.ts, which was written to fix exactly this and then never
+     * adopted here. It also rejects a gloss that shares a meaning with the
+     * answer, which the hand-rolled version did not, and orders the options
+     * stably instead of with `sort(() => Math.random() - 0.5)` — a comparator
+     * that is not a valid ordering and does not shuffle uniformly.
+     */
+    const opts = fourChoices(w, pool);
+    if (opts.length < 4) continue;
     questions.push({
       q: `${w.article ? w.article + " " : ""}${w.lemma}`,
       options: opts,

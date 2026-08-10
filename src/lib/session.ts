@@ -907,7 +907,18 @@ function listeningItems(
       wordId: w.id,
       de: w.example_de!,
       en: w.example_en ?? "",
-      audio: w.audio_url,
+      /*
+       * NOT w.audio_url. That is a recording of the lemma — "hallo" — while
+       * the answer here is the whole example sentence, "Hallo, ich bin Mira."
+       * playAt() prefers a file whenever it is given one, so the block played
+       * a single word, waited for the sentence, and marked it wrong. There is
+       * no sentence recording to put here instead: every sentence.audio_url is
+       * NULL and the 2,381 files on disk are all single words. Passing null
+       * falls through to speech synthesis, which reads the whole sentence —
+       * which is what the corpus items below have always done, and why only
+       * the first five items of the block were broken.
+       */
+      audio: null as string | null,
       credit: null as string | null,
     }));
 

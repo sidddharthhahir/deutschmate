@@ -97,9 +97,8 @@ function hoeren(levels: string[], want: number): ExamQuestion[] {
     id: string;
     example_de: string;
     example_en: string;
-    audio_url: string | null;
   }>(
-    `SELECT id, example_de, example_en, audio_url FROM word
+    `SELECT id, example_de, example_en FROM word
       WHERE level IN (${ph}) AND example_de IS NOT NULL AND length(example_de) > 12`,
     ...levels,
   );
@@ -107,16 +106,31 @@ function hoeren(levels: string[], want: number): ExamQuestion[] {
 
   const pool = shuffle(rows);
   return pool.slice(0, want).map((r, i) => {
-    const distractors = pool
-      .filter((x) => x.example_de !== r.example_de)
-      .slice(i * 3 + want, i * 3 + want + 3)
-      .map((x) => x.example_de);
+    const others = pool.filter((x) => x.example_de !== r.example_de);
+    /*
+     * Rotate a window through the others and wrap, rather than the old
+     * `slice(i * 3 + want, …)`. That ran off the end of a small pool and
+     * returned fewer than three distractors, which silently produced a
+     * question with two options instead of four.
+     */
+    const distractors = Array.from(
+      { length: Math.min(3, others.length) },
+      (_, k) => others[(i * 3 + k) % others.length].example_de,
+    );
     const { options, answer } = withOptions(r.example_de, distractors);
     return {
       id: `hoeren-${r.id}`,
       section: "hoeren",
       context: r.example_de,
-      audio: r.audio_url,
+      /*
+       * Deliberately null, not word.audio_url — see listeningItems() in
+       * session.ts. The recording is of the lemma, the answer is the example
+       * sentence, so playing the file asked you to pick a sentence off the
+       * sound of one word. It also means every question now has audio: the
+       * query never filtered on audio_url, so 30% of A1 Hören questions were
+       * silent. Synthesis reads the sentence, and reads all of them.
+       */
+      audio: null,
       prompt: "Was hören Sie?",
       options,
       answer,
