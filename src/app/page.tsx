@@ -196,7 +196,8 @@ export default function Home() {
                 {state === "normal" && plan!.canDo.length > 0 && (
                   <div className="dm-stagger flex flex-col gap-3">
                     <div className="font-mono text-muted text-[11.5px] tracking-[0.14em] uppercase">
-                      Heute lernst du
+                      Heute lernst du{" "}
+                      <span className="opacity-60">· today you learn</span>
                     </div>
                     {plan!.canDo.map((c) => (
                       <div key={c} className="flex items-start gap-3">
@@ -267,6 +268,16 @@ export default function Home() {
                               "Wiederholungen",
                             )
                           : "Heutige Sitzung"}
+                      </span>
+                      {/* The one button the whole app is built around, and it
+                          said only "Heutige Sitzung" — precisely the phrase a
+                          day-one beginner cannot read. The most important
+                          control on the screen was the least legible thing on
+                          it. */}
+                      <span className="font-mono text-[12px] text-[#43574F] opacity-80">
+                        {state === "error"
+                          ? "your reviews, from this device"
+                          : "today's session — press to start"}
                       </span>
                       <span className="font-mono text-[13px] text-[#43574F]">
                         {state === "error"
@@ -341,11 +352,17 @@ export default function Home() {
                               depends on what is actually due. What IS always
                               true is the rule that defines the shape — nothing
                               new, only the things that decay. */}
-                          <span className="text-[14px]">
+                          <span className="flex flex-col text-[14px] leading-tight">
                             Kürzere Sitzung heute
+                            <span className="font-mono text-[10.5px] opacity-65">
+                              shorter session today
+                            </span>
                           </span>
-                          <span className="font-mono text-[11.5px]">
+                          <span className="font-mono flex flex-col items-end text-[11.5px] leading-tight">
                             Nur Wiederholen · nichts Neues
+                            <span className="text-[10.5px] opacity-65">
+                              review only · nothing new
+                            </span>
                           </span>
                         </Link>
 

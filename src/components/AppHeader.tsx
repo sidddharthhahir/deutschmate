@@ -4,12 +4,21 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { TAP } from "@/lib/ui";
 
-/** Window header — four text links, active one underlined. */
+/**
+ * Window header — four text links, active one underlined.
+ *
+ * Each carries its English underneath. The nav is the first German a beginner
+ * meets and it is the one place where guessing wrong is expensive: at A1.1 you
+ * cannot yet read "Wortschatz" or "Fortschritt", so four unreadable words were
+ * standing between the learner and every screen behind them. German stays
+ * primary — this is a German course and the words are worth learning — but it
+ * is no longer a puzzle you have to solve before you can navigate.
+ */
 const NAV = [
-  { href: "/", label: "Home" },
-  { href: "/wortschatz", label: "Wortschatz" },
-  { href: "/ueben", label: "Üben" },
-  { href: "/fortschritt", label: "Fortschritt" },
+  { href: "/", label: "Home", en: "start" },
+  { href: "/wortschatz", label: "Wortschatz", en: "vocabulary" },
+  { href: "/ueben", label: "Üben", en: "practise" },
+  { href: "/fortschritt", label: "Fortschritt", en: "progress" },
 ];
 
 export default function AppHeader() {
@@ -36,13 +45,19 @@ export default function AppHeader() {
               key={n.href}
               href={n.href}
               aria-current={active ? "page" : undefined}
-              className={`shrink-0 border-b pb-[3px] transition-colors ${TAP} ${
+              className={`flex shrink-0 flex-col items-start border-b pb-[3px] leading-tight transition-colors ${TAP} ${
                 active
                   ? "text-fg border-fg"
                   : "text-muted hover:text-secondary border-transparent"
               }`}
             >
-              {n.label}
+              <span>{n.label}</span>
+              {/* Desktop only: on a 375px screen four second lines cost more
+                  room than the nav has, and the phone is the one place the
+                  labels are already familiar from the laptop. */}
+              <span className="hidden text-[9.5px] tracking-[0.06em] opacity-55 md:block">
+                {n.en}
+              </span>
             </Link>
           );
         })}
