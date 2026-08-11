@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { speak, listenOnce, diffWords } from "@/lib/speech";
+import { speak, listenOnce, diffWords, micProblem } from "@/lib/speech";
 import { useSpeechSupported } from "@/lib/hooks";
 import {
   Card,
@@ -77,12 +77,8 @@ export default function SpeakingBlock({
         expected: it.de,
       });
     } catch (e) {
-      const code = e instanceof Error ? e.message : "";
-      setError(
-        code === "not-allowed" || code === "service-not-allowed"
-          ? "Mikrofon nicht erlaubt — bitte im Browser freigeben."
-          : "Nichts gehört. Nochmal versuchen?",
-      );
+      /* The specific reason, not "Nichts gehört" for all seven of them. */
+      setError(micProblem(e instanceof Error ? e.message : ""));
     } finally {
       setListening(false);
     }

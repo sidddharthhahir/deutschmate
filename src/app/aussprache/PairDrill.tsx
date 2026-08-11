@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { speak, listenOnce } from "@/lib/speech";
+import { speak, listenOnce, micProblem } from "@/lib/speech";
 import { useSpeechSupported } from "@/lib/hooks";
 import type { Pair } from "@/lib/pairs";
 
@@ -118,12 +118,8 @@ export default function PairDrill({
         }),
       });
     } catch (e) {
-      const why = e instanceof Error ? e.message : "";
-      setError(
-        why === "not-allowed"
-          ? "Kein Mikrofon-Zugriff. Im Browser erlauben."
-          : "Nichts gehört — nochmal?",
-      );
+      /* Same reasons here as in Sprechen — one place decides the wording. */
+      setError(micProblem(e instanceof Error ? e.message : ""));
     } finally {
       setListening(false);
     }
