@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { speak, listenOnce, micProblem } from "@/lib/speech";
 import { useSpeechSupported } from "@/lib/hooks";
 import type { Pair } from "@/lib/pairs";
@@ -81,7 +81,54 @@ export default function PairDrill({
   const micAvailable = useSpeechSupported();
   const p = pairs[i];
 
-  if (!p) return null;
+  /*
+   * "Beide anhören" speaks the second word on a timer. If the microphone opens
+   * before that fires, the app talks into its own recognition and kills it —
+   * the same fault as not stopping playback, one step removed and just as
+   * invisible.
+   */
+  const pending = useRef<ReturnType<typeof setTimeout> | null>(null);
+  function clearPending() {
+    if (pending.current) clearTimeout(pending.current);
+    pending.current = null;
+  }
+
+  /* Past the last pair. The drill used to wrap here instead of ending. */
+  if (!p) {
+    const asked = tally.hit + tally.miss;
+    return (
+      <div className="border-line bg-surface rounded-[14px] border p-8 text-center">
+        <p className="font-serif text-[26px]">Durch.</p>
+        <p className="font-mono text-muted mt-1 text-[11.5px]">
+          that is every pair for this sound
+        </p>
+        {asked > 0 && (
+          <p className="text-secondary mt-4 text-[15px]">
+            {tally.hit} von {asked} erkannt.
+          </p>
+        )}
+        <p className="text-muted mt-4 text-[13px] leading-relaxed">
+          Oben einen anderen Laut wählen — oder das hier nochmal.
+          <span className="block opacity-70">
+            pick another sound above, or run this one again
+          </span>
+        </p>
+        <button
+          onClick={() => {
+            clearPending();
+            setI(0);
+            setTally({ hit: 0, miss: 0 });
+            setTarget(null);
+            setHeard(null);
+            setError(null);
+          }}
+          className="border-line text-secondary hover:border-line-strong hover:text-fg mt-6 rounded-xl border px-6 py-3 text-[14px] transition-colors"
+        >
+          Nochmal · again
+        </button>
+      </div>
+    );
+  }
 
   const norm = (s: string) =>
     s
@@ -91,6 +138,8 @@ export default function PairDrill({
 
   async function say(which: "a" | "b") {
     if (listening) return;
+    /* Kill the queued second word before opening the microphone. */
+    clearPending();
     setTarget(which);
     setHeard(null);
     setError(null);
@@ -126,10 +175,17 @@ export default function PairDrill({
   }
 
   function next() {
+    clearPending();
     setTarget(null);
     setHeard(null);
     setError(null);
-    setI((n) => (n + 1) % pairs.length);
+    /*
+     * Was `(n + 1) % pairs.length`, which never ended — the drill wrapped back
+     * to the first pair for ever, so it read as the same question repeating.
+     * On a sound with one pair, which four of the twelve have, that was one
+     * card shown over and over. It finishes now, and says so.
+     */
+    setI((n) => n + 1);
   }
 
   return (
@@ -196,8 +252,9 @@ export default function PairDrill({
       <div className="mt-6 flex gap-2.5">
         <button
           onClick={() => {
+            clearPending();
             speak(p.a, 0.8);
-            setTimeout(() => speak(p.b, 0.8), 1100);
+            pending.current = setTimeout(() => speak(p.b, 0.8), 1100);
           }}
           className="border-line text-secondary hover:border-line-strong hover:text-fg flex-1 rounded-xl border py-3.5 text-[14px] transition-colors"
         >
