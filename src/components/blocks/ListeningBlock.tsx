@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import { playAt } from "@/lib/speech";
+import { playAt, speechStatus } from "@/lib/speech";
 import { GermanInput, type GermanFieldHandle } from "@/components/GermanInput";
 import {
   Card,
@@ -40,6 +40,28 @@ export default function ListeningBlock({
   const [showText, setShowText] = useState(false);
   const [why, setWhy] = useState<string | undefined>();
   const inputRef = useRef<GermanFieldHandle>(null);
+  /*
+   * Starts optimistic so a normal machine never sees a flash of warning while
+   * the voice list loads. The truth arrives either from `voiceschanged` or
+   * from the timer, whichever comes first.
+   *
+   * This block is now entirely dependent on synthesis — the sentences have no
+   * recordings — so when synthesis cannot speak, pressing play does nothing at
+   * all and says nothing about why. Silence with no explanation is the one
+   * outcome a listening exercise must never produce.
+   */
+  const [voice, setVoice] = useState<"none" | "no-german" | "ok">("ok");
+
+  useEffect(() => {
+    const check = () => setVoice(speechStatus());
+    const t = setTimeout(check, 800);
+    const s = typeof window === "undefined" ? null : window.speechSynthesis;
+    s?.addEventListener?.("voiceschanged", check);
+    return () => {
+      clearTimeout(t);
+      s?.removeEventListener?.("voiceschanged", check);
+    };
+  }, []);
 
   const items = payload.items ?? [];
   const it = items[i];
@@ -139,6 +161,32 @@ export default function ListeningBlock({
             ))}
           </div>
         </div>
+
+        {voice !== "ok" && (
+          <p className="text-das mx-auto mt-5 max-w-[52ch] text-center text-[13px] leading-relaxed">
+            {voice === "none" ? (
+              <>
+                Dieser Browser gibt gerade keine Sprache aus.
+                <span className="text-muted block opacity-80">
+                  This browser is producing no speech at all. Chrome and Safari
+                  usually work. Until then, use „Text zeigen“ below and type
+                  what you read — the exercise still counts either way.
+                </span>
+              </>
+            ) : (
+              <>
+                Keine deutsche Stimme auf diesem Rechner.
+                <span className="text-muted block opacity-80">
+                  No German voice is installed, so the sentence will be read
+                  with an English one. macOS: System Settings → Accessibility →
+                  Spoken Content → System Voice → Manage Voices, and add a
+                  German one. Windows: Settings → Time &amp; language →
+                  Language &amp; region → add Deutsch.
+                </span>
+              </>
+            )}
+          </p>
+        )}
 
         <div className="mt-8">
           <GermanInput

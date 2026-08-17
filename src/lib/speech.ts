@@ -15,19 +15,78 @@ export function playAudio(url: string | null, fallbackText?: string) {
   if (fallbackText) speak(fallbackText);
 }
 
+/**
+ * Run `fn` once the voice list exists.
+ *
+ * getVoices() is asynchronous in every browser worth naming: it returns an
+ * empty array until the engine has loaded, and only then fires `voiceschanged`.
+ * Asking for it once at module load is a hint, not a guarantee — click play
+ * before it resolves and no voice matches, which on a machine whose default
+ * voice cannot read German is silence with no error attached.
+ */
+function withVoices(fn: () => void) {
+  const s = window.speechSynthesis;
+  let ran = false;
+  const go = () => {
+    if (ran) return;
+    ran = true;
+    s.removeEventListener?.("voiceschanged", go);
+    fn();
+  };
+  if (s.getVoices().length) {
+    /*
+     * Still deferred by a tick even when the list is ready. cancel() followed
+     * by speak() in the same task is a long-standing Chrome bug: the utterance
+     * is discarded and nothing plays, silently. Every call here cancels first,
+     * so every call was exposed to it.
+     */
+    setTimeout(go, 0);
+    return;
+  }
+  s.addEventListener?.("voiceschanged", go);
+  /* Some builds never fire it. Try anyway rather than leaving silence. */
+  setTimeout(go, 700);
+}
+
+/** A German voice, if this machine has one at all. */
+export function germanVoice(): SpeechSynthesisVoice | null {
+  if (typeof window === "undefined" || !window.speechSynthesis) return null;
+  return (
+    window.speechSynthesis
+      .getVoices()
+      .find((v) => v.lang.toLowerCase().startsWith("de")) ?? null
+  );
+}
+
+/**
+ * Whether anything can be spoken here. Distinguishes "no speech engine" from
+ * "an engine with no German", because the second still speaks — badly — and the
+ * first cannot make a sound.
+ */
+export function speechStatus(): "none" | "no-german" | "ok" {
+  if (typeof window === "undefined" || !window.speechSynthesis) return "none";
+  const all = window.speechSynthesis.getVoices();
+  if (!all.length) return "none";
+  return germanVoice() ? "ok" : "no-german";
+}
+
 /** Say something. */
 export function speak(text: string, rate = 0.9, lang: "de" | "en" = "de") {
   if (typeof window === "undefined" || !window.speechSynthesis) return;
-  const tag = lang === "en" ? "en-GB" : "de-DE";
-  window.speechSynthesis.cancel();
-  const u = new SpeechSynthesisUtterance(text);
-  u.lang = tag;
-  u.rate = rate;
-  const match = window.speechSynthesis
-    .getVoices()
-    .find((v) => v.lang.startsWith(lang));
-  if (match) u.voice = match;
-  window.speechSynthesis.speak(u);
+  const s = window.speechSynthesis;
+  s.cancel();
+  withVoices(() => {
+    const u = new SpeechSynthesisUtterance(text);
+    u.lang = lang === "en" ? "en-GB" : "de-DE";
+    u.rate = rate;
+    const match = s
+      .getVoices()
+      .find((v) => v.lang.toLowerCase().startsWith(lang));
+    /* Leaving voice unset makes the browser pick for the lang tag, which is
+       better than forcing an English voice onto German text. */
+    if (match) u.voice = match;
+    s.speak(u);
+  });
 }
 
 /* Ask for the voice list once so it is populated by the time anything speaks. */
