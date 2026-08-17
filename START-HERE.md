@@ -4,7 +4,9 @@ A German course that decides what you study. You press one button a day and it
 teaches, drills, listens, corrects and remembers for you. A1.1 → B1.2, about an
 hour a day, roughly seven months.
 
-It runs on your own laptop. Nothing is sent anywhere, and it costs nothing.
+It runs on your own laptop and it costs nothing. Almost nothing leaves the
+machine — the two exceptions are named under "Worth knowing" below, because a
+promise with unlisted exceptions is not a promise.
 
 ---
 
@@ -117,9 +119,23 @@ router hands out a new one. Ask whoever set it up.
   and add it to your home screen. It installs like an app.
 - **Speaking needs Chrome, Edge or Safari.** Firefox has never supported the
   browser speech API. Everything else works there.
-- **Back it up:** `npm run backup`, about once a week. Your progress lives only
-  on your laptop — it is deliberately not in the repo, which is also why your
-  deck and Sid's never touch each other.
+- **Speaking also sends your voice to Google, and needs internet.** This is the
+  first of the two exceptions. Chrome does not recognise speech on your machine
+  — it uploads the audio to Google's servers and sends back the text. That
+  applies to Sprechen and to Minimalpaare, and to nothing else. Every other
+  exercise, including all the audio you listen to, is local. If that is not a
+  trade you want, skip those two; they are skippable on purpose.
+- **The AI features send text to Anthropic, if you turn them on.** The second
+  exception, and only if you put in a key: the conversation, written
+  correction, explanations and mnemonics. Without a key nothing is sent and
+  those four are simply off.
+- **Backups now happen on their own.** The first session you finish each day
+  writes a snapshot into `backups/`, and the newest fourteen are kept. You do
+  not have to remember anything. `npm run backup` still exists and additionally
+  writes a JSON export, which is what `npm run restore` reads; a snapshot is
+  restored by copying it over `deutschmate.db`. Your progress lives only on
+  your laptop — deliberately not in the repo, which is also why your deck and
+  Sid's never touch each other.
 - **Videos play but have no per-sentence replay yet.** That part is hand-made
   and mostly not done.
 

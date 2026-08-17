@@ -4,6 +4,11 @@
  * needs: nothing
  */
 import { ok, section, done } from "./harness.mts";
+/* No beUser() has run at the point this is used, so the key is scoped by the
+   fallback learner. Derived rather than spelled out: the literal "sid" here
+   quietly tied the suite to one particular default, and renaming it broke a
+   test that has nothing to do with who the default is. */
+import { DEFAULT_USER } from "../src/lib/who.ts";
 
 // ---- stub the browser -----------------------------------------------------
 const store = new Map<string, string>();
@@ -120,9 +125,10 @@ ok(
   ob.cachedPlan("short") === null,
   "a plan built for a different session shape is not",
 );
-const raw = JSON.parse(store.get("dm.plan.v1:sid")!);
+const planKey = `dm.plan.v1:${DEFAULT_USER}`;
+const raw = JSON.parse(store.get(planKey)!);
 raw.date = "2020-01-01";
-store.set("dm.plan.v1:sid", JSON.stringify(raw));
+store.set(planKey, JSON.stringify(raw));
 ok(ob.cachedPlan("full") === null, "yesterday's plan is refused");
 
 /* The bug this whole section exists for: /wer promises "nothing is shared

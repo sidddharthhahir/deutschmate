@@ -31,7 +31,14 @@
     "export-content": "node scripts/export-content.mts",
     "passwd": "node scripts/passwd.mts",
     "build-a1": "node scripts/build-a1.mts",
-    "build-a2": "node scripts/build-a2.mts"
+    "build-a2": "node scripts/build-a2.mts",
+    "// build-units": "Generates all six levels. build-a1/build-a2 only emit the levels that are hand-written, so this is still the only source of A2.2 upward.",
+    "build-units": "node scripts/build-units.mts",
+    "// dev tools": "Present on disk and listed nowhere, so nobody found them.",
+    "orphans": "node scripts/orphans.mts",
+    "tidy-content": "node scripts/tidy-content.mts",
+    "walk": "node scripts/walk.mts",
+    "check-scenes": "node scripts/check-scenes.mts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.115.0",

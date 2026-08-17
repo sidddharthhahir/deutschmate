@@ -1,7 +1,16 @@
 /** Which learner this browser is, client-side, so localStorage is namespaced per person. */
 
-/** Only a fallback now. A signed-out browser has no learner and no buckets worth keeping. */
-export const DEFAULT_USER = "sid";
+/**
+ * Only a fallback now. A signed-out browser has no learner and no buckets worth
+ * keeping.
+ *
+ * Was "sid", which meant every clone of this repo namespaced its signed-out
+ * localStorage under the author's name — someone else's laptop, someone else's
+ * course, one person's name baked into it. Nothing reads these buckets once you
+ * are signed in; the value only has to be stable and not be a claim about who
+ * is sitting there.
+ */
+export const DEFAULT_USER = "gast";
 
 /** Pre-sign-in identity. Read for one release so an open tab keeps its buckets; never written. */
 export const USER_COOKIE = "dm_user";

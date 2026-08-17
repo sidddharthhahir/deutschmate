@@ -1,11 +1,15 @@
-import { all, get, run } from "./db";
+/* Extensioned, relative imports — the convention everywhere else in lib/, and
+   the reason this file could not be imported by a test: Next's bundler resolves
+   "./db" and "@/lib/config", plain Node does not, so the exam builder was the
+   one piece of the practice section no test could reach. */
+import { all, get, run } from "./db.ts";
 import type {
   Exam,
   ExamQuestion,
   SectionKey,
   SectionScore,
-} from "./exam-score";
-import { EXAM_MINUTES as MINUTES } from "@/lib/config";
+} from "./exam-score.ts";
+import { EXAM_MINUTES as MINUTES } from "./config.ts";
 
 export type { Exam, SectionScore };
 

@@ -249,21 +249,32 @@ export const PAIRS: Pair[] = [
 ];
 
 /** Pairs for a given sound, or a spread across all sounds if none is asked for. */
+/**
+ * Below this, a drill is not a drill. Four of the twelve sounds have exactly
+ * one pair — and the page opens on whichever sound the learner is weakest at,
+ * so landing on "r" used to mean a single pair and nothing else.
+ */
+const MIN_DRILL = 4;
+
 export function pairsFor(sound: string | null, limit = 8): Pair[] {
-  if (sound) {
-    const hit = PAIRS.filter((p) => p.sound === sound);
-    if (hit.length) return hit.slice(0, limit);
+  const out = sound ? PAIRS.filter((p) => p.sound === sound).slice(0, limit) : [];
+
+  /*
+   * Top up to MIN_DRILL from the other sounds, one each, but only when the
+   * chosen sound is too thin to stand alone. A sound with five or six pairs is
+   * left exactly as it was: asking for "ü" and being given eight other things
+   * is not focus, it is noise.
+   */
+  if (out.length < MIN_DRILL) {
+    const seen = new Set(out.map((p) => p.sound));
+    for (const p of PAIRS) {
+      if (out.length >= Math.max(MIN_DRILL, sound ? 0 : limit)) break;
+      if (seen.has(p.sound)) continue;
+      seen.add(p.sound);
+      out.push(p);
+    }
   }
-  // One from each sound, so a general session covers the whole map.
-  const seen = new Set<string>();
-  const spread: Pair[] = [];
-  for (const p of PAIRS) {
-    if (seen.has(p.sound)) continue;
-    seen.add(p.sound);
-    spread.push(p);
-    if (spread.length >= limit) break;
-  }
-  return spread;
+  return out;
 }
 
 export const SOUNDS = [...new Set(PAIRS.map((p) => p.sound))];
@@ -280,5 +291,14 @@ export const SOUND_SPELLING: Record<string, RegExp> = {
   ß: /ß/,
   ei: /ei/,
   ie: /ie/,
+  /*
+   * Vowel length, spotted the only way spelling allows: a doubled vowel, or a
+   * vowel followed by a silent h. It is a heuristic and it misses plenty —
+   * German marks length inconsistently — but the alternative was what stood
+   * here before, which was nothing at all, so weakestSound() could never
+   * select "lang / kurz" despite it having more pairs (6) than any other sound.
+   * The best-stocked drill in the app was unreachable by the thing that picks.
+   */
+  "lang / kurz": /(aa|ee|oo|[aeiouäöü]h)/,
   "eu / äu": /(eu|äu)/,
 };

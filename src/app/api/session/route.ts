@@ -10,6 +10,7 @@ import {
 } from "@/lib/session";
 import { dueCount } from "@/lib/srs";
 import { get } from "@/lib/db";
+import { snapshotIfDue } from "@/lib/backup";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -76,6 +77,11 @@ export async function POST(req: Request) {
 
   const streak = logSession(user.id, minutes, blocks);
 
+  /* The session is now recorded, so there is something new worth keeping. One
+     snapshot a day, after the write and outside any transaction, and it never
+     throws — see lib/backup.ts. */
+  const backedUp = snapshotIfDue() !== null;
+
   // Recap numbers: all counted from attempts, none invented (principle 4).
   const today = get<{ n: number; correct: number }>(
     `SELECT COUNT(*) AS n, COALESCE(SUM(correct),0) AS correct
@@ -105,6 +111,9 @@ export async function POST(req: Request) {
     streak,
     unitDone,
     wordsLeft,
+    /* Whether today's snapshot was taken in this request. False also means
+       "already done today", so it is not a failure signal. */
+    backedUp,
     recap: {
       attempts: today?.n ?? 0,
       correct: today?.correct ?? 0,
