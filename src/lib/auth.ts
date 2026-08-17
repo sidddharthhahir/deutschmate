@@ -26,19 +26,11 @@ const secret = () => randomBytes(TOKEN_BYTES).toString("base64url");
  * way: an admin listing for a screen that was never built.
  */
 
-// ------------------------------------------------------------------- email
-/**
- * Normalise an address enough to use as an identity. Deliberately NOT a validity check — no regex
- * decides whether an address is real, only delivery does.
+/*
+ * normaliseEmail() stood here. Its only caller was createUser's `email`
+ * parameter, which nothing ever passed — there has been no address to
+ * normalise since sign-in became a username and a password. See accounts.ts.
  */
-export function normaliseEmail(raw: string): string | null {
-  const e = raw.trim().toLowerCase();
-  if (e.length < 3 || e.length > 254) return null;
-  const at = e.indexOf("@");
-  if (at < 1 || at !== e.lastIndexOf("@") || at === e.length - 1) return null;
-  if (/\s/.test(e)) return null;
-  return e;
-}
 
 // ---------------------------------------------------------------- sessions
 export function createSession(userId: string): {

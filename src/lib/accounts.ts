@@ -1,49 +1,40 @@
 import { all, get, run } from "./db.ts";
 import { normalise } from "./who.ts";
-import { normaliseEmail } from "./auth.ts";
 
 /** Accounts, as rows. */
 
+/*
+ * No `email`. Sign-in is a username and a password and has been for a while;
+ * nothing in the app ever collected an address, and every caller of createUser
+ * — the routes, the test harness, walk.mts, probe-cookie.mts — passed a name
+ * and nothing else. So the parameter, the lookup-by-address, the backfill and
+ * normaliseEmail() in auth.ts were all reachable only from code that no longer
+ * exists.
+ *
+ * The COLUMN stays in the database. Dropping it means rebuilding the table for
+ * no gain, the migration entry has to remain anyway so older databases still
+ * apply cleanly, and one legacy row still holds a value. It is simply not read
+ * any more.
+ */
 export type User = {
   id: string;
   name: string;
-  email: string | null;
   level: string;
 };
 
-const COLUMNS = "id, name, email, level";
+const COLUMNS = "id, name, level";
 
 /** Names are ids for the accounts that predate sign-in. */
 export const normaliseName = normalise;
 
 /** Create an account from a name, or return the existing one. */
-export function createUser(name: string, email?: string | null): User {
+export function createUser(name: string): User {
   const clean = normaliseName(name);
-  const addr = email ? normaliseEmail(email) : null;
-
-  if (addr) {
-    const byEmail = get<User>(
-      `SELECT ${COLUMNS} FROM user WHERE email = ?`,
-      addr,
-    );
-    if (byEmail) return byEmail;
-  }
 
   const existing = get<User>(`SELECT ${COLUMNS} FROM user WHERE id = ?`, clean);
-  if (existing) {
-    if (addr && !existing.email) {
-      run("UPDATE user SET email = ? WHERE id = ?", addr, existing.id);
-      return { ...existing, email: addr };
-    }
-    return existing;
-  }
+  if (existing) return existing;
 
-  run(
-    "INSERT INTO user (id, name, email) VALUES (?, ?, ?)",
-    clean,
-    clean,
-    addr,
-  );
+  run("INSERT INTO user (id, name) VALUES (?, ?)", clean, clean);
   // No cards are created here. A new learner's deck is empty because they have
   // not met a word yet — see introduceWord() in srs.ts.
   return get<User>(`SELECT ${COLUMNS} FROM user WHERE id = ?`, clean)!;

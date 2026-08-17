@@ -47,11 +47,10 @@ export default async function WhoPage() {
             Angemeldet als
           </p>
           <p className="font-serif mt-1.5 text-[21px]">{me.name}</p>
-          {me.email && (
-            <p className="text-muted font-mono mt-0.5 text-[12px]">
-              {me.email}
-            </p>
-          )}
+          {/* An address used to show here. Nothing has collected one since
+              sign-in became a username and a password, so for every account
+              created since it was blank, and for the one older account it
+              advertised an identity the app does not use. */}
           <div className="mt-4 flex flex-wrap items-center gap-2">
             {/* Settings live here rather than in the nav: the header is held at
                 four items on purpose, and a fifth starts turning Home into a
