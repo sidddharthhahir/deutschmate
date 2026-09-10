@@ -54,15 +54,28 @@ export function fourChoices(word: Choosable, pool: Choosable[]): string[] {
   );
 
   const seed = hash(word.id);
+  /*
+   * A contiguous walk from `seed` (the previous approach) shares most of its
+   * window with a neighbouring word's walk, so on a small pool two words can
+   * still end up with the same three distractors — reproduced on the numbers
+   * unit, where "neun" and "Nummer" landed on an identical four-option set.
+   * Ranking every candidate by a hash of (word, candidate) instead gives each
+   * word its own order over the whole pool rather than a shared one, offset.
+   */
+  const ranked = usable
+    .map((c) => ({ en: c.en, rank: hash(c.en, seed) }))
+    .sort((a, b) => a.rank - b.rank || a.en.localeCompare(b.en));
   const chosen: string[] = [];
-  for (let k = 0; k < usable.length && chosen.length < 3; k++) {
-    /* A rotation visits every candidate exactly once. A stride (`k * 7`) walks
-       in circles whenever it shares a factor with the length. */
-    const cand = usable[(seed + k) % usable.length].en;
-    if (cand !== word.en && !chosen.includes(cand)) chosen.push(cand);
+  for (const c of ranked) {
+    if (c.en !== word.en && !chosen.includes(c.en)) chosen.push(c.en);
+    if (chosen.length === 3) break;
   }
 
-  const rank = (s: string) => hash(s, seed);
+  /* A different start constant than candidate selection used above — sharing
+     one would correlate which distractors get picked with where they land,
+     and a word whose distractors always rank above it never gets slot 0. */
+  const posSeed = hash(word.id, 97);
+  const rank = (s: string) => hash(s, posSeed);
   return [word.en, ...chosen].sort(
     (a, b) => rank(a) - rank(b) || a.localeCompare(b),
   );
