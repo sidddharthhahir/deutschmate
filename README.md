@@ -90,4 +90,4 @@ Contributions are welcome. Please open an issue to discuss significant changes b
 
 ## License / Contact
 
-No license file is currently included in this repository. For usage questions, support, or collaboration, please open a GitHub issue in this repository.
+Licensed under [MIT](LICENSE). For usage questions, support, or collaboration, please open a GitHub issue in this repository.
