@@ -1,8 +1,7 @@
 ﻿import Link from "next/link";
 import AppHeader from "@/components/AppHeader";
-import { all } from "@/lib/db";
 import { requireUser } from "@/lib/user";
-import { pairsFor, SOUNDS, SOUND_SPELLING } from "@/lib/pairs";
+import { pairsFor, SOUNDS, soundStats } from "@/lib/pairs";
 import PairDrill from "./PairDrill";
 import { TAP } from "@/lib/ui";
 
@@ -12,46 +11,9 @@ export const dynamic = "force-dynamic";
 const MIXED = "alle";
 
 /** Which sound is actually failing for this learner. */
-function weakestSound(
-  userId: string,
-): { sound: string; ok: number; total: number } | null {
-  const rows = all<{ expected: string; user_answer: string }>(
-    `SELECT expected, user_answer FROM attempt
-      WHERE user_id = ? AND kind = 'speaking' AND expected IS NOT NULL`,
-    userId,
-  );
-  if (!rows.length) return null;
-
-  const tally = new Map<string, { ok: number; total: number }>();
-  for (const r of rows) {
-    const heard = new Set(
-      (r.user_answer ?? "")
-        .toLowerCase()
-        .replace(/[.,!?]/g, "")
-        .split(/\s+/),
-    );
-    for (const w of r.expected
-      .toLowerCase()
-      .replace(/[.,!?]/g, "")
-      .split(/\s+/)) {
-      for (const [sound, re] of Object.entries(SOUND_SPELLING)) {
-        if (!re.test(w)) continue;
-        const t = tally.get(sound) ?? { ok: 0, total: 0 };
-        t.total++;
-        if (heard.has(w)) t.ok++;
-        tally.set(sound, t);
-      }
-    }
-  }
-
-  const ranked = [...tally.entries()]
-    // Five is not a lot, but below that a single mumble decides the answer.
-    .filter(([, v]) => v.total >= 5)
-    .sort((a, b) => a[1].ok / a[1].total - b[1].ok / b[1].total);
-
-  if (!ranked.length) return null;
-  const [sound, v] = ranked[0];
-  return { sound, ...v };
+function weakestSound(userId: string) {
+  // Five is not a lot, but below that a single mumble decides the answer.
+  return soundStats(userId).find((s) => s.total >= 5) ?? null;
 }
 
 export default async function PronunciationPage({

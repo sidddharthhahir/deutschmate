@@ -1,5 +1,7 @@
 /** Minimal pairs — two German words differing by exactly one sound. */
 
+import { all } from "./db.ts";
+
 export type Pair = {
   sound: string;
   a: string;
@@ -302,3 +304,45 @@ export const SOUND_SPELLING: Record<string, RegExp> = {
   "lang / kurz": /(aa|ee|oo|[aeiouäöü]h)/,
   "eu / äu": /(eu|äu)/,
 };
+
+export type SoundStat = { sound: string; ok: number; total: number };
+
+/**
+ * Per-sound accuracy from real recognition results, worst first — never a phoneme score.
+ * Unfiltered: callers decide their own `total` floor, since /aussprache (picking a single
+ * sound to open on) and /fortschritt (showing the whole breakdown) need different ones.
+ */
+export function soundStats(userId: string): SoundStat[] {
+  const rows = all<{ expected: string; user_answer: string }>(
+    `SELECT expected, user_answer FROM attempt
+      WHERE user_id = ? AND kind = 'speaking' AND expected IS NOT NULL`,
+    userId,
+  );
+  if (!rows.length) return [];
+
+  const tally = new Map<string, { ok: number; total: number }>();
+  for (const r of rows) {
+    const heard = new Set(
+      (r.user_answer ?? "")
+        .toLowerCase()
+        .replace(/[.,!?]/g, "")
+        .split(/\s+/),
+    );
+    for (const w of r.expected
+      .toLowerCase()
+      .replace(/[.,!?]/g, "")
+      .split(/\s+/)) {
+      for (const [sound, re] of Object.entries(SOUND_SPELLING)) {
+        if (!re.test(w)) continue;
+        const t = tally.get(sound) ?? { ok: 0, total: 0 };
+        t.total++;
+        if (heard.has(w)) t.ok++;
+        tally.set(sound, t);
+      }
+    }
+  }
+
+  return [...tally.entries()]
+    .map(([sound, v]) => ({ sound, ...v }))
+    .sort((a, b) => a.ok / a.total - b.ok / b.total);
+}

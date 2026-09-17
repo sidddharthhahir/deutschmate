@@ -6,9 +6,9 @@ import { currentStreak, paceProjection } from "@/lib/session";
 import { LEECH_THRESHOLD, leeches } from "@/lib/leech";
 import { examHistory, type SectionScore } from "@/lib/exam";
 import { grammarStats } from "@/lib/grammar-srs";
-import { SOUND_SPELLING } from "@/lib/pairs";
+import { soundStats } from "@/lib/pairs";
 import { plural, is } from "@/lib/plural";
-import { de } from "@/lib/tags";
+import { de, KIND_LABEL } from "@/lib/tags";
 import {
   spendThisMonth,
   projectedMonthly,
@@ -261,7 +261,7 @@ export default async function ProgressPage() {
                   <div key={s.kind}>
                     <div className="mb-1 flex justify-between text-[13px]">
                       <span className="text-secondary">
-                        {LABELS[s.kind] ?? s.kind}
+                        {KIND_LABEL[s.kind] ?? s.kind}
                       </span>
                       <span className="font-mono text-muted">
                         {Math.round((s.correct / s.n) * 100)}%{" "}
@@ -609,26 +609,6 @@ export default async function ProgressPage() {
   );
 }
 
-const LABELS: Record<string, string> = {
-  review: "Wiederholung",
-  builder: "Sätze bauen",
-  listening: "Hören",
-  reading: "Lesen",
-  speaking: "Sprechen",
-  writing: "Schreiben",
-  quiz: "Quiz",
-  fix: "Fix",
-  "new-vocab": "Neue Wörter",
-  "new-grammar": "Grammatik",
-  conversation: "Gespräch",
-  cloze: "Lücken",
-  "exam-lesen": "Test · Lesen",
-  "exam-hoeren": "Test · Hören",
-  "exam-wortschatz": "Test · Wortschatz",
-  "exam-grammatik": "Test · Grammatik",
-  "grammar-review": "Grammatik-Wdh.",
-};
-
 /** Kinds that are not answers, and so have no accuracy. */
 const NOT_GRADED = new Set(["exposure"]);
 
@@ -640,42 +620,12 @@ const COST_LABEL: Record<string, string> = {
   mistake: "Fehler erklärt",
 };
 
-/* Derived from real recognition results — never a phoneme score. The map lives
-   in lib/pairs.ts, next to the drills, because a sound this page can name and
+/* Derived from real recognition results — never a phoneme score. The tally itself
+   lives in lib/pairs.ts, next to the drills, because a sound this page can name and
    the drill cannot open on is worse than one it never mentions. */
 
 function soundBreakdown(userId: string) {
-  const rows = all<{ expected: string; user_answer: string }>(
-    `SELECT expected, user_answer FROM attempt
-      WHERE user_id = ? AND kind = 'speaking' AND expected IS NOT NULL`,
-    userId,
-  );
-  if (!rows.length) return [];
-  const tally = new Map<string, { ok: number; total: number }>();
-  for (const r of rows) {
-    const heard = new Set(
-      (r.user_answer ?? "")
-        .toLowerCase()
-        .replace(/[.,!?]/g, "")
-        .split(/\s+/),
-    );
-    for (const w of r.expected
-      .toLowerCase()
-      .replace(/[.,!?]/g, "")
-      .split(/\s+/)) {
-      for (const [sound, re] of Object.entries(SOUND_SPELLING)) {
-        if (!re.test(w)) continue;
-        const t = tally.get(sound) ?? { ok: 0, total: 0 };
-        t.total++;
-        if (heard.has(w)) t.ok++;
-        tally.set(sound, t);
-      }
-    }
-  }
-  return [...tally.entries()]
-    .filter(([, v]) => v.total >= 3)
-    .map(([sound, v]) => ({ sound, ...v }))
-    .sort((a, b) => a.ok / a.total - b.ok / b.total);
+  return soundStats(userId).filter((s) => s.total >= 3);
 }
 
 function Stat({ n, label, hint }: { n: number; label: string; hint: string }) {

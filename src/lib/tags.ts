@@ -42,3 +42,48 @@ export const TAG_DE: Record<Tag, string> = {
 
 /** The German label, falling back to the raw key rather than to nothing. */
 export const de = (tag: string): string => TAG_DE[tag as Tag] ?? tag;
+
+/**
+ * `attempt.kind` → German display name, for headers and history lists. One map for both, since
+ * `fehler/[tag]` used to carry a subset of this same table under its own name and the two had
+ * already started drifting.
+ */
+export const KIND_LABEL: Record<string, string> = {
+  review: "Wiederholung",
+  builder: "Sätze bauen",
+  listening: "Hören",
+  reading: "Lesen",
+  speaking: "Sprechen",
+  writing: "Schreiben",
+  quiz: "Quiz",
+  fix: "Fix",
+  "new-vocab": "Neue Wörter",
+  "new-grammar": "Grammatik",
+  conversation: "Gespräch",
+  cloze: "Lücken",
+  "grammar-review": "Grammatik-Wdh.",
+  "exam-lesen": "Test · Lesen",
+  "exam-hoeren": "Test · Hören",
+  "exam-wortschatz": "Test · Wortschatz",
+  "exam-grammatik": "Test · Grammatik",
+};
+
+/**
+ * Same idea, worded for "you met this word by X-ing" sentences on /wort — a participle/verb
+ * phrasing, not the noun-phrase headers of `KIND_LABEL`, so kept as its own map rather than
+ * forced to share text that would read wrong in one of the two places.
+ */
+export const MET_KIND_LABEL: Record<string, string> = {
+  "new-vocab": "eingeführt",
+  review: "Wiederholung",
+  fix: "Fehlerrunde",
+  cloze: "Lücke",
+  listening: "Hören",
+  reading: "Lesen",
+  builder: "Satzbau",
+  speaking: "Sprechen",
+  writing: "Schreiben",
+  conversation: "Gespräch",
+  quiz: "Quiz",
+  video: "Video",
+};

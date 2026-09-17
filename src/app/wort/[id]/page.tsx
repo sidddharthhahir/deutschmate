@@ -6,6 +6,7 @@ import AppHeader from "@/components/AppHeader";
 import Noun, { ArticleWord } from "@/components/Article";
 import WordAudio from "./WordAudio";
 import { TAP } from "@/lib/ui";
+import { MET_KIND_LABEL } from "@/lib/tags";
 
 export const dynamic = "force-dynamic";
 
@@ -27,21 +28,6 @@ type Word = {
 };
 
 /** Attempt kinds, in the learner's language rather than the schema's. */
-const MET_LABEL: Record<string, string> = {
-  "new-vocab": "eingeführt",
-  review: "Wiederholung",
-  fix: "Fehlerrunde",
-  cloze: "Lücke",
-  listening: "Hören",
-  reading: "Lesen",
-  builder: "Satzbau",
-  speaking: "Sprechen",
-  writing: "Schreiben",
-  conversation: "Gespräch",
-  quiz: "Quiz",
-  video: "Video",
-};
-
 /** Word detail — everything the app knows about one word. */
 export default async function WordPage({
   params,
@@ -216,7 +202,7 @@ export default async function WordPage({
                   className="border-line bg-surface font-mono rounded-full border px-3 py-1.5 text-[12.5px]"
                 >
                   <span className="text-secondary">
-                    {MET_LABEL[m.kind] ?? m.kind}
+                    {MET_KIND_LABEL[m.kind] ?? m.kind}
                   </span>
                   <span className="text-muted"> {m.n}×</span>
                 </span>

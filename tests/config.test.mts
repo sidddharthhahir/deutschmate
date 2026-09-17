@@ -46,10 +46,10 @@ ok(
   "PACE_CUT_ACCURACY is a fraction",
   `${PACE_CUT_ACCURACY}`,
 );
-const budget = readFileSync("src/lib/session.ts", "utf8");
+const pacing = readFileSync("src/lib/session-pacing.ts", "utf8");
 ok(
-  /PACE_CUT_ACCURACY\s*\*\s*100/.test(budget),
-  "and session.ts multiplies it before comparing to a percentage",
+  /PACE_CUT_ACCURACY\s*\*\s*100/.test(pacing),
+  "and session-pacing.ts multiplies it before comparing to a percentage",
 );
 ok(
   Number.isInteger(PACE_MIN_REVIEWS) && PACE_MIN_REVIEWS > 0,
@@ -59,13 +59,17 @@ ok(
 
 section("the gap rule reads its thresholds rather than repeating them");
 /* Literals here are how the drift happened the first time. */
-ok(!/gap\s*>=\s*\d/.test(budget), "no bare number in the gap-days comparison");
+const builder = readFileSync("src/lib/session-builder.ts", "utf8");
 ok(
-  !/total\s*>\s*\d{2}/.test(budget),
+  !/gap\s*>=\s*\d/.test(builder),
+  "no bare number in the gap-days comparison",
+);
+ok(
+  !/total\s*>\s*\d{2}/.test(builder),
   "no bare number in the backlog comparison",
 );
 eq(
-  /dueCards\(userId,\s*\d+\)/.test(budget),
+  /dueCards\(userId,\s*\d+\)/.test(builder),
   false,
   "and the recovery session's card count is not a literal either",
 );

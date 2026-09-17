@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import AppHeader from "@/components/AppHeader";
 import { all, get } from "@/lib/db";
 import { requireUser } from "@/lib/user";
-import { de } from "@/lib/tags";
+import { de, KIND_LABEL } from "@/lib/tags";
 import { TAP } from "@/lib/ui";
 
 export const dynamic = "force-dynamic";
@@ -21,24 +21,6 @@ const TAG_TO_SLUG: Record<string, string> = {
   negation: "nicht-kein",
   pronoun: "personalpronomen",
   "word-order": "verb-position-2",
-};
-
-const KIND_LABEL: Record<string, string> = {
-  review: "Wiederholung",
-  builder: "Sätze bauen",
-  listening: "Hören",
-  reading: "Lesen",
-  speaking: "Sprechen",
-  writing: "Schreiben",
-  quiz: "Quiz",
-  cloze: "Lücken",
-  "new-vocab": "Neue Wörter",
-  "new-grammar": "Grammatik",
-  "grammar-review": "Grammatik-Wdh.",
-  "exam-lesen": "Test · Lesen",
-  "exam-hoeren": "Test · Hören",
-  "exam-wortschatz": "Test · Wortschatz",
-  "exam-grammatik": "Test · Grammatik",
 };
 
 export default async function TagPage({
