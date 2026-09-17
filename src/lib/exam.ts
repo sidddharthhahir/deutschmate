@@ -10,13 +10,13 @@ import type {
   SectionScore,
 } from "./exam-score.ts";
 import { EXAM_MINUTES as MINUTES } from "./config.ts";
+import { LEVELS, type Level } from "./levels.ts";
+import { shuffle } from "./util.ts";
 
 export type { Exam, SectionScore };
+export { LEVELS };
 
 /** Übungstest — the exam-shaped run. */
-
-export const LEVELS = ["A1.1", "A1.2", "A2.1", "A2.2", "B1.1", "B1.2"] as const;
-export type Level = (typeof LEVELS)[number];
 
 /** Every level at or below `level` — the exam's content scope. */
 export function levelsUpTo(level: string): string[] {
@@ -32,15 +32,6 @@ const PLAN: Record<SectionKey, number> = {
 };
 
 // ---------------------------------------------------------------- helpers
-
-function shuffle<T>(xs: T[]): T[] {
-  const a = [...xs];
-  for (let i = a.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [a[i], a[j]] = [a[j], a[i]];
-  }
-  return a;
-}
 
 /** Place the right answer among distractors and report where it landed. */
 function withOptions(correct: string, distractors: string[]) {

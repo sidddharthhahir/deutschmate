@@ -7,6 +7,7 @@ import { all, get, run } from "./db.ts";
 import { patternFor } from "./error-key.ts";
 import { finiteIndex, looksFinite, orderTag } from "./finite-verb.ts";
 import { TAG_EN, type Tag } from "./tags.ts";
+import { foldUmlauts } from "./util.ts";
 
 /** Error tagging — the entire personalisation engine (spec §9). */
 
@@ -221,13 +222,7 @@ export function classify(expected: string, got: string): Tag[] {
   }
 
   // Umlaut / ß differences only → spelling.
-  const fold = (s: string) =>
-    s
-      .toLowerCase()
-      .replace(/ä/g, "a")
-      .replace(/ö/g, "o")
-      .replace(/ü/g, "u")
-      .replace(/ß/g, "ss");
+  const fold = (s: string) => foldUmlauts(s.toLowerCase());
   if (fold(e) === fold(g)) tags.add("spelling");
 
   // Lowercased a noun.

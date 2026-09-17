@@ -7,6 +7,7 @@
  */
 
 import { orderTag } from "./finite-verb.ts";
+import { foldUmlauts } from "./util.ts";
 
 /** Same normalisation both keys use. */
 export function norm(s: string): string {
@@ -225,13 +226,6 @@ export function wordKey(wrong: string, right: string): string {
   return `w:${c(wrong)}→${c(right)}`;
 }
 
-const fold = (s: string) =>
-  s
-    .replace(/ä/g, "a")
-    .replace(/ö/g, "o")
-    .replace(/ü/g, "u")
-    .replace(/ß/g, "ss");
-
 /** The longest shared prefix of two words, in characters. */
 function sharedPrefix(a: string, b: string): number {
   let i = 0;
@@ -280,7 +274,7 @@ export function patternFor(expected: string, got: string): string | null {
   if (right === wrong) return "case";
 
   // Only an umlaut or an ß. Spelling, not grammar, whatever the words are.
-  if (fold(right) === fold(wrong)) return "sp:umlaut";
+  if (foldUmlauts(right) === foldUmlauts(wrong)) return "sp:umlaut";
 
   /*
    * A shared stem with two short tails is a verb ending — the lesson is the ending, not the verb,

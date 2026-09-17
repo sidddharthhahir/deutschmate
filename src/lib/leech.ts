@@ -3,10 +3,11 @@ import { all, get, run } from "./db";
 import { toSqlDate } from "./srs";
 import { addCloze } from "./cloze";
 import { blankWord } from "./cloze-text";
+import { LEECH_THRESHOLD } from "./config";
 
 /** Leeches — the words that are eating your time. */
 
-export const LEECH_THRESHOLD = 8;
+export { LEECH_THRESHOLD };
 
 export type Leech = {
   cardId: number;

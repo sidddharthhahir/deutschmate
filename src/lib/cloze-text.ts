@@ -1,5 +1,7 @@
 /** Choosing where the gap goes. */
 
+import { foldUmlauts } from "./util.ts";
+
 const words = (s: string) => s.trim().split(/\s+/).filter(Boolean);
 
 /** Strip leading/trailing punctuation, keeping the word itself intact. */
@@ -13,13 +15,7 @@ const same = (a: string, b: string) =>
  * Lowercase and flatten umlauts, for stem comparison only. Never use this for grading: ä and a ARE
  * different letters, and "Hauser" is wrong.
  */
-const fold = (s: string) =>
-  s
-    .toLocaleLowerCase("de")
-    .replace(/ä/g, "a")
-    .replace(/ö/g, "o")
-    .replace(/ü/g, "u")
-    .replace(/ß/g, "ss");
+const fold = (s: string) => foldUmlauts(s.toLocaleLowerCase("de"));
 
 export type Gap = { sentence: string; answer: string };
 

@@ -1,4 +1,5 @@
 import { all } from "./db";
+import { foldUmlauts } from "./util";
 
 /**
  * Read any German text against what this learner actually knows. The course can only ever teach
@@ -35,12 +36,7 @@ export type Scan = {
 const lower = (s: string) => s.toLocaleLowerCase("de");
 
 /** Umlaut-folded, for matching inflected forms whose stem changes. */
-const fold = (s: string) =>
-  lower(s)
-    .replace(/ä/g, "a")
-    .replace(/ö/g, "o")
-    .replace(/ü/g, "u")
-    .replace(/ß/g, "ss");
+const fold = (s: string) => foldUmlauts(lower(s));
 
 export function tokenize(text: string): string[] {
   return text

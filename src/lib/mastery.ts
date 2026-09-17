@@ -1,9 +1,7 @@
 import { all } from "./db";
+import { MASTERY_THRESHOLD } from "./config";
 
 /** Unit mastery (spec §7) — and why it is not a gate. */
-
-/** Spec §7: the share of a unit's words that must be learned. */
-export const MASTERY_THRESHOLD = 0.8;
 
 /** Same definition of "learned" the rest of the app uses, for words and rules. */
 const LEARNED = "reps >= 3 AND state = 2";
