@@ -9,10 +9,12 @@ import {
   Eyebrow,
   SkipLink,
   SkipToNext,
+  CorrectionsList,
   record,
   useChoiceKeys,
   useAdvanceKey,
   type BlockProps,
+  type Correction,
 } from "./shared";
 
 type Scenario = { role: string; goal: string; opener: string };
@@ -27,12 +29,6 @@ type Payload = {
 };
 
 type Turn = { role: "user" | "assistant"; content: string };
-type Correction = {
-  original: string;
-  corrected: string;
-  why: string;
-  tag: string;
-};
 
 /**
  * Conversation — the one block that wants the network. Corrections appear only at the end:
@@ -298,20 +294,7 @@ export default function ConversationBlock({
                 {corrections.length}{" "}
                 {corrections.length === 1 ? "Korrektur" : "Korrekturen"}
               </p>
-              {corrections.map((c, n) => (
-                <div
-                  key={n}
-                  className="bg-bg border-line-sub rounded-xl border p-4"
-                >
-                  <p className="font-serif text-das/80 text-[16px] line-through">
-                    {c.original}
-                  </p>
-                  <p className="font-serif text-fg mt-1 text-[18px]">
-                    {c.corrected}
-                  </p>
-                  <p className="text-muted mt-2 text-[14px]">{c.why}</p>
-                </div>
-              ))}
+              <CorrectionsList corrections={corrections} />
             </div>
           )}
           <button

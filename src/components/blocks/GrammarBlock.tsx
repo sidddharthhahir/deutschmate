@@ -11,6 +11,7 @@ import {
   record,
   useChoiceKeys,
   useAdvanceKey,
+  useMultipleChoice,
   type BlockProps,
 } from "./shared";
 
@@ -148,7 +149,10 @@ function inline(s: string): React.ReactNode {
 export default function GrammarBlock({ payload, onDone }: BlockProps<Payload>) {
   const [phase, setPhase] = useState<"learn" | "drill">("learn");
   const [i, setI] = useState(0);
-  const [picked, setPicked] = useState<number | null>(null);
+  const { picked, setPicked, settle } = useMultipleChoice({
+    correct: 700,
+    wrong: 2400,
+  });
 
   const drills = payload.drills ?? [];
   const d = drills[i];
@@ -216,13 +220,7 @@ export default function GrammarBlock({ payload, onDone }: BlockProps<Payload>) {
       answer: d.options[n],
       expected: d.options[d.a],
     });
-    setTimeout(
-      () => {
-        setPicked(null);
-        setI((x) => x + 1);
-      },
-      correct ? 700 : 2400,
-    );
+    settle(correct, () => setI((x) => x + 1));
   }
 
   return (

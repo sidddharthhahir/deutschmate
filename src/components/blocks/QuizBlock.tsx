@@ -7,9 +7,11 @@ import {
   Progress,
   Option,
   Verdict,
+  ScoreCard,
   record,
   useChoiceKeys,
   useAdvanceKey,
+  useMultipleChoice,
   type BlockProps,
 } from "./shared";
 
@@ -26,8 +28,11 @@ type Payload = { unitId: string | null };
 export default function QuizBlock({ payload, onDone }: BlockProps<Payload>) {
   const [questions, setQuestions] = useState<Q[] | null>(null);
   const [i, setI] = useState(0);
-  const [picked, setPicked] = useState<number | null>(null);
   const [score, setScore] = useState(0);
+  const { picked, setPicked, settle } = useMultipleChoice({
+    correct: 600,
+    wrong: 1800,
+  });
 
   useEffect(() => {
     fetch(`/api/quiz${payload.unitId ? `?unit=${payload.unitId}` : ""}`)
@@ -56,21 +61,12 @@ export default function QuizBlock({ payload, onDone }: BlockProps<Payload>) {
 
   if (!q) {
     return (
-      <Card>
-        <p className="font-serif text-center text-[44px] font-semibold">
-          {score}
-          <span className="text-muted text-[24px]">/{questions.length}</span>
-        </p>
-        <p className="font-mono text-muted mt-2 text-center text-[12px] tracking-[0.08em] uppercase">
-          richtig
-        </p>
-        <button
-          onClick={onDone}
-          className="bg-fg mt-7 w-full rounded-xl py-3.5 font-medium text-[#16211E] transition-colors hover:bg-white"
-        >
-          Zum Tagesabschluss <span className="kbd kbd-hint">Enter</span>
-        </button>
-      </Card>
+      <ScoreCard
+        score={score}
+        total={questions.length}
+        onDone={onDone}
+        cta="Zum Tagesabschluss"
+      />
     );
   }
 
@@ -86,13 +82,7 @@ export default function QuizBlock({ payload, onDone }: BlockProps<Payload>) {
       answer: q.options[n],
       expected: q.options[q.a],
     });
-    setTimeout(
-      () => {
-        setPicked(null);
-        setI((x) => x + 1);
-      },
-      correct ? 600 : 1800,
-    );
+    settle(correct, () => setI((x) => x + 1));
   }
 
   return (

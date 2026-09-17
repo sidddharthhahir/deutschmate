@@ -8,18 +8,14 @@ import {
   Card,
   Eyebrow,
   SkipLink,
+  CorrectionsList,
   useAdvanceKey,
   useSubmitKey,
   type BlockProps,
+  type Correction,
 } from "./shared";
 
 type Payload = { prompt: string; hint?: string; minWords?: number };
-type Correction = {
-  original: string;
-  corrected: string;
-  why: string;
-  tag: string;
-};
 type Result = {
   corrections: Correction[];
   natural: string;
@@ -136,20 +132,7 @@ export default function WritingBlock({
 
           {result.corrections.length > 0 && (
             <div className="mt-5 space-y-3">
-              {result.corrections.map((c, n) => (
-                <div
-                  key={n}
-                  className="bg-bg border-line-sub rounded-xl border p-4"
-                >
-                  <p className="font-serif text-das/80 text-[16px] line-through">
-                    {c.original}
-                  </p>
-                  <p className="font-serif text-fg mt-1 text-[18px]">
-                    {c.corrected}
-                  </p>
-                  <p className="text-muted mt-2 text-[14px]">{c.why}</p>
-                </div>
-              ))}
+              <CorrectionsList corrections={result.corrections} />
             </div>
           )}
 

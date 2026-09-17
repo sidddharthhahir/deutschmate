@@ -9,9 +9,11 @@ import {
   Option,
   Verdict,
   SkipLink,
+  ScoreCard,
   record,
   useChoiceKeys,
   useAdvanceKey,
+  useMultipleChoice,
   type BlockProps,
 } from "./shared";
 
@@ -35,8 +37,11 @@ export default function ReadingBlock({
 }: BlockProps<Payload>) {
   const [phase, setPhase] = useState<"read" | "quiz">("read");
   const [i, setI] = useState(0);
-  const [picked, setPicked] = useState<number | null>(null);
   const [score, setScore] = useState(0);
+  const { picked, setPicked, settle } = useMultipleChoice({
+    correct: 650,
+    wrong: 1700,
+  });
 
   const questions = payload.questions ?? [];
   const q = phase === "quiz" ? questions[i] : undefined;
@@ -96,23 +101,7 @@ export default function ReadingBlock({
   }
 
   if (!q) {
-    return (
-      <Card>
-        <p className="font-serif text-center text-[44px] font-semibold">
-          {score}
-          <span className="text-muted text-[24px]">/{questions.length}</span>
-        </p>
-        <p className="font-mono text-muted mt-2 text-center text-[12px] tracking-[0.08em] uppercase">
-          richtig
-        </p>
-        <button
-          onClick={onDone}
-          className="bg-fg mt-7 w-full rounded-xl py-3.5 font-medium text-[#16211E] transition-colors hover:bg-white"
-        >
-          Weiter <span className="kbd kbd-hint">Enter</span>
-        </button>
-      </Card>
-    );
+    return <ScoreCard score={score} total={questions.length} onDone={onDone} />;
   }
 
   async function choose(n: number) {
@@ -127,13 +116,7 @@ export default function ReadingBlock({
       answer: q.options[n],
       expected: q.options[q.a],
     });
-    setTimeout(
-      () => {
-        setPicked(null);
-        setI((x) => x + 1);
-      },
-      correct ? 650 : 1700,
-    );
+    settle(correct, () => setI((x) => x + 1));
   }
 
   return (

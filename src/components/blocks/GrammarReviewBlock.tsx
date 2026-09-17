@@ -11,6 +11,7 @@ import {
   Verdict,
   SkipLink,
   useChoiceKeys,
+  useMultipleChoice,
   type BlockProps,
 } from "./shared";
 
@@ -37,8 +38,11 @@ export default function GrammarReviewBlock({
   const cards = payload.cards ?? [];
   const [i, setI] = useState(0);
   const [d, setD] = useState(0);
-  const [picked, setPicked] = useState<number | null>(null);
   const [right, setRight] = useState(0);
+  const { picked, setPicked, settle } = useMultipleChoice({
+    correct: 700,
+    wrong: 2400,
+  });
 
   const card = cards[i];
   // Two questions is enough to tell "knows the rule" from "guessed once", and
@@ -86,16 +90,10 @@ export default function GrammarReviewBlock({
       expected: drill.options[drill.a],
     });
 
-    setTimeout(
-      () => {
-        if (d + 1 >= drills.length) finishCard(total);
-        else {
-          setD((x) => x + 1);
-          setPicked(null);
-        }
-      },
-      ok ? 700 : 2400,
-    );
+    settle(ok, () => {
+      if (d + 1 >= drills.length) finishCard(total);
+      else setD((x) => x + 1);
+    });
   }
 
   return (

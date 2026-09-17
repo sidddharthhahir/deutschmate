@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, type ReactNode } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import { send } from "@/lib/outbox";
 import { shouldIgnoreKey, modalIsOpen } from "@/lib/keys";
 
@@ -142,6 +142,33 @@ export function SkipToNext({ onDone }: { onDone: () => void }) {
   return null;
 }
 
+/**
+ * The pick → reveal → wait → advance state machine every multiple-choice screen
+ * runs: FixBlock, GrammarBlock's drill phase, GrammarReviewBlock, QuizBlock, and
+ * ReadingBlock's quiz phase. Each block keeps its own scoring/indexing (they
+ * differ too much to unify), calls `setPicked` the moment an option is chosen so
+ * the UI reveals right/wrong immediately, does whatever recording it needs
+ * (awaited or not — its choice), then calls `settle` with whether that pick was
+ * correct and what should happen once the reveal has been on screen long enough.
+ * Timing stays a per-caller argument: the five copies had already drifted
+ * (600–2400ms) with no evidence any of them was wrong.
+ */
+export function useMultipleChoice(timing: { correct: number; wrong: number }) {
+  const [picked, setPicked] = useState<number | null>(null);
+
+  function settle(correct: boolean, after: () => void) {
+    setTimeout(
+      () => {
+        setPicked(null);
+        after();
+      },
+      correct ? timing.correct : timing.wrong,
+    );
+  }
+
+  return { picked, setPicked, settle };
+}
+
 export type BlockProps<P = unknown> = {
   payload: P;
   onDone: () => void;
@@ -265,6 +292,62 @@ export function Verdict({
       )}
       {why && <p className="mt-2 leading-relaxed opacity-90">{why}</p>}
     </div>
+  );
+}
+
+/** The closing score screen — QuizBlock and ReadingBlock's quiz phase, only the button text differs. */
+export function ScoreCard({
+  score,
+  total,
+  onDone,
+  cta = "Weiter",
+}: {
+  score: number;
+  total: number;
+  onDone: () => void;
+  cta?: string;
+}) {
+  return (
+    <Card>
+      <p className="font-serif text-center text-[44px] font-semibold">
+        {score}
+        <span className="text-muted text-[24px]">/{total}</span>
+      </p>
+      <p className="font-mono text-muted mt-2 text-center text-[12px] tracking-[0.08em] uppercase">
+        richtig
+      </p>
+      <button
+        onClick={onDone}
+        className="bg-fg mt-7 w-full rounded-xl py-3.5 font-medium text-[#16211E] transition-colors hover:bg-white"
+      >
+        {cta} <span className="kbd kbd-hint">Enter</span>
+      </button>
+    </Card>
+  );
+}
+
+/** An AI correction to one thing the learner wrote or said. */
+export type Correction = {
+  original: string;
+  corrected: string;
+  why: string;
+  tag: string;
+};
+
+/** One correction, struck-through original above the fix — WritingBlock and ConversationBlock both end on a list of these. */
+export function CorrectionsList({ corrections }: { corrections: Correction[] }) {
+  return (
+    <>
+      {corrections.map((c, n) => (
+        <div key={n} className="bg-bg border-line-sub rounded-xl border p-4">
+          <p className="font-serif text-das/80 text-[16px] line-through">
+            {c.original}
+          </p>
+          <p className="font-serif text-fg mt-1 text-[18px]">{c.corrected}</p>
+          <p className="text-muted mt-2 text-[14px]">{c.why}</p>
+        </div>
+      ))}
+    </>
   );
 }
 
