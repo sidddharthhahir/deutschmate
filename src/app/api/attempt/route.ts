@@ -6,6 +6,7 @@ import { readJson, badRequest, str, bool, unauthorized } from "@/lib/http";
 import { introduceWord } from "@/lib/srs";
 import { introduceGrammar } from "@/lib/grammar-srs";
 import { stats } from "@/lib/gamification";
+import { trackEvent } from "@/lib/analytics";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -45,6 +46,10 @@ export async function POST(req: Request) {
   // Same for a grammar point: the lesson's drills put it on the curve.
   if (kind === "new-grammar" && refId) {
     introduceGrammar(user.id, refId, correct);
+  }
+
+  if (kind === "speaking") {
+    trackEvent(user.id, "speaking_attempted", { refId, correct });
   }
 
   // Read after logAttempt, which already applied the XP/hearts change for

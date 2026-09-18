@@ -30,6 +30,7 @@ import {
   verifyRecoveryCode,
 } from "@/lib/password";
 import { normalise } from "@/lib/who";
+import { trackEvent } from "@/lib/analytics";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -118,6 +119,7 @@ export async function POST(req: Request) {
     );
     if (!user) return badRequest("Der Benutzername ist schon vergeben.");
 
+    trackEvent(user.id, "signup_completed", {});
     await signIn(user.id);
     /* The only time the code is ever returned. It is not stored in plaintext
        and cannot be shown again. */

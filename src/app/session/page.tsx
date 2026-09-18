@@ -43,6 +43,15 @@ import {
   settled,
 } from "@/lib/outbox";
 import { myKey } from "@/lib/who";
+
+/** The one event with no server route already at that moment — see api/track. */
+function track(event: string, properties: Record<string, unknown>) {
+  void fetch("/api/track", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ event, properties }),
+  }).catch(() => {});
+}
 import { shouldIgnoreKey } from "@/lib/keys";
 import { plural } from "@/lib/plural";
 import { onStatsChange, setStats, type Stats } from "@/lib/gamification-client";
@@ -211,6 +220,7 @@ function SessionRunner() {
 
       setPlan(data);
       setOffline(fromCache);
+      track("lesson_started", { unitId: data.unit?.id ?? null, shape });
       if (data.stats) setStats(data.stats);
       const saved = readSaved(shape);
       const at = saved ? resumeIndex(data.blocks, saved.completed) : 0;

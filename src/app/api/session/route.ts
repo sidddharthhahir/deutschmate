@@ -1,5 +1,5 @@
 ﻿import { NextResponse } from "next/server";
-import { activeUser } from "@/lib/user";
+import { activeUser, situationFor } from "@/lib/user";
 import { readJson, str, int, arr, unauthorized } from "@/lib/http";
 import {
   buildSession,
@@ -12,6 +12,7 @@ import { dueCount } from "@/lib/srs";
 import { get } from "@/lib/db";
 import { snapshotIfDue } from "@/lib/backup";
 import { stats } from "@/lib/gamification";
+import { trackEvent } from "@/lib/analytics";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -44,6 +45,7 @@ export async function GET(req: Request) {
     user: { id: user.id, name: user.name, level: plan.level },
     streak: currentStreak(user.id),
     stats: stats(user.id),
+    situation: situationFor(user.id),
     ...plan,
   });
 }
@@ -78,6 +80,11 @@ export async function POST(req: Request) {
   }
 
   const { streak, stats: statsAfter } = logSession(user.id, minutes, blocks);
+  trackEvent(user.id, "lesson_completed", {
+    unitId: completeUnit || null,
+    minutes,
+    blocks: blocks.length,
+  });
 
   /* The session is now recorded, so there is something new worth keeping. One
      snapshot a day, after the write and outside any transaction, and it never

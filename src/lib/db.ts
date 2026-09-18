@@ -65,6 +65,9 @@ const MIGRATIONS: [
    * sentences rather than serving ungated ones. Filled by scripts/seed.mts.
    */
   ["sentence", "needs_unit", "INTEGER NOT NULL DEFAULT 99"],
+  // One-question onboarding (lib/situation.ts). NULL for every account that
+  // predates it, and for anyone who skips the question.
+  ["user", "situation", "TEXT"],
 ];
 
 export function migrate(db: DatabaseSync) {

@@ -86,6 +86,20 @@ export function setRecoveryHash(userId: string, hash: string) {
   run("UPDATE user SET recovery_hash = ? WHERE id = ?", hash, userId);
 }
 
+/** The one onboarding answer, or null when skipped/not yet asked. */
+export function situationFor(userId: string): string | null {
+  return (
+    get<{ situation: string | null }>(
+      "SELECT situation FROM user WHERE id = ?",
+      userId,
+    )?.situation ?? null
+  );
+}
+
+export function setSituation(userId: string, situation: string | null) {
+  run("UPDATE user SET situation = ? WHERE id = ?", situation, userId);
+}
+
 /**
  * A new account, or null when the username is taken. The caller hashes — this
  * module never sees a plaintext password.

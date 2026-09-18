@@ -23,10 +23,9 @@ export default function SurvivalPage() {
       <>
         {items.length === 0 ? (
           <Empty title="No scenarios loaded">
-            Every survival scenario is A1.2 or later, and A1.1 is the only
-            level shipping right now — see{" "}
-            <code>data/deferred/README.md</code> for why and how it comes
-            back.
+            <code>data/scenarios-survival.json</code> is missing or empty —
+            see <code>data/deferred/README.md</code> for where this content
+            lives and how to restore it.
           </Empty>
         ) : (
           <div className="space-y-3">

@@ -15,6 +15,8 @@ export {
   credentialsFor,
   setPasswordHash,
   setRecoveryHash,
+  situationFor,
+  setSituation,
 } from "./accounts.ts";
 
 /**

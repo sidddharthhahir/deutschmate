@@ -28,7 +28,29 @@ type Plan = {
   missed: number;
   /** No hearts left today — new material is paused, review still runs. */
   heartsEmpty: boolean;
+  /** The one onboarding answer, or null when skipped/not asked. */
+  situation: string | null;
 };
+
+/**
+ * A one-line nudge for the Alltag card, personalised by the onboarding
+ * answer — copy only, not a recommendation engine. Everyone still sees the
+ * same card and the same link; only the words change.
+ */
+function alltagPitch(situation: string | null): string {
+  switch (situation) {
+    case "just_arrived":
+      return "You're here now — practice the conversations you'll have this week.";
+    case "university":
+      return "Including the Prüfungsamt — the conversation every student has.";
+    case "student_job":
+      return "The closest thing here to a job interview — more is coming.";
+    case "moving_soon":
+      return "The conversations waiting for you when you land.";
+    default:
+      return "Practice a situation you may face in Germany.";
+  }
+}
 
 type State = "loading" | "normal" | "empty" | "offline" | "error";
 
@@ -405,6 +427,23 @@ export default function Home() {
                     )}
                   </>
                 )}
+
+                {/* The second of the two things this app is for. Deliberately
+                    quiet — bordered, not filled — so it never competes with
+                    the one button above it, but always visible: the two
+                    paths are "continue the course" and "get ready for a real
+                    conversation", and only one of them had a way in. */}
+                <Link
+                  href="/alltag"
+                  className="border-line hover:border-line-strong hover:bg-raised flex flex-col items-start gap-1 rounded-[14px] border px-6 py-4 transition-colors"
+                >
+                  <span className="text-[15px] font-medium">
+                    German for real life
+                  </span>
+                  <span className="text-muted text-[12.5px] leading-snug">
+                    {alltagPitch(plan?.situation ?? null)}
+                  </span>
+                </Link>
               </div>
             </>
           )}

@@ -218,6 +218,10 @@ CREATE TABLE IF NOT EXISTS user (
   -- No `daily_goal_min`, no `browse_batch_size`. Both defaulted, neither had a
   -- screen that could change it, and nothing obeyed them — the plan decides how
   -- long a session is and /api/wortschatz owns its page size.
+
+  -- One-question onboarding (lib/situation.ts has the fixed option list).
+  -- NULL for skipped or pre-onboarding accounts — never required, never a gate.
+  situation         TEXT,
   created_at        TEXT NOT NULL DEFAULT (datetime('now'))
 );
 -- Partial, because several legacy rows may have no address and NULL is not a
@@ -400,6 +404,23 @@ CREATE TABLE IF NOT EXISTS user_stats (
   hearts       INTEGER NOT NULL DEFAULT 5,
   hearts_date  TEXT NOT NULL DEFAULT (date('now'))
 );
+
+/*
+ * First-party product-analytics events. One row per event, append-only.
+ *
+ * No third-party tool, no dashboard yet — this exists to answer questions
+ * like "did the onboarding change anything" from this database directly. See
+ * lib/analytics.ts for the writer and for example queries.
+ */
+CREATE TABLE IF NOT EXISTS event (
+  id             INTEGER PRIMARY KEY AUTOINCREMENT,
+  user_id        TEXT NOT NULL REFERENCES user(id) ON DELETE CASCADE,
+  event_name     TEXT NOT NULL,
+  properties_json TEXT NOT NULL DEFAULT '{}',
+  created_at     TEXT NOT NULL DEFAULT (datetime('now'))
+);
+CREATE INDEX IF NOT EXISTS idx_event_user ON event(user_id, created_at);
+CREATE INDEX IF NOT EXISTS idx_event_name ON event(event_name, created_at);
 
 -- Offline writing queue (spec §17): submitted offline, corrected on reconnect.
 CREATE TABLE IF NOT EXISTS pending_correction (

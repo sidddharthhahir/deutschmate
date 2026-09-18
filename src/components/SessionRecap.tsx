@@ -95,22 +95,17 @@ export default function SessionRecap({
     <main className="bg-warm-bg text-warm-fg flex min-h-screen flex-col px-6 py-12 md:px-10">
       <div className="mx-auto flex w-full max-w-[1000px] flex-1 flex-col justify-center gap-8 md:gap-10">
         <div className="flex flex-col gap-1.5">
-          <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
-            <div className="font-mono text-warm-muted text-[12.5px] tracking-[0.14em] uppercase">
-              {WEEKDAY[new Date().getDay()]}
-              {streak > 0 && ` · Tag ${streak}`}
-            </div>
-            {typeof xpTotal === "number" && (
-              <span className="dm-pop text-accent font-mono text-[12.5px]">
-                ★ {xpTotal} XP
-              </span>
-            )}
+          <div className="font-mono text-warm-muted text-[12.5px] tracking-[0.14em] uppercase">
+            {WEEKDAY[new Date().getDay()]}
+            {streak > 0 && ` · Tag ${streak}`}
           </div>
           <h1 className="font-serif text-[38px] leading-[1.05] font-semibold tracking-[-0.015em] md:text-[52px]">
             Heute geschafft
           </h1>
         </div>
 
+        {/* What you can actually do, before any number — XP and hearts stay
+            secondary everywhere in this app, and the recap is no exception. */}
         {canDo.length > 0 && (
           <div className="dm-stagger flex flex-col gap-3">
             {canDo.map((c) => (
@@ -139,6 +134,12 @@ export default function SessionRecap({
           />
           <Stat n={recap?.accuracy ?? null} label="Richtig" suffix="%" />
         </div>
+
+        {typeof xpTotal === "number" && (
+          <p className="dm-pop text-accent font-mono text-[12.5px]">
+            ★ {xpTotal} XP total
+          </p>
+        )}
 
         <div className="bg-warm-line h-px" />
 

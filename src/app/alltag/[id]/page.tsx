@@ -5,6 +5,8 @@ import ScenarioRunner from "@/app/szenario/[id]/ScenarioRunner";
 import { survivalById } from "@/lib/survival";
 import Phrases from "../Phrases";
 import { TAP } from "@/lib/ui";
+import { activeUser } from "@/lib/user";
+import { trackEvent } from "@/lib/analytics";
 
 export const dynamic = "force-dynamic";
 
@@ -20,6 +22,9 @@ export default async function SurvivalScenario({
   const { id } = await params;
   const s = survivalById(id);
   if (!s) notFound();
+
+  const user = await activeUser();
+  trackEvent(user?.id, "scenario_started", { scenarioId: id });
 
   return (
     <main className="flex min-h-screen flex-col">

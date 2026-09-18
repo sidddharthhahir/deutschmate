@@ -30,6 +30,15 @@ type Payload = {
 
 type Turn = { role: "user" | "assistant"; content: string };
 
+/** The two events with no server route already at that moment — see api/track. */
+function track(event: string, properties: Record<string, unknown>) {
+  void fetch("/api/track", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ event, properties }),
+  }).catch(() => {});
+}
+
 /**
  * Conversation — the one block that wants the network. Corrections appear only at the end:
  * interrupting a beginner mid-sentence is how people stop speaking.
@@ -193,6 +202,11 @@ export default function ConversationBlock({
         });
         const data = await res.json();
         setCorrections(data.corrections ?? []);
+        track("scenario_completed", {
+          scenarioId: payload.unitId,
+          source: payload.unitId.startsWith("surv-") ? "alltag" : "unit",
+          mode: "live",
+        });
       } catch {
         setCorrections([]);
       } finally {
@@ -268,6 +282,11 @@ export default function ConversationBlock({
           correct: true,
         });
       }
+      track("scenario_completed", {
+        scenarioId: payload.unitId,
+        source: payload.unitId.startsWith("surv-") ? "alltag" : "unit",
+        mode: "scripted",
+      });
       setTimeout(onDone, 1200);
       return;
     }

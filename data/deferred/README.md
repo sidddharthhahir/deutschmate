@@ -1,11 +1,21 @@
 # Deferred content
 
 Everything in this directory is real, previously-shipped curriculum content
-for A1.2 through B1.2 — units, grammar points, readings, survival scenarios,
-and the blueprints that generated some of it. None of it is deleted; it's
-just not read by `scripts/seed.mts` right now, so the running app is A1.1
-only, per the 2026-09 decision to get the Momente-based A1.1 rewrite fully
-solid before extending it upward again.
+for A1.2 through B1.2 — units, grammar points, readings, and the blueprints
+that generated some of it. None of it is deleted; it's just not read by
+`scripts/seed.mts` right now, so the running app is A1.1 only, per the
+2026-09 decision to get the Momente-based A1.1 rewrite fully solid before
+extending it upward again.
+
+`scenarios-survival.json` (the 12 Alltag/survival scenarios) used to be here
+too, moved out under the same 2026-09 decision on the reasoning that every
+scenario in the pack is A1.2-level or later. That reasoning didn't hold up: a
+2026-09 product-strategy audit (`PRODUCT_STRATEGY_AUDIT.md`) pointed out that
+none of this content is actually gated by the A1.2 curriculum being seeded —
+`lib/survival.ts` reads the JSON file directly, with no `unit`-table
+involvement at all — and it's the single feature that most matches this
+app's "practical German for international students in Germany" thesis. It
+has been moved back to `data/scenarios-survival.json` and ships again.
 
 `curriculum-a1-full.json` and `vocab-a1-full.json` are snapshots of
 `data/curriculum-a1.json` and `data/vocab-a1.json` taken right before those

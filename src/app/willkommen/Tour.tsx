@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { markTourSeen } from "@/lib/tour";
 import { resetIntros } from "@/lib/block-intro";
 import { TAP, TAP_BLOCK } from "@/lib/ui";
+import Situation from "./Situation";
 
 /** What this app is, for someone who has never seen it. IN ENGLISH, deliberately. */
 
@@ -306,6 +307,9 @@ const STEPS: Step[] = [
 
 export default function Tour({ firstRun }: { firstRun: boolean }) {
   const [i, setI] = useState(0);
+  // Asked once, right after the tour a brand-new account has never skipped —
+  // not on a revisit, where being asked again would just be annoying.
+  const [showSituation, setShowSituation] = useState(false);
   const step = STEPS[i];
   const last = i === STEPS.length - 1;
 
@@ -328,6 +332,8 @@ export default function Tour({ firstRun }: { firstRun: boolean }) {
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, []);
+
+  if (showSituation) return <Situation />;
 
   return (
     <div>
@@ -381,9 +387,9 @@ export default function Tour({ firstRun }: { firstRun: boolean }) {
           {i + 1} / {STEPS.length}
         </span>
 
-        {last ? (
-          <Link
-            href="/"
+        {last && firstRun ? (
+          <button
+            onClick={() => setShowSituation(true)}
             className="bg-accent dm-pill rounded-2xl px-7 py-3.5 font-medium text-accent-fg transition-colors hover:bg-accent-hover"
           >
             {/* A real apostrophe, not the HTML entity for one.
@@ -394,7 +400,14 @@ export default function Tour({ firstRun }: { firstRun: boolean }) {
                 that asks for the entity applies only to JSX text, which is
                 exactly why the habit gets carried somewhere it is wrong.
                 tests/strings.test.mts scans for it now. */}
-            {firstRun ? "Let’s go" : "Done"}
+            Let’s go
+          </button>
+        ) : last ? (
+          <Link
+            href="/"
+            className="bg-accent dm-pill rounded-2xl px-7 py-3.5 font-medium text-accent-fg transition-colors hover:bg-accent-hover"
+          >
+            Done
           </Link>
         ) : (
           <button
