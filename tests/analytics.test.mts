@@ -54,4 +54,31 @@ const anon = await raw("/api/track", {
 });
 eq(anon.status, 401, "signed out cannot log an event either");
 
+section("properties are allow-listed per event, not accepted verbatim");
+/* This is a public POST route — without this, any client could attach
+   arbitrary JSON (including free text) to event.properties_json. */
+const stuffed = await post(`/api/track?user=${U}`, {
+  event: "lesson_started",
+  properties: {
+    unitId: "a1-1-u01",
+    notAllowed: "arbitrary text that should never be stored",
+    apiKey: "sk-ant-should-not-land-here",
+  },
+});
+ok(stuffed.ok, "the request still succeeds", JSON.stringify(stuffed));
+
+const db2 = open();
+const stored = db2
+  .prepare(
+    "SELECT properties_json FROM event WHERE user_id = ? AND event_name = 'lesson_started' ORDER BY id DESC LIMIT 1",
+  )
+  .get(U) as { properties_json: string } | undefined;
+db2.close();
+const props = JSON.parse(stored?.properties_json ?? "{}");
+eq(props, { unitId: "a1-1-u01" }, "only the allow-listed key is stored");
+ok(
+  !JSON.stringify(props).includes("arbitrary text"),
+  "the unlisted free-text field never reached the database",
+);
+
 done();

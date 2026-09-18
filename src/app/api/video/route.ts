@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 import { all, get, run } from "@/lib/db";
 import { adminEnabled } from "@/lib/trust";
+import { activeUser } from "@/lib/user";
+import { unauthorized } from "@/lib/http";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -51,6 +53,17 @@ export async function POST(req: Request) {
       { status: 403 },
     );
   }
+
+  /*
+   * The admin page itself sits behind proxy.ts's session-cookie gate, but
+   * proxy.ts skips everything under /api/ by design — each route gates
+   * itself. This one didn't: DEUTSCHMATE_ADMIN=1 alone made it a write to
+   * shared curriculum content that anyone reaching the server could send,
+   * signed in or not. adminEnabled() says the operator has switched this on
+   * at all; this says the request is actually from a signed-in account.
+   */
+  const user = await activeUser(req);
+  if (!user) return unauthorized();
 
   const body = (await req.json()) as {
     id?: string;
