@@ -1,7 +1,12 @@
 import { get, run, tx } from "./db";
+import { awardSessionBonus, type Stats } from "./gamification";
 
-/** Record a finished session and return the streak it leaves behind. */
-export function logSession(userId: string, minutes: number, blocks: string[]) {
+/** Record a finished session and return the streak and XP it leaves behind. */
+export function logSession(
+  userId: string,
+  minutes: number,
+  blocks: string[],
+): { streak: number; stats: Stats } {
   return tx(() => {
     const yesterday = get<{ streak_day: number }>(
       `SELECT streak_day FROM session_log
@@ -19,12 +24,12 @@ export function logSession(userId: string, minutes: number, blocks: string[]) {
       JSON.stringify(blocks),
       (yesterday?.streak_day ?? 0) + 1,
     );
-    return (
+    const streak =
       get<{ streak_day: number }>(
         "SELECT streak_day FROM session_log WHERE user_id = ? AND date = date('now')",
         userId,
-      )?.streak_day ?? 1
-    );
+      )?.streak_day ?? 1;
+    return { streak, stats: awardSessionBonus(userId) };
   });
 }
 

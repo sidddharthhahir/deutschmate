@@ -113,9 +113,9 @@ export default function WritingBlock({
         </p>
         <button
           onClick={onDone}
-          className="bg-fg mt-7 w-full rounded-xl py-3.5 font-medium text-[#16211E] transition-colors hover:bg-white"
+          className="bg-accent dm-pill mt-7 w-full rounded-2xl py-3.5 font-medium text-accent-fg transition-colors hover:bg-accent-hover"
         >
-          Weiter <span className="kbd kbd-hint">Enter</span>
+          Weiter <span className="kbd kbd-hint !text-accent-fg/75">Enter</span>
         </button>
       </Card>
     );
@@ -126,7 +126,7 @@ export default function WritingBlock({
       <div>
         <Eyebrow>Korrektur</Eyebrow>
         <Card>
-          <p className="font-serif text-[19px] text-[#CFE3C8]">
+          <p className="font-serif text-[19px] text-correct-fg">
             {result.encouragement}
           </p>
 
@@ -147,9 +147,9 @@ export default function WritingBlock({
 
           <button
             onClick={onDone}
-            className="bg-fg mt-6 w-full rounded-xl py-3.5 font-medium text-[#16211E] transition-colors hover:bg-white"
+            className="bg-accent dm-pill mt-6 w-full rounded-2xl py-3.5 font-medium text-accent-fg transition-colors hover:bg-accent-hover"
           >
-            Weiter <span className="kbd kbd-hint">Enter</span>
+            Weiter <span className="kbd kbd-hint !text-accent-fg/75">Enter</span>
           </button>
         </Card>
       </div>
@@ -192,10 +192,10 @@ export default function WritingBlock({
         <button
           onClick={() => void submit()}
           disabled={!ready}
-          className="bg-fg mt-4 w-full rounded-xl py-3.5 font-medium text-[#16211E] transition-colors hover:bg-white disabled:bg-[#243330] disabled:text-[#5C6B65]"
+          className="bg-accent dm-pill mt-4 w-full rounded-2xl py-3.5 font-medium text-accent-fg transition-colors hover:bg-accent-hover disabled:bg-disabled disabled:text-disabled-fg"
         >
           {busy ? "Wird geprüft…" : online ? "Korrigieren lassen" : "Speichern"}{" "}
-          {ready && <span className="kbd kbd-hint">Ctrl + Enter</span>}
+          {ready && <span className="kbd kbd-hint !text-accent-fg/75">Ctrl + Enter</span>}
         </button>
       </Card>
       <SkipLink onSkip={onSkip} />

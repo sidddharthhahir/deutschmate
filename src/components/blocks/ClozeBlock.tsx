@@ -206,10 +206,10 @@ export default function ClozeBlock({
                 result === "wrong" ? "dm-nudge" : "dm-fade"
               } ${
                 result === "right"
-                  ? "border-[#2F4A34] bg-[#18251B] text-[#CFE3C8]"
+                  ? "border-correct-border bg-correct text-correct-fg"
                   : result === "close"
-                    ? "border-[#4A422F] bg-[#25211A] text-[#E8DCC8]"
-                    : "border-[#4A2F3D] bg-[#251A20] text-[#E8C8D6]"
+                    ? "border-warm-line bg-warm-bg text-warm-fg"
+                    : "border-wrong-border bg-wrong text-wrong-fg"
               }`}
             >
               <p className="font-medium">
@@ -264,7 +264,7 @@ export default function ClozeBlock({
         {result ? (
           <button
             onClick={next}
-            className="bg-fg flex-1 rounded-xl py-4 font-medium text-[#16211E] transition-colors hover:bg-white"
+            className="bg-accent dm-pill flex-1 rounded-2xl py-4 font-medium text-accent-fg transition-colors hover:bg-accent-hover"
           >
             Weiter <span className="kbd ml-2">Enter</span>
           </button>
@@ -282,7 +282,7 @@ export default function ClozeBlock({
               // punctuation, so an enabled button that silently does nothing
               // would look like the app had frozen.
               disabled={!norm(value)}
-              className="bg-fg flex-1 rounded-xl py-4 font-medium text-[#16211E] transition-colors hover:bg-white disabled:cursor-not-allowed disabled:bg-[#243330] disabled:text-[#5C6B65]"
+              className="bg-accent dm-pill flex-1 rounded-2xl py-4 font-medium text-accent-fg transition-colors hover:bg-accent-hover disabled:cursor-not-allowed disabled:bg-disabled disabled:text-disabled-fg"
             >
               Prüfen <span className="kbd ml-2">Enter</span>
             </button>

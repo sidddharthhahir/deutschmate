@@ -1,44 +1,71 @@
 @import "tailwindcss";
 
 /* =========================================================================
-   DeutschMate design system — "Seminar"
-   Ported from the Claude Design project (v3 Desktop).
+   DeutschMate design system — "Playful Pop"
+   Replaces the old dark "Seminar" system (blackboard green, coursebook
+   serif) with a light, Duolingo-energy palette to go with the gamified
+   redesign: XP, streaks, hearts, snackable lessons.
 
-   Lecture hall after hours: blackboard green, coursebook serif, chalk white.
-   Dark is the default because this gets used at night for an hour at a time.
+   Light is the default now — the dark "lecture hall at night" premise is
+   gone along with the theme it justified.
    ========================================================================= */
 
 :root {
-  /* surfaces, dark → light */
-  --dm-bg: #0e1715; /* page */
-  --dm-surface: #16211e; /* cards, panels */
-  --dm-raised: #1e2c28; /* banners, hover, secondary buttons */
+  /* surfaces, quiet → loud */
+  --dm-bg: #fffcf5; /* page — warm cream, never stark white */
+  --dm-surface: #ffffff; /* cards, panels */
+  --dm-raised: #fdf1f6; /* banners, hover, secondary buttons — soft pink wash */
 
-  /* borders, subtle → strong */
-  --dm-line-sub: #243330;
-  --dm-line: #2f413b;
-  --dm-line-strong: #43574f;
+  /* borders, subtle → strong — soft lavender throughout */
+  --dm-line-sub: #f6e6ef;
+  --dm-line: #f0d3e6;
+  --dm-line-strong: #e0a8cc;
 
   /* text, quiet → loud */
-  --dm-muted: #95a69e;
-  --dm-secondary: #b4c1b9;
-  --dm-fg: #eceae0; /* chalk white — also the primary button fill */
+  --dm-muted: #a692b0;
+  --dm-secondary: #6b5d7a;
+  --dm-fg: #241e33; /* deep plum-black */
 
-  --dm-accent: #f0c15c; /* amber: checkmarks, offline dot, link hover */
+  --dm-accent: #ff5d8f; /* hot pink — primary CTA fill, checkmarks, links */
+  --dm-accent-fg: #fffcf5; /* text/icons on top of an accent-filled button */
+  /*
+   * A darker pink for hover/press, not white. Every accent button's text is
+   * light (accent-fg cream, or line-strong for its subtext) because it sits
+   * on a hot-pink fill — hovering that same fill to white left both colours
+   * nearly invisible on white, which is exactly the bug this fixes.
+   */
+  --dm-accent-hover: #e2477a;
 
   /* Article colours. A mnemonic, never a status.
      Colour NEVER carries meaning alone — the article word is always written
      out beside it, so this stays legible under any form of colour blindness. */
-  --dm-der: #8fbef5;
-  --dm-die: #f0c15c;
-  --dm-das: #f2a0c6;
+  --dm-der: #2ec4b6; /* teal */
+  --dm-die: #ffc145; /* yellow */
+  --dm-das: #ff5d8f; /* pink */
 
-  /* Recap only. The single warm screen in the app — it marks the end of a
-     session and is the one moment that should feel like a reward. */
-  --dm-warm-bg: #23201a;
-  --dm-warm-line: #3c352a;
-  --dm-warm-muted: #9c907a;
-  --dm-warm-fg: #f6f0e4;
+  /* Right/wrong feedback (Fix, Cloze, Quiz, Listening, Speaking blocks). */
+  --dm-correct-bg: #e3f7f2;
+  --dm-correct-border: #2ec4b6;
+  --dm-correct-fg: #0f7a6e;
+  --dm-wrong-bg: #ffeaf0;
+  --dm-wrong-border: #ff4d6d;
+  --dm-wrong-fg: #c23a5c;
+  --dm-error-fg: #e0455e; /* form validation, distinct context from "wrong" */
+
+  /* Disabled controls. */
+  --dm-disabled-bg: #f0e4ec;
+  --dm-disabled-fg: #b8a8c0;
+
+  /* Recap and celebration — XP gains, streak flame, session-complete screen.
+     Gold/yellow, the "you did it" colour. */
+  --dm-warm-bg: #fff6e0;
+  --dm-warm-line: #ffe1a3;
+  --dm-warm-muted: #b89968;
+  --dm-warm-fg: #7a5a1e;
+  /* For the recap's "Fertig für heute" button: dark warm-fg fill, light
+     warm-bg text — hover deepens the fill rather than going white, same fix
+     as --dm-accent-hover and for the same reason. */
+  --dm-warm-fg-hover: #5f4517;
 }
 
 @theme inline {
@@ -52,16 +79,28 @@
   --color-secondary: var(--dm-secondary);
   --color-fg: var(--dm-fg);
   --color-accent: var(--dm-accent);
+  --color-accent-fg: var(--dm-accent-fg);
+  --color-accent-hover: var(--dm-accent-hover);
   --color-der: var(--dm-der);
   --color-die: var(--dm-die);
   --color-das: var(--dm-das);
+  --color-correct: var(--dm-correct-bg);
+  --color-correct-border: var(--dm-correct-border);
+  --color-correct-fg: var(--dm-correct-fg);
+  --color-wrong: var(--dm-wrong-bg);
+  --color-wrong-border: var(--dm-wrong-border);
+  --color-wrong-fg: var(--dm-wrong-fg);
+  --color-error: var(--dm-error-fg);
+  --color-disabled: var(--dm-disabled-bg);
+  --color-disabled-fg: var(--dm-disabled-fg);
   --color-warm-bg: var(--dm-warm-bg);
   --color-warm-line: var(--dm-warm-line);
   --color-warm-muted: var(--dm-warm-muted);
   --color-warm-fg: var(--dm-warm-fg);
+  --color-warm-fg-hover: var(--dm-warm-fg-hover);
 
-  --font-serif: var(--font-source-serif), Georgia, serif;
-  --font-sans: var(--font-plex-sans), system-ui, sans-serif;
+  --font-serif: var(--font-source-serif), "Baloo 2", system-ui, sans-serif;
+  --font-sans: var(--font-plex-sans), "Nunito", system-ui, sans-serif;
   --font-mono: var(--font-plex-mono), ui-monospace, monospace;
 }
 
@@ -167,6 +206,11 @@ li {
    Rule from the design: nothing should tire you on the 400th card of the week.
    So — entrances only, all under 300ms, nothing that loops, nothing that
    bounces, and no motion at all on anything you see more than once per card.
+
+   Playful Pop adds one exception, not a replacement: celebration moments
+   (streak milestone, session-complete recap, an XP gain) get a bouncier pop,
+   because those happen once per session, not once per card — the fatigue
+   argument above doesn't apply to something you see a handful of times a day.
    ========================================================================= */
 
 @keyframes dm-rise {
@@ -252,6 +296,44 @@ li {
 }
 .dm-stagger > *:nth-child(5) {
   animation-delay: 240ms;
+}
+
+/* Celebration only — streak milestones, recap badges, XP toasts. A single
+   bounce-in, not a loop, so it still respects the no-fatigue rule above. */
+@keyframes dm-pop {
+  0% {
+    opacity: 0;
+    transform: scale(0.6);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(1.08);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.dm-pop {
+  animation: dm-pop 420ms cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+/* Pill buttons with a Duolingo-style "pressed" look: a solid drop-shadow that
+   compresses into the button on click, instead of a blurred box-shadow. */
+.dm-pill {
+  box-shadow: 0 4px 0 0 var(--dm-line-strong);
+  transition:
+    transform 100ms ease-out,
+    box-shadow 100ms ease-out;
+}
+
+.dm-pill:active:not(:disabled) {
+  transform: translateY(4px);
+  box-shadow: 0 0 0 0 var(--dm-line-strong);
+}
+
+.dm-pill:disabled {
+  box-shadow: 0 4px 0 0 var(--dm-disabled-fg);
 }
 
 @media (prefers-reduced-motion: reduce) {

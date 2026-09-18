@@ -119,7 +119,7 @@ export default function WalkMode({ cards }: { cards: Card[] }) {
         </p>
         <Link
           href="/session"
-          className="bg-fg mt-6 inline-block rounded-xl px-6 py-3.5 font-medium text-[#16211E] transition-colors hover:bg-white"
+          className="bg-accent dm-pill mt-6 inline-block rounded-2xl px-6 py-3.5 font-medium text-accent-fg transition-colors hover:bg-accent-hover"
         >
           Zur Sitzung
         </Link>
@@ -147,7 +147,7 @@ export default function WalkMode({ cards }: { cards: Card[] }) {
               setI(0);
               start();
             }}
-            className="bg-fg w-full rounded-xl py-3.5 font-medium text-[#16211E] transition-colors hover:bg-white"
+            className="bg-accent dm-pill w-full rounded-2xl py-3.5 font-medium text-accent-fg transition-colors hover:bg-accent-hover"
           >
             Noch eine Runde
           </button>
@@ -179,7 +179,7 @@ export default function WalkMode({ cards }: { cards: Card[] }) {
         </p>
         <button
           onClick={start}
-          className="bg-fg mt-7 w-full rounded-xl py-4 text-[17px] font-medium text-[#16211E] transition-colors hover:bg-white"
+          className="bg-accent dm-pill mt-7 w-full rounded-2xl py-4 text-[17px] font-medium text-accent-fg transition-colors hover:bg-accent-hover"
         >
           ▶&nbsp;&nbsp;Losgehen
         </button>
@@ -210,7 +210,7 @@ export default function WalkMode({ cards }: { cards: Card[] }) {
 
       <div className="bg-line mt-2 h-1 w-full overflow-hidden rounded-[2px]">
         <div
-          className="bg-fg h-full transition-[width] duration-300"
+          className="bg-accent h-full transition-[width] duration-300"
           style={{ width: `${cards.length ? (i / cards.length) * 100 : 0}%` }}
         />
       </div>
@@ -226,7 +226,7 @@ export default function WalkMode({ cards }: { cards: Card[] }) {
         ) : (
           <button
             onClick={resume}
-            className="bg-fg flex-1 rounded-xl py-4 text-[16px] font-medium text-[#16211E] transition-colors hover:bg-white"
+            className="bg-accent dm-pill flex-1 rounded-2xl py-4 text-[16px] font-medium text-accent-fg transition-colors hover:bg-accent-hover"
           >
             Weiter
           </button>

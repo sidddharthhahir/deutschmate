@@ -32,8 +32,8 @@ function WordCard({
       className={`flex-1 rounded-[14px] border p-5 text-center transition-colors ${
         wasHeard
           ? correct
-            ? "border-accent bg-[#1F2A20]"
-            : "border-das bg-[#2A1F26]"
+            ? "border-accent bg-correct"
+            : "border-das bg-wrong"
           : isTarget
             ? "border-line-strong bg-raised"
             : "border-line"
@@ -229,8 +229,8 @@ export default function PairDrill({
         <div
           className={`dm-fade mt-4 rounded-xl border p-4 text-center text-[14px] ${
             heard.matched === target
-              ? "border-[#2F4A34] bg-[#18251B] text-[#CFE3C8]"
-              : "border-[#4A2F3D] bg-[#251A20] text-[#E8C8D6]"
+              ? "border-correct-border bg-correct text-correct-fg"
+              : "border-wrong-border bg-wrong text-wrong-fg"
           }`}
         >
           {heard.matched === target ? (
@@ -262,7 +262,7 @@ export default function PairDrill({
         </button>
         <button
           onClick={next}
-          className="bg-fg flex-1 rounded-xl py-3.5 font-medium text-[#16211E] transition-colors hover:bg-white"
+          className="bg-accent dm-pill flex-1 rounded-2xl py-3.5 font-medium text-accent-fg transition-colors hover:bg-accent-hover"
         >
           Nächstes Paar
         </button>

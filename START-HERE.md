@@ -1,8 +1,9 @@
 # Start here
 
 A German course that decides what you study. You press one button a day and it
-teaches, drills, listens, corrects and remembers for you. A1.1 → B1.2, about an
-hour a day, roughly seven months.
+teaches, drills, listens, corrects and remembers for you. A1.1 ships now,
+about an hour a day; A1.2 through B1.2 are being rebuilt the same way and
+aren't in yet (see `data/deferred/README.md`).
 
 It runs on your own laptop and it costs nothing. Almost nothing leaves the
 machine — the two exceptions are named under "Worth knowing" below, because a
@@ -25,7 +26,7 @@ npm run dev
 
 Then open **http://localhost:3000**.
 
-`setup` builds the whole course on your machine — 3,219 words, 120 units, 49
+`setup` builds the whole course on your machine — 3,120 words, 12 units, 15
 grammar points, 2,381 recordings. It takes a couple of seconds and needs no
 internet and no account anywhere.
 
@@ -72,7 +73,7 @@ Everything except four things: the AI conversation, written-text correction,
 
 You still get the full course without them — every word, every grammar point,
 readings, listening, speaking, the spaced repetition, practice exams, and the
-whole of A1 conversation, because those 40 units ship a written-out dialogue
+whole of A1.1 conversation, because those 12 units ship a written-out dialogue
 that runs with no key and no internet.
 
 If you want the rest, put your own Anthropic key in **Einstellungen**. It costs

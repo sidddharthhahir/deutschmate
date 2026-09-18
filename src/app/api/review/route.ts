@@ -12,6 +12,7 @@ import {
 } from "@/lib/http";
 import { dueCards, dueCount, gradeCard } from "@/lib/srs";
 import { whyWrong } from "@/lib/why";
+import { stats as gamificationStats } from "@/lib/gamification";
 import type { Grade } from "ts-fsrs";
 
 export const runtime = "nodejs";
@@ -102,11 +103,14 @@ export async function POST(req: Request) {
 
   // `due` means two different things here — the card's next date and the
   // queue length. Name them apart so the spread can't clobber one.
+  // `gamification`, not `stats`: the GET handler above already uses `stats`
+  // for the due/total/learned/mastered deck numbers.
   return NextResponse.json({
     ok: true,
     nextDue,
     ...rest,
     explanation,
     remaining: dueCount(user.id),
+    gamification: gamificationStats(user.id),
   });
 }

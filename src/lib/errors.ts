@@ -6,6 +6,7 @@
 import { all, get, run } from "./db.ts";
 import { patternFor } from "./error-key.ts";
 import { finiteIndex, looksFinite, orderTag } from "./finite-verb.ts";
+import { recordOutcome } from "./gamification.ts";
 import { TAG_EN, type Tag } from "./tags.ts";
 import { foldUmlauts } from "./util.ts";
 
@@ -268,6 +269,7 @@ export function logAttempt(opts: {
     opts.expected ?? null,
     JSON.stringify(tags),
   );
+  recordOutcome(opts.userId, opts.kind, opts.correct);
   return tags;
 }
 

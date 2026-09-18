@@ -42,11 +42,16 @@ ok(
 );
 
 section("the units actually point at an episode");
+/*
+ * A1.1 only for now (2026-09) — A1.2 is deliberately unseeded while the
+ * Momente rewrite gets solid (see data/deferred/README.md), so this is just
+ * the 12 A1.1 units rather than 40 across A1.1+A1.2.
+ */
 const linked = db
   .prepare(
     `SELECT u.id, u.level, u.ord, u.title, u.video_id, v.title AS video, v.src_url
        FROM unit u LEFT JOIN video v ON v.id = u.video_id
-      WHERE u.video_id IS NOT NULL AND u.level IN ('A1.1','A1.2')
+      WHERE u.video_id IS NOT NULL AND u.level = 'A1.1'
       ORDER BY u.level, u.ord`,
   )
   .all() as {
@@ -57,7 +62,7 @@ const linked = db
   video: string | null;
   src_url: string | null;
 }[];
-ok(linked.length >= 25, "most of A1 has a video", `${linked.length} of 40`);
+ok(linked.length >= 8, "most of A1.1 has a video", `${linked.length} of 12`);
 
 const dangling = linked.filter((u) => !u.video);
 eq(dangling.length, 0, "no unit points at a video row that does not exist");
@@ -88,11 +93,12 @@ section("the episode matches the unit it was chosen for");
  * attached to the unit about "Woher kommst du?" and nobody noticed, because the
  * block never rendered.
  */
+/* Was four pairs including a1-2-u11 → "Beim Arzt"; A1.2 is deferred (see
+   data/deferred/README.md), so only the A1.1 pairs are checkable right now. */
 const expect: [string, string][] = [
   ["a1-1-u01", "Hallo!"],
   ["a1-1-u02", "Von A bis Z"],
   ["a1-1-u05", "Woher kommst du?"],
-  ["a1-2-u11", "Beim Arzt"],
 ];
 for (const [unitId, episode] of expect) {
   const row = linked.find((u) => u.id === unitId);

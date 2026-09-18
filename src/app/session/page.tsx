@@ -45,6 +45,8 @@ import {
 import { myKey } from "@/lib/who";
 import { shouldIgnoreKey } from "@/lib/keys";
 import { plural } from "@/lib/plural";
+import { onStatsChange, setStats, type Stats } from "@/lib/gamification-client";
+import HeartsAndXp from "@/components/HeartsAndXp";
 
 type Block = {
   kind: string;
@@ -65,6 +67,7 @@ type Plan = {
   dueTotal: number;
   /** What comes after this unit, by name — the recap's "Morgen". */
   next: { ord: number; title: string } | null;
+  stats: Stats;
 };
 
 /**
@@ -129,6 +132,7 @@ export default function SessionPage() {
 /** The session runner (spec §3). */
 function SessionRunner() {
   const params = useSearchParams();
+  const router = useRouter();
   const shape = params.get("kurz") === "1" ? "short" : "full";
 
   const [plan, setPlan] = useState<Plan | null>(null);
@@ -136,6 +140,7 @@ function SessionRunner() {
   const [done, setDone] = useState(false);
   const [recap, setRecap] = useState<Recap | null>(null);
   const [streak, setStreak] = useState(0);
+  const [gaStats, setGaStats] = useState<Stats | null>(null);
   // Captured once when the session ends. Must NOT be recomputed during render:
   // the recap would then drift upward while you sit on it, and disagree with
   // the value already written to session_log.
@@ -171,6 +176,10 @@ function SessionRunner() {
     legStart.current = Date.now();
   }, []);
 
+  // Mirrors the module-level store into state, so the recap (rendered by this
+  // component, not by the header HUD) can show the XP total it ends on.
+  useEffect(() => onStatsChange(setGaStats), []);
+
   useEffect(() => {
     let stale = false;
     (async () => {
@@ -202,6 +211,7 @@ function SessionRunner() {
 
       setPlan(data);
       setOffline(fromCache);
+      if (data.stats) setStats(data.stats);
       const saved = readSaved(shape);
       const at = saved ? resumeIndex(data.blocks, saved.completed) : 0;
       if (saved && at > 0 && at < data.blocks.length) setOffer({ saved, at });
@@ -226,24 +236,6 @@ function SessionRunner() {
     };
   }, []);
 
-  /*
-   * Esc leaves the session — the same way the Beenden link beside it does.
-   *
-   * It used to assign `window.location.href`, so the key did a full document
-   * load while the link next to it did a client-side navigation: one action,
-   * two behaviours, and the keyboard one visibly slower. Next 16.3 added a lint
-   * rule for exactly this.
-   */
-  const router = useRouter();
-  useEffect(() => {
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key !== "Escape" || shouldIgnoreKey(e)) return;
-      router.push("/");
-    };
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, [router]);
-
   const blocks = useMemo(() => plan?.blocks ?? [], [plan]);
   const block = blocks[i];
 
@@ -265,6 +257,18 @@ function SessionRunner() {
   }, [intro]);
 
   const finish = useCallback(async () => {
+    /*
+     * Esc/Beenden before finishing even one block: not a snackable lesson,
+     * just changing your mind before starting. Logging it would hand out a
+     * streak day and the session-completion XP bonus for opening the page
+     * and immediately leaving — exactly the "fake progress" principle 4
+     * forbids. Plain navigation, same as this used to always do.
+     */
+    if (completed.current.length === 0) {
+      router.push("/");
+      return;
+    }
+
     const elapsed = Math.max(
       1,
       Math.round((spentMs.current + (Date.now() - legStart.current)) / 60000),
@@ -286,6 +290,7 @@ function SessionRunner() {
       recap: Recap;
       streak: number;
       wordsLeft: number;
+      stats: Stats;
     }>("/api/session", {
       minutes: elapsed,
       blocks: completed.current,
@@ -297,12 +302,37 @@ function SessionRunner() {
     if (data) {
       setRecap(data.recap);
       setStreak(data.streak);
+      if (data.stats) setStats(data.stats);
       // A big unit carries over. "Morgen: Unit 6" would be a straightforward
       // lie on the day Unit 5 still has four words left in it.
       if (data.wordsLeft > 0) setCarryOver(data.wordsLeft);
     }
     setPending(pendingCount());
-  }, [plan, shape]);
+  }, [plan, shape, router]);
+
+  /*
+   * Esc leaves the session — the same way the Beenden link beside it does, and
+   * the same way ReviewBlock's own two "Beenden" links do (it renders its own
+   * full-screen chrome and re-dispatches this event rather than duplicating
+   * the logic — see ReviewBlock.tsx).
+   *
+   * This used to be a bare navigation: leaving after one snackable lesson
+   * logged nothing, so the streak, the session-completion XP bonus and
+   * "Unit fertig" only ever landed on a learner who finished the whole day's
+   * queue in one sitting. It now runs the exact same finish() a completed
+   * queue does — logSession's ON CONFLICT already accumulates minutes across
+   * more than one call a day, so stopping after block 1 today and finishing
+   * the rest tonight adds up correctly rather than the second call clobbering
+   * the first.
+   */
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key !== "Escape" || shouldIgnoreKey(e) || done) return;
+      void finish();
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [done, finish]);
 
   const advance = useCallback(() => {
     if (block) completed.current.push(block.kind);
@@ -344,7 +374,7 @@ function SessionRunner() {
                 setPlan(null);
                 location.reload();
               }}
-              className="bg-fg w-full rounded-xl py-3.5 font-medium text-[#16211E] transition-colors hover:bg-white"
+              className="bg-accent dm-pill w-full rounded-2xl py-3.5 font-medium text-accent-fg transition-colors hover:bg-accent-hover"
             >
               Nochmal versuchen
             </button>
@@ -395,7 +425,7 @@ function SessionRunner() {
                 setI(offer.at);
                 setOffer(null);
               }}
-              className="bg-fg w-full rounded-xl py-4 font-medium text-[#16211E] transition-colors hover:bg-white"
+              className="bg-accent dm-pill w-full rounded-2xl py-4 font-medium text-accent-fg transition-colors hover:bg-accent-hover"
             >
               Weitermachen
             </button>
@@ -423,6 +453,7 @@ function SessionRunner() {
         streak={streak}
         canDo={plan.canDo}
         minutes={minutes}
+        xpTotal={gaStats?.xpTotal}
         /* Named, not numbered. */
         nextUnit={
           carryOver > 0
@@ -482,12 +513,12 @@ function SessionRunner() {
     <main className="bg-bg flex min-h-screen flex-col">
       <div className="flex flex-none flex-col gap-3.5 px-6 pt-6 md:px-10">
         <div className="flex items-center gap-4 md:gap-8">
-          <Link
-            href="/"
-            className="font-mono text-muted hover:text-secondary w-[100px] text-[12.5px] transition-colors md:w-[160px]"
+          <button
+            onClick={() => void finish()}
+            className="font-mono text-muted hover:text-secondary w-[100px] text-left text-[12.5px] transition-colors md:w-[160px]"
           >
             <span className="kbd-hint">Esc&nbsp;&nbsp;</span>Beenden
-          </Link>
+          </button>
           {/* Rail: filled = done, current shows position, rest empty.
               No block is clickable — it reports, it isn't a menu. */}
           <div className="flex flex-1 gap-1">
@@ -496,7 +527,7 @@ function SessionRunner() {
                 key={n}
                 title={b.title}
                 className={`h-1 flex-1 rounded-[2px] ${
-                  n < i ? "bg-fg" : n === i ? "bg-secondary" : "bg-line"
+                  n < i ? "bg-accent" : n === i ? "bg-secondary" : "bg-line"
                 }`}
               />
             ))}
@@ -505,7 +536,8 @@ function SessionRunner() {
             {blocks.slice(i).reduce((n, b) => n + b.minutes, 0)} min übrig
           </span>
         </div>
-        <div className="flex flex-col items-center gap-1">
+        <div className="flex flex-col items-center gap-1.5">
+          <HeartsAndXp />
           <div className="font-mono text-muted text-center text-[12.5px]">
             {block.title} · Block {i + 1} von {blocks.length}
             {offline && " · offline"}

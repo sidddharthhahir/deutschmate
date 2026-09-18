@@ -1,5 +1,6 @@
 ﻿/**
- * Walk a brand-new learner through all 120 units.
+ * Walk a brand-new learner through all 12 units A1.1 only ships for now
+ * (2026-09) — see data/deferred/README.md.
  * needs: server, seeded database
  */
 import {
@@ -153,17 +154,20 @@ while (guard++ < 400) {
     break;
 }
 
+/*
+ * A1.1 only for now (2026-09): A1.2 through B1.2 are deliberately unseeded
+ * while the Momente rewrite gets solid (see data/deferred/README.md), so the
+ * walk correctly stops at the end of A1.1 rather than crossing into a level
+ * that isn't there — currentUnit() returns null once the only seeded level is
+ * finished, same as it already did at the true end of B1.2 before this.
+ */
 const levelsHit = [...new Set(seen.map((x) => x.split("/")[0]))];
 ok(
-  levelsHit.join(",") === "A1.1,A1.2,A2.1,A2.2,B1.1,B1.2",
+  levelsHit.join(",") === "A1.1",
   "the learner reaches every level, in order",
   levelsHit.join(" -> "),
 );
-ok(
-  seen.length === 120,
-  "all 120 units are reachable",
-  `${seen.length} visited`,
-);
+ok(seen.length === 12, "all 12 units are reachable", `${seen.length} visited`);
 ok(new Set(seen).size === seen.length, "no unit is visited twice");
 ok(
   guard < 400,
@@ -171,8 +175,11 @@ ok(
   `${guard} sessions`,
 );
 
+/* Never promoted past A1.1: currentUnit() only writes user.level when it
+   actually finds the learner's next unit in a different level, and with
+   nothing seeded past A1.1 that never happens. */
 const finalLevel = (await get(`/api/session?user=${U}`)).user.level;
-ok(finalLevel === "B1.2", "user.level ends at B1.2", finalLevel);
+ok(finalLevel === "A1.1", "user.level stays at A1.1", finalLevel);
 
 const perLevel: Record<string, number> = {};
 for (const x of seen)
@@ -226,12 +233,14 @@ ok(
   "no word the course teaches is left untaught by a full pass",
   `${taught} of ${total}`,
 );
-ok(total >= 400, "and the course teaches a real vocabulary", `${total} words`);
+/* Was >= 400 across 112 units; A1.1 alone teaches ~175 (see the same note in
+   content.test.mts and fresh-clone.test.mts). */
+ok(total >= 150, "and the course teaches a real vocabulary", `${total} words`);
 
 section("exam scope follows the level");
 const exam = await get(`/api/pruefung?user=${U}`);
 ok(
-  exam.level === "B1.2",
+  exam.level === "A1.1",
   "the exam is built at the learner's level",
   exam.level,
 );
@@ -245,7 +254,7 @@ section("Der Weg reflects the walk");
 const weg = await pageRes("/weg", U);
 ok(weg.ok, "the page renders", weg.status);
 const html = await weg.text();
-ok(html.includes("120 von 120"), "it counts every unit as done");
+ok(html.includes("12 von 12"), "it counts every unit as done");
 ok(
   /A1\.1[\s\S]{0,400}fertig/.test(html),
   "and dates the levels that are finished",
@@ -256,7 +265,7 @@ ok(
   "and is not showing its empty state",
 );
 ok(
-  html.includes("B1.2 abgeschlossen"),
+  html.includes("A1.1 abgeschlossen"),
   "the last level appears as a milestone",
 );
 

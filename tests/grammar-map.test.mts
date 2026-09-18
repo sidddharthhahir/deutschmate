@@ -2,7 +2,7 @@
  * A2 and B1 units teach the rule their own title names.
  * needs: seeded database
  */
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { ok, eq, section, done, open } from "./harness.mts";
@@ -17,7 +17,26 @@ type Blueprint = {
   can_do: string[];
   grammar?: string | null;
 };
-const bps: Blueprint[] = ["blueprints-a2.json", "blueprints-b1.json"].flatMap(
+/*
+ * A1.1 only for now (2026-09): blueprints-a2.json and blueprints-b1.json — and
+ * every unit/grammar point they describe — moved to data/deferred/ while the
+ * Momente rewrite gets A1.1 solid first (see its README). Everything below
+ * tests content that genuinely doesn't ship right now, so this skips rather
+ * than failing a build over a level that's paused, not broken. Bringing A2/B1
+ * back means moving their blueprint files back to data/ — see the deferred
+ * README for the exact steps — at which point this file starts asserting
+ * again with no changes needed.
+ */
+const BLUEPRINT_FILES = ["blueprints-a2.json", "blueprints-b1.json"];
+if (!BLUEPRINT_FILES.every((f) => existsSync(join(ROOT, "data", f)))) {
+  console.log(
+    "SKIP  data/blueprints-a2.json and blueprints-b1.json are deferred, not absent — see data/deferred/README.md",
+  );
+  console.log("\nALL PASS  (0 checks)");
+  process.exit(0);
+}
+
+const bps: Blueprint[] = BLUEPRINT_FILES.flatMap(
   (f) => JSON.parse(readFileSync(join(ROOT, "data", f), "utf8")) as Blueprint[],
 );
 

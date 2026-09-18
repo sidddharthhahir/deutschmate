@@ -285,7 +285,7 @@ export default function ConversationBlock({
         <Eyebrow>Nach dem Gespräch</Eyebrow>
         <Card>
           {corrections.length === 0 ? (
-            <p className="font-serif text-center text-[20px] text-[#CFE3C8]">
+            <p className="font-serif text-center text-[20px] text-correct-fg">
               Keine Fehler gefunden. Sehr gut gemacht.
             </p>
           ) : (
@@ -299,9 +299,9 @@ export default function ConversationBlock({
           )}
           <button
             onClick={onDone}
-            className="bg-fg mt-6 w-full rounded-xl py-3.5 font-medium text-[#16211E] transition-colors hover:bg-white"
+            className="bg-accent dm-pill mt-6 w-full rounded-2xl py-3.5 font-medium text-accent-fg transition-colors hover:bg-accent-hover"
           >
-            Weiter <span className="kbd kbd-hint">Enter</span>
+            Weiter <span className="kbd kbd-hint !text-accent-fg/75">Enter</span>
           </button>
         </Card>
       </div>
@@ -328,7 +328,7 @@ export default function ConversationBlock({
         </p>
         <button
           onClick={onDone}
-          className="bg-fg mt-7 w-full rounded-xl py-3.5 font-medium text-[#16211E] transition-colors hover:bg-white"
+          className="bg-accent dm-pill mt-7 w-full rounded-2xl py-3.5 font-medium text-accent-fg transition-colors hover:bg-accent-hover"
         >
           Weiter
         </button>
@@ -377,7 +377,7 @@ export default function ConversationBlock({
             <div key={n} className={m.who === "you" ? "text-right" : ""}>
               <span
                 className={`font-serif inline-block max-w-[85%] rounded-2xl px-4 py-2.5 text-left text-[17px] ${
-                  m.who === "you" ? "bg-fg text-[#16211E]" : "bg-raised text-fg"
+                  m.who === "you" ? "bg-accent dm-pill text-accent-fg" : "bg-raised text-fg"
                 }`}
               >
                 {m.text}
@@ -411,7 +411,7 @@ export default function ConversationBlock({
               aria-label={listening ? "Hört zu" : "Sprechen"}
               className={`flex h-[104px] w-[104px] items-center justify-center rounded-full border-2 text-[32px] transition-colors ${
                 listening
-                  ? "border-accent bg-[#2A2416] text-accent"
+                  ? "border-accent bg-raised text-accent"
                   : thinking
                     ? "border-line text-muted"
                     : "border-line-strong text-secondary hover:border-fg hover:text-fg"
@@ -467,7 +467,7 @@ export default function ConversationBlock({
                   title="Sprechen"
                   className={`rounded-xl border px-3.5 py-3 transition-colors ${
                     listening
-                      ? "border-das bg-[#2A1F26]"
+                      ? "border-accent bg-accent/10"
                       : "border-line hover:border-line-strong"
                   }`}
                 >
@@ -489,7 +489,7 @@ export default function ConversationBlock({
               <button
                 onClick={() => void send(input)}
                 disabled={!input.trim() || thinking}
-                className="bg-fg rounded-xl px-5 font-medium text-[#16211E] disabled:bg-[#243330] disabled:text-[#5C6B65]"
+                className="bg-accent dm-pill rounded-2xl px-5 font-medium text-accent-fg disabled:bg-disabled disabled:text-disabled-fg"
               >
                 ↑
               </button>

@@ -286,10 +286,32 @@ const DRILLS: Record<string, string[]> = {
   "word-order": ["verb-position-2", "nebensaetze"],
   vocabulary: [],
 };
+/*
+ * A1.1 only for now (2026-09): akkusativ, dativ, praepositionen-kasus,
+ * genitiv, modalverben, perfekt, wechselpraepositionen and nebensaetze belong
+ * to A1.2 and later, deliberately unseeded while the Momente rewrite gets
+ * solid (see data/deferred/README.md). The runtime mapping this mirrors
+ * (lib/session-content.ts's TAG_TO_SLUG) already degrades gracefully for a
+ * slug the grammar table doesn't have — `WHERE slug IN (...)` just returns no
+ * drill — so this isn't a live bug, only an expected gap that closes as each
+ * level comes back.
+ */
+const DEFERRED_SLUGS = new Set([
+  "akkusativ",
+  "dativ",
+  "praepositionen-kasus",
+  "genitiv",
+  "modalverben",
+  "perfekt",
+  "wechselpraepositionen",
+  "nebensaetze",
+]);
 for (const t of TAGS) {
   ok(t in DRILLS, `${t} is mapped`);
-  for (const slug of DRILLS[t] ?? [])
+  for (const slug of DRILLS[t] ?? []) {
+    if (DEFERRED_SLUGS.has(slug)) continue;
     ok(SLUGS.has(slug), `  ↳ grammar point ${slug} exists`);
+  }
 }
 
 section("the file and the table agree");

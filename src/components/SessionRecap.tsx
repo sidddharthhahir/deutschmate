@@ -75,12 +75,17 @@ export default function SessionRecap({
   canDo,
   minutes,
   nextUnit,
+  xpTotal,
 }: {
   recap: Recap | null;
   streak: number;
   canDo: string[];
   minutes: number;
   nextUnit?: string | null;
+  /** Total XP after today's session bonus — the recap only ever shows the
+      running total, never a delta, so it can't drift from what /fortschritt
+      and the session header already say (principle 4). */
+  xpTotal?: number;
 }) {
   const mistake = recap?.lastMistakeTags?.[0];
   const newWords = recap?.newWords ?? 0;
@@ -90,9 +95,16 @@ export default function SessionRecap({
     <main className="bg-warm-bg text-warm-fg flex min-h-screen flex-col px-6 py-12 md:px-10">
       <div className="mx-auto flex w-full max-w-[1000px] flex-1 flex-col justify-center gap-8 md:gap-10">
         <div className="flex flex-col gap-1.5">
-          <div className="font-mono text-warm-muted text-[12.5px] tracking-[0.14em] uppercase">
-            {WEEKDAY[new Date().getDay()]}
-            {streak > 0 && ` · Tag ${streak}`}
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+            <div className="font-mono text-warm-muted text-[12.5px] tracking-[0.14em] uppercase">
+              {WEEKDAY[new Date().getDay()]}
+              {streak > 0 && ` · Tag ${streak}`}
+            </div>
+            {typeof xpTotal === "number" && (
+              <span className="dm-pop text-accent font-mono text-[12.5px]">
+                ★ {xpTotal} XP
+              </span>
+            )}
           </div>
           <h1 className="font-serif text-[38px] leading-[1.05] font-semibold tracking-[-0.015em] md:text-[52px]">
             Heute geschafft
@@ -157,7 +169,7 @@ export default function SessionRecap({
 
           <Link
             href="/"
-            className="bg-warm-fg text-warm-bg flex-none rounded-xl px-10 py-4 text-[17px] font-semibold transition-colors hover:bg-white"
+            className="bg-warm-fg text-warm-bg flex-none rounded-xl px-10 py-4 text-[17px] font-semibold transition-colors hover:bg-warm-fg-hover"
           >
             Fertig für heute
           </Link>

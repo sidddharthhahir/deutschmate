@@ -11,6 +11,7 @@ import {
 import { dueCount } from "@/lib/srs";
 import { get } from "@/lib/db";
 import { snapshotIfDue } from "@/lib/backup";
+import { stats } from "@/lib/gamification";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -42,6 +43,7 @@ export async function GET(req: Request) {
        nothing obeys is worse than no number at all. */
     user: { id: user.id, name: user.name, level: plan.level },
     streak: currentStreak(user.id),
+    stats: stats(user.id),
     ...plan,
   });
 }
@@ -75,7 +77,7 @@ export async function POST(req: Request) {
     }
   }
 
-  const streak = logSession(user.id, minutes, blocks);
+  const { streak, stats: statsAfter } = logSession(user.id, minutes, blocks);
 
   /* The session is now recorded, so there is something new worth keeping. One
      snapshot a day, after the write and outside any transaction, and it never
@@ -109,6 +111,7 @@ export async function POST(req: Request) {
   return NextResponse.json({
     ok: true,
     streak,
+    stats: statsAfter,
     unitDone,
     wordsLeft,
     /* Whether today's snapshot was taken in this request. False also means

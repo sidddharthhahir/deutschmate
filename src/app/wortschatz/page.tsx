@@ -263,7 +263,7 @@ export default function WortschatzPage() {
           <button
             onClick={() => void markSeen()}
             disabled={offset + size >= total}
-            className="bg-fg rounded-xl px-5 py-2.5 text-[14px] font-medium text-[#16211E] transition-colors hover:bg-white disabled:bg-[#243330] disabled:text-[#5C6B65]"
+            className="bg-accent dm-pill rounded-2xl px-5 py-2.5 text-[14px] font-medium text-accent-fg transition-colors hover:bg-accent-hover disabled:bg-disabled disabled:text-disabled-fg"
           >
             Gelesen — weiter →
           </button>
@@ -287,7 +287,7 @@ function Chip({
       onClick={onClick}
       className={`font-mono rounded-full px-3 py-2 text-[11.5px] transition-colors ${
         active
-          ? "bg-fg text-[#16211E]"
+          ? "bg-accent dm-pill text-accent-fg"
           : "border-line text-muted hover:border-line-strong hover:text-secondary border"
       }`}
     >

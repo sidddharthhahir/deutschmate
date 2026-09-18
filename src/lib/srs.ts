@@ -9,6 +9,7 @@ import {
 } from "ts-fsrs";
 import { all, get, run, tx } from "./db";
 import { classify } from "./errors";
+import { recordOutcome } from "./gamification";
 
 /**
  * FSRS scheduling. Never hand-roll intervals (spec §6) — ts-fsrs is the
@@ -210,6 +211,7 @@ export function gradeCard(
      * decides how many new words you get tomorrow — read the inflated figure.
      */
     if (!log?.silent) {
+      const attemptKind = row.ref_type === "cloze" ? "cloze" : "review";
       const tags =
         !correct && log?.expected && log?.answer
           ? classify(log.expected, log.answer)
@@ -218,13 +220,16 @@ export function gradeCard(
         `INSERT INTO attempt (user_id, kind, ref_id, correct, user_answer, expected, error_tags_json)
          VALUES (?, ?, ?, ?, ?, ?, ?)`,
         userId,
-        row.ref_type === "cloze" ? "cloze" : "review",
+        attemptKind,
         row.ref_id,
         correct,
         log?.answer ?? String(grade),
         log?.expected ?? null,
         JSON.stringify(tags),
       );
+      // Never costs a heart: "review" and "cloze" are not in HEART_LOSS_KINDS,
+      // so this only ever adds XP. See gamification.ts.
+      recordOutcome(userId, attemptKind, Boolean(correct));
     }
 
     return {

@@ -377,6 +377,30 @@ CREATE TABLE IF NOT EXISTS usage (
 );
 CREATE INDEX IF NOT EXISTS idx_usage_user_time ON usage(user_id, created_at);
 
+/*
+ * XP and hearts (Playful Pop gamification).
+ *
+ * One row per user, created lazily on first read/write rather than at signup —
+ * every account that existed before this table shipped needs to work without
+ * a migration step touching `user`.
+ *
+ * Hearts gate only new material (new-vocab, new-grammar blocks), never the
+ * spaced-repetition review queue: a wrong "Again" on a due card is FSRS doing
+ * its job, not a mistake to punish, and this app's whole design is built
+ * around that queue never feeling risky to attempt.
+ *
+ * `hearts_date` refills to MAX_HEARTS once per calendar day (lib/gamification.ts)
+ * — no earn-back, no timers, matching the "never fake progress" honesty this
+ * app already applies to streaks: hearts either reset for the day or they
+ * don't, nothing in between to game or explain.
+ */
+CREATE TABLE IF NOT EXISTS user_stats (
+  user_id      TEXT PRIMARY KEY REFERENCES user(id) ON DELETE CASCADE,
+  xp_total     INTEGER NOT NULL DEFAULT 0,
+  hearts       INTEGER NOT NULL DEFAULT 5,
+  hearts_date  TEXT NOT NULL DEFAULT (date('now'))
+);
+
 -- Offline writing queue (spec §17): submitted offline, corrected on reconnect.
 CREATE TABLE IF NOT EXISTS pending_correction (
   id         INTEGER PRIMARY KEY AUTOINCREMENT,

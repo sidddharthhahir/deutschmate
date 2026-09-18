@@ -107,7 +107,7 @@ export default function TextTool() {
           <button
             onClick={() => void run(text)}
             disabled={busy || !text.trim()}
-            className="bg-fg rounded-xl px-7 py-3.5 font-medium text-[#16211E] transition-colors hover:bg-white disabled:bg-[#243330] disabled:text-[#5C6B65]"
+            className="bg-accent dm-pill rounded-2xl px-7 py-3.5 font-medium text-accent-fg transition-colors hover:bg-accent-hover disabled:bg-disabled disabled:text-disabled-fg"
           >
             {busy ? "Wird gelesen…" : "Text durchgehen"}
           </button>

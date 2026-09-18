@@ -8,6 +8,7 @@ import { useOnline } from "@/lib/hooks";
 import { shouldIgnoreKey } from "@/lib/keys";
 import { tourSeen } from "@/lib/tour";
 import { plural } from "@/lib/plural";
+import { NEW_WORDS_PER_DAY } from "@/lib/config";
 
 type Plan = {
   user: { id: string; name: string; level: string };
@@ -25,6 +26,8 @@ type Plan = {
   pacing: { words: number; accuracy: number | null; reduced: boolean };
   /** Whole days skipped since the last session. */
   missed: number;
+  /** No hearts left today — new material is paused, review still runs. */
+  heartsEmpty: boolean;
 };
 
 type State = "loading" | "normal" | "empty" | "offline" | "error";
@@ -140,7 +143,24 @@ export default function Home() {
                   ? "Gestern ausgelassen — die Karten von gestern sind in der heutigen Sitzung"
                   : `${missed} Tage ausgelassen — die fälligen Karten sind in der heutigen Sitzung`,
             }
-          : null;
+          : plan?.heartsEmpty && plan.unit
+            ? {
+                dot: "bg-das",
+                // Otherwise a learner out of hearts just sees a shorter
+                // session with no explanation for why new material stopped.
+                // Guarded on `unit`: with the course finished there is no new
+                // material to gate, so the message would be meaningless noise.
+                text: "Keine Herzen mehr heute — neue Wörter gibt's morgen wieder",
+              }
+            : plan?.pacing.reduced && plan.unit
+              ? {
+                  dot: "bg-die",
+                  // newWordBudget's own doc comment says it must be able to
+                  // say why it slowed down "rather than quietly giving you
+                  // less" — nothing read `reduced` or `accuracy` until now.
+                  text: `Nur ${plan.pacing.words} statt ${NEW_WORDS_PER_DAY} neue Wörter heute — ${plan.pacing.accuracy}% Trefferquote diese Woche`,
+                }
+              : null;
 
   return (
     <main className="flex min-h-screen flex-col">
@@ -257,7 +277,7 @@ export default function Home() {
                   <>
                     <Link
                       href="/session"
-                      className="bg-fg flex w-full flex-col items-start gap-[7px] rounded-[14px] px-7 py-6 text-[#16211E] transition-colors hover:bg-white"
+                      className="bg-accent dm-pill flex w-full flex-col items-start gap-[7px] rounded-[14px] px-7 py-6 text-accent-fg transition-colors hover:bg-accent-hover"
                     >
                       <span className="text-[22px] font-semibold tracking-[-0.01em] md:text-[24px]">
                         ▶&nbsp;&nbsp;
@@ -274,12 +294,19 @@ export default function Home() {
                           day-one beginner cannot read. The most important
                           control on the screen was the least legible thing on
                           it. */}
-                      <span className="font-mono text-[12px] text-[#43574F] opacity-80">
+                      {/* text-accent-fg, not text-line-strong: line-strong is
+                          a light lavender meant for muted text on a cream
+                          background, and its contrast against the hot-pink
+                          fill here was under 1.5:1 — not just on hover, all
+                          the time. accent-fg at reduced opacity keeps the
+                          same visual hierarchy (dimmer than the heading)
+                          while staying legible. */}
+                      <span className="font-mono text-accent-fg/80 text-[12px]">
                         {state === "error"
                           ? "your reviews, from this device"
                           : "today's session — press to start"}
                       </span>
-                      <span className="font-mono text-[13px] text-[#43574F]">
+                      <span className="font-mono text-accent-fg/90 text-[13px]">
                         {state === "error"
                           ? "aus dem lokalen Deck"
                           : [

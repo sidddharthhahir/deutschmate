@@ -646,7 +646,7 @@ function Bar({ value, max }: { value: number; max: number }) {
   return (
     <div className="bg-line h-1.5 w-full overflow-hidden rounded-[2px]">
       <div
-        className="bg-fg h-full rounded-[2px]"
+        className="bg-accent h-full rounded-[2px]"
         style={{ width: `${max ? Math.min(100, (value / max) * 100) : 0}%` }}
       />
     </div>

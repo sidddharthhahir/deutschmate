@@ -214,7 +214,7 @@ export default function NewVocabBlock({
               <PrimaryButton
                 onClick={() => setS((p) => ({ ...p, phase: "check" }))}
               >
-                Verstanden <span className="kbd kbd-hint">Enter</span>
+                Verstanden <span className="kbd kbd-hint !text-accent-fg/75">Enter</span>
               </PrimaryButton>
             </div>
           </>

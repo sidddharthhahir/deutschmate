@@ -174,7 +174,7 @@ export function drillsForTags(tags: string[]) {
      patterns, and all four already had a grammar point written. */
   const TAG_TO_SLUG: Record<string, string[]> = {
     "article-gender": ["artikel-nominativ"],
-    "article-akkusativ": ["akkusativ"],
+    "article-akkusativ": ["akkusativ-intro", "akkusativ"],
     "article-dativ": ["dativ", "praepositionen-kasus"],
     "article-genitiv": ["genitiv"],
     /* verb-haben was folded into verb-sein — A1.1 unit 8 is "Sein und haben"

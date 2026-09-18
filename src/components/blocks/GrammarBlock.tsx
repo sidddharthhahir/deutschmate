@@ -196,10 +196,10 @@ export default function GrammarBlock({ payload, onDone }: BlockProps<Payload>) {
         </Card>
         <button
           onClick={startDrills}
-          className="bg-fg mt-4 w-full rounded-xl py-4 font-medium text-[#16211E] transition-colors hover:bg-white"
+          className="bg-accent dm-pill mt-4 w-full rounded-2xl py-4 font-medium text-accent-fg transition-colors hover:bg-accent-hover"
         >
           {drills.length ? `Üben (${drills.length})` : "Weiter"}{" "}
-          <span className="kbd kbd-hint">Enter</span>
+          <span className="kbd kbd-hint !text-accent-fg/75">Enter</span>
         </button>
       </div>
     );

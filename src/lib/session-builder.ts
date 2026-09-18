@@ -5,6 +5,7 @@ import { dueCloze, mineFromErrors } from "./cloze";
 import { rhythmFor, today } from "./rhythm";
 import { dueGrammar } from "./grammar-srs";
 import { reachOf } from "./sentence-grammar";
+import { hasHearts } from "./gamification";
 import {
   CLOZE_PER_SESSION,
   GAP_BACKLOG,
@@ -64,6 +65,10 @@ export function buildSession(
   /* How far into A1 the learner has got, for the sentence gate. No unit means
      an empty course, and 1 keeps a broken database from serving everything. */
   const reach = unit ? reachOf(unit.level, unit.ord) : 1;
+  const heartsEmpty = !hasHearts(userId);
+  // Unit 1 only: skip Builder/Speaking/Gespräch until unit 2 — day one keeps
+  // to receptive input (video/reading/listening) plus the quiz.
+  const easeIn = unit?.ord === 1;
 
   /* The next unit by name. Looked up across levels rather than by ord+1, so
      the last unit of a level points at the first of the next one instead of
@@ -90,6 +95,7 @@ export function buildSession(
       next,
       pacing,
       missed,
+      heartsEmpty,
       totalMinutes: 15,
       blocks: [
         {
@@ -111,13 +117,41 @@ export function buildSession(
 
   const blocks: Block[] = [];
 
+  // 0. Aussprache-Basics — once ever, unit 1 only, reusing the new-grammar
+  // block kind. Gated on the card existing (not "today"), so it never repeats.
+  if (easeIn) {
+    const primerSeen = get<{ id: number }>(
+      "SELECT id FROM card WHERE user_id = ? AND ref_type = 'grammar' AND ref_id = 'g-aussprache'",
+      userId,
+    );
+    if (!primerSeen) {
+      const primer = get<Grammar>(
+        "SELECT * FROM grammar WHERE id = 'g-aussprache'",
+      );
+      if (primer) {
+        blocks.push({
+          kind: "new-grammar",
+          title: "Aussprache-Basics",
+          minutes: 6,
+          offline: true,
+          skippable: false,
+          payload: {
+            grammar: primer,
+            examples: JSON.parse(primer.examples_json),
+            drills: JSON.parse(primer.drills_json),
+          },
+        });
+      }
+    }
+  }
+
   /* Rotates the input and output blocks day to day so the rhythm stays fixed
      while the content varies. The decisions themselves live in lib/rhythm.ts,
      pure and testable; this file only carries them out. */
   const dayIndex = dayOverride ?? today();
   const older = pastUnits(userId);
 
-  // 1. Aufwärmen — always first, never skippable.
+  // 1. Aufwärmen — first except for the one-time primer above, never skippable.
   const due = dueCards(userId, REVIEW_CAP);
   if (due.length) {
     blocks.push({
@@ -196,12 +230,16 @@ export function buildSession(
       next,
       pacing,
       missed,
+      heartsEmpty,
       totalMinutes: blocks.reduce((n, b) => n + b.minutes, 0),
     };
   }
 
-  // 3. Neu — vocab OR grammar, never both in one day.
-  if (unit) {
+  // 3. Neu — vocab OR grammar, never both in one day, and never with no hearts
+  //    left. Hearts gate new material only — everything above this line (due
+  //    reviews, Fix, Lücken, Grammatik-Wdh.) is unaffected, and everything
+  //    below (input/output/quiz) still runs on today's already-known words.
+  if (unit && !heartsEmpty) {
     const wordIds: string[] = JSON.parse(unit.word_ids_json);
     const fresh = unseenWords(userId, wordIds).slice(0, pacing.words);
     const grammar = unit.grammar_id
@@ -363,7 +401,8 @@ export function buildSession(
   }
 
   // 5. Output — builder is the offline-safe default; conversation needs network.
-  if (unitWords.length) {
+  //    Skipped entirely on unit 1 — see easeIn above.
+  if (!easeIn && unitWords.length) {
     blocks.push({
       kind: "builder",
       title: "Sätze bauen",
@@ -377,7 +416,9 @@ export function buildSession(
   }
 
   // Spoken or written, rotated by day. See rhythm.ts for the split and why.
-  if (rhythm.output === "speaking" && unitWords.length) {
+  if (easeIn) {
+    // neither — unit 1 stops at the quiz below
+  } else if (rhythm.output === "speaking" && unitWords.length) {
     blocks.push({
       kind: "speaking",
       title: "Sprechen",
@@ -422,7 +463,7 @@ export function buildSession(
    * the parsed null and took the whole session down with it.
    */
   const scenario = safeJson<{ role?: string }>(talkUnit?.scenario_json);
-  if (scenario?.role) {
+  if (!easeIn && scenario?.role) {
     blocks.push({
       kind: "conversation",
       title: oldScenarioUnit ? "Nochmal sprechen" : "Gespräch",
@@ -461,6 +502,7 @@ export function buildSession(
     next,
     pacing,
     missed,
+    heartsEmpty,
     totalMinutes: blocks.reduce((n, b) => n + b.minutes, 0),
   };
 }

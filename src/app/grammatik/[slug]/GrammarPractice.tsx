@@ -27,7 +27,7 @@ export default function GrammarPractice(props: Props) {
             setRound((r) => r + 1);
             setFinished(false);
           }}
-          className="bg-fg mt-6 rounded-xl px-7 py-3.5 font-medium text-[#16211E] transition-colors hover:bg-white"
+          className="bg-accent dm-pill mt-6 rounded-2xl px-7 py-3.5 font-medium text-accent-fg transition-colors hover:bg-accent-hover"
         >
           Nochmal üben
         </button>

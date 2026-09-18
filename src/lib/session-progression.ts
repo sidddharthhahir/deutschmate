@@ -196,13 +196,16 @@ export function knownVocabulary(userId: string): string[] {
 
 /**
  * Has the user seen new vocabulary today? Spec §3 — new vocab and new grammar
- * never share a day, because two novel cognitive loads halve retention of both.
+ * never share a day. g-aussprache (the one-time pronunciation primer) is
+ * excluded from the grammar side so answering it doesn't spend the budget
+ * unit 1's own new-vocab block needs that same session.
  */
 export function introducedToday(userId: string, kind: "vocab" | "grammar") {
   const n =
     get<{ n: number }>(
       `SELECT COUNT(*) AS n FROM attempt
-        WHERE user_id = ? AND kind = ? AND date(created_at) = date('now')`,
+        WHERE user_id = ? AND kind = ? AND date(created_at) = date('now')
+          AND ref_id IS NOT 'g-aussprache'`,
       userId,
       kind === "vocab" ? "new-vocab" : "new-grammar",
     )?.n ?? 0;

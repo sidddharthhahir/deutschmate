@@ -5,6 +5,7 @@ import { whyWrong } from "@/lib/why";
 import { readJson, badRequest, str, bool, unauthorized } from "@/lib/http";
 import { introduceWord } from "@/lib/srs";
 import { introduceGrammar } from "@/lib/grammar-srs";
+import { stats } from "@/lib/gamification";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -46,8 +47,13 @@ export async function POST(req: Request) {
     introduceGrammar(user.id, refId, correct);
   }
 
+  // Read after logAttempt, which already applied the XP/hearts change for
+  // this answer — so the client's toast and heart display are never a step
+  // behind what just happened.
+  const gamification = stats(user.id);
+
   if (correct || !bool(raw.explain) || !expected || !answer) {
-    return NextResponse.json({ ok: true, tags });
+    return NextResponse.json({ ok: true, tags, stats: gamification });
   }
 
   /* Cache → cheap model → rule-based description. Shared with /api/review, so
@@ -61,5 +67,11 @@ export async function POST(req: Request) {
     tags as Tag[],
   );
 
-  return NextResponse.json({ ok: true, tags, explanation, source });
+  return NextResponse.json({
+    ok: true,
+    tags,
+    explanation,
+    source,
+    stats: gamification,
+  });
 }

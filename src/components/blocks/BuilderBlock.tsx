@@ -157,7 +157,7 @@ export default function BuilderBlock({
                   pool: [...p.pool, t],
                 }))
               }
-              className="bg-fg font-serif rounded-lg px-3.5 py-2 text-[17px] text-[#16211E] transition-transform hover:-translate-y-0.5 disabled:opacity-70"
+              className="bg-accent dm-pill font-serif rounded-lg px-3.5 py-2 text-[17px] text-accent-fg transition-transform hover:-translate-y-0.5 disabled:opacity-70"
             >
               {t}
             </button>
@@ -207,10 +207,10 @@ export default function BuilderBlock({
             <button
               onClick={() => void check()}
               disabled={pool.length > 0}
-              className="bg-fg flex-1 rounded-xl py-3.5 font-medium text-[#16211E] transition-colors hover:bg-white disabled:bg-[#243330] disabled:text-[#5C6B65]"
+              className="bg-accent dm-pill flex-1 rounded-2xl py-3.5 font-medium text-accent-fg transition-colors hover:bg-accent-hover disabled:bg-disabled disabled:text-disabled-fg"
             >
               Prüfen{" "}
-              {pool.length === 0 && <span className="kbd kbd-hint">Enter</span>}
+              {pool.length === 0 && <span className="kbd kbd-hint !text-accent-fg/75">Enter</span>}
             </button>
           </div>
         ) : (
@@ -223,9 +223,9 @@ export default function BuilderBlock({
             <SentenceCredit credit={it.credit} />
             <button
               onClick={next}
-              className="bg-fg mt-4 w-full rounded-xl py-3.5 font-medium text-[#16211E] transition-colors hover:bg-white"
+              className="bg-accent dm-pill mt-4 w-full rounded-2xl py-3.5 font-medium text-accent-fg transition-colors hover:bg-accent-hover"
             >
-              Weiter <span className="kbd kbd-hint">Enter</span>
+              Weiter <span className="kbd kbd-hint !text-accent-fg/75">Enter</span>
             </button>
           </>
         )}

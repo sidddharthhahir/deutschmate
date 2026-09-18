@@ -140,10 +140,10 @@ if (built) {
   eq(got[3], audio, "recordings on disk");
 }
 
-/* A1 is the level it promises works with no key at all. */
+/* A1.1 is the level it promises works with no key at all. */
 ok(
-  /whole of A1 conversation, because those (\d+) units ship/.test(start),
-  "it names how many A1 units carry a written-out dialogue",
+  /whole of A1\.1 conversation, because those (\d+) units ship/.test(start),
+  "it names how many A1.1 units carry a written-out dialogue",
 );
 const a1Scripts = count(
   "SELECT COUNT(*) AS n FROM unit WHERE level LIKE 'A1%' AND dialogue_json IS NOT NULL",
@@ -166,7 +166,7 @@ const tour = readFileSync(
   "utf8",
 ).replace(/\s+/g, " ");
 const pitch =
-  /takes you from A1\.1 to B1\.2 — ([\d,]+) units, ([\d,]+) words, ([\d,]+) grammar points/.exec(
+  /teaches A1\.1 — ([\d,]+) units, ([\d,]+) words, ([\d,]+) grammar points/.exec(
     tour,
   );
 ok(pitch, "the tour still opens with the size of the course");
@@ -184,14 +184,23 @@ if (pitch) {
 }
 
 section("the course size adds up");
-/* Not a README claim — an internal one. 120 units across six half-levels is the
-   scope in the spec, and every screen that says "Unit n von 20" depends on it. */
-eq(count("SELECT COUNT(*) AS n FROM unit"), 120, "120 units");
-for (const lvl of ["A1.1", "A1.2", "A2.1", "A2.2", "B1.1", "B1.2"])
+/*
+ * Not a README claim — an internal one.
+ *
+ * A1.1 only for now (2026-09): A1.2 through B1.2 are deliberately unseeded
+ * while the Momente rewrite gets solid (see data/deferred/README.md), so the
+ * course is just A1.1's 12 units rather than 112 across six levels. Every
+ * screen that says "Unit n von X" reads the count live rather than assuming a
+ * number, so this is a shape check, not a hardcoded expectation those screens
+ * depend on — and it will grow back level by level as each one returns.
+ */
+eq(count("SELECT COUNT(*) AS n FROM unit"), 12, "12 units");
+eq(count("SELECT COUNT(*) AS n FROM unit WHERE level = 'A1.1'"), 12, "A1.1 has twelve");
+for (const lvl of ["A1.2", "A2.1", "A2.2", "B1.1", "B1.2"])
   eq(
     count(`SELECT COUNT(*) AS n FROM unit WHERE level = '${lvl}'`),
-    20,
-    `${lvl} has twenty`,
+    0,
+    `${lvl} is deferred, not seeded`,
   );
 
 db.close();

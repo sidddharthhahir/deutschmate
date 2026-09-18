@@ -148,7 +148,7 @@ export default function ExamRunner({ level }: { level: string }) {
         <button
           onClick={() => void start()}
           disabled={phase === "loading"}
-          className="bg-fg mt-6 rounded-xl px-8 py-4 font-medium text-[#16211E] transition-colors hover:bg-white disabled:opacity-50"
+          className="bg-accent dm-pill mt-6 rounded-2xl px-8 py-4 font-medium text-accent-fg transition-colors hover:bg-accent-hover disabled:opacity-50"
         >
           {phase === "loading" ? "Wird geladen…" : "Test starten"}
         </button>
@@ -184,7 +184,7 @@ export default function ExamRunner({ level }: { level: string }) {
                 </div>
                 <div className="bg-line h-1.5 w-full overflow-hidden rounded-[2px]">
                   <div
-                    className="bg-fg h-full rounded-[2px]"
+                    className="bg-accent h-full rounded-[2px]"
                     style={{ width: `${(s.correct / s.total) * 100}%` }}
                   />
                 </div>
@@ -222,7 +222,7 @@ export default function ExamRunner({ level }: { level: string }) {
               <div
                 key={q.id}
                 className={`rounded-xl border p-4 ${
-                  ok ? "border-line-sub" : "border-[#4A2F3D] bg-[#251A20]/40"
+                  ok ? "border-line-sub" : "border-wrong-border bg-wrong/40"
                 }`}
               >
                 <div className="flex items-start gap-3">
@@ -268,7 +268,7 @@ export default function ExamRunner({ level }: { level: string }) {
           </button>
           <Link
             href="/"
-            className="bg-fg rounded-xl px-6 py-3.5 text-[15px] font-medium text-[#16211E] transition-colors hover:bg-white"
+            className="bg-accent dm-pill rounded-2xl px-6 py-3.5 text-[15px] font-medium text-accent-fg transition-colors hover:bg-accent-hover"
           >
             Fertig
           </Link>
@@ -313,7 +313,7 @@ export default function ExamRunner({ level }: { level: string }) {
             aria-label={`Frage ${n + 1}`}
             className={`h-1.5 flex-1 rounded-[1px] transition-colors ${
               n === i
-                ? "bg-fg"
+                ? "bg-accent"
                 : answers[n] !== null
                   ? "bg-line-strong"
                   : "bg-line"
@@ -386,14 +386,14 @@ export default function ExamRunner({ level }: { level: string }) {
         {i + 1 < flat.length ? (
           <button
             onClick={() => setI((n) => n + 1)}
-            className="bg-fg flex-1 rounded-xl py-4 font-medium text-[#16211E] transition-colors hover:bg-white"
+            className="bg-accent dm-pill flex-1 rounded-2xl py-4 font-medium text-accent-fg transition-colors hover:bg-accent-hover"
           >
             Weiter
           </button>
         ) : (
           <button
             onClick={() => void finish(answers, exam)}
-            className="bg-fg flex-1 rounded-xl py-4 font-medium text-[#16211E] transition-colors hover:bg-white"
+            className="bg-accent dm-pill flex-1 rounded-2xl py-4 font-medium text-accent-fg transition-colors hover:bg-accent-hover"
           >
             Abgeben · {answered} von {flat.length} beantwortet
           </button>

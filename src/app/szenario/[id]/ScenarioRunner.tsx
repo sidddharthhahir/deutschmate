@@ -33,7 +33,7 @@ export default function ScenarioRunner({
               setRound((r) => r + 1);
               setDone(false);
             }}
-            className="bg-fg flex-1 rounded-xl py-3.5 font-medium text-[#16211E] transition-colors hover:bg-white"
+            className="bg-accent dm-pill flex-1 rounded-2xl py-3.5 font-medium text-accent-fg transition-colors hover:bg-accent-hover"
           >
             Nochmal
           </button>

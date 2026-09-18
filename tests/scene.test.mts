@@ -2,7 +2,7 @@
  * Which brief the tutor is actually given.
  * needs: nothing
  */
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import { spawnSync } from "node:child_process";
 import path from "node:path";
 import { resolveScene, isGeneric, GENERIC } from "../src/lib/scene.ts";
@@ -17,12 +17,21 @@ type Survival = {
   bring: string[];
 };
 
-const survival = JSON.parse(
-  readFileSync(
-    path.join(process.cwd(), "data/scenarios-survival.json"),
-    "utf8",
-  ),
-) as Survival[];
+/*
+ * A1.1 only for now (2026-09): every survival scenario is A1.2 or later, so
+ * the file moved to data/deferred/ (see its README) along with the rest of
+ * that content. lib/survival.ts already treats a missing file as an empty
+ * pack, not an error — sections below that need real survival content to
+ * mean anything are skipped the same way, rather than failing a build over
+ * content that isn't meant to ship right now.
+ */
+const survivalPath = path.join(process.cwd(), "data/scenarios-survival.json");
+const survival = existsSync(survivalPath)
+  ? (JSON.parse(readFileSync(survivalPath, "utf8")) as Survival[])
+  : [];
+if (!survival.length) {
+  console.log("SKIP  data/scenarios-survival.json is deferred, not absent");
+}
 
 const UNIT_JSON = JSON.stringify({
   role: "a barista",
@@ -30,15 +39,17 @@ const UNIT_JSON = JSON.stringify({
   opener: "Was darf es sein?",
 });
 
-section("a survival scenario reaches the model");
-for (const s of survival) {
-  const scene = resolveScene(s.scenario, null);
-  ok(
-    !isGeneric(scene),
-    `${s.id} resolves to its own brief`,
-    scene.role.slice(0, 46),
-  );
-  ok(scene.role === s.scenario.role, `  and it is the one the page shows`);
+if (survival.length) {
+  section("a survival scenario reaches the model");
+  for (const s of survival) {
+    const scene = resolveScene(s.scenario, null);
+    ok(
+      !isGeneric(scene),
+      `${s.id} resolves to its own brief`,
+      scene.role.slice(0, 46),
+    );
+    ok(scene.role === s.scenario.role, `  and it is the one the page shows`);
+  }
 }
 
 section("a course unit still resolves");
@@ -46,12 +57,18 @@ const unit = resolveScene(undefined, UNIT_JSON);
 eq(unit.role, "a barista", "the unit's scenario_json is used");
 eq(unit.opener, "Was darf es sein?", "including its opener");
 
-section("survival wins when both are somehow present");
-/* Only reachable through a content mistake — a unit id colliding with a
-   survival id — but the survival brief is the hand-written specific one, so it
-   is the one to keep. */
-const both = resolveScene(survival[0].scenario, UNIT_JSON);
-eq(both.role, survival[0].scenario.role, "the survival brief takes precedence");
+if (survival.length) {
+  section("survival wins when both are somehow present");
+  /* Only reachable through a content mistake — a unit id colliding with a
+     survival id — but the survival brief is the hand-written specific one, so
+     it is the one to keep. */
+  const both = resolveScene(survival[0].scenario, UNIT_JSON);
+  eq(
+    both.role,
+    survival[0].scenario.role,
+    "the survival brief takes precedence",
+  );
+}
 
 section("nothing resolvable falls back visibly");
 ok(isGeneric(resolveScene(undefined, null)), "no id at all");
@@ -76,35 +93,37 @@ eq(
   "and the opener falls back rather than being empty",
 );
 
-section("the content itself");
-/* The premise of the whole fix: these ids are NOT unit ids, which is why a
-   single unit lookup could never find them. If that ever stops being true the
-   collision needs thinking about, not silently resolving. */
-ok(
-  survival.every((s) => s.id.startsWith("surv-")),
-  "every survival id is namespaced away from unit ids",
-  survival.map((s) => s.id).join(" "),
-);
-// A floor, not a count: adding a scenario must not turn this red.
-ok(survival.length >= 6, "at least the six the spec names", survival.length);
-ok(
-  new Set(survival.map((s) => s.id)).size === survival.length,
-  "no two scenarios share an id",
-);
-for (const s of survival) {
+if (survival.length) {
+  section("the content itself");
+  /* The premise of the whole fix: these ids are NOT unit ids, which is why a
+     single unit lookup could never find them. If that ever stops being true
+     the collision needs thinking about, not silently resolving. */
   ok(
-    s.phrases.length >= 5,
-    `${s.id}: enough to say`,
-    `${s.phrases.length} phrases`,
+    survival.every((s) => s.id.startsWith("surv-")),
+    "every survival id is namespaced away from unit ids",
+    survival.map((s) => s.id).join(" "),
   );
-  /* The half that was missing. Rehearsing your own lines does not get you
-     through an appointment where you cannot understand the question. */
+  // A floor, not a count: adding a scenario must not turn this red.
+  ok(survival.length >= 6, "at least the six the spec names", survival.length);
   ok(
-    (s.hear?.length ?? 0) >= 5,
-    `  and enough to hear`,
-    `${s.hear?.length ?? 0} lines`,
+    new Set(survival.map((s) => s.id)).size === survival.length,
+    "no two scenarios share an id",
   );
-  ok(s.bring.length >= 3, `  and knows what to bring`, `${s.bring.length}`);
+  for (const s of survival) {
+    ok(
+      s.phrases.length >= 5,
+      `${s.id}: enough to say`,
+      `${s.phrases.length} phrases`,
+    );
+    /* The half that was missing. Rehearsing your own lines does not get you
+       through an appointment where you cannot understand the question. */
+    ok(
+      (s.hear?.length ?? 0) >= 5,
+      `  and enough to hear`,
+      `${s.hear?.length ?? 0} lines`,
+    );
+    ok(s.bring.length >= 3, `  and knows what to bring`, `${s.bring.length}`);
+  }
 }
 
 section("no A1 scene says a word its unit has not taught");

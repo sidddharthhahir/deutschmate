@@ -89,10 +89,16 @@ export default function BlockIntro({
 
         <button
           onClick={onStart}
-          className="bg-fg mt-7 w-full rounded-xl py-4 font-medium text-[#16211E] transition-colors hover:bg-white"
+          className="bg-accent dm-pill mt-7 w-full rounded-2xl py-4 font-medium text-accent-fg transition-colors hover:bg-accent-hover"
         >
           Los geht&rsquo;s
-          <span className="kbd kbd-hint ml-2.5 text-[#43574F]">Enter</span>
+          {/* !text-accent-fg, not text-line-strong: line-strong is a light
+              lavender meant for a cream background, and its contrast against
+              this button's hot-pink fill was under 1.5:1. The `!` forces it
+              over .kbd's own `color`, which a plain utility class cannot
+              beat — .kbd is unlayered CSS and Tailwind's utilities live in
+              @layer utilities, which always loses to unlayered rules. */}
+          <span className="kbd kbd-hint !text-accent-fg/80 ml-2.5">Enter</span>
         </button>
 
         {/* Only ever shown once, so the way out has to be on the card itself

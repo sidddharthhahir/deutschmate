@@ -1,25 +1,28 @@
 import type { Metadata, Viewport } from "next";
-import { IBM_Plex_Sans, IBM_Plex_Mono, Source_Serif_4 } from "next/font/google";
+import { Baloo_2, IBM_Plex_Mono, Nunito } from "next/font/google";
 import CommandPalette from "@/components/CommandPalette";
 import ShortcutHelp from "@/components/ShortcutHelp";
 import ServiceWorker from "@/components/ServiceWorker";
 import "./globals.css";
 
 /**
- * Three typefaces, three jobs (from the Seminar design system): Source Serif 4 — German text,
- * headings, word cards.
+ * Playful Pop typefaces: Baloo 2 for display/headings, Nunito for body — one
+ * rounded family throughout, replacing the old Seminar system's serif/sans
+ * split. The CSS variable names (--font-source-serif, --font-plex-sans) and
+ * the Tailwind `font-serif`/`font-sans` utilities built on them are kept as-is
+ * so every component that already uses those classes repaints automatically.
  */
-const serif = Source_Serif_4({
+const serif = Baloo_2({
   variable: "--font-source-serif",
   subsets: ["latin", "latin-ext"], // latin-ext carries ä ö ü ß
-  weight: ["400", "600"],
+  weight: ["500", "700"],
   display: "swap",
 });
 
-const sans = IBM_Plex_Sans({
+const sans = Nunito({
   variable: "--font-plex-sans",
   subsets: ["latin", "latin-ext"],
-  weight: ["400", "500", "600"],
+  weight: ["400", "600", "700"],
   display: "swap",
 });
 
@@ -48,7 +51,7 @@ export const metadata: Metadata = {
  * bottom of the screen, which is exactly where that bar lives.
  */
 export const viewport: Viewport = {
-  themeColor: "#0e1715",
+  themeColor: "#FFFCF5",
   width: "device-width",
   initialScale: 1,
   viewportFit: "cover",

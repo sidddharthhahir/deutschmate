@@ -1,10 +1,11 @@
 "use client";
 
-import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { playAudio } from "@/lib/speech";
 import { shouldIgnoreKey } from "@/lib/keys";
 import { send } from "@/lib/outbox";
+import { setStats, type Stats } from "@/lib/gamification-client";
+import HeartsAndXp from "@/components/HeartsAndXp";
 import Noun, { ArticleWord } from "@/components/Article";
 import type { BlockProps } from "./shared";
 import { UNDO_MS } from "@/lib/config";
@@ -39,6 +40,16 @@ type Payload = {
   audioFirst?: boolean;
 };
 
+/**
+ * This block replaces the session chrome, so its own "Beenden" re-dispatches
+ * the same Escape keydown the session header listens for — one leaving
+ * action, defined once in session/page.tsx, rather than a second copy of
+ * finish() here with no access to the parent's block-completion state.
+ */
+function leaveSession() {
+  window.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape" }));
+}
+
 /** The review card. */
 const GRADES = [
   { g: 1, label: "Nochmal", hint: "keine Ahnung", grow: "0.86fr" },
@@ -65,8 +76,16 @@ export default function ReviewBlock({ payload, onDone }: BlockProps<Payload>) {
   const commit = useCallback(() => {
     const g = held.current;
     held.current = null;
-    // Through the outbox: a grade given on a train is queued, not lost.
-    if (g) void send("/api/review", { cardId: g.cardId, grade: g.grade });
+    // Through the outbox: a grade given on a train is queued, not lost. Still
+    // fire-and-forget for the grade itself — only the XP total, once it comes
+    // back, updates the header HUD.
+    if (g)
+      void send<{ gamification?: Stats }>("/api/review", {
+        cardId: g.cardId,
+        grade: g.grade,
+      }).then((res) => {
+        if (res?.gamification) setStats(res.gamification);
+      });
   }, []);
 
   const audioFirst = Boolean(payload.audioFirst);
@@ -189,18 +208,18 @@ export default function ReviewBlock({ payload, onDone }: BlockProps<Payload>) {
       <main className="bg-bg flex min-h-screen flex-col">
         <div className="flex flex-none flex-col gap-3.5 px-6 pt-6 md:px-10">
           <div className="flex items-center gap-4 md:gap-8">
-            {/* A link, not a span. This block replaces the session chrome, where
+            {/* A button, not a span. This block replaces the session chrome, where
                 "Esc Beenden" IS clickable — so it looked identical and silently
                 did nothing on the one screen you spend the most time on. */}
-            <Link
-              href="/"
-              className="font-mono text-muted hover:text-secondary hidden w-[160px] text-[12.5px] transition-colors md:block"
+            <button
+              onClick={leaveSession}
+              className="font-mono text-muted hover:text-secondary hidden w-[160px] text-left text-[12.5px] transition-colors md:block"
             >
               Esc&nbsp;&nbsp;Beenden
-            </Link>
+            </button>
             <div className="flex flex-1 gap-1">
               <span className="bg-line h-1 flex-1 overflow-hidden rounded-[2px]">
-                <span className="bg-fg block h-1" style={{ width: "100%" }} />
+                <span className="bg-accent block h-1" style={{ width: "100%" }} />
               </span>
             </div>
             <span className="font-mono text-secondary w-[110px] text-right text-[12.5px] md:w-[160px]">
@@ -224,7 +243,7 @@ export default function ReviewBlock({ payload, onDone }: BlockProps<Payload>) {
           <div className="mt-6 flex w-full max-w-[420px] flex-col gap-2.5">
             <button
               onClick={finishNow}
-              className="bg-fg w-full rounded-xl py-3.5 font-medium text-[#16211E] transition-colors hover:bg-white"
+              className="bg-accent dm-pill w-full rounded-2xl py-3.5 font-medium text-accent-fg transition-colors hover:bg-accent-hover"
             >
               Weiter
             </button>
@@ -259,16 +278,16 @@ export default function ReviewBlock({ payload, onDone }: BlockProps<Payload>) {
       {/* ------------------------------------------------------------ head */}
       <div className="flex flex-none flex-col gap-3.5 px-6 pt-6 md:px-10">
         <div className="flex items-center gap-4 md:gap-8">
-          <Link
-            href="/"
-            className="font-mono text-muted hover:text-secondary hidden w-[160px] text-[12.5px] transition-colors md:block"
+          <button
+            onClick={leaveSession}
+            className="font-mono text-muted hover:text-secondary hidden w-[160px] text-left text-[12.5px] transition-colors md:block"
           >
             Esc&nbsp;&nbsp;Beenden
-          </Link>
+          </button>
           <div className="flex flex-1 gap-1">
             <span className="bg-line h-1 flex-1 overflow-hidden rounded-[2px]">
               <span
-                className="bg-fg block h-1 transition-[width] duration-300"
+                className="bg-accent block h-1 transition-[width] duration-300"
                 style={{ width: `${total ? (done / total) * 100 : 0}%` }}
               />
             </span>
@@ -286,6 +305,7 @@ export default function ReviewBlock({ payload, onDone }: BlockProps<Payload>) {
             own title never rendered, and you came back from a week off to a
             screen indistinguishable from a normal day, being let off lightly
             with no explanation of why. */}
+        <HeartsAndXp />
         <div className="font-mono text-muted text-center text-[12.5px]">
           {payload.gap
             ? "Wiedereinstieg"
@@ -391,7 +411,7 @@ export default function ReviewBlock({ payload, onDone }: BlockProps<Payload>) {
         {!revealed ? (
           <button
             onClick={() => setRevealed(true)}
-            className="border-line bg-raised text-fg flex w-full max-w-[760px] items-center justify-center gap-3.5 rounded-xl border py-5 text-[17px] font-medium transition-colors hover:bg-[#243330]"
+            className="border-line bg-raised text-fg flex w-full max-w-[760px] items-center justify-center gap-3.5 rounded-xl border py-5 text-[17px] font-medium transition-colors hover:bg-line"
           >
             Aufdecken <span className="kbd kbd-hint">Leertaste</span>
           </button>
@@ -406,14 +426,18 @@ export default function ReviewBlock({ payload, onDone }: BlockProps<Payload>) {
                 onClick={() => grade(b.g)}
                 className={
                   b.primary
-                    ? "bg-fg flex h-[76px] flex-col items-center justify-center gap-1 rounded-xl text-[#16211E] transition-colors hover:bg-white md:h-[96px] md:gap-1.5"
+                    ? "bg-accent dm-pill flex h-[76px] flex-col items-center justify-center gap-1 rounded-2xl text-accent-fg transition-colors hover:bg-accent-hover md:h-[96px] md:gap-1.5"
                     : "border-line-strong text-fg hover:bg-raised flex h-[76px] flex-col items-center justify-center gap-1 rounded-xl border border-t-[3px] transition-colors md:h-[96px] md:gap-1.5"
                 }
               >
                 {/* The number key is a keyboard affordance — on a touch screen
                     it is noise competing for width the label needs. */}
+                {/* text-accent-fg, not text-line-strong, for the primary
+                    (pink) button: line-strong is a light lavender meant for a
+                    cream background, and its contrast against this button's
+                    hot-pink fill was under 1.5:1. */}
                 <span
-                  className={`font-mono hidden text-[11px] md:block ${b.primary ? "text-[#43574F]" : "text-muted"}`}
+                  className={`font-mono hidden text-[11px] md:block ${b.primary ? "text-accent-fg/75" : "text-muted"}`}
                 >
                   {b.g}
                 </span>
@@ -427,7 +451,7 @@ export default function ReviewBlock({ payload, onDone }: BlockProps<Payload>) {
                   {b.label}
                 </span>
                 <span
-                  className={`font-mono hidden text-[11px] sm:block ${b.primary ? "text-[#43574F]" : "text-muted"}`}
+                  className={`font-mono hidden text-[11px] sm:block ${b.primary ? "text-accent-fg/75" : "text-muted"}`}
                 >
                   {b.hint}
                 </span>
@@ -436,7 +460,7 @@ export default function ReviewBlock({ payload, onDone }: BlockProps<Payload>) {
                 {card.intervals?.[b.g] && (
                   <span
                     className={`font-mono text-[10.5px] ${
-                      b.primary ? "text-[#43574F]/70" : "text-muted/60"
+                      b.primary ? "text-accent-fg/60" : "text-muted/60"
                     }`}
                   >
                     {card.intervals[b.g]}
@@ -462,13 +486,13 @@ export default function ReviewBlock({ payload, onDone }: BlockProps<Payload>) {
           >
             Z&nbsp;&nbsp;zurücknehmen{undo ? " (5 s)" : ""}
           </button>
-          {/* A Link, not a span. It sat next to "Z zurücknehmen", which IS a
+          {/* A button, not a span. It sat next to "Z zurücknehmen", which IS a
               button, looked identical, and did nothing when clicked — a
               plausible reading of "esc with mouse click is not working". The
               whole row is hidden below md, so this is the desktop half. */}
-          <Link href="/" className="hover:text-fg transition-colors">
+          <button onClick={leaveSession} className="hover:text-fg transition-colors">
             Esc&nbsp;&nbsp;beenden
-          </Link>
+          </button>
         </div>
       </div>
     </div>

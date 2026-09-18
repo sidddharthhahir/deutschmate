@@ -87,6 +87,8 @@ export type SessionPlan = {
    * number on the button, with nothing anywhere admitting a day had been lost.
    */
   missed: number;
+  /** No hearts left today — new-vocab/new-grammar were skipped, reviews were not. */
+  heartsEmpty: boolean;
 };
 
 /** "short" runs only the parts that decay: reviews, Fix, Lücken, grammar. */

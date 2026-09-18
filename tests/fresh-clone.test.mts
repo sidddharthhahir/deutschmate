@@ -32,13 +32,21 @@ const count = (sql: string) => (db.prepare(sql).get() as { n: number }).n;
 section("the course arrives complete");
 const words = count("SELECT COUNT(*) n FROM word");
 ok(words > 2000, "the whole deck", `${words} words`);
-ok(count("SELECT COUNT(*) n FROM unit") === 120, "all 120 units");
+/*
+ * A1.1 only for now (2026-09) — was 112 units across six levels; A1.2 through
+ * B1.2 are deliberately unseeded while the Momente rewrite gets solid (see
+ * data/deferred/README.md). Word content was untouched by that decision
+ * (line above), only the units/grammar/readings built on top of it.
+ */
+ok(count("SELECT COUNT(*) n FROM unit") === 12, "all 12 units");
 /* A floor, not a count — writing a new grammar point must not turn this red.
-   The same lesson the scenario count taught when Alltag went from six to twelve. */
+   The same lesson the scenario count taught when Alltag went from six to twelve.
+   Was >= 36 across six levels; A1.1 alone ships 14. */
 const grammar = count("SELECT COUNT(*) n FROM grammar");
-ok(grammar >= 36, "the grammar points arrive", `${grammar}`);
+ok(grammar >= 14, "the grammar points arrive", `${grammar}`);
+/* Momente's A1.1 carries 6 readings of its own. Was >= 36 across six levels. */
 ok(
-  count("SELECT COUNT(*) n FROM reading") > 30,
+  count("SELECT COUNT(*) n FROM reading") >= 6,
   "the readings",
   count("SELECT COUNT(*) n FROM reading"),
 );

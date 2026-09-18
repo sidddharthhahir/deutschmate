@@ -15,7 +15,7 @@ export default function WordAudio({
     <div className="flex-none text-right">
       <button
         onClick={() => playAudio(url, lemma)}
-        className="bg-fg flex h-14 w-14 items-center justify-center rounded-full text-[18px] text-[#16211E] transition-colors hover:bg-white"
+        className="bg-accent dm-pill flex h-14 w-14 items-center justify-center rounded-full text-[18px] text-accent-fg transition-colors hover:bg-accent-hover"
         aria-label={`${lemma} anhören`}
       >
         ▶

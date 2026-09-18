@@ -136,7 +136,7 @@ export default function ListeningBlock({
         <div className="flex flex-col items-center gap-4">
           <button
             onClick={() => play()}
-            className="bg-fg flex h-20 w-20 items-center justify-center rounded-full text-2xl text-[#16211E] transition-colors hover:bg-white"
+            className="bg-accent dm-pill flex h-20 w-20 items-center justify-center rounded-full text-2xl text-accent-fg transition-colors hover:bg-accent-hover"
             aria-label="Abspielen"
           >
             ▶
@@ -212,7 +212,7 @@ export default function ListeningBlock({
             <button
               onClick={() => void check()}
               disabled={!value.trim()}
-              className="bg-fg rounded-lg px-5 py-2 text-[14px] font-medium text-[#16211E] disabled:bg-[#243330] disabled:text-[#5C6B65]"
+              className="bg-accent dm-pill rounded-lg px-5 py-2 text-[14px] font-medium text-accent-fg disabled:bg-disabled disabled:text-disabled-fg"
             >
               Prüfen
             </button>
@@ -234,8 +234,8 @@ export default function ListeningBlock({
                   key={n}
                   className={`font-serif rounded px-2 py-1 text-[18px] ${
                     typed.has(w.toLowerCase())
-                      ? "bg-[#1F2A20] text-[#CFE3C8]"
-                      : "bg-[#2A1F26] text-[#E8C8D6]"
+                      ? "bg-correct text-correct-fg"
+                      : "bg-wrong text-wrong-fg"
                   }`}
                 >
                   {w}
@@ -251,9 +251,9 @@ export default function ListeningBlock({
             />
             <button
               onClick={next}
-              className="bg-fg mt-4 w-full rounded-xl py-3.5 font-medium text-[#16211E] transition-colors hover:bg-white"
+              className="bg-accent dm-pill mt-4 w-full rounded-2xl py-3.5 font-medium text-accent-fg transition-colors hover:bg-accent-hover"
             >
-              Weiter <span className="kbd kbd-hint">Enter</span>
+              Weiter <span className="kbd kbd-hint !text-accent-fg/75">Enter</span>
             </button>
           </>
         )}

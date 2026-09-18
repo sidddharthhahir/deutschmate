@@ -3,61 +3,65 @@
     "id": "a1-1-u01",
     "level": "A1.1",
     "ord": 1,
-    "title": "Hallo!",
+    "title": "Ich heiße Miriam",
     "can_do": [
-      "greet someone at any time of day",
-      "say thank you, please and sorry",
-      "say yes and no"
+      "introduce yourself and ask someone's name",
+      "say where you're from",
+      "greet and say goodbye at any time of day"
     ],
     "words": [
       "hallo",
-      "tschuess",
-      "guten-morgen",
       "guten-tag",
+      "guten-morgen",
       "guten-abend",
       "gute-nacht",
+      "tschuess",
       "auf-wiedersehen",
-      "danke",
-      "bitte",
-      "entschuldigung",
-      "ja",
-      "nein"
+      "heissen",
+      "kommen",
+      "wie",
+      "wer",
+      "woher",
+      "deutschland",
+      "oesterreich",
+      "null",
+      "eins"
     ],
-    "grammar_id": null,
+    "grammar_id": "g-sein",
     "scenario": {
-      "role": "a neighbour on the stairs",
-      "goal": "greet them, then say goodbye",
-      "opener": "Guten Tag!"
+      "role": "someone new at a language-exchange evening",
+      "goal": "introduce yourself and find out their name",
+      "opener": "Hallo! Wie heißt du?"
     },
     "dialogue": [
       {
-        "them": "Guten Tag!",
+        "them": "Hallo! Wie heißt du?",
         "options": [
           {
-            "say": "Guten Tag!",
+            "say": "Ich heiße Sam. Und wie heißt du?",
             "ok": true,
             "next": 1
           },
           {
-            "say": "Gute Nacht!",
+            "say": "Guten Abend!",
             "ok": false,
-            "why": "Gute Nacht is for going to bed, not for meeting somebody.",
+            "why": "That answers a greeting, not the question \"what's your name\".",
             "next": 1
           }
         ]
       },
       {
-        "them": "Auf Wiedersehen!",
+        "them": "Ich heiße Lena. Woher kommst du?",
         "options": [
           {
-            "say": "Tschüss!",
+            "say": "Ich komme aus Kanada.",
             "ok": true,
             "next": -1
           },
           {
-            "say": "Bitte.",
+            "say": "Ich heiße Kanada.",
             "ok": false,
-            "why": "Bitte answers danke. It does not say goodbye.",
+            "why": "heißen is for names; woher kommst du asks where you're from.",
             "next": -1
           }
         ]
@@ -69,1509 +73,776 @@
     "id": "a1-1-u02",
     "level": "A1.1",
     "ord": 2,
-    "title": "Das Alphabet",
+    "title": "Was machst du beruflich?",
     "can_do": [
-      "say the German alphabet",
-      "spell your own name out loud",
-      "ask someone to spell theirs"
+      "say what your job is",
+      "ask what someone does for work",
+      "say if you're married or have children"
     ],
     "words": [
-      "alphabet",
-      "buchstabe",
-      "buchstabieren",
-      "umlaut",
-      "eszett",
-      "gross",
-      "klein",
-      "schreiben",
-      "das-wort",
-      "noch-einmal"
+      "beruf",
+      "ingenieur",
+      "student",
+      "verkaeufer",
+      "kellner",
+      "friseur",
+      "lehrer",
+      "arzt",
+      "wohnen",
+      "arbeiten",
+      "haben",
+      "verheiratet",
+      "nicht",
+      "kind",
+      "machen",
+      "stadt"
     ],
-    "grammar_id": "g-alphabet",
+    "grammar_id": "g-praesens",
     "scenario": {
-      "role": "someone writing your name down",
-      "goal": "spell it and correct them",
-      "opener": "Buchstabieren, bitte!"
+      "role": "a new coworker at lunch",
+      "goal": "talk about what you both do and where you live",
+      "opener": "Was machst du beruflich?"
     },
     "dialogue": [
       {
-        "them": "Groß?",
+        "them": "Was machst du beruflich?",
         "options": [
           {
-            "say": "Ja, groß.",
+            "say": "Ich bin Lehrer. Und du?",
             "ok": true,
             "next": 1
           },
           {
-            "say": "Danke.",
+            "say": "Ich wohne in Berlin.",
             "ok": false,
-            "why": "They asked whether it is a capital letter. Answer ja or nein.",
+            "why": "That answers where you live, not what you do for work.",
             "next": 1
           }
         ]
       },
       {
-        "them": "Eszett?",
+        "them": "Ich arbeite als Verkäuferin. Wohnst du hier in der Stadt?",
         "options": [
           {
-            "say": "Nein.",
+            "say": "Ja, ich wohne hier.",
             "ok": true,
             "next": -1
           },
           {
-            "say": "Noch einmal.",
+            "say": "Ja, ich bin verheiratet.",
             "ok": false,
-            "why": "Noch einmal asks them to repeat. They asked you a question.",
+            "why": "That's true information, maybe, but it doesn't answer whether you live in the city.",
             "next": -1
           }
         ]
       }
     ],
-    "prereq": ["a1-1-u01"]
+    "prereq": [
+      "a1-1-u01"
+    ]
   },
   {
     "id": "a1-1-u03",
     "level": "A1.1",
     "ord": 3,
-    "title": "Zahlen 0–20",
+    "title": "Das ist meine Schwester",
     "can_do": [
-      "count to twenty",
-      "give your phone number",
-      "understand a number said to you"
+      "introduce your family members",
+      "say what languages you speak",
+      "answer yes, no, or actually with ja / nein / doch"
     ],
     "words": [
-      "null",
-      "eins",
-      "zwei",
-      "drei",
-      "vier",
-      "fuenf",
-      "sechs",
-      "sieben",
-      "acht",
-      "neun",
-      "zehn",
-      "die-nummer"
+      "vater",
+      "mutter",
+      "eltern",
+      "bruder",
+      "schwester",
+      "geschwister",
+      "grosseltern",
+      "onkel",
+      "tante",
+      "sprechen",
+      "englisch",
+      "mein",
+      "dein",
+      "lernen",
+      "fragen",
+      "leben"
     ],
-    "grammar_id": null,
+    "grammar_id": "g-possessiv",
     "scenario": {
-      "role": "someone taking a phone number",
-      "goal": "give four digits and confirm",
-      "opener": "Nummer, bitte!"
+      "role": "a friend looking at a family photo with you",
+      "goal": "explain who's who and what languages they speak",
+      "opener": "Wer ist das? Ist das deine Schwester?"
     },
     "dialogue": [
       {
-        "them": "Nummer?",
+        "them": "Wer ist das? Ist das deine Schwester?",
         "options": [
           {
-            "say": "Null eins zwei drei.",
+            "say": "Nein, das ist meine Mutter.",
             "ok": true,
             "next": 1
           },
           {
-            "say": "Zehn Buchstabe.",
+            "say": "Ja, das ist mein Bruder.",
             "ok": false,
-            "why": "Buchstabe is a letter, not a number.",
+            "why": "The question was about a Schwester (sister) — answering \"yes, that's my brother\" doesn't match.",
             "next": 1
           }
         ]
       },
       {
-        "them": "Vier fünf?",
+        "them": "Spricht sie Englisch?",
         "options": [
           {
-            "say": "Ja.",
+            "say": "Ja, sie spricht sehr gut Englisch.",
             "ok": true,
             "next": -1
           },
           {
-            "say": "Sieben acht neun.",
+            "say": "Nein, sie ist meine Tante.",
             "ok": false,
-            "why": "They read two digits back. Confirm them.",
+            "why": "The question was about a language, not about who she is.",
             "next": -1
           }
         ]
       }
     ],
-    "prereq": ["a1-1-u02"]
+    "prereq": [
+      "a1-1-u02"
+    ]
   },
   {
     "id": "a1-1-u04",
     "level": "A1.1",
     "ord": 4,
-    "title": "Wie heißt du?",
+    "title": "Das Bild ist so schön",
     "can_do": [
-      "say your name and ask for someone else's",
-      "tell someone how you are",
-      "choose between du and Sie"
+      "name the furniture in a room using der / die / das",
+      "ask how much something costs and say if it's expensive",
+      "replace a noun with er / es / sie"
     ],
     "words": [
-      "heissen",
-      "der-name",
-      "ich",
-      "du",
-      "sie-formal",
-      "mein",
-      "dein",
-      "er",
-      "sie-she",
-      "es",
-      "wer",
-      "wie",
-      "gut",
-      "schlecht",
-      "und"
+      "bett",
+      "stuhl",
+      "tisch",
+      "lampe",
+      "sofa",
+      "schrank",
+      "regal",
+      "schoen",
+      "haesslich",
+      "teuer",
+      "guenstig",
+      "kosten",
+      "fuenfzig",
+      "euro",
+      "finden",
+      "kaufen"
     ],
-    "grammar_id": "g-pronouns",
+    "grammar_id": "g-articles-nom",
     "scenario": {
-      "role": "somebody at a language course",
-      "goal": "say your name and ask for theirs",
-      "opener": "Hallo! Wie heißt du?"
+      "role": "a friend shopping with you for furniture",
+      "goal": "say what you think of a piece and ask the price",
+      "opener": "Schau mal, der Schrank! Wie findest du ihn?"
     },
     "dialogue": [
       {
-        "them": "Wie heißt du?",
+        "them": "Schau mal, der Schrank! Wie findest du ihn?",
         "options": [
           {
-            "say": "Ich heiße Mira. Und du?",
+            "say": "Ich finde, er ist sehr schön.",
             "ok": true,
             "next": 1
           },
           {
-            "say": "Du heiße Mira.",
+            "say": "Ich finde, sie ist sehr schön.",
             "ok": false,
-            "why": "With ich the verb is heiße; du takes heißt.",
+            "why": "der Schrank is masculine, so it's replaced by er, not sie.",
             "next": 1
           }
         ]
       },
       {
-        "them": "Ich heiße Jan.",
+        "them": "Wie viel kostet er?",
         "options": [
           {
-            "say": "Guten Tag, Jan!",
+            "say": "Er kostet fünfzig Euro.",
             "ok": true,
             "next": -1
           },
           {
-            "say": "Wer ist das?",
+            "say": "Er ist so schön.",
             "ok": false,
-            "why": "You are talking to Jan, so wer is the wrong question.",
+            "why": "The question asks for a price, not an opinion.",
             "next": -1
           }
         ]
       }
     ],
-    "prereq": ["a1-1-u03"]
+    "prereq": [
+      "a1-1-u03"
+    ]
   },
   {
     "id": "a1-1-u05",
     "level": "A1.1",
     "ord": 5,
-    "title": "Woher kommst du?",
+    "title": "Ist das ein Tisch?",
     "can_do": [
-      "say where you are from",
-      "say where you live now",
-      "ask both questions"
+      "describe an everyday object by its material and colour",
+      "say you don't have something with kein",
+      "ask what something is called in German"
     ],
     "words": [
-      "kommen",
-      "wohnen",
-      "sprechen",
-      "woher",
-      "wo",
-      "aus",
-      "in",
-      "deutschland",
-      "oesterreich",
-      "die-schweiz",
-      "das-land",
-      "die-stadt"
+      "buch",
+      "brille",
+      "schluessel",
+      "tasche",
+      "uhr",
+      "handy",
+      "flasche",
+      "gruen",
+      "blau",
+      "rot",
+      "sehen",
+      "kein",
+      "glas",
+      "wasser"
     ],
-    "grammar_id": "g-wordorder",
+    "grammar_id": "g-negation",
     "scenario": {
-      "role": "somebody at a party",
-      "goal": "say where you come from and where you live",
-      "opener": "Woher kommst du?"
+      "role": "a flatmate who can't find their things",
+      "goal": "help them work out what's missing",
+      "opener": "Siehst du meinen Schlüssel?"
     },
     "dialogue": [
       {
-        "them": "Woher kommst du?",
+        "them": "Siehst du meinen Schlüssel?",
         "options": [
           {
-            "say": "Ich komme aus Indien.",
+            "say": "Nein, ich sehe keinen Schlüssel.",
             "ok": true,
             "next": 1
           },
           {
-            "say": "Ich kommen aus Indien.",
+            "say": "Ja, das ist eine Brille.",
             "ok": false,
-            "why": "With ich the verb ends in -e: ich komme.",
+            "why": "That names a different object entirely, not an answer about the key.",
             "next": 1
           }
         ]
       },
       {
-        "them": "Und wo wohnst du?",
+        "them": "Und meine Brille? Sie ist blau.",
         "options": [
           {
-            "say": "Ich wohne in Deutschland.",
-            "ok": true,
-            "next": 1
-          },
-          {
-            "say": "Ich wohne aus Deutschland.",
-            "ok": false,
-            "why": "wohnen takes in for where you live, not aus.",
-            "next": 1
-          }
-        ]
-      },
-      {
-        "them": "Sprichst du Deutsch?",
-        "options": [
-          {
-            "say": "Ja!",
+            "say": "Ich sehe keine blaue Brille hier.",
             "ok": true,
             "next": -1
           },
           {
-            "say": "Ja, Stadt.",
+            "say": "Die Flasche ist aus Glas.",
             "ok": false,
-            "why": "Stadt is a noun. Answer the question about speaking.",
+            "why": "That's true of a bottle, but nobody asked about a bottle.",
             "next": -1
           }
         ]
       }
     ],
-    "prereq": ["a1-1-u04"]
+    "prereq": [
+      "a1-1-u04"
+    ]
   },
   {
     "id": "a1-1-u06",
     "level": "A1.1",
     "ord": 6,
-    "title": "Der, die, das",
+    "title": "Wir haben einen Termin",
     "can_do": [
-      "name the three genders",
-      "use the right article for the words you know",
-      "recognise the endings that predict gender"
+      "name office equipment",
+      "say what you need using the accusative",
+      "talk about one item versus several with plurals"
     ],
     "words": [
-      "art-der",
-      "art-die",
-      "art-das",
-      "der-mann",
-      "die-frau",
-      "das-kind",
-      "das-maedchen",
-      "die-zeitung",
-      "der-lehrer",
-      "die-lehrerin",
-      "die-freiheit",
-      "die-moeglichkeit"
+      "computer",
+      "laptop",
+      "kalender",
+      "termin",
+      "stift",
+      "email",
+      "passwort",
+      "drucker",
+      "brauchen",
+      "suchen",
+      "zwei",
+      "drei",
+      "vier",
+      "fuenf",
+      "sechs"
     ],
-    "grammar_id": "g-articles-nom",
+    "grammar_id": "g-akkusativ-a11",
     "scenario": {
-      "role": "a child pointing at things",
-      "goal": "name three things with the right article",
-      "opener": "Was ist das?"
+      "role": "a colleague setting up for a meeting",
+      "goal": "say what's missing and what you need",
+      "opener": "Wo ist der Kalender? Ich brauche ihn."
     },
     "dialogue": [
       {
-        "them": "Das?",
+        "them": "Wo ist der Kalender? Ich brauche ihn.",
         "options": [
           {
-            "say": "Das ist die Zeitung.",
+            "say": "Ich suche einen Stift, keinen Kalender.",
             "ok": true,
             "next": 1
           },
           {
-            "say": "Das ist der Zeitung.",
+            "say": "Ich habe kein Passwort.",
             "ok": false,
-            "why": "Zeitung is feminine: die Zeitung.",
+            "why": "Nobody asked about a password — the topic is the missing Kalender.",
             "next": 1
           }
         ]
       },
       {
-        "them": "Und das?",
+        "them": "Brauchst du den Drucker auch?",
         "options": [
           {
-            "say": "Das ist das Kind.",
-            "ok": true,
-            "next": 1
-          },
-          {
-            "say": "Das ist die Kind.",
-            "ok": false,
-            "why": "Kind is neuter: das Kind.",
-            "next": 1
-          }
-        ]
-      },
-      {
-        "them": "Und das?",
-        "options": [
-          {
-            "say": "Das ist der Mann.",
+            "say": "Ja, ich brauche den Drucker.",
             "ok": true,
             "next": -1
           },
           {
-            "say": "Das ist das Mann.",
+            "say": "Ja, ich brauche der Drucker.",
             "ok": false,
-            "why": "Mann is masculine: der Mann.",
+            "why": "brauchen takes the accusative, so der becomes den.",
             "next": -1
           }
         ]
       }
     ],
-    "prereq": ["a1-1-u05"]
+    "prereq": [
+      "a1-1-u05"
+    ]
   },
   {
     "id": "a1-1-u07",
     "level": "A1.1",
     "ord": 7,
-    "title": "Was ist das?",
+    "title": "Sie können super tanzen!",
     "can_do": [
-      "name the things around you",
-      "ask what something is called",
-      "say you do not know a word"
+      "say what you can and can't do",
+      "talk about your hobbies and how often you do them",
+      "pay someone a compliment"
     ],
     "words": [
-      "das-buch",
-      "der-tisch",
-      "der-stuhl",
-      "die-tuer",
-      "das-fenster",
-      "die-lampe",
-      "das-handy",
-      "der-schluessel",
-      "die-tasche",
-      "der-stift",
-      "hier",
-      "dort"
+      "kochen",
+      "singen",
+      "schwimmen",
+      "tanzen",
+      "malen",
+      "koennen",
+      "rad-fahren",
+      "lesen",
+      "treffen",
+      "hobby",
+      "immer",
+      "manchmal",
+      "zehn",
+      "entschuldigung"
     ],
-    "grammar_id": "g-articles-nom",
+    "grammar_id": "g-koennen",
     "scenario": {
-      "role": "a flatmate looking for something",
-      "goal": "say where the thing is",
-      "opener": "Wo ist mein Schlüssel?"
+      "role": "someone at a hobby club",
+      "goal": "find out what they can do and compliment them",
+      "opener": "Was sind deine Hobbys?"
     },
     "dialogue": [
       {
-        "them": "Wo ist mein Handy?",
+        "them": "Was sind deine Hobbys?",
         "options": [
           {
-            "say": "Hier ist das Handy.",
+            "say": "Ich kann gut kochen und ich schwimme manchmal.",
             "ok": true,
             "next": 1
           },
           {
-            "say": "Hier ist der Handy.",
+            "say": "Ich kannst gut kochen.",
             "ok": false,
-            "why": "Handy is neuter: das Handy.",
+            "why": "kann is for ich; kannst is for du.",
             "next": 1
           }
         ]
       },
       {
-        "them": "Und die Tasche?",
+        "them": "Ich tanze jeden Tag — schau mal!",
         "options": [
           {
-            "say": "Die Tasche ist dort.",
-            "ok": true,
-            "next": 1
-          },
-          {
-            "say": "Die Tasche ist hier dort.",
-            "ok": false,
-            "why": "Pick one: hier or dort, not both.",
-            "next": 1
-          }
-        ]
-      },
-      {
-        "them": "Danke!",
-        "options": [
-          {
-            "say": "Bitte!",
+            "say": "Wow, du kannst wirklich super tanzen!",
             "ok": true,
             "next": -1
           },
           {
-            "say": "Danke!",
+            "say": "Ich kann gar nicht tanzen.",
             "ok": false,
-            "why": "They thanked you. Bitte is the answer.",
+            "why": "True or not, that's not the compliment the moment calls for.",
             "next": -1
           }
         ]
       }
     ],
-    "prereq": ["a1-1-u06"]
+    "prereq": [
+      "a1-1-u06"
+    ]
   },
   {
     "id": "a1-1-u08",
     "level": "A1.1",
     "ord": 8,
-    "title": "Sein und haben",
+    "title": "Ich habe leider keine Zeit",
     "can_do": [
-      "conjugate sein and haben",
-      "say what you are and what you have",
-      "say your age"
+      "suggest an activity and agree on a time",
+      "name the days of the week and parts of the day",
+      "say you don't have time"
     ],
     "words": [
-      "sein-verb",
-      "haben",
-      "das-jahr",
-      "alt",
-      "jung",
-      "muede",
-      "hungrig",
-      "durstig",
-      "krank",
-      "sehr"
+      "kino",
+      "cafe",
+      "restaurant",
+      "schwimmbad",
+      "montag",
+      "samstag",
+      "wochenende",
+      "abend",
+      "nachmittag",
+      "wissen",
+      "zeit",
+      "leider",
+      "gehen",
+      "sonntag"
     ],
-    "grammar_id": "g-sein",
+    "grammar_id": "g-wordorder",
     "scenario": {
-      "role": "someone who has just met you",
-      "goal": "say how old you are and how you feel",
-      "opener": "Wie alt bist du?"
+      "role": "a friend planning the weekend",
+      "goal": "suggest something and settle on when",
+      "opener": "Gehen wir am Samstag ins Kino?"
     },
     "dialogue": [
       {
-        "them": "Wie alt bist du?",
+        "them": "Gehen wir am Samstag ins Kino?",
         "options": [
           {
-            "say": "Ich bin dreißig Jahre alt.",
+            "say": "Ja, gern! Um wie viel Uhr?",
             "ok": true,
             "next": 1
           },
           {
-            "say": "Ich habe dreißig Jahre.",
+            "say": "Am Samstag ich habe keine Zeit.",
             "ok": false,
-            "why": "German uses sein for age: ich bin dreißig.",
+            "why": "The finite verb has to come second: Am Samstag habe ich keine Zeit.",
             "next": 1
           }
         ]
       },
       {
-        "them": "Hast du Hunger?",
+        "them": "Am Nachmittag, so um vier?",
         "options": [
           {
-            "say": "Ja, ich bin hungrig.",
-            "ok": true,
-            "next": 1
-          },
-          {
-            "say": "Ja, ich habe hungrig.",
-            "ok": false,
-            "why": "hungrig is an adjective, so it takes sein: ich bin hungrig.",
-            "next": 1
-          }
-        ]
-      },
-      {
-        "them": "Und müde?",
-        "options": [
-          {
-            "say": "Sehr müde!",
+            "say": "Okay, bis Samstag!",
             "ok": true,
             "next": -1
           },
           {
-            "say": "Ich bin sehr Jahr.",
+            "say": "Ich weiß nicht, wo das Kino ist.",
             "ok": false,
-            "why": "Jahr is a noun, not a feeling.",
+            "why": "That dodges the actual question, which was about the time.",
             "next": -1
           }
         ]
       }
     ],
-    "prereq": ["a1-1-u07"]
+    "prereq": [
+      "a1-1-u07"
+    ]
   },
   {
     "id": "a1-1-u09",
     "level": "A1.1",
     "ord": 9,
-    "title": "Zahlen bis 100",
+    "title": "Ich mag Hamburger",
     "can_do": [
-      "count to a hundred",
-      "understand a price",
-      "say how old somebody is"
+      "say what food you like and don't like",
+      "order food and drink in a café",
+      "use möchte to ask politely"
     ],
     "words": [
-      "elf",
-      "zwoelf",
-      "zwanzig",
-      "einundzwanzig",
-      "dreissig",
-      "vierzig",
-      "fuenfzig",
-      "hundert",
-      "der-euro",
-      "kosten",
-      "viel",
-      "wenig"
+      "brot",
+      "kaese",
+      "kaffee",
+      "tee",
+      "apfel",
+      "kuchen",
+      "salat",
+      "fleisch",
+      "schokolade",
+      "moegen",
+      "essen",
+      "trinken",
+      "moechte",
+      "sieben",
+      "acht",
+      "neun"
     ],
-    "grammar_id": "g-zahlen",
+    "grammar_id": "g-moechten",
     "scenario": {
-      "role": "a market stall holder",
-      "goal": "ask a price and react to it",
-      "opener": "Das kostet zwölf Euro."
+      "role": "a waiter in a café",
+      "goal": "order something to eat and drink",
+      "opener": "Guten Tag! Was möchten Sie?"
     },
     "dialogue": [
       {
-        "them": "Was kostet das?",
+        "them": "Guten Tag! Was möchten Sie?",
         "options": [
           {
-            "say": "Zwölf Euro.",
+            "say": "Ich möchte einen Kaffee und ein Stück Kuchen, bitte.",
             "ok": true,
             "next": 1
           },
           {
-            "say": "Zwölf Jahre.",
+            "say": "Ich mag keinen Kuchen.",
             "ok": false,
-            "why": "Jahre is an age, not a price.",
+            "why": "You were asked what you'd like — saying what you dislike doesn't place an order.",
             "next": 1
           }
         ]
       },
       {
-        "them": "Zwölf Euro.",
+        "them": "Und dazu vielleicht Käse oder Fleisch?",
         "options": [
           {
-            "say": "Das ist viel.",
-            "ok": true,
-            "next": 1
-          },
-          {
-            "say": "Das ist wenig viel.",
-            "ok": false,
-            "why": "Say one thing: das ist viel.",
-            "next": 1
-          }
-        ]
-      },
-      {
-        "them": "Und das hier? Fünfzig Euro.",
-        "options": [
-          {
-            "say": "Nein, danke.",
+            "say": "Nein danke, ich esse keinen Käse.",
             "ok": true,
             "next": -1
           },
           {
-            "say": "Ja, fünf Euro.",
+            "say": "Ja, ich trinke gern Tee.",
             "ok": false,
-            "why": "They said fünfzig, not fünf.",
+            "why": "Tea wasn't offered here — the question was about cheese or meat.",
             "next": -1
           }
         ]
       }
     ],
-    "prereq": ["a1-1-u08"]
+    "prereq": [
+      "a1-1-u08"
+    ]
   },
   {
     "id": "a1-1-u10",
     "level": "A1.1",
     "ord": 10,
-    "title": "Wie spät ist es?",
+    "title": "Wann kommst du denn an?",
     "can_do": [
-      "ask and tell the time",
-      "understand the official 24-hour form",
-      "say when something starts"
+      "talk about how you're travelling and when you'll arrive",
+      "use separable verbs like ankommen and abholen",
+      "ask someone to pick you up"
     ],
     "words": [
-      "die-uhr",
-      "die-stunde",
-      "die-minute",
-      "halb",
-      "viertel",
-      "vor-zeit",
-      "nach-zeit",
-      "spaet",
-      "frueh",
-      "beginnen",
-      "die-zeit",
-      "jetzt"
+      "bahnhof",
+      "zug",
+      "bus",
+      "u-bahn",
+      "flughafen",
+      "flugzeug",
+      "koffer",
+      "ankommen",
+      "abholen",
+      "einsteigen",
+      "umsteigen",
+      "holen",
+      "sollen"
     ],
-    "grammar_id": "g-uhrzeit",
+    "grammar_id": "g-trennbar",
     "scenario": {
-      "role": "a friend on the phone",
-      "goal": "agree a time to meet",
-      "opener": "Wie spät ist es?"
+      "role": "a friend you're visiting by train",
+      "goal": "tell them your travel plan and when you land",
+      "opener": "Wann kommst du denn an?"
     },
     "dialogue": [
       {
-        "them": "Wie spät ist es?",
+        "them": "Wann kommst du denn an?",
         "options": [
           {
-            "say": "Es ist halb acht.",
+            "say": "Ich komme um sechs Uhr am Bahnhof an.",
             "ok": true,
             "next": 1
           },
           {
-            "say": "Es ist halb acht Uhr Minute.",
+            "say": "Ich ankomme um sechs Uhr.",
             "ok": false,
-            "why": "halb acht is already the time. Stop there.",
+            "why": "With a separable verb, the prefix goes to the end: Ich komme ... an.",
             "next": 1
           }
         ]
       },
       {
-        "them": "Wann beginnt das?",
+        "them": "Soll ich dich abholen?",
         "options": [
           {
-            "say": "Um acht Uhr.",
-            "ok": true,
-            "next": 1
-          },
-          {
-            "say": "Um acht Stunde.",
-            "ok": false,
-            "why": "Stunde is a length of time; the clock time takes Uhr.",
-            "next": 1
-          }
-        ]
-      },
-      {
-        "them": "Ist das zu früh?",
-        "options": [
-          {
-            "say": "Nein, das ist gut.",
+            "say": "Ja, bitte hol mich ab.",
             "ok": true,
             "next": -1
           },
           {
-            "say": "Ja, das ist spät.",
+            "say": "Ja, ich steige in den Zug ein.",
             "ok": false,
-            "why": "früh and spät are opposites — this answers the wrong one.",
+            "why": "That describes what you're doing, not whether they should pick you up.",
             "next": -1
           }
         ]
       }
     ],
-    "prereq": ["a1-1-u09"]
+    "prereq": [
+      "a1-1-u09"
+    ]
   },
   {
     "id": "a1-1-u11",
     "level": "A1.1",
     "ord": 11,
-    "title": "Die Woche",
+    "title": "Was hast du gestern gemacht?",
     "can_do": [
-      "name the days and parts of the day",
-      "say when something happens",
-      "talk about today, tomorrow and yesterday"
+      "say what you did yesterday using the Perfekt with haben",
+      "talk about your daily routine in the past",
+      "ask when a shop or office is open"
     ],
     "words": [
-      "der-montag",
-      "der-dienstag",
-      "der-mittwoch",
-      "der-donnerstag",
-      "der-freitag",
-      "der-samstag",
-      "der-sonntag",
-      "die-woche",
-      "der-tag",
+      "gestern",
       "heute",
-      "morgen-adv",
-      "gestern"
+      "schlafen",
+      "aufraeumen",
+      "einkaufen",
+      "pause",
+      "spaziergang",
+      "gemacht",
+      "zeitung",
+      "sagen",
+      "sagen"
     ],
-    "grammar_id": "g-zeitpraepositionen",
+    "grammar_id": "g-perfekt-haben-a11",
     "scenario": {
-      "role": "a colleague making plans",
-      "goal": "say which day suits you",
-      "opener": "Wann hast du Zeit?"
+      "role": "a friend checking in on your day",
+      "goal": "say what you got up to yesterday",
+      "opener": "Was hast du gestern gemacht?"
     },
     "dialogue": [
       {
-        "them": "Hast du am Montag Zeit?",
+        "them": "Was hast du gestern gemacht?",
         "options": [
           {
-            "say": "Am Montag ist es schlecht.",
+            "say": "Ich habe eingekauft und dann einen Spaziergang gemacht.",
             "ok": true,
             "next": 1
           },
           {
-            "say": "Am Montag es ist schlecht.",
+            "say": "Ich habe eingekauft und dann ich habe spazieren gemacht.",
             "ok": false,
-            "why": "The verb comes second: am Montag ist es schlecht.",
+            "why": "Two Perfekt clauses joined with und share one habe — no need to repeat it.",
             "next": 1
           }
         ]
       },
       {
-        "them": "Und am Samstag?",
+        "them": "Und heute? Hast du eine Pause gemacht?",
         "options": [
           {
-            "say": "Ja, am Samstag ist gut.",
-            "ok": true,
-            "next": 1
-          },
-          {
-            "say": "Ja, am Samstag Woche.",
-            "ok": false,
-            "why": "Woche is the week itself, not a day.",
-            "next": 1
-          }
-        ]
-      },
-      {
-        "them": "Also Samstag.",
-        "options": [
-          {
-            "say": "Gut, am Samstag!",
+            "say": "Ja, ich habe eine Pause gemacht und Zeitung gelesen.",
             "ok": true,
             "next": -1
           },
           {
-            "say": "Gut, am gestern!",
+            "say": "Ja, ich mache gestern eine Pause.",
             "ok": false,
-            "why": "gestern is in the past. You are agreeing on a future day.",
+            "why": "Something already finished needs the Perfekt (habe gemacht), not the present tense.",
             "next": -1
           }
         ]
       }
     ],
-    "prereq": ["a1-1-u10"]
+    "prereq": [
+      "a1-1-u10"
+    ]
   },
   {
     "id": "a1-1-u12",
     "level": "A1.1",
     "ord": 12,
-    "title": "Verben im Präsens",
+    "title": "Im Frühling bin ich nach Hamburg gefahren",
     "can_do": [
-      "conjugate a regular verb",
-      "say what you do every day",
-      "ask what somebody else does"
+      "say where you went using the Perfekt with sein",
+      "talk about the seasons and months",
+      "describe a festival or trip you took"
     ],
     "words": [
-      "wir",
-      "ihr-you",
-      "machen",
-      "arbeiten",
-      "lernen",
-      "spielen",
-      "gehen",
-      "essen",
-      "trinken",
-      "lesen",
-      "hoeren",
+      "fruehling",
+      "sommer",
+      "herbst",
+      "winter",
+      "januar",
+      "geburtstag",
+      "fest",
+      "reise",
       "fahren",
-      "kaufen",
-      "brauchen"
+      "fliegen",
+      "gefeiert",
+      "seit",
+      "jahr",
+      "urlaub",
+      "letzte"
     ],
-    "grammar_id": "g-praesens",
+    "grammar_id": "g-perfekt-sein-a11",
     "scenario": {
-      "role": "someone asking about your day",
-      "goal": "say what you do",
-      "opener": "Was machst du?"
+      "role": "a friend swapping travel stories",
+      "goal": "tell them about a trip you took",
+      "opener": "Warst du letztes Jahr im Urlaub?"
     },
     "dialogue": [
       {
-        "them": "Was machst du?",
+        "them": "Warst du letztes Jahr im Urlaub?",
         "options": [
           {
-            "say": "Ich lerne Deutsch.",
+            "say": "Ja, im Sommer bin ich nach Hamburg gefahren.",
             "ok": true,
             "next": 1
           },
           {
-            "say": "Ich lernen Deutsch.",
+            "say": "Ja, im Sommer ich habe nach Hamburg gefahren.",
             "ok": false,
-            "why": "With ich the verb ends in -e: ich lerne.",
+            "why": "fahren takes sein in the Perfekt, and the finite verb still needs position two: bin ich gefahren.",
             "next": 1
           }
         ]
       },
       {
-        "them": "Und was macht ihr am Abend?",
+        "them": "Und was habt ihr da gefeiert?",
         "options": [
           {
-            "say": "Wir essen und lesen.",
-            "ok": true,
-            "next": 1
-          },
-          {
-            "say": "Wir esst und lest.",
-            "ok": false,
-            "why": "With wir the ending is -en: wir essen, wir lesen.",
-            "next": 1
-          }
-        ]
-      },
-      {
-        "them": "Fährst du morgen?",
-        "options": [
-          {
-            "say": "Ja, ich fahre morgen.",
+            "say": "Wir haben meinen Geburtstag gefeiert.",
             "ok": true,
             "next": -1
           },
           {
-            "say": "Ja, ich fahren morgen.",
+            "say": "Wir sind meinen Geburtstag gefeiert.",
             "ok": false,
-            "why": "With ich: ich fahre.",
+            "why": "feiern is a regular verb taking an object, so its Perfekt uses haben, not sein.",
             "next": -1
           }
         ]
       }
     ],
-    "prereq": ["a1-1-u11"]
-  },
-  {
-    "id": "a1-1-u13",
-    "level": "A1.1",
-    "ord": 13,
-    "title": "Meine Familie",
-    "can_do": [
-      "name the people in your family",
-      "say whose someone is",
-      "describe your family briefly"
-    ],
-    "words": [
-      "die-familie",
-      "der-vater",
-      "die-mutter",
-      "die-eltern",
-      "der-sohn",
-      "die-tochter",
-      "der-bruder",
-      "die-schwester",
-      "der-freund",
-      "die-freundin",
-      "sein-poss",
-      "ihr-poss"
-    ],
-    "grammar_id": "g-possessiv",
-    "scenario": {
-      "role": "a new friend",
-      "goal": "talk about your family",
-      "opener": "Wie ist deine Familie?"
-    },
-    "dialogue": [
-      {
-        "them": "Hast du einen Bruder?",
-        "options": [
-          {
-            "say": "Ja, mein Bruder ist Lehrer.",
-            "ok": true,
-            "next": 1
-          },
-          {
-            "say": "Ja, meine Bruder ist Lehrer.",
-            "ok": false,
-            "why": "Bruder is masculine: mein Bruder.",
-            "next": 1
-          }
-        ]
-      },
-      {
-        "them": "Und deine Schwester?",
-        "options": [
-          {
-            "say": "Meine Schwester wohnt in Indien.",
-            "ok": true,
-            "next": 1
-          },
-          {
-            "say": "Mein Schwester wohnt in Indien.",
-            "ok": false,
-            "why": "Schwester is feminine: meine Schwester.",
-            "next": 1
-          }
-        ]
-      },
-      {
-        "them": "Und deine Eltern?",
-        "options": [
-          {
-            "say": "Sie sind in Indien.",
-            "ok": true,
-            "next": -1
-          },
-          {
-            "say": "Er ist in Indien.",
-            "ok": false,
-            "why": "Eltern is plural, so it takes sie sind.",
-            "next": -1
-          }
-        ]
-      }
-    ],
-    "prereq": ["a1-1-u12"]
-  },
-  {
-    "id": "a1-1-u14",
-    "level": "A1.1",
-    "ord": 14,
-    "title": "Plural",
-    "can_do": [
-      "form the plural of the nouns you know",
-      "recognise the five plural patterns",
-      "count things"
-    ],
-    "words": [
-      "das-auto",
-      "das-haus",
-      "der-apfel",
-      "die-blume",
-      "der-baum",
-      "das-bild",
-      "die-karte",
-      "der-computer",
-      "die-sache",
-      "alle"
-    ],
-    "grammar_id": "g-plural",
-    "scenario": {
-      "role": "someone tidying up with you",
-      "goal": "count things in the room",
-      "opener": "Wie viele Stühle sind das?"
-    },
-    "dialogue": [
-      {
-        "them": "Wie viele Bücher?",
-        "options": [
-          {
-            "say": "Drei Bücher.",
-            "ok": true,
-            "next": 1
-          },
-          {
-            "say": "Drei Buch.",
-            "ok": false,
-            "why": "The plural of Buch is Bücher.",
-            "next": 1
-          }
-        ]
-      },
-      {
-        "them": "Und Stühle?",
-        "options": [
-          {
-            "say": "Vier Stühle.",
-            "ok": true,
-            "next": 1
-          },
-          {
-            "say": "Vier Stuhl.",
-            "ok": false,
-            "why": "The plural of Stuhl is Stühle.",
-            "next": 1
-          }
-        ]
-      },
-      {
-        "them": "Und die Bilder?",
-        "options": [
-          {
-            "say": "Alle Bilder sind hier.",
-            "ok": true,
-            "next": -1
-          },
-          {
-            "say": "Alle Bild ist hier.",
-            "ok": false,
-            "why": "Bilder is plural, so the verb is sind.",
-            "next": -1
-          }
-        ]
-      }
-    ],
-    "prereq": ["a1-1-u13"]
-  },
-  {
-    "id": "a1-1-u15",
-    "level": "A1.1",
-    "ord": 15,
-    "title": "Essen und Trinken",
-    "can_do": [
-      "name everyday food and drink",
-      "say what you like and do not like",
-      "say what you would like"
-    ],
-    "words": [
-      "das-brot",
-      "das-wasser",
-      "der-kaffee",
-      "der-tee",
-      "die-milch",
-      "der-kaese",
-      "das-ei",
-      "die-butter",
-      "das-fleisch",
-      "der-fisch",
-      "das-gemuese",
-      "das-obst",
-      "moegen",
-      "moechten"
-    ],
-    "grammar_id": "g-moechten",
-    "scenario": {
-      "role": "a friend cooking for you",
-      "goal": "say what you like and do not like",
-      "opener": "Magst du Käse?"
-    },
-    "dialogue": [
-      {
-        "them": "Magst du Fisch?",
-        "options": [
-          {
-            "say": "Ja, ich mag Fisch.",
-            "ok": true,
-            "next": 1
-          },
-          {
-            "say": "Ja, ich möchte Fisch mag.",
-            "ok": false,
-            "why": "Say one verb: ich mag Fisch.",
-            "next": 1
-          }
-        ]
-      },
-      {
-        "them": "Und Milch?",
-        "options": [
-          {
-            "say": "Nein, ich mag keine Milch.",
-            "ok": true,
-            "next": 1
-          },
-          {
-            "say": "Nein, ich mag nicht Milch.",
-            "ok": false,
-            "why": "Before a noun the negation is kein: keine Milch.",
-            "next": 1
-          }
-        ]
-      },
-      {
-        "them": "Möchtest du Obst?",
-        "options": [
-          {
-            "say": "Ja, bitte.",
-            "ok": true,
-            "next": -1
-          },
-          {
-            "say": "Ja, ich mögen.",
-            "ok": false,
-            "why": "With ich it is ich mag or ich möchte.",
-            "next": -1
-          }
-        ]
-      }
-    ],
-    "prereq": ["a1-1-u14"]
-  },
-  {
-    "id": "a1-1-u16",
-    "level": "A1.1",
-    "ord": 16,
-    "title": "Im Café",
-    "can_do": [
-      "order food and drink",
-      "ask for the bill",
-      "understand what the waiter asks you"
-    ],
-    "words": [
-      "das-cafe",
-      "die-rechnung",
-      "die-speisekarte",
-      "das-glas",
-      "die-tasse",
-      "der-teller",
-      "bestellen",
-      "zahlen",
-      "bringen",
-      "zusammen",
-      "getrennt",
-      "lecker"
-    ],
-    "grammar_id": "g-moechten",
-    "scenario": {
-      "role": "a waiter in a café",
-      "goal": "order and ask for the bill",
-      "opener": "Guten Tag! Was möchten Sie?"
-    },
-    "dialogue": [
-      {
-        "them": "Was möchten Sie?",
-        "options": [
-          {
-            "say": "Ich möchte einen Kaffee, bitte.",
-            "ok": true,
-            "next": 1
-          },
-          {
-            "say": "Ich möchte Kaffee bringen.",
-            "ok": false,
-            "why": "bringen is what the waiter does. Just order.",
-            "next": 1
-          }
-        ]
-      },
-      {
-        "them": "Und noch etwas?",
-        "options": [
-          {
-            "say": "Nein, danke.",
-            "ok": true,
-            "next": 1
-          },
-          {
-            "say": "Ja, die Rechnung bitte.",
-            "ok": false,
-            "why": "Ask for the bill at the end, not with the order.",
-            "next": 1
-          }
-        ]
-      },
-      {
-        "them": "Bitte.",
-        "options": [
-          {
-            "say": "Die Rechnung, bitte. Zusammen.",
-            "ok": true,
-            "next": -1
-          },
-          {
-            "say": "Die Speisekarte, bitte.",
-            "ok": false,
-            "why": "You have already ordered. Now you want to pay.",
-            "next": -1
-          }
-        ]
-      }
-    ],
-    "prereq": ["a1-1-u15"]
-  },
-  {
-    "id": "a1-1-u17",
-    "level": "A1.1",
-    "ord": 17,
-    "title": "Nicht und kein",
-    "can_do": [
-      "say something is not the case",
-      "say you do not have something",
-      "choose between nicht and kein"
-    ],
-    "words": [
-      "nicht",
-      "kein",
-      "nichts",
-      "niemand",
-      "nie",
-      "auch",
-      "aber",
-      "oder",
-      "doch",
-      "leider"
-    ],
-    "grammar_id": "g-negation",
-    "scenario": {
-      "role": "a friend who got something wrong",
-      "goal": "correct them politely",
-      "opener": "Du wohnst in Berlin, oder?"
-    },
-    "dialogue": [
-      {
-        "them": "Du wohnst in Berlin, oder?",
-        "options": [
-          {
-            "say": "Nein, ich wohne nicht in Berlin.",
-            "ok": true,
-            "next": 1
-          },
-          {
-            "say": "Nein, ich wohne kein Berlin.",
-            "ok": false,
-            "why": "kein goes before a noun; with a verb it is nicht.",
-            "next": 1
-          }
-        ]
-      },
-      {
-        "them": "Und du hast ein Auto?",
-        "options": [
-          {
-            "say": "Nein, ich habe kein Auto.",
-            "ok": true,
-            "next": 1
-          },
-          {
-            "say": "Nein, ich habe nicht Auto.",
-            "ok": false,
-            "why": "Before a noun the negation is kein: kein Auto.",
-            "next": 1
-          }
-        ]
-      },
-      {
-        "them": "Aber du sprichst Deutsch!",
-        "options": [
-          {
-            "say": "Ja, aber nicht viel.",
-            "ok": true,
-            "next": -1
-          },
-          {
-            "say": "Ja, niemand.",
-            "ok": false,
-            "why": "niemand means nobody. It does not answer this.",
-            "next": -1
-          }
-        ]
-      }
-    ],
-    "prereq": ["a1-1-u16"]
-  },
-  {
-    "id": "a1-1-u18",
-    "level": "A1.1",
-    "ord": 18,
-    "title": "Farben und Sachen",
-    "can_do": [
-      "name the colours",
-      "describe an object so somebody finds it",
-      "use an adjective after sein"
-    ],
-    "words": [
-      "die-farbe",
-      "rot",
-      "blau",
-      "gruen",
-      "gelb",
-      "schwarz",
-      "weiss",
-      "braun",
-      "grau",
-      "neu",
-      "schoen",
-      "teuer"
-    ],
-    "grammar_id": "g-adjektiv-praedikativ",
-    "scenario": {
-      "role": "a friend shopping with you",
-      "goal": "say which colour you want",
-      "opener": "Welche Farbe magst du?"
-    },
-    "dialogue": [
-      {
-        "them": "Magst du das rote Handy?",
-        "options": [
-          {
-            "say": "Ja, rot ist schön.",
-            "ok": true,
-            "next": 1
-          },
-          {
-            "say": "Ja, rot ist teuer.",
-            "ok": false,
-            "why": "You were asked whether you like it, not the price.",
-            "next": 1
-          }
-        ]
-      },
-      {
-        "them": "Und das blaue?",
-        "options": [
-          {
-            "say": "Blau mag ich nicht.",
-            "ok": true,
-            "next": 1
-          },
-          {
-            "say": "Blau mag ich kein.",
-            "ok": false,
-            "why": "With a verb the negation is nicht.",
-            "next": 1
-          }
-        ]
-      },
-      {
-        "them": "Das grüne ist neu.",
-        "options": [
-          {
-            "say": "Aber es ist sehr teuer.",
-            "ok": true,
-            "next": -1
-          },
-          {
-            "say": "Aber es ist sehr grün Farbe.",
-            "ok": false,
-            "why": "Say one thing: es ist teuer.",
-            "next": -1
-          }
-        ]
-      }
-    ],
-    "prereq": ["a1-1-u17"]
-  },
-  {
-    "id": "a1-1-u19",
-    "level": "A1.1",
-    "ord": 19,
-    "title": "Fragen stellen",
-    "can_do": [
-      "ask a W-question",
-      "ask a yes/no question",
-      "understand the answer"
-    ],
-    "words": [
-      "was",
-      "wann",
-      "warum",
-      "welcher",
-      "wie-viel",
-      "wie-viele",
-      "die-frage",
-      "die-antwort",
-      "fragen",
-      "antworten",
-      "verstehen",
-      "wiederholen"
-    ],
-    "grammar_id": "g-questions",
-    "scenario": {
-      "role": "somebody you did not understand",
-      "goal": "ask them to repeat and explain",
-      "opener": "Wie viele Bücher sind das?"
-    },
-    "dialogue": [
-      {
-        "them": "Wann kommst du?",
-        "options": [
-          {
-            "say": "Wie bitte? Noch einmal, bitte.",
-            "ok": true,
-            "next": 1
-          },
-          {
-            "say": "Was ist das?",
-            "ok": false,
-            "why": "You did not catch the question, so ask them to repeat it.",
-            "next": 1
-          }
-        ]
-      },
-      {
-        "them": "Wann kommst du?",
-        "options": [
-          {
-            "say": "Ich verstehe. Um acht.",
-            "ok": true,
-            "next": 1
-          },
-          {
-            "say": "Ich wiederhole nicht.",
-            "ok": false,
-            "why": "wiederholen is what you asked them to do.",
-            "next": 1
-          }
-        ]
-      },
-      {
-        "them": "Und warum so spät?",
-        "options": [
-          {
-            "say": "Ich arbeite. Ich komme um acht.",
-            "ok": true,
-            "next": -1
-          },
-          {
-            "say": "Welche arbeite ich.",
-            "ok": false,
-            "why": "welcher asks which one. The question was warum.",
-            "next": -1
-          }
-        ]
-      }
-    ],
-    "prereq": ["a1-1-u18"]
-  },
-  {
-    "id": "a1-1-u20",
-    "level": "A1.1",
-    "ord": 20,
-    "title": "Mein Tag",
-    "can_do": [
-      "describe your normal day in order",
-      "say when you do each thing",
-      "understand somebody else's routine"
-    ],
-    "words": [
-      "schlafen",
-      "kochen",
-      "putzen",
-      "duschen",
-      "fruehstuecken",
-      "enden",
-      "zuerst",
-      "dann",
-      "danach",
-      "immer",
-      "oft",
-      "manchmal"
-    ],
-    "grammar_id": "g-praesens",
-    "scenario": {
-      "role": "a friend asking how your day goes",
-      "goal": "describe your day in order",
-      "opener": "Wie ist dein Tag?"
-    },
-    "dialogue": [
-      {
-        "them": "Was machst du zuerst?",
-        "options": [
-          {
-            "say": "Zuerst dusche ich.",
-            "ok": true,
-            "next": 1
-          },
-          {
-            "say": "Zuerst ich dusche.",
-            "ok": false,
-            "why": "The verb comes second: zuerst dusche ich.",
-            "next": 1
-          }
-        ]
-      },
-      {
-        "them": "Und dann?",
-        "options": [
-          {
-            "say": "Dann frühstücke ich.",
-            "ok": true,
-            "next": 1
-          },
-          {
-            "say": "Dann ich frühstücke.",
-            "ok": false,
-            "why": "Again, the verb goes second: dann frühstücke ich.",
-            "next": 1
-          }
-        ]
-      },
-      {
-        "them": "Und am Abend?",
-        "options": [
-          {
-            "say": "Danach koche ich. Ich schlafe oft früh.",
-            "ok": true,
-            "next": -1
-          },
-          {
-            "say": "Danach ich koche immer manchmal.",
-            "ok": false,
-            "why": "immer and manchmal contradict each other. Pick one.",
-            "next": -1
-          }
-        ]
-      }
-    ],
-    "prereq": ["a1-1-u19"]
+    "prereq": [
+      "a1-1-u11"
+    ]
   }
 ]

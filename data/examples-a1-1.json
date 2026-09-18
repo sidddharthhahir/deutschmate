@@ -1,27 +1,27 @@
 {
   "hallo": {
-    "de": "Hallo, ich bin Mira.",
-    "en": "Hello, I'm Mira."
+    "de": "Hallo, ich heiße Sam.",
+    "en": "Hello, my name is Sam."
   },
   "tschuess": {
-    "de": "Tschüss, bis morgen!",
-    "en": "Bye, see you tomorrow!"
+    "de": "Tschüss, bis später!",
+    "en": "Bye, see you later!"
   },
   "guten-morgen": {
-    "de": "Guten Morgen, Frau Weber.",
-    "en": "Good morning, Mrs Weber."
+    "de": "Guten Morgen! Wie geht's?",
+    "en": "Good morning! How are you?"
   },
   "guten-tag": {
-    "de": "Guten Tag! Wie geht es Ihnen?",
-    "en": "Hello! How are you?"
+    "de": "Guten Tag, Frau Schmidt!",
+    "en": "Good day, Mrs Schmidt!"
   },
   "guten-abend": {
     "de": "Guten Abend, kommen Sie herein.",
-    "en": "Good evening, do come in."
+    "en": "Good evening, come in."
   },
   "gute-nacht": {
-    "de": "Gute Nacht, schlaf gut.",
-    "en": "Good night, sleep well."
+    "de": "Gute Nacht, bis morgen!",
+    "en": "Good night, see you tomorrow!"
   },
   "danke": {
     "de": "Danke, das ist sehr nett.",
@@ -40,8 +40,8 @@
     "en": "No, thank you."
   },
   "nicht": {
-    "de": "Ich verstehe das nicht.",
-    "en": "I don't understand that."
+    "de": "Ich arbeite heute nicht.",
+    "en": "I'm not working today."
   },
   "vielleicht": {
     "de": "Vielleicht komme ich morgen.",
@@ -80,23 +80,23 @@
     "en": "What is your name?"
   },
   "haben": {
-    "de": "Ich habe zwei Kinder.",
-    "en": "I have two children."
+    "de": "Hast du Kinder?",
+    "en": "Do you have children?"
   },
   "heissen": {
     "de": "Wie heißt du?",
     "en": "What's your name?"
   },
   "kommen": {
-    "de": "Ich komme aus Deutschland.",
-    "en": "I come from Germany."
+    "de": "Woher kommst du?",
+    "en": "Where do you come from?"
   },
   "wohnen": {
-    "de": "Wo wohnst du?",
-    "en": "Where do you live?"
+    "de": "Wir wohnen in Berlin.",
+    "en": "We live in Berlin."
   },
   "sprechen": {
-    "de": "Sprechen Sie Englisch?",
+    "de": "Sprichst du Englisch?",
     "en": "Do you speak English?"
   },
   "gehen": {
@@ -108,8 +108,8 @@
     "en": "What are you doing?"
   },
   "arbeiten": {
-    "de": "Ich arbeite in Berlin.",
-    "en": "I work in Berlin."
+    "de": "Ich arbeite von Montag bis Freitag.",
+    "en": "I work Monday to Friday."
   },
   "lernen": {
     "de": "Wir lernen Deutsch.",
@@ -120,12 +120,12 @@
     "en": "I don't understand you."
   },
   "essen": {
-    "de": "Was isst du gern?",
-    "en": "What do you like to eat?"
+    "de": "Was isst du gern zum Frühstück?",
+    "en": "What do you like eating for breakfast?"
   },
   "trinken": {
-    "de": "Ich trinke Kaffee.",
-    "en": "I drink coffee."
+    "de": "Was möchtest du trinken?",
+    "en": "What would you like to drink?"
   },
   "kaufen": {
     "de": "Ich kaufe ein Buch.",
@@ -196,24 +196,24 @@
     "en": "A hundred grams of cheese, please."
   },
   "heute": {
-    "de": "Heute ist Montag.",
-    "en": "Today is Monday."
+    "de": "Heute habe ich viel Zeit.",
+    "en": "Today I have a lot of time."
   },
   "morgen": {
     "de": "Morgen gehe ich zur Schule.",
     "en": "Tomorrow I go to school."
   },
   "gestern": {
-    "de": "Gestern war Sonntag.",
-    "en": "Yesterday was Sunday."
+    "de": "Gestern habe ich lange geschlafen.",
+    "en": "Yesterday I slept for a long time."
   },
   "jetzt": {
     "de": "Ich muss jetzt gehen.",
     "en": "I have to go now."
   },
   "immer": {
-    "de": "Ich stehe immer früh auf.",
-    "en": "I always get up early."
+    "de": "Ich koche immer am Sonntag.",
+    "en": "I always cook on Sunday."
   },
   "oft": {
     "de": "Ich koche oft.",
@@ -248,12 +248,12 @@
     "en": "How old are you?"
   },
   "schoen": {
-    "de": "Die Stadt ist sehr schön.",
-    "en": "The city is very beautiful."
+    "de": "Das Bild ist wirklich schön.",
+    "en": "The picture is really beautiful."
   },
   "teuer": {
-    "de": "Das ist zu teuer.",
-    "en": "That is too expensive."
+    "de": "Der Tisch ist mir zu teuer.",
+    "en": "The table is too expensive for me."
   },
   "billig": {
     "de": "Das ist sehr billig.",
@@ -264,8 +264,8 @@
     "en": "I am very tired."
   },
   "deutschland": {
-    "de": "Deutschland ist groß.",
-    "en": "Germany is big."
+    "de": "Ich komme aus Deutschland.",
+    "en": "I come from Germany."
   },
   "und": {
     "de": "Ich und meine Schwester.",
@@ -308,8 +308,8 @@
     "en": "Right at the pharmacy."
   },
   "auf-wiedersehen": {
-    "de": "Auf Wiedersehen und danke!",
-    "en": "Goodbye and thank you!"
+    "de": "Auf Wiedersehen, Herr Bauer.",
+    "en": "Goodbye, Mr Bauer."
   },
   "alphabet": {
     "de": "Das Alphabet hat 26 Buchstaben.",
@@ -380,16 +380,16 @@
     "en": "My name is Mira."
   },
   "mein": {
-    "de": "Das ist mein Buch.",
-    "en": "That is my book."
+    "de": "Das ist mein Vater.",
+    "en": "That's my father."
   },
   "dein": {
-    "de": "Ist das dein Stuhl?",
-    "en": "Is that your chair?"
+    "de": "Wie heißt dein Bruder?",
+    "en": "What's your brother called?"
   },
   "oesterreich": {
-    "de": "Wien liegt in Österreich.",
-    "en": "Vienna is in Austria."
+    "de": "Sie wohnt in Österreich.",
+    "en": "She lives in Austria."
   },
   "die-schweiz": {
     "de": "Die Schweiz hat vier Sprachen.",
@@ -652,16 +652,16 @@
     "en": "The children are playing outside."
   },
   "lesen": {
-    "de": "Er liest die Zeitung.",
-    "en": "He is reading the newspaper."
+    "de": "Er liest jeden Abend.",
+    "en": "He reads every evening."
   },
   "hoeren": {
     "de": "Hörst du das?",
     "en": "Do you hear that?"
   },
   "fahren": {
-    "de": "Ich fahre nach Hamburg.",
-    "en": "I'm travelling to Hamburg."
+    "de": "Wir sind nach Hamburg gefahren.",
+    "en": "We went to Hamburg."
   },
   "brauchen": {
     "de": "Ich brauche einen Stift.",
@@ -804,8 +804,8 @@
     "en": "I buy fruit at the market."
   },
   "moegen": {
-    "de": "Ich mag Kaffee.",
-    "en": "I like coffee."
+    "de": "Magst du Käse?",
+    "en": "Do you like cheese?"
   },
   "moechten": {
     "de": "Ich möchte einen Tee.",
@@ -860,8 +860,8 @@
     "en": "That was very tasty."
   },
   "kein": {
-    "de": "Ich habe kein Geld.",
-    "en": "I have no money."
+    "de": "Ich habe keine Uhr.",
+    "en": "I don't have a watch."
   },
   "nichts": {
     "de": "Ich möchte nichts, danke.",
@@ -876,24 +876,24 @@
     "en": "Aren't you coming? — Yes I am!"
   },
   "leider": {
-    "de": "Leider habe ich keine Zeit.",
-    "en": "Unfortunately I have no time."
+    "de": "Ich habe leider keine Zeit.",
+    "en": "Unfortunately I don't have time."
   },
   "die-farbe": {
     "de": "Welche Farbe hat dein Auto?",
     "en": "What colour is your car?"
   },
   "rot": {
-    "de": "Das Auto ist rot.",
-    "en": "The car is red."
+    "de": "Ich mag die rote Lampe.",
+    "en": "I like the red lamp."
   },
   "blau": {
-    "de": "Meine Tasche ist blau.",
-    "en": "My bag is blue."
+    "de": "Sein Auto ist blau.",
+    "en": "His car is blue."
   },
   "gruen": {
-    "de": "Der Baum ist grün.",
-    "en": "The tree is green."
+    "de": "Die Tasche ist grün.",
+    "en": "The bag is green."
   },
   "gelb": {
     "de": "Die Blume ist gelb.",
@@ -944,12 +944,12 @@
     "en": "Could you repeat that?"
   },
   "schlafen": {
-    "de": "Ich schlafe bis acht.",
-    "en": "I sleep until eight."
+    "de": "Ich schlafe gern lange.",
+    "en": "I like sleeping in."
   },
   "kochen": {
-    "de": "Am Abend koche ich.",
-    "en": "In the evening I cook."
+    "de": "Ich koche gern Pasta.",
+    "en": "I like cooking pasta."
   },
   "putzen": {
     "de": "Am Samstag putze ich.",
@@ -980,8 +980,8 @@
     "en": "After that I eat something."
   },
   "manchmal": {
-    "de": "Manchmal lese ich abends.",
-    "en": "Sometimes I read in the evening."
+    "de": "Ich schwimme manchmal am Morgen.",
+    "en": "I sometimes swim in the morning."
   },
   "akk-den": {
     "de": "Ich sehe den Mann.",
@@ -1000,8 +1000,8 @@
     "en": "That is a book."
   },
   "sehen": {
-    "de": "Siehst du das Haus?",
-    "en": "Do you see the house?"
+    "de": "Siehst du meine Brille?",
+    "en": "Do you see my glasses?"
   },
   "nehmen": {
     "de": "Ich nehme den Bus.",
@@ -1012,8 +1012,8 @@
     "en": "I can't find my key."
   },
   "suchen": {
-    "de": "Ich suche die Post.",
-    "en": "I'm looking for the post office."
+    "de": "Ich suche meinen Laptop.",
+    "en": "I'm looking for my laptop."
   },
   "besuchen": {
     "de": "Ich besuche meine Eltern.",
@@ -1176,8 +1176,8 @@
     "en": "I'm going to the pharmacy."
   },
   "koennen": {
-    "de": "Ich kann nicht kommen.",
-    "en": "I can't come."
+    "de": "Ich kann gut kochen.",
+    "en": "I can cook well."
   },
   "muessen": {
     "de": "Ich muss arbeiten.",
@@ -1268,16 +1268,16 @@
     "en": "The rain is stopping."
   },
   "einkaufen": {
-    "de": "Ich kaufe am Samstag ein.",
-    "en": "I shop on Saturday."
+    "de": "Ich habe heute eingekauft.",
+    "en": "I did the shopping today."
   },
   "mitkommen": {
     "de": "Kommst du mit?",
     "en": "Are you coming along?"
   },
   "ankommen": {
-    "de": "Der Zug kommt um zehn an.",
-    "en": "The train arrives at ten."
+    "de": "Wann kommst du an?",
+    "en": "When are you arriving?"
   },
   "abfahren": {
     "de": "Der Bus fährt gleich ab.",
@@ -1520,8 +1520,8 @@
     "en": "Last week I was ill."
   },
   "gemacht": {
-    "de": "Was hast du gemacht?",
-    "en": "What did you do?"
+    "de": "Was hast du gestern gemacht?",
+    "en": "What did you do yesterday?"
   },
   "gesagt": {
     "de": "Was hat er gesagt?",
@@ -1736,16 +1736,16 @@
     "en": "One ticket to Cologne."
   },
   "einsteigen": {
-    "de": "Bitte einsteigen!",
-    "en": "All aboard!"
+    "de": "Wir steigen jetzt ein.",
+    "en": "We're boarding now."
   },
   "aussteigen": {
     "de": "Ich steige hier aus.",
     "en": "I'm getting off here."
   },
   "umsteigen": {
-    "de": "Sie müssen in Hamburg umsteigen.",
-    "en": "You have to change in Hamburg."
+    "de": "Ich steige in Köln um.",
+    "en": "I'm changing (trains) in Cologne."
   },
   "die-verspaetung": {
     "de": "Der Zug hat zehn Minuten Verspätung.",
@@ -7542,5 +7542,385 @@
   "b12-angekommen": {
     "de": "Nach zwei Jahren bin ich angekommen.",
     "en": "After two years I feel settled."
+  },
+  "beruf": {
+    "de": "Was ist dein Beruf?",
+    "en": "What's your profession?"
+  },
+  "ingenieur": {
+    "de": "Er ist Ingenieur von Beruf.",
+    "en": "He's an engineer by profession."
+  },
+  "student": {
+    "de": "Ich bin Student in München.",
+    "en": "I'm a student in Munich."
+  },
+  "verkaeufer": {
+    "de": "Sie arbeitet als Verkäuferin.",
+    "en": "She works as a salesperson."
+  },
+  "kellner": {
+    "de": "Der Kellner bringt den Kaffee.",
+    "en": "The waiter brings the coffee."
+  },
+  "friseur": {
+    "de": "Mein Bruder ist Friseur.",
+    "en": "My brother is a hairdresser."
+  },
+  "lehrer": {
+    "de": "Frau Klein ist meine Lehrerin.",
+    "en": "Mrs Klein is my teacher."
+  },
+  "arzt": {
+    "de": "Der Arzt arbeitet im Krankenhaus.",
+    "en": "The doctor works at the hospital."
+  },
+  "verheiratet": {
+    "de": "Sind Sie verheiratet?",
+    "en": "Are you married?"
+  },
+  "kind": {
+    "de": "Das Kind spielt im Garten.",
+    "en": "The child is playing in the garden."
+  },
+  "vater": {
+    "de": "Mein Vater kommt aus Hamburg.",
+    "en": "My father comes from Hamburg."
+  },
+  "mutter": {
+    "de": "Meine Mutter arbeitet als Ärztin.",
+    "en": "My mother works as a doctor."
+  },
+  "eltern": {
+    "de": "Meine Eltern wohnen in Wien.",
+    "en": "My parents live in Vienna."
+  },
+  "bruder": {
+    "de": "Mein Bruder heißt Paul.",
+    "en": "My brother is called Paul."
+  },
+  "schwester": {
+    "de": "Das ist meine Schwester Lea.",
+    "en": "This is my sister Lea."
+  },
+  "geschwister": {
+    "de": "Hast du Geschwister?",
+    "en": "Do you have siblings?"
+  },
+  "grosseltern": {
+    "de": "Meine Großeltern wohnen auf dem Land.",
+    "en": "My grandparents live in the countryside."
+  },
+  "onkel": {
+    "de": "Mein Onkel spricht drei Sprachen.",
+    "en": "My uncle speaks three languages."
+  },
+  "tante": {
+    "de": "Meine Tante wohnt in der Schweiz.",
+    "en": "My aunt lives in Switzerland."
+  },
+  "englisch": {
+    "de": "Ich spreche ein bisschen Englisch.",
+    "en": "I speak a little English."
+  },
+  "bett": {
+    "de": "Das Bett ist sehr bequem.",
+    "en": "The bed is very comfortable."
+  },
+  "stuhl": {
+    "de": "Der Stuhl ist aus Holz.",
+    "en": "The chair is made of wood."
+  },
+  "tisch": {
+    "de": "Der Tisch ist zu groß für das Zimmer.",
+    "en": "The table is too big for the room."
+  },
+  "lampe": {
+    "de": "Die Lampe ist sehr modern.",
+    "en": "The lamp is very modern."
+  },
+  "sofa": {
+    "de": "Wir haben ein neues Sofa.",
+    "en": "We have a new sofa."
+  },
+  "schrank": {
+    "de": "Der Schrank ist zu klein.",
+    "en": "The wardrobe is too small."
+  },
+  "regal": {
+    "de": "Die Bücher sind im Regal.",
+    "en": "The books are on the shelf."
+  },
+  "haesslich": {
+    "de": "Ich finde die Lampe hässlich.",
+    "en": "I think the lamp is ugly."
+  },
+  "guenstig": {
+    "de": "Der Stuhl ist sehr günstig.",
+    "en": "The chair is very cheap."
+  },
+  "buch": {
+    "de": "Ich lese ein gutes Buch.",
+    "en": "I'm reading a good book."
+  },
+  "brille": {
+    "de": "Wo ist meine Brille?",
+    "en": "Where are my glasses?"
+  },
+  "schluessel": {
+    "de": "Ich suche meinen Schlüssel.",
+    "en": "I'm looking for my key."
+  },
+  "tasche": {
+    "de": "Meine Tasche ist aus Leder.",
+    "en": "My bag is made of leather."
+  },
+  "uhr": {
+    "de": "Die Uhr ist kaputt.",
+    "en": "The clock is broken."
+  },
+  "handy": {
+    "de": "Mein Handy ist neu.",
+    "en": "My phone is new."
+  },
+  "flasche": {
+    "de": "Die Flasche ist aus Glas.",
+    "en": "The bottle is made of glass."
+  },
+  "computer": {
+    "de": "Der Computer ist sehr alt.",
+    "en": "The computer is very old."
+  },
+  "laptop": {
+    "de": "Ich brauche einen neuen Laptop.",
+    "en": "I need a new laptop."
+  },
+  "kalender": {
+    "de": "Wo ist der Kalender?",
+    "en": "Where's the calendar?"
+  },
+  "termin": {
+    "de": "Ich habe morgen einen Termin.",
+    "en": "I have an appointment tomorrow."
+  },
+  "stift": {
+    "de": "Hast du einen Stift?",
+    "en": "Do you have a pen?"
+  },
+  "email": {
+    "de": "Ich schreibe eine E-Mail.",
+    "en": "I'm writing an email."
+  },
+  "passwort": {
+    "de": "Mein Passwort funktioniert nicht.",
+    "en": "My password isn't working."
+  },
+  "drucker": {
+    "de": "Der Drucker ist kaputt.",
+    "en": "The printer is broken."
+  },
+  "singen": {
+    "de": "Sie singt sehr gut.",
+    "en": "She sings very well."
+  },
+  "schwimmen": {
+    "de": "Wir schwimmen im Sommer.",
+    "en": "We swim in the summer."
+  },
+  "tanzen": {
+    "de": "Kannst du gut tanzen?",
+    "en": "Can you dance well?"
+  },
+  "malen": {
+    "de": "Mein Sohn malt gern.",
+    "en": "My son likes painting."
+  },
+  "rad-fahren": {
+    "de": "Ich fahre gern Rad.",
+    "en": "I like cycling."
+  },
+  "treffen": {
+    "de": "Wir treffen Freunde im Park.",
+    "en": "We're meeting friends in the park."
+  },
+  "hobby": {
+    "de": "Mein Hobby ist Fotografieren.",
+    "en": "My hobby is photography."
+  },
+  "kino": {
+    "de": "Gehen wir heute ins Kino?",
+    "en": "Shall we go to the cinema today?"
+  },
+  "cafe": {
+    "de": "Wir treffen uns im Café.",
+    "en": "We're meeting at the café."
+  },
+  "restaurant": {
+    "de": "Das Restaurant ist sehr gut.",
+    "en": "The restaurant is very good."
+  },
+  "schwimmbad": {
+    "de": "Das Schwimmbad ist am Samstag offen.",
+    "en": "The swimming pool is open on Saturday."
+  },
+  "montag": {
+    "de": "Am Montag arbeite ich nicht.",
+    "en": "I'm not working on Monday."
+  },
+  "samstag": {
+    "de": "Am Samstag gehen wir ins Kino.",
+    "en": "On Saturday we're going to the cinema."
+  },
+  "wochenende": {
+    "de": "Was machst du am Wochenende?",
+    "en": "What are you doing at the weekend?"
+  },
+  "abend": {
+    "de": "Am Abend lese ich gern.",
+    "en": "In the evening I like reading."
+  },
+  "nachmittag": {
+    "de": "Am Nachmittag habe ich Zeit.",
+    "en": "I have time in the afternoon."
+  },
+  "wissen": {
+    "de": "Ich weiß es nicht.",
+    "en": "I don't know."
+  },
+  "zeit": {
+    "de": "Hast du heute Zeit?",
+    "en": "Do you have time today?"
+  },
+  "brot": {
+    "de": "Ich esse gern Brot mit Käse.",
+    "en": "I like eating bread with cheese."
+  },
+  "kaese": {
+    "de": "Der Käse kommt aus der Schweiz.",
+    "en": "The cheese is from Switzerland."
+  },
+  "kaffee": {
+    "de": "Ich trinke jeden Morgen Kaffee.",
+    "en": "I drink coffee every morning."
+  },
+  "tee": {
+    "de": "Möchtest du einen Tee?",
+    "en": "Would you like a tea?"
+  },
+  "apfel": {
+    "de": "Der Apfel ist sehr süß.",
+    "en": "The apple is very sweet."
+  },
+  "kuchen": {
+    "de": "Der Kuchen schmeckt sehr gut.",
+    "en": "The cake tastes very good."
+  },
+  "salat": {
+    "de": "Ich esse jeden Tag Salat.",
+    "en": "I eat salad every day."
+  },
+  "fleisch": {
+    "de": "Er isst kein Fleisch.",
+    "en": "He doesn't eat meat."
+  },
+  "schokolade": {
+    "de": "Ich mag Schokolade sehr gern.",
+    "en": "I really like chocolate."
+  },
+  "moechte": {
+    "de": "Ich möchte einen Kaffee, bitte.",
+    "en": "I'd like a coffee, please."
+  },
+  "bahnhof": {
+    "de": "Der Bahnhof ist nicht weit.",
+    "en": "The train station isn't far."
+  },
+  "zug": {
+    "de": "Der Zug kommt um sechs Uhr an.",
+    "en": "The train arrives at six o'clock."
+  },
+  "bus": {
+    "de": "Ich fahre mit dem Bus.",
+    "en": "I'm going by bus."
+  },
+  "u-bahn": {
+    "de": "Wir nehmen die U-Bahn.",
+    "en": "We're taking the subway."
+  },
+  "flughafen": {
+    "de": "Der Flughafen ist sehr groß.",
+    "en": "The airport is very big."
+  },
+  "flugzeug": {
+    "de": "Das Flugzeug fliegt um acht Uhr.",
+    "en": "The plane flies at eight o'clock."
+  },
+  "koffer": {
+    "de": "Mein Koffer ist sehr schwer.",
+    "en": "My suitcase is very heavy."
+  },
+  "abholen": {
+    "de": "Kannst du mich abholen?",
+    "en": "Can you pick me up?"
+  },
+  "aufraeumen": {
+    "de": "Ich habe mein Zimmer aufgeräumt.",
+    "en": "I tidied up my room."
+  },
+  "pause": {
+    "de": "Wir machen jetzt eine Pause.",
+    "en": "We're taking a break now."
+  },
+  "spaziergang": {
+    "de": "Ich habe einen Spaziergang gemacht.",
+    "en": "I went for a walk."
+  },
+  "zeitung": {
+    "de": "Mein Vater liest jeden Tag Zeitung.",
+    "en": "My father reads the newspaper every day."
+  },
+  "fruehling": {
+    "de": "Im Frühling ist das Wetter schön.",
+    "en": "In spring the weather is nice."
+  },
+  "sommer": {
+    "de": "Im Sommer fahren wir nach Italien.",
+    "en": "In summer we're going to Italy."
+  },
+  "herbst": {
+    "de": "Im Herbst wird es kalt.",
+    "en": "In autumn it gets cold."
+  },
+  "winter": {
+    "de": "Im Winter schneit es oft.",
+    "en": "In winter it often snows."
+  },
+  "januar": {
+    "de": "Mein Geburtstag ist im Januar.",
+    "en": "My birthday is in January."
+  },
+  "geburtstag": {
+    "de": "Wann hast du Geburtstag?",
+    "en": "When is your birthday?"
+  },
+  "fest": {
+    "de": "Das Fest war wirklich schön.",
+    "en": "The festival was really lovely."
+  },
+  "reise": {
+    "de": "Die Reise war sehr lang.",
+    "en": "The trip was very long."
+  },
+  "fliegen": {
+    "de": "Ich bin nach Berlin geflogen.",
+    "en": "I flew to Berlin."
+  },
+  "gefeiert": {
+    "de": "Wir haben meinen Geburtstag gefeiert.",
+    "en": "We celebrated my birthday."
+  },
+  "seit": {
+    "de": "Ich lerne seit einem Jahr Deutsch.",
+    "en": "I've been learning German for a year."
   }
 }

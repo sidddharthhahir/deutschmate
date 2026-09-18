@@ -8,25 +8,33 @@
  * Pure: no database, no imports, so the rules can be argued with in a test.
  */
 
-/** A structure, and the A1 unit at which it becomes fair game. */
+/**
+ * A structure, and the A1 unit at which it becomes fair game.
+ *
+ * A1.1 is 12 units now (Momente's own lesson count, not the old 20), taught denser than
+ * the course this scale was first written for: accusative by unit 6, separable verbs by
+ * 10, Perfekt by 11. A1.2 keeps its old thresholds (20 + ord) until it gets the same
+ * treatment — the two halves are independent because `reachOf` recomputes from whichever
+ * level and ord the learner is actually on, never by accumulating across the boundary.
+ */
 export const TAUGHT_AT: Record<string, number> = {
-  praesens: 12,
-  negation: 17,
-  fragen: 19,
-  akkusativ: 21,
-  modal: 25,
-  trennbar: 27,
-  dativ: 29,
-  perfekt: 32,
-  imperativ: 37,
-  wechselpraeposition: 39,
-  /* Not taught anywhere in A1. Anything carrying one is out of scope for the
-     whole course, which is the honest answer rather than a large number. */
+  praesens: 1,
+  fragen: 1,
+  negation: 2,
+  akkusativ: 6,
+  modal: 7,
+  trennbar: 10,
+  perfekt: 11,
+  praeteritum: 12,
+  /* Not taught in Momente A1.1. Anything carrying one is out of scope for this
+     half of the course, which is the honest answer rather than a large number. */
+  dativ: 99,
+  imperativ: 99,
+  wechselpraeposition: 99,
   nebensatz: 99,
   relativsatz: 99,
   konjunktiv: 99,
   passiv: 99,
-  praeteritum: 99,
   genitiv: 99,
 };
 

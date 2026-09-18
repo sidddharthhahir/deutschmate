@@ -35,8 +35,9 @@ const STEPS: Step[] = [
     body: (
       <>
         <p>
-          DeutschMate takes you from A1.1 to B1.2 — 120 units, 3,219 words, 49
-          grammar points. Built for about an hour a day, roughly seven months.
+          DeutschMate teaches A1.1 — 12 units, 3,120 words, 15 grammar points
+          — with A1.2 through B1.2 being rebuilt the same way. Built for about
+          an hour a day.
         </p>
         <p>
           It is a teacher, not a flashcard app. And what it teaches points at
@@ -342,7 +343,7 @@ export default function Tour({ firstRun }: { firstRun: boolean }) {
             // drawn 4px tall. The overlay is vertical only, so the six do not
             // overlap each other.
             className={`h-1 flex-1 rounded-[2px] transition-colors ${TAP_BLOCK} ${
-              n <= i ? "bg-fg" : "bg-line"
+              n <= i ? "bg-accent" : "bg-line"
             }`}
           />
         ))}
@@ -383,7 +384,7 @@ export default function Tour({ firstRun }: { firstRun: boolean }) {
         {last ? (
           <Link
             href="/"
-            className="bg-fg rounded-xl px-7 py-3.5 font-medium text-[#16211E] transition-colors hover:bg-white"
+            className="bg-accent dm-pill rounded-2xl px-7 py-3.5 font-medium text-accent-fg transition-colors hover:bg-accent-hover"
           >
             {/* A real apostrophe, not the HTML entity for one.
                 JSX decodes entities in text and does not decode them inside a
@@ -398,7 +399,7 @@ export default function Tour({ firstRun }: { firstRun: boolean }) {
         ) : (
           <button
             onClick={() => setI((n) => n + 1)}
-            className="bg-fg rounded-xl px-7 py-3.5 font-medium text-[#16211E] transition-colors hover:bg-white"
+            className="bg-accent dm-pill rounded-2xl px-7 py-3.5 font-medium text-accent-fg transition-colors hover:bg-accent-hover"
           >
             Next
           </button>

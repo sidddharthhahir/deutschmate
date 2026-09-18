@@ -32,7 +32,14 @@ const words = db
 }[];
 
 section("shape");
-ok(units.length === 120, "120 units", units.length);
+/*
+ * A1.1 only for now (2026-09) — was 112 units across six levels; A1.2 through
+ * B1.2 are deliberately unseeded while the Momente rewrite gets solid (see
+ * data/deferred/README.md). The word deck stays full-sized regardless: word
+ * content was never touched by that decision, only the units/grammar/readings
+ * built on top of it.
+ */
+ok(units.length === 12, "12 units", units.length);
 ok(words.length > 2000, "the deck is B1-sized", `${words.length} words`);
 
 section("every word is reachable, every reference resolves");
@@ -55,8 +62,10 @@ const inUnitsSet = new Set(inUnits);
  */
 const taught = words.filter((w) => inUnitsSet.has(w.id));
 const browseOnly = words.filter((w) => !inUnitsSet.has(w.id));
+/* Was >= 400 across 112 units; A1.1 alone teaches ~175 (see the shape note
+   above) — a floor with headroom below that, not a hardcoded exact count. */
 ok(
-  taught.length >= 400,
+  taught.length >= 150,
   "the course teaches a real vocabulary",
   `${taught.length} words`,
 );
@@ -221,9 +230,18 @@ if (existsSync(AUDIO_DIR)) {
 }
 
 section("progression is possible");
-/* The learner is promoted at the end of a level, so a level with no units is a
-   dead end the walk in progression.test.mts would only find after 300 loops. */
-for (const lv of LEVELS) {
+/*
+ * The learner is promoted at the end of a level, so a level with no units is a
+ * dead end the walk in progression.test.mts would only find after 300 loops.
+ *
+ * A1.1 only for now (2026-09) — A1.2 through B1.2 are deliberately unseeded
+ * while the Momente rewrite gets solid (see data/deferred/README.md), so this
+ * only asserts on the one level that's actually meant to ship. currentUnit()
+ * already treats "no units at any higher level" as the end of the course
+ * rather than a dead end (lib/session-progression.ts), which is exactly the
+ * behaviour this narrowed check is trusting.
+ */
+for (const lv of LEVELS.filter((l) => l === "A1.1")) {
   const n = units.filter((u) => u.level === lv).length;
   ok(n > 0, `${lv} has units`, n);
 }
@@ -273,32 +291,46 @@ section("the six survival scenarios can be run without a network");
  * These are the conversations you rehearse the night before, often on a phone with no signal, and
  * they were the only ones in the app with no scripted fallback — so "you need a network for this
  * one" arrived at the moment it was least useful.
+ *
+ * A1.1 only for now (2026-09): every scenario in this pack is A1.2 or later,
+ * so the file moved to data/deferred/ along with the rest of that content —
+ * lib/survival.ts already treats a missing file as an empty pack rather than
+ * an error (spec §17), and this test follows the same rule instead of failing
+ * a build over content that isn't meant to ship right now.
  */
-const survival = JSON.parse(
-  readFileSync(
-    path.join(process.cwd(), "data", "scenarios-survival.json"),
-    "utf8",
-  ),
-) as {
-  id: string;
-  title: string;
-  dialogue?: {
-    them: string;
-    options: { say: string; ok: boolean; why?: string; next: number }[];
-  }[];
-}[];
+const survivalPath = path.join(
+  process.cwd(),
+  "data",
+  "scenarios-survival.json",
+);
+const survival = existsSync(survivalPath)
+  ? (JSON.parse(readFileSync(survivalPath, "utf8")) as {
+      id: string;
+      title: string;
+      dialogue?: {
+        them: string;
+        options: { say: string; ok: boolean; why?: string; next: number }[];
+      }[];
+    }[])
+  : [];
+
+if (!survival.length) {
+  console.log("SKIP  data/scenarios-survival.json is deferred, not absent");
+}
 
 /* A floor, not a count. Principle 5 says this set grows, and a test that
    pins it at six turns adding a scenario into a failing build. */
-ok(
-  survival.length >= 6,
-  "the pack is not shrinking",
-  `${survival.length} scenarios`,
-);
-ok(
-  new Set(survival.map((s) => s.id)).size === survival.length,
-  "and no two share an id — the second would be unreachable at /alltag/<id>",
-);
+if (survival.length) {
+  ok(
+    survival.length >= 6,
+    "the pack is not shrinking",
+    `${survival.length} scenarios`,
+  );
+  ok(
+    new Set(survival.map((s) => s.id)).size === survival.length,
+    "and no two share an id — the second would be unreachable at /alltag/<id>",
+  );
+}
 
 for (const s of survival) {
   const d = s.dialogue;

@@ -41,3 +41,18 @@ export const TEXT_MAX_CHARS = 20_000;
 export const WALK_THINK_SECONDS = 3;
 /** Offline answers held in the browser. Unbounded, this fills the storage quota and every write throws. */
 export const OUTBOX_MAX = 500;
+
+// gamification — Playful Pop: XP is purely additive, hearts gate new material only
+/** Awarded once per correct attempt, of any kind — reviews, cloze, drills, quiz. */
+export const XP_PER_CORRECT = 10;
+/**
+ * On top of per-answer XP, every time logSession() runs (lib/session-log.ts)
+ * — which, since snackable lessons, is every "Beenden"/end-of-queue, not just
+ * once a day. Doing three short lessons today earns this bonus three times,
+ * same as three separate Duolingo lessons would; the per-answer XP above
+ * already scales with how much was actually done, so this only rewards
+ * closing out a lesson, not the length of the day.
+ */
+export const XP_SESSION_BONUS = 50;
+/** Refills once daily. See schema.sql's user_stats comment for why not earn-back. */
+export const MAX_HEARTS = 5;

@@ -119,8 +119,8 @@ export default function SpeakingBlock({
               disabled={listening}
               className={`flex h-24 w-24 items-center justify-center rounded-full text-3xl transition-colors ${
                 listening
-                  ? "bg-das text-[#23201A]"
-                  : "bg-fg text-[#16211E] hover:bg-white"
+                  ? "bg-das text-accent-fg"
+                  : "bg-accent dm-pill text-accent-fg hover:bg-accent-hover"
               }`}
             >
               🎤
@@ -157,8 +157,8 @@ export default function SpeakingBlock({
                   key={n}
                   className={`font-serif rounded px-2 py-1 text-[18px] ${
                     d.ok
-                      ? "bg-[#1F2A20] text-[#CFE3C8]"
-                      : "bg-[#2A1F26] text-[#E8C8D6]"
+                      ? "bg-correct text-correct-fg"
+                      : "bg-wrong text-wrong-fg"
                   }`}
                 >
                   {d.word}
@@ -182,9 +182,9 @@ export default function SpeakingBlock({
                   setError(null);
                   setI((n) => n + 1);
                 }}
-                className="bg-fg flex-1 rounded-xl py-3.5 font-medium text-[#16211E] transition-colors hover:bg-white"
+                className="bg-accent dm-pill flex-1 rounded-2xl py-3.5 font-medium text-accent-fg transition-colors hover:bg-accent-hover"
               >
-                Weiter <span className="kbd kbd-hint">Enter</span>
+                Weiter <span className="kbd kbd-hint !text-accent-fg/75">Enter</span>
               </button>
             </div>
           </div>

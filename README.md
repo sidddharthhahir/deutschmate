@@ -4,7 +4,7 @@ A self-hosted German learning app focused on practical, everyday use in Germany.
 
 ## Overview
 
-DeutschMate is a structured daily-study platform designed for consistent progress from A1.1 to B1.2. It combines guided sessions, spaced repetition, grammar, listening, speaking, and scenario-based practice in one local-first application: the deck is 3,219 words, and a session introduces at most twelve new ones a day.
+DeutschMate is a structured daily-study platform for consistent daily German practice. It combines guided sessions, spaced repetition, grammar, listening, speaking, and scenario-based practice in one local-first application: the deck is 3,120 words, browsable in Wortschatz regardless of which levels have a course built on top of them, and a session introduces at most twelve new ones a day. The course currently ships A1.1, rebuilt around the Momente A1.1 textbook; A1.2 through B1.2 are being rebuilt the same way and are not shipped yet (see `data/deferred/README.md`).
 
 ## Key Features
 
@@ -16,14 +16,14 @@ DeutschMate is a structured daily-study platform designed for consistent progres
 
 ## Course Content
 
-`npm run setup` builds the whole course locally from `data/` — 3,219 words, 120 units, 49 grammar points, 38 readings, 1,827 levelled sentences, 955 prebuilt explanations and 231 Deutsche Welle video episodes — with no network access and no API key required.
+`npm run setup` builds the whole course locally from `data/` — 3,120 words, 12 units, 15 grammar points, 6 readings, 1,827 levelled sentences, 955 prebuilt explanations and 231 Deutsche Welle video episodes — with no network access and no API key required.
 
-All of that costs nothing and needs nothing: 3,219 words, 120 units, 49 grammar points, 38 readings, the FSRS review engine, and **955 prebuilt explanations**, so a wrong answer always comes back with a reason. Only four features call a model — conversation, written-text correction, "erklär mir das" explanations, and mnemonics — each billed to the learner's own key.
+All of that costs nothing and needs nothing: 3,120 words, 12 units, 15 grammar points, 6 readings, the FSRS review engine, and **955 prebuilt explanations**, so a wrong answer always comes back with a reason. Only four features call a model — conversation, written-text correction, "erklär mir das" explanations, and mnemonics — each billed to the learner's own key.
 
 | Route           | What it is                                              |
 | --------------- | -------------------------------------------------------- |
 | **Sitzung**     | The daily session — reviews, new material, a quiz.       |
-| **Wortschatz**  | All 3,219 words, 1,536 of them with native audio.         |
+| **Wortschatz**  | All 3,120 words, 1,526 of them with native audio.         |
 | **Üben**        | Focused practice: scenarios, grammar, pronunciation.      |
 | **Fortschritt** | Progress tracking — every number traceable to a DB row.   |
 

@@ -4,6 +4,7 @@ import { currentUnit, paceProjection, LEVELS } from "@/lib/session";
 import { roadmap, skillsEarned, milestones, dayIndex } from "@/lib/journey";
 import { get } from "@/lib/db";
 import Page, { Section, Empty } from "@/components/Page";
+import SkillPath from "@/components/SkillPath";
 
 export const dynamic = "force-dynamic";
 
@@ -79,70 +80,57 @@ export default async function WegPage() {
             : "Tempo wird ab drei fertigen Units geschätzt"
         }
       >
-        <div className="flex flex-col gap-5">
-          {levels.map((l) => {
-            const isHere = l.units.some((u) => u.current);
-            return (
-              <div key={l.level} className="flex flex-col gap-2">
-                <div className="flex items-baseline justify-between">
-                  <span
-                    className={`font-mono text-[13px] ${
-                      isHere
-                        ? "text-fg"
-                        : l.finishedAt
-                          ? "text-secondary"
-                          : "text-muted"
-                    }`}
-                  >
-                    {l.level}
-                    {isHere && <span className="text-accent"> · hier</span>}
-                  </span>
-                  <span className="font-mono text-muted text-[12px] tabular-nums">
-                    {l.done} / {l.total}
-                    {/* Finished and retained are different claims, so they are
-                        two numbers. A level you walked through and a level you
-                        can still use are not the same thing. */}
-                    {l.done > 0 && (
-                      <span className="text-der"> · {l.mastered} sitzen</span>
-                    )}
-                    {l.finishedAt && ` · fertig ${niceDate(l.finishedAt)}`}
-                  </span>
-                </div>
-
-                {/* One tick per unit. Hover names it — this is a map, not a
-                    menu, so nothing here navigates. */}
-                <div className="flex gap-[3px]">
-                  {l.units.map((u) => (
+        {/*
+         * Levels with no units at all don't get a heading here — A1.1 only
+         * for now (2026-09), see data/deferred/README.md. A level with a
+         * heading and an empty path under it would read as broken, not as
+         * "coming later"; when a level returns it reappears the moment
+         * seed.mts starts giving it units, no change needed here.
+         */}
+        <div className="flex flex-col gap-10">
+          {levels
+            .filter((l) => l.total > 0)
+            .map((l) => {
+              const isHere = l.units.some((u) => u.current);
+              return (
+                <div key={l.level} className="flex flex-col gap-4">
+                  <div className="flex items-baseline justify-between">
                     <span
-                      key={u.id}
-                      title={
-                        `Unit ${u.ord} · ${u.title}` +
-                        (u.done ? ` — ${u.pct}% der Wörter sitzen` : "")
-                      }
-                      /* Three states, not two. */
-                      className={`h-[10px] flex-1 rounded-[2px] ${
-                        u.current
-                          ? "bg-accent"
-                          : u.mastered
-                            ? "bg-der"
-                            : u.done
-                              ? "bg-der/35"
-                              : "bg-line"
+                      className={`font-mono text-[13px] ${
+                        isHere
+                          ? "text-fg"
+                          : l.finishedAt
+                            ? "text-secondary"
+                            : "text-muted"
                       }`}
-                    />
-                  ))}
+                    >
+                      {l.level}
+                      {isHere && <span className="text-accent"> · hier</span>}
+                    </span>
+                    <span className="font-mono text-muted text-[12px] tabular-nums">
+                      {l.done} / {l.total}
+                      {/* Finished and retained are different claims, so they are
+                          two numbers. A level you walked through and a level you
+                          can still use are not the same thing. */}
+                      {l.done > 0 && (
+                        <span className="text-der"> · {l.mastered} sitzen</span>
+                      )}
+                      {l.finishedAt && ` · fertig ${niceDate(l.finishedAt)}`}
+                    </span>
+                  </div>
+
+                  <SkillPath units={l.units} />
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
         </div>
 
-        <p className="text-muted mt-5 max-w-[62ch] text-[12.5px] leading-relaxed">
-          Ein Strich ist eine Unit. Kräftig heißt: durch <em>und</em> mindestens
-          80&nbsp;% der Wörter sitzen wirklich. Blass heißt: durch, aber wieder
-          weggerutscht — die Wörter kommen von selbst zurück, du musst nichts
-          tun. Orange ist die von heute. Die Reihenfolge liegt fest, und das ist
-          Absicht.
+        <p className="text-muted mt-8 max-w-[62ch] text-[12.5px] leading-relaxed">
+          Jeder Punkt ist eine Unit. Ein Stern heißt: durch <em>und</em>{" "}
+          mindestens 80&nbsp;% der Wörter sitzen wirklich. Blass heißt: durch,
+          aber wieder weggerutscht — die Wörter kommen von selbst zurück, du
+          musst nichts tun. Der pinke Punkt ist die von heute. Die Reihenfolge
+          liegt fest, und das ist Absicht.
         </p>
       </Section>
 

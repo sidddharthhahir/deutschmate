@@ -1,107 +1,5 @@
 [
   {
-    "id": "r-a11-u15",
-    "unit_id": "a1-1-u15",
-    "level": "A1.1",
-    "title": "Wo ist die Post?",
-    "words": 62,
-    "text": "Tomasz sucht die Post. Er fragt eine Frau auf der Straße.\n\n„Entschuldigung, wo ist die Post?\"\n\nDie Frau sagt: „Gehen Sie hier geradeaus. Dann links. Die Post ist neben der Bank.\"\n\n„Ist das weit?\"\n\n„Nein, nur fünf Minuten.\"\n\nTomasz sagt danke und geht. Nach fünf Minuten sieht er die Bank. Die Post ist wirklich daneben.",
-    "questions": [
-      {
-        "q": "Was sucht Tomasz?",
-        "options": ["die Bank", "die Post", "den Bahnhof"],
-        "a": 1
-      },
-      {
-        "q": "Wo ist die Post?",
-        "options": ["neben der Bank", "neben der Schule", "im Bahnhof"],
-        "a": 0
-      },
-      {
-        "q": "Wie lange dauert der Weg?",
-        "options": ["fünf Minuten", "zehn Minuten", "eine Stunde"],
-        "a": 0
-      }
-    ],
-    "glossary": {
-      "geradeaus": "straight ahead",
-      "links": "left",
-      "neben": "next to",
-      "weit": "far",
-      "wirklich": "really",
-      "daneben": "next to it"
-    }
-  },
-  {
-    "id": "r-a11-u18",
-    "unit_id": "a1-1-u18",
-    "level": "A1.1",
-    "title": "Im Aufzug",
-    "words": 58,
-    "text": "Anna wohnt im vierten Stock. Im Aufzug trifft sie ihren Nachbarn.\n\n„Guten Morgen!\", sagt Anna.\n\n„Morgen. Na, alles gut?\"\n\n„Ja, danke. Und bei Ihnen?\"\n\n„Auch gut. Aber das Wetter ist heute schlecht.\"\n\n„Ja, es regnet schon wieder.\"\n\nDer Aufzug hält. „Schönen Tag noch!\", sagt der Nachbar.\n\n„Danke, gleichfalls!\"",
-    "questions": [
-      {
-        "q": "Wo wohnt Anna?",
-        "options": ["im ersten Stock", "im vierten Stock", "im Erdgeschoss"],
-        "a": 1
-      },
-      {
-        "q": "Wie ist das Wetter?",
-        "options": ["schön", "schlecht", "warm"],
-        "a": 1
-      },
-      {
-        "q": "Wen trifft Anna?",
-        "options": ["ihre Mutter", "ihren Nachbarn", "einen Kollegen"],
-        "a": 1
-      }
-    ],
-    "glossary": {
-      "der Stock": "floor, storey",
-      "der Aufzug": "lift",
-      "trifft": "meets",
-      "hält": "stops",
-      "gleichfalls": "likewise, same to you"
-    }
-  },
-  {
-    "id": "r-a11-u20",
-    "unit_id": "a1-1-u20",
-    "level": "A1.1",
-    "title": "Der neue Kollege",
-    "words": 74,
-    "text": "Heute ist Nikhils erster Tag im Büro. Eine Frau kommt zu ihm.\n\n„Hallo! Du bist neu hier, oder? Ich heiße Sabine.\"\n\n„Ja, ich heiße Nikhil. Freut mich!\"\n\n„Woher kommst du?\"\n\n„Aus Indien. Aber jetzt wohne ich hier in Köln.\"\n\n„Und wie findest du Köln?\"\n\n„Sehr gut! Die Stadt ist groß und die Leute sind nett.\"\n\n„Das freut mich. Möchtest du einen Kaffee?\"\n\n„Ja, gern. Danke!\"",
-    "questions": [
-      {
-        "q": "Wie heißt der neue Kollege?",
-        "options": ["Sabine", "Nikhil", "Tomasz"],
-        "a": 1
-      },
-      {
-        "q": "Woher kommt er?",
-        "options": ["aus Köln", "aus Polen", "aus Indien"],
-        "a": 2
-      },
-      {
-        "q": "Wie findet er die Stadt?",
-        "options": ["sehr gut", "zu klein", "zu teuer"],
-        "a": 0
-      },
-      {
-        "q": "Was möchte Sabine ihm geben?",
-        "options": ["ein Buch", "einen Kaffee", "Geld"],
-        "a": 1
-      }
-    ],
-    "glossary": {
-      "erster Tag": "first day",
-      "das Büro": "office",
-      "Freut mich": "nice to meet you",
-      "die Leute": "people",
-      "gern": "gladly"
-    }
-  },
-  {
     "id": "r-a12-u03",
     "unit_id": "a1-2-u03",
     "level": "A1.2",
@@ -111,22 +9,38 @@
     "questions": [
       {
         "q": "Was ist Meera von Beruf?",
-        "options": ["Verkäuferin", "Lehrerin", "Ärztin"],
+        "options": [
+          "Verkäuferin",
+          "Lehrerin",
+          "Ärztin"
+        ],
         "a": 1
       },
       {
         "q": "Wo arbeitet Jonas?",
-        "options": ["in einer Schule", "in einem Geschäft", "in einem Büro"],
+        "options": [
+          "in einer Schule",
+          "in einem Geschäft",
+          "in einem Büro"
+        ],
         "a": 1
       },
       {
         "q": "Wann hat Jonas frei?",
-        "options": ["am Samstag", "am Sonntag", "am Montag"],
+        "options": [
+          "am Samstag",
+          "am Sonntag",
+          "am Montag"
+        ],
         "a": 2
       },
       {
         "q": "Wie findet Meera ihre Arbeit?",
-        "options": ["langweilig", "sie mag sie", "zu schwer"],
+        "options": [
+          "langweilig",
+          "sie mag sie",
+          "zu schwer"
+        ],
         "a": 1
       }
     ],
@@ -159,7 +73,11 @@
       },
       {
         "q": "Seit wann ist sie krank?",
-        "options": ["seit einem Tag", "seit drei Tagen", "seit einer Woche"],
+        "options": [
+          "seit einem Tag",
+          "seit drei Tagen",
+          "seit einer Woche"
+        ],
         "a": 1
       },
       {
@@ -201,22 +119,38 @@
     "questions": [
       {
         "q": "Was steht nicht auf der Liste?",
-        "options": ["Brot", "Fleisch", "Käse"],
+        "options": [
+          "Brot",
+          "Fleisch",
+          "Käse"
+        ],
         "a": 1
       },
       {
         "q": "Wo sind die Eier?",
-        "options": ["neben dem Brot", "neben der Milch", "an der Kasse"],
+        "options": [
+          "neben dem Brot",
+          "neben der Milch",
+          "an der Kasse"
+        ],
         "a": 1
       },
       {
         "q": "Was kostet alles zusammen?",
-        "options": ["achtzehn Euro", "acht Euro", "achtzig Euro"],
+        "options": [
+          "achtzehn Euro",
+          "acht Euro",
+          "achtzig Euro"
+        ],
         "a": 0
       },
       {
         "q": "Was hat Nikhil vergessen?",
-        "options": ["die Milch", "das Obst", "das Brot"],
+        "options": [
+          "die Milch",
+          "das Obst",
+          "das Brot"
+        ],
         "a": 1
       }
     ],
@@ -240,17 +174,29 @@
     "questions": [
       {
         "q": "Wohin fährt Anna?",
-        "options": ["nach Köln", "nach Hamburg", "nach Berlin"],
+        "options": [
+          "nach Köln",
+          "nach Hamburg",
+          "nach Berlin"
+        ],
         "a": 1
       },
       {
         "q": "Was für eine Fahrkarte kauft sie?",
-        "options": ["einfach", "hin und zurück", "eine Monatskarte"],
+        "options": [
+          "einfach",
+          "hin und zurück",
+          "eine Monatskarte"
+        ],
         "a": 1
       },
       {
         "q": "Von welchem Gleis fährt der Zug?",
-        "options": ["Gleis fünf", "Gleis sieben", "Gleis zwölf"],
+        "options": [
+          "Gleis fünf",
+          "Gleis sieben",
+          "Gleis zwölf"
+        ],
         "a": 1
       },
       {
@@ -283,22 +229,38 @@
     "questions": [
       {
         "q": "Was passiert im Frühling?",
-        "options": ["Es schneit", "Die Bäume werden grün", "Es wird dunkel"],
+        "options": [
+          "Es schneit",
+          "Die Bäume werden grün",
+          "Es wird dunkel"
+        ],
         "a": 1
       },
       {
         "q": "Wie ist der Herbst?",
-        "options": ["heiß und trocken", "kälter und windig", "immer sonnig"],
+        "options": [
+          "heiß und trocken",
+          "kälter und windig",
+          "immer sonnig"
+        ],
         "a": 1
       },
       {
         "q": "Wann wird es früh dunkel?",
-        "options": ["im Sommer", "im Frühling", "im Winter"],
+        "options": [
+          "im Sommer",
+          "im Frühling",
+          "im Winter"
+        ],
         "a": 2
       },
       {
         "q": "Welche Jahreszeit mögen viele Deutsche am liebsten?",
-        "options": ["den Winter", "den Sommer", "den Frühling"],
+        "options": [
+          "den Winter",
+          "den Sommer",
+          "den Frühling"
+        ],
         "a": 1
       }
     ],
@@ -331,17 +293,29 @@
       },
       {
         "q": "Warum fährt der Mann nach München?",
-        "options": ["zu seinem Sohn", "zu seiner Frau", "zur Arbeit"],
+        "options": [
+          "zu seinem Sohn",
+          "zu seiner Frau",
+          "zur Arbeit"
+        ],
         "a": 0
       },
       {
         "q": "Was ist neu in der Familie des Mannes?",
-        "options": ["ein Haus", "ein Enkelkind", "ein Hund"],
+        "options": [
+          "ein Haus",
+          "ein Enkelkind",
+          "ein Hund"
+        ],
         "a": 1
       },
       {
         "q": "Wie spricht der Mann?",
-        "options": ["sehr schnell", "langsam", "sehr leise"],
+        "options": [
+          "sehr schnell",
+          "langsam",
+          "sehr leise"
+        ],
         "a": 1
       },
       {

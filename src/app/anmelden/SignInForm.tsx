@@ -86,7 +86,7 @@ export default function SignInForm({ first }: { first: boolean }) {
           /* Same reason as above: this is the first load after registering. */
           // eslint-disable-next-line @next/next/no-location-assign-relative-destination
           onClick={() => (window.location.href = "/")}
-          className="bg-fg w-full rounded-xl py-3.5 font-medium text-[#16211E] transition-colors hover:bg-white"
+          className="bg-accent dm-pill w-full rounded-2xl py-3.5 font-medium text-accent-fg transition-colors hover:bg-accent-hover"
         >
           Hab ich — los geht&apos;s
         </button>
@@ -151,7 +151,7 @@ export default function SignInForm({ first }: { first: boolean }) {
         />
 
         {error && (
-          <p className="text-[14px] text-[#E4A0A0]" role="alert">
+          <p className="text-[14px] text-error" role="alert">
             {error}
           </p>
         )}
@@ -159,7 +159,7 @@ export default function SignInForm({ first }: { first: boolean }) {
         <button
           type="submit"
           disabled={busy}
-          className="bg-fg mt-2 w-full rounded-xl py-3.5 font-medium text-[#16211E] transition-colors hover:bg-white disabled:opacity-50"
+          className="bg-accent dm-pill mt-2 w-full rounded-2xl py-3.5 font-medium text-accent-fg transition-colors hover:bg-accent-hover disabled:opacity-50"
         >
           {busy
             ? "…"

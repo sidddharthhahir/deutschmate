@@ -21,7 +21,7 @@ ok(
   "it is seen as a relative clause",
 );
 eq(needsUnit(rel), 99, "which puts it outside A1 entirely");
-ok(!isReachable(rel, 20), "so a learner finishing A1.1 never sees it");
+ok(!isReachable(rel, 12), "so a learner finishing A1.1 never sees it");
 ok(!isReachable(rel, 40), "nor one finishing all of A1");
 
 section("simple present is reachable from the start");
@@ -34,12 +34,17 @@ for (const s of [
 }
 
 section("each structure waits for its unit");
+/*
+ * Momente A1.1 is 12 units, denser than the course this scale was first
+ * calibrated for: accusative by 6, modal by 7, Perfekt by 11. Dative and
+ * two-way prepositions aren't taught in A1.1 at all yet, so they still read 99.
+ */
 const cases: [string, number, string][] = [
-  ["Ich sehe den Mann.", 21, "accusative"],
-  ["Ich kann nicht kommen.", 25, "modal"],
-  ["Können Sie mir helfen?", 29, "dative"],
-  ["Ich habe Brot gekauft.", 32, "Perfekt"],
-  ["Das Buch liegt auf dem Tisch.", 39, "two-way preposition"],
+  ["Ich sehe den Mann.", 6, "accusative"],
+  ["Ich kann nicht kommen.", 7, "modal"],
+  ["Können Sie mir helfen?", 99, "dative"],
+  ["Ich habe Brot gekauft.", 11, "Perfekt"],
+  ["Das Buch liegt auf dem Tisch.", 99, "two-way preposition"],
   ["Ich weiß, dass er kommt.", 99, "subordinate clause — not A1"],
   ["Ich wäre gern dabei.", 99, "Konjunktiv — not A1"],
   ["Das Haus wurde gebaut.", 99, "passive — not A1"],
@@ -49,15 +54,15 @@ for (const [s, want, why] of cases) {
 }
 
 section("a structure is not reachable one unit early");
-ok(!isReachable("Ich sehe den Mann.", 20), "accusative is not free at unit 20");
-ok(isReachable("Ich sehe den Mann.", 21), "and is at 21");
-ok(!isReachable("Ich habe Brot gekauft.", 31), "Perfekt is not free at 31");
-ok(isReachable("Ich habe Brot gekauft.", 32), "and is at 32");
+ok(!isReachable("Ich sehe den Mann.", 5), "accusative is not free at unit 5");
+ok(isReachable("Ich sehe den Mann.", 6), "and is at 6");
+ok(!isReachable("Ich habe Brot gekauft.", 10), "Perfekt is not free at 10");
+ok(isReachable("Ich habe Brot gekauft.", 11), "and is at 11");
 
 section("the hardest structure in the sentence wins");
-/* Negation is unit 17 and the Perfekt is 32, so this waits for 32. */
+/* Negation is unit 2 and the Perfekt is 11, so this waits for 11. */
 const both = "Ich habe das nicht gesehen.";
-eq(needsUnit(both), 32, "negation plus Perfekt waits for the Perfekt");
+eq(needsUnit(both), 11, "negation plus Perfekt waits for the Perfekt");
 ok(
   structuresIn(both).includes("negation") &&
     structuresIn(both).includes("perfekt"),
@@ -103,7 +108,7 @@ eq(needsUnit("Es geht mir gut."), 4, "and so is the answer to it");
 ok(isReachable("Wie geht es dir?", 4), "so unit 4 may use it");
 /* But the exception is literal, not a general amnesty for the dative. */
 ok(
-  !isReachable("Ich gebe dir das Buch.", 20),
+  !isReachable("Ich gebe dir das Buch.", 12),
   "an ordinary dative sentence is still gated",
   `unit ${needsUnit("Ich gebe dir das Buch.")}`,
 );

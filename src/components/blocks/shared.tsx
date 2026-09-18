@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { send } from "@/lib/outbox";
 import { shouldIgnoreKey, modalIsOpen } from "@/lib/keys";
+import { setStats, type Stats } from "@/lib/gamification-client";
 
 /* ------------------------------------------------------------------ keys --
  *
@@ -205,7 +206,7 @@ export function PrimaryButton({
     <button
       onClick={onClick}
       disabled={disabled}
-      className="bg-fg w-full rounded-xl py-4 font-medium text-[#16211E] transition-colors hover:bg-white disabled:cursor-not-allowed disabled:bg-[#243330] disabled:text-[#5C6B65]"
+      className="bg-accent dm-pill w-full rounded-2xl py-4 font-medium text-accent-fg transition-colors hover:bg-accent-hover disabled:cursor-not-allowed disabled:bg-disabled disabled:text-disabled-fg"
     >
       {children}
     </button>
@@ -216,7 +217,7 @@ export function Progress({ done, total }: { done: number; total: number }) {
   return (
     <div className="bg-line mb-6 h-1 w-full overflow-hidden rounded-[2px]">
       <div
-        className="bg-fg h-full transition-[width] duration-300"
+        className="bg-accent h-full transition-[width] duration-300"
         style={{ width: `${total ? (done / total) * 100 : 0}%` }}
       />
     </div>
@@ -243,8 +244,8 @@ export function Option({
 }) {
   const cls = {
     idle: "border-line hover:bg-raised hover:border-line-strong text-fg",
-    correct: "border-accent bg-[#1F2A20] text-fg border-l-[3px]",
-    wrong: "border-das bg-[#2A1F26] text-secondary border-l-[3px]",
+    correct: "border-correct-border bg-correct text-correct-fg border-l-[3px]",
+    wrong: "border-wrong-border bg-wrong text-wrong-fg border-l-[3px]",
     dimmed: "border-line-sub text-muted opacity-45",
   }[state];
 
@@ -279,8 +280,8 @@ export function Verdict({
     <div
       className={`mt-5 rounded-xl border p-4 text-[14px] ${ok ? "dm-fade" : "dm-nudge"} ${
         ok
-          ? "border-[#2F4A34] bg-[#18251B] text-[#CFE3C8]"
-          : "border-[#4A2F3D] bg-[#251A20] text-[#E8C8D6]"
+          ? "border-correct-border bg-correct text-correct-fg"
+          : "border-wrong-border bg-wrong text-wrong-fg"
       }`}
     >
       <p className="font-medium">{ok ? "Richtig" : "Nicht ganz"}</p>
@@ -318,9 +319,9 @@ export function ScoreCard({
       </p>
       <button
         onClick={onDone}
-        className="bg-fg mt-7 w-full rounded-xl py-3.5 font-medium text-[#16211E] transition-colors hover:bg-white"
+        className="bg-accent dm-pill mt-7 w-full rounded-2xl py-3.5 font-medium text-accent-fg transition-colors hover:bg-accent-hover"
       >
-        {cta} <span className="kbd kbd-hint">Enter</span>
+        {cta} <span className="kbd kbd-hint !text-accent-fg/75">Enter</span>
       </button>
     </Card>
   );
@@ -373,7 +374,7 @@ export function SkipLink({ onSkip }: { onSkip?: () => void }) {
   );
 }
 
-/** Post an attempt. */
+/** Post an attempt. Updates the header's XP/hearts store when the answer lands. */
 export async function record(opts: {
   kind: string;
   refId?: string;
@@ -381,10 +382,12 @@ export async function record(opts: {
   answer?: string;
   expected?: string;
   explain?: boolean;
-}): Promise<{ tags: string[]; explanation?: string }> {
-  const res = await send<{ tags: string[]; explanation?: string }>(
-    "/api/attempt",
-    opts,
-  );
+}): Promise<{ tags: string[]; explanation?: string; stats?: Stats }> {
+  const res = await send<{
+    tags: string[];
+    explanation?: string;
+    stats?: Stats;
+  }>("/api/attempt", opts);
+  if (res?.stats) setStats(res.stats);
   return res ?? { tags: [] };
 }

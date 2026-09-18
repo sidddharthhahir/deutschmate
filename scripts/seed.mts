@@ -256,16 +256,30 @@ type RawGrammar = {
   drills: unknown[];
   prereq: string[];
 };
-const GRAMMAR_FILES = [
-  "data/grammar-a1.json",
-  "data/grammar-a2.json",
-  "data/grammar-b1.json",
-];
+/*
+ * A1.1 only for now (2026-09) — grammar-a2.json and grammar-b1.json moved to
+ * data/deferred/, see its README for why and how to bring a level back.
+ *
+ * grammar-a1.json still carries several A1.2 entries and two the file's own
+ * `level` field mislabels as A1.1 (g-zeitpraepositionen, g-adjektiv-praedikativ
+ * — both written to satisfy an A1.2/A2.1 unit's grammar_id, never one of
+ * A1.1's own 12). None of that is wrong data to keep in the file — it's just
+ * not part of what ships right now, so it's filtered out here rather than
+ * edited out of the file, the same "strip from what ships, not from disk"
+ * rule the rest of this pass follows.
+ */
+const NOT_ACTUALLY_A11 = new Set([
+  "g-zeitpraepositionen",
+  "g-adjektiv-praedikativ",
+]);
+const GRAMMAR_FILES = ["data/grammar-a1.json"];
 const grammar: RawGrammar[] = GRAMMAR_FILES.filter((f) =>
   existsSync(path.join(ROOT, f)),
-).flatMap(
-  (f) => JSON.parse(readFileSync(path.join(ROOT, f), "utf8")) as RawGrammar[],
-);
+)
+  .flatMap(
+    (f) => JSON.parse(readFileSync(path.join(ROOT, f), "utf8")) as RawGrammar[],
+  )
+  .filter((g) => g.level === "A1.1" && !NOT_ACTUALLY_A11.has(g.id));
 const upG = db.prepare(`
   INSERT INTO grammar (id, slug, title, level, ord, explain_md, examples_json, drills_json, prereq_json)
   VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
@@ -361,15 +375,12 @@ type RawUnit = {
 /** Levels whose units are written by hand, one file each, in course order. */
 const HAND_WRITTEN = new Set(["A1.1", "A1.2", "A2.1", "A2.2", "B1.1", "B1.2"]);
 
-const UNIT_FILES = [
-  "data/units-a1-1.json",
-  "data/units-a1-2.json",
-  "data/units-a2-1.json",
-  "data/units-a2-2.json",
-  "data/units-b1-1.json",
-  "data/units-b1-2.json",
-  "data/units-generated.json",
-];
+/*
+ * A1.1 only for now (2026-09) — every other level's units moved to
+ * data/deferred/ (see its README). Not a data loss: bringing a level back is
+ * adding its file to this list again.
+ */
+const UNIT_FILES = ["data/units-a1-1.json"];
 /*
  * FIRST occurrence wins, the same rule the word files use. The generated file
  * still contains A1.1 and shares its ids, and the upsert is ON CONFLICT DO
@@ -518,8 +529,54 @@ for (const u of units) {
   );
 }
 db.exec("COMMIT");
+
+/*
+ * A unit dropped from the content files must leave the database too — the same
+ * rule as stale words and stale grammar, and one this loop never had. Its
+ * absence is exactly how a1-1-u13..u20 kept teaching "der-vater", "die-familie"
+ * and other words that no longer exist, seeded years ago under the old A1.1
+ * plan and never removed when that plan shrank from 20 units to 12: upsert has
+ * no opinion about a row nothing asks it to touch.
+ */
+const seenUnitIds = new Set(units.map((u) => u.id));
+const staleUnits = (
+  db.prepare("SELECT id FROM unit").all() as { id: string }[]
+).filter((u) => !seenUnitIds.has(u.id));
+let droppedUnits = 0;
+let keptUnits = 0;
+if (staleUnits.length) {
+  const hasProgress = db.prepare(
+    "SELECT 1 FROM unit_progress WHERE unit_id = ? LIMIT 1",
+  );
+  const clearReading = db.prepare(
+    "UPDATE reading SET unit_id = NULL WHERE unit_id = ?",
+  );
+  const clearVideo = db.prepare(
+    "UPDATE video SET unit_id = NULL WHERE unit_id = ?",
+  );
+  const delUnit = db.prepare("DELETE FROM unit WHERE id = ?");
+  db.exec("BEGIN");
+  for (const u of staleUnits) {
+    if (hasProgress.get(u.id)) {
+      keptUnits++;
+      continue;
+    }
+    clearReading.run(u.id);
+    clearVideo.run(u.id);
+    delUnit.run(u.id);
+    droppedUnits++;
+  }
+  db.exec("COMMIT");
+}
+
 console.log(
-  `OK${units.length} units${added ? `  (+${added} words spread into them)` : ""}`,
+  `OK${units.length} units${added ? `  (+${added} words spread into them)` : ""}` +
+    (droppedUnits
+      ? `\n   ${droppedUnits} no longer in the content files were removed`
+      : "") +
+    (keptUnits
+      ? `\n   ${keptUnits} kept despite that: a learner has already progressed through them`
+      : ""),
 );
 
 // ---------------------------------------------------------------- readings
@@ -533,12 +590,8 @@ type RawReading = {
   questions: unknown[];
   glossary: Record<string, string>;
 };
-const READING_FILES = [
-  "data/readings-a1-1.json",
-  "data/readings-a1-2.json",
-  "data/readings-a2.json",
-  "data/readings-b1.json",
-];
+// A1.1 only for now (2026-09) — see data/deferred/README.md.
+const READING_FILES = ["data/readings-a1-1.json"];
 const readings: RawReading[] = READING_FILES.filter((f) =>
   existsSync(path.join(ROOT, f)),
 ).flatMap(
@@ -570,7 +623,36 @@ for (const r of readings) {
   );
 }
 db.exec("COMMIT");
-console.log(`OK${readings.length} readings`);
+
+/*
+ * A reading dropped from the content files must leave the database too — the
+ * same rule as stale words, grammar and units, and one this loop never had
+ * either. Unlike those three, nothing keeps personal history against a
+ * reading's own id (a learner's progress lives on the unit, not the text), so
+ * there is no "kept despite that" case: a reading nothing authors anymore is
+ * simply gone, and any unit still pointing at it is cleared first.
+ */
+const seenReadingIds = new Set(readings.map((r) => r.id));
+const staleReadings = (
+  db.prepare("SELECT id FROM reading").all() as { id: string }[]
+).filter((r) => !seenReadingIds.has(r.id));
+if (staleReadings.length) {
+  db.exec("BEGIN");
+  for (const r of staleReadings) {
+    db.prepare("UPDATE unit SET reading_id = NULL WHERE reading_id = ?").run(
+      r.id,
+    );
+    db.prepare("DELETE FROM reading WHERE id = ?").run(r.id);
+  }
+  db.exec("COMMIT");
+}
+
+console.log(
+  `OK${readings.length} readings` +
+    (staleReadings.length
+      ? `\n   ${staleReadings.length} no longer in the content files were removed`
+      : ""),
+);
 
 // ---------------------------------------------------------------- examples
 /* One sentence per word, chosen once by scripts/attach-examples.mts.

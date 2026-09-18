@@ -23,8 +23,10 @@ export default function SurvivalPage() {
       <>
         {items.length === 0 ? (
           <Empty title="No scenarios loaded">
-            data/scenarios-survival.json is missing. Run{" "}
-            <code>npm run setup</code>.
+            Every survival scenario is A1.2 or later, and A1.1 is the only
+            level shipping right now — see{" "}
+            <code>data/deferred/README.md</code> for why and how it comes
+            back.
           </Empty>
         ) : (
           <div className="space-y-3">
@@ -86,7 +88,7 @@ export default function SurvivalPage() {
 
                 <Link
                   href={`/alltag/${s.id}`}
-                  className="bg-fg mt-5 inline-block rounded-xl px-6 py-3 text-[15px] font-medium text-[#16211E] transition-colors hover:bg-white"
+                  className="bg-accent dm-pill mt-5 inline-block rounded-2xl px-6 py-3 text-[15px] font-medium text-accent-fg transition-colors hover:bg-accent-hover"
                 >
                   Gespräch üben
                 </Link>

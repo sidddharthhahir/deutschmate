@@ -240,8 +240,8 @@ export default async function WordPage({
           <Section title={`Deine Fehler mit diesem Wort · ${mistakes.length}`}>
             <div className="space-y-1.5">
               {mistakes.map((m, n) => (
-                <div key={n} className="rounded-lg bg-[#251A20] px-3.5 py-2.5">
-                  <span className="font-serif text-[16px] text-[#E8C8D6]">
+                <div key={n} className="rounded-lg bg-wrong px-3.5 py-2.5">
+                  <span className="font-serif text-[16px] text-wrong-fg">
                     {m.user_answer}
                   </span>
                   <span className="font-mono text-muted ml-3 text-[11px]">

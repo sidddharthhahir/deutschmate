@@ -16,14 +16,23 @@ section("a quiz does not offer the same four options every question");
  * so after the first you could answer the rest by elimination without reading
  * any German. The route took the first three other words of a pool that does
  * not change between questions.
+ *
+ * "Zahlen 0-20" was an old-curriculum unit and no longer exists — A1.1 only
+ * for now (2026-09), see data/deferred/README.md — so this pulls the pool
+ * from whichever unit currently has the most words instead of matching a
+ * title. The bug being guarded against is about pool size and distractor
+ * variety, not about numbers specifically.
  */
 const pool = all<{ id: string; lemma: string; en: string }>(
   `SELECT DISTINCT w.id, w.lemma, w.en FROM word w
-     JOIN unit u ON u.title LIKE '%ahl%'
-    WHERE instr(u.word_ids_json, w.id) > 0
+     JOIN unit u ON instr(u.word_ids_json, w.id) > 0
+    WHERE u.id = (
+      SELECT id FROM unit ORDER BY length(word_ids_json) DESC LIMIT 1
+    )
+    ORDER BY w.id
     LIMIT 12`,
 );
-ok(pool.length >= 4, "the numbers unit has a usable pool", pool.length);
+ok(pool.length >= 4, "the biggest unit has a usable pool", pool.length);
 
 const sets = pool
   .map((w) => fourChoices(w, pool))

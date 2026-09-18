@@ -62,7 +62,7 @@ export default async function GrammarPage({
                 href={`/grammatik/${s.slug}`}
                 className={`rounded-full px-3.5 py-1.5 text-[13px] transition-colors ${
                   s.slug === slug
-                    ? "bg-fg text-[#16211E]"
+                    ? "bg-accent dm-pill text-accent-fg"
                     : "border-line text-secondary hover:border-line-strong hover:text-fg border"
                 }`}
               >

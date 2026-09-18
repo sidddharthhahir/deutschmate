@@ -176,7 +176,7 @@ export default function KeyForm({
             <button
               type="submit"
               disabled={busy || !key.trim()}
-              className="bg-fg shrink-0 rounded-xl px-6 font-medium text-[#16211E] transition-colors hover:bg-white disabled:opacity-40"
+              className="bg-accent dm-pill shrink-0 rounded-2xl px-6 font-medium text-accent-fg transition-colors hover:bg-accent-hover disabled:opacity-40"
             >
               {state.state === "set" ? "Ersetzen" : "Speichern"}
             </button>

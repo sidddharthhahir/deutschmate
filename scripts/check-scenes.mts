@@ -45,7 +45,8 @@ const CLOSED = new Set(
     "und oder aber auch nicht nein ja doch noch schon nur sehr so zu " +
     "in an auf aus bei mit nach von vor um fur uber unter am im zum zur " +
     "wie was wo wer wann warum welche welcher welches wohin woher " +
-    "hier dort jetzt dann heute bitte danke ok also mal denn etwas alles"
+    "hier dort jetzt dann heute bitte danke ok also mal denn etwas alles " +
+    "als ihn viel ins gern okay bis jeden wow wirklich super gar ab da dazu vielleicht"
   ).split(/\s+/),
 );
 
@@ -103,6 +104,10 @@ const IRREGULAR: Record<string, string> = {
   stehe: "aufstehen",
   stehst: "aufstehen",
   rufe: "anrufen",
+  siehst: "sehen",
+  "weiß": "wissen",
+  gelesen: "lesen",
+  steige: "einsteigen",
 };
 
 /*
@@ -112,7 +117,7 @@ const IRREGULAR: Record<string, string> = {
  * here is a decision — adding a common noun here is cheating.
  */
 const NAMES = new Set(
-  "Mira Jan Anna Tom Lena Max Sarah Weber Dr Indien Berlin Köln Hannover Deutschland München Hamburg Frankfurt Wien Euro".split(
+  "Mira Jan Anna Tom Lena Max Sarah Sam Weber Dr Indien Kanada Berlin Köln Hannover Deutschland München Hamburg Frankfurt Wien Euro".split(
     /\s+/,
   ),
 );

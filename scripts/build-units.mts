@@ -33,11 +33,10 @@ type Blueprint = {
   }[];
 };
 
-const BLUEPRINT_FILES = [
-  "data/blueprints-a1.json",
-  "data/blueprints-a2.json",
-  "data/blueprints-b1.json",
-];
+// A1.1 is hand-written now (data/units-a1-1.json), never generated from a
+// blueprint. A2/B1 blueprints are in data/deferred/ pending restoration — see
+// its README — so this list is empty until they're moved back.
+const BLUEPRINT_FILES: string[] = [];
 
 const blueprints: Blueprint[] = BLUEPRINT_FILES.filter((f) =>
   existsSync(path.join(ROOT, f)),
