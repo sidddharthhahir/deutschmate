@@ -374,7 +374,17 @@ export default function Tour({ firstRun }: { firstRun: boolean }) {
         {step.aside && <div className="md:pt-9">{step.aside}</div>}
       </div>
 
-      <div className="border-line-sub mt-12 flex items-center justify-between gap-4 border-t pt-6">
+      {/*
+       * Sticky, not just spaced below the content: on a 1280×800 or 1024×768
+       * laptop — both real, common sizes — a content-heavy step (step 1's
+       * four paragraphs plus its aside) pushed this bar below the fold with
+       * no visible hint that scrolling would reveal it. The one control this
+       * whole app is built around ("Press Enter... that is the whole daily
+       * decision") was the thing a new user couldn't find. Sticking it to
+       * the viewport bottom means Next/Back are always reachable regardless
+       * of how long a future step's copy gets, on any screen.
+       */}
+      <div className="bg-bg border-line-sub safe-bottom sticky bottom-0 mt-12 flex items-center justify-between gap-4 border-t pt-6 pb-4">
         <button
           onClick={() => setI((n) => Math.max(0, n - 1))}
           disabled={i === 0}
@@ -383,8 +393,21 @@ export default function Tour({ firstRun }: { firstRun: boolean }) {
           Back
         </button>
 
-        <span className="font-mono text-muted text-[11.5px]">
-          {i + 1} / {STEPS.length}
+        <span className="flex flex-col items-center gap-1">
+          <span className="font-mono text-muted text-[11.5px]">
+            {i + 1} / {STEPS.length}
+          </span>
+          {/* Moved inside the sticky bar, not left below it: a separate block
+              after this one would scroll out from under the now-pinned bar
+              on a short viewport and become unreachable. */}
+          {!last && (
+            <Link
+              href="/"
+              className={`font-mono text-muted hover:text-secondary text-[10.5px] transition-colors ${TAP}`}
+            >
+              Skip — I&apos;ll just start
+            </Link>
+          )}
         </span>
 
         {last && firstRun ? (
@@ -418,17 +441,6 @@ export default function Tour({ firstRun }: { firstRun: boolean }) {
           </button>
         )}
       </div>
-
-      {!last && (
-        <div className="mt-5 text-center">
-          <Link
-            href="/"
-            className={`font-mono text-muted hover:text-secondary text-[11.5px] transition-colors ${TAP}`}
-          >
-            Skip — I&apos;ll just start
-          </Link>
-        </div>
-      )}
     </div>
   );
 }

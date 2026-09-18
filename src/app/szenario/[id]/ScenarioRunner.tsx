@@ -12,12 +12,17 @@ type DialogueStep = {
 
 export default function ScenarioRunner({
   payload,
+  backHref = "/ueben",
 }: {
   payload: {
     scenario: Scenario;
     dialogue: DialogueStep[] | null;
     unitId: string;
   };
+  /** Where "Zurück" goes — the page that linked here, not a fixed hub. Alltag
+      scenarios return to Alltag; a course unit's own roleplay returns to
+      Üben, same as before. */
+  backHref?: string;
 }) {
   const router = useRouter();
   const [round, setRound] = useState(0);
@@ -38,7 +43,7 @@ export default function ScenarioRunner({
             Nochmal
           </button>
           <button
-            onClick={() => router.push("/ueben")}
+            onClick={() => router.push(backHref)}
             className="border-line text-secondary hover:border-line-strong hover:text-fg flex-1 rounded-xl border py-3.5 transition-colors"
           >
             Zurück

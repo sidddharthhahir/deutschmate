@@ -84,6 +84,17 @@ data/           # Course/content source data
 tests/          # Test runner and test suites
 ```
 
+## Accessibility
+
+Known gap, not an oversight: the primary button color (hot pink fill, cream
+text — `--dm-accent` / `--dm-accent-fg` in `src/app/globals.css`) measures
+roughly **2.84:1** contrast, below WCAG AA's 4.5:1 for normal-size text. This
+is the current brand color, kept deliberately rather than changed
+automatically — darkening it is a design decision for the team to make
+before a wider rollout, not something to fix quietly as a side effect of an
+unrelated change. See `DESKTOP_UX_VERIFICATION_REPORT.md` for how this was
+measured.
+
 ## Contribution
 
 Contributions are welcome. Please open an issue to discuss significant changes before submitting a pull request.

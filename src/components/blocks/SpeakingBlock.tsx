@@ -117,9 +117,10 @@ export default function SpeakingBlock({
             <button
               onClick={() => void listen()}
               disabled={listening}
+              aria-label={listening ? "Hört zu" : "Sprechen"}
               className={`flex h-24 w-24 items-center justify-center rounded-full text-3xl transition-colors ${
                 listening
-                  ? "bg-das text-accent-fg"
+                  ? "bg-das dm-rec text-accent-fg"
                   : "bg-accent dm-pill text-accent-fg hover:bg-accent-hover"
               }`}
             >

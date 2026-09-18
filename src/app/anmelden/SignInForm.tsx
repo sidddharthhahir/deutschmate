@@ -104,10 +104,14 @@ export default function SignInForm({ first }: { first: boolean }) {
       </p>
 
       <form onSubmit={submit} className="mt-7 flex flex-col gap-3">
-        <label className="font-mono text-muted text-[11.5px] tracking-[0.14em] uppercase">
+        <label
+          htmlFor="dm-username"
+          className="font-mono text-muted text-[11.5px] tracking-[0.14em] uppercase"
+        >
           Benutzername
         </label>
         <input
+          id="dm-username"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           autoComplete="username"
@@ -121,10 +125,14 @@ export default function SignInForm({ first }: { first: boolean }) {
 
         {mode === "reset" && (
           <>
-            <label className="font-mono text-muted mt-2 text-[11.5px] tracking-[0.14em] uppercase">
+            <label
+              htmlFor="dm-recovery-code"
+              className="font-mono text-muted mt-2 text-[11.5px] tracking-[0.14em] uppercase"
+            >
               Wiederherstellungscode
             </label>
             <input
+              id="dm-recovery-code"
               value={code}
               onChange={(e) => setCode(e.target.value)}
               autoCapitalize="characters"
@@ -137,10 +145,14 @@ export default function SignInForm({ first }: { first: boolean }) {
           </>
         )}
 
-        <label className="font-mono text-muted mt-2 text-[11.5px] tracking-[0.14em] uppercase">
+        <label
+          htmlFor="dm-password"
+          className="font-mono text-muted mt-2 text-[11.5px] tracking-[0.14em] uppercase"
+        >
           {mode === "reset" ? "Neues Passwort" : "Passwort"}
         </label>
         <input
+          id="dm-password"
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}

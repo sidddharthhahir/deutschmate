@@ -48,6 +48,7 @@ export default async function SurvivalScenario({
 
         <div className="mt-7">
           <ScenarioRunner
+            backHref="/alltag"
             payload={{
               scenario: s.scenario,
               /* The scripted fallback, for no key, no budget or no signal. */
