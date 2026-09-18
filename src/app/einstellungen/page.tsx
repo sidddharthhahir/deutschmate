@@ -1,12 +1,13 @@
 import Link from "next/link";
 import AppHeader from "@/components/AppHeader";
-import { requireUser } from "@/lib/user";
+import { requireUser, displayNameFor } from "@/lib/user";
 import { keyState, budgetFor } from "@/lib/apikey";
 import { budgetCeiling } from "@/lib/env";
 import { spendThisMonth } from "@/lib/cost";
 import { contributions } from "@/lib/shared-cache";
 import KeyForm from "./KeyForm";
 import CacheSection from "./CacheSection";
+import DisplayNameForm from "./DisplayNameForm";
 import { TAP } from "@/lib/ui";
 
 export const dynamic = "force-dynamic";
@@ -39,12 +40,16 @@ export default async function SettingsPage() {
           brauchen ein Modell — und dafür deinen eigenen Schlüssel.
         </p>
 
-        <KeyForm
-          state={key}
-          spend={spend.dollars}
-          cap={cap}
-          isDefault={isDefault}
-        />
+        <DisplayNameForm initial={displayNameFor(user.id)} />
+
+        <section className="border-line-sub mt-10 border-t pt-8">
+          <KeyForm
+            state={key}
+            spend={spend.dollars}
+            cap={cap}
+            isDefault={isDefault}
+          />
+        </section>
 
         {/* What the free half is, stated plainly. It is most of the app, and a
             learner deciding whether to bother with a key deserves the real

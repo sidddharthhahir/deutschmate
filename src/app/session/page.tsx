@@ -77,6 +77,8 @@ type Plan = {
   /** What comes after this unit, by name — the recap's "Morgen". */
   next: { ord: number; title: string } | null;
   stats: Stats;
+  /** The name to greet this learner by, or null for a generic greeting. */
+  displayName: string | null;
 };
 
 /**
@@ -464,6 +466,10 @@ function SessionRunner() {
         canDo={plan.canDo}
         minutes={minutes}
         xpTotal={gaStats?.xpTotal}
+        // The name appears here once — the very first recap — and in the
+        // home-screen welcome. Not every recap: "use it naturally, not in
+        // every sentence" (see PERSONALIZATION_IMPLEMENTATION_REPORT.md).
+        displayName={streak === 1 ? plan.displayName : null}
         /* Named, not numbered. */
         nextUnit={
           carryOver > 0

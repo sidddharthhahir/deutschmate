@@ -1,6 +1,6 @@
 import { get } from "./db";
 import { dueCards, dueCount } from "./srs";
-import { topErrorTags } from "./errors";
+import { topErrorTags, reasonForTags } from "./errors";
 import { dueCloze, mineFromErrors } from "./cloze";
 import { rhythmFor, today } from "./rhythm";
 import { dueGrammar } from "./grammar-srs";
@@ -27,6 +27,7 @@ import {
 import { newWordBudget } from "./session-pacing";
 import {
   builderItems,
+  conversationRepeatCount,
   drillsForTags,
   listeningItems,
   safeJson,
@@ -183,7 +184,11 @@ export function buildSession(
       minutes: 5,
       offline: true,
       skippable: true,
-      payload: { tags, drills: drillsForTags(tags.map((t) => t.tag)) },
+      payload: {
+        tags,
+        drills: drillsForTags(tags.map((t) => t.tag)),
+        reason: reasonForTags(tags),
+      },
     });
   }
 
@@ -477,6 +482,8 @@ export function buildSession(
         from: oldScenarioUnit
           ? `Unit ${oldScenarioUnit.ord} · ${oldScenarioUnit.title}`
           : null,
+        repetition: conversationRepeatCount(userId, talkUnit!.id),
+        userId,
       },
     });
   }

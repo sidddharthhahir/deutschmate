@@ -273,6 +273,42 @@ export function logAttempt(opts: {
   return tags;
 }
 
+/**
+ * One sentence explaining why the Fix block exists today, from the same
+ * `topErrorTags` result the block's drills already come from — no new data,
+ * just a name put on the reason. Null when there is nothing to explain (no
+ * recurring mistakes), so a caller can skip rendering it rather than showing
+ * an empty sentence.
+ */
+export function reasonForTags(
+  tags: { tag: string; n: number }[],
+): string | null {
+  if (!tags.length) return null;
+  const top = tags[0];
+  const label = TAG_DE_LOWER[top.tag as Tag] ?? top.tag;
+  return `Du übst das noch mal, weil ${label} zuletzt schwierig war.`;
+}
+
+/** Same as lib/tags.ts's TAG_DE, but mid-sentence rather than a header. */
+const TAG_DE_LOWER: Record<Tag, string> = {
+  "article-gender": "der/die/das",
+  "article-akkusativ": "der Akkusativ",
+  "article-dativ": "der Dativ",
+  "article-genitiv": "der Genitiv",
+  "verb-ending": "die Verbendung",
+  "verb-position-2": "die Verbposition",
+  "verb-final": "der Infinitiv am Ende",
+  "perfekt-hilfsverb": "haben oder sein",
+  praeposition: "die Präposition",
+  plural: "der Plural",
+  negation: "nicht oder kein",
+  pronoun: "du, Sie oder ihr",
+  capitalisation: "die Großschreibung",
+  spelling: "die Rechtschreibung",
+  "word-order": "die Wortstellung",
+  vocabulary: "die Wortwahl",
+};
+
 /** The three tags to drill tomorrow. Spec §9 — this is the whole engine. */
 export function topErrorTags(userId: string, days = 14, limit = 3) {
   const rows = all<{ error_tags_json: string }>(
@@ -284,7 +320,17 @@ export function topErrorTags(userId: string, days = 14, limit = 3) {
   );
   const counts = new Map<string, number>();
   for (const r of rows) {
-    for (const t of JSON.parse(r.error_tags_json) as string[]) {
+    // A row with unparsable error_tags_json must not take the whole session
+    // plan down with it — found by tests/personalization.test.mts inserting
+    // exactly this to prove the plan stays valid when error data is malformed.
+    let tags: string[];
+    try {
+      tags = JSON.parse(r.error_tags_json) as string[];
+      if (!Array.isArray(tags)) tags = [];
+    } catch {
+      tags = [];
+    }
+    for (const t of tags) {
       counts.set(t, (counts.get(t) ?? 0) + 1);
     }
   }

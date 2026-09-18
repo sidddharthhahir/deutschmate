@@ -1,9 +1,10 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { speak, listenOnce } from "@/lib/speech";
 import { useSpeechSupported } from "@/lib/hooks";
 import { GermanInput, UmlautBar } from "@/components/GermanInput";
+import { resolveTemplate } from "@/lib/variation";
 import {
   Card,
   Eyebrow,
@@ -26,7 +27,39 @@ type Payload = {
   unitId: string;
   /** Set when this scene is a revisit: which unit it originally came from. */
   from?: string | null;
+  /** How many times this learner has already had this conversation. */
+  repetition?: number;
+  /**
+   * Whoever is signed in — passed down from the server component rather
+   * than read client-side (lib/who.ts's whoami() returns a placeholder
+   * during server rendering, since it needs `document`, which would make
+   * the personalized text server-renders with disagree with what the
+   * client re-renders after hydration).
+   */
+  userId?: string;
 };
+
+/**
+ * Resolve any {{category}} personalization tokens in the scripted dialogue
+ * (Task 3/4). Deterministic per (learner, scene, repetition) — see
+ * lib/variation.ts. Almost every unit's dialogue has no token at all, in
+ * which case resolveTemplate returns the line unchanged for free.
+ */
+function personalize(
+  steps: DialogueStep[],
+  unitId: string,
+  repetition: number,
+  userId: string,
+): DialogueStep[] {
+  const seed = { userId, exerciseId: unitId, repetition };
+  return steps.map((step) => ({
+    them: resolveTemplate(step.them, step.them, seed),
+    options: step.options.map((o) => ({
+      ...o,
+      say: resolveTemplate(o.say, o.say, seed),
+    })),
+  }));
+}
 
 type Turn = { role: "user" | "assistant"; content: string };
 
@@ -66,7 +99,24 @@ export default function ConversationBlock({
   const endRef = useRef<HTMLDivElement>(null);
   const micAvailable = useSpeechSupported();
 
-  const dialogue = payload.dialogue ?? [];
+  const rawDialogue = payload.dialogue ?? [];
+  const dialogue = useMemo(
+    () =>
+      personalize(
+        rawDialogue,
+        payload.unitId,
+        payload.repetition ?? 0,
+        // "gast" only for a scene reached with no session at all, which
+        // proxy.ts already prevents — this is a last-resort, not the
+        // normal path.
+        payload.userId ?? "gast",
+      ),
+    // rawDialogue is a fresh array every render (it comes from payload, not
+    // state) — keyed on the seed's own parts instead, which only change
+    // when the scene itself does.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [payload.unitId, payload.repetition, payload.userId],
+  );
   /*
    * A unit with no scenario must bow out, not crash. session.ts no longer sends
    * one, but this block reads payload.scenario.role in two places and a null
@@ -121,6 +171,17 @@ export default function ConversationBlock({
     endRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [turns, scriptLog]);
 
+  useEffect(() => {
+    const hasTemplate = rawDialogue.some(
+      (step) =>
+        step.them.includes("{{") || step.options.some((o) => o.say.includes("{{")),
+    );
+    if (hasTemplate) track("personalized_variant_shown", { category: "name" });
+    // Fires once, when this scene's own (unresolved) content is known — not
+    // on every re-render, and never carries the picked name itself.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [payload.unitId]);
+
   /*
    * Bindings for the two screens that are a list of choices or a single
    * button. Live mode is deliberately absent: its field has focus, Enter is
@@ -132,9 +193,9 @@ export default function ConversationBlock({
    */
   const scriptedNow = mode === "scripted" && !corrections && !noScenario;
   useChoiceKeys(
-    scriptedNow ? (payload.dialogue?.[step]?.options.length ?? 0) : 0,
+    scriptedNow ? (dialogue[step]?.options.length ?? 0) : 0,
     (n) => {
-      const o = payload.dialogue?.[step]?.options[n];
+      const o = dialogue[step]?.options[n];
       if (o) pick(o);
     },
     scriptedNow,

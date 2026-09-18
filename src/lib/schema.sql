@@ -222,6 +222,17 @@ CREATE TABLE IF NOT EXISTS user (
   -- One-question onboarding (lib/situation.ts has the fixed option list).
   -- NULL for skipped or pre-onboarding accounts — never required, never a gate.
   situation         TEXT,
+
+  /*
+   * How the learner wants to be addressed. Separate from `name` on purpose:
+   * `name` is the login identity and is normalised (lowercased, stripped to
+   * [a-z0-9_-]) by lib/who.ts's normalise() — "Siddharth" is stored as
+   * "siddharth", and a name with spaces or umlauts couldn't be a username at
+   * all. This column is never normalised, always optional, and only ever
+   * used for display (lib/display-name.ts sanitises it at read time, never
+   * rendered as raw HTML, never placed in SQL unparameterised).
+   */
+  display_name      TEXT,
   created_at        TEXT NOT NULL DEFAULT (datetime('now'))
 );
 -- Partial, because several legacy rows may have no address and NULL is not a

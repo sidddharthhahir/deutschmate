@@ -1,5 +1,6 @@
 import { all, get, run } from "./db.ts";
 import { normalise } from "./who.ts";
+import { sanitizeDisplayName } from "./display-name.ts";
 
 /** Accounts, as rows. */
 
@@ -94,6 +95,21 @@ export function situationFor(userId: string): string | null {
       userId,
     )?.situation ?? null
   );
+}
+
+/** The name to greet this learner by, or null for a generic greeting. */
+export function displayNameFor(userId: string): string | null {
+  return sanitizeDisplayName(
+    get<{ display_name: string | null }>(
+      "SELECT display_name FROM user WHERE id = ?",
+      userId,
+    )?.display_name,
+  );
+}
+
+/** `null` clears it — always skippable, never required. */
+export function setDisplayName(userId: string, displayName: string | null) {
+  run("UPDATE user SET display_name = ? WHERE id = ?", displayName, userId);
 }
 
 export function setSituation(userId: string, situation: string | null) {

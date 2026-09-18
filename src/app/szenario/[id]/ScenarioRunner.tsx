@@ -18,6 +18,10 @@ export default function ScenarioRunner({
     scenario: Scenario;
     dialogue: DialogueStep[] | null;
     unitId: string;
+    /** How many times this learner has already had this conversation. */
+    repetition?: number;
+    /** Passed to ConversationBlock for deterministic personalization. */
+    userId?: string;
   };
   /** Where "Zurück" goes — the page that linked here, not a fixed hub. Alltag
       scenarios return to Alltag; a course unit's own roleplay returns to

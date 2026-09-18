@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import Anthropic from "@anthropic-ai/sdk";
-import { activeUser } from "@/lib/user";
+import { activeUser, displayNameFor, setDisplayName } from "@/lib/user";
+import { displayNameProblem } from "@/lib/display-name";
 import { readJson, badRequest, unauthorized, str } from "@/lib/http";
 import {
   clearApiKey,
@@ -91,6 +92,17 @@ export async function POST(req: Request) {
     }
     setBudget(user.id, n);
     return NextResponse.json({ ok: true });
+  }
+
+  // -------------------------------------------------------- display name
+  if (action === "display-name") {
+    const name = str(raw.displayName, 60);
+    const problem = displayNameProblem(name);
+    if (problem) return badRequest(problem);
+    // An empty string, after trimming, clears it — the field is a skip, not
+    // a requirement, and this is the one way to go back to a generic greeting.
+    setDisplayName(user.id, name.trim() || null);
+    return NextResponse.json({ ok: true, displayName: displayNameFor(user.id) });
   }
 
   // ------------------------------------------------------- the cache

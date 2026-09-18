@@ -160,7 +160,10 @@ for (const u of units) {
   for (const line of lines)
     for (const raw of line.split(/\s+/)) {
       const bare = raw.replace(/[.,!?;:„""»«…]/g, "");
-      if (!bare || NAMES.has(bare)) continue;
+      // A personalization placeholder (lib/variation.ts resolves it at render
+      // time to a name from the same approved set NAMES already exempts) —
+      // not a German word, so there is nothing here to check against a unit.
+      if (!bare || NAMES.has(bare) || bare === "{{name}}") continue;
       const low = bare.toLowerCase();
       const literal = stem(bare);
       if (!literal || CLOSED.has(literal) || CLOSED.has(low)) continue;

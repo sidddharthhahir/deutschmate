@@ -68,6 +68,9 @@ const MIGRATIONS: [
   // One-question onboarding (lib/situation.ts). NULL for every account that
   // predates it, and for anyone who skips the question.
   ["user", "situation", "TEXT"],
+  // Optional, unnormalised display name — see the column's own comment in
+  // schema.sql for why it's separate from the login `name`.
+  ["user", "display_name", "TEXT"],
 ];
 
 export function migrate(db: DatabaseSync) {

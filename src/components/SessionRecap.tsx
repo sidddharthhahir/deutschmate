@@ -76,6 +76,7 @@ export default function SessionRecap({
   minutes,
   nextUnit,
   xpTotal,
+  displayName,
 }: {
   recap: Recap | null;
   streak: number;
@@ -86,6 +87,8 @@ export default function SessionRecap({
       running total, never a delta, so it can't drift from what /fortschritt
       and the session header already say (principle 4). */
   xpTotal?: number;
+  /** Set only on the first recap ever — see the caller in session/page.tsx. */
+  displayName?: string | null;
 }) {
   const mistake = recap?.lastMistakeTags?.[0];
   const newWords = recap?.newWords ?? 0;
@@ -100,7 +103,7 @@ export default function SessionRecap({
             {streak > 0 && ` · Tag ${streak}`}
           </div>
           <h1 className="font-serif text-[38px] leading-[1.05] font-semibold tracking-[-0.015em] md:text-[52px]">
-            Heute geschafft
+            {displayName ? `Geschafft, ${displayName}.` : "Heute geschafft"}
           </h1>
         </div>
 

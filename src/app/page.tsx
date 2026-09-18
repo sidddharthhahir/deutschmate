@@ -9,9 +9,12 @@ import { shouldIgnoreKey } from "@/lib/keys";
 import { tourSeen } from "@/lib/tour";
 import { plural } from "@/lib/plural";
 import { NEW_WORDS_PER_DAY } from "@/lib/config";
+import { recommendationFor } from "@/lib/recommendation";
 
 type Plan = {
   user: { id: string; name: string; level: string };
+  /** The name to greet this learner by, or null for a generic greeting. */
+  displayName: string | null;
   streak: number;
   unit: { id: string; ord: number; title: string } | null;
   /* What tomorrow opens, by name. */
@@ -54,11 +57,29 @@ function alltagPitch(situation: string | null): string {
 
 type State = "loading" | "normal" | "empty" | "offline" | "error";
 
+/** The two events with no server-side moment to hang off already — see api/track.
+    Never carries the name itself, only that a name/recommendation was shown. */
+function track(event: string, properties: Record<string, unknown> = {}) {
+  void fetch("/api/track", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ event, properties }),
+  }).catch(() => {});
+}
+
+/*
+ * Unrelated to personalization, found while testing at 1am: this had no
+ * night bucket at all, so anything before 11am — including 1am — read as
+ * "Guten Morgen". "Gute Nacht" is already-taught A1.1 vocabulary (unit 1),
+ * so it costs nothing new to use here.
+ */
 function greeting() {
   const h = new Date().getHours();
+  if (h < 5) return "Gute Nacht";
   if (h < 11) return "Guten Morgen";
   if (h < 18) return "Guten Tag";
-  return "Guten Abend";
+  if (h < 22) return "Guten Abend";
+  return "Gute Nacht";
 }
 
 export default function Home() {
@@ -98,6 +119,10 @@ export default function Home() {
         if (stale) return;
         setPlan(data);
         setState(data.blocks.length === 0 ? "empty" : "normal");
+        // No name or situation value in the properties — these events only
+        // say THAT personalization showed, never what it said.
+        if (data.displayName) track("personalization_name_used", { location: "welcome" });
+        if (data.situation) track("recommendation_shown", { situation: data.situation });
       } catch {
         if (stale) return;
         setState("error");
@@ -138,6 +163,10 @@ export default function Home() {
         plan.unit ? ` · Unit ${plan.unit.ord} von ${plan.unitsInLevel}` : ""
       }${plan.streak > 0 ? ` · Tag ${plan.streak}` : ""}`
     : "";
+
+  // Deterministic, pure — see lib/recommendation.ts. Falls back to "continue
+  // the course" for a null/unrecognised situation, same as everyone gets.
+  const recommendation = recommendationFor(plan?.situation ?? null);
 
   /* Offline is a banner over the normal layout, not a different screen —
      the session runs offline, so nothing about the page should look broken. */
@@ -231,9 +260,26 @@ export default function Home() {
                   <h1 className="font-serif text-[34px] leading-[1.1] font-semibold tracking-[-0.015em] md:text-[46px]">
                     {state === "empty"
                       ? "Du bist durch für heute."
-                      : `${greeting()}, ${plan?.user.name ?? ""}`}
+                      : plan?.displayName
+                        ? `${greeting()}, ${plan.displayName}.`
+                        : `${greeting()}.`}
                   </h1>
                 </div>
+
+                {state === "normal" && (
+                  <Link
+                    href={recommendation.href}
+                    className="border-line-sub hover:border-line group flex flex-col gap-0.5 rounded-xl border px-4 py-3 transition-colors"
+                  >
+                    <span className="font-mono text-muted text-[10.5px] tracking-[0.14em] uppercase">
+                      Empfehlung für dich{" "}
+                      <span className="opacity-60">· recommended for you</span>
+                    </span>
+                    <span className="font-serif group-hover:text-accent text-[16px] transition-colors">
+                      {recommendation.title}
+                    </span>
+                  </Link>
+                )}
 
                 {state === "normal" && plan!.canDo.length > 0 && (
                   <div className="dm-stagger flex flex-col gap-3">

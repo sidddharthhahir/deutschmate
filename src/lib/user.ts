@@ -17,6 +17,8 @@ export {
   setRecoveryHash,
   situationFor,
   setSituation,
+  displayNameFor,
+  setDisplayName,
 } from "./accounts.ts";
 
 /**

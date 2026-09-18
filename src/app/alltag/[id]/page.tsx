@@ -7,6 +7,7 @@ import Phrases from "../Phrases";
 import { TAP } from "@/lib/ui";
 import { activeUser } from "@/lib/user";
 import { trackEvent } from "@/lib/analytics";
+import { conversationRepeatCount } from "@/lib/session-content";
 
 export const dynamic = "force-dynamic";
 
@@ -54,6 +55,8 @@ export default async function SurvivalScenario({
               /* The scripted fallback, for no key, no budget or no signal. */
               dialogue: s.dialogue ?? null,
               unitId: s.id,
+              repetition: user ? conversationRepeatCount(user.id, s.id) : 0,
+              userId: user?.id,
             }}
           />
         </div>

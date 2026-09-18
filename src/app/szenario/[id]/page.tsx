@@ -4,6 +4,8 @@ import { get } from "@/lib/db";
 import AppHeader from "@/components/AppHeader";
 import ScenarioRunner from "./ScenarioRunner";
 import { TAP } from "@/lib/ui";
+import { requireUser } from "@/lib/user";
+import { conversationRepeatCount } from "@/lib/session-content";
 
 export const dynamic = "force-dynamic";
 
@@ -14,6 +16,7 @@ export default async function ScenarioPage({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
+  const user = await requireUser();
 
   const u = get<{
     id: string;
@@ -52,6 +55,8 @@ export default async function ScenarioPage({
             scenario: JSON.parse(u.scenario_json),
             dialogue: u.dialogue_json ? JSON.parse(u.dialogue_json) : null,
             unitId: u.id,
+            repetition: conversationRepeatCount(user.id, u.id),
+            userId: user.id,
           }}
         />
       </div>

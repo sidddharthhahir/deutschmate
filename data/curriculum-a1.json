@@ -29,7 +29,7 @@
           "them": "Hallo! Wie heißt du?",
           "options": [
             {
-              "say": "Ich heiße Sam. Und wie heißt du?",
+              "say": "Ich heiße {{name}}. Und wie heißt du?",
               "ok": true,
               "next": 1
             },

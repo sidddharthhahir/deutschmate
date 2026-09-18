@@ -1,5 +1,5 @@
 ﻿import { NextResponse } from "next/server";
-import { activeUser, situationFor } from "@/lib/user";
+import { activeUser, situationFor, displayNameFor } from "@/lib/user";
 import { readJson, str, int, arr, unauthorized } from "@/lib/http";
 import {
   buildSession,
@@ -46,6 +46,7 @@ export async function GET(req: Request) {
     streak: currentStreak(user.id),
     stats: stats(user.id),
     situation: situationFor(user.id),
+    displayName: displayNameFor(user.id),
     ...plan,
   });
 }

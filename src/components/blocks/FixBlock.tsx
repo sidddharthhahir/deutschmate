@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Card,
   Eyebrow,
@@ -27,7 +27,18 @@ type Drill = {
 type Payload = {
   tags: { tag: string; n: number; label: string }[];
   drills: Drill[];
+  /** Why this block exists today, in one sentence — null when there's nothing to explain. */
+  reason: string | null;
 };
+
+/** The one event with no server route already at that moment — see api/track. */
+function track(event: string, properties: Record<string, unknown>) {
+  void fetch("/api/track", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ event, properties }),
+  }).catch(() => {});
+}
 
 /** The Fix block. */
 export default function FixBlock({
@@ -45,6 +56,13 @@ export default function FixBlock({
 
   // Before the early return: a hook cannot be called conditionally.
   useChoiceKeys(d?.options.length ?? 0, (n) => void choose(n), picked === null);
+
+  useEffect(() => {
+    if (payload.reason) {
+      track("error_driven_review_shown", { tag: payload.tags[0]?.tag ?? null });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   // Not onDone() in the render — see SkipToNext.
   if (!drills.length || !d) return <SkipToNext onDone={onDone} />;
@@ -71,6 +89,11 @@ export default function FixBlock({
         <p className="font-mono text-accent/80 text-[11px] tracking-[0.14em] uppercase">
           Deine häufigsten Fehler
         </p>
+        {payload.reason && (
+          <p className="text-secondary mt-1.5 text-[13px] leading-relaxed">
+            {payload.reason}
+          </p>
+        )}
         <ul className="mt-2.5 space-y-1.5">
           {payload.tags.map((t) => (
             <li

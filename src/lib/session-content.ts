@@ -20,6 +20,24 @@ export function safeJson<T>(raw: string | null | undefined): T | null {
 }
 
 /**
+ * How many times this learner has already had this exact conversation. Feeds
+ * lib/variation.ts's deterministic variant selection (Task 4 — a different
+ * approved variant on repeat, the same one on any refresh of the same visit)
+ * — scoped to this user alone, same `WHERE user_id = ?` discipline as every
+ * other per-learner query in this codebase.
+ */
+export function conversationRepeatCount(userId: string, unitId: string): number {
+  return (
+    get<{ n: number }>(
+      `SELECT COUNT(*) AS n FROM attempt
+        WHERE user_id = ? AND kind = 'conversation' AND ref_id = ?`,
+      userId,
+      unitId,
+    )?.n ?? 0
+  );
+}
+
+/**
  * Extra sentences from the corpus, at or below the learner's level AND inside
  * the grammar they have been taught.
  *
